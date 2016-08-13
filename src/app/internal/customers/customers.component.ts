@@ -1,17 +1,23 @@
 import {Component} from '@angular/core';
-import {CustomersService} from "../../services/customers.service";
+import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../models/customer";
 
 @Component({
-	template: require('./customers.html'),
-	providers: [CustomersService]
+	template: require('./customers.html')
 })
 export class CustomersComponent {
 
-	customers: Customer[];
+	private customers: Customer[];
+    private isLoading = false;
 
-	constructor(private customersService: CustomersService) {
+	constructor(private customerService: CustomerService) {
+        this.isLoading = true;
 
+        this.customerService.getCustomers()
+            .then((customers) => {
+                this.customers = customers;
+                this.isLoading = false;
+            });
 	}
 
 }

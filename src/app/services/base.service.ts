@@ -8,18 +8,20 @@ export class BaseService {
 
 	protected baseUrl: string;
 
+    private defaultHttpOptions = { withCredentials: true };
+
 	constructor(private http: Http) {
 	    this.baseUrl = environment.apiUrl;
     }
 
 	get(url: string): Promise<any> {
-		return this.http.get(this.constructApiUrl(url))
+		return this.http.get(this.constructApiUrl(url), this.defaultHttpOptions)
             .toPromise()
             .then(this.extract);
 	}
 
 	post(url: string, data: any): Promise<any> {
-        return this.http.post(this.constructApiUrl(url), data)
+        return this.http.post(this.constructApiUrl(url), data, this.defaultHttpOptions)
             .toPromise()
             .then(this.extract);
 	}

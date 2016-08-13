@@ -13,6 +13,7 @@ import {LoginService} from "./services/login.service";
 import {UserService} from "./services/user.service";
 import {State} from "./core/state";
 import {IconComponent} from "./core/components/icon";
+import {CustomerService} from "./services/customer.service";
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import {IconComponent} from "./core/components/icon";
     providers: [
         LoginService,
         UserService,
+        CustomerService
         State
     ],
     entryComponents: [AppComponent],
