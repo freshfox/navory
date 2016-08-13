@@ -1,0 +1,83 @@
+/**
+ * Natural box sizing for all elements
+ */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/**
+ * Basic font styling
+ */
+html, body {
+	font-size: $defaultFontSize;
+	line-height: $defaultLineHeight;
+	color: $textColor;
+	font-family: 'Lato', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	font-weight: 400;
+	height: 100%;
+}
+
+
+/**
+ * Logo
+ */
+.logo {
+	font-size: 30px;
+	@include fontBold;
+	text-transform: uppercase;
+	letter-spacing: 8px;
+}
+
+/**
+ * Spacer lines
+ */
+hr {
+    height: 1px;
+    background: $colorSpacerLines;
+    border: 0;
+    margin: 15px 0;
+}
+
+/**
+ * Typography
+ */
+p {
+	margin-top: 0;
+}
+
+/**
+ * Images
+ */
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/**
+ * Helper classes
+ */
+.full-width { width: 100%; }
+.pull-right { float:right; }
+.tc { text-align: center; }
+.tr { text-align: right; }
+.hidden { display: none; }
+.no-padding { padding: 0; }
+.nmb { margin-bottom: 0 !important; }
+.no-scroll { overflow: hidden; }
+
+/**
+ * Clearfix
+ */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}

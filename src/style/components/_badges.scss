@@ -1,0 +1,14 @@
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 999px;
+    font-size: 10px;
+
+
+    &.badge--customer { background: $colorClients; }
+    &.badge--gray { background: $colorGray; }
+    &.badge--income { background: $colorIncome; }
+    &.badge--expense { background: $colorExpenses; }
+}

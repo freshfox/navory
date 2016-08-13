@@ -1,0 +1,162 @@
+.invoice-list-table {
+
+    td {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .col-number { width: 6%; }
+    .col-customer { width: 30% }
+    .col-status { width: 12%; }
+    .col-date,
+    .col-due_date { width: 12% }
+    .col-payment-status { text-align: center; padding-right: 0; width: 10%; }
+    .col-amount { text-align: right; width: 15%; padding-right: 0; }
+    .col-actions { width: 5%; padding-right: 5px; }
+
+    .draft {
+        color: $colorGrayMedium;
+    }
+
+    .issued {
+        color: $colorSuccess;
+        @include fontBold;
+    }
+}
+
+.invoice-status {
+    $invoiceStatusSize: 12px;
+    width: $invoiceStatusSize;
+    height: $invoiceStatusSize;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid red;
+
+    &.invoice-status--paid {
+        background: $colorSuccess;
+        border-color: $colorSuccess;
+    }
+}
+
+.invoice-edit {
+
+    .invoice-payment-notice {
+        @include fontBold;
+
+        i {
+            color: $colorSuccess;
+            font-size: 24px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        button {
+            font-size: 18px;
+
+            &:hover {
+                color: $colorPrimary;
+            }
+        }
+    }
+
+    .invoice-edit-paper {
+        border: 1px solid $colorGrayLight;
+    }
+
+    .invoice-edit-paper-section {
+        padding: 30px;
+        border-bottom: 1px solid $colorGrayLight;
+    }
+
+    .customer-area {
+        padding-right: 80px;
+    }
+
+    .number-field {
+        text-align: right;
+    }
+
+    .invoice-lines-container .header {
+        @extend .cf;
+        margin-bottom: 10px;
+
+        span { display: inline-block; float: left; font-weight: bold; }
+
+        .title-header { width: 42%; }
+        .quantity-header { width: 8%; }
+        .unit-header { width: 10%; }
+        .price-header { width: 14%; }
+        .taxrate-header { width: 7%; }
+        .amount-header { width: 14%; }
+    }
+
+    .invoice-line {
+        @extend .cf;
+        margin-bottom: 15px;
+
+        @include form-fields {
+            float: left;
+        }
+
+        .select2-container {
+            float: left;
+        }
+
+        .title-field,
+        .description-field { width: 42%; }
+        .quantity-field { width: 8%; text-align: right; }
+        .unit-field + .select2 { width: 10% !important; }
+        .price-field { width: 14%; }
+        .taxrate-field + .select2 { width: 7% !important; }
+        .amount-field { width: 14%; }
+        .actions-column { width: 5%; float: left; }
+
+        .description-field {
+            display: none;
+            margin-top: 10px;
+            margin-bottom: 15px;
+
+            &.description-field--visible,
+            &:hover,
+            &:focus {
+                display: block;
+            }
+        }
+    }
+
+    .invoice-total {
+        text-align: right;
+
+        .invoice-total__inner {
+            width: 40%;
+            display: inline-block;
+        }
+
+        .line {
+            @extend .cf;
+            margin-bottom: 10px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &.line--total {
+                font-size: 20px;
+                font-weight: bold;
+            }
+        }
+
+        span {
+            display: inline-block;
+
+            &.title {
+                float: left;
+            }
+
+            &.value {
+                float: right;
+                text-align: right;
+            }
+        }
+    }
+}

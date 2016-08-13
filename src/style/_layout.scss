@@ -1,0 +1,106 @@
+
+/**
+ * Layout
+ */
+[class*='bit-'] {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#wrapper {
+	position: relative;
+	height: 100%;
+
+    .base-layout {
+        height: 100%;
+    }
+}
+
+.main-header {
+	background: white;
+	padding: 14px 0;
+    border-bottom: 1px solid $colorSpacerLines;
+
+	.main-header__column {
+		width: 50%;
+		display: inline-block;
+		vertical-align: middle;
+
+		&:last-child {
+			text-align: right;
+		}
+	}
+
+	.logo {
+		font-size: 22px;
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.username {
+		display: inline-block;
+		margin-right: 15px;
+		vertical-align: middle;
+	}
+
+	.btn {
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+
+.container {
+	position: relative;
+	width: $containerWidth;
+	margin: 0 auto;
+}
+
+.main-container {
+    min-height: 100%;
+}
+
+#content {
+	width: $contentWidth;
+	margin-left: $sidebarWidth;
+	padding-bottom: 50px;
+}
+
+.page-row {
+    @extend .cf;
+}
+
+.page-header {
+	padding: 20px 0;
+    padding-left: $contentSidePadding;
+	//margin-bottom: 30px;
+
+    &.page-header--no-margin {
+        margin-bottom: 0;
+    }
+
+    &.page-header--no-bottom-padding {
+        padding-bottom: 0;
+    }
+
+    &.page-header--no-side-padding {
+        padding-left: 0;
+    }
+
+    &.page-header--color {
+        background: $colorLightAccent;
+        border-bottom: 1px solid $colorSpacerLines;
+    }
+}
+
+.module-title {
+	font-size: 24px;
+	font-weight: $fontWeightRegular;
+}
+
+.page-headline {
+	font-size: 18px;
+}
+
+.default-section {
+	padding-left: $contentSidePadding;
+}

@@ -1,0 +1,108 @@
+/**
+ * Colors
+ */
+$colorPrimary: #089cd3;
+$colorPrimaryLight: lighten($colorPrimary, 10%);
+$colorPrimaryUltraLight: lighten($colorPrimary, 38%);
+$colorLightAccent: #f2f5f6;
+$colorAccentUltraLight: #fafcfb;
+$colorMediumAccent: #a0aaad;
+$colorDarkAccent: #4f6369;
+$colorUltraDarkAccent: #2a3244;
+$colorGrayUltraLighter: #fafafa;
+$colorGrayUltraLight: #f0f0f0;
+$colorGrayLight: #e7e7e7;
+$colorGray: #aaa;
+$colorGrayMedium: #888;
+$colorGrayUltraDark: #1d2125;
+
+$colorSuccess: #7ece65;
+$colorError: #f87979;
+
+$colorIncome: #7ece65;
+$colorExpenses: #f87979;
+$colorEstimates: #ab6fef;
+$colorReports: #fe8b4c;
+$colorClients: #ab6fef;
+$colorSettings: #9591c2;
+
+$colorSpacerLines: $colorGrayLight;
+
+/**
+ * Lemonade overrides
+ */
+$small: 0em;
+$medium: 0em;
+$large: 0em;
+$common: 25, 30, 40, 60, 70, 75;
+
+/**
+ * Animate SASS
+ */
+$base-duration: .5s;
+$use-fadeIn: true;
+$use-fadeOut: true;
+$use-pulse: true;
+
+/**
+ * Default Metrics
+ */
+$defaultBorderRadius: 3px;
+
+/**
+ * Sidebar
+ */
+$sidebarBackground: #fff;
+$sidebarWidth: 170px;
+
+/**
+ * Layout
+ */
+$containerWidth: 1200px;
+$contentWidth: $containerWidth - $sidebarWidth;
+$contentSidePadding: 20px;
+
+/**
+ * Typography
+ */
+$defaultFontSize: 13px;
+$defaultLineHeight: 1.5;
+$textColor: #2d3339;
+$fontWeightRegular: 400;
+$fontWeightBold: 600;
+$fontWeightLight: 300;
+
+/**
+ * Buttons
+ */
+$buttonBorderRadius: 9999px;
+$buttonPadding: 8px 14px;
+$buttonPaddingSmall: 5px 12px;
+$buttonPaddingLarge: 15px 18px;
+$buttonTextColor: #fff;
+$buttonPrimaryBackground: $colorPrimary;
+
+/**
+ * Forms
+ */
+$formFieldBorderColor: $colorGray;
+$formFieldBorderRadius: $defaultBorderRadius;
+
+// Dropdowns
+$dropdownHeight: 38px;
+
+// Checkboxes
+$checkboxSize: 17px;
+
+/**
+ * Tabs
+ */
+$tabsBorderRadius: 3px;
+
+
+/**
+ * Modals
+ */
+$modalSidePadding: 25px;
+
+

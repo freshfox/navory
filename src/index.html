@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Navory</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+
+    <style>
+        .pageload-overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            visibility: hidden;
+        }
+
+        .pageload-overlay.show {
+            visibility: visible;
+        }
+
+        .pageload-overlay svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .pageload-overlay svg path {
+            fill: #fff;
+        }
+
+        .pageload-overlay::after,
+        .pageload-overlay::before {
+            content: '';
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin: -10px 0 0 -10px;
+            border-radius: 50%;
+            visibility: hidden;
+            opacity: 0;
+            z-index: 1000;
+            -webkit-transition: opacity 0.15s, visibility 0s 0.15s;
+            transition: opacity 0.15s, visibility 0s 0.15s;
+        }
+
+        .pageload-overlay::after {
+            background: #4f6369;
+            -webkit-transform: translateX(-20px);
+            transform: translateX(-20px);
+            -webkit-animation: moveRight 0.6s linear infinite alternate;
+            animation: moveRight 0.6s linear infinite alternate;
+        }
+
+        .pageload-overlay::before {
+            background: #089cd3;
+            -webkit-transform: translateX(20px);
+            transform: translateX(20px);
+            -webkit-animation: moveLeft 0.6s linear infinite alternate;
+            animation: moveLeft 0.6s linear infinite alternate;
+        }
+
+        @-webkit-keyframes moveRight {
+            to { -webkit-transform: translateX(20px); }
+        }
+
+        @keyframes moveRight {
+            to { transform: translateX(20px); }
+        }
+
+        @-webkit-keyframes moveLeft {
+            to { -webkit-transform: translateX(-20px); }
+        }
+
+        @keyframes moveLeft {
+            to { transform: translateX(-20px); }
+        }
+
+        .pageload-loading.pageload-overlay::after,
+        .pageload-loading.pageload-overlay::before {
+            opacity: 1;
+            visibility: visible;
+            -webkit-transition: opacity 0.3s;
+            transition: opacity 0.3s;
+        }
+    </style>
+</head>
+<body>
+<nvry-app-root>
+    <div id="loader" class="pageload-overlay pageload-loading"
+         data-opening="m -5,-5 0,70 90,0 0,-70 z m 5,35 c 0,0 15,20 40,0 25,-20 40,0 40,0 l 0,0 C 80,30 65,10 40,30 15,50 0,30 0,30 z">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60"
+             preserveAspectRatio="none">
+            <path
+                d="m -5,-5 0,70 90,0 0,-70 z m 5,5 c 0,0 7.9843788,0 40,0 35,0 40,0 40,0 l 0,60 c 0,0 -3.944487,0 -40,0 -30,0 -40,0 -40,0 z"/>
+        </svg>
+    </div>
+</nvry-app-root>
+
+
+</body>
+</html>

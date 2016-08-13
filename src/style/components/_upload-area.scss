@@ -1,0 +1,107 @@
+.upload-area {
+	position: relative;
+	border: 2px dashed $colorGrayLight;
+	padding: 0;
+	height: 700px;
+
+	&.upload-area--has-file {
+		height: auto;
+		border-style: solid;
+	}
+
+	.upload-area__notice {
+		max-width: 300px;
+		margin: 0 auto;
+		margin-top: 150px;
+		text-align: center;
+
+		p {
+			margin-bottom: 10px;
+		}
+	}
+
+	.upload-area__thumbnail {
+		display: block;
+	}
+
+	.upload-area__page-nav {
+		position: absolute;
+		top: 15px;
+		width: 100%;
+		text-align: center;
+		color: #fff;
+
+		.btn {
+			background: $colorUltraDarkAccent;
+			border: 0;
+			border-radius: 0;
+			border-top-left-radius: $defaultBorderRadius;
+			border-bottom-left-radius: $defaultBorderRadius;
+			height: 30px;
+			padding: 0 10px;
+
+			&:last-child {
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+				border-top-right-radius: $defaultBorderRadius;
+				border-bottom-right-radius: $defaultBorderRadius;
+			}
+		}
+
+		.page-count {
+			background: $colorUltraDarkAccent;
+			height: 30px;
+			display: inline-block;
+			vertical-align: top;
+			line-height: 30px;
+			border-right: 1px solid $colorGrayLight;
+			border-left: 1px solid $colorGrayLight;
+			padding: 0 15px;
+		}
+
+		.upload-area__page-nav__inner {
+			display: inline-block;
+			position: relative;
+			top: 4px;
+		}
+	}
+
+	.upload-area__action-buttons {
+		position: absolute;
+		right: 10px;
+		top: 15px;
+
+		.btn {
+			height: 40px;
+            width: 40px;
+			border: 0;
+            text-align: center;
+            font-size: 16px;
+			background: $colorUltraDarkAccent;
+		}
+	}
+
+	.upload-area__progress {
+		max-width: 300px;
+		left: 50%;
+		margin-left: -150px;
+		position: absolute;
+		@include vertical-align;
+
+		span {
+			display: block;
+			height: 20px;
+			border-radius: $defaultBorderRadius;
+			background: $colorPrimary;
+			@include transition(all .5s ease);
+		}
+	}
+
+	&.dz-drag-hover {
+		border: 2px dashed $colorPrimary;
+	}
+
+	.dz-message {
+		display: none !important;
+	}
+}

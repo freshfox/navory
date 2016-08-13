@@ -1,0 +1,146 @@
+@include form-fields {
+	padding: 10px 6px;
+	display: inline-block;
+	border: 1px solid $formFieldBorderColor;
+	border-radius: $formFieldBorderRadius;
+	@include transition(background-color .2s ease);
+
+	&:focus {
+		outline: 0;
+		border-color: $colorPrimary;
+	}
+
+	.form-stacked & {
+		width: 100%;
+	}
+
+    &.money-field {
+        text-align: right;
+    }
+
+	&[disabled] {
+		background: $colorGrayLight;
+	}
+}
+
+@include form-fields-with-extensions {
+    &.connected-with-next {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+        + input:not([type=hidden]),
+        + input[type=hidden] + input {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: 0;
+        }
+
+        + .select2-hidden-accessible {
+            + .select2-container .select2-selection {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border-left: 0;
+            }
+        }
+
+        + .select2-container {
+
+            .select2-selection {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            + input:not([type=hidden]),
+            + input[type=hidden] + input {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border-left: 0;
+            }
+        }
+    }
+}
+
+.formfield-wrapper {
+	margin-bottom: 15px;
+	position: relative;
+}
+
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+	outline: thin dotted #333;
+	outline: 1px auto $colorPrimary;
+    border: 1px solid $colorPrimary;
+}
+
+label {
+	position: relative;
+	display: block;
+	font-size: 13px;
+	color: $colorDarkAccent;
+
+	.form-stacked & {
+		display: block;
+		margin-bottom: 3px;
+	}
+}
+
+@include placeholder {
+	font-weight: normal;
+}
+
+/**
+ * Form errors
+ */
+.form-error {
+	display: block;
+	color: $colorError;
+	font-size: 12px;
+}
+
+
+/**
+ * Checkboxes
+ */
+.checkbox {
+	margin-bottom: 14px;
+	display: block;
+
+	label {
+		display: inline-block;
+		cursor: pointer;
+		position: relative;
+		padding-left: $checkboxSize + 15px;
+		margin-bottom: 10px;
+		line-height: $checkboxSize;
+
+		&:before {
+			content:"";
+			display: inline-block;
+			width: $checkboxSize;
+			height: $checkboxSize;
+			line-height: $checkboxSize;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: $colorGrayUltraDark;
+			border-radius: $defaultBorderRadius;
+			font-size: 22px;
+			color: #fff;
+			text-align: center;
+		}
+	}
+
+	input[type=checkbox] {
+		display: none;
+
+		&:checked + label:before {
+			content:"\2713";
+		}
+
+		&:disabled + label:before {
+			background: $colorGrayLight;
+			border-color: $colorGrayLight;
+		}
+	}
+}

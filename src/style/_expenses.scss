@@ -1,0 +1,18 @@
+.expenses-list {
+
+	.categories {
+		display: inline-block;
+		float: left;
+		width: 20%;
+	}
+
+	.list {
+		display: inline-block;
+		float: left;
+		width: 80%;
+
+		.expense {
+			cursor: pointer;
+		}
+	}
+}

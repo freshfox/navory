@@ -1,0 +1,82 @@
+.dropdown {
+    $dropdownTargetSize: 28px;
+    $dropdownTargetSizeFormField: 39px;
+
+    position: relative;
+    padding: 5px 0;
+    text-align: right;
+
+
+    .dropdown-target {
+        width: $dropdownTargetSize;
+        height: $dropdownTargetSize;
+        border-radius: $defaultBorderRadius;
+        border: 1px solid $colorGray;
+        text-align: center;
+        outline: 0;
+        background: #fff;
+        @include icon('before', 'arrow-down');
+
+        &:before {
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        &:focus,
+        &:active {
+            @include icon('before', 'arrow-up');
+
+            ~ .dropdown-content {
+                display: block;
+            }
+        }
+    }
+
+    &.dropdown--form-field-height {
+        padding: 0;
+
+        .dropdown-target {
+            width: $dropdownTargetSizeFormField;
+            height: $dropdownTargetSizeFormField;
+        }
+    }
+
+    .dropdown-content {
+        border-radius: $defaultBorderRadius;
+        display: none;
+        position: absolute;
+        top: calc(100% + 5px);
+        right: 0;
+        border: 1px solid $colorGray;
+        background: #fff;
+        z-index: 100;
+        padding: 5px 0;
+        box-shadow: 0 0 12px rgba(0,0,0,.15);
+
+        &:hover {
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                text-align: left;
+
+                a,
+                button{
+                    display: block;
+                    padding: 6px 20px;
+                    width: 100%;
+                    text-align: left;
+
+                    &:hover {
+                        background: $colorGrayLight;
+                    }
+                }
+            }
+        }
+    }
+}

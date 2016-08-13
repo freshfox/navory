@@ -1,0 +1,21 @@
+.timeout-page {
+	text-align: center;
+	@include vertical-align;
+
+	.status-code {
+		font-size: 130px;
+		font-weight: bold;
+		color: $colorPrimary;
+		display: block;
+	}
+
+	.text {
+		margin: 0 auto;
+		margin-bottom: 40px;
+		max-width: 700px;
+
+		h1 {
+			font-size: 24px;
+		}
+	}
+}

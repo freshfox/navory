@@ -1,0 +1,82 @@
+.signup-wrapper {
+	
+	.header {
+		.headline {
+			font-size: 46px;
+			line-height: 52px;
+			@include fontLight;
+			margin-bottom: 16px;
+
+			.logo {
+				font-size: 46px;
+				line-height: 52px;
+			}
+		}
+
+		.sub {
+			font-size: 18px;
+		}
+	}
+
+	.steps {
+		margin: 0 auto;
+		margin-bottom: 30px;
+		text-align: center;
+
+		.step {
+			width: 100px;
+			border: 1px solid red;
+			display: inline-block;
+			vertical-align: middle;
+			opacity: .5;
+
+			&:before {
+				display: block;
+				font-size: 60px;
+				line-height: 60px;
+				margin-bottom: 10px;
+				text-align: center;
+			}
+
+			&.done {
+				opacity: 1;
+			}
+
+		}
+
+		.connection {
+			display: inline-block;
+			vertical-align: middle;
+			width: 100px;
+			height: 15px;
+			border: 1px solid blue;
+			position: relative;
+
+			.ring {
+				border-radius: 50%;
+				@include square(15px);
+				border: 5px solid white;
+				position: absolute;
+				top: 0;
+
+				&.ring-left {
+					left: 0;
+				}
+
+				&.ring-right {
+					right: 0;
+				}
+			}
+
+			.bar {
+				height: 4px;
+				background: #fff;
+				width: 72px;
+				margin: 0 auto;
+				@include vertical-align;
+			}
+		}
+	}
+	
+
+}

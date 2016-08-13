@@ -1,0 +1,80 @@
+@mixin chartSeriesColor($color) {
+	.ct-point,
+	.ct-line,
+	.ct-bar,
+	.ct-slice-donut {
+		stroke: $color;
+	}
+
+	.ct-area {
+		fill: $color;
+		fill-opacity: .2;
+	}
+}
+
+.dashboard-page {
+
+    padding: 30px $contentSidePadding;
+
+	.dashboard-overview-box-wrapper {
+		margin-bottom: 40px;
+
+		small {
+			color: $colorGray;
+			font-size: 12px;
+		}
+	}
+
+	.dashboard-overview-box {
+		border: 1px solid $colorGrayLight;
+		border-radius: $defaultBorderRadius;
+		padding: 15px;
+		// margin-bottom: 40px;
+		@extend .cf;
+
+		.dashboard-overview-box__column {
+			width: 50%;
+			float: left;
+			border-left: 8px solid $colorIncome;
+			padding-left: 10px;
+
+			&:last-child {
+				border-color: $colorExpenses;
+			}
+		}
+
+		.title {
+			display: block;
+		}
+
+		.amount {
+			font-size: 24px;
+		}
+	}
+
+
+	.ct-chart {
+		.ct-label {
+			font-size: 12px;
+			font-weight: bold;
+			color: $colorGrayMedium;
+
+			&.ct-horizontal {
+				top: 10px;
+				position: relative;
+			}
+		}
+
+		.ct-grid {
+			stroke-dasharray: none;
+			stroke: rgba(0, 0, 0, 0.1);
+		}
+
+		.ct-line {
+			stroke-width: 2px;
+		}
+
+		.ct-series-a { @include chartSeriesColor($colorIncome); }
+		.ct-series-b { @include chartSeriesColor($colorExpenses); }
+	}
+}

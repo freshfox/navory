@@ -1,0 +1,9 @@
+#!/bin/bash
+ENV=$1
+
+if [ -z $1 ]; then
+	echo "Usage: `basename $0` <environment>"
+	exit 1
+fi
+
+firebase deploy --project navory-dev --token="$FIREBASE_TOKEN";
