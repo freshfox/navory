@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES, Router} from '@angular/router';
+import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
 import {State} from "../core/state";
 
 @Component({
@@ -8,8 +8,9 @@ import {State} from "../core/state";
 })
 export class PublicComponent {
 
-    constructor(private state: State, private router: Router) {
-        if(state.user) {
+    constructor(private state: State, private router: Router, private route: ActivatedRoute) {
+        this.state.user = this.route.snapshot.data['user'];
+        if(this.state.user) {
             router.navigateByUrl('/dashboard');
         }
     }

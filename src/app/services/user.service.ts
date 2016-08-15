@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {BaseService} from "./base.service";
 import {Http} from "@angular/http";
 import {User} from "../models/user";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class UserService extends BaseService {
@@ -12,10 +13,17 @@ export class UserService extends BaseService {
         super(http);
     }
 
-    getOwnUser() {
-        return this.get(this.userMeUrl)
-            .then(data => {
+    getOwnUser(): Observable<User> {
+        return this.getObservable(this.userMeUrl)
+            .map(data => {
                 return data as User;
+            });
+    }
+
+    isLoggedIn(): Observable<boolean> {
+        return this.getOwnUser()
+            .map(user => {
+                return !!user;
             });
     }
 

@@ -19,7 +19,11 @@ export class LoginComponent {
         this.loading = true;
         this.loginService.login(this.login.email, this.login.password, this.login.remember)
             .then(data => {
+                this.loading = false;
                 this.router.navigateByUrl('/dashboard');
+            })
+            .catch(err => {
+                this.loading = false;
             });
 
     }

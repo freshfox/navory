@@ -14,10 +14,23 @@ import {UserService} from "./services/user.service";
 import {State} from "./core/state";
 import {IconComponent} from "./core/components/icon";
 import {CustomerService} from "./services/customer.service";
+import {LoggedInGuard} from "./guards/logged-in.guard";
+import {DashboardComponent} from "./internal/dashboard/dashboard.component";
+import {LoginComponent} from "./public/login.component";
+import {PublicComponent} from "./public/public.component";
+import {SignupComponent} from "./public/signup.component";
+import {CustomersComponent} from "./internal/customers/customers.component";
+import {InternalComponent} from "./internal/internal";
 
 @NgModule({
     declarations: [
         AppComponent,
+        InternalComponent,
+        DashboardComponent,
+        LoginComponent,
+        PublicComponent,
+        SignupComponent,
+        CustomersComponent,
         ButtonComponent,
         InputComponent,
         IconComponent
@@ -33,8 +46,9 @@ import {CustomerService} from "./services/customer.service";
     providers: [
         LoginService,
         UserService,
-        CustomerService
-        State
+        CustomerService,
+        State,
+        LoggedInGuard
     ],
     entryComponents: [AppComponent],
     bootstrap: [AppComponent]

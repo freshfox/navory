@@ -2,6 +2,7 @@ import {Injectable, Injector} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {environment} from '../environments/environment';
+import {Observable} from "rxjs";
 
 @Injectable()
 export class BaseService {
@@ -19,6 +20,11 @@ export class BaseService {
             .toPromise()
             .then(this.extract);
 	}
+
+	getObservable(url: string): Observable<any> {
+	    return this.http.get(this.constructApiUrl(url), this.defaultHttpOptions)
+            .map(this.extract);
+    }
 
 	post(url: string, data: any): Promise<any> {
         return this.http.post(this.constructApiUrl(url), data, this.defaultHttpOptions)

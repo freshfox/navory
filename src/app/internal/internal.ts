@@ -1,4 +1,7 @@
 import {Component} from '@angular/core';
+import {State} from "../core/state";
+import {User} from "../models/user";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
 	selector: 'nvry-internal',
@@ -44,4 +47,10 @@ export class InternalComponent {
 			'title': 'settings.title',
 		},
 	];
+
+    private user: User;
+
+    constructor(private state: State) {
+        this.user = this.state.user;
+    }
 }
