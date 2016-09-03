@@ -4,7 +4,7 @@ import {Component, Input} from '@angular/core';
 	selector: 'nvry-icon',
 	template: `
 	<svg>
-		<use attr.xlink:href="#icon-{{ name }}"></use>
+		<use attr.xlink:href="images/icons.svg#{{ name }}"></use>
 	</svg>`
 })
 export class IconComponent {
