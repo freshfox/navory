@@ -14,7 +14,7 @@ export class UserService extends BaseService {
     }
 
     getOwnUser(): Observable<User> {
-        return this.getObservable(this.userMeUrl)
+        return this.get(this.userMeUrl)
             .map(data => {
                 return data as User;
             });

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Customer} from "../models/customer";
 import {Http} from "@angular/http";
 import {BaseService} from "./base.service";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class CustomerService extends BaseService {
@@ -12,9 +13,9 @@ export class CustomerService extends BaseService {
         super(http);
     }
 
-	getCustomers(): Promise<Customer[]> {
+	getCustomers(): Observable<Customer[]> {
 		return this.get(this.customersUrl)
-            .then(data => data as Customer[])
+            .map(data => data as Customer[])
 	}
 
 }

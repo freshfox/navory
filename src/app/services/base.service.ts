@@ -15,22 +15,32 @@ export class BaseService {
 	    this.baseUrl = environment.apiUrl;
     }
 
-	get(url: string): Promise<any> {
-		return this.http.get(this.constructApiUrl(url), this.defaultHttpOptions)
-            .toPromise()
-            .then(this.extract);
-	}
-
-	getObservable(url: string): Observable<any> {
+	get(url: string): Observable<any> {
 	    return this.http.get(this.constructApiUrl(url), this.defaultHttpOptions)
-            .map(this.extract);
+            .map(this.extract)
+            .catch(this.handleError);
     }
 
-	post(url: string, data: any): Promise<any> {
+	post(url: string, data: any): Observable<any> {
         return this.http.post(this.constructApiUrl(url), data, this.defaultHttpOptions)
-            .toPromise()
-            .then(this.extract);
+            .map(this.extract)
+            .catch(this.handleError);
 	}
+
+	private handleError(error: any) {
+	    var errMsg = error.status;
+
+        let status = error.status;
+	    if (error.status >= 500) {
+            errMsg = 'UNEXPECTED_SERVER_ERROR';
+        }
+        else if (status === 401) {
+            errMsg = 'UNAUTHORIZED';
+        }
+
+        return Observable.throw(errMsg);
+
+    }
 
     private extract(res: Response): any {
         if (res.status != 204) {

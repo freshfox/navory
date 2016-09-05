@@ -14,10 +14,13 @@ export class CustomersComponent {
         this.isLoading = true;
 
         this.customerService.getCustomers()
-            .then((customers) => {
+            .subscribe((customers) => {
                 this.customers = customers;
                 this.isLoading = false;
-            });
+            },
+                (error) => {
+
+                });
 	}
 
 }

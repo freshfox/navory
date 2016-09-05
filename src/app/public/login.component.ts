@@ -18,14 +18,13 @@ export class LoginComponent {
     onSubmit() {
         this.loading = true;
         this.loginService.login(this.login.email, this.login.password, this.login.remember)
-            .then(data => {
+            .subscribe(data => {
                 this.loading = false;
                 this.router.navigateByUrl('/dashboard');
-            })
-            .catch(err => {
+            },
+            (error) => {
                 this.loading = false;
             });
-
     }
 
 }
