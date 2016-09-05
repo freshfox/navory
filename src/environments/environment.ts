@@ -4,6 +4,6 @@
 // The build system defaults to the dev environment.
 
 export const environment = {
-    production: false,
-    apiUrl: 'https://api.navory.com'
+  production: false,
+  apiUrl: 'https://api.navory.com'
 };

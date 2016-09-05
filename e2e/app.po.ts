@@ -1,4 +1,6 @@
-export class NavoryWebappAngularPage {
+import { browser, element, by } from 'protractor/globals';
+
+export class NavoryWebappPage {
   navigateTo() {
     return browser.get('/');
   }

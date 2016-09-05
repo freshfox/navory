@@ -1,10 +1,10 @@
-import { NavoryWebappAngularPage } from './app.po';
+import { NavoryWebappPage } from './app.po';
 
-describe('navory-webapp-angular App', function() {
-  let page: NavoryWebappAngularPage;
+describe('navory-webapp App', function() {
+  let page: NavoryWebappPage;
 
   beforeEach(() => {
-    page = new NavoryWebappAngularPage();
+    page = new NavoryWebappPage();
   });
 
   it('should display message saying app works', () => {
