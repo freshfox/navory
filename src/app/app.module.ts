@@ -25,6 +25,8 @@ import {AlertBarComponent} from "./core/components/alert-bar.component";
 import {ErrorHandler} from "./core/error-handler";
 import {ForgotPasswordComponent} from "./public/forgot-password.component";
 import {ControlMessagesComponent} from "./core/components/control-messages.component";
+import {LoginLayoutComponent} from "./public/login-layout.component";
+import {ResetPasswordComponent} from "./public/reset-password.component";
 
 @NgModule({
     declarations: [
@@ -40,7 +42,9 @@ import {ControlMessagesComponent} from "./core/components/control-messages.compo
         IconComponent,
         AlertBarComponent,
         ForgotPasswordComponent,
-        ControlMessagesComponent
+        ControlMessagesComponent,
+        LoginLayoutComponent,
+        ResetPasswordComponent
     ],
     imports: [
         BrowserModule,

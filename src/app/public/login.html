@@ -1,38 +1,28 @@
-<div class="top-notice">
-	<a [routerLink]="['/signup']">{{ 'login.signup-notice' | translate }}</a>
-</div>
+<nvry-login-layout>
+    <form class="form-stacked default-form-wrapper login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <nvry-alert-bar [message]="alertMessage" [type]="alertType"></nvry-alert-bar>
+        <div class="formfield-wrapper">
+            <input type="text" placeholder="{{ 'general.email' | translate }}" formControlName="email">
+            <nvry-control-messages [control]="form.controls.email"></nvry-control-messages>
+        </div>
+        <div class="formfield-wrapper">
+            <input type="password"  placeholder="{{ 'general.password' | translate }}" formControlName="password">
+            <nvry-control-messages [control]="form.controls.password"></nvry-control-messages>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox" id="durable" formControlName="durable">
+            <label for="durable">
+                {{ 'login.remember' | translate }}
+            </label>
+        </div>
+        <nvry-button class="button--l button--block" [loading]="loading">
+            {{ 'login.submit' | translate }}
+        </nvry-button>
+    </form>
 
-<div class="content-wrapper">
-	<div class="header">
-		<h2 class="logo">{{ 'app.name' | translate }}</h2>
-		<p class="sub">{{ 'app.tagline' | translate }}</p>
-	</div>
-	<div class="content">
-		<form class="form-stacked default-form-wrapper login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-			<nvry-alert-bar [message]="alertMessage" [type]="alertType"></nvry-alert-bar>
-			<div class="formfield-wrapper">
-				<input type="text" placeholder="{{ 'general.email' | translate }}" formControlName="email">
-                <nvry-control-messages [control]="form.controls.email"></nvry-control-messages>
-			</div>
-			<div class="formfield-wrapper">
-				<input type="password"  placeholder="{{ 'general.password' | translate }}" formControlName="password">
-                <nvry-control-messages [control]="form.controls.password"></nvry-control-messages>
-            </div>
-			<div class="checkbox">
-				<input type="checkbox" id="durable" formControlName="durable">
-				<label for="durable">
-					{{ 'login.remember' | translate }}
-				</label>
-			</div>
-			<nvry-button class="button--l button--block" [loading]="loading">
-				{{ 'login.submit' | translate }}
-			</nvry-button>
-		</form>
-
-		<div class="after-form">
-			<a [routerLink]="['/forgot-password']" class="small-print">
-				{{ 'login.forgot-password.link' | translate }}
-			</a>
-		</div>
-	</div>
-</div>
+    <div class="after-form">
+        <a [routerLink]="['/forgot-password']" class="small-print">
+            {{ 'login.forgot-password.link' | translate }}
+        </a>
+    </div>
+</nvry-login-layout>

@@ -88,7 +88,7 @@
       "success-message": "Sofern diese Email in unserer Datenbank existiert, haben wir dir soeben Informationen zum Zurücksetzen deines Passworts übermittelt."
     },
     "reset-password": {
-      "description": "Gib dein neues Passwort einfach unten ein. Wir loggen dich automatisch ein, sobald der Vorgang abgeschlossen ist",
+      "description": "Gib dein neues Passwort einfach unten ein. Danach kannst du dich einloggen.",
       "password": "Neues Passwort",
       "password-confirm": "Passwort bestätigen",
       "submit": "Passwort ändern",

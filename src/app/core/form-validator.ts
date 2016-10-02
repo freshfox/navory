@@ -1,4 +1,4 @@
-import {FormControl} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 var validator = require('validator');
 
 export class FormValidator {
@@ -22,6 +22,27 @@ export class FormValidator {
             };
         }
         return null;
+    }
+
+    static areEqual(group: FormGroup) {
+        var valid = false;
+
+        var firstVal: string;
+        for(let control of group.controls) {
+            var val = control.value;
+            if(firstVal && val === firstVal) {
+                continue;
+            }
+            firstVal = val;
+        }
+
+        if(valid) {
+            return null;
+        }
+
+        return {
+            notEqual: true
+        };
     }
 
 }

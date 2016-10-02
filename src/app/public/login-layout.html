@@ -1,0 +1,13 @@
+<div class="top-notice">
+    <a [routerLink]="['/signup']">{{ 'login.signup-notice' | translate }}</a>
+</div>
+
+<div class="content-wrapper">
+    <div class="header">
+        <h2 class="logo">{{ 'app.name' | translate }}</h2>
+        <p class="sub">{{ 'app.tagline' | translate }}</p>
+    </div>
+    <div class="content">
+        <ng-content></ng-content>
+    </div>
+</div>
