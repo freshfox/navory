@@ -8,17 +8,19 @@
 		<p class="sub">{{ 'app.tagline' | translate }}</p>
 	</div>
 	<div class="content">
-		<form class="form-stacked default-form-wrapper login-form" (ngSubmit)="onSubmit()">
-			<div class="alert-container"></div>
+		<form class="form-stacked default-form-wrapper login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+			<nvry-alert-bar [message]="alertMessage" [type]="alertType"></nvry-alert-bar>
 			<div class="formfield-wrapper">
-				<input type="email" placeholder="{{ 'general.email' | translate }}" name="email" id="email" [(ngModel)]="login.email" required>
+				<input type="text" placeholder="{{ 'general.email' | translate }}" formControlName="email">
+                <nvry-control-messages [control]="form.controls.email"></nvry-control-messages>
 			</div>
 			<div class="formfield-wrapper">
-				<input type="password"  placeholder="{{ 'general.password' | translate }}" name="password" id="password" [(ngModel)]="login.password" required>
-			</div>
+				<input type="password"  placeholder="{{ 'general.password' | translate }}" formControlName="password">
+                <nvry-control-messages [control]="form.controls.password"></nvry-control-messages>
+            </div>
 			<div class="checkbox">
-				<input type="checkbox" name="remember" id="remember" [(ngModel)]="login.remember">
-				<label for="remember">
+				<input type="checkbox" id="durable" formControlName="durable">
+				<label for="durable">
 					{{ 'login.remember' | translate }}
 				</label>
 			</div>
@@ -28,9 +30,9 @@
 		</form>
 
 		<div class="after-form">
-			<!--<a [routerLink]=['/forgot-password'] class="small-print">
+			<a [routerLink]="['/forgot-password']" class="small-print">
 				{{ 'login.forgot-password.link' | translate }}
-			</a>-->
+			</a>
 		</div>
 	</div>
 </div>

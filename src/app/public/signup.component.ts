@@ -1,41 +1,17 @@
 import {Component} from '@angular/core';
-import {FormBuilder, Validators, AbstractControl} from '@angular/forms';
-import {LoginService} from '../services/login.service';
-import {ControlGroup} from '@angular/common';
+import {AuthService} from '../services/login.service';
 
 @Component({
 	template: require('./signup.html'),
-	providers: [LoginService]
+	providers: [AuthService]
 })
 export class SignupComponent {
 
 	data = {};
-	form: ControlGroup;
-	companyName: AbstractControl;
-	firstname: AbstractControl;
-	lastname: AbstractControl;
-	password: AbstractControl;
-	email: AbstractControl;
 
 	isSubmitting: boolean = false;
 
-	constructor(private loginService: LoginService) {}
-
-	ngOnInit() {
-		/*this.form = this.fb.group({
-			company_name: ['', Validators.required],
-			email: ['', Validators.required],
-			firstname: ['', Validators.required],
-			lastname: ['', Validators.required],
-			password: ['', Validators.required],
-		});
-
-		this.companyName = this.form.controls['company_name'];
-		this.firstname = this.form.controls['firstname'];
-		this.lastname = this.form.controls['lastname'];
-		this.password = this.form.controls['password'];
-		this.email = this.form.controls['email'];*/
-	}
+	constructor(private loginService: AuthService) {}
 
 	onSubmit(): void {
 		this.isSubmitting = true;

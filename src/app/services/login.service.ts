@@ -6,17 +6,19 @@ import {Http} from "@angular/http";
 import {Observable} from "rxjs";
 
 @Injectable()
-export class LoginService extends BaseService {
+export class AuthService extends BaseService {
 
-    private signupUrl = '/register';
-    private loginUrl = '/auth';
+    private pathSignup = '/register';
+    private pathLogin = '/auth';
+    private pathRequestPasswordReset = '/password/reset';
+    private pathResetPassword = '/password/reset';
 
     constructor(http: Http) {
         super(http);
     }
 
     login(email: string, password: string, remember: boolean): Observable<any> {
-        return this.post(this.loginUrl, {
+        return this.post(this.pathLogin, {
             email: email,
             password: password,
             remember: remember
@@ -27,6 +29,19 @@ export class LoginService extends BaseService {
                 account: account,
                 user: user
             };
+        });
+    }
+
+    requestPasswordReset(email: string) {
+        return this.post(this.pathRequestPasswordReset, {
+            email: email
+        });
+    }
+
+    resetPassword(newPassword: string, token: string) {
+        return this.patch(this.pathResetPassword, {
+            password: newPassword,
+            token: token
         });
     }
 

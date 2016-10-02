@@ -1,16 +1,14 @@
-import {Component} from '@angular/core';
-import {AuthService} from "../services/login.service";
-import {Router} from "@angular/router";
-import {FormGroup, Validators, FormBuilder} from "@angular/forms";
-import {TranslateService} from "ng2-translate";
+import { Component } from '@angular/core';
+import {Validators, FormBuilder, FormGroup} from "@angular/forms";
 import {ErrorHandler} from "../core/error-handler";
+import {TranslateService} from "ng2-translate";
+import {AuthService} from "../services/login.service";
 import {FormValidator} from "../core/form-validator";
 
-
 @Component({
-    templateUrl: './login.html',
+    templateUrl: 'forgot-password.html'
 })
-export class LoginComponent {
+export class ForgotPasswordComponent {
 
     loading = false;
     alertMessage: string;
@@ -19,14 +17,11 @@ export class LoginComponent {
     form: FormGroup;
 
     constructor(private loginService: AuthService,
-                private router: Router,
                 private fb: FormBuilder,
                 private translate: TranslateService,
                 private errorHandler: ErrorHandler) {
         this.form = fb.group({
             'email': ["", Validators.compose([Validators.required, FormValidator.email])],
-            'password': ["", Validators.required],
-            'durable': [""]
         });
     }
 
@@ -34,17 +29,15 @@ export class LoginComponent {
         if(this.form.valid) {
             let data = this.form.value;
             this.loading = true;
-            this.loginService.login(data.email, data.password, data.durable)
+            this.loginService.requestPasswordReset(data.email)
                 .subscribe(
                     data => {
+                        this.alertMessage = this.translate.instant('login.forgot-password.success-message');
+                        this.alertType = 'success';
                         this.loading = false;
-                        this.router.navigateByUrl('/dashboard');
                     },
                     error => {
                         switch(error.code) {
-                            case 'UNAUTHORIZED':
-                                this.alertMessage = this.translate.instant('login.error-wrong-credentials');
-                                break;
                             default:
                                 this.alertMessage = this.errorHandler.getDefaultErrorMessage(error.code);
                         }

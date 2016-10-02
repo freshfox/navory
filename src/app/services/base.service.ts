@@ -1,7 +1,7 @@
 import {Injectable, Injector} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {environment} from '../environments/environment';
+import {environment} from '../../environments/environment';
 import {Observable} from "rxjs";
 
 @Injectable()
@@ -27,18 +27,33 @@ export class BaseService {
             .catch(this.handleError);
 	}
 
+	patch(url: string, data: any): Observable<any> {
+	    return this.http.patch(this.constructApiUrl(url), data, this.defaultHttpOptions)
+            .map(this.extract)
+            .catch(this.handleError)
+    }
+
 	private handleError(error: any) {
-	    var errMsg = error.status;
+	    let body = JSON.parse(error._body);
+	    var errCode = error.status;
 
-        let status = error.status;
-	    if (error.status >= 500) {
-            errMsg = 'UNEXPECTED_SERVER_ERROR';
-        }
-        else if (status === 401) {
-            errMsg = 'UNAUTHORIZED';
+        switch(error.status) {
+            case 400:
+                errCode = 'VALIDATION_ERROR';
+                break;
+            case 401:
+                errCode = 'UNAUTHORIZED';
+                break;
+            default:
+                errCode = 'UNEXPECTED_SERVER_ERROR';
+                break;
         }
 
-        return Observable.throw(errMsg);
+        return Observable.throw({
+            code: errCode,
+            message: body.message,
+            data: body.errors || null
+        });
 
     }
 
