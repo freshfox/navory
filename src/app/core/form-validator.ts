@@ -1,14 +1,14 @@
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, AbstractControl} from "@angular/forms";
 var validator = require('validator');
 
 export class FormValidator {
 
     static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
         let config = {
-            'required': 'Pflichtfeld',
+            'required': 'Dies ist ein Pflichtfeld',
             'invalidEmailAddress': 'Ungültige E-Mail Adresse',
-            'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.',
-            'minlength': `Minimum length ${validatorValue.requiredLength}`
+            'passwordsNotEqual': 'Passwörter stimmen nicht überein.',
+            'minlength': `Mindestlänge ${validatorValue.requiredLength} Zeichen`
         };
 
         return config[validatorName];
@@ -24,25 +24,33 @@ export class FormValidator {
         return null;
     }
 
-    static areEqual(group: FormGroup) {
-        var valid = false;
+    static matchingPasswords(group: FormGroup) {
+        var valid = true;
 
-        var firstVal: string;
-        for(let control of group.controls) {
-            var val = control.value;
-            if(firstVal && val === firstVal) {
-                continue;
+        var lastVal: string;
+        var currentControl: AbstractControl;
+        for(let key of Object.keys(group.controls)) {
+            currentControl = group.controls[key];
+            var val = currentControl.value;
+            if(lastVal && val !== lastVal) {
+                valid = false;
             }
-            firstVal = val;
+            lastVal = val;
         }
 
         if(valid) {
+            if(currentControl.errors && currentControl.errors['passwordsNotEqual']) {
+                delete currentControl.errors['passwordsNotEqual'];
+                currentControl.updateValueAndValidity();
+            }
             return null;
         }
 
-        return {
-            notEqual: true
-        };
+        if(!currentControl.errors) {
+            return currentControl.setErrors({ passwordsNotEqual: true });
+        }
+
+        return null;
     }
 
 }

@@ -8,7 +8,6 @@ import {HttpModule, Http} from "@angular/http";
 import {AppComponent} from './app.component';
 import {routing} from "./app.routing";
 import {ButtonComponent} from "./core/components/button.component";
-import {InputComponent} from "./core/components/input";
 import {AuthService} from "./services/login.service";
 import {UserService} from "./services/user.service";
 import {State} from "./core/state";
@@ -27,6 +26,8 @@ import {ForgotPasswordComponent} from "./public/forgot-password.component";
 import {ControlMessagesComponent} from "./core/components/control-messages.component";
 import {LoginLayoutComponent} from "./public/login-layout.component";
 import {ResetPasswordComponent} from "./public/reset-password.component";
+import {Config} from "./core/config";
+import {InputComponent} from "./core/components/input.components";
 
 @NgModule({
     declarations: [
@@ -38,13 +39,13 @@ import {ResetPasswordComponent} from "./public/reset-password.component";
         SignupComponent,
         CustomersComponent,
         ButtonComponent,
-        InputComponent,
         IconComponent,
         AlertBarComponent,
         ForgotPasswordComponent,
         ControlMessagesComponent,
         LoginLayoutComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        InputComponent
     ],
     imports: [
         BrowserModule,
@@ -65,7 +66,8 @@ import {ResetPasswordComponent} from "./public/reset-password.component";
         CustomerService,
         State,
         LoggedInGuard,
-        ErrorHandler
+        ErrorHandler,
+        Config
     ],
     bootstrap: [AppComponent]
 })

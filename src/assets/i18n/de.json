@@ -1,235 +1,236 @@
 {
-  "general": {
-    "email": "Email",
-    "yes": "Ja",
-    "no": "Nein",
-    "firstname": "Vorname",
-    "lastname": "Nachname",
-    "next": "Weiter",
-    "password": "Passwort",
-    "description": "Beschreibung",
-    "date": "Datum",
-    "save": "Speichern",
-    "cancel": "Abbrechen",
-    "company": "Firma",
-    "net": "netto",
-    "gross": "brutto",
-    "amount": "Betrag",
-    "amount_net": "Betrag (netto)",
-    "category": "Kategorie",
-    "taxrate": "Steuersatz",
-    "delete": "Löschen",
-    "product": "Produkt",
-    "service": "Dienstleistung",
-    "errors": {
-      "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Wir wurden bereits informiert und kümmern uns umgehend um das Problem.",
-      "validation": {
-        "not-unique": "Dieses Feld muss einzigartig sein.",
-        "invalid": "Dieser Wert ist nicht korrekt",
-        "invalid-email": "Bitte gib eine gültige Email Adresse ein"
-      }
+    "general": {
+        "email": "Email",
+        "yes": "Ja",
+        "no": "Nein",
+        "firstname": "Vorname",
+        "lastname": "Nachname",
+        "next": "Weiter",
+        "password": "Passwort",
+        "description": "Beschreibung",
+        "date": "Datum",
+        "save": "Speichern",
+        "cancel": "Abbrechen",
+        "company": "Firma",
+        "net": "netto",
+        "gross": "brutto",
+        "amount": "Betrag",
+        "amount_net": "Betrag (netto)",
+        "category": "Kategorie",
+        "taxrate": "Steuersatz",
+        "delete": "Löschen",
+        "product": "Produkt",
+        "service": "Dienstleistung",
+        "errors": {
+            "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Wir wurden bereits informiert und kümmern uns umgehend um das Problem.",
+            "validation": {
+                "not-unique": "Dieses Feld muss einzigartig sein.",
+                "invalid": "Dieser Wert ist nicht korrekt",
+                "invalid-email": "Bitte gib eine gültige Email Adresse ein"
+            }
+        },
+        "logout": "Abmelden",
+        "reverse-charge": "Reverse Charge",
+        "phone": "Telefon",
+        "zip": "PLZ",
+        "vat-id": "USt. Identifikationsnummer",
+        "address": "Adresse",
+        "country": "Land",
+        "quarter": "Quartal",
+        "income": "Einnahmen",
+        "expenses": "Ausgaben",
+        "city": "Ort",
+        "customer": "Kunde",
+        "draft": "Entwurf",
+        "payment-date": "Zahlungsdatum",
+        "paid": "Bezahlt",
+        "overdue": "Überfällig",
+        "name": "Name",
+        "number": "Nummer",
+        "number-abbrev": "Nr.",
+        "bank_account_owner": "Kontoinhaber",
+        "month": "Monat"
     },
-    "logout": "Abmelden",
-    "reverse-charge": "Reverse Charge",
-    "phone": "Telefon",
-    "zip": "PLZ",
-    "vat-id": "USt. Identifikationsnummer",
-    "address": "Adresse",
-    "country": "Land",
-    "quarter": "Quartal",
-    "income": "Einnahmen",
-    "expenses": "Ausgaben",
-    "city": "Ort",
-    "customer": "Kunde",
-    "draft": "Entwurf",
-    "payment-date": "Zahlungsdatum",
-    "paid": "Bezahlt",
-    "overdue": "Überfällig",
-    "name": "Name",
-    "number": "Nummer",
-    "number-abbrev": "Nr.",
-    "bank_account_owner": "Kontoinhaber",
-    "month": "Monat"
-  },
-  "app": {
-    "name": "Navory",
-    "tagline": "Gratis Buchhaltung für alle."
-  },
-  "actions": {
-    "view": "Anzeigen",
-    "edit": "Bearbeiten",
-    "copy": "Kopieren",
-    "delete": "Löschen"
-  },
-  "timeout": {
-    "text": "Sieht so aus als wäre da bei uns etwas schiefgelaufen.<br>So etwas passiert meistens, wenn die Entwickler gerade schlafen.",
-    "button": "Na gut, probier ich's eben nochmal..."
-  },
-  "forms": {
-    "validation": {
-      "required": "Dieses Feld muss ausgefüllt werden",
-      "number": "Bitte trage eine Nummer ein",
-      "positive-number": "Die Nummer muss positiv sein",
-      "date": "Bitte gib ein korrektes Datum ein",
-      "email": "Bitte trage eine korrekte Email Adresse ein"
+    "app": {
+        "name": "Navory",
+        "tagline": "Gratis Buchhaltung für alle."
+    },
+    "actions": {
+        "view": "Anzeigen",
+        "edit": "Bearbeiten",
+        "copy": "Kopieren",
+        "delete": "Löschen"
+    },
+    "timeout": {
+        "text": "Sieht so aus als wäre da bei uns etwas schiefgelaufen.<br>So etwas passiert meistens, wenn die Entwickler gerade schlafen.",
+        "button": "Na gut, probier ich's eben nochmal..."
+    },
+    "forms": {
+        "validation": {
+            "required": "Dieses Feld muss ausgefüllt werden",
+            "number": "Bitte trage eine Nummer ein",
+            "positive-number": "Die Nummer muss positiv sein",
+            "date": "Bitte gib ein korrektes Datum ein",
+            "email": "Bitte trage eine korrekte Email Adresse ein"
+        }
+    },
+    "login": {
+        "signup-notice": "Noch nicht registriert? <strong>Hier klicken!</strong>",
+        "remember": "Eingeloggt bleiben",
+        "submit": "Login",
+        "error-wrong-credentials": "Hmm, sieht so aus als wären diese Anmeldedaten nicht korrekt.",
+        "forgot-password": {
+            "link": "Passwort vergessen?",
+            "title": "Passwort zurücksetzen",
+            "description": "Bitte trage deine Email Adresse unten ein. Wir übermitteln dir einen Link um dein Passwort zurückzusetzen.",
+            "back-to-login": "Zum Login",
+            "reset": "Zurücksetzen",
+            "success-message": "Sofern diese Email in unserer Datenbank existiert, haben wir dir soeben Informationen zum Zurücksetzen deines Passworts übermittelt."
+        },
+        "reset-password": {
+            "description": "Gib dein neues Passwort einfach unten ein. Danach kannst du dich einloggen.",
+            "password": "Neues Passwort",
+            "password-confirm": "Passwort bestätigen",
+            "submit": "Passwort ändern",
+            "success-message": "Dein Passwort wurde erfolgreich geändert.",
+            "to-login": "Zum Login",
+            "invalid-key-error": "Dieser Link zum Zurücksetzen ist bereits abgelaufen."
+        },
+        "signup": {
+            "login-notice": "Du hast schon einen Account? <strong>Hier einloggen</strong>",
+            "welcome": "Willkommen bei <span class='logo'>Navory</span>",
+            "tagline": "Du bist nur noch ein paar Schritte von einfacher Buchhaltung entfernt.",
+            "steps": {
+                "signup": "Registrieren",
+                "setup": "Einrichtung",
+                "finish": "Fertig"
+            },
+            "submit": "Account erstellen",
+            "errors": {
+                "not-unique": "Entschuldige, ein Account mit dieser Email Adresse existiert bereits.",
+                "min-length": "Dein Passwort muss mindestens 8 Zeichen lang sein."
+            }
+        }
+    },
+    "dashboard": {
+        "title": "Übersicht",
+        "welcome": "Willkommen",
+        "income_expenses": "Einnahmen und Ausgaben (netto)",
+        "current_year_notice": "Die Zahlen beziehen sich auf das aktuelle Kalenderjahr."
+    },
+    "income": {
+        "title": "Einnahmen",
+        "tab-title": "Sonstige Einnahmen",
+        "new": "Neue Einnahme",
+        "number-abbrev": "Nr.",
+        "number": "Nummer",
+        "delete-confirm-title": "Einnahme löschen",
+        "delete-confirm-message": "Willst du diese Einnahme wirklich löschen?",
+        "create_title": "Neue Einnahme",
+        "edit_title": "Einnahme bearbeiten",
+        "copy_title": "Einnahme kopieren",
+        "errors": {
+            "number-not-unique": "Diese Nummer ist bereits vergeben."
+        },
+        "edit": {
+            "intra-community": "Innergemeinschaftlich (EU)",
+            "intra-community-none": "Nein",
+            "intra-community-service": "Dienstleistung (Reverse Charge)",
+            "intra-community-product": "Produkt (Innergem. Lieferung)"
+        },
+        "empty-state-message": "Du hast noch keine Sonstigen Einnahmen angelegt. Erfasse hier deine Einnahmen, für die du keine Rechnungen gestellt hast."
+    },
+    "invoices": {
+        "title": "Rechnungen",
+        "new": "Neue Rechnung",
+        "date-created": "Datum",
+        "date-due": "Fällig am",
+        "status": "Bezahlstatus",
+        "empty-state-message": "Du hast noch keine Rechnungen angelegt.<br>Erstelle hier Rechnungen und sende Sie an deine Kunden.",
+        "issue": "Fertigstellen",
+        "edit_title": "Rechnung Nr.",
+        "edit_title_draft": "Rechnungsentwurf",
+        "create_title": "Neue Rechnung",
+        "number": "Rechnungsnummer",
+        "service-date-start": "Leistungszeitraum Beginn",
+        "service-date-end": "Leistungszeitraum Ende",
+        "save-draft": "Entwurf speichern",
+        "delete-confirm-title": "Rechnung löschen",
+        "delete-confirm-message": "Willst du diese Rechnung wirklich löschen? Bitte beachte, dass Rechnungen, die du bereits an einen Kunden gesendet hast laut Gesetz nicht gelöscht werden dürfen.",
+        "issued": "Ausgestellt",
+        "add-payment": "Zahlung buchen",
+        "edit-success": "Rechnung gespeichert"
+    },
+    "expenses": {
+        "title": "Ausgaben",
+        "new": "Neue Ausgabe",
+        "delete-confirm-title": "Ausgabe löschen",
+        "delete-confirm-message": "Willst du diese Ausgabe wirklich löschen?",
+        "empty-state-message": "Du hast noch keine Ausgaben angelegt. Probier's aus!",
+        "create_title": "Neue Ausgabe",
+        "edit_title": "Ausgabe bearbeiten",
+        "copy_title": "Ausgabe kopieren",
+        "eu_tax_rate": "Zu versteuern mit"
+    },
+    "reports": {
+        "title": "Berichte",
+        "vat": "UVA"
+    },
+    "settings": {
+        "title": "Einstellungen",
+        "profile": {
+            "title": "Profil",
+            "success-message": "Profil erfolgreich gespeichert"
+        },
+        "change-password": {
+            "title": "Passwort ändern",
+            "current": "Aktuelles Passwort",
+            "new": "Neues Passwort",
+            "new-confirmation": "Neues Passwort bestätigen",
+            "errors": {
+                "incorrect-password": "Das ist nicht dein momentanes Passwort."
+            },
+            "success-message": "Passwort erfolgreich geändert"
+        },
+        "company": {
+            "title": "Unternehmensdetails",
+            "success-message": "Unternehmensdaten erfolgreich gespeichert"
+        },
+        "bank": {
+            "title": "Zahlungsdaten",
+            "description": "Trage hier deine Bankdaten ein damit sie auf deinen Rechnungen angezeigt werden."
+        },
+        "delete": {
+            "title": "Account löschen",
+            "description": "Dieser Unternehmensaccount und alle dazugehörigen Daten werden unwiderruflich gelöscht. Dieser Vorgang kann nicht rückgängig gemacht werden.",
+            "button": "Account löschen"
+        },
+        "export": {
+            "description": "Du kannst deine Einnahmen und Ausgaben als CSV Dateien exportieren. Die Daten kannst du zum Beispiel an deinen Steuerberater weiterleiten.",
+            "type": "Art des Exports",
+            "from": "Von",
+            "to": "Bis",
+            "download": "Herunterladen"
+        }
+    },
+    "upload-area": {
+        "drop-files": "Ziehe eine Datei hierher um sie hochzuladen.",
+        "choose-file": "Datei auswählen",
+        "errors": {
+            "general": "Beim Upload deiner Datei ist ein Fehler passiert. Bitte probiere es nocheinmal.",
+            "filetype-not-allowed": "Dieser Dateityp ist leider nicht erlaubt."
+        }
+    },
+    "customers": {
+        "title": "Kunden",
+        "create": "Neuer Kunde",
+        "delete-confirm-title": "Kunde löschen",
+        "delete-confirm-message": "Bist du sicher, dass du diesen Kunden löschen willst?",
+        "empty-state-message": "Du hast noch keine Kunden angelegt.<br>Behalte hier einen Überblick über deine Kontakte.",
+        "create-title": "Neuer Kunde",
+        "edit-title": "Kunde editieren",
+        "errors": {
+            "number-not-unique": "Diese Kundennummer ist bereits vergeben."
+        }
     }
-  },
-  "login": {
-    "signup-notice": "Noch nicht registriert? Hier klicken!",
-    "remember": "Eingeloggt bleiben",
-    "submit": "Login",
-    "error-wrong-credentials": "Hmm, sieht so aus als wären diese Anmeldedaten nicht korrekt.",
-    "forgot-password": {
-      "link": "Passwort vergessen?",
-      "title": "Passwort zurücksetzen",
-      "description": "Bitte trage deine Email Adresse unten ein. Wir übermitteln dir einen Link um dein Passwort zurückzusetzen.",
-      "back-to-login": "Zum Login",
-      "reset": "Zurücksetzen",
-      "success-message": "Sofern diese Email in unserer Datenbank existiert, haben wir dir soeben Informationen zum Zurücksetzen deines Passworts übermittelt."
-    },
-    "reset-password": {
-      "description": "Gib dein neues Passwort einfach unten ein. Danach kannst du dich einloggen.",
-      "password": "Neues Passwort",
-      "password-confirm": "Passwort bestätigen",
-      "submit": "Passwort ändern",
-      "success-message": "Dein Passwort wurde erfolgreich geändert.",
-      "to-login": "Zum Login"
-    },
-    "signup": {
-      "login-notice": "Du hast schon einen Account? <strong>Hier einloggen</strong>",
-      "welcome": "Willkommen bei <span class='logo'>Navory</span>",
-      "tagline": "Du bist nur noch ein paar Schritte von einfacher Buchhaltung entfernt.",
-      "steps": {
-        "signup": "Registrieren",
-        "setup": "Einrichtung",
-        "finish": "Fertig"
-      },
-      "submit": "Account erstellen",
-      "errors": {
-        "not-unique": "Entschuldige, ein Account mit dieser Email Adresse existiert bereits.",
-        "min-length": "Dein Passwort muss mindestens 8 Zeichen lang sein."
-      }
-    }
-  },
-  "dashboard": {
-    "title": "Übersicht",
-    "welcome": "Willkommen",
-    "income_expenses": "Einnahmen und Ausgaben (netto)",
-    "current_year_notice": "Die Zahlen beziehen sich auf das aktuelle Kalenderjahr."
-  },
-  "income": {
-    "title": "Einnahmen",
-    "tab-title": "Sonstige Einnahmen",
-    "new": "Neue Einnahme",
-    "number-abbrev": "Nr.",
-    "number": "Nummer",
-    "delete-confirm-title": "Einnahme löschen",
-    "delete-confirm-message": "Willst du diese Einnahme wirklich löschen?",
-    "create_title": "Neue Einnahme",
-    "edit_title": "Einnahme bearbeiten",
-    "copy_title": "Einnahme kopieren",
-    "errors": {
-      "number-not-unique": "Diese Nummer ist bereits vergeben."
-    },
-    "edit": {
-      "intra-community": "Innergemeinschaftlich (EU)",
-      "intra-community-none": "Nein",
-      "intra-community-service": "Dienstleistung (Reverse Charge)",
-      "intra-community-product": "Produkt (Innergem. Lieferung)"
-    },
-    "empty-state-message": "Du hast noch keine Sonstigen Einnahmen angelegt. Erfasse hier deine Einnahmen, für die du keine Rechnungen gestellt hast."
-  },
-  "invoices": {
-    "title": "Rechnungen",
-    "new": "Neue Rechnung",
-    "date-created": "Datum",
-    "date-due": "Fällig am",
-    "status": "Bezahlstatus",
-    "empty-state-message": "Du hast noch keine Rechnungen angelegt.<br>Erstelle hier Rechnungen und sende Sie an deine Kunden.",
-    "issue": "Fertigstellen",
-    "edit_title": "Rechnung Nr.",
-    "edit_title_draft": "Rechnungsentwurf",
-    "create_title": "Neue Rechnung",
-    "number": "Rechnungsnummer",
-    "service-date-start": "Leistungszeitraum Beginn",
-    "service-date-end": "Leistungszeitraum Ende",
-    "save-draft": "Entwurf speichern",
-    "delete-confirm-title": "Rechnung löschen",
-    "delete-confirm-message": "Willst du diese Rechnung wirklich löschen? Bitte beachte, dass Rechnungen, die du bereits an einen Kunden gesendet hast laut Gesetz nicht gelöscht werden dürfen.",
-    "issued": "Ausgestellt",
-    "add-payment": "Zahlung buchen",
-    "edit-success": "Rechnung gespeichert"
-  },
-  "expenses": {
-    "title": "Ausgaben",
-    "new": "Neue Ausgabe",
-    "delete-confirm-title": "Ausgabe löschen",
-    "delete-confirm-message": "Willst du diese Ausgabe wirklich löschen?",
-    "empty-state-message": "Du hast noch keine Ausgaben angelegt. Probier's aus!",
-    "create_title": "Neue Ausgabe",
-    "edit_title": "Ausgabe bearbeiten",
-    "copy_title": "Ausgabe kopieren",
-    "eu_tax_rate": "Zu versteuern mit"
-  },
-  "reports": {
-    "title": "Berichte",
-    "vat": "UVA"
-  },
-  "settings": {
-    "title": "Einstellungen",
-    "profile": {
-      "title": "Profil",
-      "success-message": "Profil erfolgreich gespeichert"
-    },
-    "change-password": {
-      "title": "Passwort ändern",
-      "current": "Aktuelles Passwort",
-      "new": "Neues Passwort",
-      "new-confirmation": "Neues Passwort bestätigen",
-      "errors": {
-        "incorrect-password": "Das ist nicht dein momentanes Passwort."
-      },
-      "success-message": "Passwort erfolgreich geändert"
-    },
-    "company": {
-      "title": "Unternehmensdetails",
-      "success-message": "Unternehmensdaten erfolgreich gespeichert"
-    },
-    "bank": {
-      "title": "Zahlungsdaten",
-      "description": "Trage hier deine Bankdaten ein damit sie auf deinen Rechnungen angezeigt werden."
-    },
-    "delete": {
-      "title": "Account löschen",
-      "description": "Dieser Unternehmensaccount und alle dazugehörigen Daten werden unwiderruflich gelöscht. Dieser Vorgang kann nicht rückgängig gemacht werden.",
-      "button": "Account löschen"
-    },
-    "export": {
-      "description": "Du kannst deine Einnahmen und Ausgaben als CSV Dateien exportieren. Die Daten kannst du zum Beispiel an deinen Steuerberater weiterleiten.",
-      "type": "Art des Exports",
-      "from": "Von",
-      "to": "Bis",
-      "download": "Herunterladen"
-    }
-  },
-  "upload-area": {
-    "drop-files": "Ziehe eine Datei hierher um sie hochzuladen.",
-    "choose-file": "Datei auswählen",
-    "errors": {
-      "general": "Beim Upload deiner Datei ist ein Fehler passiert. Bitte probiere es nocheinmal.",
-      "filetype-not-allowed": "Dieser Dateityp ist leider nicht erlaubt."
-    }
-  },
-  "customers": {
-    "title": "Kunden",
-    "create": "Neuer Kunde",
-    "delete-confirm-title": "Kunde löschen",
-    "delete-confirm-message": "Bist du sicher, dass du diesen Kunden löschen willst?",
-    "empty-state-message": "Du hast noch keine Kunden angelegt.<br>Behalte hier einen Überblick über deine Kontakte.",
-    "create-title": "Neuer Kunde",
-    "edit-title": "Kunde editieren",
-    "errors": {
-      "number-not-unique": "Diese Kundennummer ist bereits vergeben."
-    }
-  }
 }

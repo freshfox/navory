@@ -41,7 +41,7 @@ export class AuthService extends BaseService {
     resetPassword(newPassword: string, token: string) {
         return this.patch(this.pathResetPassword, {
             password: newPassword,
-            token: token
+            key: token
         });
     }
 

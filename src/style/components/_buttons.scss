@@ -50,7 +50,7 @@ button {
     &.disabled:hover,
     &.disabled:focus,
     &.disabled:active {
-        opacity: .5;
+        opacity: .8;
         background: $colorGrayMedium;
         border-color: $colorGrayMedium;
         cursor: default;

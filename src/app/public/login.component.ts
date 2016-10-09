@@ -5,6 +5,7 @@ import {FormGroup, Validators, FormBuilder} from "@angular/forms";
 import {TranslateService} from "ng2-translate";
 import {ErrorHandler} from "../core/error-handler";
 import {FormValidator} from "../core/form-validator";
+import {Helpers} from "../core/helpers";
 
 
 @Component({
@@ -31,6 +32,7 @@ export class LoginComponent {
     }
 
     onSubmit() {
+        Helpers.validateAllFields(this.form);
         if(this.form.valid) {
             let data = this.form.value;
             this.loading = true;
