@@ -1,0 +1,38 @@
+<section class="vat-report">
+    <h2>Umsatzsteuervoranmeldung</h2>
+    <p>
+        Dieser UVA-Bericht basiert auf den Zahlen und Daten, die du in {{ 'app.name' | translate }} für den ausgewählten
+        Zeitraum
+        über dein Unternehmen erfasst hast.
+        Stelle sicher, dass du weitere relevante Zahlen oder Veränderungen an das Finanzamt weiterleitest.
+    </p>
+
+    <div class="vat-report-form-fields">
+        <label>{{ 'general.quarter' | translate }}</label>
+        <nvry-select [(selected)]="selectedQuarter" [options]="quarters"></nvry-select>
+        {{ selectedQuarter }}
+    </div>
+
+    <div *ngIf="report">
+        <h3>Vorberechnung</h3>
+        <span class="vat-report-amount-to-pay amount-positive">
+            <span *ngIf="report.amountToPay >= 0">Vorauszahlung:</span>
+            <span *ngIf="report.amountToPay < 0">Rückerstattung:</span>
+
+            <span class="amount">{{ report.amountToPay | nvryNumber }}</span>
+        </span>
+
+        <div class="vat-report-paper">
+            <div class="vat-report-category" *ngFor="let category of report.categories">
+                <h2 class="category-headline">{{ category.title }}</h2>
+                <ul class="vat-report-field-list">
+                    <li *ngFor="let field of category.fields">
+                        <span class="value">{{ field.value | nvryNumber }}</span>
+                        <span class="title">{{ field.number }}</span>
+                        <span class="description">{{ field.description_simple }}&nbsp;</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

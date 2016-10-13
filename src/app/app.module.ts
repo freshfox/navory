@@ -29,6 +29,10 @@ import {ResetPasswordComponent} from "./public/reset-password.component";
 import {Config} from "./core/config";
 import {InputComponent} from "./core/components/input.components";
 import {Angular2DataTableModule} from "angular2-data-table";
+import {ReportsComponent} from "./internal/reports/reports.component";
+import {SelectComponent} from "./core/components/select.component";
+import {NumberPipe} from "./core/pipes/number.pipe";
+import {ReportService} from "./services/report.service";
 
 @NgModule({
     declarations: [
@@ -46,7 +50,10 @@ import {Angular2DataTableModule} from "angular2-data-table";
         ControlMessagesComponent,
         LoginLayoutComponent,
         ResetPasswordComponent,
-        InputComponent
+        ReportsComponent,
+        InputComponent,
+        SelectComponent,
+        NumberPipe
     ],
     imports: [
         BrowserModule,
@@ -66,6 +73,7 @@ import {Angular2DataTableModule} from "angular2-data-table";
         AuthService,
         UserService,
         CustomerService,
+        ReportService,
         State,
         LoggedInGuard,
         ErrorHandler,
