@@ -21,15 +21,14 @@
 	padding: 14px 0;
     border-bottom: 1px solid $colorSpacerLines;
 
-	.main-header__column {
-		width: 50%;
-		display: inline-block;
-		vertical-align: middle;
+    .main-header__inner {
+        @include display(flex);
+        @include align-items(center);
 
-		&:last-child {
-			text-align: right;
-		}
-	}
+        .user {
+            margin-left: auto;
+        }
+    }
 
 	.logo {
 		font-size: 22px;
@@ -40,11 +39,6 @@
 	.username {
 		display: inline-block;
 		margin-right: 15px;
-		vertical-align: middle;
-	}
-
-	.btn {
-		display: inline-block;
 		vertical-align: middle;
 	}
 }
