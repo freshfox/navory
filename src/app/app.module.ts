@@ -28,6 +28,7 @@ import {LoginLayoutComponent} from "./public/login-layout.component";
 import {ResetPasswordComponent} from "./public/reset-password.component";
 import {Config} from "./core/config";
 import {InputComponent} from "./core/components/input.components";
+import {Angular2DataTableModule} from "angular2-data-table";
 
 @NgModule({
     declarations: [
@@ -53,6 +54,7 @@ import {InputComponent} from "./core/components/input.components";
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
+        Angular2DataTableModule,
         TranslateModule.forRoot({
             provide: TranslateLoader,
             useFactory: (http: Http) => new TranslateStaticLoader(http, '/assets/i18n', '.json'),

@@ -66,7 +66,7 @@
 .page-header {
 	padding: 20px 0;
     padding-left: $contentSidePadding;
-	//margin-bottom: 30px;
+    @include display(flex);
 
     &.page-header--no-margin {
         margin-bottom: 0;

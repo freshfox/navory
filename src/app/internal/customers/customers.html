@@ -1,5 +1,12 @@
-<ul>
-	<li *ngFor="let customer of customers">
-		{{ customer.name }}
-	</li>
-</ul>
+<div class="page-row page-header">
+    <nvry-button class="button--no-margin" (ngClick)="createCustomer()">{{ 'customers.create' | translate }}</nvry-button>
+</div>
+
+<div class="page-row">
+    <datatable
+        [rows]="customers"
+        [options]="tableOptions"
+        class="datatable--clickable-items">
+    </datatable>
+</div>
+
