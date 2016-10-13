@@ -1,11 +1,9 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component} from '@angular/core';
 import {TranslateService} from "ng2-translate";
 
 @Component({
     selector: 'nvry-app-root',
-    encapsulation: ViewEncapsulation.None,
-    templateUrl: 'app.component.html',
-    styleUrls: ['../style/app.scss']
+    templateUrl: 'app.component.html'
 })
 export class AppComponent {
 

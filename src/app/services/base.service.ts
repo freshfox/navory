@@ -33,6 +33,12 @@ export class BaseService {
             .catch(this.handleError)
     }
 
+    delete(url: string): Observable<any> {
+        return this.http.delete(this.constructApiUrl(url), this.defaultHttpOptions)
+            .map(this.extract)
+            .catch(this.handleError)
+    }
+
 	private handleError(error: any) {
 	    let body = JSON.parse(error._body);
 	    var errCode = error.status;

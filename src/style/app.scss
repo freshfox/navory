@@ -21,7 +21,6 @@
 @import "mixins/forms";
 @import "mixins/typography";
 @import "mixins/metrics";
-@import "mixins/icons";
 
 // Libraries that can't be imported via bower or are only available as CSS files
 @import "lib/dropzone";
@@ -43,6 +42,7 @@
 @import "components/document-preview";
 @import "components/notifications";
 @import "components/badges";
+@import "components/icons";
 
 @import "components/forms/dropdowns";
 @import "components/forms/toggles";

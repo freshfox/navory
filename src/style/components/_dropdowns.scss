@@ -15,7 +15,6 @@
         text-align: center;
         outline: 0;
         background: #fff;
-        @include icon('before', 'arrow-down');
 
         &:before {
             font-size: 16px;
@@ -24,7 +23,6 @@
 
         &:focus,
         &:active {
-            @include icon('before', 'arrow-up');
 
             ~ .dropdown-content {
                 display: block;

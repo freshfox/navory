@@ -63,11 +63,9 @@ th,
 		color: $colorPrimary;
 
 		&.sort-asc {
-			@include icon('after', 'arrow-sorted-up');
 		}
 
 		&.sort-desc {
-			@include icon('after', 'arrow-sorted-down');
 		}
 
 		&:after {

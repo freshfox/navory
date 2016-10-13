@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
-import {AuthService} from "../services/login.service";
+import {AuthService} from "../services/auth.service";
 import {ErrorHandler} from "../core/error-handler";
 import {FormValidator} from "../core/form-validator";
 import {ActivatedRoute, Params, Router} from "@angular/router";
@@ -28,8 +28,7 @@ export class ResetPasswordComponent implements OnInit {
                 private translate: TranslateService,
                 private router: Router) {
 
-        let passwordLength = config.minPasswordLength;
-        let passwordValidators = Validators.compose([Validators.required, Validators.minLength(passwordLength)]);
+        let passwordValidators = Validators.compose([Validators.required, FormValidator.passwordLength]);
         this.form = fb.group({
             'password': ["", passwordValidators],
             'passwordRepeat': ["", passwordValidators],

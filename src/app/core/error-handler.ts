@@ -13,7 +13,7 @@ export class ErrorHandler {
                 return this.translate.instant('general.errors.unexpected');
         }
 
-        return '';
+        return null;
     }
 
 }

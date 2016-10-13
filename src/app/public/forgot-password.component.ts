@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Validators, FormBuilder, FormGroup} from "@angular/forms";
 import {ErrorHandler} from "../core/error-handler";
 import {TranslateService} from "ng2-translate";
-import {AuthService} from "../services/login.service";
+import {AuthService} from "../services/auth.service";
 import {FormValidator} from "../core/form-validator";
 import {Helpers} from "../core/helpers";
 

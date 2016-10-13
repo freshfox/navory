@@ -8,7 +8,7 @@ import {HttpModule, Http} from "@angular/http";
 import {AppComponent} from './app.component';
 import {routing} from "./app.routing";
 import {ButtonComponent} from "./core/components/button.component";
-import {AuthService} from "./services/login.service";
+import {AuthService} from "./services/auth.service";
 import {UserService} from "./services/user.service";
 import {State} from "./core/state";
 import {IconComponent} from "./core/components/icon";

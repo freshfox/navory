@@ -1,32 +1,33 @@
 <div class="base-layout">
-  <header class="main-header">
-    <div class="container">
-      <div class="main-header__column">
-        <div class="logo">
-          {{ 'app.name' | translate }}
+    <header class="main-header">
+        <div class="container">
+            <div class="main-header__column">
+                <div class="logo">
+                    {{ 'app.name' | translate }}
+                </div>
+            </div>
+            <div class="main-header__column">
+                <span class="username">{{ user.firstname }} {{ user.lastname }}</span>
+                <a href="/logout" class="btn btn--small btn--dark">{{ 'general.logout' | translate }}</a>
+            </div>
         </div>
-      </div><div class="main-header__column">
-      <span class="username">{{ user.firstname }} {{ user.lastname }}</span>
-      <a href="/logout" class="btn btn--small btn--dark">{{ 'general.logout' | translate }}</a>
-    </div>
-    </div>
-  </header>
+    </header>
 
-  <main class="container main-container">
-    <div id="sidebar">
-      <nav>
-        <ul>
-          <li *ngFor="let item of navItems">
-            <a [routerLink]="[item.routerLink]" class="{{ item.key }}" routerLinkActive="active">
-              <nvry-icon [name]="item.icon"></nvry-icon>
-              <span class="title">{{ item.title | translate }}</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div id="content">
-		<router-outlet></router-outlet>
-	</div>
-  </main>
+    <main class="container main-container">
+        <div id="sidebar">
+            <nav>
+                <ul>
+                    <li *ngFor="let item of navItems">
+                        <a [routerLink]="[item.routerLink]" class="{{ item.key }}" routerLinkActive="active">
+                            <nvry-icon [name]="item.icon"></nvry-icon>
+                            <span class="title">{{ item.title | translate }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div id="content">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
 </div>

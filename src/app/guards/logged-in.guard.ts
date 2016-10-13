@@ -6,19 +6,19 @@ import {User} from "../models/user";
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/catch';
 import {Observable} from "rxjs";
+import {AuthService} from "../services/auth.service";
 
 
 @Injectable()
 export class LoggedInGuard implements CanActivate {
 
-    constructor(private userService: UserService, private router: Router, private state: State) {
+    constructor(private userService: UserService, private router: Router, private authService: AuthService) {
     }
 
     canActivate() {
         return this.userService.getOwnUser().map((user: User) => {
-            console.log(user);
             if(user) {
-                this.state.user = user;
+                this.authService.setLoggedInUser(user);
                 return true;
             }
         }).catch(res => {
