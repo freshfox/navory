@@ -1,15 +1,15 @@
-.datatable {
+table {
 
 	width: 100%;
 	text-align: left;
+    border-collapse: collapse;
 
-    .datatable-body-row,
-    .datatable-header {
-        border-bottom: 1px solid $colorGrayLight;
+    tr {
 
-        .datatable-body-cell {
+        td {
             padding: 15px 0;
             padding-right: 15px;
+            border-bottom: 1px solid $colorGrayLight;
 
             &:first-child {
                 padding-left: 10px;
@@ -20,28 +20,39 @@
             }
         }
 
-        .datatable-header-cell,
-        .datatable-body-cell {
+        th,
+        td {
             &:first-child {
                 padding-left: $contentSidePadding;
             }
         }
-    }
 
-    .datatable-header {
-        border-top: 1px solid $colorSpacerLines;
-    }
+        th {
+            height: 45px;
 
+            &.nvry-table-header-cell--sortable {
+                cursor: pointer;
+            }
 
-    &.datatable--clickable-items {
-        .datatable-body-cell {
-            cursor: pointer;
+            .nvry-table-header-cell__inner {
+                @include display(flex);
+                @include align-items(center);
+
+                nvry-icon {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
         }
+    }
 
-        .datatable-body-row:hover {
+
+    &.table--clickable-items {
+        tbody tr:hover td {
             background: $colorLightAccent;
         }
 
+        td { cursor: pointer; }
     }
 
     &.table--list {
@@ -49,12 +60,20 @@
     }
 }
 
-.datatable-header-cell {
+.table-spinner {
+    margin: 60px auto;
+    display: block;
+}
+
+th,
+.table-heading {
 	color: $textColor;
 	font-size: 12px;
 	padding: 10px 0;
 	line-height: $defaultLineHeight;
 	font-weight: $fontWeightBold;
+    border-top: 1px solid $colorSpacerLines;
+    border-bottom: 1px solid $colorSpacerLines;
     background: $colorLightAccent;
 
 	&.sortable {

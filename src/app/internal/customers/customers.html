@@ -3,10 +3,6 @@
 </div>
 
 <div class="page-row">
-    <datatable
-        [rows]="customers"
-        [options]="tableOptions"
-        class="datatable--clickable-items">
-    </datatable>
+    <nvry-table [rows]="customers" [options]="tableOptions" [loading]="loading"></nvry-table>
 </div>
 

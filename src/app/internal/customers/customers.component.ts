@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../models/customer";
-import {TableOptions} from "angular2-data-table";
 import {TranslateService} from "ng2-translate";
 import {Helpers} from "../../core/helpers";
+import {TableOptions} from "../../core/components/table/table-options.model";
 
 @Component({
 	template: require('./customers.html')

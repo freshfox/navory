@@ -1,41 +1,40 @@
+nvry-spinner {
+    width: 30px;
+    height: 30px;
+}
+
 .spinner {
-  width: 40px;
-  height: 40px;
+    $offset: 187;
+    $duration: 1.4s;
 
-  position: relative;
-  margin: 100px auto;
+    width: 100%;
+    height: 100%;
+
+    animation: rotator $duration linear infinite;
+
+    .path {
+        stroke-dasharray: $offset;
+        stroke-dashoffset: 0;
+        transform-origin: center;
+        stroke: $colorPrimary;
+        animation: dash $duration ease-in-out infinite;
+    }
+
+    @keyframes rotator {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(270deg); }
+    }
+
+    @keyframes dash {
+        0% { stroke-dashoffset: $offset; }
+        50% {
+            stroke-dashoffset: $offset/4;
+            transform:rotate(135deg);
+        }
+        100% {
+            stroke-dashoffset: $offset;
+            transform:rotate(450deg);
+        }
+    }
 }
 
-.double-bounce1, .double-bounce2 {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: #333;
-  opacity: 0.6;
-  position: absolute;
-  top: 0;
-  left: 0;
-  
-  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-  animation: sk-bounce 2.0s infinite ease-in-out;
-}
-
-.double-bounce2 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
-}
-
-@-webkit-keyframes sk-bounce {
-  0%, 100% { -webkit-transform: scale(0.0) }
-  50% { -webkit-transform: scale(1.0) }
-}
-
-@keyframes sk-bounce {
-  0%, 100% {
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 50% {
-    transform: scale(1.0);
-    -webkit-transform: scale(1.0);
-  }
-}

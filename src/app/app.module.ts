@@ -28,11 +28,14 @@ import {LoginLayoutComponent} from "./public/login-layout.component";
 import {ResetPasswordComponent} from "./public/reset-password.component";
 import {Config} from "./core/config";
 import {InputComponent} from "./core/components/input.components";
-import {Angular2DataTableModule} from "angular2-data-table";
 import {ReportsComponent} from "./internal/reports/reports.component";
 import {SelectComponent} from "./core/components/select.component";
 import {NumberPipe} from "./core/pipes/number.pipe";
 import {ReportService} from "./services/report.service";
+import {CoreModule} from "./core/core.module";
+import {TableComponent} from "./core/components/table/table.component";
+import {TableHeaderCellComponent} from "./core/components/table/table-header-cell.component";
+import {SpinnerComponent} from "./core/components/spinner.component";
 
 @NgModule({
     declarations: [
@@ -53,7 +56,10 @@ import {ReportService} from "./services/report.service";
         ReportsComponent,
         InputComponent,
         SelectComponent,
-        NumberPipe
+        NumberPipe,
+        TableComponent,
+        TableHeaderCellComponent,
+        SpinnerComponent
     ],
     imports: [
         BrowserModule,
@@ -61,7 +67,6 @@ import {ReportService} from "./services/report.service";
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        Angular2DataTableModule,
         TranslateModule.forRoot({
             provide: TranslateLoader,
             useFactory: (http: Http) => new TranslateStaticLoader(http, '/assets/i18n', '.json'),
