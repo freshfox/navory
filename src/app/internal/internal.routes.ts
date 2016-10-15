@@ -5,6 +5,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoggedInGuard} from "../guards/logged-in.guard";
 import {ReportsComponent} from "./reports/reports.component";
 import {IncomeComponent} from "./income/income.component";
+import {ExpensesComponent} from "./expenses/expenses.component";
 
 export const InternalRoutes: Routes = [
 	{
@@ -16,7 +17,8 @@ export const InternalRoutes: Routes = [
 			{ path: 'dashboard', component: DashboardComponent },
             { path: 'customers',  component: CustomersComponent },
             { path: 'reports',  component: ReportsComponent },
-            { path: 'income', component: IncomeComponent }
+            { path: 'income', component: IncomeComponent },
+            { path: 'expenses', component: ExpensesComponent }
 		]
 	}
 ];

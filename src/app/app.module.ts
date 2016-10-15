@@ -39,6 +39,8 @@ import {SpinnerComponent} from "./core/components/spinner.component";
 import {IncomeService} from "./services/income.service";
 import {IncomeComponent} from "./internal/income/income.component";
 import {DatePipe} from "./core/pipes/date.pipe";
+import {ExpensesComponent} from "./internal/expenses/expenses.component";
+import {ExpenseService} from "./services/expense.service";
 
 @NgModule({
     declarations: [
@@ -63,7 +65,8 @@ import {DatePipe} from "./core/pipes/date.pipe";
         TableComponent,
         TableHeaderCellComponent,
         SpinnerComponent,
-        IncomeComponent
+        IncomeComponent,
+        ExpensesComponent
     ],
     imports: [
         BrowserModule,
@@ -84,6 +87,7 @@ import {DatePipe} from "./core/pipes/date.pipe";
         CustomerService,
         IncomeService,
         ReportService,
+        ExpenseService,
         State,
         LoggedInGuard,
         ErrorHandler,
