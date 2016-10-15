@@ -31,9 +31,9 @@ export class TableHeaderCellComponent implements OnInit {
 
     get sortIconName() {
         switch (this.column.sortDirection) {
-            case SortDirection.asc:
+            case SortDirection.Asc:
                 return 'arrow-up';
-            case SortDirection.desc:
+            case SortDirection.Desc:
                 return 'arrow-down';
         }
         return null;

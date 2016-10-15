@@ -58,7 +58,7 @@ export class TableComponent implements OnInit {
             if(tableColumn == this.sortedColumn) {
                 TableComponent.switchSortDirection(tableColumn);
             } else {
-                tableColumn.sortDirection = SortDirection.desc;
+                tableColumn.sortDirection = SortDirection.Desc;
                 this.sortedColumn = tableColumn;
             }
 
@@ -80,10 +80,10 @@ export class TableComponent implements OnInit {
     }
 
     static switchSortDirection(column: TableColumn) {
-        if(column.sortDirection === SortDirection.asc) {
-            column.sortDirection = SortDirection.desc;
+        if(column.sortDirection === SortDirection.Asc) {
+            column.sortDirection = SortDirection.Desc;
         } else {
-            column.sortDirection = SortDirection.asc;
+            column.sortDirection = SortDirection.Asc;
         }
     }
 
@@ -97,7 +97,7 @@ export class TableComponent implements OnInit {
                 return 0;
             }
 
-            if(sortDirection == SortDirection.asc) {
+            if(sortDirection == SortDirection.Asc) {
                 return a > b ? 1 : -1;
             }
 

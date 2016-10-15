@@ -21,7 +21,7 @@ export class IncomeComponent implements OnInit {
 
         this.tableOptions = new TableOptions({
             columns: [
-                { name: this.translate.instant('general.number-abbrev'),  prop: 'id', sortDirection: SortDirection.asc },
+                { name: this.translate.instant('general.number-abbrev'),  prop: 'id', sortDirection: SortDirection.Asc },
                 { name: this.translate.instant('general.description'),  prop: 'description' },
                 { name: this.translate.instant('general.date'),  prop: 'date', pipe: this.datePipe },
                 { name: this.translate.instant('general.amount_net'),  prop: 'price', pipe: this.numberPipe},
