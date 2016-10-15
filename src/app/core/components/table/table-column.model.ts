@@ -1,5 +1,6 @@
 
 import {SortDirection} from "./sort-direction.enum";
+import {PipeTransform} from "@angular/core";
 export class TableColumn {
 
     cellTemplate: any;
@@ -7,6 +8,7 @@ export class TableColumn {
     prop: string;
     sortable: boolean = true;
     sortDirection: SortDirection;
+    pipe: PipeTransform;
 
     constructor(props: any) {
         Object.assign(this, props);

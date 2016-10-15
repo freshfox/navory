@@ -1,19 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {Input} from "@angular/core/src/metadata/directives";
+import {Component, OnInit, EventEmitter} from '@angular/core';
+import {Input, Output} from "@angular/core/src/metadata/directives";
 import {TableOptions} from "./table-options.model";
 import {TableColumn} from "./table-column.model";
 import {SortDirection} from "./sort-direction.enum";
+import {Helpers} from "../../helpers";
 
 @Component({
     selector: 'nvry-table',
     templateUrl: `
-    <table>
+    <table [class.table--clickable-items]="options.itemsClickable">
         <tr>
             <th nvry-table-header-cell *ngFor="let column of options.columns" [column]="column" (click)="sortColumn(column)"></th>
         </tr>
         
         <tbody *ngIf="rows && rows.length > 0">
-            <tr *ngFor="let row of rows">
+            <tr *ngFor="let row of rows" (click)="rowClicked(row)">
                 <td *ngFor="let column of options.columns">
                     {{ getColumnValue(column, row) }}
                 </td>
@@ -22,13 +23,17 @@ import {SortDirection} from "./sort-direction.enum";
     </table>
     
     <nvry-spinner class="table-spinner" *ngIf="loading"></nvry-spinner>
-    `
+    `,
+
 })
 export class TableComponent implements OnInit {
 
     @Input() rows: any[];
     @Input() options: TableOptions;
     @Input() loading: boolean;
+
+    @Output() onRowClicked = new EventEmitter<Object>();
+
 
     private sortedColumn: TableColumn;
 
@@ -39,7 +44,9 @@ export class TableComponent implements OnInit {
     }
 
     getColumnValue(column: TableColumn, row): any {
-        return row[this.getPropertyName(column)];
+        let val = Helpers.getValueDeep(row, this.getPropertyName(column));
+        let pipe = column.pipe;
+        return pipe ? pipe.transform(val) : val;
     }
 
     getPropertyName(column: TableColumn): string {
@@ -63,6 +70,12 @@ export class TableComponent implements OnInit {
 
             let propertyName = this.getPropertyName(tableColumn);
             this.rows.sort(TableComponent.getSortComparator(tableColumn.sortDirection, propertyName));
+        }
+    }
+
+    rowClicked(row) {
+        if(this.options.itemsClickable) {
+            this.onRowClicked.emit(row);
         }
     }
 

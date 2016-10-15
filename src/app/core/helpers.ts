@@ -1,6 +1,4 @@
 import {FormGroup} from "@angular/forms";
-import {TableColumn} from "./components/table/table-column.model";
-import {TableOptions} from "./components/table/table-options.model";
 
 export class Helpers {
 
@@ -9,20 +7,30 @@ export class Helpers {
             var control = formGroup.controls[i];
             control.markAsTouched();
 
-            if(control instanceof FormGroup) {
+            if (control instanceof FormGroup) {
                 Helpers.validateAllFields(<FormGroup>control);
             }
         }
     }
 
-    static getTableOptions(options: any) {
-        var columns = [];
-        for(let column of options.columns) {
-            columns.push(new TableColumn(column));
+    /**
+     * Returns a deep object given a string. zoo['animal.type']
+     * @param {object} obj
+     * @param {string} path
+     */
+    static getValueDeep(obj, path) {
+        if (!obj || !path) return obj;
+
+        let current = obj;
+        let split = path.split('.');
+
+        if (split.length) {
+            for (let i = 0, len = split.length; i < len; i++) {
+                current = current[split[i]];
+            }
         }
 
-        options.columns = columns;
-
-        return new TableOptions(options);
+        return current;
     }
+
 }
