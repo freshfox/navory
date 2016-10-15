@@ -2,11 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../models/customer";
 import {TranslateService} from "ng2-translate";
-import {Helpers} from "../../core/helpers";
 import {TableOptions} from "../../core/components/table/table-options.model";
 
 @Component({
-	template: require('./customers.html')
+	templateUrl: 'customers.html'
 })
 export class CustomersComponent implements OnInit {
 
@@ -17,7 +16,7 @@ export class CustomersComponent implements OnInit {
 
 	constructor(private customerService: CustomerService, private translate: TranslateService) {
 
-        this.tableOptions = Helpers.getTableOptions({
+        this.tableOptions = new TableOptions({
             columns: [
                 { name: this.translate.instant('general.number-abbrev'),  prop: 'number' },
                 { name: this.translate.instant('general.name'), prop: 'name' },
@@ -40,7 +39,11 @@ export class CustomersComponent implements OnInit {
     }
 
 	createCustomer() {
-	    // TODO
+        // TODO
+	}
+
+    editCustomer(customer) {
+        // TODO
     }
 
 }
