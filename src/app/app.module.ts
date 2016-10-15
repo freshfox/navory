@@ -36,6 +36,9 @@ import {CoreModule} from "./core/core.module";
 import {TableComponent} from "./core/components/table/table.component";
 import {TableHeaderCellComponent} from "./core/components/table/table-header-cell.component";
 import {SpinnerComponent} from "./core/components/spinner.component";
+import {IncomeService} from "./services/income.service";
+import {IncomeComponent} from "./internal/income/income.component";
+import {DatePipe} from "./core/pipes/date.pipe";
 
 @NgModule({
     declarations: [
@@ -59,7 +62,8 @@ import {SpinnerComponent} from "./core/components/spinner.component";
         NumberPipe,
         TableComponent,
         TableHeaderCellComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        IncomeComponent
     ],
     imports: [
         BrowserModule,
@@ -78,11 +82,14 @@ import {SpinnerComponent} from "./core/components/spinner.component";
         AuthService,
         UserService,
         CustomerService,
+        IncomeService,
         ReportService,
         State,
         LoggedInGuard,
         ErrorHandler,
-        Config
+        Config,
+        NumberPipe,
+        DatePipe
     ],
     bootstrap: [AppComponent]
 })
