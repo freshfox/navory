@@ -13,7 +13,6 @@
 @import "lib/normalize";
 @import "../../node_modules/ladda/css/ladda";
 @import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
-@import "../../node_modules/angular2-data-table/src/components/datatable";
 
 /**
  * Application specific styles
@@ -44,6 +43,7 @@
 @import "components/notifications";
 @import "components/badges";
 @import "components/icons";
+@import "components/year-selection";
 
 @import "components/forms/dropdowns";
 @import "components/forms/toggles";
@@ -63,4 +63,4 @@
 @import "modules/invoices";
 @import "modules/settings";
 @import "modules/reports/vat";
-//@import "expenses";
+@import "modules/expenses";

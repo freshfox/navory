@@ -34,6 +34,14 @@ table {
                 cursor: pointer;
             }
 
+            &.nvry-table-header-cell--sorted {
+                color: $colorPrimary;
+
+                nvry-icon {
+                    fill: $colorPrimary;
+                }
+            }
+
             .nvry-table-header-cell__inner {
                 @include display(flex);
                 @include align-items(center);
@@ -76,25 +84,7 @@ th,
     border-bottom: 1px solid $colorSpacerLines;
     background: $colorLightAccent;
 
-	&.sortable {
-		cursor: pointer;
-	}
-
 	&:first-child {
 		padding-left: 10px;
-	}
-
-	&.sort-active {
-		color: $colorPrimary;
-
-		&.sort-asc {
-		}
-
-		&.sort-desc {
-		}
-
-		&:after {
-			font-size: 18px;
-		}
 	}
 }

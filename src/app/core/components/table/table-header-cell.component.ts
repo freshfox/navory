@@ -6,13 +6,14 @@ import {SortDirection} from "./sort-direction.enum";
 @Component({
     selector: 'th[nvry-table-header-cell]',
     templateUrl: `
-        <div class="nvry-table-header-cell__inner">
+        <div class="nvry-table-header-cell__inner" >
             <span>{{ name }}</span>
             <nvry-icon [name]="sortIconName" *ngIf="column.sortable && sortIconName"></nvry-icon>
         </div>
     `,
     host: {
         '[class.nvry-table-header-cell--sortable]': 'column.sortable',
+        '[class.nvry-table-header-cell--sorted]': 'column.sortDirection'
     }
 })
 export class TableHeaderCellComponent implements OnInit {

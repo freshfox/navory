@@ -1,5 +1,11 @@
-<div class="page-header">
-    <nvry-button>{{ 'expenses.new' | translate }}</nvry-button>
+<div class="page-header expenses-component-page-header">
+
+    <nvry-month-selection [(selectedMonthIndex)]="selectedMonthIndex" (selectedMonthIndexChange)="filter()"></nvry-month-selection>
+    <nvry-year-selection [(year)]="selectedYear" (yearChange)="filter()"></nvry-year-selection>
+
+    <nvry-button class="create-button" icon="plus">
+        {{ 'expenses.new' | translate }}
+    </nvry-button>
 </div>
 
-<nvry-table [options]="tableOptions" [rows]="expenses" [loading]="loading"></nvry-table>
+<nvry-table [options]="tableOptions" [rows]="filteredExpenses" [loading]="loading"></nvry-table>

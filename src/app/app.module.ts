@@ -41,6 +41,8 @@ import {IncomeComponent} from "./internal/income/income.component";
 import {DatePipe} from "./core/pipes/date.pipe";
 import {ExpensesComponent} from "./internal/expenses/expenses.component";
 import {ExpenseService} from "./services/expense.service";
+import {MonthSelectionComponent} from "./internal/expenses/month-selection.component";
+import {YearSelectionComponent} from "./internal/expenses/year-selection.component";
 
 @NgModule({
     declarations: [
@@ -66,7 +68,9 @@ import {ExpenseService} from "./services/expense.service";
         TableHeaderCellComponent,
         SpinnerComponent,
         IncomeComponent,
-        ExpensesComponent
+        ExpensesComponent,
+        MonthSelectionComponent,
+        YearSelectionComponent
     ],
     imports: [
         BrowserModule,

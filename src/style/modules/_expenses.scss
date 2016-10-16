@@ -1,0 +1,39 @@
+.expenses-component-page-header {
+    @include display(flex);
+    @include align-items(center);
+
+    .create-button {
+        margin-left: auto;
+    }
+}
+
+nvry-month-selection {
+    margin-right: 30px;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        @include display(flex);
+        @include align-items(center);
+
+        li {
+            margin: 0;
+            padding: 0;
+
+            button {
+                color: $colorGray;
+                text-transform: uppercase;
+                width: 45px;
+                line-height: $fontSizeLarge;
+            }
+
+            &.selected {
+                button {
+                    color: $colorPrimary;
+                    font-size: $fontSizeLarge;
+                }
+            }
+        }
+    }
+}

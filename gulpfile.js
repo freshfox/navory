@@ -3,8 +3,8 @@ var svgstore = require('gulp-svgstore');
 var svgmin = require('gulp-svgmin');
 var path = require('path');
 
-var dirPublic = 'public';
-var dirImages = dirPublic + '/images';
+var dirAssets = 'src/assets';
+var dirImages = dirAssets + '/images';
 var dirIcons = dirImages + '/icons';
 
 gulp.task('svgstore', function () {
