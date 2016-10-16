@@ -7,6 +7,7 @@ import {SortDirection} from "../../core/components/table/sort-direction.enum";
 import {Expense} from "../../models/expense";
 import {ExpenseService} from "../../services/expense.service";
 import * as moment from 'moment';
+import {State} from "../../core/state";
 
 @Component({
     templateUrl: 'expenses.component.html'
@@ -20,7 +21,11 @@ export class ExpensesComponent implements OnInit {
     private selectedYear: number;
     private tableOptions: TableOptions;
 
-    constructor(private expenseService: ExpenseService, private translate: TranslateService, private numberPipe: NumberPipe, private datePipe: DatePipe) {
+    constructor(private expenseService: ExpenseService,
+                private translate: TranslateService,
+                private numberPipe: NumberPipe,
+                private datePipe: DatePipe,
+                private state: State) {
 
         this.tableOptions = new TableOptions({
             columns: [
@@ -33,7 +38,7 @@ export class ExpensesComponent implements OnInit {
         });
 
         let momentInstance = moment();
-        this.selectedMonthIndex = momentInstance.month();
+        this.selectedMonthIndex = this.state.selectedExpenseMonthIndex || momentInstance.month();
         this.selectedYear = momentInstance.year();
     }
 
@@ -52,6 +57,7 @@ export class ExpensesComponent implements OnInit {
 
 
     filter() {
+        this.state.selectedExpenseMonthIndex = this.selectedMonthIndex;
         this.filteredExpenses = this.expenses.filter((expense) => {
             let momentInstance = moment(expense.date);
             let month = momentInstance.month();

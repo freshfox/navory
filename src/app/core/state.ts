@@ -4,6 +4,7 @@ import {User} from "../models/user";
 @Injectable()
 export class State {
 
-    user: User
+    user: User;
+    selectedExpenseMonthIndex: number;
 
 }
