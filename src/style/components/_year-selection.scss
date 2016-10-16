@@ -1,6 +1,11 @@
 nvry-year-selection {
+    display: inline-block;
+}
+
+.nvry-year-selection__inner {
     @include display(flex);
     @include align-items(center);
+    width: auto;
 
     background-color: $colorLightAccent;
     border-top: 1px solid $colorGray;

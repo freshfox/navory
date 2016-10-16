@@ -4,6 +4,7 @@ import {Input, Output} from "@angular/core/src/metadata/directives";
 @Component({
     selector: 'nvry-year-selection',
     templateUrl: `
+      <div class="nvry-year-selection__inner">
         <button (click)="lastYear()">
             <nvry-icon name="arrow-left"></nvry-icon>
         </button>
@@ -11,6 +12,7 @@ import {Input, Output} from "@angular/core/src/metadata/directives";
         <button (click)="nextYear()">
             <nvry-icon name="arrow-right"></nvry-icon>
         </button>
+     </div>
     `
 })
 export class YearSelectionComponent implements OnInit {
@@ -18,7 +20,8 @@ export class YearSelectionComponent implements OnInit {
     @Input() year: number;
     @Output() yearChange: EventEmitter<number> = new EventEmitter<number>()
 
-    constructor() { }
+    constructor() {
+    }
 
     ngOnInit() {
 

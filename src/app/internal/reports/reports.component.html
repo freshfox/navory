@@ -8,9 +8,10 @@
     </p>
 
     <div class="vat-report-form-fields">
+        <nvry-year-selection [(year)]="selectedYear" (yearChange)="refreshReport()"></nvry-year-selection>
+
         <label>{{ 'general.quarter' | translate }}</label>
-        <nvry-select [(selected)]="selectedQuarter" [options]="quarters"></nvry-select>
-        {{ selectedQuarter }}
+        <nvry-select [(selected)]="selectedQuarter" (selectedChange)="refreshReport()" [options]="quarters"></nvry-select>
     </div>
 
     <div *ngIf="report">

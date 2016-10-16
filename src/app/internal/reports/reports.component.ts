@@ -7,22 +7,25 @@ import {ReportService} from "../../services/report.service";
 export class ReportsComponent implements OnInit {
 
     private report;
-    private selectedQuarter = 1;
+    private selectedQuarter: number = 1;
+    private selectedYear: number;
     private quarters = [
         { value: 1 },
         { value: 2 },
         { value: 3 },
         { value: 4 }
     ];
-    
-    constructor(private reportService: ReportService) { }
+
+    constructor(private reportService: ReportService) {
+        this.selectedYear = new Date().getFullYear();
+    }
 
     ngOnInit() {
         this.refreshReport();
     }
 
     refreshReport() {
-        this.reportService.getVatReport(this.selectedQuarter)
+        this.reportService.getVatReport(this.selectedQuarter, this.selectedYear)
             .subscribe(report => this.report = report);
     }
 
