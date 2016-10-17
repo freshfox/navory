@@ -5,7 +5,7 @@
 	height: 700px;
 
     nvry-spinner {
-        margin: 0 auto;
+        margin: 80px auto;
     }
 
 	&.upload-area--has-file {
@@ -22,6 +22,10 @@
 		p {
 			margin-bottom: 10px;
 		}
+
+        .button {
+            margin: 0 auto;
+        }
 	}
 
 	.upload-area__thumbnail {

@@ -20,6 +20,7 @@ export class DocumentUploadComponent implements OnInit {
     private alertMessage: string;
     private loading = false;
     private progress = 0;
+    private uploading = false;
 
     private dropzone: Dropzone;
 
@@ -39,10 +40,12 @@ export class DocumentUploadComponent implements OnInit {
                     this.file = file;
                 });
         }
+    }
 
+    ngAfterViewInit() {
         this.dropzone = new Dropzone(this.uploadArea.nativeElement, {
             maxFiles: 1,
-            previewTemplate: '',
+            previewTemplate: '<div></div>',
             acceptedFiles: '.jpg,.jpeg,.png,.gif,.pdf',
             url: environment.apiUrl + '/files'
         });
@@ -54,6 +57,18 @@ export class DocumentUploadComponent implements OnInit {
         this.dropzone.on('totaluploadprogress', (progress) => {
             this.progress = progress;
         });
+
+        this.dropzone.on('success', (file, response) => {
+            this.file = response as File;
+        });
+
+        this.dropzone.on('sending', () => {
+            this.uploading = true;
+        });
+
+        this.dropzone.on('complete', () => {
+            this.uploading = false;
+        });
     }
 
     isFileUploaded() {
@@ -61,7 +76,7 @@ export class DocumentUploadComponent implements OnInit {
             return false;
         }
 
-        return this.file.id;
+        return !!this.file.id;
     }
 
     hasMultiplePages() {

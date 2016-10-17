@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="upload-area__notice" *ngIf="!isFileUploaded()">
+    <div class="upload-area__notice" *ngIf="!isFileUploaded() && !uploading">
         <p>
             {{ 'upload-area.drop-files' | translate }}<br>
             (JPG, PNG, GIF, PDF)
@@ -28,6 +28,6 @@
     </div>
 
 
-    <nvry-spinner *ngIf="loading"></nvry-spinner>
+    <nvry-spinner *ngIf="loading || uploading" [progress]="progress"></nvry-spinner>
 
 </div>

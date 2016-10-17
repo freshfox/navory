@@ -4,7 +4,7 @@ import {Input} from "@angular/core/src/metadata/directives";
 @Component({
     selector: 'nvry-spinner',
     templateUrl: `
-        <md-progress-circle [mode]="progress ? 'determinate' : 'indeterminate'">`
+        <md-progress-circle [mode]="progress ? 'determinate' : 'indeterminate'" [value]="progress">`
 })
 export class SpinnerComponent implements OnInit {
 
