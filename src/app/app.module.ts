@@ -32,7 +32,6 @@ import {ReportsComponent} from "./internal/reports/reports.component";
 import {SelectComponent} from "./core/components/select.component";
 import {NumberPipe} from "./core/pipes/number.pipe";
 import {ReportService} from "./services/report.service";
-import {CoreModule} from "./core/core.module";
 import {TableComponent} from "./core/components/table/table.component";
 import {TableHeaderCellComponent} from "./core/components/table/table-header-cell.component";
 import {SpinnerComponent} from "./core/components/spinner.component";
@@ -42,7 +41,17 @@ import {DatePipe} from "./core/pipes/date.pipe";
 import {ExpensesComponent} from "./internal/expenses/expenses.component";
 import {ExpenseService} from "./services/expense.service";
 import {MonthSelectionComponent} from "./internal/expenses/month-selection.component";
-import {YearSelectionComponent} from "./internal/expenses/year-selection.component";
+import {YearSelectionComponent} from "./core/components/year-selection.component";
+import {ExpenseEditComponent} from "./internal/expenses/expense-edit.component";
+import {BootstrapResolver} from "./core/resolvers/bootstrap.resolver";
+import {BootstrapService} from "./services/bootstrap.service";
+import {DocumentUploadComponent} from "./core/components/document-upload/document-upload.component";
+import {FileService} from "./services/file.service";
+import {PageNavigationComponent} from "./core/components/document-upload/page-navigation.component";
+import {MdProgressCircle} from "@angular2-material/progress-circle";
+import {SettingsComponent} from "./internal/settings/settings.component";
+import {AccountSettingsComponent} from "./internal/settings/account-settings.component";
+import {ProfileSettingsComponent} from "./internal/settings/profile-settings.component";
 
 @NgModule({
     declarations: [
@@ -70,7 +79,14 @@ import {YearSelectionComponent} from "./internal/expenses/year-selection.compone
         IncomeComponent,
         ExpensesComponent,
         MonthSelectionComponent,
-        YearSelectionComponent
+        YearSelectionComponent,
+        ExpenseEditComponent,
+        DocumentUploadComponent,
+        PageNavigationComponent,
+        MdProgressCircle,
+        SettingsComponent,
+        AccountSettingsComponent,
+        ProfileSettingsComponent
     ],
     imports: [
         BrowserModule,
@@ -97,7 +113,10 @@ import {YearSelectionComponent} from "./internal/expenses/year-selection.compone
         ErrorHandler,
         Config,
         NumberPipe,
-        DatePipe
+        DatePipe,
+        BootstrapResolver,
+        BootstrapService,
+        FileService
     ],
     bootstrap: [AppComponent]
 })

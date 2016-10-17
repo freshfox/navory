@@ -5,6 +5,7 @@ import {FormControl} from "@angular/forms";
 @Component({
     selector: 'nvry-input',
     template: `
+        <label *ngIf="label">{{ label }}</label>
 		<input
 		[type]="type"
 		[placeholder]="placeholder"
@@ -14,8 +15,9 @@ import {FormControl} from "@angular/forms";
 })
 export class InputComponent {
     @Input() type: string = 'text';
-    @Input() placeholder: string;
+    @Input() placeholder: string = '';
     @Input() control: FormControl;
+    @Input() label: string;
 
     constructor() {
     }

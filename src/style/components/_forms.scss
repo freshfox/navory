@@ -4,6 +4,7 @@
 	border: 1px solid $formFieldBorderColor;
 	border-radius: $formFieldBorderRadius;
 	@include transition(background-color .2s ease);
+    width: 100%;
 
 	&:focus {
 		outline: 0;
@@ -58,6 +59,10 @@
             }
         }
     }
+}
+
+select {
+    width: auto;
 }
 
 .formfield-wrapper {

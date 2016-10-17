@@ -1,0 +1,16 @@
+<div class="settings-module">
+    <div class="page-header page-header--no-side-padding page-header--no-bottom-padding">
+        <nav class="tabs tabs--full-width">
+            <ul>
+                <li>
+                    <a [routerLink]="['/settings/account']" routerLinkActive="selected">{{ 'settings.account' | translate }}</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/settings/profile']" routerLinkActive="selected">{{ 'settings.profile.title' | translate }}</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <router-outlet></router-outlet>
+</div>
+

@@ -1,3 +1,4 @@
+import {File} from "./file";
 
 export class Expense {
 
@@ -5,5 +6,6 @@ export class Expense {
     date: string;
     description: string;
     price: number;
+    file: File;
 
 }

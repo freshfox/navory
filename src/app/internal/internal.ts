@@ -1,12 +1,11 @@
 import {Component} from '@angular/core';
 import {State} from "../core/state";
 import {User} from "../models/user";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 
 @Component({
-    selector: 'nvry-internal',
-    templateUrl: 'internal.html'
+    templateUrl: 'internal.component.html'
 })
 export class InternalComponent {
 
@@ -44,7 +43,7 @@ export class InternalComponent {
         {
             'key': 'settings',
             'icon': 'cog-outline',
-            'routerLink': '/settings',
+            'routerLink': '/settings/account',
             'title': 'settings.title',
         },
     ];
@@ -52,8 +51,14 @@ export class InternalComponent {
     private user: User;
     private loggingOut: boolean = false;
 
-    constructor(private state: State, private authService: AuthService, private router: Router) {
+    constructor(private state: State, private authService: AuthService, private router: Router, private route: ActivatedRoute) {
         this.user = this.state.user;
+
+        let bootstrap = this.route.snapshot.data['bootstrap'];
+        this.state.units = bootstrap.units;
+        this.state.countries = bootstrap.countries;
+        this.state.taxRates = bootstrap.taxRates;
+        this.state.expenseCategories = bootstrap.categories;
     }
 
     private logout() {

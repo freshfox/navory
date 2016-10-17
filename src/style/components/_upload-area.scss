@@ -4,6 +4,10 @@
 	padding: 0;
 	height: 700px;
 
+    nvry-spinner {
+        margin: 0 auto;
+    }
+
 	&.upload-area--has-file {
 		height: auto;
 		border-style: solid;
@@ -22,6 +26,7 @@
 
 	.upload-area__thumbnail {
 		display: block;
+        width: 100%;
 	}
 
 	.upload-area__page-nav {
@@ -30,34 +35,6 @@
 		width: 100%;
 		text-align: center;
 		color: #fff;
-
-		.btn {
-			background: $colorUltraDarkAccent;
-			border: 0;
-			border-radius: 0;
-			border-top-left-radius: $defaultBorderRadius;
-			border-bottom-left-radius: $defaultBorderRadius;
-			height: 30px;
-			padding: 0 10px;
-
-			&:last-child {
-				border-top-left-radius: 0;
-				border-bottom-left-radius: 0;
-				border-top-right-radius: $defaultBorderRadius;
-				border-bottom-right-radius: $defaultBorderRadius;
-			}
-		}
-
-		.page-count {
-			background: $colorUltraDarkAccent;
-			height: 30px;
-			display: inline-block;
-			vertical-align: top;
-			line-height: 30px;
-			border-right: 1px solid $colorGrayLight;
-			border-left: 1px solid $colorGrayLight;
-			padding: 0 15px;
-		}
 
 		.upload-area__page-nav__inner {
 			display: inline-block;
@@ -70,14 +47,26 @@
 		position: absolute;
 		right: 10px;
 		top: 15px;
+        @include display(flex);
+        @include align-items(center);
 
-		.btn {
+		.button {
 			height: 40px;
             width: 40px;
 			border: 0;
+            margin-right: 5px;
             text-align: center;
             font-size: 16px;
 			background: $colorUltraDarkAccent;
+
+            nvry-icon {
+                width: 30px;
+                display: inline-block;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
 		}
 	}
 
@@ -104,4 +93,48 @@
 	.dz-message {
 		display: none !important;
 	}
+}
+
+nvry-page-navigation {
+    @include display(flex);
+    @include align-items(center);
+
+    .button {
+        background: $colorUltraDarkAccent;
+        border: 0;
+        border-radius: 0;
+        border-top-left-radius: $defaultBorderRadius;
+        border-bottom-left-radius: $defaultBorderRadius;
+        height: 30px;
+        padding: 0 10px;
+
+        nvry-icon {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+        }
+
+        &:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-top-right-radius: $defaultBorderRadius;
+            border-bottom-right-radius: $defaultBorderRadius;
+        }
+
+        &:hover,
+        &:focus {
+            background: lighten($colorUltraDarkAccent, 15%);
+        }
+    }
+
+    .page-count {
+        background: $colorUltraDarkAccent;
+        height: 30px;
+        display: inline-block;
+        vertical-align: top;
+        line-height: 30px;
+        border-right: 1px solid $colorGrayLight;
+        border-left: 1px solid $colorGrayLight;
+        padding: 0 15px;
+    }
 }

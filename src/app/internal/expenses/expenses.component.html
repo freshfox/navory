@@ -3,9 +3,9 @@
     <nvry-month-selection [(selectedMonthIndex)]="selectedMonthIndex" (selectedMonthIndexChange)="filter()"></nvry-month-selection>
     <nvry-year-selection [(year)]="selectedYear" (yearChange)="filter()"></nvry-year-selection>
 
-    <nvry-button class="create-button" icon="plus">
+    <nvry-button class="create-button" icon="plus" (click)="createExpense()">
         {{ 'expenses.new' | translate }}
     </nvry-button>
 </div>
 
-<nvry-table [options]="tableOptions" [rows]="filteredExpenses" [loading]="loading"></nvry-table>
+<nvry-table [options]="tableOptions" [rows]="filteredExpenses" [loading]="loading" (onRowClicked)="editExpense($event)"></nvry-table>

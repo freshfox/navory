@@ -15,25 +15,25 @@ export class BaseService {
 	    this.baseUrl = environment.apiUrl;
     }
 
-	get(url: string): Observable<any> {
+	protected get(url: string): Observable<any> {
 	    return this.http.get(this.constructApiUrl(url), this.defaultHttpOptions)
             .map(this.extract)
             .catch(this.handleError);
     }
 
-	post(url: string, data: any): Observable<any> {
+	protected post(url: string, data: any): Observable<any> {
         return this.http.post(this.constructApiUrl(url), data, this.defaultHttpOptions)
             .map(this.extract)
             .catch(this.handleError);
 	}
 
-	patch(url: string, data: any): Observable<any> {
+	protected patch(url: string, data: any): Observable<any> {
 	    return this.http.patch(this.constructApiUrl(url), data, this.defaultHttpOptions)
             .map(this.extract)
             .catch(this.handleError)
     }
 
-    delete(url: string): Observable<any> {
+    protected delete(url: string): Observable<any> {
         return this.http.delete(this.constructApiUrl(url), this.defaultHttpOptions)
             .map(this.extract)
             .catch(this.handleError)

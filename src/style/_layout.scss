@@ -31,11 +31,14 @@
 		vertical-align: middle;
 	}
 
-	.username {
-		display: inline-block;
-		margin-right: 15px;
-		vertical-align: middle;
-	}
+	.user {
+        @include display(flex);
+        @include align-items(center);
+
+        .username {
+            margin-right: 10px;
+        }
+    }
 }
 
 .container {
@@ -54,14 +57,16 @@
 	padding-bottom: 50px;
 }
 
-.page-row {
-    @extend .cf;
+.page-row,
+.page-header {
+    padding-left: $contentSidePadding;
 }
 
 .page-header {
-	padding: 20px 0;
-    padding-left: $contentSidePadding;
+	padding-top: 20px;
+    padding-bottom: 20px;
     @include display(flex);
+    @include flex-wrap(wrap);
 
     &.page-header--no-margin {
         margin-bottom: 0;
@@ -92,4 +97,17 @@
 
 .default-section {
 	padding-left: $contentSidePadding;
+}
+
+
+
+/* Grid */
+.frame {
+    width: 100%;
+    @include display(flex);
+
+    .bit-100 { width: 100%; }
+    .bit-60 { width: 60%; }
+    .bit-40 { width: 40%; }
+    .bit-50 { width: 50%; }
 }

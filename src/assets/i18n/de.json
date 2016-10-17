@@ -177,6 +177,7 @@
         "vat": "UVA"
     },
     "settings": {
+        "account": "Account",
         "title": "Einstellungen",
         "profile": {
             "title": "Profil",

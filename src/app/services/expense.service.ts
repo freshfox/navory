@@ -13,8 +13,13 @@ export class ExpenseService extends BaseService {
         super(http);
     }
 
-    getIncomes(): Observable<Expense[]> {
+    getExpenses(): Observable<Expense[]> {
         return this.get(this.pathExpenses);
+    }
+
+    getExpense(id: number): Observable<Expense> {
+        let path = this.pathExpenses + `/${id}`;
+        return this.get(path);
     }
 
 }

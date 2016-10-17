@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
 import {UserService} from "../services/user.service";
-import {State} from "../core/state";
 import {User} from "../models/user";
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/catch';

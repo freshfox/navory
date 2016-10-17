@@ -8,6 +8,7 @@ import {Expense} from "../../models/expense";
 import {ExpenseService} from "../../services/expense.service";
 import * as moment from 'moment';
 import {State} from "../../core/state";
+import {Router} from "@angular/router";
 
 @Component({
     templateUrl: 'expenses.component.html'
@@ -25,7 +26,8 @@ export class ExpensesComponent implements OnInit {
                 private translate: TranslateService,
                 private numberPipe: NumberPipe,
                 private datePipe: DatePipe,
-                private state: State) {
+                private state: State,
+                private router: Router) {
 
         this.tableOptions = new TableOptions({
             columns: [
@@ -44,7 +46,7 @@ export class ExpensesComponent implements OnInit {
 
     ngOnInit() {
         this.loading = true;
-        this.expenseService.getIncomes()
+        this.expenseService.getExpenses()
             .subscribe((expenses) => {
                     this.expenses = expenses;
                     this.filter();
@@ -54,7 +56,6 @@ export class ExpensesComponent implements OnInit {
                     // TODO
                 });
     }
-
 
     filter() {
         this.state.selectedExpenseMonthIndex = this.selectedMonthIndex;
@@ -67,11 +68,11 @@ export class ExpensesComponent implements OnInit {
     }
 
     createExpense() {
-        // TODO
+        this.router.navigate(['/expenses/new']);
     }
 
     editExpense(expense) {
-        // TODO
+        this.router.navigate([`/expenses/${expense.id}`]);
     }
 
 }

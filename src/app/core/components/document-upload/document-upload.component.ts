@@ -1,0 +1,81 @@
+import {Component, OnInit} from '@angular/core';
+import {Input} from "@angular/core/src/metadata/directives";
+import {File} from "../../../models/file";
+import {FileService} from "../../../services/file.service";
+import * as Dropzone from 'dropzone';
+import {environment} from "../../../../environments/environment";
+import {ViewChild} from "@angular/core/src/metadata/di";
+
+@Component({
+    selector: 'nvry-document-upload',
+    templateUrl: 'document-upload.component.html'
+})
+export class DocumentUploadComponent implements OnInit {
+
+    @Input() fileId: number;
+    @ViewChild('uploadArea') private uploadArea;
+
+    private file: File;
+    private currentPageIndex: number = 0;
+    private alertMessage: string;
+    private loading = false;
+    private progress = 0;
+
+    private dropzone: Dropzone;
+
+    constructor(private fileService: FileService) {
+
+    }
+
+    ngOnInit() {
+        if (!this.fileId) {
+            this.file = new File;
+            this.file.thumbnails = [];
+        } else {
+            this.loading = true;
+            this.fileService.getFile(this.fileId)
+                .subscribe((file: File) => {
+                    this.loading = false;
+                    this.file = file;
+                });
+        }
+
+        this.dropzone = new Dropzone(this.uploadArea.nativeElement, {
+            maxFiles: 1,
+            previewTemplate: '',
+            acceptedFiles: '.jpg,.jpeg,.png,.gif,.pdf',
+            url: environment.apiUrl + '/files'
+        });
+
+        this.dropzone.on('sending', (file, xhr) => {
+            xhr.withCredentials = true;
+        });
+
+        this.dropzone.on('totaluploadprogress', (progress) => {
+            this.progress = progress;
+        });
+    }
+
+    isFileUploaded() {
+        if(!this.file) {
+            return false;
+        }
+
+        return this.file.id;
+    }
+
+    hasMultiplePages() {
+        if(!this.file) {
+            return false;
+        }
+
+        return this.file.thumbnails.length > 1;
+    }
+
+    removeFile() {
+    }
+
+    downloadFile() {
+    }
+
+}

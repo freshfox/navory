@@ -6,19 +6,37 @@ import {LoggedInGuard} from "../guards/logged-in.guard";
 import {ReportsComponent} from "./reports/reports.component";
 import {IncomeComponent} from "./income/income.component";
 import {ExpensesComponent} from "./expenses/expenses.component";
+import {ExpenseEditComponent} from "./expenses/expense-edit.component";
+import {BootstrapResolver} from "../core/resolvers/bootstrap.resolver";
+import {SettingsComponent} from "./settings/settings.component";
+import {AccountSettingsComponent} from "./settings/account-settings.component";
+import {ProfileSettingsComponent} from "./settings/profile-settings.component";
 
 export const InternalRoutes: Routes = [
 	{
 		path: '',
 		component: InternalComponent,
         canActivate: [LoggedInGuard],
+        resolve: {
+		  bootstrap: BootstrapResolver
+        },
 		children: [
             { path: '', component: DashboardComponent },
 			{ path: 'dashboard', component: DashboardComponent },
             { path: 'customers',  component: CustomersComponent },
             { path: 'reports',  component: ReportsComponent },
             { path: 'income', component: IncomeComponent },
-            { path: 'expenses', component: ExpensesComponent }
+            { path: 'expenses', component: ExpensesComponent },
+            { path: 'expenses/new', component: ExpenseEditComponent },
+            { path: 'expenses/:id', component: ExpenseEditComponent },
+            {
+                path: 'settings',
+                component: SettingsComponent,
+                children: [
+                    { path: 'account', component: AccountSettingsComponent },
+                    { path: 'profile', component: ProfileSettingsComponent }
+                ]
+            }
 		]
 	}
 ];

@@ -5,7 +5,7 @@ import {TranslateService} from "ng2-translate";
 import {TableOptions} from "../../core/components/table/table-options.model";
 
 @Component({
-	templateUrl: 'customers.html'
+	templateUrl: 'customers.component.html'
 })
 export class CustomersComponent implements OnInit {
 

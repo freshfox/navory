@@ -40,6 +40,8 @@ hr {
     background: $colorSpacerLines;
     border: 0;
     margin: 15px 0;
+    width: 100%;
+    display: block;
 }
 
 /**
@@ -68,6 +70,10 @@ img {
 .no-padding { padding: 0; }
 .nmb { margin-bottom: 0 !important; }
 .no-scroll { overflow: hidden; }
+
+[hidden] {
+    display: none !important;
+}
 
 /**
  * Clearfix

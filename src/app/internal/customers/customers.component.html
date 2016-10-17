@@ -1,0 +1,9 @@
+<div class="page-row page-header">
+    <nvry-button class="button--no-margin" (ngClick)="createCustomer()">{{ 'customers.create' | translate }}
+    </nvry-button>
+</div>
+
+<nvry-table [rows]="customers"
+            [options]="tableOptions"
+            [loading]="loading"
+            (onRowClicked)="editCustomer($event)"></nvry-table>
