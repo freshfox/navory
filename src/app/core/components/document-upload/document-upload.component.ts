@@ -12,10 +12,9 @@ import {ViewChild} from "@angular/core/src/metadata/di";
 })
 export class DocumentUploadComponent implements OnInit {
 
-    @Input() fileId: number;
+    @Input() file: File;
     @ViewChild('uploadArea') private uploadArea;
 
-    private file: File;
     private currentPageIndex: number = 0;
     private alertMessage: string;
     private loading = false;
@@ -29,12 +28,12 @@ export class DocumentUploadComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (!this.fileId) {
+        if (!this.file) {
             this.file = new File;
             this.file.thumbnails = [];
         } else {
             this.loading = true;
-            this.fileService.getFile(this.fileId)
+            this.fileService.getFile(this.file.id)
                 .subscribe((file: File) => {
                     this.loading = false;
                     this.file = file;
@@ -44,6 +43,7 @@ export class DocumentUploadComponent implements OnInit {
 
     ngAfterViewInit() {
         this.dropzone = new Dropzone(this.uploadArea.nativeElement, {
+            clickable: this.uploadArea.nativeElement.querySelector('.dz-clickable'),
             maxFiles: 1,
             previewTemplate: '<div></div>',
             acceptedFiles: '.jpg,.jpeg,.png,.gif,.pdf',

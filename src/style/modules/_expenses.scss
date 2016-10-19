@@ -7,6 +7,27 @@
     }
 }
 
+.expense-edit {
+    .button-row {
+        @include display(flex);
+        padding-bottom: 30px;
+
+        .buttons {
+            @include display(flex);
+            @include align-items(center);
+            margin-left: auto;
+        }
+
+        nvry-button {
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
 nvry-month-selection {
     margin-right: 30px;
 

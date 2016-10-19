@@ -1,0 +1,5 @@
+{
+  "globalDependencies": {
+    "pikaday": "registry:dt/pikaday#0.0.0+20160812121421"
+  }
+}

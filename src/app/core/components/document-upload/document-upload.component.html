@@ -1,6 +1,6 @@
 <nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
 
-<div class="upload-area dropzone" #uploadArea>
+<div class="upload-area dropzone" #uploadArea [class.upload-area--has-file]="isFileUploaded()">
 
     <img src="{{ url }}"
          *ngFor="let url of file?.thumbnails; let i = index;"

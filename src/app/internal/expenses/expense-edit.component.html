@@ -1,27 +1,28 @@
-<div class="page-header">
+<div class="page-header page-header--no-bottom-padding">
     <nvry-button class="button--clear" [routerLink]="['/expenses']" icon="arrow-left">{{ 'expenses.title' | translate }}</nvry-button>
     <hr>
 </div>
 
-<div *ngIf="expense">
-    <div class="page-row">
-        <nvry-button [routerLink]="['/expenses']" class="button--secondary">{{ 'general.cancel' | translate }}
-        </nvry-button>
-        <nvry-button (click)="save()" [loading]="saving">{{ 'general.save' | translate }}</nvry-button>
+<div *ngIf="expense" class="expense-edit">
+    <div class="page-row button-row">
+        <div class="buttons">
+            <nvry-button [routerLink]="['/expenses']" class="button--secondary">{{ 'general.cancel' | translate }}</nvry-button>
+            <nvry-button (click)="save()" [loading]="saving">{{ 'general.save' | translate }}</nvry-button>
+        </div>
     </div>
 
     <div class="frame default-section">
         <div class="bit-60">
-            <nvry-document-upload [fileId]="expense.file?.id"></nvry-document-upload>
+            <nvry-document-upload [(file)]="expense.file"></nvry-document-upload>
         </div>
-        <div class="bit-40">
+        <div class="bit-40 bit--spacing-left">
             <form [formGroup]="form">
                 <div class="frame">
                     <div class="bit-50">
                         <nvry-input [label]="'income.number' | translate" [control]="form.controls.number"></nvry-input>
                     </div>
                     <div class="bit-50">
-                        <nvry-input [label]="'general.date' | translate" [control]="form.controls.date"></nvry-input>
+                        <nvry-input nvry-datepicker [label]="'general.date' | translate" [control]="form.controls.date"></nvry-input>
                     </div>
                 </div>
                 <div class="frame">

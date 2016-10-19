@@ -52,6 +52,7 @@ import {MdProgressCircle} from "@angular2-material/progress-circle";
 import {SettingsComponent} from "./internal/settings/settings.component";
 import {AccountSettingsComponent} from "./internal/settings/account-settings.component";
 import {ProfileSettingsComponent} from "./internal/settings/profile-settings.component";
+import {DatePickerDirective} from "./core/directives/input-date.directive";
 
 @NgModule({
     declarations: [
@@ -86,7 +87,9 @@ import {ProfileSettingsComponent} from "./internal/settings/profile-settings.com
         MdProgressCircle,
         SettingsComponent,
         AccountSettingsComponent,
-        ProfileSettingsComponent
+        ProfileSettingsComponent,
+
+        DatePickerDirective
     ],
     imports: [
         BrowserModule,
