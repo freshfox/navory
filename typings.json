@@ -1,5 +1,6 @@
 {
   "globalDependencies": {
+    "chartist": "registry:dt/chartist#0.9.5+20160619034222",
     "pikaday": "registry:dt/pikaday#0.0.0+20160812121421"
   }
 }

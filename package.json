@@ -22,6 +22,7 @@
     "@angular/router": "3.0.0",
     "@angular2-material/progress-circle": "^2.0.0-alpha.8-2",
     "bourbon": "^4.2.7",
+    "chartist": "^0.9.8",
     "core-js": "^2.4.1",
     "dropzone": "^4.3.0",
     "gulp": "^3.9.1",
