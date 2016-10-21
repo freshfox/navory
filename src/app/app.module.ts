@@ -52,7 +52,10 @@ import {MdProgressCircle} from "@angular2-material/progress-circle";
 import {SettingsComponent} from "./internal/settings/settings.component";
 import {AccountSettingsComponent} from "./internal/settings/account-settings.component";
 import {ProfileSettingsComponent} from "./internal/settings/profile-settings.component";
+import {ModalComponent} from "./core/components/modal.component";
+import {ExpenseCategorySelectionComponent} from "./internal/expenses/expense-category-selection.component";
 import {DatePickerDirective} from "./core/directives/input-date.directive";
+import {Formatter} from "./core/formatter";
 
 @NgModule({
     declarations: [
@@ -88,7 +91,8 @@ import {DatePickerDirective} from "./core/directives/input-date.directive";
         SettingsComponent,
         AccountSettingsComponent,
         ProfileSettingsComponent,
-
+        ModalComponent,
+        ExpenseCategorySelectionComponent,
         DatePickerDirective
     ],
     imports: [
@@ -119,7 +123,8 @@ import {DatePickerDirective} from "./core/directives/input-date.directive";
         DatePipe,
         BootstrapResolver,
         BootstrapService,
-        FileService
+        FileService,
+        Formatter
     ],
     bootstrap: [AppComponent]
 })

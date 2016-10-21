@@ -1,13 +1,3 @@
-.datepicker-top-left,
-.datepicker-top-right {
-	border-top-color: $colorPrimary;
-
-	&:before {
-		border-bottom-color: $colorPrimary;
-	}
-}
-
-.datepicker-panel > ul > li.picked,
-.datepicker-panel > ul > li.picked:hover {
-	color: $colorPrimary;
+.pika-table abbr {
+    cursor: default;
 }

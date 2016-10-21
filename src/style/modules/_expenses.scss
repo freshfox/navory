@@ -58,3 +58,34 @@ nvry-month-selection {
         }
     }
 }
+
+
+.category-selection {
+    @include display(flex);
+    @include flex-direction(column);
+    @include flex-wrap(wrap);
+    max-height: 800px;
+
+    .category-selection__column {
+        width: 33.333%;
+        margin-bottom: 30px;
+
+        h3 {
+            @include fontBold;
+        }
+    }
+
+    .category {
+        display: block;
+        padding-left: 0;
+        margin-bottom: 0;
+        padding-top: 2px;
+        text-align: left;
+        padding-bottom: 2px;
+        @include transition(color .25s ease);
+
+        &:hover {
+            color: $colorPrimary;
+        }
+    }
+}

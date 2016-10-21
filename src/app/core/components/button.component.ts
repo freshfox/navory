@@ -17,12 +17,9 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
     @Input() class;
     @Input() icon: string;
 
-	private el: ElementRef;
-
 	private laddaButton: any;
 
-	constructor(element: ElementRef) {
-		this.el = element;
+	constructor(private el: ElementRef) {
 	}
 
 	ngAfterViewInit() {

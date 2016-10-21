@@ -51,10 +51,10 @@
 }
 
 .combined-fields {
+    @include display(flex);
+
 	.combined-fields__side {
 		width: 50%;
-		display: inline-block;
-		vertical-align: top;
 
 		&:first-child {
 			input,

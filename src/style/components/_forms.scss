@@ -22,6 +22,15 @@
 	&[disabled] {
 		background: $colorGrayLight;
 	}
+
+    &.clickable-field {
+        background: white;
+
+        &:hover {
+            background: $colorPrimaryUltraLighter;
+            cursor: pointer;
+        }
+    }
 }
 
 @include form-fields-with-extensions {
@@ -148,4 +157,17 @@ label {
 			border-color: $colorGrayLight;
 		}
 	}
+}
+
+
+/**
+ * Select dropdowns
+ */
+nvry-select {
+    width: auto;
+    display: block;
+
+    .select2-container {
+        width: 100% !important;
+    }
 }

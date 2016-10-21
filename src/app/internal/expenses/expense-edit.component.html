@@ -5,10 +5,14 @@
 
 <div *ngIf="expense" class="expense-edit">
     <div class="page-row button-row">
+        <h1 class="module-title">
+            {{ 'expenses.edit_title' | translate }}
+        </h1>
         <div class="buttons">
             <nvry-button [routerLink]="['/expenses']" class="button--secondary">{{ 'general.cancel' | translate }}</nvry-button>
             <nvry-button (click)="save()" [loading]="saving">{{ 'general.save' | translate }}</nvry-button>
         </div>
+
     </div>
 
     <div class="frame default-section">
@@ -19,16 +23,31 @@
             <form [formGroup]="form">
                 <div class="frame">
                     <div class="bit-50">
-                        <nvry-input [label]="'income.number' | translate" [control]="form.controls.number"></nvry-input>
+                        <nvry-input [label]="'income.number' | translate" [formControl]="form.controls.number"></nvry-input>
                     </div>
                     <div class="bit-50">
-                        <nvry-input nvry-datepicker [label]="'general.date' | translate" [control]="form.controls.date"></nvry-input>
+                        <!--<nvry-input type="date" [formControl]="form.controls.date" [label]="'general.date' | translate"></nvry-input>-->
                     </div>
                 </div>
                 <div class="frame">
                     <div class="bit-100">
                         <nvry-input [label]="'general.description' | translate"
-                                    [control]="form.controls.description"></nvry-input>
+                                    [formControl]="form.controls.description"></nvry-input>
+                    </div>
+                    <div class="bit-100 combined-fields">
+                        <div class="combined-fields__side">
+                            <nvry-input [label]="'general.amount' | translate" [formControl]="form.controls.price"></nvry-input>
+                        </div>
+                        <div class="combined-fields__side">
+                            <nvry-select [label]="'general.taxrate' | translate" [options]="taxRates" [enableSearchField]="false"></nvry-select>
+                        </div>
+                    </div>
+
+                    <div class="bit-50">
+                        <div class="category-field" (click)="showCategories()">
+                            <label>{{ 'general.category' | translate }}</label>
+                            <input type="text" value="{{ expense.category?.name }}" class="clickable-field category-field-input" disabled>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -39,3 +58,8 @@
 <div class="page-row" *ngIf="loading">
     <nvry-spinner></nvry-spinner>
 </div>
+
+
+<nvry-modal #selectCategory>
+    <nvry-expense-category-selection [categories]="expenseCategories" (categorySelected)="categorySelected($event)"></nvry-expense-category-selection>
+</nvry-modal>

@@ -1,8 +1,22 @@
 nvry-table {
 
-	width: 100%;
-	text-align: left;
-    border-collapse: collapse;
+    table {
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+
+        &.table--clickable-items {
+            tbody tr:hover td {
+                background: $colorLightAccent;
+            }
+
+            td { cursor: pointer; }
+        }
+
+        &.table--list {
+            .col-actions { width: 5%; padding-right: 5px; }
+        }
+    }
 
     tr {
 
@@ -54,18 +68,6 @@ nvry-table {
         }
     }
 
-
-    &.table--clickable-items {
-        tbody tr:hover td {
-            background: $colorLightAccent;
-        }
-
-        td { cursor: pointer; }
-    }
-
-    &.table--list {
-        .col-actions { width: 5%; padding-right: 5px; }
-    }
 
     th,
     .table-heading {

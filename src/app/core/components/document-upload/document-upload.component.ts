@@ -29,8 +29,7 @@ export class DocumentUploadComponent implements OnInit {
 
     ngOnInit() {
         if (!this.file) {
-            this.file = new File;
-            this.file.thumbnails = [];
+            this.createNewFile();
         } else {
             this.loading = true;
             this.fileService.getFile(this.file.id)
@@ -87,10 +86,18 @@ export class DocumentUploadComponent implements OnInit {
         return this.file.thumbnails.length > 1;
     }
 
+    createNewFile() {
+        this.file = new File;
+        this.file.thumbnails = [];
+        this.progress = 0;
+    }
+
     removeFile() {
+        this.createNewFile();
     }
 
     downloadFile() {
+        this.fileService.downloadFile(this.file);
     }
 
 }

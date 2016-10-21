@@ -1,5 +1,6 @@
 import {FormControl, FormGroup, AbstractControl, Validators} from "@angular/forms";
 import {Config} from "./config";
+import * as moment from "moment";
 var validator = require('validator');
 
 export class FormValidator {
@@ -12,10 +13,11 @@ export class FormValidator {
             'invalidEmailAddress': 'Ungültige E-Mail Adresse',
             'passwordsNotEqual': 'Passwörter stimmen nicht überein.',
             'minlength': `Mindestlänge ${validatorValue.requiredLength} Zeichen`,
+            'invalidDate': 'Bitte trage ein korrektes Datum ein',
             'userWithEmailExists': 'Ein Benutzer mit dieser E-Mail Adresse ist bereits in unserem System vorhanden.'
         };
 
-        return config[validatorName];
+        return config[validatorName] || 'No error message for type ' + validatorName;
     }
 
     static email(control: FormControl) {
@@ -25,6 +27,18 @@ export class FormValidator {
                 invalidEmailAddress: true
             };
         }
+        return null;
+    }
+
+    static date(control: FormControl) {
+        let value = control.value;
+        let date = moment(value, Config.apiDateFormat);
+        if(!date.isValid()) {
+            return {
+                invalidDate: true
+            };
+        }
+
         return null;
     }
 
