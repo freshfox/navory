@@ -9,6 +9,7 @@ export class TableColumn {
     sortable: boolean = true;
     sortDirection: SortDirection;
     pipe: PipeTransform;
+    width: number;
 
     constructor(props: any) {
         Object.assign(this, props);

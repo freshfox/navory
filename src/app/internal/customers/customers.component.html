@@ -1,6 +1,5 @@
 <div class="page-row page-header">
-    <nvry-button class="button--no-margin" (ngClick)="createCustomer()">{{ 'customers.create' | translate }}
-    </nvry-button>
+    <nvry-button class="button--no-margin create-button" (ngClick)="createCustomer()" icon="plus">{{ 'customers.create' | translate }}</nvry-button>
 </div>
 
 <nvry-table [rows]="customers"

@@ -3,8 +3,10 @@ import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../models/customer";
 import {TranslateService} from "ng2-translate";
 import {TableOptions} from "../../core/components/table/table-options.model";
+import {SortDirection} from "../../core/components/table/sort-direction.enum";
 
 @Component({
+    selector: 'nvry-customers',
 	templateUrl: 'customers.component.html'
 })
 export class CustomersComponent implements OnInit {
@@ -18,10 +20,10 @@ export class CustomersComponent implements OnInit {
 
         this.tableOptions = new TableOptions({
             columns: [
-                { name: this.translate.instant('general.number-abbrev'),  prop: 'number' },
-                { name: this.translate.instant('general.name'), prop: 'name' },
-                { name: this.translate.instant('general.email'), prop: 'email' },
-                { name: this.translate.instant('general.phone'), prop: 'phone' }
+                { name: this.translate.instant('general.number-abbrev'),  prop: 'number', width: 10 },
+                { name: this.translate.instant('general.name'), prop: 'name', width: 30, sortDirection: SortDirection.Asc },
+                { name: this.translate.instant('general.email'), prop: 'email', width: 30 },
+                { name: this.translate.instant('general.phone'), prop: 'phone', width: 30 }
             ]
         });
 	}
