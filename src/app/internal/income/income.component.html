@@ -1,5 +1,12 @@
 <div class="page-header">
-    <nvry-button icon="plus" class="create-button">{{ 'income.new' | translate }}</nvry-button>
+    <nvry-button icon="plus" class="create-button" (click)="createIncome()">{{ 'income.new' | translate }}</nvry-button>
 </div>
 
-<nvry-table [options]="tableOptions" [rows]="incomes" [loading]="loading"></nvry-table>
+<nvry-table [options]="tableOptions" [rows]="incomes" [loading]="loading">
+
+    <div empty class="empty-view">
+        <p class="title">{{ 'income.empty-state-message' | translate }}</p>
+        <nvry-button icon="plus" class="create-button" (click)="createIncome()">{{ 'income.new' | translate }}</nvry-button>
+    </div>
+
+</nvry-table>

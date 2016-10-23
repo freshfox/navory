@@ -7,6 +7,10 @@ button {
     cursor: pointer;
 }
 
+nvry-button {
+    display: inline-block;
+}
+
 .button {
     @include display(flex);
     @include align-items(center);

@@ -8,4 +8,11 @@
     </nvry-button>
 </div>
 
-<nvry-table [options]="tableOptions" [rows]="filteredExpenses" [loading]="loading" (onRowClicked)="editExpense($event)"></nvry-table>
+<nvry-table [options]="tableOptions" [rows]="filteredExpenses" [loading]="loading" (onRowClicked)="editExpense($event)">
+
+    <div empty class="empty-view">
+        <p class="title">{{ 'expenses.empty-state-message' | translate }}</p>
+        <nvry-button icon="plus" (click)="createExpense()">{{ 'expenses.new' | translate }}</nvry-button>
+    </div>
+
+</nvry-table>

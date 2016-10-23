@@ -138,7 +138,7 @@
             "intra-community-service": "Dienstleistung (Reverse Charge)",
             "intra-community-product": "Produkt (Innergem. Lieferung)"
         },
-        "empty-state-message": "Du hast noch keine Sonstigen Einnahmen angelegt. Erfasse hier deine Einnahmen, für die du keine Rechnungen gestellt hast."
+        "empty-state-message": "Du hast noch keine Einnahmen angelegt. Probier's aus!"
     },
     "invoices": {
         "title": "Rechnungen",
@@ -166,7 +166,7 @@
         "new": "Neue Ausgabe",
         "delete-confirm-title": "Ausgabe löschen",
         "delete-confirm-message": "Willst du diese Ausgabe wirklich löschen?",
-        "empty-state-message": "Du hast noch keine Ausgaben angelegt. Probier's aus!",
+        "empty-state-message": "Du hast für den ausgewählten Zeitraum noch keine Ausgaben angelegt.",
         "create_title": "Neue Ausgabe",
         "edit_title": "Ausgabe bearbeiten",
         "copy_title": "Ausgabe kopieren",

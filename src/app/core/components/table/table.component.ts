@@ -15,12 +15,18 @@ import {Helpers} from "../../helpers";
         
         <tbody *ngIf="rows && rows.length > 0">
             <tr *ngFor="let row of rows" (click)="rowClicked(row)">
-                <td *ngFor="let column of options.columns">
+                <td *ngFor="let column of options.columns" 
+                    [class.nvry-table-cell--align-right]="column.alignment == 'right'"
+                    [style.width] = "column.width + '%'">
+                    
                     {{ getColumnValue(column, row) }}
                 </td>
             </tr>
         </tbody>
+        
     </table>
+    
+    <ng-content select="[empty]" *ngIf="!loading && !rows.length"></ng-content>
     
     <nvry-spinner class="table-spinner" *ngIf="loading"></nvry-spinner>
     `,

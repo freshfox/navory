@@ -8,13 +8,14 @@ import {SortDirection} from "./sort-direction.enum";
     templateUrl: `
         <div class="nvry-table-header-cell__inner">
             <span>{{ name }}</span>
-            <nvry-icon [name]="sortIconName" *ngIf="column.sortable && sortIconName"></nvry-icon>
+            <nvry-icon [name]="sortIconName" [attr.invisible]="!(column.sortable && sortIconName) ? true : null"></nvry-icon>
         </div>
     `,
     host: {
         '[class.nvry-table-header-cell--sortable]': 'column.sortable',
         '[class.nvry-table-header-cell--sorted]': 'column.sortDirection',
-        '[style.width]': 'column.width + "%"'
+        '[style.width]': 'column.width + "%"',
+        '[class.nvry-table-cell--align-right]': 'column.alignment == "right"'
     }
 })
 export class TableHeaderCellComponent implements OnInit {

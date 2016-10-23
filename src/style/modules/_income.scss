@@ -15,17 +15,6 @@
 	.col-actions { padding-left: 20px; padding-right: 10px; text-align: right; width: 5%; }
 }
 
-.empty-view {
-	margin: 90px 0 20px;
-	text-align: center;
-
-	.title {
-		font-size: 16px;
-		@include fontBold;
-		margin-bottom: 20px;
-	}
-}
-
 .document-upload-wrapper {
 	padding-right: 30px;
 }

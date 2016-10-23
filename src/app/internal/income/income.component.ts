@@ -6,6 +6,7 @@ import {Income} from "../../models/income";
 import {NumberPipe} from "../../core/pipes/number.pipe";
 import {DatePipe} from "../../core/pipes/date.pipe";
 import {SortDirection} from "../../core/components/table/sort-direction.enum";
+import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";
 
 @Component({
     templateUrl: 'income.component.html'
@@ -21,10 +22,10 @@ export class IncomeComponent implements OnInit {
 
         this.tableOptions = new TableOptions({
             columns: [
-                { name: this.translate.instant('general.number-abbrev'),  prop: 'id', width: 6, sortDirection: SortDirection.Asc },
-                { name: this.translate.instant('general.description'),  prop: 'description', width: 30 },
+                { name: this.translate.instant('general.number-abbrev'),  prop: 'id', width: 7, sortDirection: SortDirection.Asc },
+                { name: this.translate.instant('general.description'),  prop: 'description' },
                 { name: this.translate.instant('general.date'),  prop: 'date', pipe: this.datePipe, width: 12 },
-                { name: this.translate.instant('general.amount_net'),  prop: 'price', pipe: this.numberPipe, width: 10 },
+                { name: this.translate.instant('general.amount_net'),  prop: 'price', pipe: this.numberPipe, width: 10, alignment: ColumnAlignment.Right },
             ]
         });
     }

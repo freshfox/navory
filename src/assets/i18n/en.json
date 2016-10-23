@@ -142,7 +142,7 @@
       "intra-community-service": "Service (Reverse Charge)",
       "intra-community-product": "Product (Intra Community supply)"
     },
-    "empty-state-message": "You have no other income yet. Create income with for which you haven't issued an invoice here."
+    "empty-state-message": "You have not created income yet. Go ahead and try it!"
   },
   "invoices": {
     "title": "Invoices",
@@ -170,7 +170,7 @@
     "new": "New Expense",
     "delete-confirm-title": "Delete Expense",
     "delete-confirm-message": "Are you sure you want to delete this expense?",
-    "empty-state-message": "You have no expenses yet. Go ahead and create some!",
+    "empty-state-message": "You haven't created any expenses for the selected timeframe.",
     "create_title": "New Expense",
     "edit_title": "Edit Expense",
     "copy_title": "Copy Expense",

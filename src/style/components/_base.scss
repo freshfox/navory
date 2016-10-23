@@ -75,6 +75,10 @@ img {
     display: none !important;
 }
 
+[invisible] {
+    visibility: hidden;
+}
+
 /**
  * Clearfix
  */
