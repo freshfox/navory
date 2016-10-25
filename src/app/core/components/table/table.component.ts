@@ -38,7 +38,7 @@ export class TableComponent implements OnInit {
     @Input() options: TableOptions;
     @Input() loading: boolean;
 
-    @Output() onRowClicked = new EventEmitter<Object>();
+    @Output() onRowClicked = new EventEmitter<any>();
 
 
     private sortedColumn: TableColumn;
@@ -81,7 +81,7 @@ export class TableComponent implements OnInit {
 
     rowClicked(row) {
         if(this.options.itemsClickable) {
-            this.onRowClicked.emit(row);
+            this.onRowClicked.next(row);
         }
     }
 

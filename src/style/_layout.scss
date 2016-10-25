@@ -11,36 +11,6 @@
     height: 100%;
 }
 
-.main-header {
-	background: white;
-	padding: 14px 0;
-    border-bottom: 1px solid $colorSpacerLines;
-
-    .main-header__inner {
-        @include display(flex);
-        @include align-items(center);
-
-        .user {
-            margin-left: auto;
-        }
-    }
-
-	.logo {
-		font-size: 22px;
-		display: inline-block;
-		vertical-align: middle;
-	}
-
-	.user {
-        @include display(flex);
-        @include align-items(center);
-
-        .username {
-            margin-right: 10px;
-        }
-    }
-}
-
 .container {
 	position: relative;
 	width: $containerWidth;
@@ -111,6 +81,26 @@
     width: 100%;
     @include display(flex);
     @include flex-wrap(wrap);
+
+    &.frame--padding {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    &.frame--bit-spacing {
+        [class*='bit-'] {
+            padding-left: 10px;
+            padding-right: 10px;
+
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }
 
     .bit-100 { width: 100%; }
     .bit-60 { width: 60%; }

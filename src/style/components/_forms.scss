@@ -77,6 +77,10 @@ select {
 .formfield-wrapper {
 	margin-bottom: 15px;
 	position: relative;
+
+    nvry-input {
+        margin-bottom: 0;
+    }
 }
 
 input[type="file"]:focus,
@@ -101,6 +105,11 @@ label {
 
 @include placeholder {
 	font-weight: normal;
+}
+
+nvry-input {
+    margin-bottom: 15px;
+    display: block;
 }
 
 /**

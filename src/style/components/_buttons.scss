@@ -9,6 +9,10 @@ button {
 
 nvry-button {
     display: inline-block;
+
+    &.button--block {
+        display: block;
+    }
 }
 
 .button {

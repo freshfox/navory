@@ -1,11 +1,14 @@
-import {Component, style, animate, transition, trigger} from '@angular/core';
+import {
+    Component, style, animate, transition, trigger, Input, ComponentFactoryResolver, Type,
+    ViewContainerRef, ViewChild
+} from '@angular/core';
 
 @Component({
     selector: 'nvry-modal',
     template: `
-		<div [@backdrop] tabindex="1" class="modal" *ngIf="isShown" (click)="onClick($event)">
+		<div [@backdrop] tabindex="1" class="modal {{ class }}" *ngIf="isShown" (click)="onClick($event)">
 			<div [@dialog] class="modal-dialog">
-				<ng-content></ng-content>
+				<div #inner></div>
 			</div>
 		</div>`,
     animations: [
@@ -34,9 +37,24 @@ import {Component, style, animate, transition, trigger} from '@angular/core';
 export class ModalComponent {
 
     private isShown: boolean = false;
+    @Input() class: string;
+    @ViewChild('inner', {read: ViewContainerRef}) innerContainer: ViewContainerRef;
 
-    public show(data: any = null) {
+    constructor(private componentFactoryResolver: ComponentFactoryResolver) {
+
+    }
+
+    public show(component: any, data: any = null) {
         this.isShown = true;
+
+        setTimeout(() => {
+            let resolvedComponent = this.componentFactoryResolver.resolveComponentFactory(component);
+            let childComponent = this.innerContainer.createComponent(resolvedComponent);
+            data.
+            childComponent
+
+        }, 1);
+
         let body = document.querySelector('body');
         body.className += ' no-scroll';
     }

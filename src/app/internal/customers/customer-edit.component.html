@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <span>{{ headerText }}</span>
+</div>
+
+<form [formGroup]="form">
+    <div class="frame frame--padding frame--bit-spacing">
+        <div class="bit-50">
+            <nvry-input [label]="'general.name' | translate" [formControl]="form.controls.name"></nvry-input>
+            <nvry-select [label]="'general.country' | translate" [options]="countries"></nvry-select>
+        </div>
+        <div class="bit-50">
+            <nvry-input [label]="'general.number' | translate" [formControl]="form.controls.number"></nvry-input>
+            <nvry-input [label]="'general.email' | translate" [formControl]="form.controls.email" type="email"></nvry-input>
+            <nvry-input [label]="'general.phone' | translate" [formControl]="form.controls.phone"></nvry-input>
+            <nvry-input [label]="'general.vat-id' | translate" [formControl]="form.controls.vat_number"></nvry-input>
+        </div>
+    </div>
+</form>
+
+<div class="modal-footer">
+    <nvry-button class="button--secondary" (click)="cancel()">{{ 'general.cancel' | translate }}</nvry-button>
+    <nvry-button [loading]="loading" (click)="save()">{{ 'general.save' | translate }}</nvry-button>
+</div>

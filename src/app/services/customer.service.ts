@@ -7,15 +7,31 @@ import {Observable} from "rxjs";
 @Injectable()
 export class CustomerService extends BaseService {
 
-	private customersUrl = '/customers';
+	private pathCustomers = '/customers';
 
     constructor(http: Http) {
         super(http);
     }
 
 	getCustomers(): Observable<Customer[]> {
-		return this.get(this.customersUrl)
+		return this.get(this.pathCustomers)
             .map(data => data as Customer[])
 	}
+
+	saveCustomer(customer: Customer): Observable<Customer> {
+        if(customer.id) {
+            return this.updateCustomer(customer);
+        }
+        return this.createCustomer(customer);
+    }
+
+    private createCustomer(customer: Customer) {
+        return this.post(this.pathCustomers, customer);
+    }
+
+    private updateCustomer(customer: Customer) {
+        let path = this.pathCustomers + `/${customer.id}`;
+        return this.patch(path, customer);
+    }
 
 }

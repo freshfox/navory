@@ -10,7 +10,7 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-    selector: 'nvry-input',
+    selector: 'nvry-input,nvry-textarea',
     template: `
         <label *ngIf="label">{{ label }}</label>
 		
