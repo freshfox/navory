@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter} from '@angular/core';
+import {Component, OnInit, EventEmitter, SimpleChange} from '@angular/core';
 import {Input, Output} from "@angular/core/src/metadata/directives";
 import {TableOptions} from "./table-options.model";
 import {TableColumn} from "./table-column.model";
@@ -47,6 +47,25 @@ export class TableComponent implements OnInit {
     }
 
     ngOnInit() {
+
+    }
+
+    ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+        for (let propName in changes) {
+            if (propName === 'rows') {
+                if(this.rows) {
+                    this.updateSorting();
+                }
+            }
+        }
+    }
+
+    updateSorting() {
+        this.options.columns.forEach((column) => {
+            if(column.sortDirection) {
+                this.sortColumn(column);
+            }
+        });
     }
 
     getColumnValue(column: TableColumn, row): any {
@@ -59,7 +78,7 @@ export class TableComponent implements OnInit {
         return column.prop || column.name;
     }
 
-    sortColumn(tableColumn: TableColumn) {
+    sortHeaderClicked(tableColumn: TableColumn) {
         if(tableColumn.sortable) {
             if(tableColumn == this.sortedColumn) {
                 TableComponent.switchSortDirection(tableColumn);
@@ -74,9 +93,13 @@ export class TableComponent implements OnInit {
                 }
             }
 
-            let propertyName = this.getPropertyName(tableColumn);
-            this.rows.sort(TableComponent.getSortComparator(tableColumn.sortDirection, propertyName));
+            this.sortColumn(tableColumn);
         }
+    }
+
+    sortColumn(column: TableColumn) {
+        let propertyName = this.getPropertyName(column);
+        this.rows.sort(TableComponent.getSortComparator(column.sortDirection, propertyName));
     }
 
     rowClicked(row) {
