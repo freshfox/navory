@@ -22,7 +22,7 @@ export class ExpenseService extends BaseService {
         return this.get(path);
     }
 
-    createOrEditExpense(expense: Expense): Observable<Expense> {
+    saveExpense(expense: Expense): Observable<Expense> {
         if(!expense.id) {
             return this.post(this.pathExpenses, expense);
         }

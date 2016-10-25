@@ -8,7 +8,7 @@ import {
     template: `
 		<div [@backdrop] tabindex="1" class="modal {{ class }}" *ngIf="isShown" (click)="onClick($event)">
 			<div [@dialog] class="modal-dialog">
-				<div #inner></div>
+				<ng-content></ng-content>
 			</div>
 		</div>`,
     animations: [
@@ -24,10 +24,10 @@ import {
         trigger('backdrop', [
             transition('void => *', [
                 style({ opacity: 1 }),
-                animate('0.2s ease')
+                animate('0.3s ease')
             ]),
             transition('* => void', [
-                animate('0.2s ease', style({
+                animate('0.3s ease', style({
                     opacity: 0
                 }))
             ])
@@ -37,30 +37,24 @@ import {
 export class ModalComponent {
 
     private isShown: boolean = false;
+    private data: any;
     @Input() class: string;
     @ViewChild('inner', {read: ViewContainerRef}) innerContainer: ViewContainerRef;
 
-    constructor(private componentFactoryResolver: ComponentFactoryResolver) {
-
+    constructor() {
     }
 
-    public show(component: any, data: any = null) {
+    show(data: any = null) {
         this.isShown = true;
-
-        setTimeout(() => {
-            let resolvedComponent = this.componentFactoryResolver.resolveComponentFactory(component);
-            let childComponent = this.innerContainer.createComponent(resolvedComponent);
-            data.
-            childComponent
-
-        }, 1);
+        this.data = data;
 
         let body = document.querySelector('body');
         body.className += ' no-scroll';
     }
 
-    public hide() {
+    hide() {
         this.isShown = false;
+        this.data = null;
         this.unlockBodyScroll();
     }
 
@@ -68,12 +62,12 @@ export class ModalComponent {
         this.unlockBodyScroll();
     }
 
-    unlockBodyScroll() {
+    private unlockBodyScroll() {
         this.removeClass(document.querySelector('body'), 'no-scroll');
     }
 
     private onClick(event) {
-        if (event.target.className == 'modal') {
+        if (event.target.className.startsWith('modal')) {
             this.hide();
         }
     }

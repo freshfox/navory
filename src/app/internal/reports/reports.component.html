@@ -11,7 +11,7 @@
         <nvry-year-selection [(year)]="selectedYear" (yearChange)="refreshReport()"></nvry-year-selection>
 
         <label>{{ 'general.quarter' | translate }}</label>
-        <nvry-select [(selected)]="selectedQuarter" (selectedChange)="refreshReport()" [options]="quarters" [enableSearchField]="false"></nvry-select>
+        <!--<nvry-select [(selected)]="selectedQuarter" (selectedValueChange)="refreshReport()" [options]="quarters" [enableSearchField]="false"></nvry-select>-->
     </div>
 
     <div *ngIf="report">

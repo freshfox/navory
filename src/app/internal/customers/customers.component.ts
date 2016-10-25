@@ -5,7 +5,6 @@ import {TranslateService} from "ng2-translate";
 import {TableOptions} from "../../core/components/table/table-options.model";
 import {SortDirection} from "../../core/components/table/sort-direction.enum";
 import {ModalComponent} from "../../core/components/modal.component";
-import {CustomerEditComponent} from "./customer-edit.component";
 
 @Component({
     selector: 'nvry-customers',
@@ -50,11 +49,24 @@ export class CustomersComponent implements OnInit {
     }
 
     editCustomer(customer: Customer) {
-        this.editCustomerModal.show(CustomerEditComponent, { customer: customer });
+        this.editCustomerModal.show(customer);
     }
 
-    onCustomerSaved(customer: Customer) {
-        this.customers.push(customer);
+    onCustomerSaved(newCustomer: Customer) {
+        var exists = false;
+        this.customers.forEach((customer) => {
+            if (newCustomer.id == customer.id) {
+                customer = newCustomer;
+                exists = true;
+            }
+        });
+
+        if (!exists) {
+            this.customers.push(newCustomer);
+            this.customers = this.customers.slice();
+        }
+
+        this.editCustomerModal.hide();
     }
 
 }

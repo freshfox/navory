@@ -1,5 +1,5 @@
 @include form-fields {
-	padding: 10px 6px;
+	padding: 9px 6px;
 	display: inline-block;
 	border: 1px solid $formFieldBorderColor;
 	border-radius: $formFieldBorderRadius;
@@ -30,6 +30,10 @@
             background: $colorPrimaryUltraLighter;
             cursor: pointer;
         }
+    }
+
+    &[nvry-amount] {
+        text-align: right;
     }
 }
 
@@ -71,16 +75,17 @@
 }
 
 select {
-    width: auto;
+    width: 100%;
+}
+
+textarea {
+    min-height: 110px;
+    resize: none;
 }
 
 .formfield-wrapper {
 	margin-bottom: 15px;
 	position: relative;
-
-    nvry-input {
-        margin-bottom: 0;
-    }
 }
 
 input[type="file"]:focus,
@@ -107,7 +112,9 @@ label {
 	font-weight: normal;
 }
 
-nvry-input {
+nvry-input,
+nvry-textarea,
+nvry-select {
     margin-bottom: 15px;
     display: block;
 }

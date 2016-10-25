@@ -1,4 +1,4 @@
-import {Component, forwardRef, Injector} from '@angular/core';
+import {Component, forwardRef, Injector, ElementRef} from '@angular/core';
 import {Input} from "@angular/core";
 import {FormControl, NG_VALUE_ACCESSOR, ControlValueAccessor, NgControl, ControlContainer} from "@angular/forms";
 
@@ -14,8 +14,16 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     template: `
         <label *ngIf="label">{{ label }}</label>
 		
+		<textarea 
+		*ngIf="selector == 'nvry-textarea'"
+		[placeholder]="placeholder"
+		[(ngModel)]="value"
+		(blur)="onTouchedCallback()"
+		(ngModelChange)="onChange()"
+		></textarea>
+		
 		<input
-		*ngIf="type == 'date'"
+		*ngIf="type == 'date' && selector == 'nvry-input'"
 		nvry-datepicker
 		type="text"
 		[placeholder]="placeholder"
@@ -24,14 +32,23 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 		(ngModelChange)="onChange()">
 		
 		<input
-		*ngIf="type != 'date'"
+		*ngIf="type != 'date' && type != 'money' && selector == 'nvry-input'"
 		[type]="type"
 		[placeholder]="placeholder"
 		[(ngModel)]="value"
 		(blur)="onTouchedCallback()"
 		(ngModelChange)="onChange()">
+        
+        <input
+		nvry-amount
+		*ngIf="type == 'money' && selector == 'nvry-input'"
+		type="text"
+		[placeholder]="placeholder"
+		[(ngModel)]="value"
+		(blur)="onTouchedCallback()"
+		(ngModelChange)="onChange()">
 		
-		<nvry-control-messages [control]="formControl"></nvry-control-messages>
+		<nvry-control-messages *ngIf="formControl" [control]="formControl"></nvry-control-messages>
 	`,
     providers: [NVRY_INPUT_CONTROL_VALUE_ACCESSOR],
 })
@@ -46,8 +63,10 @@ export class InputComponent implements ControlValueAccessor {
     private onChangeCallback: (_: any) => void = () => {};
 
     private value: any = '';
+    private selector: string;
 
-    constructor() {
+    constructor(el: ElementRef) {
+        this.selector = el.nativeElement.localName;
     }
 
     writeValue(value: any) {

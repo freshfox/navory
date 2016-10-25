@@ -38,21 +38,29 @@ numbro.culture('de', numbroDELang);
 export class Formatter {
 
     constructor(private translate: TranslateService) {
+        numbro.culture(this.translate.currentLang);
     }
 
 
-    money(value: number, numberOfDecimals: number = 2) {
-        numbro.culture(this.translate.currentLang);
+    money(value: number, numberOfDecimals: number = 2): string {
         var format = '0,0.';
         for (var i = 0; i < numberOfDecimals; i++) {
             format += '0';
         }
 
-        if(!value) {
+        if(!value || isNaN(value)) {
             value = 0;
         }
 
         return numbro(value).format(format);
+    }
+
+    parseMoney(formatted: string): number {
+        var parsed = numbro().unformat(formatted);
+        if(typeof parsed == 'undefined') {
+            return 0;
+        }
+        return parsed;
     }
 
 }

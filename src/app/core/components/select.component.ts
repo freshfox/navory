@@ -7,18 +7,24 @@ require('select2');
     selector: 'nvry-select',
     template: `
         <label *ngIf="label">{{ label }}</label>
-        <select (change)="selectedChange.emit($event.target.value)">
-           <option *ngFor="let option of options" value="{{ option.value }}">{{ option.name || option.value }}</option>
+        <select (change)="onChange(s.value)" #s>
+           <option 
+           *ngFor="let option of options" 
+           [attr.value]="getValue(option)" [attr.selected]="selectedValue == getValue(option) ? true : null">{{ getName(option) }}</option>
         </select>`
 })
 export class SelectComponent implements OnInit {
 
     @Input() options: any;
-    @Input() selected: any;
-    @Input() label: string;
-    @Input() enableSearchField: boolean = true;
+    @Input() valueKey: string = 'id';
+    @Input() nameKey: string = 'name';
 
-    @Output() selectedChange = new EventEmitter();
+    @Input() selectedValue: any;
+    @Output() selectedValueChange = new EventEmitter<any>();
+
+    @Input() label: string;
+
+    @Input() enableSearchField: boolean = true;
 
     constructor(private el: ElementRef) { }
 
@@ -28,10 +34,23 @@ export class SelectComponent implements OnInit {
     ngAfterViewInit() {
         let select = this.el.nativeElement.querySelector('select');
 
-        let minimumResults = this.enableSearchField ? 1 : -1;
+        /*let minimumResults = this.enableSearchField ? 1 : -1;
         $(select).select2({
             minimumResultsForSearch: minimumResults
-        });
+        });*/
+    }
+
+    private getValue(option) {
+        return option[this.valueKey];
+    }
+
+    private getName(option) {
+        return option[this.nameKey] || this.getValue(option);
+    }
+
+    private onChange(value) {
+        this.selectedValue = value;
+        this.selectedValueChange.emit(this.selectedValue);
     }
 
 }

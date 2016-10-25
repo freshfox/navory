@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, SimpleChange} from '@angular/core';
+import {Component, OnInit, EventEmitter, SimpleChange, DoCheck} from '@angular/core';
 import {Input, Output} from "@angular/core/src/metadata/directives";
 import {TableOptions} from "./table-options.model";
 import {TableColumn} from "./table-column.model";
@@ -10,7 +10,7 @@ import {Helpers} from "../../helpers";
     templateUrl: `
     <table [class.table--clickable-items]="options.itemsClickable">
         <tr>
-            <th nvry-table-header-cell *ngFor="let column of options.columns" [column]="column" (click)="sortColumn(column)"></th>
+            <th nvry-table-header-cell *ngFor="let column of options.columns" [column]="column" (click)="sortHeaderClicked(column)"></th>
         </tr>
         
         <tbody *ngIf="rows && rows.length > 0">
@@ -32,7 +32,7 @@ import {Helpers} from "../../helpers";
     `,
 
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, DoCheck {
 
     @Input() rows: any[];
     @Input() options: TableOptions;
@@ -42,6 +42,7 @@ export class TableComponent implements OnInit {
 
 
     private sortedColumn: TableColumn;
+    private oldLength: number;
 
     constructor() {
     }
@@ -51,6 +52,7 @@ export class TableComponent implements OnInit {
     }
 
     ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+        console.log(changes);
         for (let propName in changes) {
             if (propName === 'rows') {
                 if(this.rows) {

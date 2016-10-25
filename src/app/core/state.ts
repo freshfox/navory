@@ -15,4 +15,15 @@ export class State {
     countries: Country[];
     taxRates: TaxRate[];
 
+    getAustria(): Country {
+        var aut;
+        this.countries.forEach(country => {
+           if(country.cca3 === 'AUT') {
+               aut = country;
+           }
+        });
+
+        return aut;
+    }
+
 }

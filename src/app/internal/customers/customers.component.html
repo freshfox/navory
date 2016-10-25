@@ -15,5 +15,6 @@
 </nvry-table>
 
 
-<nvry-modal #editCustomerModal class="modal--no-padding">
+<nvry-modal #editCustomerModal class="modal--no-padding modal--slim">
+    <nvry-customer-edit [customer]="editCustomerModal.data" (onCancel)="editCustomerModal.hide()" (onSaved)="onCustomerSaved($event)"></nvry-customer-edit>
 </nvry-modal>

@@ -57,6 +57,7 @@ import {ExpenseCategorySelectionComponent} from "./internal/expenses/expense-cat
 import {DatePickerDirective} from "./core/directives/input-date.directive";
 import {Formatter} from "./core/formatter";
 import {CustomerEditComponent} from "./internal/customers/customer-edit.component";
+import {AmountDirective} from "./core/directives/input-amount.directive";
 
 @NgModule({
     declarations: [
@@ -95,7 +96,8 @@ import {CustomerEditComponent} from "./internal/customers/customer-edit.componen
         ModalComponent,
         ExpenseCategorySelectionComponent,
         DatePickerDirective,
-        CustomerEditComponent
+        CustomerEditComponent,
+        AmountDirective
     ],
     imports: [
         BrowserModule,
@@ -128,7 +130,6 @@ import {CustomerEditComponent} from "./internal/customers/customer-edit.componen
         FileService,
         Formatter
     ],
-    entryComponents: [CustomerEditComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
