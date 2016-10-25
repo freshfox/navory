@@ -1,14 +1,15 @@
 <nvry-login-layout>
     <form class="form-stacked default-form-wrapper login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
         <nvry-alert-bar [message]="alertMessage" [type]="alertType"></nvry-alert-bar>
+
         <div class="formfield-wrapper">
-            <input type="text" placeholder="{{ 'general.email' | translate }}" formControlName="email">
-            <nvry-control-messages [control]="form.controls.email"></nvry-control-messages>
+            <nvry-input [placeholder]="'general.email' | translate" [formControl]="form.controls.email"></nvry-input>
         </div>
+
         <div class="formfield-wrapper">
-            <input type="password"  placeholder="{{ 'general.password' | translate }}" formControlName="password">
-            <nvry-control-messages [control]="form.controls.password"></nvry-control-messages>
+            <nvry-input [placeholder]="'general.password' | translate" [formControl]="form.controls.password" type="password"></nvry-input>
         </div>
+
         <div class="checkbox">
             <input type="checkbox" id="durable" formControlName="durable">
             <label for="durable">

@@ -1,36 +1,39 @@
 <div class="top-notice">
-	<a [routerLink]="['/login']" [innerHTML]="'login.signup.login-notice' | translate"></a>
+    <a [routerLink]="['/login']" [innerHTML]="'login.signup.login-notice' | translate"></a>
 </div>
 
 <div class="content-wrapper signup-wrapper">
-	<div class="header">
-		<h2 class="headline" [innerHTML]="'login.signup.welcome' | translate"></h2>
-		<p class="sub">{{ 'login.signup.tagline' | translate }}</p>
-	</div>
+    <div class="header">
+        <h2 class="headline" [innerHTML]="'login.signup.welcome' | translate"></h2>
+        <p class="sub">{{ 'login.signup.tagline' | translate }}</p>
+    </div>
 
-	<form [formGroup]="form" class="form-stacked default-form-wrapper signup-form" (ngSubmit)="onSubmit()">
-		<nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
+    <form [formGroup]="form" class="form-stacked default-form-wrapper signup-form" (ngSubmit)="onSubmit()">
+        <nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
 
-		<div class="formfield-wrapper">
-            <nvry-input [placeholder]="'general.company' | translate" [formControl]="form.controls.company"></nvry-input>
-		</div>
-		<div class="formfield-wrapper">
-            <nvry-input [placeholder]="'general.firstname' | translate" [formControl]="form.controls.firstname"></nvry-input>
-		</div>
-		<div class="formfield-wrapper">
-            <nvry-input [placeholder]="'general.lastname' | translate" [formControl]="form.controls.lastname"></nvry-input>
+        <div class="formfield-wrapper">
+            <nvry-input [placeholder]="'general.company' | translate"
+                        [formControl]="form.controls.company"></nvry-input>
         </div>
-		<div class="formfield-wrapper">
+        <div class="formfield-wrapper">
+            <nvry-input [placeholder]="'general.firstname' | translate"
+                        [formControl]="form.controls.firstname"></nvry-input>
+        </div>
+        <div class="formfield-wrapper">
+            <nvry-input [placeholder]="'general.lastname' | translate"
+                        [formControl]="form.controls.lastname"></nvry-input>
+        </div>
+        <div class="formfield-wrapper">
             <nvry-input [placeholder]="'general.email' | translate" [formControl]="form.controls.email"></nvry-input>
-		</div>
-		<div class="formfield-wrapper">
-            <nvry-input type="password" [placeholder]="'general.password' | translate" [formControl]="form.controls.password"></nvry-input>
-		</div>
+        </div>
+        <div class="formfield-wrapper">
+            <nvry-input type="password" [placeholder]="'general.password' | translate"
+                        [formControl]="form.controls.password"></nvry-input>
+        </div>
 
-
-		<nvry-button class="button--l button--block" [loading]="loading">
-			{{ 'login.signup.submit' | translate }}
-		</nvry-button>
-	</form>
+        <nvry-button class="button--l button--block" [loading]="loading">
+            {{ 'login.signup.submit' | translate }}
+        </nvry-button>
+    </form>
 
 </div>
