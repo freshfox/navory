@@ -1,9 +1,20 @@
+$modalDefaultWidth: 750px;
+$modalSlimWidth: 600px;
+
 .modal-footer {
 	text-align: right;
 	background: $colorGrayUltraLighter;
 	border-top: 1px solid $colorGrayLight;
 	padding: 20px $modalSidePadding;
     margin-top: 20px;
+
+    nvry-button {
+        margin-right: 5px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
 }
 
 .modal-header {
@@ -34,14 +45,20 @@
         }
     }
 
+    &.modal--slim {
+        .modal-dialog {
+            width: $modalSlimWidth;
+        }
+    }
+
     .modal-dialog {
-        width: 750px;
+        width: $modalDefaultWidth;
         margin: 0 auto;
         background-color: white;
         border-radius: 3px;
         padding: 30px 50px;
 
-        @media(max-width: 750px) {
+        @media(max-width: $modalDefaultWidth) {
             width: 100%;
             padding-left: 30px;
             padding-right: 30px;
