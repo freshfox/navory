@@ -1,5 +1,6 @@
-import {Component, OnInit, SimpleChange} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ReportService} from "../../services/report.service";
+var moment = require('moment');
 
 @Component({
     templateUrl: 'reports.component.html'
@@ -7,17 +8,30 @@ import {ReportService} from "../../services/report.service";
 export class ReportsComponent implements OnInit {
 
     private report;
-    private selectedQuarter: number = 1;
+    private selectedQuarter: number;
     private selectedYear: number;
     private quarters = [
-        { value: 1 },
-        { value: 2 },
-        { value: 3 },
-        { value: 4 }
+        {
+            value: 0,
+            name: 'Q1'
+        },
+        {
+            value: 1,
+            name: 'Q2'
+        },
+        {
+            value: 2,
+            name: 'Q3'
+        },
+        {
+            value: 3,
+            name: 'Q4'
+        }
     ];
 
     constructor(private reportService: ReportService) {
         this.selectedYear = new Date().getFullYear();
+        this.selectedQuarter = moment().quarter() - 1;
     }
 
     ngOnInit() {
@@ -28,13 +42,4 @@ export class ReportsComponent implements OnInit {
         this.reportService.getVatReport(this.selectedQuarter, this.selectedYear)
             .subscribe(report => this.report = report);
     }
-
-    ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-        for (let propName in changes) {
-            if (propName === 'selectedQuarter') {
-                this.refreshReport();
-            }
-        }
-    }
-
 }
