@@ -1,3 +1,22 @@
+.pika-single {
+    font-family: inherit;
+}
+
 .pika-table abbr {
     cursor: default;
+}
+
+.pika-button {
+    &:hover {
+        background: $colorGrayMedium;
+    }
+
+    .is-selected & {
+        background: $colorPrimary;
+        box-shadow: none;
+    }
+
+    .is-today & {
+        color: $colorPrimary;
+    }
 }
