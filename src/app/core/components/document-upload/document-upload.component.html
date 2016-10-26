@@ -1,6 +1,6 @@
 <nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
 
-<div class="upload-area dropzone" #uploadArea [class.upload-area--has-file]="isFileUploaded()">
+<div class="upload-area dropzone" #uploadArea [class.upload-area--has-file]="isFileUploaded() && !loading">
 
     <img src="{{ url }}"
          *ngFor="let url of file?.thumbnails; let i = index;"
@@ -22,7 +22,7 @@
         <nvry-button class="dz-clickable">{{ 'upload-area.choose-file' | translate }}</nvry-button>
     </div>
 
-    <div class="upload-area__action-buttons" *ngIf="isFileUploaded()">
+    <div class="upload-area__action-buttons" *ngIf="isFileUploaded() && !loading">
         <nvry-button class="button--small" icon="trash" (click)="removeFile()"></nvry-button>
         <nvry-button class="button--small" icon="download" (click)="downloadFile()"></nvry-button>
     </div>

@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 import {Input} from "@angular/core/src/metadata/directives";
 import {File} from "../../../models/file";
 import {FileService} from "../../../services/file.service";
 import * as Dropzone from 'dropzone';
 import {environment} from "../../../../environments/environment";
 import {ViewChild} from "@angular/core/src/metadata/di";
+import {TranslateService} from "ng2-translate";
 
 @Component({
     selector: 'nvry-document-upload',
@@ -13,6 +14,8 @@ import {ViewChild} from "@angular/core/src/metadata/di";
 export class DocumentUploadComponent implements OnInit {
 
     @Input() file: File;
+    @Output() fileChange: EventEmitter<File> = new EventEmitter<File>();
+
     @ViewChild('uploadArea') private uploadArea;
 
     private currentPageIndex: number = 0;
@@ -23,19 +26,21 @@ export class DocumentUploadComponent implements OnInit {
 
     private dropzone: Dropzone;
 
-    constructor(private fileService: FileService) {
+    constructor(private fileService: FileService, private translate: TranslateService) {
 
     }
 
     ngOnInit() {
         if (!this.file) {
-            this.createNewFile();
+            setTimeout(() => {
+                this.createNewFile();
+            }, 1);
         } else {
             this.loading = true;
             this.fileService.getFile(this.file.id)
                 .subscribe((file: File) => {
                     this.loading = false;
-                    this.file = file;
+                    this.setFile(file);
                 });
         }
     }
@@ -50,6 +55,7 @@ export class DocumentUploadComponent implements OnInit {
         });
 
         this.dropzone.on('sending', (file, xhr) => {
+            this.alertMessage = null;
             xhr.withCredentials = true;
         });
 
@@ -58,7 +64,7 @@ export class DocumentUploadComponent implements OnInit {
         });
 
         this.dropzone.on('success', (file, response) => {
-            this.file = response as File;
+            this.setFile(response as File);
         });
 
         this.dropzone.on('sending', () => {
@@ -67,7 +73,26 @@ export class DocumentUploadComponent implements OnInit {
 
         this.dropzone.on('complete', () => {
             this.uploading = false;
+            this.dropzone.removeAllFiles();
         });
+
+        this.dropzone.on('error', (file, errorMessage) => {
+            if (errorMessage === 'You can\'t upload files of this type.') {
+                this.alertMessage = this.translate.instant('upload-area.errors.filetype-not-allowed');
+            } else {
+                this.alertMessage = this.translate.instant('upload-area.errors.general');
+            }
+        });
+    }
+
+    setFile(file: File) {
+        if(!file) {
+            this.dropzone.enable();
+        } else {
+            this.dropzone.disable();
+        }
+        this.file = file;
+        this.fileChange.emit(this.file);
     }
 
     isFileUploaded() {
@@ -79,7 +104,7 @@ export class DocumentUploadComponent implements OnInit {
     }
 
     hasMultiplePages() {
-        if(!this.file) {
+        if(!this.file || !this.file.thumbnails) {
             return false;
         }
 
@@ -87,12 +112,12 @@ export class DocumentUploadComponent implements OnInit {
     }
 
     createNewFile() {
-        this.file = new File;
-        this.file.thumbnails = [];
+        this.setFile(null);
         this.progress = 0;
     }
 
     removeFile() {
+        this.fileService.deleteFile(this.file.id).subscribe();
         this.createNewFile();
     }
 
