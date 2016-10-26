@@ -8,6 +8,8 @@ import {Observable} from "rxjs";
 @Injectable()
 export class TaxRateService extends BaseService {
 
+    private defaultTaxRate = 20;
+
     constructor(http: Http, private state: State) {
         super(http);
     }
@@ -26,6 +28,17 @@ export class TaxRateService extends BaseService {
 
     getTaxRates(): Observable<TaxRate[]> {
         return Observable.of(this.state.taxRates);
+    }
+
+    getDefaultTaxRate(): Observable<TaxRate> {
+        var defaultRate;
+        this.state.taxRates.forEach(rate => {
+           if(rate.rate == this.defaultTaxRate) {
+               defaultRate = rate;
+           }
+        });
+
+        return Observable.of(defaultRate);
     }
 
 }

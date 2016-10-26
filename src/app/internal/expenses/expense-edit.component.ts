@@ -26,6 +26,7 @@ export class ExpenseEditComponent implements OnInit {
     private taxRates;
     private expenseCategories: Category[];
     private euVatTypes: any[];
+    private nextExpenseNumber: number;
 
     @ViewChild('selectCategory') private selectCategoryModal: ModalComponent;
 
@@ -41,6 +42,12 @@ export class ExpenseEditComponent implements OnInit {
 
         this.expense = new Expense();
         this.expenseCategories = this.state.expenseCategories;
+        this.nextExpenseNumber = this.state.nextExpenseNumber;
+
+        this.taxRateService.getDefaultTaxRate()
+            .subscribe(rate => {
+                this.expense.tax_rate = rate;
+            });
 
         this.taxRateService.getTaxRates()
             .subscribe(taxRates => {
@@ -80,7 +87,7 @@ export class ExpenseEditComponent implements OnInit {
         });
 
         this.form = this.fb.group({
-            number: ["", Validators.required],
+            number: ["", FormValidator.number],
             date: ["", Validators.compose([Validators.required, FormValidator.date])],
             description: [""],
             price: ["", Validators.required],
@@ -123,6 +130,10 @@ export class ExpenseEditComponent implements OnInit {
             this.expenseService.saveExpense(this.expense)
                 .subscribe(
                     (expense) => {
+                        let isNew = !this.expense.id;
+                        if(isNew) {
+                            this.state.nextExpenseNumber++;
+                        }
                         this.expense = expense;
                         this.saving = false;
                         this.router.navigate(['/expenses']);

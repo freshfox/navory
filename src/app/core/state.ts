@@ -14,6 +14,9 @@ export class State {
     units: Unit[];
     countries: Country[];
     taxRates: TaxRate[];
+    nextExpenseNumber: number;
+    nextIncomeNumber: number;
+    nextInvoiceNumber: number;
 
     getAustria(): Country {
         var aut;

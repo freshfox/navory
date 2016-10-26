@@ -8,7 +8,8 @@
 <div *ngIf="expense && !loading" class="expense-edit">
     <div class="page-row button-row">
         <h1 class="module-title">
-            {{ 'expenses.edit_title' | translate }}
+            <span *ngIf="expense.id">{{ 'expenses.edit_title' | translate }}</span>
+            <span *ngIf="!expense.id">{{ 'expenses.create_title' | translate }}</span>
         </h1>
         <div class="buttons">
             <nvry-button [routerLink]="['/expenses']" class="button--secondary">{{ 'general.cancel' | translate }}
@@ -27,7 +28,9 @@
             <form [formGroup]="form">
                 <div class="frame frame--bit-spacing">
                     <div class="bit-50">
-                        <nvry-input [label]="'income.number' | translate" [formControl]="form.controls.number"
+                        <nvry-input [placeholder]="nextExpenseNumber"
+                                    [label]="'income.number' | translate"
+                                    [formControl]="form.controls.number"
                                     [(ngModel)]="expense.number"></nvry-input>
                     </div>
                     <div class="bit-50">
@@ -48,13 +51,13 @@
                         </div>
                         <div class="combined-fields__side">
                             <nvry-select [label]="'general.taxrate' | translate" [options]="taxRates"
-                                         [enableSearchField]="false" [selectedValue]="expense.tax_rate.id"
+                                         [enableSearchField]="false" [selectedValue]="expense.tax_rate?.id"
                                          (selectedValueChange)="taxRateChanged($event)"></nvry-select>
                         </div>
                     </div>
 
 
-                    <div class="bit-100 combined-fields" *ngIf="expense.tax_rate.rate == 0">
+                    <div class="bit-100 combined-fields" *ngIf="expense.tax_rate?.rate == 0">
                         <div class="combined-fields__side">
                             <nvry-select [label]="'income.edit.intra-community' | translate" [options]="euVatTypes"
                                          valueKey="value" [(selectedValue)]="expense.eu_vat_type"></nvry-select>
