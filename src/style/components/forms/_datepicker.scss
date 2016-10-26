@@ -2,8 +2,16 @@
     font-family: inherit;
 }
 
-.pika-table abbr {
-    cursor: default;
+.pika-table {
+    abbr {
+        cursor: default;
+    }
+
+    .is-selected.is-today {
+        .pika-button {
+            color: white;
+        }
+    }
 }
 
 .pika-button {
