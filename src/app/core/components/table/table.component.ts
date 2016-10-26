@@ -120,8 +120,8 @@ export class TableComponent implements OnInit {
     static getSortComparator(sortDirection: SortDirection, propertyName: string) {
         return (modelA, modelB) => {
 
-            let a = modelA[propertyName];
-            let b = modelB[propertyName];
+            let a = Helpers.getValueDeep(modelA, propertyName);
+            let b = Helpers.getValueDeep(modelB, propertyName);
 
             if(a === b) {
                 return 0;
