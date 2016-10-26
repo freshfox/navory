@@ -55,9 +55,7 @@ export class InternalComponent {
         this.user = this.state.user;
 
         let bootstrap = this.route.snapshot.data['bootstrap'];
-        this.state.units = bootstrap.units;
-        this.state.countries = bootstrap.countries;
-        this.state.taxRates = bootstrap.taxRates;
+        Object.assign(this.state, bootstrap);
         this.state.expenseCategories = bootstrap.categories;
     }
 
