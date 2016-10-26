@@ -33,16 +33,19 @@ export class SelectComponent implements OnInit {
     constructor(private el: ElementRef) { }
 
     ngOnInit() {
-        this.initialValue;
+        var emit: boolean = false;
         if(this.selectedValue) {
             this.initialValue = this.selectedValue;
         } else {
             this.initialValue = this.getValueForIndex(0);
+            emit = true;
         }
 
         setTimeout(() => {
             this.selectedValue = this.initialValue;
-            this.selectedValueChange.emit(this.initialValue);
+            if(emit) {
+                this.selectedValueChange.emit(this.initialValue);
+            }
         }, 1);
 
     }
