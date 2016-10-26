@@ -26,7 +26,11 @@ export class AmountDirective implements OnInit, ControlValueAccessor {
     ngOnInit() {}
 
     writeValue(value: any): void {
+        if(!value) {
+            value = 0;
+        }
         this.setValue(value);
+        this.onChange();
     }
 
     setValue(value) {
