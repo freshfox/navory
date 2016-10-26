@@ -39,6 +39,9 @@ export class DatePickerDirective implements OnInit, ControlValueAccessor {
     }
 
     writeValue(value: any): void {
+        if(!value) {
+            value = new Date();
+        }
         this.picker.setDate(value);
     }
 
@@ -48,8 +51,6 @@ export class DatePickerDirective implements OnInit, ControlValueAccessor {
 
         if(momentInstance.isValid()) {
             val = momentInstance.format(Config.apiDateFormat);
-            //momentInstance = moment();
-            //this.writeValue(momentInstance.format(Config.apiDateFormat));
         }
 
         this.onChangeCallback(val);
