@@ -70,7 +70,8 @@ export class SelectComponent implements OnInit {
     }
 
     private getValue(option) {
-        return option[this.valueKey] || '';
+        let value = option[this.valueKey]
+        return value !== undefined ? value : '';
     }
 
     private getValueForIndex(index: number) {
