@@ -13,7 +13,7 @@ export class FormValidator {
             'invalidEmailAddress': 'Ungültige E-Mail Adresse',
             'passwordsNotEqual': 'Passwörter stimmen nicht überein.',
             'minlength': `Mindestlänge ${validatorValue.requiredLength} Zeichen`,
-            'invalidDate': 'Bitte trage ein korrektes Datum ein',
+            'invalidDate': 'Bitte gib ein korrektes Datum ein',
             'userWithEmailExists': 'Ein Benutzer mit dieser E-Mail Adresse ist bereits in unserem System vorhanden.'
         };
 
@@ -32,7 +32,7 @@ export class FormValidator {
 
     static date(control: FormControl) {
         let value = control.value;
-        let date = moment(value, Config.apiDateFormat);
+        let date = moment(value);
         if(!date.isValid()) {
             return {
                 invalidDate: true

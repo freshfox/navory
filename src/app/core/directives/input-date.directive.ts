@@ -45,9 +45,13 @@ export class DatePickerDirective implements OnInit, ControlValueAccessor {
     onChange() {
         var val = this.el.nativeElement.value;
         let momentInstance = moment(val, this.format);
+
         if(momentInstance.isValid()) {
             val = momentInstance.format(Config.apiDateFormat);
+            //momentInstance = moment();
+            //this.writeValue(momentInstance.format(Config.apiDateFormat));
         }
+
         this.onChangeCallback(val);
     }
 

@@ -11,6 +11,8 @@ export class ErrorHandler {
         switch(code) {
             case 'UNEXPECTED_SERVER_ERROR':
                 return this.translate.instant('general.errors.unexpected');
+            case 'VALIDATION_ERROR':
+                return 'Validation error';
         }
 
         return null;

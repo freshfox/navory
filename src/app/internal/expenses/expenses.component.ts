@@ -31,7 +31,7 @@ export class ExpensesComponent implements OnInit {
 
         this.tableOptions = new TableOptions({
             columns: [
-                {name: this.translate.instant('general.number-abbrev'), prop: 'id', width: 7, sortDirection: SortDirection.Asc},
+                {name: this.translate.instant('general.number-abbrev'), prop: 'number', width: 7, sortDirection: SortDirection.Asc},
                 {name: this.translate.instant('general.description'), prop: 'description'},
                 {name: this.translate.instant('general.date'), prop: 'date', width: 12, pipe: this.datePipe},
                 {name: this.translate.instant('general.category'), prop: 'category.name', width: 20 },

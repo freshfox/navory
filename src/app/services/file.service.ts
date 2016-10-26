@@ -41,4 +41,9 @@ export class FileService extends BaseService {
 
         window.open(fullPath, '_blank');
     }
+
+    deleteFile(id: number) {
+        let path = this.pathFile + '/' + id;
+        return this.delete(path);
+    }
 }

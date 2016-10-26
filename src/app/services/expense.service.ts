@@ -2,7 +2,7 @@ import {BaseService} from "./base.service";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Http} from "@angular/http";
-import {Expense} from "../models/expense";
+import {Expense, EuVatType} from "../models/expense";
 
 @Injectable()
 export class ExpenseService extends BaseService {
@@ -23,11 +23,16 @@ export class ExpenseService extends BaseService {
     }
 
     saveExpense(expense: Expense): Observable<Expense> {
+        if(expense.eu_vat_type == EuVatType.None) {
+            expense.eu_vat_type = null;
+        }
+
         if(!expense.id) {
             return this.post(this.pathExpenses, expense);
         }
 
-        return this.patch(this.pathExpenses, expense);
+        let path = this.pathExpenses + `/${expense.id}`;
+        return this.patch(path, expense);
     }
 
 }

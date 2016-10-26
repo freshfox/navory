@@ -3,7 +3,7 @@ import {Category} from "./category";
 import {TaxRate} from "./tax-rate";
 
 export enum EuVatType {
-    None = null,
+    None = 'none' as any,
     ReverseCharge = 'reverse_charge' as any,
     IntraCommunityAcquisition = 'ica' as any
 }

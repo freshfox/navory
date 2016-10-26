@@ -58,6 +58,7 @@ import {DatePickerDirective} from "./core/directives/input-date.directive";
 import {Formatter} from "./core/formatter";
 import {CustomerEditComponent} from "./internal/customers/customer-edit.component";
 import {AmountDirective} from "./core/directives/input-amount.directive";
+import {TaxRateService} from "./services/tax-rate.service";
 
 @NgModule({
     declarations: [
@@ -128,7 +129,8 @@ import {AmountDirective} from "./core/directives/input-amount.directive";
         BootstrapResolver,
         BootstrapService,
         FileService,
-        Formatter
+        Formatter,
+        TaxRateService
     ],
     bootstrap: [AppComponent]
 })

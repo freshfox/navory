@@ -1,5 +1,7 @@
 <div class="page-header page-header--no-bottom-padding">
-    <nvry-button class="button--clear" [routerLink]="['/expenses']" icon="arrow-left">{{ 'expenses.title' | translate }}</nvry-button>
+    <nvry-button class="button--clear" [routerLink]="['/expenses']" icon="arrow-left">{{ 'expenses.title' | translate
+        }}
+    </nvry-button>
     <hr>
 </div>
 
@@ -9,7 +11,8 @@
             {{ 'expenses.edit_title' | translate }}
         </h1>
         <div class="buttons">
-            <nvry-button [routerLink]="['/expenses']" class="button--secondary">{{ 'general.cancel' | translate }}</nvry-button>
+            <nvry-button [routerLink]="['/expenses']" class="button--secondary">{{ 'general.cancel' | translate }}
+            </nvry-button>
             <nvry-button (click)="save()" [loading]="saving">{{ 'general.save' | translate }}</nvry-button>
         </div>
 
@@ -20,45 +23,56 @@
             <nvry-document-upload [(file)]="expense.file"></nvry-document-upload>
         </div>
         <div class="bit-40 bit--spacing-left">
-            {{ expense.tax_rate.rate }}
-            {{ expense.date }}
+            <nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
             <form [formGroup]="form">
                 <div class="frame frame--bit-spacing">
                     <div class="bit-50">
-                        <nvry-input [label]="'income.number' | translate" [formControl]="form.controls.number" [(ngModel)]="expense.number"></nvry-input>
+                        <nvry-input [label]="'income.number' | translate" [formControl]="form.controls.number"
+                                    [(ngModel)]="expense.number"></nvry-input>
                     </div>
                     <div class="bit-50">
-                        <nvry-input type="date" [formControl]="form.controls.date" [label]="'general.date' | translate" [(ngModel)]="expense.date"></nvry-input>
+                        <nvry-input type="date" [formControl]="form.controls.date" [label]="'general.date' | translate"
+                                    [(ngModel)]="expense.date"></nvry-input>
                     </div>
                 </div>
                 <div class="frame">
                     <div class="bit-100">
                         <nvry-input [label]="'general.description' | translate"
-                                    [formControl]="form.controls.description" [(ngModel)]="expense.description"></nvry-input>
+                                    [formControl]="form.controls.description"
+                                    [(ngModel)]="expense.description"></nvry-input>
                     </div>
                     <div class="bit-100 combined-fields">
                         <div class="combined-fields__side">
-                            <nvry-input type="money" [label]="'general.amount' | translate" [formControl]="form.controls.price" [(ngModel)]="expense.price"></nvry-input>
+                            <nvry-input type="money" [label]="'general.amount' | translate"
+                                        [formControl]="form.controls.price" [(ngModel)]="expense.price"></nvry-input>
                         </div>
                         <div class="combined-fields__side">
-                            <nvry-select [label]="'general.taxrate' | translate" [options]="taxRates" [enableSearchField]="false" [selectedValue]="expense.tax_rate.id"></nvry-select>
+                            <nvry-select [label]="'general.taxrate' | translate" [options]="taxRates"
+                                         [enableSearchField]="false" [selectedValue]="expense.tax_rate.id"
+                                         (selectedValueChange)="taxRateChanged($event)"></nvry-select>
                         </div>
                     </div>
 
 
-                    <div class="bit-100 combined-fields">
-                        <div class="combined-fields__side" *ngIf="expense.tax_rate.rate == 0">
-                            <nvry-select [label]="'income.edit.intra-community' | translate" [options]="euVatTypes" valueKey="value" [selectedValue]="expense.eu_vat_type"></nvry-select>
+                    <div class="bit-100 combined-fields" *ngIf="expense.tax_rate.rate == 0">
+                        <div class="combined-fields__side">
+                            <nvry-select [label]="'income.edit.intra-community' | translate" [options]="euVatTypes"
+                                         valueKey="value" [(selectedValue)]="expense.eu_vat_type"></nvry-select>
                         </div>
-                        <div class="combined-fields__side" *ngIf="expense.tax_rate.rate == 0 && expense.eu_vat_type == null">
-                            <nvry-select [label]="'expenses.eu_tax_rate' | translate" [options]="taxRates"></nvry-select>
+                        <div class="combined-fields__side">
+                            <div *ngIf="expense.eu_vat_type != 'none'">
+                                <nvry-select [label]="'expenses.eu_tax_rate' | translate" [options]="taxRates"
+                                             [selectedValue]="expense.eu_vat_tax_rate?.id"
+                                             (selectedValueChange)="euTaxRateChanged($event)"></nvry-select>
+                            </div>
                         </div>
                     </div>
 
                     <div class="bit-50">
                         <div class="category-field" (click)="showCategories()">
                             <label>{{ 'general.category' | translate }}</label>
-                            <input type="text" value="{{ expense.category?.name }}" class="clickable-field category-field-input" disabled>
+                            <input type="text" value="{{ expense.category?.name }}"
+                                   class="clickable-field category-field-input" disabled>
                         </div>
                     </div>
                 </div>
@@ -73,5 +87,6 @@
 
 
 <nvry-modal #selectCategory>
-    <nvry-expense-category-selection [categories]="expenseCategories" (categorySelected)="categorySelected($event)"></nvry-expense-category-selection>
+    <nvry-expense-category-selection [categories]="expenseCategories"
+                                     (categorySelected)="categorySelected($event)"></nvry-expense-category-selection>
 </nvry-modal>
