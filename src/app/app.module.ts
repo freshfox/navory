@@ -40,7 +40,7 @@ import {IncomeComponent} from "./internal/income/income.component";
 import {DatePipe} from "./core/pipes/date.pipe";
 import {ExpensesComponent} from "./internal/expenses/expenses.component";
 import {ExpenseService} from "./services/expense.service";
-import {MonthSelectionComponent} from "./internal/expenses/month-selection.component";
+import {MonthSelectionComponent} from "./core/components/month-selection.component";
 import {YearSelectionComponent} from "./core/components/year-selection.component";
 import {ExpenseEditComponent} from "./internal/expenses/expense-edit.component";
 import {BootstrapResolver} from "./core/resolvers/bootstrap.resolver";
