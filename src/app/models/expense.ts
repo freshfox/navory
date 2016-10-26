@@ -1,12 +1,7 @@
 import {File} from "./file";
 import {Category} from "./category";
 import {TaxRate} from "./tax-rate";
-
-export enum EuVatType {
-    None = 'none' as any,
-    ReverseCharge = 'reverse_charge' as any,
-    IntraCommunityAcquisition = 'ica' as any
-}
+import {EuVatType} from "../core/enums/eu-vat-type.enum";
 
 export class Expense {
 

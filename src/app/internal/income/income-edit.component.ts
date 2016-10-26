@@ -1,38 +1,36 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ExpenseService} from "../../services/expense.service";
-import {FormGroup, Validators, FormBuilder} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {IncomeService} from "../../services/income.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Expense} from "../../models/expense";
-import {ModalComponent} from "../../core/components/modal.component";
-import {Category} from "../../models/category";
-import {FormValidator} from "../../core/form-validator";
 import {TaxRateService} from "../../services/tax-rate.service";
 import {State} from "../../core/state";
-import {ErrorHandler} from "../../core/error-handler";
+import {TranslateService} from "ng2-translate";
+import {Income} from "../../models/income";
+import {FormValidator} from "../../core/form-validator";
 import {Helpers} from "../../core/helpers";
+import {ErrorHandler} from "../../core/error-handler";
+import {TaxRate} from "../../models/tax-rate";
 import {BootstrapService} from "../../services/bootstrap.service";
 import {EuVatType} from "../../core/enums/eu-vat-type.enum";
 
 @Component({
-    templateUrl: 'expense-edit.component.html'
+    selector: 'nvry-income-edit',
+    templateUrl: 'income-edit.component.html'
 })
-export class ExpenseEditComponent implements OnInit {
+export class IncomeEditComponent implements OnInit {
 
+    private loading: boolean = false;
+    private saving: boolean = false;
     private form: FormGroup;
-    private loading = false;
-    private saving = false;
     private alertMessage: string;
+    private nextIncomeNumber: number;
 
-    private expense: Expense;
-    private taxRates;
-    private expenseCategories: Category[];
-    private euVatTypes: any[];
-    private nextExpenseNumber: number;
-
-    @ViewChild('selectCategory') private selectCategoryModal: ModalComponent;
+    private euVatTypes: any;
+    private taxRates: TaxRate[];
+    private income: Income;
 
 
-    constructor(private expenseService: ExpenseService,
+    constructor(private incomeService: IncomeService,
                 private fb: FormBuilder,
                 private route: ActivatedRoute,
                 private router: Router,
@@ -41,13 +39,12 @@ export class ExpenseEditComponent implements OnInit {
                 private errorHandler: ErrorHandler,
                 private bootstrapService: BootstrapService) {
 
-        this.expense = new Expense();
-        this.expenseCategories = this.state.expenseCategories;
-        this.nextExpenseNumber = this.state.nextExpenseNumber;
+        this.income = new Income();
+        this.nextIncomeNumber = this.state.nextIncomeNumber;
 
         this.taxRateService.getDefaultTaxRate()
             .subscribe(rate => {
-                this.expense.tax_rate = rate;
+                this.income.tax_rate = rate;
             });
 
         this.taxRateService.getTaxRates()
@@ -64,9 +61,9 @@ export class ExpenseEditComponent implements OnInit {
             let id = params['id'];
             if (id) {
                 this.loading = true;
-                this.expenseService.getExpense(id)
-                    .subscribe((expense: Expense) => {
-                        this.expense = expense;
+                this.incomeService.getIncome(id)
+                    .subscribe((income: Income) => {
+                        this.income = income;
                         this.loading = false;
                     });
             } else {
@@ -82,49 +79,32 @@ export class ExpenseEditComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() { }
 
     taxRateChanged(id: number) {
         this.taxRateService.getTaxRate(id)
             .subscribe(rate => {
                 if(rate.rate !== 0) {
-                    this.expense.eu_vat_type = EuVatType.None;
+                    this.income.eu_vat_type = EuVatType.None;
                 }
-                this.expense.tax_rate = rate;
+                this.income.tax_rate = rate;
             });
-    }
-
-    euTaxRateChanged(id: number) {
-        this.taxRateService.getTaxRate(id)
-            .subscribe(rate => {
-                this.expense.eu_vat_tax_rate = rate;
-            })
-    }
-
-    showCategories() {
-        this.selectCategoryModal.show();
-    }
-
-    categorySelected(category: Category) {
-        this.selectCategoryModal.hide();
-        this.expense.category = category;
     }
 
     save() {
         Helpers.validateAllFields(this.form);
         if(this.form.valid) {
             this.saving = true;
-            this.expenseService.saveExpense(this.expense)
+            this.incomeService.saveIncome(this.income)
                 .subscribe(
-                    (expense) => {
-                        let isNew = !this.expense.id;
+                    (income) => {
+                        let isNew = !this.income.id;
                         if(isNew) {
-                            this.state.nextExpenseNumber++;
+                            this.state.nextIncomeNumber++;
                         }
-                        this.expense = expense;
+                        this.income = income;
                         this.saving = false;
-                        this.router.navigate(['/expenses']);
+                        this.router.navigate(['/income']);
                     },
                     (error) => {
                         this.saving = false;

@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Income} from "../models/income";
 import {Http} from "@angular/http";
+import {EuVatType} from "../core/enums/eu-vat-type.enum";
 
 @Injectable()
 export class IncomeService extends BaseService {
@@ -15,6 +16,22 @@ export class IncomeService extends BaseService {
 
     getIncomes(): Observable<Income[]> {
         return this.get(this.pathIncome);
+    }
+
+    getIncome(id: number): Observable<Income> {
+        return this.get(this.getRestEntityPath(this.pathIncome, id));
+    }
+
+    saveIncome(income: Income) {
+        if(income.eu_vat_type == EuVatType.None) {
+            income.eu_vat_type = null;
+        }
+
+        if(income.id) {
+            return this.patch(this.getRestEntityPath(this.pathIncome, income.id), income);
+        }
+
+        return this.post(this.pathIncome, income);
     }
 
 }

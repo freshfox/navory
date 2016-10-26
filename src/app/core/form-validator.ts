@@ -44,11 +44,14 @@ export class FormValidator {
     }
 
     static number(control: FormControl) {
-        let value = `${control.value}`;
-        if(value && !validator.isNumeric(value)) {
-            return {
-                notNumeric: true
-            };
+        var value = control.value;
+        if(value) {
+            value = `${value}`;
+            if(!validator.isNumeric(value)) {
+                return {
+                    notNumeric: true
+                };
+            }
         }
 
         return null;

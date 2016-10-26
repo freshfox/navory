@@ -36,6 +36,7 @@
 	padding-top: 20px;
     padding-bottom: 20px;
     @include display(flex);
+    @include align-items(center);
     @include flex-wrap(wrap);
 
     &.page-header--no-margin {

@@ -59,6 +59,7 @@ import {Formatter} from "./core/formatter";
 import {CustomerEditComponent} from "./internal/customers/customer-edit.component";
 import {AmountDirective} from "./core/directives/input-amount.directive";
 import {TaxRateService} from "./services/tax-rate.service";
+import {IncomeEditComponent} from "./internal/income/income-edit.component";
 
 @NgModule({
     declarations: [
@@ -98,7 +99,8 @@ import {TaxRateService} from "./services/tax-rate.service";
         ExpenseCategorySelectionComponent,
         DatePickerDirective,
         CustomerEditComponent,
-        AmountDirective
+        AmountDirective,
+        IncomeEditComponent
     ],
     imports: [
         BrowserModule,

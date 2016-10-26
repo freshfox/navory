@@ -120,6 +120,7 @@
     },
     "income": {
         "title": "Einnahmen",
+        "other-income": "Sonstige Einnahmen",
         "tab-title": "Sonstige Einnahmen",
         "new": "Neue Einnahme",
         "number-abbrev": "Nr.",
@@ -138,7 +139,7 @@
             "intra-community-service": "Dienstleistung (Reverse Charge)",
             "intra-community-product": "Produkt (Innergem. Lieferung)"
         },
-        "empty-state-message": "Du hast noch keine Einnahmen angelegt. Probier's aus!"
+        "empty-state-message": "Du hast für den ausgewählten Zeitraum noch keine sonstigen Einnahmen angelegt."
     },
     "invoices": {
         "title": "Rechnungen",

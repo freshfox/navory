@@ -11,6 +11,7 @@ import {BootstrapResolver} from "../core/resolvers/bootstrap.resolver";
 import {SettingsComponent} from "./settings/settings.component";
 import {AccountSettingsComponent} from "./settings/account-settings.component";
 import {ProfileSettingsComponent} from "./settings/profile-settings.component";
+import {IncomeEditComponent} from "./income/income-edit.component";
 
 export const InternalRoutes: Routes = [
 	{
@@ -25,10 +26,15 @@ export const InternalRoutes: Routes = [
 			{ path: 'dashboard', component: DashboardComponent },
             { path: 'customers',  component: CustomersComponent },
             { path: 'reports',  component: ReportsComponent },
+
             { path: 'income', component: IncomeComponent },
+            { path: 'income/new', component: IncomeEditComponent },
+            { path: 'income/:id', component: IncomeEditComponent },
+
             { path: 'expenses', component: ExpensesComponent },
             { path: 'expenses/new', component: ExpenseEditComponent },
             { path: 'expenses/:id', component: ExpenseEditComponent },
+
             {
                 path: 'settings',
                 component: SettingsComponent,

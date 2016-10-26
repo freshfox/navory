@@ -75,4 +75,8 @@ export class BaseService {
 		return this.baseUrl + url;
 	}
 
+	getRestEntityPath(path: string, id: number) {
+        return `${path}/${id}`;
+    }
+
 }

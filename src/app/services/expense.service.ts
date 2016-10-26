@@ -2,7 +2,8 @@ import {BaseService} from "./base.service";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Http} from "@angular/http";
-import {Expense, EuVatType} from "../models/expense";
+import {Expense} from "../models/expense";
+import {EuVatType} from "../core/enums/eu-vat-type.enum";
 
 @Injectable()
 export class ExpenseService extends BaseService {
