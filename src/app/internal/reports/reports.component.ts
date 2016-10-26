@@ -8,6 +8,8 @@ var moment = require('moment');
 export class ReportsComponent implements OnInit {
 
     private report;
+
+    private loading: boolean = false;
     private selectedQuarter: number;
     private selectedYear: number;
     private quarters = [
@@ -38,8 +40,16 @@ export class ReportsComponent implements OnInit {
         this.refreshReport();
     }
 
+    getAbsoluteAmount(amount: number) {
+        return Math.abs(amount);
+    }
+
     refreshReport() {
+        this.loading = true;
         this.reportService.getVatReport(this.selectedQuarter, this.selectedYear)
-            .subscribe(report => this.report = report);
+            .subscribe(report => {
+                this.report = report;
+                this.loading = false;
+            });
     }
 }

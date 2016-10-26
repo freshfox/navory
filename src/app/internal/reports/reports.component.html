@@ -20,12 +20,15 @@
 
     <div *ngIf="report">
         <h3>Vorberechnung</h3>
-        <span class="vat-report-amount-to-pay amount-positive">
-            <span *ngIf="report.amountToPay >= 0">Vorauszahlung:</span>
-            <span *ngIf="report.amountToPay < 0">Rückerstattung:</span>
+        <div class="vat-report-amount-to-pay-container">
+            <span class="vat-report-amount-to-pay" [class.amount-positive]="report.amountToPay > 0">
+                <span *ngIf="report.amountToPay >= 0">Vorauszahlung:</span>
+                <span *ngIf="report.amountToPay < 0">Rückerstattung:</span>
 
-            <span class="amount">{{ report.amountToPay | nvryNumber }}</span>
-        </span>
+                <span class="amount">{{ getAbsoluteAmount(report.amountToPay) | nvryNumber }}</span>
+            </span>
+            <nvry-spinner *ngIf="loading"></nvry-spinner>
+        </div>
 
         <div class="vat-report-paper">
             <div class="vat-report-category" *ngFor="let category of report.categories">

@@ -15,9 +15,21 @@
 		}
 	}
 
+    .vat-report-amount-to-pay-container {
+        @include display(flex);
+        @include align-items(center);
+        margin-bottom: 20px;
+
+        nvry-spinner {
+            width: 30px;
+            height: 30px;
+            margin: 0;
+            margin-left: 10px;
+        }
+    }
+
     .vat-report-amount-to-pay {
         border: 2px solid $colorGrayLight;
-        margin-bottom: 20px;
         display: inline-block;
         padding: 8px;
         border-color: $colorIncome;
