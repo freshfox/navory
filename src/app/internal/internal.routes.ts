@@ -4,14 +4,16 @@ import {InternalComponent} from './internal';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoggedInGuard} from "../guards/logged-in.guard";
 import {ReportsComponent} from "./reports/reports.component";
-import {IncomeComponent} from "./income/income.component";
+import {IncomeListComponent} from "./income/other-income/income-list.component";
 import {ExpensesComponent} from "./expenses/expenses.component";
 import {ExpenseEditComponent} from "./expenses/expense-edit.component";
 import {BootstrapResolver} from "../core/resolvers/bootstrap.resolver";
 import {SettingsComponent} from "./settings/settings.component";
 import {AccountSettingsComponent} from "./settings/account-settings.component";
 import {ProfileSettingsComponent} from "./settings/profile-settings.component";
-import {IncomeEditComponent} from "./income/income-edit.component";
+import {IncomeEditComponent} from "./income/other-income/income-edit.component";
+import {IncomeComponent} from "./income/income.component";
+import {InvoicesComponent} from "./income/invoices/invoices.component";
 
 export const InternalRoutes: Routes = [
 	{
@@ -27,7 +29,15 @@ export const InternalRoutes: Routes = [
             { path: 'customers',  component: CustomersComponent },
             { path: 'reports',  component: ReportsComponent },
 
-            { path: 'income', component: IncomeComponent },
+            {
+                path: '',
+                component: IncomeComponent,
+                children: [
+                    { path: 'invoices', component: InvoicesComponent },
+                    { path: 'income', component: IncomeListComponent },
+                ]
+            },
+
             { path: 'income/new', component: IncomeEditComponent },
             { path: 'income/:id', component: IncomeEditComponent },
 

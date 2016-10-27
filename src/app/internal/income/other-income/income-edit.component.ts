@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {IncomeService} from "../../services/income.service";
+import {IncomeService} from "../../../services/income.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {TaxRateService} from "../../services/tax-rate.service";
-import {State} from "../../core/state";
+import {TaxRateService} from "../../../services/tax-rate.service";
+import {State} from "../../../core/state";
 import {TranslateService} from "ng2-translate";
-import {Income} from "../../models/income";
-import {FormValidator} from "../../core/form-validator";
-import {Helpers} from "../../core/helpers";
-import {ErrorHandler} from "../../core/error-handler";
-import {TaxRate} from "../../models/tax-rate";
-import {BootstrapService} from "../../services/bootstrap.service";
-import {EuVatType} from "../../core/enums/eu-vat-type.enum";
+import {Income} from "../../../models/income";
+import {FormValidator} from "../../../core/form-validator";
+import {Helpers} from "../../../core/helpers";
+import {ErrorHandler} from "../../../core/error-handler";
+import {TaxRate} from "../../../models/tax-rate";
+import {BootstrapService} from "../../../services/bootstrap.service";
+import {EuVatType} from "../../../core/enums/eu-vat-type.enum";
 
 @Component({
     selector: 'nvry-income-edit',

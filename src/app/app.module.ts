@@ -36,7 +36,7 @@ import {TableComponent} from "./core/components/table/table.component";
 import {TableHeaderCellComponent} from "./core/components/table/table-header-cell.component";
 import {SpinnerComponent} from "./core/components/spinner.component";
 import {IncomeService} from "./services/income.service";
-import {IncomeComponent} from "./internal/income/income.component";
+import {IncomeListComponent} from "./internal/income/other-income/income-list.component";
 import {DatePipe} from "./core/pipes/date.pipe";
 import {ExpensesComponent} from "./internal/expenses/expenses.component";
 import {ExpenseService} from "./services/expense.service";
@@ -59,7 +59,10 @@ import {Formatter} from "./core/formatter";
 import {CustomerEditComponent} from "./internal/customers/customer-edit.component";
 import {AmountDirective} from "./core/directives/input-amount.directive";
 import {TaxRateService} from "./services/tax-rate.service";
-import {IncomeEditComponent} from "./internal/income/income-edit.component";
+import {IncomeEditComponent} from "./internal/income/other-income/income-edit.component";
+import {IncomeComponent} from "./internal/income/income.component";
+import {InvoicesComponent} from "./internal/income/invoices/invoices.component";
+import {InvoiceService} from "./services/invoice.service";
 
 @NgModule({
     declarations: [
@@ -84,7 +87,7 @@ import {IncomeEditComponent} from "./internal/income/income-edit.component";
         TableComponent,
         TableHeaderCellComponent,
         SpinnerComponent,
-        IncomeComponent,
+        IncomeListComponent,
         ExpensesComponent,
         MonthSelectionComponent,
         YearSelectionComponent,
@@ -100,7 +103,9 @@ import {IncomeEditComponent} from "./internal/income/income-edit.component";
         DatePickerDirective,
         CustomerEditComponent,
         AmountDirective,
-        IncomeEditComponent
+        IncomeEditComponent,
+        IncomeComponent,
+        InvoicesComponent
     ],
     imports: [
         BrowserModule,
@@ -132,7 +137,8 @@ import {IncomeEditComponent} from "./internal/income/income-edit.component";
         BootstrapService,
         FileService,
         Formatter,
-        TaxRateService
+        TaxRateService,
+        InvoiceService
     ],
     bootstrap: [AppComponent]
 })

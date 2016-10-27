@@ -19,7 +19,7 @@ export class InternalComponent {
         {
             'key': 'income',
             'icon': 'document-text',
-            'routerLink': '/income',
+            'routerLink': '/invoices',
             'title': 'income.title',
         },
         {

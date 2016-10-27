@@ -146,7 +146,7 @@
         "new": "Neue Rechnung",
         "date-created": "Datum",
         "date-due": "Fällig am",
-        "status": "Bezahlstatus",
+        "status": "Status",
         "empty-state-message": "Du hast noch keine Rechnungen angelegt.<br>Erstelle hier Rechnungen und sende Sie an deine Kunden.",
         "issue": "Fertigstellen",
         "edit_title": "Rechnung Nr.",
