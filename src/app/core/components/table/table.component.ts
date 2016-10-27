@@ -19,7 +19,13 @@ import {Helpers} from "../../helpers";
                     [class.nvry-table-cell--align-right]="column.alignment == 'right'"
                     [style.width] = "column.width + '%'">
                     
-                    {{ getColumnValue(column, row) }}
+                    <span *ngIf="!column.cellTemplate">{{ getColumnValue(column, row) }}</span>
+                    
+                    <template
+                        *ngIf="column.cellTemplate"
+                        [ngTemplateOutlet]="column.cellTemplate"
+                        [ngOutletContext]="{ value: getColumnValue(column, row), row: row, column: column }">
+                    </template>
                 </td>
             </tr>
         </tbody>
@@ -70,13 +76,17 @@ export class TableComponent implements OnInit {
     }
 
     getColumnValue(column: TableColumn, row): any {
-        let val = Helpers.getValueDeep(row, this.getPropertyName(column));
+        let val = this.getValue(row, this.getPropertyName(column));
         let pipe = column.pipe;
         return pipe ? pipe.transform(val) : val;
     }
 
+    getValue(row, propertyName) {
+        return Helpers.getValueDeep(row, propertyName);
+    }
+
     getPropertyName(column: TableColumn): string {
-        return column.prop || column.name;
+        return column.prop;
     }
 
     sortHeaderClicked(tableColumn: TableColumn) {
@@ -100,7 +110,16 @@ export class TableComponent implements OnInit {
 
     sortColumn(column: TableColumn) {
         let propertyName = this.getPropertyName(column);
-        this.rows.sort(TableComponent.getSortComparator(column.sortDirection, propertyName));
+        var getValueFunction = (row) => {
+            if(propertyName) {
+                return this.getValue(row, propertyName);
+            }
+            return column.getDynamicValue(row);
+        };
+
+        let sortFunction = TableComponent.getSortComparator(column.sortDirection, getValueFunction);
+        this.sortedColumn = column;
+        this.rows.sort(sortFunction);
     }
 
     rowClicked(row) {
@@ -117,11 +136,11 @@ export class TableComponent implements OnInit {
         }
     }
 
-    static getSortComparator(sortDirection: SortDirection, propertyName: string) {
-        return (modelA, modelB) => {
+    static getSortComparator(sortDirection: SortDirection, getValueFunction: (row) => {}) {
+        return (rowA, rowB) => {
 
-            let a = Helpers.getValueDeep(modelA, propertyName);
-            let b = Helpers.getValueDeep(modelB, propertyName);
+            let a = getValueFunction(rowA);
+            let b = getValueFunction(rowB);
 
             if(a === b) {
                 return 0;

@@ -1,10 +1,11 @@
-
 import {SortDirection} from "./sort-direction.enum";
-import {PipeTransform} from "@angular/core";
+import {PipeTransform, TemplateRef} from "@angular/core";
 import {ColumnAlignment} from "./column-alignment.enum";
+
 export class TableColumn {
 
     cellTemplate: any;
+    getDynamicValue: (_:any) => {};
     name: string;
     prop: string;
     sortable: boolean = true;
