@@ -7,6 +7,7 @@ import {InvoiceService} from "../../../services/invoice.service";
 import {DatePipe} from "../../../core/pipes/date.pipe";
 import {NumberPipe} from "../../../core/pipes/number.pipe";
 import {ColumnAlignment} from "../../../core/components/table/column-alignment.enum";
+import {Router} from "@angular/router";
 var moment = require('moment');
 
 @Component({
@@ -24,7 +25,8 @@ export class InvoicesComponent implements OnInit {
     constructor(private translate: TranslateService,
                 private invoiceService: InvoiceService,
                 private datePipe: DatePipe,
-                private numberPipe: NumberPipe) {
+                private numberPipe: NumberPipe,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -48,7 +50,11 @@ export class InvoicesComponent implements OnInit {
     }
 
     createInvoice() {
-        // TODO
+        this.router.navigate(['/invoices/new']);
+    }
+
+    editInvoice(invoice: Invoice) {
+        this.router.navigate(['/invoices'], { id: invoice.id });
     }
 
     getBadgeData(invoice) {

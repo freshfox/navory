@@ -4,7 +4,14 @@
     </nvry-button>
 </div>
 
-<nvry-table [options]="tableOptions" [loading]="loading" [rows]="invoices"></nvry-table>
+<nvry-table [options]="tableOptions" [loading]="loading" [rows]="invoices" (onRowClicked)="editInvoice($event)">
+
+    <div empty class="empty-view">
+        <p class="title" [innerHTML]="'invoices.empty-state-message' | translate"></p>
+        <nvry-button icon="plus" class="create-button" (click)="createInvoice()">{{ 'invoices.new' | translate }}</nvry-button>
+    </div>
+
+</nvry-table>
 
 <template #statusColumn let-row="row" let-value="value">
     <span class="badge badge--{{ getBadgeData(row).cssClass }}">{{ getBadgeData(row).text }}</span>

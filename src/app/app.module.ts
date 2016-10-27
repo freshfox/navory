@@ -63,6 +63,8 @@ import {IncomeEditComponent} from "./internal/income/other-income/income-edit.co
 import {IncomeComponent} from "./internal/income/income.component";
 import {InvoicesComponent} from "./internal/income/invoices/invoices.component";
 import {InvoiceService} from "./services/invoice.service";
+import {InvoiceEditComponent} from "./internal/income/invoices/invoice-edit.component";
+import {InvoiceLineComponent} from "./internal/income/invoices/invoice-line.component";
 
 @NgModule({
     declarations: [
@@ -105,7 +107,9 @@ import {InvoiceService} from "./services/invoice.service";
         AmountDirective,
         IncomeEditComponent,
         IncomeComponent,
-        InvoicesComponent
+        InvoicesComponent,
+        InvoiceEditComponent,
+        InvoiceLineComponent
     ],
     imports: [
         BrowserModule,

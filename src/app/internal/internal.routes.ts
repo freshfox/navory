@@ -14,6 +14,7 @@ import {ProfileSettingsComponent} from "./settings/profile-settings.component";
 import {IncomeEditComponent} from "./income/other-income/income-edit.component";
 import {IncomeComponent} from "./income/income.component";
 import {InvoicesComponent} from "./income/invoices/invoices.component";
+import {InvoiceEditComponent} from "./income/invoices/invoice-edit.component";
 
 export const InternalRoutes: Routes = [
 	{
@@ -37,6 +38,9 @@ export const InternalRoutes: Routes = [
                     { path: 'income', component: IncomeListComponent },
                 ]
             },
+
+            { path: 'invoices/new', component: InvoiceEditComponent },
+            { path: 'invoices/:id', component: InvoiceEditComponent },
 
             { path: 'income/new', component: IncomeEditComponent },
             { path: 'income/:id', component: IncomeEditComponent },

@@ -32,6 +32,27 @@
     padding-left: $contentSidePadding;
 }
 
+.page-row {
+    &.button-row {
+        @include display(flex);
+        padding-bottom: 30px;
+
+        .buttons {
+            @include display(flex);
+            @include align-items(center);
+            margin-left: auto;
+        }
+
+        nvry-button {
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
 .page-header {
 	padding-top: 20px;
     padding-bottom: 20px;

@@ -1,0 +1,59 @@
+<div class="page-header page-header--no-bottom-padding">
+    <nvry-button class="button--clear" [routerLink]="['/invoices']" icon="arrow-left">{{ 'invoices.title' | translate
+        }}
+    </nvry-button>
+    <hr>
+</div>
+<div class="page-row button-row">
+    <h1 class="module-title">
+        <span *ngIf="invoice.id">{{ 'invoices.edit_title' | translate }}</span>
+        <span *ngIf="!invoice.id">{{ 'invoices.create_title' | translate }}</span>
+    </h1>
+    <div class="buttons">
+        <nvry-button (click)="save()" [loading]="saving">{{ 'general.save' | translate }}</nvry-button>
+    </div>
+</div>
+
+<div class="default-section">
+    <div class="invoice-edit-paper">
+
+
+        <div class="invoice-edit-paper-section lines">
+            <div class="invoice-lines-container">
+                <div class="header">
+                    <span class="title-header">Produkt</span>
+                    <span class="quantity-header">Menge</span>
+                    <span class="unit-header">Einheit</span>
+                    <span class="price-header">Preis (netto)</span>
+                    <span class="taxrate-header">USt.</span>
+                    <span class="amount-header">Betrag (netto)</span>
+                </div>
+
+                <div id="lines-list">
+                    <nvry-invoice-line [invoiceLine]="line" *ngFor="let line of invoice.invoice_lines"></nvry-invoice-line>
+                </div>
+            </div>
+
+            <nvry-button class="button--secondary" (click)="addLine()">Neue Zeile</nvry-button>
+        </div>
+
+        <div class="invoice-edit-paper-section invoice-total">
+            <div class="invoice-total__inner">
+                <div class="line">
+                    <span class="title">Zwischensumme</span>
+                    <span class="value">{{ totalNet | nvryNumber }}</span>
+                </div>
+
+                <div class="line" *ngFor="let rate of occuringTaxRates">
+                    <span class="title">USt. {{ rate }}% von {{ amounts.netAmount | nvryNumber }}</span>
+                    <span class="value">{{ amounts.amount | nvryNumber}}</span>
+                </div>
+
+                <div class="line line--total">
+                    <span class="title">Gesamt EUR</span>
+                    <span class="value">{{ totalGross | nvryNumber }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

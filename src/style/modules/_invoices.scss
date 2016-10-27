@@ -38,125 +38,119 @@
     }
 }
 
-.invoice-edit {
 
-    .invoice-payment-notice {
-        @include fontBold;
 
-        i {
-            color: $colorSuccess;
-            font-size: 24px;
-            display: inline-block;
-            margin-right: 5px;
+.invoice-payment-notice {
+    @include fontBold;
+
+    i {
+        color: $colorSuccess;
+        font-size: 24px;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    button {
+        font-size: 18px;
+
+        &:hover {
+            color: $colorPrimary;
         }
+    }
+}
 
-        button {
-            font-size: 18px;
+.invoice-edit-paper {
+    border: 1px solid $colorGrayLight;
+}
 
-            &:hover {
-                color: $colorPrimary;
-            }
+.invoice-edit-paper-section {
+    padding: 30px;
+    border-bottom: 1px solid $colorGrayLight;
+}
+
+.customer-area {
+    padding-right: 80px;
+}
+
+.number-field {
+    text-align: right;
+}
+
+.invoice-lines-container .header {
+    @extend .cf;
+    margin-bottom: 10px;
+
+    span { display: inline-block; float: left; font-weight: bold; }
+
+    .title-header { width: 42%; }
+    .quantity-header { width: 8%; }
+    .unit-header { width: 10%; }
+    .price-header { width: 14%; }
+    .taxrate-header { width: 7%; }
+    .amount-header { width: 14%; }
+}
+
+nvry-invoice-line {
+    @extend .cf;
+    margin-bottom: 15px;
+
+    @include display(flex);
+
+
+    .title-field,
+    .description-field { width: 42%; }
+    .quantity-field { width: 8%; text-align: right; }
+    .unit-field + .select2 { width: 10% !important; }
+    .price-field { width: 14%; }
+    .taxrate-field + .select2 { width: 7% !important; }
+    .amount-field { width: 14%; }
+    .actions-column { width: 5%; float: left; }
+
+    .description-field {
+        display: none;
+        margin-top: 10px;
+        margin-bottom: 15px;
+
+        &.description-field--visible,
+        &:hover,
+        &:focus {
+            display: block;
         }
     }
+}
 
-    .invoice-edit-paper {
-        border: 1px solid $colorGrayLight;
+.invoice-total {
+    text-align: right;
+
+    .invoice-total__inner {
+        width: 40%;
+        display: inline-block;
     }
 
-    .invoice-edit-paper-section {
-        padding: 30px;
-        border-bottom: 1px solid $colorGrayLight;
-    }
-
-    .customer-area {
-        padding-right: 80px;
-    }
-
-    .number-field {
-        text-align: right;
-    }
-
-    .invoice-lines-container .header {
+    .line {
         @extend .cf;
         margin-bottom: 10px;
 
-        span { display: inline-block; float: left; font-weight: bold; }
-
-        .title-header { width: 42%; }
-        .quantity-header { width: 8%; }
-        .unit-header { width: 10%; }
-        .price-header { width: 14%; }
-        .taxrate-header { width: 7%; }
-        .amount-header { width: 14%; }
-    }
-
-    .invoice-line {
-        @extend .cf;
-        margin-bottom: 15px;
-
-        @include form-fields {
-            float: left;
+        &:last-child {
+            margin-bottom: 0;
         }
 
-        .select2-container {
-            float: left;
-        }
-
-        .title-field,
-        .description-field { width: 42%; }
-        .quantity-field { width: 8%; text-align: right; }
-        .unit-field + .select2 { width: 10% !important; }
-        .price-field { width: 14%; }
-        .taxrate-field + .select2 { width: 7% !important; }
-        .amount-field { width: 14%; }
-        .actions-column { width: 5%; float: left; }
-
-        .description-field {
-            display: none;
-            margin-top: 10px;
-            margin-bottom: 15px;
-
-            &.description-field--visible,
-            &:hover,
-            &:focus {
-                display: block;
-            }
+        &.line--total {
+            font-size: 20px;
+            font-weight: bold;
         }
     }
 
-    .invoice-total {
-        text-align: right;
+    span {
+        display: inline-block;
 
-        .invoice-total__inner {
-            width: 40%;
-            display: inline-block;
+        &.title {
+            float: left;
         }
 
-        .line {
-            @extend .cf;
-            margin-bottom: 10px;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-
-            &.line--total {
-                font-size: 20px;
-                font-weight: bold;
-            }
-        }
-
-        span {
-            display: inline-block;
-
-            &.title {
-                float: left;
-            }
-
-            &.value {
-                float: right;
-                text-align: right;
-            }
+        &.value {
+            float: right;
+            text-align: right;
         }
     }
 }

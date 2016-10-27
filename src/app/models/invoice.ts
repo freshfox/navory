@@ -5,7 +5,7 @@ export class Invoice {
     id: number;
     date: string;
     due_date: string;
-    invoice_lines: InvoiceLine[];
+    invoice_lines: InvoiceLine[] = [];
     payment_date: string;
 
 }
