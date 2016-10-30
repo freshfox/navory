@@ -238,5 +238,8 @@
         "errors": {
             "number-not-unique": "This number is already taken"
         }
+    },
+    "payments": {
+        "title": "Payments"
     }
 }

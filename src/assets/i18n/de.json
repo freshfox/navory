@@ -234,5 +234,8 @@
         "errors": {
             "number-not-unique": "Diese Kundennummer ist bereits vergeben."
         }
+    },
+    "payments": {
+        "title": "Zahlungen"
     }
 }

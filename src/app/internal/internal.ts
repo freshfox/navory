@@ -29,6 +29,12 @@ export class InternalComponent {
             'title': 'expenses.title',
         },
         {
+            'key': 'payments',
+            'icon': 'credit-card',
+            'routerLink': '/payments',
+            'title': 'payments.title',
+        },
+        {
             'key': 'reports',
             'icon': 'chart-line-outline',
             'routerLink': '/reports',

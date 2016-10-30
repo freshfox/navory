@@ -15,6 +15,7 @@ import {IncomeEditComponent} from "./income/other-income/income-edit.component";
 import {IncomeComponent} from "./income/income.component";
 import {InvoicesComponent} from "./income/invoices/invoices.component";
 import {InvoiceEditComponent} from "./income/invoices/invoice-edit.component";
+import {PaymentsComponent} from "./payments/payments.component";
 
 export const InternalRoutes: Routes = [
 	{
@@ -28,6 +29,7 @@ export const InternalRoutes: Routes = [
             { path: '', component: DashboardComponent },
 			{ path: 'dashboard', component: DashboardComponent },
             { path: 'customers',  component: CustomersComponent },
+            { path: 'payments',  component: PaymentsComponent },
             { path: 'reports',  component: ReportsComponent },
 
             {

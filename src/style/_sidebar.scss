@@ -37,6 +37,9 @@
                     &.expenses .title {
                         color: darken($colorExpenses, 20%);
                     }
+                    &.payments .title {
+                        color: darken($colorPayments, 20%);
+                    }
                     &.reports .title {
                         color: darken($colorReports, 20%);
                     }
@@ -56,6 +59,9 @@
                 }
                 .expenses svg {
                     fill: $colorExpenses;
+                }
+                .payments svg {
+                    fill: $colorPayments;
                 }
                 .reports svg {
                     fill: $colorReports;
