@@ -1,4 +1,4 @@
-import {Component, OnInit, SimpleChange} from '@angular/core';
+import {Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
 import {TranslateService} from "ng2-translate";
 import {TableOptions} from "../../core/components/table/table-options.model";
 import {NumberPipe} from "../../core/pipes/number.pipe";
@@ -22,13 +22,17 @@ export class ExpensesComponent implements OnInit {
     private selectedYear: number;
     private tableOptions: TableOptions;
 
+    @ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
+
     constructor(private expenseService: ExpenseService,
                 private translate: TranslateService,
                 private numberPipe: NumberPipe,
                 private datePipe: DatePipe,
                 private state: State,
                 private router: Router) {
+    }
 
+    ngOnInit() {
         this.tableOptions = new TableOptions({
             columns: [
                 {name: this.translate.instant('general.number-abbrev'), prop: 'number', width: 7, sortDirection: SortDirection.Asc},
@@ -36,15 +40,14 @@ export class ExpensesComponent implements OnInit {
                 {name: this.translate.instant('general.date'), prop: 'date', width: 12, pipe: this.datePipe},
                 {name: this.translate.instant('general.category'), prop: 'category.name', width: 20 },
                 {name: this.translate.instant('general.amount_net'), prop: 'price', width: 10, pipe: this.numberPipe},
+                { width: 5, cellTemplate: this.actionsColumn, sortable: false },
             ]
         });
 
         let momentInstance = moment();
         this.selectedMonthIndex = this.state.selectedExpenseMonthIndex || momentInstance.month();
         this.selectedYear = momentInstance.year();
-    }
 
-    ngOnInit() {
         this.loading = true;
         this.expenseService.getExpenses()
             .subscribe((expenses) => {
@@ -73,6 +76,10 @@ export class ExpensesComponent implements OnInit {
 
     editExpense(expense) {
         this.router.navigate([`/expenses/${expense.id}`]);
+    }
+
+    deleteExpense(expense) {
+        // TODO
     }
 
 }

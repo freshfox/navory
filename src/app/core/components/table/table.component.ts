@@ -19,7 +19,7 @@ import {Helpers} from "../../helpers";
                     [class.nvry-table-cell--align-right]="column.alignment == 'right'"
                     [style.width] = "column.width + '%'">
                     
-                    <span *ngIf="!column.cellTemplate">{{ getColumnValue(column, row) }}</span>
+                    <span *ngIf="!column.cellTemplate" class="text">{{ getColumnValue(column, row) }}</span>
                     
                     <template
                         *ngIf="column.cellTemplate"

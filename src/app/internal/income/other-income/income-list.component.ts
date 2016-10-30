@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
 import {TranslateService} from "ng2-translate";
 import {TableOptions} from "../../../core/components/table/table-options.model";
 import {IncomeService} from "../../../services/income.service";
@@ -24,6 +24,7 @@ export class IncomeListComponent implements OnInit {
     private selectedYear: number;
     private tableOptions: TableOptions;
 
+    @ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
 
     constructor(private incomeService: IncomeService,
                 private translate: TranslateService,
@@ -31,22 +32,23 @@ export class IncomeListComponent implements OnInit {
                 private datePipe: DatePipe,
                 private state: State,
                 private router: Router) {
+    }
 
+    ngOnInit() {
         this.tableOptions = new TableOptions({
             columns: [
                 { name: this.translate.instant('general.number-abbrev'),  prop: 'number', width: 7, sortDirection: SortDirection.Asc },
                 { name: this.translate.instant('general.description'),  prop: 'description' },
                 { name: this.translate.instant('general.date'),  prop: 'date', pipe: this.datePipe, width: 12 },
                 { name: this.translate.instant('general.amount_net'),  prop: 'price', pipe: this.numberPipe, width: 10, alignment: ColumnAlignment.Right },
+		{ cellTemplate: this.actionsColumn, width: 5, sortable: false },
             ]
         });
 
         let momentInstance = moment();
         this.selectedMonthIndex = this.state.selectedIncomeMonthIndex || momentInstance.month();
         this.selectedYear = momentInstance.year();
-    }
 
-    ngOnInit() {
         this.loading = true;
         this.incomeService.getIncomes()
             .subscribe((incomes) => {

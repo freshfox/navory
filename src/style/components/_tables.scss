@@ -23,12 +23,16 @@ nvry-table {
     tr {
 
         td {
-            padding: 15px 0;
+            padding: 9px 0;
             padding-right: 15px;
             border-bottom: 1px solid $colorGrayLight;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+
+            .text {
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
 
             &:first-child {
                 padding-left: 10px;
