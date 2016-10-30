@@ -1,6 +1,5 @@
-import {OnInit, ElementRef, Directive, forwardRef} from '@angular/core';
+import {OnInit, ElementRef, Directive, forwardRef, Input} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {Config} from "../config";
 import {Formatter} from "../formatter";
 
 export const AMOUNT_VALUE_ACCESSOR: any = {
@@ -20,21 +19,23 @@ export class AmountDirective implements OnInit, ControlValueAccessor {
     private onChangeCallback: (_: any) => void = () => {};
     private onTouchedCallback = () => {};
 
+    @Input() alwaysShowDecimals: boolean = true;
+
     constructor(private el: ElementRef, private formatter: Formatter) {
     }
 
     ngOnInit() {}
 
     writeValue(value: any): void {
-        if(!value) {
-            value = 0;
+        if(value == null) {
+            return;
         }
         this.setValue(value);
         this.onChange();
     }
 
     setValue(value) {
-        this.el.nativeElement.value = this.formatter.money(value);
+        this.el.nativeElement.value = this.formatter.money(value, 2, this.alwaysShowDecimals);
         this.rawValue = value;
     }
 

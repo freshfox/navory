@@ -19,7 +19,10 @@ export class InvoiceService extends BaseService {
     }
 
     getInvoice(id: number): Observable<Invoice> {
-        return this.get(this.getRestEntityPath(this.pathInvoices, id));
+        return this.get(this.getRestEntityPath(this.pathInvoices, id))
+            .map(invoice => {
+                return new Invoice(invoice);
+            });
     }
 
     saveInvoice(invoice: Invoice) {
@@ -29,26 +32,33 @@ export class InvoiceService extends BaseService {
         return this.post(this.pathInvoices, invoice);
     }
 
-    getTaxAmounts(invoice: Invoice) {
-        var amounts = {};
+    getTaxAmounts(invoice: Invoice): any[] {
+        var amounts = [];
         invoice.invoice_lines.forEach((line) => {
-            line = new InvoiceLine(line);
             var rate = line.getTaxrate();
             var taxAmount = line.getTaxAmount();
             var netAmount = line.getNetAmount();
 
             if(rate !== 0 && netAmount !== 0) {
-                if(!amounts[rate]) {
-                    var data = {
+                var amount = amounts.find(amount => {
+                    return amount.rate == rate;
+                });
+
+                if(!amount) {
+                    amount = {
+                        rate: rate,
                         amount: 0,
                         netAmount: 0
                     };
-                    amounts[rate] = data;
+                    amounts.push(amount);
                 }
-                amounts[rate].amount += taxAmount;
-                amounts[rate].netAmount += netAmount;
+
+
+                amount.amount += taxAmount;
+                amount.netAmount += netAmount;
             }
         });
+
 
         return amounts;
     }

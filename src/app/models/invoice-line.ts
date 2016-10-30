@@ -6,8 +6,8 @@ export class InvoiceLine extends BaseModel {
     id: number;
     title: string;
     description: string;
-    quantity: number;
-    price: number;
+    quantity: number = 1;
+    price: number = 0;
     tax_rate_id: number;
     tax_rate: TaxRate;
     unit_id: number;

@@ -4,13 +4,15 @@ import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 import {EuVatType} from "../core/enums/eu-vat-type.enum";
 import {TranslateService} from "ng2-translate";
+import {Unit} from "../models/unit";
+import {State} from "../core/state";
 
 @Injectable()
 export class BootstrapService extends BaseService {
 
     private pathBootstrap = '/bootstrap';
 
-    constructor(http: Http, private translate: TranslateService) {
+    constructor(http: Http, private translate: TranslateService, private state: State) {
         super(http);
     }
 
@@ -33,6 +35,10 @@ export class BootstrapService extends BaseService {
                 value: EuVatType.IntraCommunityAcquisition
             }
         ];
+    }
+
+    getUnits(): Observable<Unit[]> {
+        return Observable.of(this.state.units);
     }
 
 }

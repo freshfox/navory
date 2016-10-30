@@ -40,6 +40,18 @@ export class InvoiceEditComponent implements OnInit {
         this.invoice.invoice_lines.push(new InvoiceLine());
     }
 
+    getTotalNet() {
+        return this.invoice.getTotalNet();
+    }
+
+    getTotalGross() {
+        return this.invoice.getTotalGross();
+    }
+
+    getOccuringTaxRates() {
+        return this.invoiceService.getTaxAmounts(this.invoice);
+    }
+
     save() {
 
         this.invoiceService.saveInvoice(this.invoice)

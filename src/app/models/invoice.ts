@@ -1,6 +1,7 @@
 import {InvoiceLine} from "./invoice-line";
+import {BaseModel} from "../core/base.model";
 
-export class Invoice {
+export class Invoice extends BaseModel {
 
     id: number;
     date: string;
@@ -8,6 +9,34 @@ export class Invoice {
     invoice_lines: InvoiceLine[] = [];
     payment_date: string;
 
+    constructor(data?: any) {
+        super(data);
+
+        var lines = [];
+        this.invoice_lines.forEach(line => {
+            line = new InvoiceLine(line);
+            lines.push(line);
+        });
+        this.invoice_lines = lines;
+    }
+
+    getTotalNet(): number {
+        var amount = 0;
+        this.invoice_lines.forEach(invoiceLine => {
+            amount += invoiceLine.getNetAmount();
+        });
+
+        return amount;
+    }
+
+    getTotalGross(): number {
+        var amount = 0;
+        this.invoice_lines.forEach(invoiceLine => {
+            amount += invoiceLine.getGrossAmount();
+        });
+
+        return amount;
+    }
 }
 
 export enum InvoiceStatus {

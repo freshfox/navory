@@ -42,8 +42,9 @@ export class Formatter {
     }
 
 
-    money(value: number, numberOfDecimals: number = 2): string {
-        var format = '0,0.';
+    money(value: number, numberOfDecimals: number = 2, alwaysShowDecimal: boolean = true): string {
+        var format = '0,0';
+        format += alwaysShowDecimal ? '.' : '[.]';
         for (var i = 0; i < numberOfDecimals; i++) {
             format += '0';
         }

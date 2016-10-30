@@ -44,7 +44,9 @@
     input[type="color"],
     select,
     textarea,
-    .select2-container {
+    nvry-input,
+    nvry-textarea,
+    nvry-select {
         @content
     }
 }

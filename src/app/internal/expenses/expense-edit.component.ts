@@ -47,16 +47,13 @@ export class ExpenseEditComponent implements OnInit {
 
         this.taxRateService.getDefaultTaxRate()
             .subscribe(rate => {
-                this.expense.tax_rate = rate;
+                if(!this.expense.tax_rate) {
+                    this.expense.tax_rate = rate;
+                }
             });
 
-        this.taxRateService.getTaxRates()
-            .subscribe(taxRates => {
-                this.taxRates = taxRates.map((taxRate) => {
-                    taxRate['name'] = taxRate.rate + '%';
-                    return taxRate;
-                });
-            });
+        this.taxRateService.getFormattedTaxRates()
+            .subscribe(taxRates => this.taxRates = taxRates);
 
         this.euVatTypes = this.bootstrapService.getFormattedEuVatTypes();
 

@@ -39,17 +39,20 @@
 
 @include form-fields-with-extensions {
     &.connected-with-next {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
 
-        + input:not([type=hidden]),
+        input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        + nvry-input input:not([type=hidden]),
         + input[type=hidden] + input {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             border-left: 0;
         }
 
-        + .select2-hidden-accessible {
+        + nvry-select .select2-hidden-accessible {
             + .select2-container .select2-selection {
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
@@ -57,14 +60,14 @@
             }
         }
 
-        + .select2-container {
+        + nvry-select .select2-container {
 
             .select2-selection {
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
             }
 
-            + input:not([type=hidden]),
+            + nvry-input input:not([type=hidden]),
             + input[type=hidden] + input {
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;

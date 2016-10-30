@@ -7,7 +7,7 @@ require('select2');
     selector: 'nvry-select',
     template: `
         <label *ngIf="label">{{ label }}</label>
-        <select (change)="onChange(s.value)" #s [(ngModel)]="selectedValue">
+        <select (change)="onChange(s.value)" #s [(ngModel)]="selectedValue" class="{{ class }}">
            <option 
            *ngFor="let option of options" 
            [attr.value]="getValue(option)">{{ getName(option) }}</option>
@@ -18,6 +18,7 @@ export class SelectComponent implements OnInit {
     @Input() options: any;
     @Input() valueKey: string = 'id';
     @Input() nameKey: string = 'name';
+    @Input() class: string;
 
     @Input() selectedValue: any;
     @Output() selectedValueChange = new EventEmitter<any>();

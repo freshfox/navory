@@ -41,4 +41,14 @@ export class TaxRateService extends BaseService {
         return Observable.of(defaultRate);
     }
 
+    getFormattedTaxRates() {
+        return this.getTaxRates()
+            .map(taxRates => {
+                return taxRates.map((taxRate) => {
+                    taxRate['name'] = taxRate.rate + '%';
+                    return taxRate;
+                });
+            });
+    }
+
 }

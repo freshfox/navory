@@ -47,7 +47,7 @@ export class FormValidator {
         var value = control.value;
         if(value) {
             value = `${value}`;
-            if(!validator.isNumeric(value)) {
+            if(!FormValidator.isNumeric(value)) {
                 return {
                     notNumeric: true
                 };
@@ -55,6 +55,10 @@ export class FormValidator {
         }
 
         return null;
+    }
+
+    static isNumeric(value: string) {
+        return validator.isNumeric(value);
     }
 
     static matchingPasswords(group: FormGroup) {

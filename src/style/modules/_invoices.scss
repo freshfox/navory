@@ -94,22 +94,29 @@ nvry-invoice-line {
     @extend .cf;
     margin-bottom: 15px;
 
-    @include display(flex);
 
+    .invoice-line__row  {
+        @include display(flex);
+    }
 
     .title-field,
     .description-field { width: 42%; }
     .quantity-field { width: 8%; text-align: right; }
-    .unit-field + .select2 { width: 10% !important; }
+    .unit-field { width: 10%; }
     .price-field { width: 14%; }
-    .taxrate-field + .select2 { width: 7% !important; }
     .amount-field { width: 14%; }
-    .actions-column { width: 5%; float: left; }
+    .taxrate-field { width: 7%; }
+    .actions-column { width: 5%; }
 
     .description-field {
         display: none;
-        margin-top: 10px;
         margin-bottom: 15px;
+
+        textarea {
+            min-height: 80px;
+            max-height: 200px;
+        }
+
 
         &.description-field--visible,
         &:hover,

@@ -44,16 +44,13 @@ export class IncomeEditComponent implements OnInit {
 
         this.taxRateService.getDefaultTaxRate()
             .subscribe(rate => {
-                this.income.tax_rate = rate;
+                if(!this.income.tax_rate) {
+                    this.income.tax_rate = rate;
+                }
             });
 
-        this.taxRateService.getTaxRates()
-            .subscribe(taxRates => {
-                this.taxRates = taxRates.map((taxRate) => {
-                    taxRate['name'] = taxRate.rate + '%';
-                    return taxRate;
-                });
-            });
+        this.taxRateService.getFormattedTaxRates()
+            .subscribe(taxRates => this.taxRates = taxRates);
 
         this.euVatTypes = this.bootstrapService.getFormattedEuVatTypes();
 
