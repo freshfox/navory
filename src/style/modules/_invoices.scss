@@ -5,37 +5,6 @@
         padding-bottom: 5px;
     }
 
-    .col-number { width: 6%; }
-    .col-customer { width: 30% }
-    .col-status { width: 12%; }
-    .col-date,
-    .col-due_date { width: 12% }
-    .col-payment-status { text-align: center; padding-right: 0; width: 10%; }
-    .col-amount { text-align: right; width: 15%; padding-right: 0; }
-    .col-actions { width: 5%; padding-right: 5px; }
-
-    .draft {
-        color: $colorGrayMedium;
-    }
-
-    .issued {
-        color: $colorSuccess;
-        @include fontBold;
-    }
-}
-
-.invoice-status {
-    $invoiceStatusSize: 12px;
-    width: $invoiceStatusSize;
-    height: $invoiceStatusSize;
-    border-radius: 50%;
-    display: inline-block;
-    border: 1px solid red;
-
-    &.invoice-status--paid {
-        background: $colorSuccess;
-        border-color: $colorSuccess;
-    }
 }
 
 

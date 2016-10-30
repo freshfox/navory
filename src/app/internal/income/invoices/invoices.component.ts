@@ -19,6 +19,7 @@ export class InvoicesComponent implements OnInit {
     private invoices: Invoice[];
 
     @ViewChild('statusColumn') statusColumnTpl: TemplateRef<any>;
+    @ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
     private loading: boolean = false;
     private tableOptions: TableOptions;
 
@@ -45,6 +46,7 @@ export class InvoicesComponent implements OnInit {
                 {name: this.translate.instant('invoices.date-created'), prop: 'date', pipe: this.datePipe, width: 12},
                 {name: this.translate.instant('invoices.date-due'), prop: 'due_date', pipe: this.datePipe, width: 12},
                 {name: this.translate.instant('general.amount_net'), prop: 'amount', pipe: this.numberPipe, width: 15, alignment: ColumnAlignment.Right},
+                {width: 6, cellTemplate: this.actionsColumn},
             ]
         });
     }
@@ -55,6 +57,10 @@ export class InvoicesComponent implements OnInit {
 
     editInvoice(invoice: Invoice) {
         this.router.navigate([`/invoices/${invoice.id}`]);
+    }
+
+    deleteInvoice(invoice: Invoice) {
+        // TODO
     }
 
     getBadgeData(invoice) {
