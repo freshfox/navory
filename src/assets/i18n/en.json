@@ -1,242 +1,242 @@
 {
-  "general": {
-    "email": "Email",
-    "yes": "Yes",
-    "no": "No",
-    "firstname": "Firstname",
-    "lastname": "Lastname",
-    "next": "Next",
-    "password": "Password",
-    "description": "Description",
-    "date": "Date",
-    "save": "Save",
-    "cancel": "Cancel",
-    "company": "Company",
-    "net": "net",
-    "gross": "gross",
-    "amount": "Amount",
-    "amount_net": "Amount (net)",
-    "category": "Category",
-    "taxrate": "Taxrate",
-    "delete": "Delete",
-    "product": "Product",
-    "service": "Service",
-    "errors": {
-      "unexpected": "We are sorry, an unexpected error occured on our end. We have been informed and will fix the problem very soon.",
-      "validation": {
-        "not-unique": "This field has to be unique",
-        "invalid": "This value is invalid",
-        "invalid-email": "Please enter a valid email address"
-      }
+    "general": {
+        "email": "Email",
+        "yes": "Yes",
+        "no": "No",
+        "firstname": "Firstname",
+        "lastname": "Lastname",
+        "next": "Next",
+        "password": "Password",
+        "description": "Description",
+        "date": "Date",
+        "save": "Save",
+        "cancel": "Cancel",
+        "company": "Company",
+        "net": "net",
+        "gross": "gross",
+        "amount": "Amount",
+        "amount_net": "Amount (net)",
+        "category": "Category",
+        "taxrate": "Taxrate",
+        "delete": "Delete",
+        "product": "Product",
+        "service": "Service",
+        "errors": {
+            "unexpected": "We are sorry, an unexpected error occured on our end. We have been informed and will fix the problem very soon.",
+            "validation": {
+                "not-unique": "This field has to be unique",
+                "invalid": "This value is invalid",
+                "invalid-email": "Please enter a valid email address"
+            }
+        },
+        "logout": "Logout",
+        "reverse-charge": "Reverse Charge",
+        "website": "Website",
+        "phone": "Phone",
+        "zip": "ZIP",
+        "vat-id": "VAT ID",
+        "address": "Address",
+        "country": "Country",
+        "quarter": "Quarter",
+        "income": "Income",
+        "expenses": "Expenses",
+        "city": "City",
+        "customer": "Customer",
+        "status": "Status",
+        "draft": "Draft",
+        "payment-date": "Payment date",
+        "paid": "Paid",
+        "overdue": "Overdue",
+        "name": "Name",
+        "number": "Number",
+        "number-abbrev": "No.",
+        "bank_name": "Bank",
+        "bank_account_owner": "Account holder",
+        "iban": "IBAN",
+        "bic": "BIC",
+        "month": "Month"
     },
-    "logout": "Logout",
-    "reverse-charge": "Reverse Charge",
-    "website": "Website",
-    "phone": "Phone",
-    "zip": "ZIP",
-    "vat-id": "VAT ID",
-    "address": "Address",
-    "country": "Country",
-    "quarter": "Quarter",
-    "income": "Income",
-    "expenses": "Expenses",
-    "city": "City",
-    "customer": "Customer",
-    "status": "Status",
-    "draft": "Draft",
-    "payment-date": "Payment date",
-    "paid": "Paid",
-    "overdue": "Overdue",
-    "name": "Name",
-    "number": "Number",
-    "number-abbrev": "No.",
-    "bank_name": "Bank",
-    "bank_account_owner": "Account holder",
-    "iban": "IBAN",
-    "bic": "BIC",
-    "month": "Month"
-  },
-  "app": {
-    "name": "Navory",
-    "tagline": "Free and easy accounting for everyone."
-  },
-  "actions": {
-    "view": "View",
-    "edit": "Edit",
-    "copy": "Copy",
-    "delete": "Delete"
-  },
-  "timeout": {
-    "text": "",
-    "button": ""
-  },
-  "forms": {
-    "validation": {
-      "required": "This field is required",
-      "number": "Please enter a valid number",
-      "positive-number": "Please enter a positive number",
-      "date": "Please enter a valid date",
-      "email": "Please enter a valid email address"
+    "app": {
+        "name": "Navory",
+        "tagline": "Free and easy accounting for everyone."
+    },
+    "actions": {
+        "view": "View",
+        "edit": "Edit",
+        "copy": "Copy",
+        "delete": "Delete"
+    },
+    "timeout": {
+        "text": "",
+        "button": ""
+    },
+    "forms": {
+        "validation": {
+            "required": "This field is required",
+            "number": "Please enter a valid number",
+            "positive-number": "Please enter a positive number",
+            "date": "Please enter a valid date",
+            "email": "Please enter a valid email address"
+        }
+    },
+    "login": {
+        "signup-notice": "Don't have an account yet? <strong>Click here.</strong>",
+        "remember": "Remember me",
+        "submit": "Sign in",
+        "error-wrong-credentials": "Hmm, seems like that email / password combination is not valid",
+        "forgot-password": {
+            "link": "Forgot password?",
+            "title": "Reset your Password",
+            "description": "Please enter your email address below. We will send you a link to securely reset your password.",
+            "back-to-login": "Nevermind, I remembered",
+            "reset": "Reset",
+            "success-message": "We have sent you information to securely reset your password. Please check your email."
+        },
+        "reset-password": {
+            "description": "Just type your desired new password down below. We will automatically log you in when you're finished.",
+            "password": "New password",
+            "password-confirm": "Confirm password",
+            "submit": "Change password",
+            "success-message": "Your password was successfully changed.",
+            "to-login": "Go to login"
+        },
+        "signup": {
+            "login-notice": "Already have an account? <strong>Login here</strong>",
+            "welcome": "Get started with <span class='logo'>Navory</span>",
+            "tagline": "Just a few more steps, and you’ll be accounting in no time.",
+            "steps": {
+                "signup": "Signup",
+                "setup": "Setup",
+                "finish": "Finish"
+            },
+            "submit": "Create my account",
+            "errors": {
+                "not-unique": "Sorry, an account with this email address already exists.",
+                "min-length": "Your password must be at least 8 characters long."
+            }
+        }
+    },
+    "dashboard": {
+        "title": "Dashboard",
+        "welcome": "Welcome",
+        "income_expenses": "Income vs. Expenses (net)",
+        "current_year_notice": "The numbers apply to the current calendar year."
+    },
+    "income": {
+        "title": "Income",
+        "tab-title": "Other Income",
+        "new": "New Income",
+        "number-abbrev": "No.",
+        "number": "Number",
+        "delete-confirm-title": "Delete Income",
+        "delete-confirm-message": "Are you sure you want to delete this income?",
+        "create_title": "New Income",
+        "edit_title": "Edit Income",
+        "copy_title": "Copy income",
+        "errors": {
+            "number-not-unique": "This number is already taken"
+        },
+        "edit": {
+            "intra-community": "Intra Community (EU)",
+            "intra-community-none": "No",
+            "intra-community-service": "Service (Reverse Charge)",
+            "intra-community-product": "Product (Intra Community supply)"
+        },
+        "empty-state-message": "You have not created income yet. Go ahead and try it!"
+    },
+    "invoices": {
+        "title": "Invoices",
+        "new": "New Invoice",
+        "date-created": "Date",
+        "date-due": "Due Date",
+        "status": "Payment Status",
+        "empty-state-message": "You haven't created any invoices yet. Create invoices and send them to your clients here.",
+        "issue": "Issue",
+        "edit_title": "Edit Invoice No. {{ number }}",
+        "edit_title_draft": "Edit Invoice draft",
+        "create_title": "New Invoice",
+        "number": "Invoice Number",
+        "service-date-start": "Service period start",
+        "service-date-end": "Service period end",
+        "save-draft": "Save draft",
+        "delete-confirm-title": "Delete invoice",
+        "delete-confirm-message": "Do you really want to delete this invoice?",
+        "issued": "Issued",
+        "add-payment": "Add payment date",
+        "edit-success": "Invoice successfully saved"
+    },
+    "expenses": {
+        "title": "Expenses",
+        "new": "New Expense",
+        "delete-confirm-title": "Delete Expense",
+        "delete-confirm-message": "Are you sure you want to delete this expense?",
+        "empty-state-message": "You haven't created any expenses for the selected timeframe.",
+        "create_title": "New Expense",
+        "edit_title": "Edit Expense",
+        "copy_title": "Copy Expense",
+        "eu_tax_rate": "Taxed with"
+    },
+    "reports": {
+        "title": "Reports",
+        "vat": "VAT Report"
+    },
+    "settings": {
+        "title": "Settings",
+        "account": "Account",
+        "profile": {
+            "title": "Profile",
+            "success-message": "Profile successfully saved"
+        },
+        "change-password": {
+            "title": "Change password",
+            "current": "Current password",
+            "new": "New password",
+            "new-confirmation": "New password confirmation",
+            "errors": {
+                "incorrect-password": "It seems like this is not your current password."
+            },
+            "success-message": "Password successfully changed"
+        },
+        "company": {
+            "title": "Company details",
+            "success-message": "Company details successfully saved"
+        },
+        "bank": {
+            "title": "Bank Details",
+            "description": "Enter your bank information here so it can be displayed on your invoices"
+        },
+        "delete": {
+            "title": "Delete Account",
+            "description": "This Account and all data will be deleted. This action cannot be undone.",
+            "button": "Delete account"
+        },
+        "export": {
+            "title": "Export",
+            "description": "You can export your income and expenses as a CSV file.",
+            "type": "Type to export",
+            "from": "From",
+            "to": "To",
+            "download": "Download"
+        }
+    },
+    "upload-area": {
+        "drop-files": "Drop a file here to upload.",
+        "choose-file": "Choose file",
+        "errors": {
+            "general": "Something wen't wrong while uploading your file. Please try again.",
+            "filetype-not-allowed": "This type of file is not allowed"
+        }
+    },
+    "customers": {
+        "title": "Customers",
+        "create": "New customer",
+        "delete-confirm-title": "Delete customer",
+        "delete-confirm-message": "Are you sure you want to delete this customer?",
+        "empty-state-message": "You haven't created any customers yet.",
+        "create-title": "New customer",
+        "edit-title": "Edit customer",
+        "errors": {
+            "number-not-unique": "This number is already taken"
+        }
     }
-  },
-  "login": {
-    "signup-notice": "Don't have an account yet? <strong>Click here.</strong>",
-    "remember": "Remember me",
-    "submit": "Sign in",
-    "error-wrong-credentials": "Hmm, seems like that email / password combination is not valid",
-    "forgot-password": {
-      "link": "Forgot password?",
-      "title": "Reset your Password",
-      "description": "Please enter your email address below. We will send you a link to securely reset your password.",
-      "back-to-login": "Nevermind, I remembered",
-      "reset": "Reset",
-      "success-message": "We have sent you information to securely reset your password. Please check your email."
-    },
-    "reset-password": {
-      "description": "Just type your desired new password down below. We will automatically log you in when you're finished.",
-      "password": "New password",
-      "password-confirm": "Confirm password",
-      "submit": "Change password",
-      "success-message": "Your password was successfully changed.",
-      "to-login": "Go to login"
-    },
-    "signup": {
-      "login-notice": "Already have an account? <strong>Login here</strong>",
-      "welcome": "Get started with <span class='logo'>Navory</span>",
-      "tagline": "Just a few more steps, and you’ll be accounting in no time.",
-      "steps": {
-        "signup": "Signup",
-        "setup": "Setup",
-        "finish": "Finish"
-      },
-      "submit": "Create my account",
-      "errors": {
-        "not-unique": "Sorry, an account with this email address already exists.",
-        "min-length": "Your password must be at least 8 characters long."
-      }
-    }
-  },
-  "dashboard": {
-    "title": "Dashboard",
-    "welcome": "Welcome",
-    "income_expenses": "Income vs. Expenses (net)",
-    "current_year_notice": "The numbers apply to the current calendar year."
-  },
-  "income": {
-    "title": "Income",
-    "tab-title": "Other Income",
-    "new": "New Income",
-    "number-abbrev": "No.",
-    "number": "Number",
-    "delete-confirm-title": "Delete Income",
-    "delete-confirm-message": "Are you sure you want to delete this income?",
-    "create_title": "New Income",
-    "edit_title": "Edit Income",
-    "copy_title": "Copy income",
-    "errors": {
-      "number-not-unique": "This number is already taken"
-    },
-    "edit": {
-      "intra-community": "Intra Community (EU)",
-      "intra-community-none": "No",
-      "intra-community-service": "Service (Reverse Charge)",
-      "intra-community-product": "Product (Intra Community supply)"
-    },
-    "empty-state-message": "You have not created income yet. Go ahead and try it!"
-  },
-  "invoices": {
-    "title": "Invoices",
-    "new": "New Invoice",
-    "date-created": "Date",
-    "date-due": "Due Date",
-    "status": "Payment Status",
-    "empty-state-message": "You haven't created any invoices yet. Create invoices and send them to your clients here.",
-    "issue": "Issue",
-    "edit_title": "Edit Invoice No. {{ number }}",
-    "edit_title_draft": "Edit Invoice draft",
-    "create_title": "New Invoice",
-    "number": "Invoice Number",
-    "service-date-start": "Service period start",
-    "service-date-end": "Service period end",
-    "save-draft": "Save draft",
-    "delete-confirm-title": "Delete invoice",
-    "delete-confirm-message": "Do you really want to delete this invoice?",
-    "issued": "Issued",
-    "add-payment": "Add payment date",
-    "edit-success": "Invoice successfully saved"
-  },
-  "expenses": {
-    "title": "Expenses",
-    "new": "New Expense",
-    "delete-confirm-title": "Delete Expense",
-    "delete-confirm-message": "Are you sure you want to delete this expense?",
-    "empty-state-message": "You haven't created any expenses for the selected timeframe.",
-    "create_title": "New Expense",
-    "edit_title": "Edit Expense",
-    "copy_title": "Copy Expense",
-    "eu_tax_rate": "Taxed with"
-  },
-  "reports": {
-    "title": "Reports",
-    "vat": "VAT Report"
-  },
-  "settings": {
-    "title": "Settings",
-    "account": "Account",
-    "profile": {
-      "title": "Profile",
-      "success-message": "Profile successfully saved"
-    },
-    "change-password": {
-      "title": "Change password",
-      "current": "Current password",
-      "new": "New password",
-      "new-confirmation": "New password confirmation",
-      "errors": {
-        "incorrect-password": "It seems like this is not your current password."
-      },
-      "success-message": "Password successfully changed"
-    },
-    "company": {
-      "title": "Company details",
-      "success-message": "Company details successfully saved"
-    },
-    "bank": {
-      "title": "Bank Details",
-      "description": "Enter your bank information here so it can be displayed on your invoices"
-    },
-    "delete": {
-      "title": "Delete Account",
-      "description": "This Account and all data will be deleted. This action cannot be undone.",
-      "button": "Delete account"
-    },
-    "export": {
-      "title": "Export",
-      "description": "You can export your income and expenses as a CSV file.",
-      "type": "Type to export",
-      "from": "From",
-      "to": "To",
-      "download": "Download"
-    }
-  },
-  "upload-area": {
-    "drop-files": "Drop a file here to upload.",
-    "choose-file": "Choose file",
-    "errors": {
-      "general": "Something wen't wrong while uploading your file. Please try again.",
-      "filetype-not-allowed": "This type of file is not allowed"
-    }
-  },
-  "customers": {
-    "title": "Customers",
-    "create": "New customer",
-    "delete-confirm-title": "Delete customer",
-    "delete-confirm-message": "Are you sure you want to delete this customer?",
-    "empty-state-message": "You haven't created any customers yet.",
-    "create-title": "New customer",
-    "edit-title": "Edit customer",
-    "errors": {
-      "number-not-unique": "This number is already taken"
-    }
-  }
 }
