@@ -66,6 +66,7 @@ import {InvoiceService} from "./services/invoice.service";
 import {InvoiceEditComponent} from "./internal/income/invoices/invoice-edit.component";
 import {InvoiceLineComponent} from "./internal/income/invoices/invoice-line.component";
 import {PaymentsComponent} from "./internal/payments/payments.component";
+import {DropdownComponent} from "./core/components/dropdown.component";
 
 @NgModule({
     declarations: [
@@ -111,7 +112,8 @@ import {PaymentsComponent} from "./internal/payments/payments.component";
         InvoicesComponent,
         InvoiceEditComponent,
         InvoiceLineComponent,
-        PaymentsComponent
+        PaymentsComponent,
+        DropdownComponent
     ],
     imports: [
         BrowserModule,
