@@ -152,7 +152,7 @@
     "status": "Payment Status",
     "empty-state-message": "You haven't created any invoices yet. Create invoices and send them to your clients here.",
     "issue": "Issue",
-    "edit_title": "Edit Invoice No.",
+    "edit_title": "Edit Invoice No. {{ number }}",
     "edit_title_draft": "Edit Invoice draft",
     "create_title": "New Invoice",
     "number": "Invoice Number",

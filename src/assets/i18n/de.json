@@ -149,7 +149,7 @@
         "status": "Status",
         "empty-state-message": "Du hast noch keine Rechnungen angelegt.<br>Erstelle hier Rechnungen und sende Sie an deine Kunden.",
         "issue": "Fertigstellen",
-        "edit_title": "Rechnung Nr.",
+        "edit_title": "Rechnung Nr. {{ number }}",
         "edit_title_draft": "Rechnungsentwurf",
         "create_title": "Neue Rechnung",
         "number": "Rechnungsnummer",

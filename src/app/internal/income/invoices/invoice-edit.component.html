@@ -4,58 +4,75 @@
     </nvry-button>
     <hr>
 </div>
-<div class="page-row button-row">
-    <h1 class="module-title">
-        <span *ngIf="invoice.id">{{ 'invoices.edit_title' | translate }}</span>
-        <span *ngIf="!invoice.id">{{ 'invoices.create_title' | translate }}</span>
-    </h1>
-    <div class="buttons">
-        <nvry-button (click)="save()" [loading]="saving">{{ 'general.save' | translate }}</nvry-button>
+<template ngIf="!loading">
+    <div class="page-row button-row">
+        <h1 class="module-title">
+            <span *ngIf="invoice.id">{{ 'invoices.edit_title' | translate:{ number: invoice.number } }}</span>
+            <span *ngIf="!invoice.id">{{ 'invoices.create_title' | translate }}</span>
+        </h1>
+        <div class="buttons">
+            <nvry-button (click)="save()" [loading]="saving">{{ 'general.save' | translate }}</nvry-button>
+        </div>
     </div>
-</div>
 
-<div class="default-section">
-    <div class="invoice-edit-paper">
+    <div class="default-section">
+        <div class="invoice-edit-paper">
 
-
-        <div class="invoice-edit-paper-section lines">
-            <div class="invoice-lines-container">
-                <div class="header">
-                    <span class="title-header">Produkt</span>
-                    <span class="quantity-header">Menge</span>
-                    <span class="unit-header">Einheit</span>
-                    <span class="price-header">Preis (netto)</span>
-                    <span class="taxrate-header">USt.</span>
-                    <span class="amount-header">Betrag (netto)</span>
-                </div>
-
-                <div id="lines-list">
-                    <nvry-invoice-line [invoiceLine]="line" *ngFor="let line of invoice.invoice_lines"></nvry-invoice-line>
+            <div class="invoice-edit-paper-section">
+                <div class="frame">
+                    <div class="bit-50 customer-area">
+                        <nvry-input [label]="'general.customer' | translate"
+                                    [(ngModel)]="invoice.customer_name"></nvry-input>
+                        <nvry-textarea [label]="'general.address' | translate"
+                                       [(ngModel)]="invoice.customer_address"></nvry-textarea>
+                    </div>
+                    <div class="bit-50"></div>
                 </div>
             </div>
 
-            <nvry-button class="button--secondary" (click)="addLine()">Neue Zeile</nvry-button>
-        </div>
+            <div class="invoice-edit-paper-section lines">
+                <div class="invoice-lines-container">
+                    <div class="header">
+                        <span class="title-header">Produkt</span>
+                        <span class="quantity-header">Menge</span>
+                        <span class="unit-header">Einheit</span>
+                        <span class="price-header">Preis (netto)</span>
+                        <span class="taxrate-header">USt.</span>
+                        <span class="amount-header">Betrag (netto)</span>
+                    </div>
 
-        <div class="invoice-edit-paper-section invoice-total">
-            <div class="invoice-total__inner">
-                <div class="line">
-                    <span class="title">Zwischensumme</span>
-                    <span class="value">{{ getTotalNet() | nvryNumber }}</span>
+                    <div id="lines-list">
+                        <nvry-invoice-line [invoiceLine]="line"
+                                           *ngFor="let line of invoice.invoice_lines"></nvry-invoice-line>
+                    </div>
                 </div>
 
-                <div class="line" *ngFor="let rate of getOccuringTaxRates()">
-                    <span class="title">USt. {{ rate.rate }}% von {{ rate.netAmount | nvryNumber }}</span>
-                    <span class="value">{{ rate.amount | nvryNumber}}</span>
-                </div>
+                <nvry-button class="button--secondary" (click)="addLine()">Neue Zeile</nvry-button>
+            </div>
 
-                <div class="line line--total">
-                    <span class="title">Gesamt EUR</span>
-                    <span class="value">{{ getTotalGross() | nvryNumber }}</span>
+            <div class="invoice-edit-paper-section invoice-total">
+                <div class="invoice-total__inner">
+                    <div class="line">
+                        <span class="title">Zwischensumme</span>
+                        <span class="value">{{ getTotalNet() | nvryNumber }}</span>
+                    </div>
+
+                    <div class="line" *ngFor="let rate of getOccuringTaxRates()">
+                        <span class="title">USt. {{ rate.rate }}% von {{ rate.netAmount | nvryNumber }}</span>
+                        <span class="value">{{ rate.amount | nvryNumber}}</span>
+                    </div>
+
+                    <div class="line line--total">
+                        <span class="title">Gesamt EUR</span>
+                        <span class="value">{{ getTotalGross() | nvryNumber }}</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</template>
+
+<nvry-spinner *ngIf="loading"></nvry-spinner>
 
 <pre>{{ invoice | json }}</pre>
+

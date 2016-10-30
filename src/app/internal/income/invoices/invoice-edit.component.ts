@@ -19,14 +19,15 @@ export class InvoiceEditComponent implements OnInit {
         this.invoice = new Invoice();
         this.invoice.invoice_lines.push(new InvoiceLine());
 
+
+        this.loading = true;
         this.route.params.subscribe(params => {
             let id = params['id'];
             if (id) {
-                this.loading = false;
                 this.invoiceService.getInvoice(id)
                     .subscribe((invoice: Invoice) => {
-                        this.invoice = invoice;
                         this.loading = false;
+                        this.invoice = invoice;
                     });
             } else {
                 this.loading = false;
@@ -54,10 +55,12 @@ export class InvoiceEditComponent implements OnInit {
 
     save() {
 
+        this.saving = true;
         this.invoiceService.saveInvoice(this.invoice)
             .subscribe(
                 invoice => {
-
+                    this.invoice = invoice;
+                    this.saving = false;
                 },
                 error => {
                     // TODO

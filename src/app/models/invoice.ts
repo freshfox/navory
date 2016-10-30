@@ -4,18 +4,21 @@ import {BaseModel} from "../core/base.model";
 export class Invoice extends BaseModel {
 
     id: number;
+    number: string;
     date: string;
     due_date: string;
     invoice_lines: InvoiceLine[] = [];
     payment_date: string;
+    customer_name: string;
+    customer_address: string;
 
     constructor(data?: any) {
         super(data);
 
         var lines = [];
-        this.invoice_lines.forEach(line => {
-            line = new InvoiceLine(line);
-            lines.push(line);
+        this.invoice_lines.forEach(currentLine => {
+            var newLine = new InvoiceLine(currentLine);
+            lines.push(newLine);
         });
         this.invoice_lines = lines;
     }

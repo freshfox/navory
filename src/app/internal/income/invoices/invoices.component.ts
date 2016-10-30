@@ -54,7 +54,7 @@ export class InvoicesComponent implements OnInit {
     }
 
     editInvoice(invoice: Invoice) {
-        this.router.navigate(['/invoices'], { id: invoice.id });
+        this.router.navigate([`/invoices/${invoice.id}`]);
     }
 
     getBadgeData(invoice) {
