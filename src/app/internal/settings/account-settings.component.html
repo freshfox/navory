@@ -1,0 +1,56 @@
+<section class="settings-section frame">
+    <div class="bit-25">
+        <h3>{{ 'settings.company.title' | translate }}</h3>
+    </div>
+    <div class="bit-75">
+        <nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
+
+        <div class="frame frame--bit-spacing">
+            <div class="bit-50">
+                <nvry-input [label]="'general.company' | translate" [(ngModel)]="account.company_name"></nvry-input>
+                <nvry-input [label]="'general.address' | translate" [(ngModel)]="account.address"></nvry-input>
+                <nvry-input [label]="'general.zip' | translate" [(ngModel)]="account.zip"></nvry-input>
+                <nvry-input [label]="'general.city' | translate" [(ngModel)]="account.city"></nvry-input>
+                <nvry-input [label]="'general.country' | translate" [(ngModel)]="account.country"
+                            [disabled]="true"></nvry-input>
+            </div>
+
+            <div class="bit-50">
+                <nvry-input [label]="'general.email' | translate" [(ngModel)]="account.email" type="email"></nvry-input>
+                <nvry-input [label]="'general.phone' | translate" [(ngModel)]="account.phone"></nvry-input>
+                <nvry-input [label]="'general.website' | translate" [(ngModel)]="account.website"></nvry-input>
+                <nvry-input [label]="'general.vat-id' | translate" [(ngModel)]="account.vat_number"></nvry-input>
+            </div>
+        </div>
+        <div class="bit-100">
+            <nvry-button [loading]="loading" (click)="save()">{{ 'general.save' | translate }}</nvry-button>
+        </div>
+    </div>
+</section>
+
+<section class="settings-section frame">
+    <div class="bit-25">
+        <h3>{{ 'settings.bank.title' | translate }}</h3>
+    </div>
+    <div class="bit-75">
+        <div class="bit-1">
+            <p>{{ 'settings.bank.description' | translate }}</p>
+        </div>
+        <div class="frame frame--bit-spacing">
+            <div class="bit-50">
+                <nvry-input [label]="'general.bank_name' | translate" [(ngModel)]="account.bank_name"></nvry-input>
+                <nvry-input [label]="'general.iban' | translate" [(ngModel)]="account.iban"></nvry-input>
+            </div>
+            <div class="bit-50">
+                <nvry-input [label]="'general.bank_account_owner' | translate"
+                            [(ngModel)]="account.bank_account_owner"></nvry-input>
+                <nvry-input [label]="'general.bic' | translate" [(ngModel)]="account.bic"></nvry-input>
+            </div>
+        </div>
+        <div class="bit-100">
+            <nvry-button [loading]="loading" (click)="save()">{{ 'general.save' | translate }}</nvry-button>
+        </div>
+    </div>
+</section>
+
+<nvry-export></nvry-export>

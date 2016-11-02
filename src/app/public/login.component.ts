@@ -39,7 +39,6 @@ export class LoginComponent {
             this.loginService.login(data.email, data.password, data.durable)
                 .subscribe(
                     data => {
-                        this.loading = false;
                         this.router.navigateByUrl('/dashboard');
                     },
                     error => {

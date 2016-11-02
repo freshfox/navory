@@ -1,1 +1,41 @@
-profile settings
+<section class="settings-section">
+    <div class="frame">
+        <div class="bit-25">
+            <h3>{{ 'settings.profile.title' | translate }}</h3>
+        </div>
+        <div class="bit-75">
+            <form [formGroup]="form">
+                <div class="frame frame--bit-spacing">
+                    <div class="bit-50">
+                        <nvry-input [ngModel]="user.firstname" [formControl]="form.controls.firstname" [label]="'general.firstname' | translate"
+                                    [tabindex]="1"></nvry-input>
+                        <nvry-input [ngModel]="user.email" [formControl]="form.controls.email" [label]="'general.email' | translate"
+                                    [tabindex]="3" type="email"></nvry-input>
+
+                        <nvry-button [loading]="saving" [tabindex]="4" (click)="saveUser()">{{ 'general.save' | translate }}</nvry-button>
+                    </div>
+                    <div class="bit-50">
+                        <nvry-input [ngModel]="user.lastname" [formControl]="form.controls.lastname" [label]="'general.lastname' | translate"
+                                    [tabindex]="2"></nvry-input>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<section class="settings-section frame">
+    <div class="bit-25">
+        <h3>{{ 'settings.change-password.title' | translate }}</h3>
+    </div>
+    <div class="bit-75">
+        <div class="bit-25">
+            <form [formGroup]="passwordForm">
+                <nvry-input [label]="'settings.change-password.current' | translate" type="password" [formControl]="passwordForm.controls.password"></nvry-input>
+                <nvry-input [label]="'settings.change-password.new' | translate" type="password" [formControl]="passwordForm.controls.new_passwords.controls.new_password"></nvry-input>
+                <nvry-input [label]="'settings.change-password.new-confirmation' | translate" type="password" [formControl]="passwordForm.controls.new_passwords.controls.new_password_confirmation"></nvry-input>
+            </form>
+
+            <nvry-button [loading]="savingPassword" (click)="savePassword()">{{ 'settings.change-password.title' | translate }}</nvry-button>
+        </div>
+    </div>
+</section>

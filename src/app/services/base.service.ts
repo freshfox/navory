@@ -27,6 +27,12 @@ export class BaseService {
             .catch(this.handleError);
 	}
 
+    protected put(url: string, data: any): Observable<any> {
+        return this.http.put(this.constructApiUrl(url), data, this.defaultHttpOptions)
+            .map(this.extract)
+            .catch(this.handleError)
+    }
+
 	protected patch(url: string, data: any): Observable<any> {
 	    return this.http.patch(this.constructApiUrl(url), data, this.defaultHttpOptions)
             .map(this.extract)
@@ -65,8 +71,13 @@ export class BaseService {
 
     private extract(res: Response): any {
         if (res.status != 204) {
-            let body = res.json();
-            return body || null;
+            var body;
+            try {
+                body = res.json()
+            } catch(error) {
+                body = null;
+            }
+            return body;
         }
         return null
     }

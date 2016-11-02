@@ -9,7 +9,7 @@ export class Expense {
     number: number;
     date: string;
     description: string;
-    price: number;
+    price: number = 0;
     file: File;
     tax_rate: TaxRate;
     eu_vat_tax_rate: TaxRate;

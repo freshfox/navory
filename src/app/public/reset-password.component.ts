@@ -28,7 +28,7 @@ export class ResetPasswordComponent implements OnInit {
                 private translate: TranslateService,
                 private router: Router) {
 
-        let passwordValidators = Validators.compose([Validators.required, FormValidator.passwordLength]);
+        let passwordValidators = FormValidator.getPasswordValidators();
         this.form = fb.group({
             'password': ["", passwordValidators],
             'passwordRepeat': ["", passwordValidators],

@@ -21,6 +21,7 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 		(blur)="onBlur($event)"
 		(focus)="onFocus($event)"
 		(ngModelChange)="onChange()"
+		[tabindex]="tabindex ? tabindex : null"
 		[attr.disabled]="disabledSet ? true : null"
 		(input)="autoGrow($event.target)"
 		></textarea>
@@ -34,7 +35,8 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 		(blur)="onBlur($event)"
 		(focus)="onFocus($event)"
 		[attr.disabled]="disabledSet ? true : null"
-		(ngModelChange)="onChange()">
+		(ngModelChange)="onChange()"
+		[tabindex]="tabindex">
 		
 		<input
 		*ngIf="type != 'date' && type != 'money' && selector == 'nvry-input'"
@@ -44,7 +46,8 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 		(blur)="onBlur($event)"
 		(focus)="onFocus($event)"
 		[attr.disabled]="disabledSet ? true : null"
-		(ngModelChange)="onChange()">
+		(ngModelChange)="onChange()"
+		[tabindex]="tabindex ? tabindex : null">
         
         <input
 		nvry-amount
@@ -56,7 +59,8 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 		(blur)="onBlur($event)"
 		(focus)="onFocus($event)"
 		[attr.disabled]="disabledSet ? true : null"
-		(ngModelChange)="onChange()">
+		(ngModelChange)="onChange()"
+		[tabindex]="tabindex ? tabindex : null">
 		
 		<nvry-control-messages *ngIf="formControl" [control]="formControl"></nvry-control-messages>
 	`,
@@ -69,6 +73,7 @@ export class InputComponent implements ControlValueAccessor {
     @Input() formControl: FormControl;
     @Input() label: string;
     @Input() alwaysShowDecimals: boolean;
+    @Input() tabindex: number;
 
     @Input() public set disabled(value: any) {
         this.disabledSet = true;

@@ -31,6 +31,7 @@
         },
         "logout": "Abmelden",
         "reverse-charge": "Reverse Charge",
+        "website": "Website",
         "phone": "Telefon",
         "zip": "PLZ",
         "vat-id": "USt. Identifikationsnummer",
@@ -48,7 +49,10 @@
         "name": "Name",
         "number": "Nummer",
         "number-abbrev": "Nr.",
+        "bank_name": "Bank",
         "bank_account_owner": "Kontoinhaber",
+        "iban": "IBAN",
+        "bic": "BIC",
         "month": "Monat"
     },
     "app": {
@@ -190,7 +194,7 @@
             "new": "Neues Passwort",
             "new-confirmation": "Neues Passwort bestätigen",
             "errors": {
-                "incorrect-password": "Das ist nicht dein momentanes Passwort."
+                "incorrect-password": "Das Passwort, dass du eingegeben hast, war nicht korrekt."
             },
             "success-message": "Passwort erfolgreich geändert"
         },
@@ -208,6 +212,7 @@
             "button": "Account löschen"
         },
         "export": {
+            "title": "Export",
             "description": "Du kannst deine Einnahmen und Ausgaben als CSV Dateien exportieren. Die Daten kannst du zum Beispiel an deinen Steuerberater weiterleiten.",
             "type": "Art des Exports",
             "from": "Von",

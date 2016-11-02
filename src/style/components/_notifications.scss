@@ -1,13 +1,26 @@
-.notification {
-    background: $colorSuccess;
+.simple-notification {
     color: #fff;
     border-radius: $defaultBorderRadius;
-    position: fixed;
-    top: 70px;
-    padding: 8px 10px;
-    width: 300px;
-    left: 50%;
-    text-align: center;
-    margin-left: -100px;
-    z-index: 3000;
+    text-align: left;
+    padding: 0 !important;
+
+    .sn-content {
+        width: 100%;
+        font-size: 14px !important;
+        padding: 8px 10px !important;
+    }
+
+    &.success {
+        background: $colorSuccess !important;
+    }
+
+    .simple-notification-svg {
+        display: none;
+    }
+}
+
+.simple-notification-wrapper {
+    &.top {
+        top: 75px !important;
+    }
 }

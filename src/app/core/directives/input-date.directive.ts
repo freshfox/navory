@@ -39,7 +39,7 @@ export class DatePickerDirective implements OnInit, ControlValueAccessor {
     }
 
     writeValue(value: any): void {
-        if(!value) {
+        if(value == undefined) {
             value = new Date();
         }
         this.picker.setDate(value);

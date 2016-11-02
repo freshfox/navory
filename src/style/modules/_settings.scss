@@ -1,33 +1,29 @@
-.settings-module {
 
-	.settings-section {
-		border-bottom: 1px solid $colorGrayLight;
-		@extend .default-section;
-        padding: 30px 0;
-        padding-left: $contentSidePadding;
+.settings-section {
+    border-bottom: 1px solid $colorGrayLight;
+    @extend .default-section;
+    padding: 30px 0;
+    padding-left: $contentSidePadding;
 
-		&.settings-section--no-border {
-			border: 0;
-			margin-bottom: 30px;
-		}
-	}
+    &.settings-section--no-border {
+        border: 0;
+        margin-bottom: 30px;
+    }
+}
 
-	.export-section {
-		.select2 {
-			display: inline-block;
-			vertical-align: middle;
-			margin-right: 20px;
-		}
+.export-section {
+    .export-fields {
+        @include display(flex);
 
-		.formfield-wrapper {
-			display: inline-block;
-			vertical-align: middle;
-			margin-right: 10px;
-		}
+        nvry-input,
+        nvry-select {
+            width: 150px;
+            margin-right: 10px;
+            margin-bottom: 0;
+        }
 
-		.button {
-			display: inline-block;
-			vertical-align: bottom;
-		}
-	}
+        nvry-button {
+            @include align-self(flex-end);
+        }
+    }
 }

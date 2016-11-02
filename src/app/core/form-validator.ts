@@ -21,6 +21,10 @@ export class FormValidator {
         return config[validatorName] || 'No error message for type ' + validatorName;
     }
 
+    static getPasswordValidators() {
+        return Validators.compose([Validators.required, FormValidator.passwordLength]);
+    }
+
     static email(control: FormControl) {
         let value = control.value;
         if(value && !validator.isEmail(value)) {

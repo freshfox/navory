@@ -3,18 +3,24 @@ import {BaseService} from "./base.service";
 import {Http} from "@angular/http";
 import {User} from "../models/user";
 import {Observable} from "rxjs";
+import {State} from "../core/state";
 
 @Injectable()
 export class UserService extends BaseService {
 
-    private userMeUrl = '/user';
+    private pathUser = '/user';
+    private pathUserPassword = '/user/password';
 
-    constructor(http: Http) {
+    constructor(http: Http, private state: State) {
         super(http);
     }
 
     getOwnUser(): Observable<User> {
-        return this.get(this.userMeUrl)
+        if (this.state.user) {
+            return Observable.of(this.state.user);
+        }
+
+        return this.get(this.pathUser)
             .map(data => {
                 return data as User;
             });
@@ -25,6 +31,21 @@ export class UserService extends BaseService {
             .map(user => {
                 return !!user;
             });
+    }
+
+    updateUser(user: User): Observable<User> {
+        return this.patch(this.pathUser, user)
+            .map(user => {
+                this.state.user = user;
+                return user;
+            });
+    }
+
+    updatePassword(password: string, newPassword: string): Observable<any> {
+        return this.put(this.pathUserPassword, {
+            password: password,
+            new_password: newPassword
+        });
     }
 
 }

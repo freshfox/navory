@@ -67,6 +67,9 @@ import {InvoiceEditComponent} from "./internal/income/invoices/invoice-edit.comp
 import {InvoiceLineComponent} from "./internal/income/invoices/invoice-line.component";
 import {PaymentsComponent} from "./internal/payments/payments.component";
 import {DropdownComponent} from "./core/components/dropdown.component";
+import {ExportComponent} from "./internal/settings/export.component";
+import {AccountService} from "./services/account.service";
+import {SimpleNotificationsModule} from "angular2-notifications/src/simple-notifications.module";
 
 @NgModule({
     declarations: [
@@ -113,7 +116,8 @@ import {DropdownComponent} from "./core/components/dropdown.component";
         InvoiceEditComponent,
         InvoiceLineComponent,
         PaymentsComponent,
-        DropdownComponent
+        DropdownComponent,
+        ExportComponent
     ],
     imports: [
         BrowserModule,
@@ -127,6 +131,7 @@ import {DropdownComponent} from "./core/components/dropdown.component";
             deps: [Http]
         }),
         routing,
+        SimpleNotificationsModule
     ],
     providers: [
         AuthService,
@@ -146,7 +151,8 @@ import {DropdownComponent} from "./core/components/dropdown.component";
         FileService,
         Formatter,
         TaxRateService,
-        InvoiceService
+        InvoiceService,
+        AccountService
     ],
     bootstrap: [AppComponent]
 })

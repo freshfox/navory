@@ -9,7 +9,7 @@ export class Income {
     date: string;
     description: string;
     category: Category;
-    price: number;
+    price: number = 0;
     tax_rate: TaxRate;
     file: File;
     eu_vat_type: EuVatType;
