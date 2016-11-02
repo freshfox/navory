@@ -163,7 +163,8 @@
         "delete-confirm-message": "Do you really want to delete this invoice?",
         "issued": "Issued",
         "add-payment": "Add payment date",
-        "edit-success": "Invoice successfully saved"
+        "edit-success": "Invoice successfully saved",
+        "preview": "Preview"
     },
     "expenses": {
         "title": "Expenses",

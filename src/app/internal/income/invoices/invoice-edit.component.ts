@@ -3,6 +3,8 @@ import {Invoice} from "../../../models/invoice";
 import {InvoiceLine} from "../../../models/invoice-line";
 import {ActivatedRoute} from "@angular/router";
 import {InvoiceService} from "../../../services/invoice.service";
+import {Country} from "../../../models/country";
+import {BootstrapService} from "../../../services/bootstrap.service";
 
 @Component({
     selector: 'nvry-invoice-edit',
@@ -11,11 +13,12 @@ import {InvoiceService} from "../../../services/invoice.service";
 export class InvoiceEditComponent implements OnInit {
 
     private invoice: Invoice;
+    private countries: Country[];
 
     private loading: boolean = false;
     private saving: boolean = false;
 
-    constructor(private route: ActivatedRoute, private invoiceService: InvoiceService) {
+    constructor(private route: ActivatedRoute, private invoiceService: InvoiceService, private bootstrapService: BootstrapService) {
         this.invoice = new Invoice();
         this.invoice.invoice_lines.push(new InvoiceLine());
 
@@ -33,6 +36,9 @@ export class InvoiceEditComponent implements OnInit {
                 this.loading = false;
             }
         });
+
+        this.bootstrapService.getCountries()
+            .subscribe(countries => this.countries = countries);
     }
 
     ngOnInit() { }

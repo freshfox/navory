@@ -164,7 +164,8 @@
         "delete-confirm-message": "Willst du diese Rechnung wirklich löschen? Bitte beachte, dass Rechnungen, die du bereits an einen Kunden gesendet hast laut Gesetz nicht gelöscht werden dürfen.",
         "issued": "Ausgestellt",
         "add-payment": "Zahlung buchen",
-        "edit-success": "Rechnung gespeichert"
+        "edit-success": "Rechnung gespeichert",
+        "preview": "Vorschau"
     },
     "expenses": {
         "title": "Ausgaben",

@@ -6,6 +6,7 @@ import {EuVatType} from "../core/enums/eu-vat-type.enum";
 import {TranslateService} from "ng2-translate";
 import {Unit} from "../models/unit";
 import {State} from "../core/state";
+import {Country} from "../models/country";
 
 @Injectable()
 export class BootstrapService extends BaseService {
@@ -39,6 +40,10 @@ export class BootstrapService extends BaseService {
 
     getUnits(): Observable<Unit[]> {
         return Observable.of(this.state.units);
+    }
+
+    getCountries(): Observable<Country[]> {
+        return Observable.of(this.state.countries);
     }
 
 }
