@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {InvoiceLine} from "../../../models/invoice-line";
 import {Unit} from "../../../models/unit";
 import {BootstrapService} from "../../../services/bootstrap.service";
@@ -33,6 +33,10 @@ import {Config} from "../../../core/config";
                 <nvry-select [options]="taxRates" [selectedValue]="invoiceLine.tax_rate.id" (selectedValueChange)="taxRateChanged($event)" class="taxrate-field connected-with-next"></nvry-select>
                 
                 <nvry-input type="money" [ngModel]="getAmount()" disabled></nvry-input>
+                
+                <nvry-dropdown *ngIf="dropdownShown">
+                    <button (click)="deleteLine()">{{ 'general.delete' | translate }}</button>
+                </nvry-dropdown>
             </div>
             
             <nvry-textarea 
@@ -45,6 +49,8 @@ import {Config} from "../../../core/config";
 export class InvoiceLineComponent implements OnInit {
 
     @Input() invoiceLine: InvoiceLine;
+    @Input() dropdownShown: boolean = true;
+    @Output() onDelete: EventEmitter<InvoiceLine> = new EventEmitter<InvoiceLine>();
     private units: Unit[];
     private taxRates: TaxRate[];
     private defaultTaxRate: TaxRate;
@@ -54,12 +60,13 @@ export class InvoiceLineComponent implements OnInit {
     private titleFieldInFocus: boolean = false;
     private descriptionFieldInFocus: boolean = false;
 
+
     constructor(private bootstrapService: BootstrapService, private taxRateService: TaxRateService) {
 
     }
 
     ngOnInit() {
-        if(!this.invoiceLine.unit_id) {
+        if (!this.invoiceLine.unit_id) {
             this.invoiceLine.unit_id = Config.defaultUnitId;
         }
         this.bootstrapService.getUnits()
@@ -84,6 +91,10 @@ export class InvoiceLineComponent implements OnInit {
     taxRateChanged(id: number) {
         this.taxRateService.getTaxRate(id)
             .subscribe(rate => this.invoiceLine.tax_rate = rate);
+    }
+
+    deleteLine() {
+        this.onDelete.next(this.invoiceLine);
     }
 
 }

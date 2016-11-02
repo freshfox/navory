@@ -39,6 +39,10 @@
 .invoice-edit-paper-section {
     padding: 30px;
     border-bottom: 1px solid $colorGrayLight;
+
+    &:last-child {
+        border-bottom: 0;
+    }
 }
 
 .customer-area {
@@ -79,7 +83,8 @@ nvry-invoice-line {
     .price-field { width: 14%; }
     .amount-field { width: 14%; }
     .taxrate-field { width: 7%; }
-    .actions-column { width: 5%; }
+
+    nvry-dropdown { width: 5%; }
 
     .description-field {
         display: none;

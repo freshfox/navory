@@ -4,8 +4,14 @@ nvry-dropdown {
 
     position: relative;
     padding: 5px 0;
-    text-align: right;
     display: inline-block;
+    text-align: center;
+
+    .dropdown__inner {
+        position: relative;
+        width: auto;
+        display: inline-block;
+    }
 
 
     .dropdown-target {
@@ -18,6 +24,7 @@ nvry-dropdown {
         background: #fff;
         @include display(flex);
         @include align-items(center);
+        margin: 0 auto;
 
         nvry-icon {
             width: 18px;

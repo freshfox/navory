@@ -41,6 +41,12 @@ export class InvoiceEditComponent implements OnInit {
         this.invoice.invoice_lines.push(new InvoiceLine());
     }
 
+    deleteLine(invoiceLine) {
+        this.invoice.invoice_lines = this.invoice.invoice_lines.filter((line) => {
+            return line !== invoiceLine;
+        });
+    }
+
     getTotalNet() {
         return this.invoice.getTotalNet();
     }
