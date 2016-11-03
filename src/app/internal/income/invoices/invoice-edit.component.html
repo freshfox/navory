@@ -11,10 +11,10 @@
             <span *ngIf="!invoice.id">{{ 'invoices.create_title' | translate }}</span>
         </h1>
         <div class="buttons">
-            <nvry-button class="button--secondary button--icon-medium" icon="eye-outline" (click)="save()" [loading]="saving" *ngIf="!invoice.id">{{ 'invoices.preview' | translate }}</nvry-button>
+            <nvry-button (click)="showPreview()" class="button--secondary button--icon-medium" icon="eye-outline" [loading]="saving" *ngIf="!invoice.id">{{ 'invoices.preview' | translate }}</nvry-button>
             <nvry-button (click)="save()" [loading]="saving" *ngIf="invoice.id">{{ 'general.save' | translate }}</nvry-button>
             <nvry-button class="button--secondary" (click)="saveDraft()" [loading]="saving" *ngIf="!invoice.id">{{ 'invoices.save-draft' | translate }}</nvry-button>
-            <nvry-button (click)="save()" [loading]="saving" *ngIf="!invoice.id">{{ 'invoices.issue' | translate }}</nvry-button>
+            <nvry-button (click)="saveAndIssue()" [loading]="saving" *ngIf="!invoice.id">{{ 'invoices.issue' | translate }}</nvry-button>
         </div>
     </div>
 
@@ -29,9 +29,26 @@
                         <nvry-textarea [label]="'general.address' | translate"
                                        [(ngModel)]="invoice.customer_address"></nvry-textarea>
 
-                        <nvry-select [label]="'general.country' | translate" [options]="countries" [(selectedValue)]="invoice.country.id"></nvry-select>
+                        <nvry-select [label]="'general.country' | translate" [options]="countries" [(selectedValue)]="invoice.customer_country_id" disabled></nvry-select>
                     </div>
-                    <div class="bit-50"></div>
+                    <div class="bit-50">
+                        <div class="frame frame--bit-spacing">
+                            <div class="bit-50">&nbsp;</div>
+                            <div class="bit-50">
+                                <nvry-input [(ngModel)]="invoice.number" [label]="'invoices.number' | translate" [placeholder]="nextInvoiceNumber"></nvry-input>
+                            </div>
+                        </div>
+                        <div class="frame frame--bit-spacing">
+                            <div class="bit-50">
+                                <nvry-input type="date" [(ngModel)]="invoice.date" [label]="'general.date' | translate"></nvry-input>
+                                <nvry-input type="date" [(ngModel)]="invoice.service_date_start" [label]="'invoices.service-date-start' | translate"></nvry-input>
+                            </div>
+                            <div class="bit-50">
+                                <nvry-input type="date" [(ngModel)]="invoice.due_date" [label]="'invoices.date-due' | translate"></nvry-input>
+                                <nvry-input type="date" [(ngModel)]="invoice.service_date_end" [label]="'invoices.service-date-end' | translate"></nvry-input>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

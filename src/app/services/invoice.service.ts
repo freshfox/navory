@@ -20,16 +20,19 @@ export class InvoiceService extends BaseService {
 
     getInvoice(id: number): Observable<Invoice> {
         return this.get(this.getRestEntityPath(this.pathInvoices, id))
-            .map(invoice => {
-                return new Invoice(invoice);
+            .map(invoiceData => {
+                let invoice = new Invoice(invoiceData);
+                return invoice;
             });
     }
 
     saveInvoice(invoice: Invoice) {
         if (invoice.id) {
-            return this.patch(this.getRestEntityPath(this.pathInvoices, invoice.id), invoice);
+            return this.patch(this.getRestEntityPath(this.pathInvoices, invoice.id), invoice)
+                .map(invoice => new Invoice(invoice));
         }
-        return this.post(this.pathInvoices, invoice);
+        return this.post(this.pathInvoices, invoice)
+            .map(invoice => new Invoice(invoice));
     }
 
     getTaxAmounts(invoice: Invoice): any[] {
@@ -64,6 +67,10 @@ export class InvoiceService extends BaseService {
         });
 
         return amounts;
+    }
+
+    getPreviewURL(invoice: Invoice): string {
+        return this.constructApiUrl(`/${invoice.id}/html`);
     }
 
 }

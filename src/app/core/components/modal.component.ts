@@ -1,5 +1,5 @@
 import {
-    Component, style, animate, transition, trigger, Input, ComponentFactoryResolver, Type,
+    Component, style, animate, transition, trigger, Input,
     ViewContainerRef, ViewChild
 } from '@angular/core';
 

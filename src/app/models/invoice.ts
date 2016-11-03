@@ -1,26 +1,31 @@
 import {InvoiceLine} from "./invoice-line";
 import {BaseModel} from "../core/base.model";
+import {Country} from "./country";
 
 export class Invoice extends BaseModel {
 
     id: number;
-    number: string;
+    number: number;
+    draft: boolean;
     date: string;
     due_date: string;
-    invoice_lines: InvoiceLine[] = [];
+    service_date_start: string;
+    service_date_end: string;
+    invoice_lines: InvoiceLine[];
     payment_date: string;
     customer_name: string;
     customer_address: string;
+    customer_country_id: number;
+    customer_vat_number: string;
 
     constructor(data?: any) {
         super(data);
 
-        var lines = [];
-        this.invoice_lines.forEach(currentLine => {
-            var newLine = new InvoiceLine(currentLine);
-            lines.push(newLine);
-        });
-        this.invoice_lines = lines;
+        if(this.invoice_lines) {
+            this.invoice_lines = this.invoice_lines.map(currentLine => new InvoiceLine(currentLine));
+        } else {
+            this.invoice_lines = [];
+        }
     }
 
     getTotalNet(): number {

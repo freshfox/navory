@@ -12,6 +12,7 @@ import {Country} from "../models/country";
 export class BootstrapService extends BaseService {
 
     private pathBootstrap = '/bootstrap';
+    private defaultCountryCCA2 = 'AT';
 
     constructor(http: Http, private translate: TranslateService, private state: State) {
         super(http);
@@ -42,8 +43,19 @@ export class BootstrapService extends BaseService {
         return Observable.of(this.state.units);
     }
 
-    getCountries(): Observable<Country[]> {
-        return Observable.of(this.state.countries);
+    getCountries(): Country[] {
+        return this.state.countries;
+    }
+
+    getDefaultCountry(): Country {
+        var defaultCountry;
+        this.getCountries().forEach(country => {
+            if(country.cca2 == this.defaultCountryCCA2) {
+                defaultCountry = country;
+            }
+        });
+
+        return defaultCountry;
     }
 
 }
