@@ -45,6 +45,10 @@ export class Invoice extends BaseModel {
 
         return amount;
     }
+
+    isIssued(): boolean {
+        return !this.draft;
+    }
 }
 
 export enum InvoiceStatus {

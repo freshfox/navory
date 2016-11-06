@@ -3,14 +3,14 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Http} from "@angular/http";
 import {Invoice} from "../models/invoice";
-import {InvoiceLine} from "../models/invoice-line";
+import {FileService} from "./file.service";
 
 @Injectable()
 export class InvoiceService extends BaseService {
 
     private pathInvoices = '/invoices';
 
-    constructor(http: Http) {
+    constructor(http: Http, private fileService: FileService) {
         super(http);
     }
 
@@ -70,7 +70,16 @@ export class InvoiceService extends BaseService {
     }
 
     getPreviewURL(invoice: Invoice): string {
-        return this.constructApiUrl(`/${invoice.id}/html`);
+        return this.constructApiUrl(`${this.pathInvoices}/${invoice.id}/html`);
+    }
+
+    getDownloadURL(invoice: Invoice): string {
+        return this.constructApiUrl(`${this.pathInvoices}/${invoice.id}/pdf`);
+    }
+
+    downloadInvoicePDF(invoice: Invoice) {
+        let url = this.getDownloadURL(invoice);
+        this.fileService.downloadFromURL(url);
     }
 
 }

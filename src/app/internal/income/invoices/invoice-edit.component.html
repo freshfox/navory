@@ -4,14 +4,15 @@
     </nvry-button>
     <hr>
 </div>
-<template ngIf="!loading">
+<template [ngIf]="!loading">
     <div class="page-row button-row">
         <h1 class="module-title">
             <span *ngIf="invoice.id">{{ 'invoices.edit_title' | translate:{ number: invoice.number } }}</span>
             <span *ngIf="!invoice.id">{{ 'invoices.create_title' | translate }}</span>
         </h1>
         <div class="buttons">
-            <nvry-button (click)="showPreview()" class="button--secondary button--icon-medium" icon="eye-outline" [loading]="saving" *ngIf="!invoice.id">{{ 'invoices.preview' | translate }}</nvry-button>
+            <nvry-button icon="download" class="button--secondary"(click)="downloadPDF()" *ngIf="invoice.id">{{ 'actions.download' | translate }}</nvry-button>
+            <nvry-button (click)="showPreview()" class="button--secondary button--icon-medium" icon="eye-outline" *ngIf="invoice.id">{{ 'invoices.preview' | translate }}</nvry-button>
             <nvry-button (click)="save()" [loading]="saving" *ngIf="invoice.id">{{ 'general.save' | translate }}</nvry-button>
             <nvry-button class="button--secondary" (click)="saveDraft()" [loading]="saving" *ngIf="!invoice.id">{{ 'invoices.save-draft' | translate }}</nvry-button>
             <nvry-button (click)="saveAndIssue()" [loading]="saving" *ngIf="!invoice.id">{{ 'invoices.issue' | translate }}</nvry-button>
@@ -98,5 +99,5 @@
 
 <nvry-spinner *ngIf="loading"></nvry-spinner>
 
-<pre>{{ invoice | json }}</pre>
+<!--<pre>{{ invoice | json }}</pre>-->
 

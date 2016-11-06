@@ -43,7 +43,6 @@ export class InvoiceEditComponent implements OnInit {
                     .subscribe((invoice: Invoice) => {
                         this.loading = false;
                         this.invoice = invoice;
-                        console.log(this.invoice);
                     });
             } else {
                 this.loading = false;
@@ -57,6 +56,10 @@ export class InvoiceEditComponent implements OnInit {
 
     get nextInvoiceNumber(): number {
         return this.state.nextInvoiceNumber;
+    }
+
+    get invoicePreviewURL(): string {
+        return this.invoiceService.getPreviewURL(this.invoice);
     }
 
     addLine() {
@@ -113,6 +116,10 @@ export class InvoiceEditComponent implements OnInit {
 
     showPreview() {
         let url = this.invoiceService.getPreviewURL(this.invoice);
+    }
+
+    downloadPDF() {
+        this.invoiceService.downloadInvoicePDF(this.invoice);
     }
 
 }

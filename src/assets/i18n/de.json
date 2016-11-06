@@ -63,7 +63,8 @@
         "view": "Anzeigen",
         "edit": "Bearbeiten",
         "copy": "Kopieren",
-        "delete": "Löschen"
+        "delete": "Löschen",
+        "download": "Herunterladen"
     },
     "timeout": {
         "text": "Sieht so aus als wäre da bei uns etwas schiefgelaufen.<br>So etwas passiert meistens, wenn die Entwickler gerade schlafen.",

@@ -70,6 +70,8 @@ import {DropdownComponent} from "./core/components/dropdown.component";
 import {ExportComponent} from "./internal/settings/export.component";
 import {AccountService} from "./services/account.service";
 import {SimpleNotificationsModule} from "angular2-notifications/src/simple-notifications.module";
+import {SafePipe} from "./core/pipes/safe.pipe";
+import {DocumentPreviewComponent} from "./core/components/document-preview.component";
 
 @NgModule({
     declarations: [
@@ -117,7 +119,9 @@ import {SimpleNotificationsModule} from "angular2-notifications/src/simple-notif
         InvoiceLineComponent,
         PaymentsComponent,
         DropdownComponent,
-        ExportComponent
+        ExportComponent,
+        SafePipe,
+        DocumentPreviewComponent
     ],
     imports: [
         BrowserModule,

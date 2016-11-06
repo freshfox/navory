@@ -6,11 +6,17 @@ export class InvoiceLine extends BaseModel {
     id: number;
     title: string;
     description: string;
-    quantity: number = 1;
-    price: number = 0;
+    quantity: number;
+    price: number;
     tax_rate_id: number;
     tax_rate: TaxRate;
     unit_id: number;
+
+    constructor(data?: any) {
+        super(data);
+        this.price = this.price || 0;
+        this.quantity = this.quantity || 1;
+    }
 
     getNetAmount(): number {
         return this.price * this.quantity;
