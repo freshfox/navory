@@ -25,6 +25,7 @@ export class IncomeListComponent implements OnInit {
     private tableOptions: TableOptions;
 
     @ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
+    @ViewChild('attachmentColumn') attachmentColumn: TemplateRef<any>;
 
     constructor(private incomeService: IncomeService,
                 private translate: TranslateService,
@@ -37,11 +38,12 @@ export class IncomeListComponent implements OnInit {
     ngOnInit() {
         this.tableOptions = new TableOptions({
             columns: [
+                { cellTemplate: this.attachmentColumn, width: 5, sortable: false },
                 { name: this.translate.instant('general.number-abbrev'),  prop: 'number', width: 7, sortDirection: SortDirection.Asc },
                 { name: this.translate.instant('general.description'),  prop: 'description' },
                 { name: this.translate.instant('general.date'),  prop: 'date', pipe: this.datePipe, width: 12 },
                 { name: this.translate.instant('general.amount_net'),  prop: 'price', pipe: this.numberPipe, width: 10, alignment: ColumnAlignment.Right },
-		{ cellTemplate: this.actionsColumn, width: 5, sortable: false },
+		        { cellTemplate: this.actionsColumn, width: 5, sortable: false },
             ]
         });
 

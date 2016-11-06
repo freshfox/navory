@@ -11,6 +11,7 @@ nvry-dropdown {
         position: relative;
         width: auto;
         display: inline-block;
+        z-index: 110;
     }
 
 
@@ -25,6 +26,7 @@ nvry-dropdown {
         @include display(flex);
         @include align-items(center);
         margin: 0 auto;
+        cursor: pointer;
 
         nvry-icon {
             width: 18px;
@@ -52,7 +54,6 @@ nvry-dropdown {
         background: #fff;
         padding: 5px 0;
         box-shadow: 0 0 12px rgba(0,0,0,.15);
-        z-index: 110;
 
         button {
             display: block;
@@ -73,5 +74,6 @@ nvry-dropdown {
         width: 100%;
         height: 100%;
         z-index: 100;
+        cursor: default;
     }
 }

@@ -1,20 +1,3 @@
-// Income List
-.income-list-table {
-
-	tbody tr:hover td {
-		background: $colorLightAccent;
-	}
-
-	td { cursor: pointer; }
-
-	.col-file { width: 50px; }
-	.col-number { width: 6%; }
-	.col-date { width: 12%; }
-	.col-category { width: 20%; }
-	.col-amount { text-align: right; width: 10%; padding-right: 0; }
-	.col-actions { padding-left: 20px; padding-right: 10px; text-align: right; width: 5%; }
-}
-
 .document-upload-wrapper {
 	padding-right: 30px;
 }
@@ -64,11 +47,8 @@
 	}
 }
 
-// Income editing form
-.income-edit-form {
-
-	.intra-community-fields {
-		display: none;
-	}
+.attachment-indicator-icon {
+    width: 17px;
+    height: 17px;
+    display: block;
 }
-

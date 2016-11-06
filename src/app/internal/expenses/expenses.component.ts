@@ -23,6 +23,7 @@ export class ExpensesComponent implements OnInit {
     private tableOptions: TableOptions;
 
     @ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
+    @ViewChild('attachmentColumn') attachmentColumn: TemplateRef<any>;
 
     constructor(private expenseService: ExpenseService,
                 private translate: TranslateService,
@@ -35,6 +36,7 @@ export class ExpensesComponent implements OnInit {
     ngOnInit() {
         this.tableOptions = new TableOptions({
             columns: [
+                { cellTemplate: this.attachmentColumn, width: 5, sortable: false },
                 {name: this.translate.instant('general.number-abbrev'), prop: 'number', width: 7, sortDirection: SortDirection.Asc},
                 {name: this.translate.instant('general.description'), prop: 'description'},
                 {name: this.translate.instant('general.date'), prop: 'date', width: 12, pipe: this.datePipe},

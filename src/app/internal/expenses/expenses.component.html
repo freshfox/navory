@@ -24,3 +24,7 @@
         <button (click)="deleteExpense(row)">{{ 'actions.delete' | translate }}</button>
     </nvry-dropdown>
 </template>
+
+<template #attachmentColumn let-row="row" let-value="value">
+    <nvry-icon name="paperclip" *ngIf="row.file.id" class="attachment-indicator-icon"></nvry-icon>
+</template>
