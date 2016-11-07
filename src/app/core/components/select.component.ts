@@ -73,6 +73,7 @@ export class SelectComponent implements OnInit {
 
     ngOnDestroy() {
         this.select2Element.off("select2:select");
+        $(this.select).select2('destroy');
     }
 
     private getValue(option) {

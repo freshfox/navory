@@ -38,6 +38,10 @@ export class DatePickerDirective implements OnInit, ControlValueAccessor {
         });
     }
 
+    ngOnDestroy() {
+        this.picker.destroy();
+    }
+
     writeValue(value: any): void {
         if(value == undefined) {
             value = new Date();
