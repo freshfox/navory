@@ -204,6 +204,10 @@
             "title": "Unternehmensdetails",
             "success-message": "Unternehmensdaten erfolgreich gespeichert"
         },
+        "logo": {
+            "title": "Firmenlogo",
+            "description": "Wird auf deinen Rechnungen angezeigt."
+        },
         "bank": {
             "title": "Zahlungsdaten",
             "description": "Trage hier deine Bankdaten ein damit sie auf deinen Rechnungen angezeigt werden."

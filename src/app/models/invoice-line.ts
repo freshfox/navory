@@ -1,5 +1,6 @@
 import {TaxRate} from "./tax-rate";
 import {BaseModel} from "../core/base.model";
+import {Calculator} from "../core/calculator";
 
 export class InvoiceLine extends BaseModel {
 
@@ -19,15 +20,15 @@ export class InvoiceLine extends BaseModel {
     }
 
     getNetAmount(): number {
-        return this.price * this.quantity;
+        return Calculator.toCents(this.price) * this.quantity / 100;
     }
 
     getGrossAmount(): number {
-        return this.getNetAmount() + this.getTaxAmount();
+        return Calculator.add(this.getNetAmount(), this.getTaxAmount());
     }
 
     getTaxAmount(): number {
-        return this.getNetAmount() * this.getTaxrate() / 100;
+        return Calculator.mult(this.getNetAmount(), this.getTaxrate()) / 100;
     }
 
     getTaxrate(): number {

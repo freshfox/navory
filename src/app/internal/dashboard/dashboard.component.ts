@@ -1,7 +1,7 @@
 import {Component, ElementRef} from '@angular/core';
 import {ReportService} from "../../services/report.service";
 var moment = require('moment');
-import * as Chartist from 'chartist';
+var Chartist = require('chartist');
 
 @Component({
     templateUrl: 'dashboard.component.html'

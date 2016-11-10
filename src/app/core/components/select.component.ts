@@ -1,6 +1,6 @@
 import {Component, OnInit, EventEmitter, ElementRef} from '@angular/core';
 import {Input, Output} from "@angular/core/src/metadata/directives";
-import * as $ from 'jquery';
+var $ = require('jquery');
 require('select2');
 
 @Component({

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Invoice} from "../../../models/invoice";
 import {InvoiceLine} from "../../../models/invoice-line";
 import {ActivatedRoute} from "@angular/router";
@@ -8,6 +8,7 @@ import {BootstrapService} from "../../../services/bootstrap.service";
 import {State} from "../../../core/state";
 import {NotificationsService} from "angular2-notifications/src/notifications.service";
 import {TranslateService} from "ng2-translate";
+import {ModalComponent} from "../../../core/components/modal.component";
 var moment = require('moment');
 
 @Component({
@@ -21,6 +22,8 @@ export class InvoiceEditComponent implements OnInit {
 
     private loading: boolean = false;
     private saving: boolean = false;
+
+    @ViewChild('previewModal') private previewModal: ModalComponent;
 
     constructor(private route: ActivatedRoute,
                 private invoiceService: InvoiceService,
@@ -116,6 +119,8 @@ export class InvoiceEditComponent implements OnInit {
 
     showPreview() {
         let url = this.invoiceService.getPreviewURL(this.invoice);
+
+        this.previewModal.show();
     }
 
     downloadPDF() {

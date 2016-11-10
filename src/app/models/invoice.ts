@@ -1,6 +1,7 @@
 import {InvoiceLine} from "./invoice-line";
 import {BaseModel} from "../core/base.model";
 import {Country} from "./country";
+import {Calculator} from "../core/calculator";
 
 export class Invoice extends BaseModel {
 
@@ -31,7 +32,7 @@ export class Invoice extends BaseModel {
     getTotalNet(): number {
         var amount = 0;
         this.invoice_lines.forEach(invoiceLine => {
-            amount += invoiceLine.getNetAmount();
+            amount = Calculator.add(amount, invoiceLine.getNetAmount());
         });
 
         return amount;
@@ -40,7 +41,7 @@ export class Invoice extends BaseModel {
     getTotalGross(): number {
         var amount = 0;
         this.invoice_lines.forEach(invoiceLine => {
-            amount += invoiceLine.getGrossAmount();
+            amount = Calculator.add(amount, invoiceLine.getGrossAmount());
         });
 
         return amount;

@@ -1,6 +1,7 @@
 {
   "globalDependencies": {
     "chartist": "registry:dt/chartist#0.9.5+20160619034222",
+    "dropzone": "registry:dt/dropzone#4.3.0+20160923131451",
     "pikaday": "registry:dt/pikaday#0.0.0+20160812121421",
     "select2": "registry:dt/select2#4.0.1+20160812083516"
   }

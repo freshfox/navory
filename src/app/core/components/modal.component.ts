@@ -1,15 +1,19 @@
 import {
     Component, style, animate, transition, trigger, Input,
-    ViewContainerRef, ViewChild
+    ViewContainerRef, ViewChild, ContentChild, TemplateRef
 } from '@angular/core';
 
 @Component({
     selector: 'nvry-modal',
     template: `
 		<div [@backdrop] tabindex="1" class="modal {{ class }}" *ngIf="isShown" (click)="onClick($event)">
-			<div [@dialog] class="modal-dialog">
+			<div [@dialog] class="modal-dialog" *ngIf="!clean">
 				<ng-content></ng-content>
 			</div>
+			
+			<ng-content *ngIf="clean"></ng-content>
+			
+			<nvry-button *ngIf="showCloseButton" class="modal__close-button" (click)="hide()" icon="cross"></nvry-button>
 		</div>`,
     animations: [
         trigger('dialog', [
@@ -39,7 +43,12 @@ export class ModalComponent {
     private isShown: boolean = false;
     private data: any;
     @Input() class: string;
+    @Input() clean: boolean = false;
+    @Input() showCloseButton: boolean = false;
     @ViewChild('inner', {read: ViewContainerRef}) innerContainer: ViewContainerRef;
+
+    @ContentChild('closeButton') closeButton: TemplateRef<any>;
+
 
     constructor() {
     }

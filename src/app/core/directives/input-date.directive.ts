@@ -1,8 +1,8 @@
 import {OnInit, ElementRef, Directive, forwardRef} from '@angular/core';
-import Pikaday from 'pikaday';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
-var moment = require('moment');
 import {Config} from "../config";
+var Pikaday = require('pikaday');
+var moment = require('moment');
 
 export const DATEPICKER_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -17,7 +17,7 @@ export const DATEPICKER_VALUE_ACCESSOR: any = {
 })
 export class DatePickerDirective implements OnInit, ControlValueAccessor {
 
-    private picker: Pikaday;
+    private picker: any;
     private onChangeCallback: (_: any) => void = () => {};
     private format: string = 'DD.MM.YYYY';
 

@@ -199,8 +199,12 @@
             "success-message": "Password successfully changed"
         },
         "company": {
-            "title": "Company details",
+            "title": "Company Details",
             "success-message": "Company details successfully saved"
+        },
+        "logo": {
+            "title": "Company Logo",
+            "description": "Is displayed on your invoices."
         },
         "bank": {
             "title": "Bank Details",

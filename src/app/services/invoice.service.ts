@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Http} from "@angular/http";
 import {Invoice} from "../models/invoice";
 import {FileService} from "./file.service";
+import {Calculator} from "../core/calculator";
 
 @Injectable()
 export class InvoiceService extends BaseService {
@@ -57,8 +58,8 @@ export class InvoiceService extends BaseService {
                 }
 
 
-                amount.amount += taxAmount;
-                amount.netAmount += netAmount;
+                amount.amount = Calculator.add(amount.amount, taxAmount);
+                amount.netAmount = Calculator.add(amount.netAmount, netAmount);
             }
         });
 

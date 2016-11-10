@@ -99,5 +99,9 @@
 
 <nvry-spinner *ngIf="loading"></nvry-spinner>
 
-<!--<pre>{{ invoice | json }}</pre>-->
 
+<nvry-modal [clean]="true" [showCloseButton]="true" #previewModal>
+    <div class="document-preview">
+        <iframe [src]="invoicePreviewURL | safe" frameborder="0"></iframe>
+    </div>
+</nvry-modal>

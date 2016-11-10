@@ -2,7 +2,7 @@ import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 import {Input} from "@angular/core/src/metadata/directives";
 import {File} from "../../../models/file";
 import {FileService} from "../../../services/file.service";
-import * as Dropzone from 'dropzone';
+var Dropzone = require('dropzone');
 import {environment} from "../../../../environments/environment";
 import {ViewChild} from "@angular/core/src/metadata/di";
 import {TranslateService} from "ng2-translate";
@@ -24,7 +24,7 @@ export class DocumentUploadComponent implements OnInit {
     private progress = 0;
     private uploading = false;
 
-    private dropzone: Dropzone;
+    private dropzone: any;
 
     constructor(private fileService: FileService, private translate: TranslateService) {
 
