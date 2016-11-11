@@ -6,4 +6,19 @@ if [ -z $1 ]; then
 	exit 1
 fi
 
-firebase deploy --project navory-dev --token="$FIREBASE_TOKEN";
+function deploy {
+    PROJECT=$1
+
+    npm run build
+    firebase deploy --project ${PROJECT} --token="$FIREBASE_TOKEN";
+
+}
+
+case ${ENV} in
+	"development")
+		deploy navory-dev
+		;;
+	"production")
+		deploy navory
+		;;
+esac
