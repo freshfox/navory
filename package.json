@@ -12,6 +12,9 @@
     "build": "ng build --prod",
     "deploy": "firebase deploy"
   },
+  "engines": {
+    "node": "6.9.1"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "2.1.1",
