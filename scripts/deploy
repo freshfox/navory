@@ -10,8 +10,7 @@ function deploy {
     PROJECT=$1
 
     npm run build
-    firebase deploy --project ${PROJECT} --token="$FIREBASE_TOKEN";
-
+    npm run deploy -- --project ${PROJECT} --token="$FIREBASE_TOKEN";
 }
 
 case ${ENV} in
