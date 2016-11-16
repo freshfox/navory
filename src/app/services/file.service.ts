@@ -2,7 +2,6 @@ import {BaseService} from "./base.service";
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {File} from "../models/file";
-var download = require('downloadjs');
 
 @Injectable()
 export class FileService extends BaseService {
