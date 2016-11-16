@@ -1,11 +1,11 @@
-import {FormControl, FormGroup, AbstractControl, Validators} from "@angular/forms";
+import {FormControl, FormGroup, AbstractControl, Validators, ValidatorFn} from "@angular/forms";
 import {Config} from "./config";
 import * as moment from "moment";
 var validator = require('validator');
 
 export class FormValidator {
 
-    static passwordLength = Validators.minLength(Config.minPasswordLength);
+    static passwordLength: ValidatorFn = Validators.minLength(Config.minPasswordLength);
 
     static getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
         let config = {
@@ -21,7 +21,7 @@ export class FormValidator {
         return config[validatorName] || 'No error message for type ' + validatorName;
     }
 
-    static getPasswordValidators() {
+    static getPasswordValidators(): ValidatorFn {
         return Validators.compose([Validators.required, FormValidator.passwordLength]);
     }
 

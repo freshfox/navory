@@ -2,6 +2,7 @@ import {BaseService} from "./base.service";
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {File} from "../models/file";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class FileService extends BaseService {
@@ -12,7 +13,7 @@ export class FileService extends BaseService {
         super(http);
     }
 
-    getFile(id: number) {
+    getFile(id: number): Observable<File> {
         let path = this.pathFile + `/${id}`;
         return this.get(path);
     }
