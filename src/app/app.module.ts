@@ -6,7 +6,7 @@ import {TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-trans
 import {HttpModule, Http} from "@angular/http";
 
 import {AppComponent} from './app.component';
-import {routing} from "./app.routing";
+import {AppRoutingModule} from "./app.routing";
 import {ButtonComponent} from "./core/components/button.component";
 import {AuthService} from "./services/auth.service";
 import {UserService} from "./services/user.service";
@@ -124,7 +124,8 @@ export function translateStaticLoaderFactory(http: Http) {
         DropdownComponent,
         ExportComponent,
         SafePipe,
-        DocumentPreviewComponent
+        DocumentPreviewComponent,
+        DatePipe
     ],
     imports: [
         BrowserModule,
@@ -137,7 +138,7 @@ export function translateStaticLoaderFactory(http: Http) {
             useFactory: translateStaticLoaderFactory,
             deps: [Http]
         }),
-        routing,
+        AppRoutingModule,
         SimpleNotificationsModule,
         MdProgressCircleModule
     ],
