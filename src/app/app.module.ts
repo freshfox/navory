@@ -48,7 +48,6 @@ import {BootstrapService} from "./services/bootstrap.service";
 import {DocumentUploadComponent} from "./core/components/document-upload/document-upload.component";
 import {FileService} from "./services/file.service";
 import {PageNavigationComponent} from "./core/components/document-upload/page-navigation.component";
-import {MdProgressCircle} from "@angular2-material/progress-circle";
 import {SettingsComponent} from "./internal/settings/settings.component";
 import {AccountSettingsComponent} from "./internal/settings/account-settings.component";
 import {ProfileSettingsComponent} from "./internal/settings/profile-settings.component";
@@ -72,6 +71,11 @@ import {AccountService} from "./services/account.service";
 import {SimpleNotificationsModule} from "angular2-notifications/src/simple-notifications.module";
 import {SafePipe} from "./core/pipes/safe.pipe";
 import {DocumentPreviewComponent} from "./core/components/document-preview.component";
+import {MdProgressCircleModule} from "@angular2-material/progress-circle";
+
+export function translateStaticLoaderFactory(http: Http) {
+    return new TranslateStaticLoader(http, '/assets/i18n', '.json');
+}
 
 @NgModule({
     declarations: [
@@ -103,7 +107,6 @@ import {DocumentPreviewComponent} from "./core/components/document-preview.compo
         ExpenseEditComponent,
         DocumentUploadComponent,
         PageNavigationComponent,
-        MdProgressCircle,
         SettingsComponent,
         AccountSettingsComponent,
         ProfileSettingsComponent,
@@ -131,11 +134,12 @@ import {DocumentPreviewComponent} from "./core/components/document-preview.compo
         HttpModule,
         TranslateModule.forRoot({
             provide: TranslateLoader,
-            useFactory: (http: Http) => new TranslateStaticLoader(http, '/assets/i18n', '.json'),
+            useFactory: translateStaticLoaderFactory,
             deps: [Http]
         }),
         routing,
-        SimpleNotificationsModule
+        SimpleNotificationsModule,
+        MdProgressCircleModule
     ],
     providers: [
         AuthService,

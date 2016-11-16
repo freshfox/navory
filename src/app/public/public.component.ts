@@ -3,7 +3,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {State} from "../core/state";
 
 @Component({
-	template: require('./public.html'),
+	templateUrl: 'public.html',
 })
 export class PublicComponent {
 
