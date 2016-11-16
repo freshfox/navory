@@ -4,7 +4,7 @@ import {Input, Output} from "@angular/core/src/metadata/directives";
 
 @Component({
     selector: 'nvry-month-selection',
-    templateUrl: `
+    template: `
         <ul>
             <li *ngFor="let month of months; let i = index;" [class.selected]="i == selectedMonthIndex">
                 <button (click)="monthClicked(i)">{{ month }}</button>

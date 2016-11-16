@@ -3,7 +3,7 @@ import {Input, Output} from "@angular/core/src/metadata/directives";
 
 @Component({
     selector: 'nvry-year-selection',
-    templateUrl: `
+    template: `
       <div class="nvry-year-selection__inner">
         <button (click)="lastYear()">
             <nvry-icon name="arrow-left"></nvry-icon>

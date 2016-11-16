@@ -3,7 +3,7 @@ import {Input, Output} from "@angular/core/src/metadata/directives";
 
 @Component({
     selector: 'nvry-page-navigation',
-    templateUrl: `
+    template: `
         <button class="button prev-page-button" (click)="previousPage()">
             <nvry-icon name="arrow-left"></nvry-icon>
         </button>

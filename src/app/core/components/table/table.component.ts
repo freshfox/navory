@@ -7,7 +7,7 @@ import {Helpers} from "../../helpers";
 
 @Component({
     selector: 'nvry-table',
-    templateUrl: `
+    template: `
     <table [class.table--clickable-items]="options.itemsClickable">
         <tr>
             <th nvry-table-header-cell *ngFor="let column of options.columns" [column]="column" (click)="sortHeaderClicked(column)"></th>
@@ -48,7 +48,6 @@ export class TableComponent implements OnInit {
 
 
     private sortedColumn: TableColumn;
-    private oldLength: number;
 
     constructor() {
     }

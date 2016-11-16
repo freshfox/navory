@@ -5,7 +5,7 @@ import {SortDirection} from "./sort-direction.enum";
 
 @Component({
     selector: 'th[nvry-table-header-cell]',
-    templateUrl: `
+    template: `
         <div class="nvry-table-header-cell__inner">
             <span>{{ name }}</span>
             <nvry-icon [name]="sortIconName" [attr.invisible]="!(column.sortable && sortIconName) ? true : null"></nvry-icon>
