@@ -76,7 +76,9 @@ export class InputComponent implements ControlValueAccessor {
     @Input() tabindex: number;
 
     @Input() public set disabled(value: any) {
-        this.disabledSet = true;
+        if(value !== false) {
+            this.disabledSet = true;
+        }
     }
 
     @Output() focus: EventEmitter<any> = new EventEmitter<any>();

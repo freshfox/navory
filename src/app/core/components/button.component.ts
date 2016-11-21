@@ -4,7 +4,7 @@ let Ladda = require('ladda');
 @Component({
 	selector: 'nvry-button',
 	template: `
-		<button class="button {{ class }}" data-style="zoom-in">
+		<button class="button {{ class }}" data-style="zoom-in" [attr.disabled]="disabled ? true : null">
 		    <nvry-icon *ngIf="icon" [name]="icon"></nvry-icon>
 		    <span class="ladda-label">
 			    <ng-content></ng-content>
@@ -16,6 +16,7 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
 	@Input() loading;
     @Input() class;
     @Input() icon: string;
+    @Input() disabled: boolean;
 
 	private laddaButton: any;
 

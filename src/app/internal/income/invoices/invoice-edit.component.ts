@@ -9,6 +9,8 @@ import {State} from "../../../core/state";
 import {NotificationsService} from "angular2-notifications/src/notifications.service";
 import {TranslateService} from "ng2-translate";
 import {ModalComponent} from "../../../core/components/modal.component";
+import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {FormValidator} from "../../../core/form-validator";
 var moment = require('moment');
 
 @Component({
@@ -22,6 +24,10 @@ export class InvoiceEditComponent implements OnInit {
 
     private loading: boolean = false;
     private saving: boolean = false;
+    private savingDraft: boolean = false;
+
+    private form: FormGroup;
+    private createMode: boolean = true;
 
     @ViewChild('previewModal') private previewModal: ModalComponent;
 
@@ -30,18 +36,21 @@ export class InvoiceEditComponent implements OnInit {
                 private bootstrapService: BootstrapService,
                 private state: State,
                 private notificationService: NotificationsService,
-                private translate: TranslateService) {
+                private translate: TranslateService,
+                private fb: FormBuilder) {
 
         this.invoice = new Invoice();
         this.invoice.due_date = moment().add(1, 'M');
         this.invoice.customer_country_id = this.bootstrapService.getDefaultCountry().id;
         this.invoice.invoice_lines.push(new InvoiceLine());
+        this.invoice.draft = true;
 
 
         this.loading = true;
         this.route.params.subscribe(params => {
             let id = params['id'];
             if (id) {
+                this.createMode = false;
                 this.invoiceService.getInvoice(id)
                     .subscribe((invoice: Invoice) => {
                         this.loading = false;
@@ -55,7 +64,15 @@ export class InvoiceEditComponent implements OnInit {
         this.countries = this.bootstrapService.getCountries();
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.form = this.fb.group({
+            number: ["", FormValidator.number],
+            date: ["", Validators.compose([Validators.required, FormValidator.date])],
+            service_date_start: ["", Validators.compose([Validators.required, FormValidator.date])],
+            service_date_end: ["", Validators.compose([Validators.required, FormValidator.date])],
+            due_date: ["", Validators.compose([Validators.required, FormValidator.date])],
+        });
+    }
 
     get nextInvoiceNumber(): number {
         return this.state.nextInvoiceNumber;
@@ -89,6 +106,7 @@ export class InvoiceEditComponent implements OnInit {
 
     saveDraft() {
         this.invoice.draft = true;
+        this.savingDraft = true;
         this.save();
     }
 
@@ -109,6 +127,8 @@ export class InvoiceEditComponent implements OnInit {
                     }
                     this.invoice = invoice;
                     this.saving = false;
+                    this.savingDraft = false;
+                    this.createMode = false;
                     this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
                 },
                 error => {
