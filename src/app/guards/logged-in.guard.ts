@@ -6,6 +6,7 @@ import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/catch';
 import {Observable} from "rxjs";
 import {AuthService} from "../services/auth.service";
+import {ServiceError, ServiceErrorCode} from "../services/base.service";
 
 
 @Injectable()
@@ -15,14 +16,20 @@ export class LoggedInGuard implements CanActivate {
     }
 
     canActivate() {
-        return this.userService.getOwnUser().map((user: User) => {
-            if(user) {
-                this.authService.setLoggedInUser(user);
-                return true;
-            }
-        }).catch(res => {
-            this.router.navigate(['/login']);
-            return Observable.of(false);
-        });
+        return this.userService.getOwnUser()
+            .map((user: User) => {
+                if (user) {
+                    this.authService.setLoggedInUser(user);
+                    return true;
+                }
+            }).catch((error: ServiceError) => {
+                if(error.code === ServiceErrorCode.ServiceUnavailable) {
+                    this.router.navigate(['/oops']);
+                } else {
+                    this.router.navigate(['/login']);
+                }
+
+                return Observable.of(false);
+            });
     }
 }

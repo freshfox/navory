@@ -46,7 +46,11 @@ export class BaseService {
     }
 
 	private handleError(error: any) {
-	    let body = JSON.parse(error._body);
+        let body = null;
+        try {
+            body = JSON.parse(error._body);
+        } catch(error) {}
+
 	    var errCode = error.status;
 
         switch(error.status) {
@@ -56,6 +60,9 @@ export class BaseService {
             case 401:
                 errCode = ServiceErrorCode.Unauthorized;
                 break;
+            case 503:
+                errCode = ServiceErrorCode.ServiceUnavailable;
+                break;
             default:
                 errCode = ServiceErrorCode.Unexpected;
                 break;
@@ -63,8 +70,8 @@ export class BaseService {
 
         return Observable.throw({
             code: errCode,
-            message: body.message,
-            data: body.errors || null
+            message: body ? body.message : null,
+            data: body ? body.errors : null
         } as ServiceError);
 
     }
@@ -95,6 +102,7 @@ export class BaseService {
 export enum ServiceErrorCode {
     ValidationError = 'VALIDATION_ERROR' as any,
     Unauthorized = 'UNAUTHORIZED' as any,
+    ServiceUnavailable = 'SERVICE_UNAVAILABLE' as any,
     Unexpected = 'UNEXPECTED_SERVER_ERROR' as any
 }
 
@@ -103,7 +111,7 @@ export enum FieldValidationError {
 }
 
 export class ServiceError {
-    code: string;
+    code: ServiceErrorCode;
     message?: string;
     data?: any;
 }

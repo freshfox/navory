@@ -4,6 +4,7 @@ import {LoginComponent} from './login.component';
 import {SignupComponent} from './signup.component';
 import {ForgotPasswordComponent} from "./forgot-password.component";
 import {ResetPasswordComponent} from "./reset-password.component";
+import {FiveZeroThreeComponent} from "../core/components/503.component";
 
 export const PublicRoutes: Routes = [
 	{
@@ -15,5 +16,9 @@ export const PublicRoutes: Routes = [
             { path: 'forgot-password/:token', component: ResetPasswordComponent },
 			{ path: 'signup',     component: SignupComponent },
 		]
-	}
+	},
+    {
+        path: 'oops',
+        component: FiveZeroThreeComponent
+    }
 ];

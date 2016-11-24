@@ -1,6 +1,10 @@
+nvry-503 {
+    display: block;
+    @include vertical-align;
+}
+
 .timeout-page {
 	text-align: center;
-	@include vertical-align;
 
 	.status-code {
 		font-size: 130px;

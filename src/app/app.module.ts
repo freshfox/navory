@@ -72,6 +72,7 @@ import {SimpleNotificationsModule} from "angular2-notifications/src/simple-notif
 import {SafePipe} from "./core/pipes/safe.pipe";
 import {DocumentPreviewComponent} from "./core/components/document-preview.component";
 import {MdProgressCircleModule} from "@angular2-material/progress-circle";
+import {FiveZeroThreeComponent} from "./core/components/503.component";
 
 export function translateStaticLoaderFactory(http: Http) {
     return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -125,7 +126,8 @@ export function translateStaticLoaderFactory(http: Http) {
         ExportComponent,
         SafePipe,
         DocumentPreviewComponent,
-        DatePipe
+        DatePipe,
+        FiveZeroThreeComponent
     ],
     imports: [
         BrowserModule,

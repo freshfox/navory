@@ -67,8 +67,8 @@
         "download": "Herunterladen"
     },
     "timeout": {
-        "text": "Sieht so aus als wäre da bei uns etwas schiefgelaufen.<br>So etwas passiert meistens, wenn die Entwickler gerade schlafen.",
-        "button": "Na gut, probier ich's eben nochmal..."
+        "text": "Sieht so aus als wäre da bei uns etwas schiefgelaufen. Keine Sorge, wir sind bald wieder online.",
+        "button": "Seite neu laden"
     },
     "forms": {
         "validation": {
