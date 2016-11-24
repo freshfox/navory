@@ -51,13 +51,13 @@ export class BaseService {
 
         switch(error.status) {
             case 400:
-                errCode = 'VALIDATION_ERROR';
+                errCode = ServiceErrorCode.ValidationError;
                 break;
             case 401:
-                errCode = 'UNAUTHORIZED';
+                errCode = ServiceErrorCode.Unauthorized;
                 break;
             default:
-                errCode = 'UNEXPECTED_SERVER_ERROR';
+                errCode = ServiceErrorCode.Unexpected;
                 break;
         }
 
@@ -65,7 +65,7 @@ export class BaseService {
             code: errCode,
             message: body.message,
             data: body.errors || null
-        });
+        } as ServiceError);
 
     }
 
@@ -90,4 +90,20 @@ export class BaseService {
         return `${path}/${id}`;
     }
 
+}
+
+export enum ServiceErrorCode {
+    ValidationError = 'VALIDATION_ERROR' as any,
+    Unauthorized = 'UNAUTHORIZED' as any,
+    Unexpected = 'UNEXPECTED_SERVER_ERROR' as any
+}
+
+export enum FieldValidationError {
+    NotUnique = 'NOT_UNIQUE' as any
+}
+
+export class ServiceError {
+    code: string;
+    message?: string;
+    data?: any;
 }

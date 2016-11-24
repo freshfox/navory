@@ -12,6 +12,7 @@ import {ErrorHandler} from "../../core/error-handler";
 import {Helpers} from "../../core/helpers";
 import {BootstrapService} from "../../services/bootstrap.service";
 import {EuVatType} from "../../core/enums/eu-vat-type.enum";
+import {ServiceError, FieldValidationError} from "../../services/base.service";
 
 @Component({
     templateUrl: 'expense-edit.component.html'
@@ -123,9 +124,13 @@ export class ExpenseEditComponent implements OnInit {
                         this.saving = false;
                         this.router.navigate(['/expenses']);
                     },
-                    (error) => {
+                    (error: ServiceError) => {
                         this.saving = false;
-                        this.alertMessage = this.errorHandler.getDefaultErrorMessage(error.code);
+                        if(error.data['number'].includes(FieldValidationError.NotUnique)) {
+                            this.form.controls['number'].setErrors({ numberNotUnique: true });
+                        } else {
+                            this.alertMessage = this.errorHandler.getDefaultErrorMessage(error.code);
+                        }
                     });
         }
 

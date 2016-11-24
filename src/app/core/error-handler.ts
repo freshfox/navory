@@ -9,13 +9,9 @@ export class ErrorHandler {
 
     getDefaultErrorMessage(code: string) {
         switch(code) {
-            case 'UNEXPECTED_SERVER_ERROR':
+            default:
                 return this.translate.instant('general.errors.unexpected');
-            case 'VALIDATION_ERROR':
-                return 'Validation error';
         }
-
-        return null;
     }
 
 }
