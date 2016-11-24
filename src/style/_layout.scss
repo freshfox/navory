@@ -34,11 +34,11 @@
 
 .page-row {
     &.button-row {
-        @include display(flex);
+        display: flex;
         padding-bottom: 30px;
 
         .buttons {
-            @include display(flex);
+            display: flex;
             @include align-items(center);
             margin-left: auto;
         }
@@ -56,7 +56,7 @@
 .page-header {
 	padding-top: 20px;
     padding-bottom: 20px;
-    @include display(flex);
+    display: flex;
     @include align-items(center);
     @include flex-wrap(wrap);
 
@@ -101,7 +101,7 @@
 /* Grid */
 .frame {
     width: 100%;
-    @include display(flex);
+    display: flex;
     @include flex-wrap(wrap);
 
     &.frame--padding {

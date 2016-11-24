@@ -86,7 +86,7 @@
             display: block;
             text-decoration: none;
 
-            @include display(flex);
+            display: flex;
             @include align-items(center);
         }
     }

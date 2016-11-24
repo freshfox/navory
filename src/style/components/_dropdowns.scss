@@ -23,7 +23,7 @@ nvry-dropdown {
         text-align: center;
         outline: 0;
         background: #fff;
-        @include display(flex);
+	display: flex;
         @include align-items(center);
         margin: 0 auto;
         cursor: pointer;

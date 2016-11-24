@@ -4,7 +4,7 @@
     border-bottom: 1px solid $colorSpacerLines;
 
     .main-header__inner {
-        @include display(flex);
+        display: flex;
         @include align-items(center);
 
         .user {
@@ -19,7 +19,7 @@
     }
 
     .user {
-        @include display(flex);
+        display: flex;
         @include align-items(center);
 
         .username {

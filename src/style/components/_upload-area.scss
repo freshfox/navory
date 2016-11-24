@@ -51,7 +51,7 @@
 		position: absolute;
 		right: 10px;
 		top: 15px;
-        @include display(flex);
+        display: flex;
         @include align-items(center);
 
         nvry-button {
@@ -106,7 +106,7 @@
 }
 
 nvry-page-navigation {
-    @include display(flex);
+    display: flex;
     @include align-items(center);
 
     .button {

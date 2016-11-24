@@ -73,7 +73,7 @@ nvry-invoice-line {
 
 
     .invoice-line__row  {
-        @include display(flex);
+        display: flex;
     }
 
     .title-field,

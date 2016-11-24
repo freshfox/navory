@@ -16,7 +16,7 @@
 	}
 
     .vat-report-amount-to-pay-container {
-        @include display(flex);
+        display: flex;
         @include align-items(center);
         margin-bottom: 20px;
 

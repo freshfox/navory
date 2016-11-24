@@ -1,5 +1,5 @@
 .expenses-component-page-header {
-    @include display(flex);
+    display: flex;
     @include align-items(center);
 
     .create-button {
@@ -18,7 +18,7 @@ nvry-month-selection {
         list-style: none;
         padding: 0;
         margin: 0;
-        @include display(flex);
+        display: flex;
         @include align-items(center);
 
         li {
@@ -44,7 +44,7 @@ nvry-month-selection {
 
 
 .category-selection {
-    @include display(flex);
+    display: flex;
     @include flex-direction(column);
     @include flex-wrap(wrap);
     max-height: 800px;

@@ -16,7 +16,7 @@ nvry-button {
 }
 
 .button {
-    @include display(flex);
+    display: flex;
     @include align-items(center);
     zoom: 1;
     line-height: normal;

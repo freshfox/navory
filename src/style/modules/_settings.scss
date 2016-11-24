@@ -13,7 +13,7 @@
 
 .export-section {
     .export-fields {
-        @include display(flex);
+        display: flex;
 
         nvry-input,
         nvry-select {

@@ -23,7 +23,7 @@
 }
 
 .combined-fields {
-    @include display(flex);
+    display: flex;
 
 	.combined-fields__side {
 		width: 50%;

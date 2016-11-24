@@ -3,7 +3,7 @@ nvry-year-selection {
 }
 
 .nvry-year-selection__inner {
-    @include display(flex);
+    display: flex;
     @include align-items(center);
     width: auto;
 
