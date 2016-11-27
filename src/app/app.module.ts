@@ -73,6 +73,8 @@ import {SafePipe} from "./core/pipes/safe.pipe";
 import {DocumentPreviewComponent} from "./core/components/document-preview.component";
 import {MdProgressCircleModule} from "@angular2-material/progress-circle";
 import {FiveZeroThreeComponent} from "./core/components/503.component";
+import {ModalModule} from "./core/modal.module";
+import {ConfirmComponent} from "./core/components/confirm.component";
 
 export function translateStaticLoaderFactory(http: Http) {
     return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -127,7 +129,8 @@ export function translateStaticLoaderFactory(http: Http) {
         SafePipe,
         DocumentPreviewComponent,
         DatePipe,
-        FiveZeroThreeComponent
+        FiveZeroThreeComponent,
+        ConfirmComponent
     ],
     imports: [
         BrowserModule,
@@ -142,7 +145,8 @@ export function translateStaticLoaderFactory(http: Http) {
         }),
         AppRoutingModule,
         SimpleNotificationsModule,
-        MdProgressCircleModule
+        MdProgressCircleModule,
+        ModalModule
     ],
     providers: [
         AuthService,

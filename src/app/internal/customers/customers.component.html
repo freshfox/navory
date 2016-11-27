@@ -14,7 +14,9 @@
 
 </nvry-table>
 
-
-<nvry-modal #editCustomerModal class="modal--no-padding modal--slim">
-    <nvry-customer-edit [customer]="editCustomerModal.data" (onCancel)="editCustomerModal.hide()" (onSaved)="onCustomerSaved($event)"></nvry-customer-edit>
-</nvry-modal>
+<template #actionsColumn let-row="row" let-value="value">
+    <nvry-dropdown>
+        <button (click)="editCustomer(row)">{{ 'actions.view' | translate }}</button>
+        <button (click)="deleteCustomer(row)">{{ 'actions.delete' | translate }}</button>
+    </nvry-dropdown>
+</template>

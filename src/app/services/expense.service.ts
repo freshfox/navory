@@ -36,5 +36,9 @@ export class ExpenseService extends BaseService {
         return this.patch(path, expense);
     }
 
+    deleteExpense(expense: Expense): Observable<any> {
+        return this.delete(this.getRestEntityPath(this.pathExpenses, expense.id));
+    }
+
 }
 

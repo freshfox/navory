@@ -34,5 +34,9 @@ export class IncomeService extends BaseService {
         return this.post(this.pathIncome, income);
     }
 
+    deleteIncome(income: Income): Observable<any> {
+        return this.delete(this.getRestEntityPath(this.pathIncome, income.id));
+    }
+
 }
 

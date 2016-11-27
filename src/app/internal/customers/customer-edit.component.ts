@@ -35,11 +35,6 @@ export class CustomerEditComponent implements OnInit {
 
     ngOnInit() {
         this.countries = this.state.countries;
-    }
-
-    ngOnChanges() {
-        this.customer = this.customer ? Object.assign({}, this.customer) : new Customer;
-        this.headerText = this.customer.id ? this.translate.instant('customers.edit-title') : this.translate.instant('customers.create-title');
 
         this.form = this.fb.group({
             name: ["", Validators.required],
@@ -50,7 +45,9 @@ export class CustomerEditComponent implements OnInit {
             vat_number: [""]
         });
 
+        this.customer = this.customer ? Object.assign({}, this.customer) : new Customer;
         this.selectedCountryId = this.customer.country_id || this.state.getAustria().id;
+        this.headerText = this.customer.id ? this.translate.instant('customers.edit-title') : this.translate.instant('customers.create-title');
     }
 
     cancel() {

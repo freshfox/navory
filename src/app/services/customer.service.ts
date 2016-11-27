@@ -25,6 +25,10 @@ export class CustomerService extends BaseService {
         return this.createCustomer(customer);
     }
 
+    deleteCustomer(customer: Customer): Observable<any> {
+        return this.delete(this.getRestEntityPath(this.pathCustomers, customer.id));
+    }
+
     private createCustomer(customer: Customer) {
         return this.post(this.pathCustomers, customer);
     }

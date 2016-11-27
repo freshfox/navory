@@ -36,6 +36,10 @@ export class InvoiceService extends BaseService {
             .map(invoice => new Invoice(invoice));
     }
 
+    deleteInvoice(invoice: Invoice): Observable<any> {
+        return this.delete(this.getRestEntityPath(this.pathInvoices, invoice.id));
+    }
+
     getTaxAmounts(invoice: Invoice): any[] {
         var amounts = [];
         invoice.invoice_lines.forEach((line) => {

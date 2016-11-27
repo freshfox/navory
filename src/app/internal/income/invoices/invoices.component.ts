@@ -8,6 +8,7 @@ import {DatePipe} from "../../../core/pipes/date.pipe";
 import {NumberPipe} from "../../../core/pipes/number.pipe";
 import {ColumnAlignment} from "../../../core/components/table/column-alignment.enum";
 import {Router} from "@angular/router";
+import {ModalService} from "../../../core/modal.module";
 var moment = require('moment');
 
 @Component({
@@ -27,7 +28,8 @@ export class InvoicesComponent implements OnInit {
                 private invoiceService: InvoiceService,
                 private datePipe: DatePipe,
                 private numberPipe: NumberPipe,
-                private router: Router) {
+                private router: Router,
+                private modalService: ModalService) {
     }
 
     ngOnInit() {
@@ -60,7 +62,18 @@ export class InvoicesComponent implements OnInit {
     }
 
     deleteInvoice(invoice: Invoice) {
-        // TODO
+        this.modalService.createConfirmRequest(
+            this.translate.instant('invoices.delete-confirm-title'),
+            this.translate.instant('invoices.delete-confirm-message'),
+            () => {
+                this.modalService.hideCurrentModal();
+            },
+            () => {
+                let index = this.invoices.indexOf(invoice);
+                this.invoices.splice(index, 1);
+                this.invoiceService.deleteInvoice(invoice).subscribe();
+                this.modalService.hideCurrentModal();
+            });
     }
 
     getBadgeData(invoice) {

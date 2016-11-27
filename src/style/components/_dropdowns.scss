@@ -13,6 +13,12 @@ nvry-dropdown {
         display: inline-block;
     }
 
+    &.dropdown--shown {
+        .dropdown-target {
+            z-index: 110;
+        }
+    }
+
 
     .dropdown-target {
         width: $dropdownTargetSize;
@@ -26,7 +32,6 @@ nvry-dropdown {
         @include align-items(center);
         margin: 0 auto;
         cursor: pointer;
-        z-index: 110;
         position: relative;
 
         nvry-icon {

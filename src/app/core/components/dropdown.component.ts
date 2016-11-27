@@ -7,12 +7,15 @@ import {Component, OnInit} from '@angular/core';
             <button class="dropdown-target" (click)="toggle($event)">
                 <nvry-icon name="arrow-sorted-down" [class.rotate-180-deg]="shown"></nvry-icon>
             </button>
-            <div class="dropdown-content" *ngIf="shown">
+            <div class="dropdown-content" *ngIf="shown" (click)="hide()">
                 <ng-content></ng-content>
             </div>
         </div>
         <div class="dropdown-overlay" (click)="onClickOverlay($event)" *ngIf="shown"></div>
-    `
+    `,
+    host: {
+        '[class.dropdown--shown]': 'shown'
+    }
 })
 export class DropdownComponent implements OnInit {
 

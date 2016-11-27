@@ -26,6 +26,15 @@ $modalSlimWidth: 600px;
 }
 
 
+.modal-backdrop {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 15, 24, 0.5);
+    z-index: 800;
+}
 
 .modal {
     position: fixed;
@@ -33,11 +42,12 @@ $modalSlimWidth: 600px;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(2, 15, 24, 0.5);
     overflow-y: scroll;
     z-index: 1000;
     padding-top: 50px;
     padding-bottom: 50px;
+    outline: 0;
+    border: 0;
 
     &.modal--no-padding {
         .modal-dialog {
@@ -52,16 +62,29 @@ $modalSlimWidth: 600px;
     }
 
     .modal-dialog {
+        $modalDialogPadding: 30px $modalSidePadding;
         width: $modalDefaultWidth;
         margin: 0 auto;
         background-color: white;
         border-radius: 3px;
-        padding: 30px 50px;
+        padding: $modalDialogPadding;
 
         @media(max-width: $modalDefaultWidth) {
             width: 100%;
             padding-left: 30px;
             padding-right: 30px;
+        }
+
+        .modal-inner {
+            padding: 15px $modalSidePadding;
+        }
+    }
+
+    &.modal--clean {
+        .modal-dialog {
+            background-color: transparent;
+            padding: 0;
+            width: 100%;
         }
     }
 

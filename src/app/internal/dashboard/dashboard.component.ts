@@ -1,5 +1,8 @@
 import {Component, ElementRef} from '@angular/core';
 import {ReportService} from "../../services/report.service";
+import {ModalService} from "../../core/modal.module";
+import {AppModule} from "../../app.module";
+import {MonthSelectionComponent} from "../../core/components/month-selection.component";
 var moment = require('moment');
 var Chartist = require('chartist');
 
@@ -11,11 +14,12 @@ export class DashboardComponent {
     private data;
     private loading: boolean = false;
 
-    constructor(private reportService: ReportService, private el: ElementRef) {
-
+    constructor(private reportService: ReportService, private el: ElementRef, private modalService: ModalService) {
     }
 
     ngAfterViewInit() {
+
+
         this.loading = true;
         this.reportService.getFinanceOverview()
             .subscribe((data) => {

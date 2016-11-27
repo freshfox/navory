@@ -10,6 +10,7 @@ import {ColumnAlignment} from "../../../core/components/table/column-alignment.e
 import * as moment from "moment";
 import {State} from "../../../core/state";
 import {Router} from "@angular/router";
+import {ModalService} from "../../../core/modal.module";
 
 @Component({
     templateUrl: 'income-list.component.html'
@@ -32,7 +33,8 @@ export class IncomeListComponent implements OnInit {
                 private numberPipe: NumberPipe,
                 private datePipe: DatePipe,
                 private state: State,
-                private router: Router) {
+                private router: Router,
+                private modalService: ModalService) {
     }
 
     ngOnInit() {
@@ -79,6 +81,22 @@ export class IncomeListComponent implements OnInit {
 
     editIncome(income: Income) {
         this.router.navigate([`/income/${income.id}`]);
+    }
+
+    deleteIncome(income: Income) {
+        this.modalService.createConfirmRequest(
+            this.translate.instant('income.delete-confirm-title'),
+            this.translate.instant('income.delete-confirm-message'),
+            () => {
+                this.modalService.hideCurrentModal();
+            },
+            () => {
+                let index = this.incomes.indexOf(income);
+                this.incomes.splice(index, 1);
+                this.filter();
+                this.incomeService.deleteIncome(income).subscribe();
+                this.modalService.hideCurrentModal();
+            });
     }
 
 }

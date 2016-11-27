@@ -9,6 +9,7 @@ import {ExpenseService} from "../../services/expense.service";
 import * as moment from 'moment';
 import {State} from "../../core/state";
 import {Router} from "@angular/router";
+import {ModalService} from "../../core/modal.module";
 
 @Component({
     templateUrl: 'expenses.component.html'
@@ -30,7 +31,8 @@ export class ExpensesComponent implements OnInit {
                 private numberPipe: NumberPipe,
                 private datePipe: DatePipe,
                 private state: State,
-                private router: Router) {
+                private router: Router,
+                private modalService: ModalService) {
     }
 
     ngOnInit() {
@@ -81,7 +83,19 @@ export class ExpensesComponent implements OnInit {
     }
 
     deleteExpense(expense) {
-        // TODO
+        this.modalService.createConfirmRequest(
+            this.translate.instant('expenses.delete-confirm-title'),
+            this.translate.instant('expenses.delete-confirm-message'),
+            () => {
+                this.modalService.hideCurrentModal();
+            },
+            () => {
+                let index = this.expenses.indexOf(expense);
+                this.expenses.splice(index, 1);
+                this.filter();
+                this.expenseService.deleteExpense(expense).subscribe();
+                this.modalService.hideCurrentModal();
+            });
     }
 
 }
