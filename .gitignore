@@ -3,6 +3,7 @@
 # compiled output
 /dist
 /tmp
+/src/assets/images/icons.svg
 
 # dependencies
 /node_modules
