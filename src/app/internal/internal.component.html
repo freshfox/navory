@@ -5,7 +5,7 @@
                 {{ 'app.name' | translate }}
             </div>
             <div class="user">
-                <span class="username">{{ user.firstname }} {{ user.lastname }}</span>
+                <span class="username">{{ state.user.firstname }} {{ state.user.lastname }}</span>
                 <nvry-button class="button--small button--dark" (click)="logout()" [loading]="loggingOut">{{ 'general.logout' | translate }}</nvry-button>
             </div>
         </div>

@@ -54,7 +54,6 @@ export class InternalComponent {
         },
     ];
 
-    private user: User;
     private loggingOut: boolean = false;
     private notificationOptions = {
         position: ["top", "right"],
@@ -64,8 +63,6 @@ export class InternalComponent {
     }
 
     constructor(private state: State, private authService: AuthService, private router: Router, private route: ActivatedRoute) {
-        this.user = this.state.user;
-
         let bootstrap = this.route.snapshot.data['bootstrap'];
         Object.assign(this.state, bootstrap);
         this.state.expenseCategories = bootstrap.categories;

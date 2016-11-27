@@ -6,6 +6,7 @@ import {UserService} from "../../services/user.service";
 import {NotificationsService} from "angular2-notifications/src/notifications.service";
 import {TranslateService} from "ng2-translate";
 import {Helpers} from "../../core/helpers";
+import {State} from "../../core/state";
 
 @Component({
     templateUrl: 'profile-settings.component.html'
@@ -22,7 +23,8 @@ export class ProfileSettingsComponent implements OnInit {
     constructor(private fb: FormBuilder,
                 private userService: UserService,
                 private notificationService: NotificationsService,
-                private translate: TranslateService) {
+                private translate: TranslateService,
+                private state: State) {
 
         this.userService.getOwnUser()
             .subscribe(user => {
@@ -57,6 +59,7 @@ export class ProfileSettingsComponent implements OnInit {
             this.userService.updateUser(user)
                 .subscribe(user => {
                         this.user = user;
+                        this.state.user = user;
                         this.saving = false;
                         this.notificationService.success(null, this.translate.instant('settings.profile.success-message'));
                     },
