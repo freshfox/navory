@@ -9,7 +9,7 @@ import {CustomerEditComponent} from "./customer-edit.component";
 
 @Component({
     selector: 'nvry-customers',
-    templateUrl: 'customers.component.html'
+    templateUrl: './customers.component.html'
 })
 export class CustomersComponent implements OnInit {
 

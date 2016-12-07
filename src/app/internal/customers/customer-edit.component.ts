@@ -11,7 +11,7 @@ import {ErrorHandler} from "../../core/error-handler";
 
 @Component({
     selector: 'nvry-customer-edit',
-    templateUrl: 'customer-edit.component.html'
+    templateUrl: './customer-edit.component.html'
 })
 export class CustomerEditComponent implements OnInit {
 

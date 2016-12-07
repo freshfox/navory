@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 import {ErrorHandler} from "../core/error-handler";
 
 @Component({
-    templateUrl: 'signup.component.html'
+    templateUrl: './signup.component.html'
 })
 export class SignupComponent {
 

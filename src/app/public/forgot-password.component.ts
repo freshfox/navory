@@ -7,7 +7,7 @@ import {FormValidator} from "../core/form-validator";
 import {Helpers} from "../core/helpers";
 
 @Component({
-    templateUrl: 'forgot-password.html'
+    templateUrl: './forgot-password.html'
 })
 export class ForgotPasswordComponent {
 

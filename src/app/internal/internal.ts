@@ -5,7 +5,7 @@ import {Router, ActivatedRoute} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 
 @Component({
-    templateUrl: 'internal.component.html'
+    templateUrl: './internal.component.html'
 })
 export class InternalComponent {
 

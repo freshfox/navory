@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 import {ModalService} from "../../../core/modal.module";
 
 @Component({
-    templateUrl: 'income-list.component.html'
+    templateUrl: './income-list.component.html'
 })
 export class IncomeListComponent implements OnInit {
 

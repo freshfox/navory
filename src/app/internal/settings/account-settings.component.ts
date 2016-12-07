@@ -6,7 +6,7 @@ import {NotificationsService} from "angular2-notifications/src/notifications.ser
 import {TranslateService} from "ng2-translate";
 
 @Component({
-    templateUrl: 'account-settings.component.html'
+    templateUrl: './account-settings.component.html'
 })
 export class AccountSettingsComponent implements OnInit {
 

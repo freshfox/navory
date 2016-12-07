@@ -9,7 +9,7 @@ import {Helpers} from "../core/helpers";
 import {TranslateService} from "ng2-translate";
 
 @Component({
-    templateUrl: 'reset-password.html'
+    templateUrl: './reset-password.html'
 })
 export class ResetPasswordComponent implements OnInit {
 

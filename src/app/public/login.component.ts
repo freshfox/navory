@@ -9,7 +9,7 @@ import {Helpers} from "../core/helpers";
 
 
 @Component({
-    templateUrl: './login.html',
+    templateUrl: '././login.html',
 })
 export class LoginComponent {
 

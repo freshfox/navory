@@ -15,7 +15,7 @@ import {EuVatType} from "../../core/enums/eu-vat-type.enum";
 import {ServiceError, FieldValidationError} from "../../services/base.service";
 
 @Component({
-    templateUrl: 'expense-edit.component.html'
+    templateUrl: './expense-edit.component.html'
 })
 export class ExpenseEditComponent implements OnInit {
 

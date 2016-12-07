@@ -4,7 +4,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TaxRateService} from "../../../services/tax-rate.service";
 import {State} from "../../../core/state";
-import {TranslateService} from "ng2-translate";
 import {Income} from "../../../models/income";
 import {FormValidator} from "../../../core/form-validator";
 import {Helpers} from "../../../core/helpers";
@@ -16,7 +15,7 @@ import {ServiceError, FieldValidationError} from "../../../services/base.service
 
 @Component({
     selector: 'nvry-income-edit',
-    templateUrl: 'income-edit.component.html'
+    templateUrl: './income-edit.component.html'
 })
 export class IncomeEditComponent implements OnInit {
 

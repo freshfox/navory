@@ -6,7 +6,7 @@ var moment = require("moment");
 
 @Component({
     selector: 'nvry-export',
-    templateUrl: 'export.component.html'
+    templateUrl: './export.component.html'
 })
 export class ExportComponent implements OnInit {
 

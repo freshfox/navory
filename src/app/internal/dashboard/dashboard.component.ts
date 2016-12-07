@@ -7,7 +7,7 @@ var moment = require('moment');
 var Chartist = require('chartist');
 
 @Component({
-    templateUrl: 'dashboard.component.html'
+    templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent {
 

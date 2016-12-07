@@ -15,7 +15,7 @@ var moment = require('moment');
 
 @Component({
     selector: 'nvry-invoice-edit',
-    templateUrl: 'invoice-edit.component.html'
+    templateUrl: './invoice-edit.component.html'
 })
 export class InvoiceEditComponent implements OnInit {
 

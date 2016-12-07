@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
 import {ModalService} from "../../core/modal.module";
 
 @Component({
-    templateUrl: 'expenses.component.html'
+    templateUrl: './expenses.component.html'
 })
 export class ExpensesComponent implements OnInit {
 

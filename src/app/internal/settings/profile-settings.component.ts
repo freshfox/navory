@@ -9,7 +9,7 @@ import {Helpers} from "../../core/helpers";
 import {State} from "../../core/state";
 
 @Component({
-    templateUrl: 'profile-settings.component.html'
+    templateUrl: './profile-settings.component.html'
 })
 export class ProfileSettingsComponent implements OnInit {
 

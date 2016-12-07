@@ -9,7 +9,7 @@ import {TranslateService} from "ng2-translate";
 
 @Component({
     selector: 'nvry-document-upload',
-    templateUrl: 'document-upload.component.html'
+    templateUrl: './document-upload.component.html'
 })
 export class DocumentUploadComponent implements OnInit {
 

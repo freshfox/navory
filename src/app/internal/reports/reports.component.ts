@@ -3,7 +3,7 @@ import {ReportService} from "../../services/report.service";
 var moment = require('moment');
 
 @Component({
-    templateUrl: 'reports.component.html'
+    templateUrl: './reports.component.html'
 })
 export class ReportsComponent implements OnInit {
 
