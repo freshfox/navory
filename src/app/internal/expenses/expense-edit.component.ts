@@ -153,7 +153,7 @@ export class ExpenseEditComponent implements OnInit {
 					},
 					(error: ServiceError) => {
 						this.saving = false;
-						if (error.data['number'].includes(FieldValidationError.NotUnique)) {
+						if (error.data['number'] && error.data['number'].includes(FieldValidationError.NotUnique)) {
 							this.form.controls['number'].setErrors({numberNotUnique: true});
 						} else {
 							this.alertMessage = this.errorHandler.getDefaultErrorMessage(error.code);
