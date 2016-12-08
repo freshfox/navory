@@ -8,6 +8,6 @@ export class NumberPipe implements PipeTransform {
 	}
 
 	transform(value: number, numberOfDecimals: number = 2): string {
-		return this.formatter.money(value, numberOfDecimals);
+		return this.formatter.amount(value, numberOfDecimals);
 	}
 }

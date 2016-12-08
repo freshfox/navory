@@ -42,16 +42,30 @@ export class Formatter {
 	}
 
 
-	money(value: number, numberOfDecimals: number = 2, alwaysShowDecimal: boolean = true): string {
+	amount(value: number, numberOfDecimals: number = 2, alwaysShowDecimals: boolean = true): string {
 		var format = '0,0';
-		format += alwaysShowDecimal ? '.' : '[.]';
+		format += alwaysShowDecimals ? '.' : '[.]';
+
+		// If we don't want to force decimals, make them optional.
+		if(!alwaysShowDecimals) {
+			format += '[';
+		}
+
+		// Add the number of decimals we want to show
 		for (var i = 0; i < numberOfDecimals; i++) {
 			format += '0';
+		}
+
+		// If we don't want to force decimals, make them optional.
+		if(!alwaysShowDecimals) {
+			format += ']';
 		}
 
 		if (!value || isNaN(value)) {
 			value = 0;
 		}
+
+		console.log(alwaysShowDecimals);
 
 		return numbro(value).format(format);
 	}

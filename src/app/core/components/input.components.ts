@@ -55,6 +55,7 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 		nvry-amount
 		*ngIf="type == 'money' && selector == 'nvry-input'"
 		[alwaysShowDecimals]="alwaysShowDecimals"
+		[numberOfDecimals]="numberOfDecimals"
 		type="text"
 		[placeholder]="placeholder"
 		[attr.name]="name"
@@ -76,6 +77,7 @@ export class InputComponent implements ControlValueAccessor {
 	@Input() formControl: FormControl;
 	@Input() label: string;
 	@Input() alwaysShowDecimals: boolean;
+	@Input() numberOfDecimals: number;
 	@Input() tabindex: number;
 
 	@Input()

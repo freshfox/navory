@@ -16,12 +16,11 @@ export const AMOUNT_VALUE_ACCESSOR: any = {
 export class AmountDirective implements OnInit, ControlValueAccessor {
 
 	private rawValue: number;
-	private onChangeCallback: (_: any) => void = () => {
-	};
-	private onTouchedCallback = () => {
-	};
+	private onChangeCallback: (_: any) => void = () => {};
+	private onTouchedCallback = () => {};
 
 	@Input() alwaysShowDecimals: boolean = true;
+	@Input() numberOfDecimals: number;
 
 	constructor(private el: ElementRef, private formatter: Formatter) {
 	}
@@ -38,7 +37,9 @@ export class AmountDirective implements OnInit, ControlValueAccessor {
 	}
 
 	setValue(value) {
-		this.el.nativeElement.value = this.formatter.money(value, 2, this.alwaysShowDecimals);
+		console.log('show decimals: ' + this.alwaysShowDecimals);
+		console.log(this.formatter.amount(value, this.numberOfDecimals, false));
+		this.el.nativeElement.value = this.formatter.amount(value, this.numberOfDecimals, this.alwaysShowDecimals);
 		this.rawValue = value;
 	}
 

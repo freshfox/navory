@@ -19,6 +19,7 @@ import {Config} from "../../../core/config";
                 <nvry-input 
                 type="money" 
                 [alwaysShowDecimals]="false"
+                [numberOfDecimals]="numberOfQuantityDecimals"
                 [(ngModel)]="invoiceLine.quantity" 
                 class="quantity-field connected-with-next"></nvry-input>
                 
@@ -53,7 +54,7 @@ export class InvoiceLineComponent implements OnInit {
 	private units: Unit[];
 	private taxRates: TaxRate[];
 	private defaultTaxRate: TaxRate;
-
+	private numberOfQuantityDecimals: number = 3;
 	private amount: number = 0;
 
 	private titleFieldInFocus: boolean = false;
