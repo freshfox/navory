@@ -53,8 +53,13 @@ export class SelectComponent implements OnInit {
                 this.selectedValueChange.emit(this.initialValue);
             }
         }, 1);
-
     }
+
+    ngOnChanges() {
+    	if(this.select2Element) {
+			this.select2Element.val(this.selectedValue).trigger('change');
+		}
+	}
 
     ngAfterViewInit() {
         this.select = this.el.nativeElement.querySelector('select');
@@ -67,7 +72,8 @@ export class SelectComponent implements OnInit {
         this.select2Element.val(this.initialValue).trigger('change');
 
         this.select2Element.on('select2:select', (e: Event) => {
-            this.selectedValueChange.emit(this.select.value);
+        	this.selectedValue = this.select.value;
+            this.onChange();
         });
     }
 
@@ -89,8 +95,7 @@ export class SelectComponent implements OnInit {
         return option[this.nameKey] || this.getValue(option);
     }
 
-    private onChange(value) {
-        this.selectedValue = value;
+    private onChange() {
         this.selectedValueChange.emit(this.selectedValue);
     }
 

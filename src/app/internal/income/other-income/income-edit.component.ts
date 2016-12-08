@@ -54,20 +54,6 @@ export class IncomeEditComponent implements OnInit {
 
         this.euVatTypes = this.bootstrapService.getFormattedEuVatTypes();
 
-        this.route.params.subscribe(params => {
-            let id = params['id'];
-            if (id) {
-                this.loading = true;
-                this.incomeService.getIncome(id)
-                    .subscribe((income: Income) => {
-                        this.income = income;
-                        this.loading = false;
-                    });
-            } else {
-                this.loading = false;
-            }
-        });
-
         this.form = this.fb.group({
             number: ["", FormValidator.number],
             date: ["", Validators.compose([Validators.required, FormValidator.date])],
@@ -76,7 +62,41 @@ export class IncomeEditComponent implements OnInit {
         });
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+		this.route.params.subscribe(params => {
+			let id = params['id'];
+			if (id) {
+				this.loading = true;
+				this.incomeService.getIncome(id)
+					.subscribe((income: Income) => {
+						this.income = income;
+						this.loading = false;
+					});
+			} else {
+				this.route.queryParams.subscribe(params => {
+					let copyId = params['copy'];
+					if(copyId) {
+						this.incomeService.getIncome(copyId)
+							.subscribe((income: Income) => {
+								this.income.description = income.description;
+								this.income.price = income.price;
+								this.income.category = income.category;
+								this.income.eu_vat_type = income.eu_vat_type;
+
+								this.taxRateService.getTaxRate(income.tax_rate.id)
+									.subscribe((rate) => {
+										this.income.tax_rate = rate;
+									});
+
+								this.loading = false;
+							});
+					} else {
+						this.loading = false;
+					}
+				});
+			}
+		});
+	}
 
     taxRateChanged(id: number) {
         this.taxRateService.getTaxRate(id)

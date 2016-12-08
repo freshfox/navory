@@ -82,7 +82,14 @@ export class ExpensesComponent implements OnInit {
         this.router.navigate([`/expenses/${expense.id}`]);
     }
 
-    deleteExpense(expense) {
+	copyExpense(expense: Expense) {
+		this.router.navigate([`/expenses/new`], {
+			queryParams: { copy: expense.id }
+		});
+	}
+
+
+	deleteExpense(expense) {
         this.modalService.createConfirmRequest(
             this.translate.instant('expenses.delete-confirm-title'),
             this.translate.instant('expenses.delete-confirm-message'),

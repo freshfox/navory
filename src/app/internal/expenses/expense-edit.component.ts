@@ -68,7 +68,34 @@ export class ExpenseEditComponent implements OnInit {
                         this.loading = false;
                     });
             } else {
-                this.loading = false;
+				this.route.queryParams.subscribe(params => {
+					let copyId = params['copy'];
+					if(copyId) {
+						this.expenseService.getExpense(copyId)
+							.subscribe((expense: Expense) => {
+								console.log(expense);
+								this.expense.description = expense.description;
+								this.expense.price = expense.price;
+								this.expense.category = expense.category;
+								this.expense.eu_vat_tax_rate = expense.eu_vat_tax_rate;
+								this.expense.eu_vat_type = expense.eu_vat_type;
+
+								this.taxRateService.getTaxRate(expense.tax_rate.id)
+									.subscribe((rate) => {
+										this.expense.tax_rate = rate;
+									});
+
+								this.taxRateService.getTaxRate(expense.eu_vat_tax_rate.id)
+									.subscribe((rate) => {
+										this.expense.eu_vat_tax_rate = rate;
+									});
+
+								this.loading = false;
+							});
+					} else {
+						this.loading = false;
+					}
+				});
             }
         });
 

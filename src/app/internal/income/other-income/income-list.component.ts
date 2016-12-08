@@ -83,6 +83,12 @@ export class IncomeListComponent implements OnInit {
         this.router.navigate([`/income/${income.id}`]);
     }
 
+    copyIncome(income: Income) {
+    	this.router.navigate([`/income/new`], {
+    		queryParams: { copy: income.id }
+		});
+	}
+
     deleteIncome(income: Income) {
         this.modalService.createConfirmRequest(
             this.translate.instant('income.delete-confirm-title'),

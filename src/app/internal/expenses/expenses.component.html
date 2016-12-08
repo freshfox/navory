@@ -20,7 +20,8 @@
 
 <template #actionsColumn let-row="row" let-value="value">
     <nvry-dropdown>
-        <button (click)="editExpense(row)">{{ 'actions.view' | translate }}</button>
+		<button (click)="editExpense(row)">{{ 'actions.view' | translate }}</button>
+		<button (click)="copyExpense(row)">{{ 'actions.copy' | translate }}</button>
         <button (click)="deleteExpense(row)">{{ 'actions.delete' | translate }}</button>
     </nvry-dropdown>
 </template>
