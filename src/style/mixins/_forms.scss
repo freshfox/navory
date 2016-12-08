@@ -28,25 +28,25 @@
 }
 
 @mixin form-fields-with-extensions {
-    input[type="text"],
-    input[type="password"],
-    input[type="email"],
-    input[type="url"],
-    input[type="date"],
-    input[type="month"],
-    input[type="time"],
-    input[type="datetime"],
-    input[type="datetime-local"],
-    input[type="week"],
-    input[type="number"],
-    input[type="search"],
-    input[type="tel"],
-    input[type="color"],
-    select,
-    textarea,
-    nvry-input,
-    nvry-textarea,
-    nvry-select {
-        @content
-    }
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	input[type="url"],
+	input[type="date"],
+	input[type="month"],
+	input[type="time"],
+	input[type="datetime"],
+	input[type="datetime-local"],
+	input[type="week"],
+	input[type="number"],
+	input[type="search"],
+	input[type="tel"],
+	input[type="color"],
+	select,
+	textarea,
+	nvry-input,
+	nvry-textarea,
+	nvry-select {
+		@content
+	}
 }

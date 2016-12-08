@@ -1,7 +1,7 @@
-import {Routes} from '@angular/router';
-import {CustomersComponent} from './customers/customers.component';
-import {InternalComponent} from './internal';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import {Routes} from "@angular/router";
+import {CustomersComponent} from "./customers/customers.component";
+import {InternalComponent} from "./internal";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 import {LoggedInGuard} from "../guards/logged-in.guard";
 import {ReportsComponent} from "./reports/reports.component";
 import {IncomeListComponent} from "./income/other-income/income-list.component";
@@ -21,44 +21,44 @@ export const InternalRoutes: Routes = [
 	{
 		path: '',
 		component: InternalComponent,
-        canActivate: [LoggedInGuard],
-        resolve: {
-		  bootstrap: BootstrapResolver
-        },
+		canActivate: [LoggedInGuard],
+		resolve: {
+			bootstrap: BootstrapResolver
+		},
 		children: [
-            { path: '', component: DashboardComponent },
-			{ path: 'dashboard', component: DashboardComponent },
-            { path: 'customers',  component: CustomersComponent },
-            { path: 'payments',  component: PaymentsComponent },
-            { path: 'reports',  component: ReportsComponent },
+			{path: '', component: DashboardComponent},
+			{path: 'dashboard', component: DashboardComponent},
+			{path: 'customers', component: CustomersComponent},
+			{path: 'payments', component: PaymentsComponent},
+			{path: 'reports', component: ReportsComponent},
 
-            {
-                path: '',
-                component: IncomeComponent,
-                children: [
-                    { path: 'invoices', component: InvoicesComponent },
-                    { path: 'income', component: IncomeListComponent },
-                ]
-            },
+			{
+				path: '',
+				component: IncomeComponent,
+				children: [
+					{path: 'invoices', component: InvoicesComponent},
+					{path: 'income', component: IncomeListComponent},
+				]
+			},
 
-            { path: 'invoices/new', component: InvoiceEditComponent },
-            { path: 'invoices/:id', component: InvoiceEditComponent },
+			{path: 'invoices/new', component: InvoiceEditComponent},
+			{path: 'invoices/:id', component: InvoiceEditComponent},
 
-            { path: 'income/new', component: IncomeEditComponent },
-            { path: 'income/:id', component: IncomeEditComponent },
+			{path: 'income/new', component: IncomeEditComponent},
+			{path: 'income/:id', component: IncomeEditComponent},
 
-            { path: 'expenses', component: ExpensesComponent },
-            { path: 'expenses/new', component: ExpenseEditComponent },
-            { path: 'expenses/:id', component: ExpenseEditComponent },
+			{path: 'expenses', component: ExpensesComponent},
+			{path: 'expenses/new', component: ExpenseEditComponent},
+			{path: 'expenses/:id', component: ExpenseEditComponent},
 
-            {
-                path: 'settings',
-                component: SettingsComponent,
-                children: [
-                    { path: 'account', component: AccountSettingsComponent },
-                    { path: 'profile', component: ProfileSettingsComponent }
-                ]
-            }
+			{
+				path: 'settings',
+				component: SettingsComponent,
+				children: [
+					{path: 'account', component: AccountSettingsComponent},
+					{path: 'profile', component: ProfileSettingsComponent}
+				]
+			}
 		]
 	}
 ];

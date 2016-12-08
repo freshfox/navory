@@ -1,28 +1,28 @@
 nvry-year-selection {
-    display: inline-block;
+	display: inline-block;
 }
 
 .nvry-year-selection__inner {
-    display: flex;
-    @include align-items(center);
-    width: auto;
+	display: flex;
+	@include align-items(center);
+	width: auto;
 
-    background-color: $colorLightAccent;
-    border-top: 1px solid $colorGray;
-    border-bottom: 1px solid $colorGray;
+	background-color: $colorLightAccent;
+	border-top: 1px solid $colorGray;
+	border-bottom: 1px solid $colorGray;
 
-    span {
-        padding: 0 10px;
-    }
+	span {
+		padding: 0 10px;
+	}
 
-    button {
-        border-left: 1px solid $colorGray;
-        border-right: 1px solid $colorGray;
+	button {
+		border-left: 1px solid $colorGray;
+		border-right: 1px solid $colorGray;
 
-        nvry-icon {
-            width: 20px;
-            height: 20px;
-            display: block;
-        }
-    }
+		nvry-icon {
+			width: 20px;
+			height: 20px;
+			display: block;
+		}
+	}
 }

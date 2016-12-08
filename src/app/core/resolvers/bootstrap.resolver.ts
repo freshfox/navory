@@ -6,9 +6,10 @@ import {BootstrapService} from "../../services/bootstrap.service";
 @Injectable()
 export class BootstrapResolver implements Resolve<any> {
 
-    constructor(private bootstrapService: BootstrapService) {}
+	constructor(private bootstrapService: BootstrapService) {
+	}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        return this.bootstrapService.getBootstrapData();
-    }
+	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
+		return this.bootstrapService.getBootstrapData();
+	}
 }

@@ -1,15 +1,14 @@
-import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from "@angular/core";
 import {InvoiceLine} from "../../../models/invoice-line";
 import {Unit} from "../../../models/unit";
 import {BootstrapService} from "../../../services/bootstrap.service";
 import {TaxRate} from "../../../models/tax-rate";
 import {TaxRateService} from "../../../services/tax-rate.service";
-import {FormValidator} from "../../../core/form-validator";
 import {Config} from "../../../core/config";
 
 @Component({
-    selector: 'nvry-invoice-line',
-    template: `
+	selector: 'nvry-invoice-line',
+	template: `
             <div class="invoice-line__row">
                 <nvry-input 
                 placeholder="Name" 
@@ -48,53 +47,53 @@ import {Config} from "../../../core/config";
 })
 export class InvoiceLineComponent implements OnInit {
 
-    @Input() invoiceLine: InvoiceLine;
-    @Input() dropdownShown: boolean = true;
-    @Output() onDelete: EventEmitter<InvoiceLine> = new EventEmitter<InvoiceLine>();
-    private units: Unit[];
-    private taxRates: TaxRate[];
-    private defaultTaxRate: TaxRate;
+	@Input() invoiceLine: InvoiceLine;
+	@Input() dropdownShown: boolean = true;
+	@Output() onDelete: EventEmitter<InvoiceLine> = new EventEmitter<InvoiceLine>();
+	private units: Unit[];
+	private taxRates: TaxRate[];
+	private defaultTaxRate: TaxRate;
 
-    private amount: number = 0;
+	private amount: number = 0;
 
-    private titleFieldInFocus: boolean = false;
-    private descriptionFieldInFocus: boolean = false;
+	private titleFieldInFocus: boolean = false;
+	private descriptionFieldInFocus: boolean = false;
 
 
-    constructor(private bootstrapService: BootstrapService, private taxRateService: TaxRateService) {
+	constructor(private bootstrapService: BootstrapService, private taxRateService: TaxRateService) {
 
-    }
+	}
 
-    ngOnInit() {
-        if (!this.invoiceLine.unit_id) {
-            this.invoiceLine.unit_id = Config.defaultUnitId;
-        }
-        this.bootstrapService.getUnits()
-            .subscribe(units => this.units = units);
+	ngOnInit() {
+		if (!this.invoiceLine.unit_id) {
+			this.invoiceLine.unit_id = Config.defaultUnitId;
+		}
+		this.bootstrapService.getUnits()
+			.subscribe(units => this.units = units);
 
-        this.taxRateService.getFormattedTaxRates()
-            .subscribe(taxRates => this.taxRates = taxRates);
+		this.taxRateService.getFormattedTaxRates()
+			.subscribe(taxRates => this.taxRates = taxRates);
 
-        this.taxRateService.getDefaultTaxRate()
-            .subscribe(rate => {
-                this.defaultTaxRate = rate;
-                if (!this.invoiceLine.tax_rate) {
-                    this.invoiceLine.tax_rate = this.defaultTaxRate;
-                }
-            });
-    }
+		this.taxRateService.getDefaultTaxRate()
+			.subscribe(rate => {
+				this.defaultTaxRate = rate;
+				if (!this.invoiceLine.tax_rate) {
+					this.invoiceLine.tax_rate = this.defaultTaxRate;
+				}
+			});
+	}
 
-    getAmount(): number {
-        return this.invoiceLine.getNetAmount();
-    }
+	getAmount(): number {
+		return this.invoiceLine.getNetAmount();
+	}
 
-    taxRateChanged(id: number) {
-        this.taxRateService.getTaxRate(id)
-            .subscribe(rate => this.invoiceLine.tax_rate = rate);
-    }
+	taxRateChanged(id: number) {
+		this.taxRateService.getTaxRate(id)
+			.subscribe(rate => this.invoiceLine.tax_rate = rate);
+	}
 
-    deleteLine() {
-        this.onDelete.next(this.invoiceLine);
-    }
+	deleteLine() {
+		this.onDelete.next(this.invoiceLine);
+	}
 
 }

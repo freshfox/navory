@@ -1,141 +1,168 @@
 .invoice-list-table {
 
-    td {
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
+	td {
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
 
-    .badge {
-        width: 80px;
-    }
+	.badge {
+		width: 80px;
+	}
 
 }
 
-
-
 .invoice-payment-notice {
-    @include fontBold;
+	@include fontBold;
 
-    i {
-        color: $colorSuccess;
-        font-size: 24px;
-        display: inline-block;
-        margin-right: 5px;
-    }
+	i {
+		color: $colorSuccess;
+		font-size: 24px;
+		display: inline-block;
+		margin-right: 5px;
+	}
 
-    button {
-        font-size: 18px;
+	button {
+		font-size: 18px;
 
-        &:hover {
-            color: $colorPrimary;
-        }
-    }
+		&:hover {
+			color: $colorPrimary;
+		}
+	}
 }
 
 .invoice-edit-paper {
-    border: 1px solid $colorGrayLight;
+	border: 1px solid $colorGrayLight;
 }
 
 .invoice-edit-paper-section {
-    padding: 30px;
-    border-bottom: 1px solid $colorGrayLight;
+	padding: 30px;
+	border-bottom: 1px solid $colorGrayLight;
 
-    &:last-child {
-        border-bottom: 0;
-    }
+	&:last-child {
+		border-bottom: 0;
+	}
 }
 
 .customer-area {
-    padding-right: 80px;
+	padding-right: 80px;
 }
 
 .number-field {
-    text-align: right;
+	text-align: right;
 }
 
 .invoice-lines-container .header {
-    @extend .cf;
-    margin-bottom: 10px;
+	@extend .cf;
+	margin-bottom: 10px;
 
-    span { display: inline-block; float: left; font-weight: bold; }
+	span {
+		display: inline-block;
+		float: left;
+		font-weight: bold;
+	}
 
-    .title-header { width: 42%; }
-    .quantity-header { width: 8%; }
-    .unit-header { width: 10%; }
-    .price-header { width: 14%; }
-    .taxrate-header { width: 7%; }
-    .amount-header { width: 14%; }
+	.title-header {
+		width: 42%;
+	}
+	.quantity-header {
+		width: 8%;
+	}
+	.unit-header {
+		width: 10%;
+	}
+	.price-header {
+		width: 14%;
+	}
+	.taxrate-header {
+		width: 7%;
+	}
+	.amount-header {
+		width: 14%;
+	}
 }
 
 nvry-invoice-line {
-    @extend .cf;
-    margin-bottom: 15px;
+	@extend .cf;
+	margin-bottom: 15px;
 
+	.invoice-line__row {
+		display: flex;
+	}
 
-    .invoice-line__row  {
-        display: flex;
-    }
+	.title-field,
+	.description-field {
+		width: 42%;
+	}
+	.quantity-field {
+		width: 8%;
+		text-align: right;
+	}
+	.unit-field {
+		width: 10%;
+	}
+	.price-field {
+		width: 14%;
+	}
+	.amount-field {
+		width: 14%;
+	}
+	.taxrate-field {
+		width: 7%;
+	}
 
-    .title-field,
-    .description-field { width: 42%; }
-    .quantity-field { width: 8%; text-align: right; }
-    .unit-field { width: 10%; }
-    .price-field { width: 14%; }
-    .amount-field { width: 14%; }
-    .taxrate-field { width: 7%; }
+	nvry-dropdown {
+		width: 5%;
+	}
 
-    nvry-dropdown { width: 5%; }
+	.description-field {
+		display: none;
+		margin-bottom: 15px;
 
-    .description-field {
-        display: none;
-        margin-bottom: 15px;
+		textarea {
+			min-height: 80px;
+			max-height: 200px;
+		}
 
-        textarea {
-            min-height: 80px;
-            max-height: 200px;
-        }
-
-
-        &.description-field--visible,
-        &:hover,
-        &:focus {
-            display: block;
-        }
-    }
+		&.description-field--visible,
+		&:hover,
+		&:focus {
+			display: block;
+		}
+	}
 }
 
 .invoice-total {
-    text-align: right;
+	text-align: right;
 
-    .invoice-total__inner {
-        width: 40%;
-        display: inline-block;
-    }
+	.invoice-total__inner {
+		width: 40%;
+		display: inline-block;
+	}
 
-    .line {
-        @extend .cf;
-        margin-bottom: 10px;
+	.line {
+		@extend .cf;
+		margin-bottom: 10px;
 
-        &:last-child {
-            margin-bottom: 0;
-        }
+		&:last-child {
+			margin-bottom: 0;
+		}
 
-        &.line--total {
-            font-size: 20px;
-            font-weight: bold;
-        }
-    }
+		&.line--total {
+			font-size: 20px;
+			font-weight: bold;
+		}
+	}
 
-    span {
-        display: inline-block;
+	span {
+		display: inline-block;
 
-        &.title {
-            float: left;
-        }
+		&.title {
+			float: left;
+		}
 
-        &.value {
-            float: right;
-            text-align: right;
-        }
-    }
+		&.value {
+			float: right;
+			text-align: right;
+		}
+	}
 }

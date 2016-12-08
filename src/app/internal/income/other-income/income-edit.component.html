@@ -1,73 +1,73 @@
 <div class="page-header page-header--no-bottom-padding">
-    <nvry-button class="button--clear" [routerLink]="['/income']" icon="arrow-left">{{ 'income.other-income' | translate
-        }}
-    </nvry-button>
-    <hr>
+	<nvry-button class="button--clear" [routerLink]="['/income']" icon="arrow-left">{{ 'income.other-income' | translate
+		}}
+	</nvry-button>
+	<hr>
 </div>
 
 <div *ngIf="income && !loading" class="expense-edit">
-    <div class="page-row button-row">
-        <h1 class="module-title">
-            <span *ngIf="income.id">{{ 'income.edit_title' | translate }}</span>
-            <span *ngIf="!income.id">{{ 'income.create_title' | translate }}</span>
-        </h1>
-        <div class="buttons">
-            <nvry-button [routerLink]="['/income']" class="button--secondary">{{ 'general.cancel' | translate }}
-            </nvry-button>
-            <nvry-button (click)="save()" [loading]="saving">{{ 'general.save' | translate }}</nvry-button>
-        </div>
+	<div class="page-row button-row">
+		<h1 class="module-title">
+			<span *ngIf="income.id">{{ 'income.edit_title' | translate }}</span>
+			<span *ngIf="!income.id">{{ 'income.create_title' | translate }}</span>
+		</h1>
+		<div class="buttons">
+			<nvry-button [routerLink]="['/income']" class="button--secondary">{{ 'general.cancel' | translate }}
+			</nvry-button>
+			<nvry-button (click)="save()" [loading]="saving">{{ 'general.save' | translate }}</nvry-button>
+		</div>
 
-    </div>
+	</div>
 
-    <div class="frame default-section">
-        <div class="bit-60">
-            <nvry-document-upload [(file)]="income.file"></nvry-document-upload>
-        </div>
-        <div class="bit-40 bit--spacing-left">
-            <nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
-            <form [formGroup]="form">
-                <div class="frame frame--bit-spacing">
-                    <div class="bit-50">
-                        <nvry-input [placeholder]="nextIncomeNumber"
-                                    [label]="'income.number' | translate"
-                                    [formControl]="form.controls.number"
-                                    [(ngModel)]="income.number"></nvry-input>
-                    </div>
-                    <div class="bit-50">
-                        <nvry-input type="date" [formControl]="form.controls.date" [label]="'general.date' | translate"
-                                    [(ngModel)]="income.date"></nvry-input>
-                    </div>
-                </div>
-                <div class="frame">
-                    <div class="bit-100">
-                        <nvry-input [label]="'general.description' | translate"
-                                    [formControl]="form.controls.description"
-                                    [(ngModel)]="income.description"></nvry-input>
-                    </div>
-                    <div class="bit-100 combined-fields">
-                        <div class="combined-fields__side">
-                            <nvry-input type="money" [label]="'general.amount' | translate"
-                                        [formControl]="form.controls.price" [(ngModel)]="income.price"></nvry-input>
-                        </div>
-                        <div class="combined-fields__side">
-                            <nvry-select [label]="'general.taxrate' | translate" [options]="taxRates"
-                                         [enableSearchField]="false" [selectedValue]="income.tax_rate?.id"
-                                         (selectedValueChange)="taxRateChanged($event)"></nvry-select>
-                        </div>
-                    </div>
+	<div class="frame default-section">
+		<div class="bit-60">
+			<nvry-document-upload [(file)]="income.file"></nvry-document-upload>
+		</div>
+		<div class="bit-40 bit--spacing-left">
+			<nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
+			<form [formGroup]="form">
+				<div class="frame frame--bit-spacing">
+					<div class="bit-50">
+						<nvry-input [placeholder]="nextIncomeNumber"
+									[label]="'income.number' | translate"
+									[formControl]="form.controls.number"
+									[(ngModel)]="income.number"></nvry-input>
+					</div>
+					<div class="bit-50">
+						<nvry-input type="date" [formControl]="form.controls.date" [label]="'general.date' | translate"
+									[(ngModel)]="income.date"></nvry-input>
+					</div>
+				</div>
+				<div class="frame">
+					<div class="bit-100">
+						<nvry-input [label]="'general.description' | translate"
+									[formControl]="form.controls.description"
+									[(ngModel)]="income.description"></nvry-input>
+					</div>
+					<div class="bit-100 combined-fields">
+						<div class="combined-fields__side">
+							<nvry-input type="money" [label]="'general.amount' | translate"
+										[formControl]="form.controls.price" [(ngModel)]="income.price"></nvry-input>
+						</div>
+						<div class="combined-fields__side">
+							<nvry-select [label]="'general.taxrate' | translate" [options]="taxRates"
+										 [enableSearchField]="false" [selectedValue]="income.tax_rate?.id"
+										 (selectedValueChange)="taxRateChanged($event)"></nvry-select>
+						</div>
+					</div>
 
 
-                    <div class="bit-50" *ngIf="income.tax_rate?.rate == 0">
-                        <nvry-select [label]="'income.edit.intra-community' | translate" [options]="euVatTypes"
-                                     valueKey="value" [(selectedValue)]="income.eu_vat_type"></nvry-select>
+					<div class="bit-50" *ngIf="income.tax_rate?.rate == 0">
+						<nvry-select [label]="'income.edit.intra-community' | translate" [options]="euVatTypes"
+									 valueKey="value" [(selectedValue)]="income.eu_vat_type"></nvry-select>
 
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
 
 <div class="page-row" *ngIf="loading">
-    <nvry-spinner></nvry-spinner>
+	<nvry-spinner></nvry-spinner>
 </div>

@@ -1,129 +1,129 @@
 button {
-    background: transparent;
-    border: 0;
-    white-space: normal;
-    outline: 0;
-    @include appearance(none);
-    cursor: pointer;
+	background: transparent;
+	border: 0;
+	white-space: normal;
+	outline: 0;
+	@include appearance(none);
+	cursor: pointer;
 }
 
 nvry-button {
-    display: inline-block;
+	display: inline-block;
 
-    &.button--block {
-        display: block;
-    }
+	&.button--block {
+		display: block;
+	}
 }
 
 .button {
-    display: flex;
-    @include align-items(center);
-    zoom: 1;
-    line-height: normal;
-    vertical-align: baseline;
-    text-align: center;
-    cursor: pointer;
-    -webkit-user-drag: none;
-    @include user-select(none);
+	display: flex;
+	@include align-items(center);
+	zoom: 1;
+	line-height: normal;
+	vertical-align: baseline;
+	text-align: center;
+	cursor: pointer;
+	-webkit-user-drag: none;
+	@include user-select(none);
 
-    font-family: inherit;
-    font-size: 100%;
-    color: $buttonTextColor;
-    padding: $buttonPadding;
-    letter-spacing: 1px;
-    background: $buttonPrimaryBackground;
-    border: 1px solid $buttonPrimaryBackground;
-    text-decoration: none;
-    border-radius: $buttonBorderRadius;
-    @include transition(color .25s ease, background .25s ease);
+	font-family: inherit;
+	font-size: 100%;
+	color: $buttonTextColor;
+	padding: $buttonPadding;
+	letter-spacing: 1px;
+	background: $buttonPrimaryBackground;
+	border: 1px solid $buttonPrimaryBackground;
+	text-decoration: none;
+	border-radius: $buttonBorderRadius;
+	@include transition(color .25s ease, background .25s ease);
 
-    nvry-icon {
-        width: 12px;
-        height: 12px;
-        fill: currentColor;
-        margin-right: 5px;
-    }
+	nvry-icon {
+		width: 12px;
+		height: 12px;
+		fill: currentColor;
+		margin-right: 5px;
+	}
 
-    &::-moz-focus-inner {
-        padding: 0;
-        border: 0;
-    }
+	&::-moz-focus-inner {
+		padding: 0;
+		border: 0;
+	}
 
-    &:last-child,
-    &.button--no-margin {
-        margin-right: 0;
-    }
+	&:last-child,
+	&.button--no-margin {
+		margin-right: 0;
+	}
 
-    &:hover,
-    &:focus {
-        background: lighten($buttonPrimaryBackground, 5%);
-    }
+	&:hover,
+	&:focus {
+		background: lighten($buttonPrimaryBackground, 5%);
+	}
 
-    &:focus {
-        outline: 0;
-    }
+	&:focus {
+		outline: 0;
+	}
 
-    &[disabled],
-    &.disabled,
-    &.disabled:hover,
-    &.disabled:focus,
-    &.disabled:active {
-        opacity: .8;
-        background: $colorGrayMedium;
-        border-color: $colorGrayMedium;
-        cursor: default;
-    }
+	&[disabled],
+	&.disabled,
+	&.disabled:hover,
+	&.disabled:focus,
+	&.disabled:active {
+		opacity: .8;
+		background: $colorGrayMedium;
+		border-color: $colorGrayMedium;
+		cursor: default;
+	}
 
-    &.button--secondary {
-        background: none;
-        border-color: $colorGrayMedium;
-        color: $colorPrimary;
-    }
+	&.button--secondary {
+		background: none;
+		border-color: $colorGrayMedium;
+		color: $colorPrimary;
+	}
 
-    &.button--clear {
-        background: none;
-        border: 0;
-        color: $textColor;
-        padding: 0;
+	&.button--clear {
+		background: none;
+		border: 0;
+		color: $textColor;
+		padding: 0;
 
-        &:hover {
-            color: $colorPrimary;
-        }
-    }
+		&:hover {
+			color: $colorPrimary;
+		}
+	}
 
-	&.button--block{
+	&.button--block {
 		display: block;
 		width: 100%;
 	}
 
-    &.button--h-space {
-        margin-right: 10px;
-    }
+	&.button--h-space {
+		margin-right: 10px;
+	}
 
-    &.button--l {
-        text-transform: uppercase;
-        padding: $buttonPaddingLarge;
-        font-weight: $fontWeightBold;
-    }
+	&.button--l {
+		text-transform: uppercase;
+		padding: $buttonPaddingLarge;
+		font-weight: $fontWeightBold;
+	}
 
-    &.button--small {
-        padding: $buttonPaddingSmall;
-    }
+	&.button--small {
+		padding: $buttonPaddingSmall;
+	}
 
-    &.button--xsmall {
-        font-size: 11px;
-        padding: 5px 12px;
-    }
+	&.button--xsmall {
+		font-size: 11px;
+		padding: 5px 12px;
+	}
 
-    &.button--dark {
-        background: darken($colorUltraDarkAccent, 15%);
-        border: 0;
-    }
+	&.button--dark {
+		background: darken($colorUltraDarkAccent, 15%);
+		border: 0;
+	}
 
-    &.button--icon-medium {
-        nvry-icon {
-            width: 18px;
-            height: 18px;
-        }
-    }
+	&.button--icon-medium {
+		nvry-icon {
+			width: 18px;
+			height: 18px;
+		}
+	}
 }

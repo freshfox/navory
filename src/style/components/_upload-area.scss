@@ -4,9 +4,9 @@
 	padding: 0;
 	height: 800px;
 
-    nvry-spinner {
-        margin: 80px auto;
-    }
+	nvry-spinner {
+		margin: 80px auto;
+	}
 
 	&.upload-area--has-file {
 		height: auto;
@@ -23,14 +23,14 @@
 			margin-bottom: 10px;
 		}
 
-        .button {
-            margin: 0 auto;
-        }
+		.button {
+			margin: 0 auto;
+		}
 	}
 
 	.upload-area__thumbnail {
 		display: block;
-        width: 100%;
+		width: 100%;
 	}
 
 	.upload-area__page-nav {
@@ -51,31 +51,30 @@
 		position: absolute;
 		right: 10px;
 		top: 15px;
-        display: flex;
-        @include align-items(center);
+		display: flex;
+		@include align-items(center);
 
-        nvry-button {
-            margin-right: 10px;
+		nvry-button {
+			margin-right: 10px;
 
-            &:last-child {
-                margin-right: 0;
-            }
-        }
+			&:last-child {
+				margin-right: 0;
+			}
+		}
 
 		.button {
 			height: 40px;
-            width: 40px;
+			width: 40px;
 			border: 0;
-            text-align: center;
-            font-size: 16px;
+			text-align: center;
+			font-size: 16px;
 			background: $colorUltraDarkAccent;
 
-            nvry-icon {
-                width: 30px;
-                height: 30px;
-                margin: 0 auto;
-            }
-
+			nvry-icon {
+				width: 30px;
+				height: 30px;
+				margin: 0 auto;
+			}
 
 		}
 	}
@@ -106,45 +105,45 @@
 }
 
 nvry-page-navigation {
-    display: flex;
-    @include align-items(center);
+	display: flex;
+	@include align-items(center);
 
-    .button {
-        background: $colorUltraDarkAccent;
-        border: 0;
-        border-radius: 0;
-        border-top-left-radius: $defaultBorderRadius;
-        border-bottom-left-radius: $defaultBorderRadius;
-        height: 30px;
-        padding: 0 10px;
+	.button {
+		background: $colorUltraDarkAccent;
+		border: 0;
+		border-radius: 0;
+		border-top-left-radius: $defaultBorderRadius;
+		border-bottom-left-radius: $defaultBorderRadius;
+		height: 30px;
+		padding: 0 10px;
 
-        nvry-icon {
-            width: 20px;
-            height: 20px;
-            margin: 0;
-        }
+		nvry-icon {
+			width: 20px;
+			height: 20px;
+			margin: 0;
+		}
 
-        &:last-child {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-            border-top-right-radius: $defaultBorderRadius;
-            border-bottom-right-radius: $defaultBorderRadius;
-        }
+		&:last-child {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			border-top-right-radius: $defaultBorderRadius;
+			border-bottom-right-radius: $defaultBorderRadius;
+		}
 
-        &:hover,
-        &:focus {
-            background: lighten($colorUltraDarkAccent, 15%);
-        }
-    }
+		&:hover,
+		&:focus {
+			background: lighten($colorUltraDarkAccent, 15%);
+		}
+	}
 
-    .page-count {
-        background: $colorUltraDarkAccent;
-        height: 30px;
-        display: inline-block;
-        vertical-align: top;
-        line-height: 30px;
-        border-right: 1px solid $colorGrayLight;
-        border-left: 1px solid $colorGrayLight;
-        padding: 0 15px;
-    }
+	.page-count {
+		background: $colorUltraDarkAccent;
+		height: 30px;
+		display: inline-block;
+		vertical-align: top;
+		line-height: 30px;
+		border-right: 1px solid $colorGrayLight;
+		border-left: 1px solid $colorGrayLight;
+		padding: 0 15px;
+	}
 }

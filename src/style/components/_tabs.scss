@@ -2,7 +2,7 @@
 
 	display: block;
 	border-bottom: 1px solid $colorGrayLight;
-    width: 100%;
+	width: 100%;
 
 	ul {
 		list-style: none;
@@ -31,7 +31,7 @@
 		}
 	}
 
-    &.tabs--full-width {
-        padding-left: $contentSidePadding;
-    }
+	&.tabs--full-width {
+		padding-left: $contentSidePadding;
+	}
 }

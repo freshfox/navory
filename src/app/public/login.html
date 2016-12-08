@@ -1,29 +1,30 @@
 <nvry-login-layout>
-    <form class="form-stacked default-form-wrapper login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <nvry-alert-bar [message]="alertMessage" [type]="alertType"></nvry-alert-bar>
+	<form class="form-stacked default-form-wrapper login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+		<nvry-alert-bar [message]="alertMessage" [type]="alertType"></nvry-alert-bar>
 
-        <div class="formfield-wrapper">
-            <nvry-input [placeholder]="'general.email' | translate" [formControl]="form.controls.email"></nvry-input>
-        </div>
+		<div class="formfield-wrapper">
+			<nvry-input [placeholder]="'general.email' | translate" [formControl]="form.controls.email"></nvry-input>
+		</div>
 
-        <div class="formfield-wrapper">
-            <nvry-input [placeholder]="'general.password' | translate" [formControl]="form.controls.password" type="password"></nvry-input>
-        </div>
+		<div class="formfield-wrapper">
+			<nvry-input [placeholder]="'general.password' | translate" [formControl]="form.controls.password"
+						type="password"></nvry-input>
+		</div>
 
-        <div class="checkbox">
-            <input type="checkbox" id="durable" formControlName="durable">
-            <label for="durable">
-                {{ 'login.remember' | translate }}
-            </label>
-        </div>
-        <nvry-button class="button--l button--block" [loading]="loading">
-            {{ 'login.submit' | translate }}
-        </nvry-button>
-    </form>
+		<div class="checkbox">
+			<input type="checkbox" id="durable" formControlName="durable">
+			<label for="durable">
+				{{ 'login.remember' | translate }}
+			</label>
+		</div>
+		<nvry-button class="button--l button--block" [loading]="loading">
+			{{ 'login.submit' | translate }}
+		</nvry-button>
+	</form>
 
-    <div class="after-form">
-        <a [routerLink]="['/forgot-password']" class="small-print">
-            {{ 'login.forgot-password.link' | translate }}
-        </a>
-    </div>
+	<div class="after-form">
+		<a [routerLink]="['/forgot-password']" class="small-print">
+			{{ 'login.forgot-password.link' | translate }}
+		</a>
+	</div>
 </nvry-login-layout>

@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, SimpleChange} from '@angular/core';
+import {Component, OnInit, EventEmitter, SimpleChange} from "@angular/core";
 import {Input, Output} from "@angular/core/src/metadata/directives";
 import {TableOptions} from "./table-options.model";
 import {TableColumn} from "./table-column.model";
@@ -6,8 +6,8 @@ import {SortDirection} from "./sort-direction.enum";
 import {Helpers} from "../../helpers";
 
 @Component({
-    selector: 'nvry-table',
-    template: `
+	selector: 'nvry-table',
+	template: `
     <table [class.table--clickable-items]="options.itemsClickable">
         <tr>
             <th nvry-table-header-cell *ngFor="let column of options.columns" [column]="column" (click)="sortHeaderClicked(column)"></th>
@@ -40,117 +40,117 @@ import {Helpers} from "../../helpers";
 })
 export class TableComponent implements OnInit {
 
-    @Input() rows: any[];
-    @Input() options: TableOptions;
-    @Input() loading: boolean;
+	@Input() rows: any[];
+	@Input() options: TableOptions;
+	@Input() loading: boolean;
 
-    @Output() onRowClicked = new EventEmitter<any>();
+	@Output() onRowClicked = new EventEmitter<any>();
 
 
-    private sortedColumn: TableColumn;
+	private sortedColumn: TableColumn;
 
-    constructor() {
-    }
+	constructor() {
+	}
 
-    ngOnInit() {
+	ngOnInit() {
 
-    }
+	}
 
-    ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-        for (let propName in changes) {
-            if (propName === 'rows') {
-                if(this.rows) {
-                    this.updateSorting();
-                }
-            }
-        }
-    }
+	ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+		for (let propName in changes) {
+			if (propName === 'rows') {
+				if (this.rows) {
+					this.updateSorting();
+				}
+			}
+		}
+	}
 
-    updateSorting() {
-        this.options.columns.forEach((column) => {
-            if(column.sortDirection) {
-                this.sortColumn(column);
-            }
-        });
-    }
+	updateSorting() {
+		this.options.columns.forEach((column) => {
+			if (column.sortDirection) {
+				this.sortColumn(column);
+			}
+		});
+	}
 
-    getColumnValue(column: TableColumn, row): any {
-        let val = this.getValue(row, this.getPropertyName(column));
-        let pipe = column.pipe;
-        return pipe ? pipe.transform(val) : val;
-    }
+	getColumnValue(column: TableColumn, row): any {
+		let val = this.getValue(row, this.getPropertyName(column));
+		let pipe = column.pipe;
+		return pipe ? pipe.transform(val) : val;
+	}
 
-    getValue(row, propertyName) {
-        return Helpers.getValueDeep(row, propertyName);
-    }
+	getValue(row, propertyName) {
+		return Helpers.getValueDeep(row, propertyName);
+	}
 
-    getPropertyName(column: TableColumn): string {
-        return column.prop;
-    }
+	getPropertyName(column: TableColumn): string {
+		return column.prop;
+	}
 
-    sortHeaderClicked(tableColumn: TableColumn) {
-        if(tableColumn.sortable) {
-            if(tableColumn == this.sortedColumn) {
-                TableComponent.switchSortDirection(tableColumn);
-            } else {
-                tableColumn.sortDirection = SortDirection.Desc;
-                this.sortedColumn = tableColumn;
-            }
+	sortHeaderClicked(tableColumn: TableColumn) {
+		if (tableColumn.sortable) {
+			if (tableColumn == this.sortedColumn) {
+				TableComponent.switchSortDirection(tableColumn);
+			} else {
+				tableColumn.sortDirection = SortDirection.Desc;
+				this.sortedColumn = tableColumn;
+			}
 
-            for(let column of this.options.columns) {
-                if(column != tableColumn) {
-                    column.sortDirection = null;
-                }
-            }
+			for (let column of this.options.columns) {
+				if (column != tableColumn) {
+					column.sortDirection = null;
+				}
+			}
 
-            this.sortColumn(tableColumn);
-        }
-    }
+			this.sortColumn(tableColumn);
+		}
+	}
 
-    sortColumn(column: TableColumn) {
-        let propertyName = this.getPropertyName(column);
-        var getValueFunction = (row) => {
-            if(propertyName) {
-                return this.getValue(row, propertyName);
-            }
-            return column.getDynamicValue(row);
-        };
+	sortColumn(column: TableColumn) {
+		let propertyName = this.getPropertyName(column);
+		var getValueFunction = (row) => {
+			if (propertyName) {
+				return this.getValue(row, propertyName);
+			}
+			return column.getDynamicValue(row);
+		};
 
-        let sortFunction = TableComponent.getSortComparator(column.sortDirection, getValueFunction);
-        this.sortedColumn = column;
-        this.rows.sort(sortFunction);
-    }
+		let sortFunction = TableComponent.getSortComparator(column.sortDirection, getValueFunction);
+		this.sortedColumn = column;
+		this.rows.sort(sortFunction);
+	}
 
-    rowClicked(row) {
-        if(this.options.itemsClickable) {
-            this.onRowClicked.next(row);
-        }
-    }
+	rowClicked(row) {
+		if (this.options.itemsClickable) {
+			this.onRowClicked.next(row);
+		}
+	}
 
-    static switchSortDirection(column: TableColumn) {
-        if(column.sortDirection === SortDirection.Asc) {
-            column.sortDirection = SortDirection.Desc;
-        } else {
-            column.sortDirection = SortDirection.Asc;
-        }
-    }
+	static switchSortDirection(column: TableColumn) {
+		if (column.sortDirection === SortDirection.Asc) {
+			column.sortDirection = SortDirection.Desc;
+		} else {
+			column.sortDirection = SortDirection.Asc;
+		}
+	}
 
-    static getSortComparator(sortDirection: SortDirection, getValueFunction: (row) => {}) {
-        return (rowA, rowB) => {
+	static getSortComparator(sortDirection: SortDirection, getValueFunction: (row) => {}) {
+		return (rowA, rowB) => {
 
-            let a = getValueFunction(rowA);
-            let b = getValueFunction(rowB);
+			let a = getValueFunction(rowA);
+			let b = getValueFunction(rowB);
 
-            if(a === b) {
-                return 0;
-            }
+			if (a === b) {
+				return 0;
+			}
 
-            if(sortDirection == SortDirection.Asc) {
-                return a > b ? 1 : -1;
-            }
+			if (sortDirection == SortDirection.Asc) {
+				return a > b ? 1 : -1;
+			}
 
-            return a < b ? 1 : -1;
-        }
-    }
+			return a < b ? 1 : -1;
+		}
+	}
 
 }

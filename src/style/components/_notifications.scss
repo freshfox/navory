@@ -1,26 +1,26 @@
 .simple-notification {
-    color: #fff;
-    border-radius: $defaultBorderRadius;
-    text-align: left;
-    padding: 0 !important;
+	color: #fff;
+	border-radius: $defaultBorderRadius;
+	text-align: left;
+	padding: 0 !important;
 
-    .sn-content {
-        width: 100%;
-        font-size: 14px !important;
-        padding: 8px 10px !important;
-    }
+	.sn-content {
+		width: 100%;
+		font-size: 14px !important;
+		padding: 8px 10px !important;
+	}
 
-    &.success {
-        background: $colorSuccess !important;
-    }
+	&.success {
+		background: $colorSuccess !important;
+	}
 
-    .simple-notification-svg {
-        display: none;
-    }
+	.simple-notification-svg {
+		display: none;
+	}
 }
 
 .simple-notification-wrapper {
-    &.top {
-        top: 75px !important;
-    }
+	&.top {
+		top: 75px !important;
+	}
 }

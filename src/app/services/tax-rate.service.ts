@@ -8,47 +8,47 @@ import {Observable} from "rxjs";
 @Injectable()
 export class TaxRateService extends BaseService {
 
-    private defaultTaxRate = 20;
+	private defaultTaxRate = 20;
 
-    constructor(http: Http, private state: State) {
-        super(http);
-    }
+	constructor(http: Http, private state: State) {
+		super(http);
+	}
 
-    getTaxRate(id: number): Observable<TaxRate> {
-        let rates = this.state.taxRates;
-        var rate = null;
-        rates.forEach(currentRate => {
-           if(currentRate.id == id) {
-               rate = currentRate;
-           }
-        });
+	getTaxRate(id: number): Observable<TaxRate> {
+		let rates = this.state.taxRates;
+		var rate = null;
+		rates.forEach(currentRate => {
+			if (currentRate.id == id) {
+				rate = currentRate;
+			}
+		});
 
-        return Observable.of(rate);
-    }
+		return Observable.of(rate);
+	}
 
-    getTaxRates(): Observable<TaxRate[]> {
-        return Observable.of(this.state.taxRates);
-    }
+	getTaxRates(): Observable<TaxRate[]> {
+		return Observable.of(this.state.taxRates);
+	}
 
-    getDefaultTaxRate(): Observable<TaxRate> {
-        var defaultRate;
-        this.state.taxRates.forEach(rate => {
-           if(rate.rate == this.defaultTaxRate) {
-               defaultRate = rate;
-           }
-        });
+	getDefaultTaxRate(): Observable<TaxRate> {
+		var defaultRate;
+		this.state.taxRates.forEach(rate => {
+			if (rate.rate == this.defaultTaxRate) {
+				defaultRate = rate;
+			}
+		});
 
-        return Observable.of(defaultRate);
-    }
+		return Observable.of(defaultRate);
+	}
 
-    getFormattedTaxRates() {
-        return this.getTaxRates()
-            .map(taxRates => {
-                return taxRates.map((taxRate) => {
-                    taxRate['name'] = taxRate.rate + '%';
-                    return taxRate;
-                });
-            });
-    }
+	getFormattedTaxRates() {
+		return this.getTaxRates()
+			.map(taxRates => {
+				return taxRates.map((taxRate) => {
+					taxRate['name'] = taxRate.rate + '%';
+					return taxRate;
+				});
+			});
+	}
 
 }

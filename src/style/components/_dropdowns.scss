@@ -1,86 +1,85 @@
 nvry-dropdown {
-    $dropdownTargetSize: 28px;
-    $dropdownTargetSizeFormField: 39px;
+	$dropdownTargetSize: 28px;
+	$dropdownTargetSizeFormField: 39px;
 
-    position: relative;
-    padding: 5px 0;
-    display: inline-block;
-    text-align: center;
+	position: relative;
+	padding: 5px 0;
+	display: inline-block;
+	text-align: center;
 
-    .dropdown__inner {
-        position: relative;
-        width: auto;
-        display: inline-block;
-    }
+	.dropdown__inner {
+		position: relative;
+		width: auto;
+		display: inline-block;
+	}
 
-    &.dropdown--shown {
-        .dropdown-target {
-            z-index: 110;
-        }
-    }
+	&.dropdown--shown {
+		.dropdown-target {
+			z-index: 110;
+		}
+	}
 
+	.dropdown-target {
+		width: $dropdownTargetSize;
+		height: $dropdownTargetSize;
+		border-radius: $defaultBorderRadius;
+		border: 1px solid $colorGray;
+		text-align: center;
+		outline: 0;
+		background: #fff;
+		display: flex;
+		@include align-items(center);
+		margin: 0 auto;
+		cursor: pointer;
+		position: relative;
 
-    .dropdown-target {
-        width: $dropdownTargetSize;
-        height: $dropdownTargetSize;
-        border-radius: $defaultBorderRadius;
-        border: 1px solid $colorGray;
-        text-align: center;
-        outline: 0;
-        background: #fff;
-        display: flex;
-        @include align-items(center);
-        margin: 0 auto;
-        cursor: pointer;
-        position: relative;
+		nvry-icon {
+			width: 18px;
+			height: 18px;
+			@include transition(transform .2s ease-out);
+		}
+	}
 
-        nvry-icon {
-            width: 18px;
-            height: 18px;
-            @include transition(transform .2s ease-out);
-        }
-    }
+	&.dropdown--form-field-height {
+		padding: 0;
 
-    &.dropdown--form-field-height {
-        padding: 0;
+		.dropdown-target {
+			width: $dropdownTargetSizeFormField;
+			height: $dropdownTargetSizeFormField;
+		}
+	}
 
-        .dropdown-target {
-            width: $dropdownTargetSizeFormField;
-            height: $dropdownTargetSizeFormField;
-        }
-    }
+	.dropdown-content {
+		min-width: 100px;
+		border-radius: $defaultBorderRadius;
+		position: absolute;
+		top: calc(100% + 2px);
+		right: 0;
+		border: 1px solid $colorGray;
+		background: #fff;
+		padding: 5px 0;
+		box-shadow: 0 0 12px rgba(0, 0, 0, .15);
+		z-index: 200;
 
-    .dropdown-content {
-        min-width: 100px;
-        border-radius: $defaultBorderRadius;
-        position: absolute;
-        top: calc(100% + 2px);
-        right: 0;
-        border: 1px solid $colorGray;
-        background: #fff;
-        padding: 5px 0;
-        box-shadow: 0 0 12px rgba(0,0,0,.15);
-        z-index: 200;
+		button {
+			display: block;
+			padding: 6px 20px;
+			width: 100%;
+			text-align: left;
 
-        button {
-            display: block;
-            padding: 6px 20px;
-            width: 100%;
-            text-align: left;
+			&:hover {
+				background: $colorGrayLight;
+			}
+		}
+	}
 
-            &:hover {
-                background: $colorGrayLight;
-            }
-        }
-    }
-
-    .dropdown-overlay {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 100;
-        cursor: default;
-    }
+	.dropdown-overlay {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 100;
+		cursor: default;
+	}
 }

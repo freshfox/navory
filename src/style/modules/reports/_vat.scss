@@ -1,13 +1,13 @@
 .vat-report {
-    @extend .default-section;
-    padding-left: $contentSidePadding;
-    padding-top: 30px;
+	@extend .default-section;
+	padding-left: $contentSidePadding;
+	padding-top: 30px;
 
-    nvry-year-selection {
-        margin-bottom: 30px;
-    }
+	nvry-year-selection {
+		margin-bottom: 30px;
+	}
 
-    .vat-report-form-fields {
+	.vat-report-form-fields {
 		margin-bottom: 30px;
 
 		.select2 {
@@ -15,52 +15,52 @@
 		}
 	}
 
-    .vat-report-amount-to-pay-container {
-        display: flex;
-        @include align-items(center);
-        margin-bottom: 20px;
+	.vat-report-amount-to-pay-container {
+		display: flex;
+		@include align-items(center);
+		margin-bottom: 20px;
 
-        nvry-spinner {
-            width: 30px;
-            height: 30px;
-            margin: 0;
-            margin-left: 10px;
-        }
-    }
+		nvry-spinner {
+			width: 30px;
+			height: 30px;
+			margin: 0;
+			margin-left: 10px;
+		}
+	}
 
-    .vat-report-amount-to-pay {
-        border: 2px solid $colorGrayLight;
-        display: inline-block;
-        padding: 8px;
-        border-color: $colorIncome;
+	.vat-report-amount-to-pay {
+		border: 2px solid $colorGrayLight;
+		display: inline-block;
+		padding: 8px;
+		border-color: $colorIncome;
 
-        .amount {
-            font-weight: bold;
-        }
+		.amount {
+			font-weight: bold;
+		}
 
-        &.amount-positive {
-            border-color: $colorExpenses;
-        }
-    }
+		&.amount-positive {
+			border-color: $colorExpenses;
+		}
+	}
 
-    .vat-report-paper {
-        border: 1px solid $colorGrayLight;
-        display: block;
-        margin: 0 auto;
-        padding: 30px;
-    }
+	.vat-report-paper {
+		border: 1px solid $colorGrayLight;
+		display: block;
+		margin: 0 auto;
+		padding: 30px;
+	}
 
-    .vat-report-category {
-        margin-bottom: 50px;
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
+	.vat-report-category {
+		margin-bottom: 50px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 
 	.vat-report-field-list {
 		list-style: none;
 		margin: 0;
-        padding: 0;
+		padding: 0;
 
 		li {
 			margin-bottom: 20px;
@@ -71,16 +71,16 @@
 
 			.title {
 				@include fontBold;
-                display: block;
-                float: right;
-                line-height: 25px;
-                margin-right: 10px;
+				display: block;
+				float: right;
+				line-height: 25px;
+				margin-right: 10px;
 			}
 
-            .description {
-                color: $colorGrayUltraDark;
-                line-height: 25px;
-            }
+			.description {
+				color: $colorGrayUltraDark;
+				line-height: 25px;
+			}
 
 			.value,
 			.value-header {

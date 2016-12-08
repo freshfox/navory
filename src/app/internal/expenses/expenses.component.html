@@ -1,31 +1,32 @@
 <div class="page-header expenses-component-page-header">
 
-    <nvry-month-selection [(selectedMonthIndex)]="selectedMonthIndex" (selectedMonthIndexChange)="filter()"></nvry-month-selection>
-    <nvry-year-selection [(year)]="selectedYear" (yearChange)="filter()"></nvry-year-selection>
+	<nvry-month-selection [(selectedMonthIndex)]="selectedMonthIndex"
+						  (selectedMonthIndexChange)="filter()"></nvry-month-selection>
+	<nvry-year-selection [(year)]="selectedYear" (yearChange)="filter()"></nvry-year-selection>
 
-    <nvry-button class="create-button" icon="plus" (click)="createExpense()">
-        {{ 'expenses.new' | translate }}
-    </nvry-button>
+	<nvry-button class="create-button" icon="plus" (click)="createExpense()">
+		{{ 'expenses.new' | translate }}
+	</nvry-button>
 </div>
 
 <nvry-table [options]="tableOptions" [rows]="filteredExpenses" [loading]="loading" (onRowClicked)="editExpense($event)">
 
-    <div empty class="empty-view">
-        <p class="title">{{ 'expenses.empty-state-message' | translate }}</p>
-        <nvry-button icon="plus" (click)="createExpense()">{{ 'expenses.new' | translate }}</nvry-button>
-    </div>
+	<div empty class="empty-view">
+		<p class="title">{{ 'expenses.empty-state-message' | translate }}</p>
+		<nvry-button icon="plus" (click)="createExpense()">{{ 'expenses.new' | translate }}</nvry-button>
+	</div>
 
 </nvry-table>
 
 
 <template #actionsColumn let-row="row" let-value="value">
-    <nvry-dropdown>
+	<nvry-dropdown>
 		<button (click)="editExpense(row)">{{ 'actions.view' | translate }}</button>
 		<button (click)="copyExpense(row)">{{ 'actions.copy' | translate }}</button>
-        <button (click)="deleteExpense(row)">{{ 'actions.delete' | translate }}</button>
-    </nvry-dropdown>
+		<button (click)="deleteExpense(row)">{{ 'actions.delete' | translate }}</button>
+	</nvry-dropdown>
 </template>
 
 <template #attachmentColumn let-row="row" let-value="value">
-    <nvry-icon name="paperclip" *ngIf="row.file.id" class="attachment-indicator-icon"></nvry-icon>
+	<nvry-icon name="paperclip" *ngIf="row.file.id" class="attachment-indicator-icon"></nvry-icon>
 </template>

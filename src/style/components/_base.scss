@@ -2,20 +2,20 @@
  * Natural box sizing for all elements
  */
 html {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 *, *:before, *:after {
-  box-sizing: inherit;
+	box-sizing: inherit;
 }
 
 /**
  * App root
  */
 nvry-app-root {
-    width: 100%;
-    height: 100%;
-    display: block;
+	width: 100%;
+	height: 100%;
+	display: block;
 }
 
 /**
@@ -29,7 +29,6 @@ html, body {
 	font-weight: 400;
 	height: 100%;
 }
-
 
 /**
  * Logo
@@ -45,12 +44,12 @@ html, body {
  * Spacer lines
  */
 hr {
-    height: 1px;
-    background: $colorSpacerLines;
-    border: 0;
-    margin: 15px 0;
-    width: 100%;
-    display: block;
+	height: 1px;
+	background: $colorSpacerLines;
+	border: 0;
+	margin: 15px 0;
+	width: 100%;
+	display: block;
 }
 
 /**
@@ -71,21 +70,44 @@ img {
 /**
  * Helper classes
  */
-.full-width { width: 100%; }
-.pull-right { float:right; }
-.tc { text-align: center; }
-.tr { text-align: right; }
-.hidden { display: none; }
-.no-padding { padding: 0; }
-.nmb { margin-bottom: 0 !important; }
-.no-scroll { overflow: hidden; }
+.full-width {
+	width: 100%;
+}
+
+.pull-right {
+	float: right;
+}
+
+.tc {
+	text-align: center;
+}
+
+.tr {
+	text-align: right;
+}
+
+.hidden {
+	display: none;
+}
+
+.no-padding {
+	padding: 0;
+}
+
+.nmb {
+	margin-bottom: 0 !important;
+}
+
+.no-scroll {
+	overflow: hidden;
+}
 
 [hidden] {
-    display: none !important;
+	display: none !important;
 }
 
 [invisible] {
-    visibility: hidden;
+	visibility: hidden;
 }
 
 /**
@@ -93,17 +115,17 @@ img {
  */
 .cf:before,
 .cf:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+	content: " "; /* 1 */
+	display: table; /* 2 */
 }
 
 .cf:after {
-    clear: both;
+	clear: both;
 }
 
 /**
  * Transformation stuff
  */
 .rotate-180-deg {
-    @include transform(rotateX(180deg));
+	@include transform(rotateX(180deg));
 }

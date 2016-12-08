@@ -1,20 +1,23 @@
 <section class="settings-section settings-section--no-border export-section">
-    <div class="frame">
-        <div class="bit-25">
-            <h3>{{ 'settings.export.title' | translate }}</h3>
-        </div>
-        <div class="bit-75">
-            <p>{{ 'settings.export.description' | translate }}</p>
+	<div class="frame">
+		<div class="bit-25">
+			<h3>{{ 'settings.export.title' | translate }}</h3>
+		</div>
+		<div class="bit-75">
+			<p>{{ 'settings.export.description' | translate }}</p>
 
-            <div class="export-fields">
-                <nvry-select [options]="exportTypes" [label]="'settings.export.type' | translate"
-                             [enableSearchField]="false" [(selectedValue)]="type" valueKey="value"></nvry-select>
+			<div class="export-fields">
+				<nvry-select [options]="exportTypes" [label]="'settings.export.type' | translate"
+							 [enableSearchField]="false" [(selectedValue)]="type" valueKey="value"></nvry-select>
 
-                <nvry-input [formControl]="form.controls.startDate" [(ngModel)]="startDate" type="date" [label]="'settings.export.from' | translate"></nvry-input>
-                <nvry-input [formControl]="form.controls.endDate" [(ngModel)]="endDate" type="date" [label]="'settings.export.to' | translate"></nvry-input>
+				<nvry-input [formControl]="form.controls.startDate" [(ngModel)]="startDate" type="date"
+							[label]="'settings.export.from' | translate"></nvry-input>
+				<nvry-input [formControl]="form.controls.endDate" [(ngModel)]="endDate" type="date"
+							[label]="'settings.export.to' | translate"></nvry-input>
 
-                <nvry-button [loading]="loading" (click)="download()">{{ 'settings.export.download' | translate }}</nvry-button>
-            </div>
-        </div>
-    </div>
+				<nvry-button [loading]="loading" (click)="download()">{{ 'settings.export.download' | translate }}
+				</nvry-button>
+			</div>
+		</div>
+	</div>
 </section>

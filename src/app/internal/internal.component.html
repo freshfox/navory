@@ -1,33 +1,35 @@
 <div class="base-layout">
-    <header class="main-header">
-        <div class="container main-header__inner">
-            <div class="logo">
-                {{ 'app.name' | translate }}
-            </div>
-            <div class="user">
-                <span class="username">{{ state.user.firstname }} {{ state.user.lastname }}</span>
-                <nvry-button class="button--small button--dark" (click)="logout()" [loading]="loggingOut">{{ 'general.logout' | translate }}</nvry-button>
-            </div>
-        </div>
-    </header>
+	<header class="main-header">
+		<div class="container main-header__inner">
+			<div class="logo">
+				{{ 'app.name' | translate }}
+			</div>
+			<div class="user">
+				<span class="username">{{ state.user.firstname }} {{ state.user.lastname }}</span>
+				<nvry-button class="button--small button--dark" (click)="logout()" [loading]="loggingOut">{{
+					'general.logout' | translate }}
+				</nvry-button>
+			</div>
+		</div>
+	</header>
 
-    <main class="container main-container">
-        <div id="sidebar">
-            <nav>
-                <ul>
-                    <li *ngFor="let item of navItems">
-                        <a [routerLink]="[item.routerLink]" class="{{ item.key }}" routerLinkActive="active">
-                            <nvry-icon [name]="item.icon"></nvry-icon>
-                            <span class="title">{{ item.title | translate }}</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div id="content">
-            <router-outlet></router-outlet>
-        </div>
-    </main>
+	<main class="container main-container">
+		<div id="sidebar">
+			<nav>
+				<ul>
+					<li *ngFor="let item of navItems">
+						<a [routerLink]="[item.routerLink]" class="{{ item.key }}" routerLinkActive="active">
+							<nvry-icon [name]="item.icon"></nvry-icon>
+							<span class="title">{{ item.title | translate }}</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div id="content">
+			<router-outlet></router-outlet>
+		</div>
+	</main>
 </div>
 
 <simple-notifications [options]="notificationOptions"></simple-notifications>

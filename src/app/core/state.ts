@@ -8,26 +8,26 @@ import {TaxRate} from "../models/tax-rate";
 @Injectable()
 export class State {
 
-    user: User;
-    selectedExpenseMonthIndex: number;
-    selectedIncomeMonthIndex: number;
-    expenseCategories: Category[];
-    units: Unit[];
-    countries: Country[];
-    taxRates: TaxRate[];
-    nextExpenseNumber: number;
-    nextIncomeNumber: number;
-    nextInvoiceNumber: number;
+	user: User;
+	selectedExpenseMonthIndex: number;
+	selectedIncomeMonthIndex: number;
+	expenseCategories: Category[];
+	units: Unit[];
+	countries: Country[];
+	taxRates: TaxRate[];
+	nextExpenseNumber: number;
+	nextIncomeNumber: number;
+	nextInvoiceNumber: number;
 
-    getAustria(): Country {
-        var aut;
-        this.countries.forEach(country => {
-           if(country.cca3 === 'AUT') {
-               aut = country;
-           }
-        });
+	getAustria(): Country {
+		var aut;
+		this.countries.forEach(country => {
+			if (country.cca3 === 'AUT') {
+				aut = country;
+			}
+		});
 
-        return aut;
-    }
+		return aut;
+	}
 
 }

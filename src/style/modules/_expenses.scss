@@ -1,10 +1,10 @@
 .expenses-component-page-header {
-    display: flex;
-    @include align-items(center);
+	display: flex;
+	@include align-items(center);
 
-    .create-button {
-        margin-left: auto;
-    }
+	.create-button {
+		margin-left: auto;
+	}
 }
 
 .expense-edit {
@@ -12,63 +12,62 @@
 }
 
 nvry-month-selection {
-    margin-right: 30px;
+	margin-right: 30px;
 
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        @include align-items(center);
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		@include align-items(center);
 
-        li {
-            margin: 0;
-            padding: 0;
+		li {
+			margin: 0;
+			padding: 0;
 
-            button {
-                color: $colorGray;
-                text-transform: uppercase;
-                width: 45px;
-                line-height: $fontSizeLarge;
-            }
+			button {
+				color: $colorGray;
+				text-transform: uppercase;
+				width: 45px;
+				line-height: $fontSizeLarge;
+			}
 
-            &.selected {
-                button {
-                    color: $colorPrimary;
-                    font-size: $fontSizeLarge;
-                }
-            }
-        }
-    }
+			&.selected {
+				button {
+					color: $colorPrimary;
+					font-size: $fontSizeLarge;
+				}
+			}
+		}
+	}
 }
 
-
 .category-selection {
-    display: flex;
-    @include flex-direction(column);
-    @include flex-wrap(wrap);
-    max-height: 800px;
+	display: flex;
+	@include flex-direction(column);
+	@include flex-wrap(wrap);
+	max-height: 800px;
 
-    .category-selection__column {
-        width: 33.333%;
-        margin-bottom: 30px;
+	.category-selection__column {
+		width: 33.333%;
+		margin-bottom: 30px;
 
-        h3 {
-            @include fontBold;
-        }
-    }
+		h3 {
+			@include fontBold;
+		}
+	}
 
-    .category {
-        display: block;
-        padding-left: 0;
-        margin-bottom: 0;
-        padding-top: 2px;
-        text-align: left;
-        padding-bottom: 2px;
-        @include transition(color .25s ease);
+	.category {
+		display: block;
+		padding-left: 0;
+		margin-bottom: 0;
+		padding-top: 2px;
+		text-align: left;
+		padding-bottom: 2px;
+		@include transition(color .25s ease);
 
-        &:hover {
-            color: $colorPrimary;
-        }
-    }
+		&:hover {
+			color: $colorPrimary;
+		}
+	}
 }

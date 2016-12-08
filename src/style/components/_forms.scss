@@ -4,7 +4,7 @@
 	border: 1px solid $formFieldBorderColor;
 	border-radius: $formFieldBorderRadius;
 	@include transition(background-color .2s ease);
-    width: 100%;
+	width: 100%;
 
 	&:focus {
 		outline: 0;
@@ -15,75 +15,75 @@
 		width: 100%;
 	}
 
-    &.money-field {
-        text-align: right;
-    }
+	&.money-field {
+		text-align: right;
+	}
 
 	&[disabled] {
 		background: $colorGrayLight;
 	}
 
-    &.clickable-field {
-        background: white;
+	&.clickable-field {
+		background: white;
 
-        &:hover {
-            background: $colorPrimaryUltraLighter;
-            cursor: pointer;
-        }
-    }
+		&:hover {
+			background: $colorPrimaryUltraLighter;
+			cursor: pointer;
+		}
+	}
 
-    &[nvry-amount] {
-        text-align: right;
-    }
+	&[nvry-amount] {
+		text-align: right;
+	}
 }
 
 @include form-fields-with-extensions {
-    &.connected-with-next {
+	&.connected-with-next {
 
-        input {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
+		input {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
 
-        + nvry-input input:not([type=hidden]),
-        + input[type=hidden] + input {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-            border-left: 0;
-        }
+		+ nvry-input input:not([type=hidden]),
+		+ input[type=hidden] + input {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			border-left: 0;
+		}
 
-        + nvry-select .select2-hidden-accessible {
-            + .select2-container .select2-selection {
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-                border-left: 0;
-            }
-        }
+		+ nvry-select .select2-hidden-accessible {
+			+ .select2-container .select2-selection {
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+				border-left: 0;
+			}
+		}
 
-        + nvry-select .select2-container {
+		+ nvry-select .select2-container {
 
-            .select2-selection {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-            }
+			.select2-selection {
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+			}
 
-            + nvry-input input:not([type=hidden]),
-            + input[type=hidden] + input {
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-                border-left: 0;
-            }
-        }
-    }
+			+ nvry-input input:not([type=hidden]),
+			+ input[type=hidden] + input {
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+				border-left: 0;
+			}
+		}
+	}
 }
 
 select {
-    width: 100%;
+	width: 100%;
 }
 
 textarea {
-    min-height: 110px;
-    resize: none;
+	min-height: 110px;
+	resize: none;
 }
 
 .formfield-wrapper {
@@ -96,7 +96,7 @@ input[type="radio"]:focus,
 input[type="checkbox"]:focus {
 	outline: thin dotted #333;
 	outline: 1px auto $colorPrimary;
-    border: 1px solid $colorPrimary;
+	border: 1px solid $colorPrimary;
 }
 
 label {
@@ -118,8 +118,8 @@ label {
 nvry-input,
 nvry-textarea,
 nvry-select {
-    margin-bottom: 15px;
-    display: block;
+	margin-bottom: 15px;
+	display: block;
 }
 
 /**
@@ -130,7 +130,6 @@ nvry-select {
 	color: $colorError;
 	font-size: 12px;
 }
-
 
 /**
  * Checkboxes
@@ -148,7 +147,7 @@ nvry-select {
 		line-height: $checkboxSize;
 
 		&:before {
-			content:"";
+			content: "";
 			display: inline-block;
 			width: $checkboxSize;
 			height: $checkboxSize;
@@ -168,7 +167,7 @@ nvry-select {
 		display: none;
 
 		&:checked + label:before {
-			content:"\2713";
+			content: "\2713";
 		}
 
 		&:disabled + label:before {
@@ -178,15 +177,14 @@ nvry-select {
 	}
 }
 
-
 /**
  * Select dropdowns
  */
 nvry-select {
-    width: auto;
-    display: block;
+	width: auto;
+	display: block;
 
-    .select2-container {
-        width: 100% !important;
-    }
+	.select2-container {
+		width: 100% !important;
+	}
 }

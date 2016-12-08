@@ -1,7 +1,6 @@
-
 export class File {
 
-    id: number;
-    thumbnails: string[] = [];
+	id: number;
+	thumbnails: string[] = [];
 
 }

@@ -1,137 +1,143 @@
 <div class="page-header page-header--no-bottom-padding">
-    <nvry-button class="button--clear" [routerLink]="['/invoices']" icon="arrow-left">
-        {{ 'invoices.title' | translate }}
-    </nvry-button>
-    <hr>
+	<nvry-button class="button--clear" [routerLink]="['/invoices']" icon="arrow-left">
+		{{ 'invoices.title' | translate }}
+	</nvry-button>
+	<hr>
 </div>
 <template [ngIf]="!loading">
-    <div class="page-row button-row">
-        <h1 class="module-title">
-            <span *ngIf="!createMode && !invoice.draft">{{ 'invoices.edit_title' | translate:{ number: invoice.number } }}</span>
-            <span *ngIf="!createMode && invoice.draft">{{ 'invoices.edit_title_draft' | translate }}</span>
-            <span *ngIf="createMode">{{ 'invoices.create_title' | translate }}</span>
-        </h1>
-        <div class="buttons">
-            <nvry-button icon="download"
-                         class="button--secondary"
-                         (click)="downloadPDF()"
-                         *ngIf="invoice.id">{{ 'actions.download' | translate }}</nvry-button>
+	<div class="page-row button-row">
+		<h1 class="module-title">
+			<span *ngIf="!createMode && !invoice.draft">{{ 'invoices.edit_title' | translate:{ number: invoice.number } }}</span>
+			<span *ngIf="!createMode && invoice.draft">{{ 'invoices.edit_title_draft' | translate }}</span>
+			<span *ngIf="createMode">{{ 'invoices.create_title' | translate }}</span>
+		</h1>
+		<div class="buttons">
+			<nvry-button icon="download"
+						 class="button--secondary"
+						 (click)="downloadPDF()"
+						 *ngIf="invoice.id">{{ 'actions.download' | translate }}
+			</nvry-button>
 
-            <nvry-button (click)="showPreview()"
-                         class="button--secondary button--icon-medium"
-                         icon="eye-outline"
-                         *ngIf="invoice.id">{{ 'invoices.preview' | translate }}</nvry-button>
+			<nvry-button (click)="showPreview()"
+						 class="button--secondary button--icon-medium"
+						 icon="eye-outline"
+						 *ngIf="invoice.id">{{ 'invoices.preview' | translate }}
+			</nvry-button>
 
-            <nvry-button class="button--secondary" (click)="saveDraft()" [loading]="saving && savingDraft" *ngIf="createMode || invoice.draft || (!invoice.draft && !saving)">
-                {{ 'invoices.save-draft' | translate }}
-            </nvry-button>
-            <nvry-button (click)="save()" [loading]="saving && !savingDraft" *ngIf="!invoice.draft">{{ 'general.save' | translate }}</nvry-button>
+			<nvry-button class="button--secondary" (click)="saveDraft()" [loading]="saving && savingDraft"
+						 *ngIf="createMode || invoice.draft || (!invoice.draft && !saving)">
+				{{ 'invoices.save-draft' | translate }}
+			</nvry-button>
+			<nvry-button (click)="save()" [loading]="saving && !savingDraft" *ngIf="!invoice.draft">{{ 'general.save' |
+				translate }}
+			</nvry-button>
 
-            <nvry-button (click)="saveAndIssue()"
-                         [loading]="saving && !savingDraft"
-                         *ngIf="invoice.draft"
-                         [disabled]="savingDraft">{{ 'invoices.issue' | translate }}</nvry-button>
-        </div>
-    </div>
+			<nvry-button (click)="saveAndIssue()"
+						 [loading]="saving && !savingDraft"
+						 *ngIf="invoice.draft"
+						 [disabled]="savingDraft">{{ 'invoices.issue' | translate }}
+			</nvry-button>
+		</div>
+	</div>
 
-    <div class="default-section">
-        <div class="invoice-edit-paper">
+	<div class="default-section">
+		<div class="invoice-edit-paper">
 
-            <div class="invoice-edit-paper-section">
-                <div class="frame">
-                    <div class="bit-50 customer-area">
-                        <nvry-input [label]="'general.customer' | translate"
-                                    [(ngModel)]="invoice.customer_name"></nvry-input>
-                        <nvry-textarea [label]="'general.address' | translate"
-                                       [(ngModel)]="invoice.customer_address"></nvry-textarea>
+			<div class="invoice-edit-paper-section">
+				<div class="frame">
+					<div class="bit-50 customer-area">
+						<nvry-input [label]="'general.customer' | translate"
+									[(ngModel)]="invoice.customer_name"></nvry-input>
+						<nvry-textarea [label]="'general.address' | translate"
+									   [(ngModel)]="invoice.customer_address"></nvry-textarea>
 
-                        <nvry-select [label]="'general.country' | translate" [options]="countries"
-                                     [(selectedValue)]="invoice.customer_country_id" disabled></nvry-select>
-                    </div>
-                    <div class="bit-50">
-                        <div class="frame frame--bit-spacing">
-                            <div class="bit-50">&nbsp;</div>
-                            <div class="bit-50">
-                                <nvry-input [formControl]="form.controls.number"
-                                            [(ngModel)]="invoice.number"
-                                            [label]="'invoices.number' | translate"
-                                            [placeholder]="nextInvoiceNumber"
-                                            [disabled]="!invoice.draft"></nvry-input>
-                            </div>
-                        </div>
-                        <div class="frame frame--bit-spacing">
-                            <div class="bit-50">
-                                <nvry-input type="date"
-                                            [formControl]="form.controls.date"
-                                            [(ngModel)]="invoice.date"
-                                            [label]="'general.date' | translate"></nvry-input>
-                                <nvry-input type="date"
-                                            [formControl]="form.controls.service_date_start"
-                                            [(ngModel)]="invoice.service_date_start"
-                                            [label]="'invoices.service-date-start' | translate"></nvry-input>
-                            </div>
-                            <div class="bit-50">
-                                <nvry-input type="date" [formControl]="form.controls.due_date"
-                                            [(ngModel)]="invoice.due_date"
-                                            [label]="'invoices.date-due' | translate"></nvry-input>
-                                <nvry-input type="date" [formControl]="form.controls.service_date_end"
-                                            [(ngModel)]="invoice.service_date_end"
-                                            [label]="'invoices.service-date-end' | translate"></nvry-input>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+						<nvry-select [label]="'general.country' | translate" [options]="countries"
+									 [(selectedValue)]="invoice.customer_country_id" disabled></nvry-select>
+					</div>
+					<div class="bit-50">
+						<div class="frame frame--bit-spacing">
+							<div class="bit-50">&nbsp;</div>
+							<div class="bit-50">
+								<nvry-input [formControl]="form.controls.number"
+											[(ngModel)]="invoice.number"
+											[label]="'invoices.number' | translate"
+											[placeholder]="nextInvoiceNumber"
+											[disabled]="!invoice.draft"></nvry-input>
+							</div>
+						</div>
+						<div class="frame frame--bit-spacing">
+							<div class="bit-50">
+								<nvry-input type="date"
+											[formControl]="form.controls.date"
+											[(ngModel)]="invoice.date"
+											[label]="'general.date' | translate"></nvry-input>
+								<nvry-input type="date"
+											[formControl]="form.controls.service_date_start"
+											[(ngModel)]="invoice.service_date_start"
+											[label]="'invoices.service-date-start' | translate"></nvry-input>
+							</div>
+							<div class="bit-50">
+								<nvry-input type="date" [formControl]="form.controls.due_date"
+											[(ngModel)]="invoice.due_date"
+											[label]="'invoices.date-due' | translate"></nvry-input>
+								<nvry-input type="date" [formControl]="form.controls.service_date_end"
+											[(ngModel)]="invoice.service_date_end"
+											[label]="'invoices.service-date-end' | translate"></nvry-input>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-            <div class="invoice-edit-paper-section lines">
-                <div class="invoice-lines-container">
-                    <div class="header">
-                        <span class="title-header">Produkt</span>
-                        <span class="quantity-header">Menge</span>
-                        <span class="unit-header">Einheit</span>
-                        <span class="price-header">Preis (netto)</span>
-                        <span class="taxrate-header">USt.</span>
-                        <span class="amount-header">Betrag (netto)</span>
-                    </div>
+			<div class="invoice-edit-paper-section lines">
+				<div class="invoice-lines-container">
+					<div class="header">
+						<span class="title-header">Produkt</span>
+						<span class="quantity-header">Menge</span>
+						<span class="unit-header">Einheit</span>
+						<span class="price-header">Preis (netto)</span>
+						<span class="taxrate-header">USt.</span>
+						<span class="amount-header">Betrag (netto)</span>
+					</div>
 
-                    <div id="lines-list">
-                        <nvry-invoice-line [invoiceLine]="line"
-                                           [dropdownShown]="invoice.invoice_lines.length > 1"
-                                           *ngFor="let line of invoice.invoice_lines"
-                                           (onDelete)="deleteLine($event)"></nvry-invoice-line>
-                    </div>
-                </div>
+					<div id="lines-list">
+						<nvry-invoice-line [invoiceLine]="line"
+										   [dropdownShown]="invoice.invoice_lines.length > 1"
+										   *ngFor="let line of invoice.invoice_lines"
+										   (onDelete)="deleteLine($event)"></nvry-invoice-line>
+					</div>
+				</div>
 
-                <nvry-button class="button--secondary" (click)="addLine()">Neue Zeile</nvry-button>
-            </div>
+				<nvry-button class="button--secondary" (click)="addLine()">Neue Zeile</nvry-button>
+			</div>
 
-            <div class="invoice-edit-paper-section invoice-total">
-                <div class="invoice-total__inner">
-                    <div class="line">
-                        <span class="title">Zwischensumme</span>
-                        <span class="value">{{ getTotalNet() | nvryNumber }}</span>
-                    </div>
+			<div class="invoice-edit-paper-section invoice-total">
+				<div class="invoice-total__inner">
+					<div class="line">
+						<span class="title">Zwischensumme</span>
+						<span class="value">{{ getTotalNet() | nvryNumber }}</span>
+					</div>
 
-                    <div class="line" *ngFor="let rate of getOccuringTaxRates()">
-                        <span class="title">USt. {{ rate.rate }}% von {{ rate.netAmount | nvryNumber }}</span>
-                        <span class="value">{{ rate.amount | nvryNumber}}</span>
-                    </div>
+					<div class="line" *ngFor="let rate of getOccuringTaxRates()">
+						<span class="title">USt. {{ rate.rate }}% von {{ rate.netAmount | nvryNumber }}</span>
+						<span class="value">{{ rate.amount | nvryNumber}}</span>
+					</div>
 
-                    <div class="line line--total">
-                        <span class="title">Gesamt EUR</span>
-                        <span class="value">{{ getTotalGross() | nvryNumber }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+					<div class="line line--total">
+						<span class="title">Gesamt EUR</span>
+						<span class="value">{{ getTotalGross() | nvryNumber }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <nvry-spinner *ngIf="loading"></nvry-spinner>
 
 
 <nvry-modal [clean]="true" [showCloseButton]="true" #previewModal>
-    <div class="document-preview">
-        <iframe [src]="invoicePreviewURL | safe" frameborder="0"></iframe>
-    </div>
+	<div class="document-preview">
+		<iframe [src]="invoicePreviewURL | safe" frameborder="0"></iframe>
+	</div>
 </nvry-modal>

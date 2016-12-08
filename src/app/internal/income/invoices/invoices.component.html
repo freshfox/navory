@@ -1,26 +1,28 @@
 <div class="page-header">
-    <nvry-button icon="plus" class="create-button" (click)="createInvoice()">
-        {{ 'invoices.new' | translate }}
-    </nvry-button>
+	<nvry-button icon="plus" class="create-button" (click)="createInvoice()">
+		{{ 'invoices.new' | translate }}
+	</nvry-button>
 </div>
 
-<nvry-table [options]="tableOptions" [loading]="loading" [rows]="invoices" (onRowClicked)="editInvoice($event)" class="invoice-list-table">
+<nvry-table [options]="tableOptions" [loading]="loading" [rows]="invoices" (onRowClicked)="editInvoice($event)"
+			class="invoice-list-table">
 
-    <div empty class="empty-view">
-        <p class="title" [innerHTML]="'invoices.empty-state-message' | translate"></p>
-        <nvry-button icon="plus" class="create-button" (click)="createInvoice()">{{ 'invoices.new' | translate }}</nvry-button>
-    </div>
+	<div empty class="empty-view">
+		<p class="title" [innerHTML]="'invoices.empty-state-message' | translate"></p>
+		<nvry-button icon="plus" class="create-button" (click)="createInvoice()">{{ 'invoices.new' | translate }}
+		</nvry-button>
+	</div>
 
 </nvry-table>
 
 <template #statusColumn let-row="row" let-value="value">
-    <span class="badge badge--{{ getBadgeData(row).cssClass }}">{{ getBadgeData(row).text }}</span>
+	<span class="badge badge--{{ getBadgeData(row).cssClass }}">{{ getBadgeData(row).text }}</span>
 </template>
 
 <template #actionsColumn let-row="row" let-value="value">
-    <nvry-dropdown>
-        <button (click)="editInvoice(row)">{{ 'actions.view' | translate }}</button>
-        <button (click)="deleteInvoice(row)">{{ 'actions.delete' | translate }}</button>
-    </nvry-dropdown>
+	<nvry-dropdown>
+		<button (click)="editInvoice(row)">{{ 'actions.view' | translate }}</button>
+		<button (click)="deleteInvoice(row)">{{ 'actions.delete' | translate }}</button>
+	</nvry-dropdown>
 </template>
 

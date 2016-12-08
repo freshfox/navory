@@ -1,30 +1,30 @@
 .pika-single {
-    font-family: inherit;
+	font-family: inherit;
 }
 
 .pika-table {
-    abbr {
-        cursor: default;
-    }
+	abbr {
+		cursor: default;
+	}
 
-    .is-selected.is-today {
-        .pika-button {
-            color: white;
-        }
-    }
+	.is-selected.is-today {
+		.pika-button {
+			color: white;
+		}
+	}
 }
 
 .pika-button {
-    &:hover {
-        background: $colorGrayMedium;
-    }
+	&:hover {
+		background: $colorGrayMedium;
+	}
 
-    .is-selected & {
-        background: $colorPrimary;
-        box-shadow: none;
-    }
+	.is-selected & {
+		background: $colorPrimary;
+		box-shadow: none;
+	}
 
-    .is-today & {
-        color: $colorPrimary;
-    }
+	.is-today & {
+		color: $colorPrimary;
+	}
 }

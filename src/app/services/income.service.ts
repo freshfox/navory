@@ -8,35 +8,35 @@ import {EuVatType} from "../core/enums/eu-vat-type.enum";
 @Injectable()
 export class IncomeService extends BaseService {
 
-    private pathIncome = '/incomes';
+	private pathIncome = '/incomes';
 
-    constructor(http: Http) {
-        super(http);
-    }
+	constructor(http: Http) {
+		super(http);
+	}
 
-    getIncomes(): Observable<Income[]> {
-        return this.get(this.pathIncome);
-    }
+	getIncomes(): Observable<Income[]> {
+		return this.get(this.pathIncome);
+	}
 
-    getIncome(id: number): Observable<Income> {
-        return this.get(this.getRestEntityPath(this.pathIncome, id));
-    }
+	getIncome(id: number): Observable<Income> {
+		return this.get(this.getRestEntityPath(this.pathIncome, id));
+	}
 
-    saveIncome(income: Income) {
-        if(income.eu_vat_type == EuVatType.None) {
-            income.eu_vat_type = null;
-        }
+	saveIncome(income: Income) {
+		if (income.eu_vat_type == EuVatType.None) {
+			income.eu_vat_type = null;
+		}
 
-        if(income.id) {
-            return this.patch(this.getRestEntityPath(this.pathIncome, income.id), income);
-        }
+		if (income.id) {
+			return this.patch(this.getRestEntityPath(this.pathIncome, income.id), income);
+		}
 
-        return this.post(this.pathIncome, income);
-    }
+		return this.post(this.pathIncome, income);
+	}
 
-    deleteIncome(income: Income): Observable<any> {
-        return this.delete(this.getRestEntityPath(this.pathIncome, income.id));
-    }
+	deleteIncome(income: Income): Observable<any> {
+		return this.delete(this.getRestEntityPath(this.pathIncome, income.id));
+	}
 
 }
 

@@ -1,7 +1,6 @@
-
 export class TaxRate {
 
-    id: number;
-    rate: number;
+	id: number;
+	rate: number;
 
 }

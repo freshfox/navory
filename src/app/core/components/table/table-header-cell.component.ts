@@ -1,45 +1,45 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {TableColumn} from "./table-column.model";
 import {Input} from "@angular/core/src/metadata/directives";
 import {SortDirection} from "./sort-direction.enum";
 
 @Component({
-    selector: 'th[nvry-table-header-cell]',
-    template: `
+	selector: 'th[nvry-table-header-cell]',
+	template: `
         <div class="nvry-table-header-cell__inner">
             <span>{{ name }}</span>
             <nvry-icon [name]="sortIconName" [attr.invisible]="!(column.sortable && sortIconName) ? true : null"></nvry-icon>
         </div>
     `,
-    host: {
-        '[class.nvry-table-header-cell--sortable]': 'column.sortable',
-        '[class.nvry-table-header-cell--sorted]': 'column.sortDirection',
-        '[style.width]': 'column.width + "%"',
-        '[class.nvry-table-cell--align-right]': 'column.alignment == "right"'
-    }
+	host: {
+		'[class.nvry-table-header-cell--sortable]': 'column.sortable',
+		'[class.nvry-table-header-cell--sorted]': 'column.sortDirection',
+		'[style.width]': 'column.width + "%"',
+		'[class.nvry-table-cell--align-right]': 'column.alignment == "right"'
+	}
 })
 export class TableHeaderCellComponent implements OnInit {
 
-    @Input() column: TableColumn;
+	@Input() column: TableColumn;
 
-    constructor() {
-    }
+	constructor() {
+	}
 
-    ngOnInit() {
-    }
+	ngOnInit() {
+	}
 
-    get name() {
-        return this.column.name || this.column.prop;
-    }
+	get name() {
+		return this.column.name || this.column.prop;
+	}
 
-    get sortIconName() {
-        switch (this.column.sortDirection) {
-            case SortDirection.Asc:
-                return 'arrow-sorted-up';
-            case SortDirection.Desc:
-                return 'arrow-sorted-down';
-        }
-        return null;
-    }
+	get sortIconName() {
+		switch (this.column.sortDirection) {
+			case SortDirection.Asc:
+				return 'arrow-sorted-up';
+			case SortDirection.Desc:
+				return 'arrow-sorted-down';
+		}
+		return null;
+	}
 
 }

@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, SimpleChange, AfterViewInit, OnChanges} from '@angular/core';
+import {Component, ElementRef, Input, SimpleChange, AfterViewInit, OnChanges} from "@angular/core";
 let Ladda = require('ladda');
 
 @Component({
@@ -14,9 +14,9 @@ let Ladda = require('ladda');
 export class ButtonComponent implements AfterViewInit, OnChanges {
 
 	@Input() loading;
-    @Input() class;
-    @Input() icon: string;
-    @Input() disabled: boolean;
+	@Input() class;
+	@Input() icon: string;
+	@Input() disabled: boolean;
 
 	private laddaButton: any;
 

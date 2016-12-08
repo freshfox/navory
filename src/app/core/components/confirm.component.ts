@@ -1,8 +1,8 @@
-import {Component, OnInit, Input, Output} from '@angular/core';
+import {Component, OnInit, Input, Output} from "@angular/core";
 
 @Component({
-    selector: 'nvry-confirm',
-    template: `
+	selector: 'nvry-confirm',
+	template: `
         <div class="modal-header" *ngIf="title">
             {{ title }}
         </div>
@@ -19,22 +19,24 @@ import {Component, OnInit, Input, Output} from '@angular/core';
 })
 export class ConfirmComponent implements OnInit {
 
-    @Input() title: string;
-    @Input() message: string;
+	@Input() title: string;
+	@Input() message: string;
 
-    @Output() onCancel: Function;
-    @Output() onConfirm: Function;
+	@Output() onCancel: Function;
+	@Output() onConfirm: Function;
 
-    constructor() { }
+	constructor() {
+	}
 
-    ngOnInit() { }
+	ngOnInit() {
+	}
 
-    confirm() {
-        this.onConfirm();
-    }
+	confirm() {
+		this.onConfirm();
+	}
 
-    cancel() {
-        this.onCancel();
-    }
+	cancel() {
+		this.onCancel();
+	}
 
 }

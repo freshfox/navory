@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 
 @Component({
-    selector: 'nvry-income',
-    template: `
+	selector: 'nvry-income',
+	template: `
         <div class="page-header page-header--no-side-padding page-header--no-bottom-padding">
             <nav class="tabs tabs--full-width">
                 <ul>
@@ -19,8 +19,10 @@ import { Component, OnInit } from '@angular/core';
 `
 })
 export class IncomeComponent implements OnInit {
-    constructor() { }
+	constructor() {
+	}
 
-    ngOnInit() { }
+	ngOnInit() {
+	}
 
 }

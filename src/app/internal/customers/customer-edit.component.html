@@ -1,27 +1,34 @@
 <div class="modal-header">
-    <span>{{ headerText }}</span>
+	<span>{{ headerText }}</span>
 </div>
 
 <form [formGroup]="form">
-    <div class="frame frame--padding">
-        <nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
-    </div>
-    <div class="frame frame--padding frame--bit-spacing">
-        <div class="bit-50">
-            <nvry-input [label]="'general.name' | translate" [formControl]="form.controls.name" [(ngModel)]="customer.name"></nvry-input>
-            <nvry-textarea [label]="'general.address' | translate" [formControl]="form.controls.address" [(ngModel)]="customer.address"></nvry-textarea>
-            <nvry-select [label]="'general.country' | translate" [options]="countries" valueKey="id" [selectedValue]="selectedCountryId"></nvry-select>
-        </div>
-        <div class="bit-50">
-            <nvry-input [label]="'general.number' | translate" [formControl]="form.controls.number" [(ngModel)]="customer.number"></nvry-input>
-            <nvry-input [label]="'general.email' | translate" [formControl]="form.controls.email" type="email" [(ngModel)]="customer.email"></nvry-input>
-            <nvry-input [label]="'general.phone' | translate" [formControl]="form.controls.phone" [(ngModel)]="customer.phone"></nvry-input>
-            <nvry-input [label]="'general.vat-id' | translate" [formControl]="form.controls.vat_number" [(ngModel)]="customer.vat_number"></nvry-input>
-        </div>
-    </div>
+	<div class="frame frame--padding">
+		<nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
+	</div>
+	<div class="frame frame--padding frame--bit-spacing">
+		<div class="bit-50">
+			<nvry-input [label]="'general.name' | translate" [formControl]="form.controls.name"
+						[(ngModel)]="customer.name"></nvry-input>
+			<nvry-textarea [label]="'general.address' | translate" [formControl]="form.controls.address"
+						   [(ngModel)]="customer.address"></nvry-textarea>
+			<nvry-select [label]="'general.country' | translate" [options]="countries" valueKey="id"
+						 [selectedValue]="selectedCountryId"></nvry-select>
+		</div>
+		<div class="bit-50">
+			<nvry-input [label]="'general.number' | translate" [formControl]="form.controls.number"
+						[(ngModel)]="customer.number"></nvry-input>
+			<nvry-input [label]="'general.email' | translate" [formControl]="form.controls.email" type="email"
+						[(ngModel)]="customer.email"></nvry-input>
+			<nvry-input [label]="'general.phone' | translate" [formControl]="form.controls.phone"
+						[(ngModel)]="customer.phone"></nvry-input>
+			<nvry-input [label]="'general.vat-id' | translate" [formControl]="form.controls.vat_number"
+						[(ngModel)]="customer.vat_number"></nvry-input>
+		</div>
+	</div>
 </form>
 
 <div class="modal-footer">
-    <nvry-button class="button--secondary" (click)="cancel()">{{ 'general.cancel' | translate }}</nvry-button>
-    <nvry-button [loading]="loading" (click)="save()">{{ 'general.save' | translate }}</nvry-button>
+	<nvry-button class="button--secondary" (click)="cancel()">{{ 'general.cancel' | translate }}</nvry-button>
+	<nvry-button [loading]="loading" (click)="save()">{{ 'general.save' | translate }}</nvry-button>
 </div>

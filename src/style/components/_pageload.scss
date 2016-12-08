@@ -56,19 +56,27 @@
 }
 
 @-webkit-keyframes moveRight {
-	to { -webkit-transform: translateX(20px); }
+	to {
+		-webkit-transform: translateX(20px);
+	}
 }
 
 @keyframes moveRight {
-	to { transform: translateX(20px); }
+	to {
+		transform: translateX(20px);
+	}
 }
 
 @-webkit-keyframes moveLeft {
-	to { -webkit-transform: translateX(-20px); }
+	to {
+		-webkit-transform: translateX(-20px);
+	}
 }
 
 @keyframes moveLeft {
-	to { transform: translateX(-20px); }
+	to {
+		transform: translateX(-20px);
+	}
 }
 
 .pageload-loading.pageload-overlay::after,

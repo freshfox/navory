@@ -1,22 +1,17 @@
 //@import "../bower_components/lemonade/scss/config";
-
 /**
  * Variables for configuration and overriding of third party styles
  */
 @import "variables";
-
-
 /**
  * Third party styles
  */
-
 @import "lib/normalize";
 @import "../../node_modules/ladda/css/ladda";
 @import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
 @import "../../node_modules/pikaday/scss/pikaday";
 @import "../../node_modules/select2/src/scss/core";
 @import "../../node_modules/chartist/dist/scss/chartist";
-
 /**
  * Application specific styles
  */
@@ -24,10 +19,8 @@
 @import "mixins/forms";
 @import "mixins/typography";
 @import "mixins/metrics";
-
 // Libraries that can't be imported via bower or are only available as CSS files
 @import "lib/dropzone";
-
 // Components
 @import "components/base";
 @import "components/headings";
@@ -47,16 +40,13 @@
 @import "components/badges";
 @import "components/icons";
 @import "components/year-selection";
-
 @import "components/forms/dropdowns";
 @import "components/forms/toggles";
 @import "components/forms/datepicker";
-
 // Layout Styling
 @import "layout";
 @import "header";
 @import "sidebar";
-
 // App Modules
 @import "modules/timeout";
 @import "modules/login/login";

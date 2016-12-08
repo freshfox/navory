@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 
 @Component({
-    selector: 'nvry-dropdown',
-    template: `
+	selector: 'nvry-dropdown',
+	template: `
         <div class="dropdown__inner" (click)="onClickInner($event)">
             <button class="dropdown-target" (click)="toggle($event)">
                 <nvry-icon name="arrow-sorted-down" [class.rotate-180-deg]="shown"></nvry-icon>
@@ -13,35 +13,35 @@ import {Component, OnInit} from '@angular/core';
         </div>
         <div class="dropdown-overlay" (click)="onClickOverlay($event)" *ngIf="shown"></div>
     `,
-    host: {
-        '[class.dropdown--shown]': 'shown'
-    }
+	host: {
+		'[class.dropdown--shown]': 'shown'
+	}
 })
 export class DropdownComponent implements OnInit {
 
-    private shown: boolean = false;
+	private shown: boolean = false;
 
-    constructor() {
-    }
+	constructor() {
+	}
 
-    ngOnInit() {
-    }
+	ngOnInit() {
+	}
 
-    toggle(event) {
-        this.shown = !this.shown;
-        event.stopPropagation();
-    }
+	toggle(event) {
+		this.shown = !this.shown;
+		event.stopPropagation();
+	}
 
-    hide() {
-        this.shown = false;
-    }
+	hide() {
+		this.shown = false;
+	}
 
-    onClickOverlay(event) {
-        this.hide();
-        event.stopPropagation();
-    }
+	onClickOverlay(event) {
+		this.hide();
+		event.stopPropagation();
+	}
 
-    onClickInner(event) {
-        event.stopPropagation();
-    }
+	onClickInner(event) {
+		event.stopPropagation();
+	}
 }

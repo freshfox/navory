@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {Location} from "@angular/common";
 
 @Component({
-    selector: 'nvry-503',
-    template: `
+	selector: 'nvry-503',
+	template: `
         
         <div class="frame timeout-page">
             <div class="bit-100">
@@ -20,17 +20,18 @@ import {Location} from "@angular/common";
 })
 export class FiveZeroThreeComponent implements OnInit {
 
-    private refreshing: boolean = false;
+	private refreshing: boolean = false;
 
-    constructor(private location: Location) { }
+	constructor(private location: Location) {
+	}
 
-    ngOnInit() {
-        this.location.replaceState('/');
-    }
+	ngOnInit() {
+		this.location.replaceState('/');
+	}
 
-    onRefresh() {
-        this.refreshing = true;
-        window.location.href = '';
-    }
+	onRefresh() {
+		this.refreshing = true;
+		window.location.href = '';
+	}
 
 }

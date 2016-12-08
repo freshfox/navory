@@ -2,32 +2,32 @@
 
 <div class="upload-area dropzone" #uploadArea [class.upload-area--has-file]="isFileUploaded() && !loading">
 
-    <img src="{{ url }}"
-         *ngFor="let url of file?.thumbnails; let i = index;"
-         class="upload-area__thumbnail"
-         [hidden]="i != currentPageIndex">
+	<img src="{{ url }}"
+		 *ngFor="let url of file?.thumbnails; let i = index;"
+		 class="upload-area__thumbnail"
+		 [hidden]="i != currentPageIndex">
 
-    <div class="upload-area__page-nav" *ngIf="hasMultiplePages()">
-        <div class="upload-area__page-nav__inner">
-            <nvry-page-navigation [numberOfPages]="file.thumbnails.length"
-                                  [(currentPageIndex)]="currentPageIndex"></nvry-page-navigation>
-        </div>
-    </div>
+	<div class="upload-area__page-nav" *ngIf="hasMultiplePages()">
+		<div class="upload-area__page-nav__inner">
+			<nvry-page-navigation [numberOfPages]="file.thumbnails.length"
+								  [(currentPageIndex)]="currentPageIndex"></nvry-page-navigation>
+		</div>
+	</div>
 
-    <div class="upload-area__notice" *ngIf="!isFileUploaded() && !uploading">
-        <p>
-            {{ 'upload-area.drop-files' | translate }}<br>
-            (JPG, PNG, GIF, PDF)
-        </p>
-        <nvry-button class="dz-clickable">{{ 'upload-area.choose-file' | translate }}</nvry-button>
-    </div>
+	<div class="upload-area__notice" *ngIf="!isFileUploaded() && !uploading">
+		<p>
+			{{ 'upload-area.drop-files' | translate }}<br>
+			(JPG, PNG, GIF, PDF)
+		</p>
+		<nvry-button class="dz-clickable">{{ 'upload-area.choose-file' | translate }}</nvry-button>
+	</div>
 
-    <div class="upload-area__action-buttons" *ngIf="isFileUploaded() && !loading">
-        <nvry-button class="button--small" icon="trash" (click)="removeFile()"></nvry-button>
-        <nvry-button class="button--small" icon="download" (click)="downloadFile()"></nvry-button>
-    </div>
+	<div class="upload-area__action-buttons" *ngIf="isFileUploaded() && !loading">
+		<nvry-button class="button--small" icon="trash" (click)="removeFile()"></nvry-button>
+		<nvry-button class="button--small" icon="download" (click)="downloadFile()"></nvry-button>
+	</div>
 
 
-    <nvry-spinner *ngIf="loading || uploading" [progress]="progress"></nvry-spinner>
+	<nvry-spinner *ngIf="loading || uploading" [progress]="progress"></nvry-spinner>
 
 </div>

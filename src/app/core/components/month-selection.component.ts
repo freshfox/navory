@@ -1,10 +1,10 @@
-import {Component, OnInit, EventEmitter} from '@angular/core';
-import * as moment from 'moment';
+import {Component, OnInit, EventEmitter} from "@angular/core";
+import * as moment from "moment";
 import {Input, Output} from "@angular/core/src/metadata/directives";
 
 @Component({
-    selector: 'nvry-month-selection',
-    template: `
+	selector: 'nvry-month-selection',
+	template: `
         <ul>
             <li *ngFor="let month of months; let i = index;" [class.selected]="i == selectedMonthIndex">
                 <button (click)="monthClicked(i)">{{ month }}</button>
@@ -14,20 +14,21 @@ import {Input, Output} from "@angular/core/src/metadata/directives";
 })
 export class MonthSelectionComponent implements OnInit {
 
-    @Input() selectedMonthIndex: number = 0;
-    @Output() selectedMonthIndexChange: EventEmitter<number> = new EventEmitter<number>();
-    private months: string[];
+	@Input() selectedMonthIndex: number = 0;
+	@Output() selectedMonthIndexChange: EventEmitter<number> = new EventEmitter<number>();
+	private months: string[];
 
-    constructor() {
+	constructor() {
 
-        this.months = moment.monthsShort();
-    }
+		this.months = moment.monthsShort();
+	}
 
-    ngOnInit() { }
+	ngOnInit() {
+	}
 
-    monthClicked(index) {
-        this.selectedMonthIndex = index;
-        this.selectedMonthIndexChange.emit(this.selectedMonthIndex);
-    }
+	monthClicked(index) {
+		this.selectedMonthIndex = index;
+		this.selectedMonthIndexChange.emit(this.selectedMonthIndex);
+	}
 
 }

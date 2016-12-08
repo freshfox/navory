@@ -1,42 +1,42 @@
 .toggle-btns {
-    font-size: 0;
+	font-size: 0;
 
-    .toggle-btn {
-        display: inline-block;
-        position: relative;
-        cursor: pointer;
+	.toggle-btn {
+		display: inline-block;
+		position: relative;
+		cursor: pointer;
 
-        label {
-            color: $colorGrayMedium;
-            border: 1px solid $formFieldBorderColor;
-            display: block;
-            padding: 9px 20px;
-            border-right-width: 0;
-            cursor: pointer;
-            margin: 0;
-        }
+		label {
+			color: $colorGrayMedium;
+			border: 1px solid $formFieldBorderColor;
+			display: block;
+			padding: 9px 20px;
+			border-right-width: 0;
+			cursor: pointer;
+			margin: 0;
+		}
 
-        input {
-            display: none;
+		input {
+			display: none;
 
-            &:checked + label {
-                background: $colorPrimaryUltraLight;
-                color: $colorPrimaryLight;
-                border-color: $colorPrimaryLight;
-            }
-        }
+			&:checked + label {
+				background: $colorPrimaryUltraLight;
+				color: $colorPrimaryLight;
+				border-color: $colorPrimaryLight;
+			}
+		}
 
-        &:first-child label {
-            border-top-left-radius: $formFieldBorderRadius;
-            border-bottom-left-radius: $formFieldBorderRadius;
-        }
+		&:first-child label {
+			border-top-left-radius: $formFieldBorderRadius;
+			border-bottom-left-radius: $formFieldBorderRadius;
+		}
 
-        &:last-child label {
-            border-top-right-radius: $formFieldBorderRadius;
-            border-bottom-right-radius: $formFieldBorderRadius;
-            border-right-width: 1px;
-        }
-    }
+		&:last-child label {
+			border-top-right-radius: $formFieldBorderRadius;
+			border-bottom-right-radius: $formFieldBorderRadius;
+			border-right-width: 1px;
+		}
+	}
 
 }
 

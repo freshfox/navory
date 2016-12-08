@@ -1,9 +1,9 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import {Category} from "../../models/category";
 
 @Component({
-    selector: 'nvry-expense-category-selection',
-    template: `
+	selector: 'nvry-expense-category-selection',
+	template: `
         <div class="category-selection">
             <div class="category-selection__column" *ngFor="let category of categories">
                 <h3>{{ category.name }}</h3>
@@ -14,15 +14,17 @@ import {Category} from "../../models/category";
 })
 export class ExpenseCategorySelectionComponent implements OnInit {
 
-    @Input() categories: Category[];
-    @Output() categorySelected: EventEmitter<Category> = new EventEmitter<Category>();
+	@Input() categories: Category[];
+	@Output() categorySelected: EventEmitter<Category> = new EventEmitter<Category>();
 
-    constructor() { }
+	constructor() {
+	}
 
-    ngOnInit() { }
+	ngOnInit() {
+	}
 
-    onCategorySelected(category: Category) {
-        this.categorySelected.next(category);
-    }
+	onCategorySelected(category: Category) {
+		this.categorySelected.next(category);
+	}
 
 }

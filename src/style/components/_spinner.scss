@@ -1,16 +1,16 @@
 nvry-spinner {
-    width: 40px;
-    height: 40px;
-    display: block;
-    margin: 30px auto;
+	width: 40px;
+	height: 40px;
+	display: block;
+	margin: 30px auto;
 
-    md-progress-circle {
-        width: 100% !important;
-        height: 100% !important;
-    }
+	md-progress-circle {
+		width: 100% !important;
+		height: 100% !important;
+	}
 
-    svg path {
-        stroke: $colorPrimary !important;
-    }
+	svg path {
+		stroke: $colorPrimary !important;
+	}
 }
 

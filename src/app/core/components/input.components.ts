@@ -1,17 +1,16 @@
-import {Component, forwardRef, Injector, ElementRef, EventEmitter, Output} from '@angular/core';
-import {Input} from "@angular/core";
-import {FormControl, NG_VALUE_ACCESSOR, ControlValueAccessor, NgControl, ControlContainer} from "@angular/forms";
+import {Component, forwardRef, ElementRef, EventEmitter, Output, Input} from "@angular/core";
+import {FormControl, NG_VALUE_ACCESSOR, ControlValueAccessor} from "@angular/forms";
 
 
 export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => InputComponent),
-    multi: true
+	provide: NG_VALUE_ACCESSOR,
+	useExisting: forwardRef(() => InputComponent),
+	multi: true
 };
 
 @Component({
-    selector: 'nvry-input,nvry-textarea',
-    template: `
+	selector: 'nvry-input,nvry-textarea',
+	template: `
         <label *ngIf="label">{{ label }}</label>
 		
 		<textarea 
@@ -68,38 +67,41 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 		
 		<nvry-control-messages *ngIf="formControl" [control]="formControl"></nvry-control-messages>
 	`,
-    providers: [NVRY_INPUT_CONTROL_VALUE_ACCESSOR],
+	providers: [NVRY_INPUT_CONTROL_VALUE_ACCESSOR],
 })
 export class InputComponent implements ControlValueAccessor {
 
-    @Input() type: string = 'text';
-    @Input() placeholder: string = '';
-    @Input() formControl: FormControl;
-    @Input() label: string;
-    @Input() alwaysShowDecimals: boolean;
-    @Input() tabindex: number;
+	@Input() type: string = 'text';
+	@Input() placeholder: string = '';
+	@Input() formControl: FormControl;
+	@Input() label: string;
+	@Input() alwaysShowDecimals: boolean;
+	@Input() tabindex: number;
 
-    @Input() public set disabled(value: any) {
-        if(value !== false) {
-            this.disabledSet = true;
-        }
-    }
+	@Input()
+	public set disabled(value: any) {
+		if (value !== false) {
+			this.disabledSet = true;
+		}
+	}
 
-    @Output() focus: EventEmitter<any> = new EventEmitter<any>();
-    @Output() blur: EventEmitter<any> = new EventEmitter<any>();
+	@Output() focus: EventEmitter<any> = new EventEmitter<any>();
+	@Output() blur: EventEmitter<any> = new EventEmitter<any>();
 
-    private onTouchedCallback: () => void = () => {};
-    private onChangeCallback: (_: any) => void = () => {};
+	private onTouchedCallback: () => void = () => {
+	};
+	private onChangeCallback: (_: any) => void = () => {
+	};
 
-    private value: any = '';
-    private selector: string;
-    private disabledSet: boolean = false;
+	private value: any = '';
+	private selector: string;
+	private disabledSet: boolean = false;
 
-    name: string;
+	name: string;
 
-    constructor(el: ElementRef) {
-        this.selector = el.nativeElement.localName;
-    }
+	constructor(el: ElementRef) {
+		this.selector = el.nativeElement.localName;
+	}
 
 	ngOnInit(): void {
 		this.name = this.getFieldName();
@@ -119,34 +121,34 @@ export class InputComponent implements ControlValueAccessor {
 		}
 	}
 
-    writeValue(value: any) {
-        this.value = value;
-    }
+	writeValue(value: any) {
+		this.value = value;
+	}
 
-    onChange() {
-        this.onChangeCallback(this.value);
-    }
+	onChange() {
+		this.onChangeCallback(this.value);
+	}
 
-    onFocus(event) {
-        this.focus.next(event);
-    }
+	onFocus(event) {
+		this.focus.next(event);
+	}
 
-    onBlur(event) {
-        this.blur.next(event);
-        this.onTouchedCallback();
-    }
+	onBlur(event) {
+		this.blur.next(event);
+		this.onTouchedCallback();
+	}
 
-    registerOnChange(fn: any) {
-        this.onChangeCallback = fn;
-    }
+	registerOnChange(fn: any) {
+		this.onChangeCallback = fn;
+	}
 
-    registerOnTouched(fn: any) {
-        this.onTouchedCallback = fn;
-    }
+	registerOnTouched(fn: any) {
+		this.onTouchedCallback = fn;
+	}
 
-    autoGrow(element) {
-        element.style.height = "5px";
-        element.style.height = (element.scrollHeight)+"px";
-    }
+	autoGrow(element) {
+		element.style.height = "5px";
+		element.style.height = (element.scrollHeight) + "px";
+	}
 
 }

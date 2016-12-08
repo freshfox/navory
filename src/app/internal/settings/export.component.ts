@@ -1,51 +1,51 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {TranslateService} from "ng2-translate";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ExportType, AccountService} from "../../services/account.service";
 var moment = require("moment");
 
 @Component({
-    selector: 'nvry-export',
-    templateUrl: './export.component.html'
+	selector: 'nvry-export',
+	templateUrl: './export.component.html'
 })
 export class ExportComponent implements OnInit {
 
-    private exportTypes;
-    private type: ExportType;
-    private startDate: string;
-    private endDate: string;
+	private exportTypes;
+	private type: ExportType;
+	private startDate: string;
+	private endDate: string;
 
-    private form: FormGroup;
+	private form: FormGroup;
 
-    constructor(private translate: TranslateService, private fb: FormBuilder, private accountService: AccountService) {
-        this.exportTypes = [
-            {
-                value: ExportType.Income,
-                name: this.translate.instant('general.income')
-            },
-            {
-                value: ExportType.Expenses,
-                name: this.translate.instant('general.expenses')
-            }];
-    }
+	constructor(private translate: TranslateService, private fb: FormBuilder, private accountService: AccountService) {
+		this.exportTypes = [
+			{
+				value: ExportType.Income,
+				name: this.translate.instant('general.income')
+			},
+			{
+				value: ExportType.Expenses,
+				name: this.translate.instant('general.expenses')
+			}];
+	}
 
-    ngOnInit() {
-        setTimeout(() => {
-            this.startDate = moment().startOf('year').toDate();
-            this.endDate = moment().endOf('year').toDate();
-        }, 1)
+	ngOnInit() {
+		setTimeout(() => {
+			this.startDate = moment().startOf('year').toDate();
+			this.endDate = moment().endOf('year').toDate();
+		}, 1)
 
-        this.form = this.fb.group({
-            type: [""],
-            startDate: ["", Validators.required],
-            endDate: ["", Validators.required],
-        });
-    }
+		this.form = this.fb.group({
+			type: [""],
+			startDate: ["", Validators.required],
+			endDate: ["", Validators.required],
+		});
+	}
 
-    download() {
-        if(this.form.valid) {
-            this.accountService.downloadExport(this.type, this.startDate, this.endDate);
-        }
-    }
+	download() {
+		if (this.form.valid) {
+			this.accountService.downloadExport(this.type, this.startDate, this.endDate);
+		}
+	}
 
 }

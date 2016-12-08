@@ -1,29 +1,29 @@
 .main-header {
-    background: white;
-    padding: 14px 0;
-    border-bottom: 1px solid $colorSpacerLines;
+	background: white;
+	padding: 14px 0;
+	border-bottom: 1px solid $colorSpacerLines;
 
-    .main-header__inner {
-        display: flex;
-        @include align-items(center);
+	.main-header__inner {
+		display: flex;
+		@include align-items(center);
 
-        .user {
-            margin-left: auto;
-        }
-    }
+		.user {
+			margin-left: auto;
+		}
+	}
 
-    .logo {
-        font-size: 22px;
-        display: inline-block;
-        vertical-align: middle;
-    }
+	.logo {
+		font-size: 22px;
+		display: inline-block;
+		vertical-align: middle;
+	}
 
-    .user {
-        display: flex;
-        @include align-items(center);
+	.user {
+		display: flex;
+		@include align-items(center);
 
-        .username {
-            margin-right: 10px;
-        }
-    }
+		.username {
+			margin-right: 10px;
+		}
+	}
 }

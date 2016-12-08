@@ -14,7 +14,7 @@
 
 .dashboard-page {
 
-    padding: 30px $contentSidePadding;
+	padding: 30px $contentSidePadding;
 
 	.dashboard-overview-box-wrapper {
 		margin-bottom: 40px;
@@ -52,7 +52,6 @@
 		}
 	}
 
-
 	.ct-chart {
 		.ct-label {
 			font-size: 12px;
@@ -74,7 +73,11 @@
 			stroke-width: 2px;
 		}
 
-		.ct-series-a { @include chartSeriesColor($colorIncome); }
-		.ct-series-b { @include chartSeriesColor($colorExpenses); }
+		.ct-series-a {
+			@include chartSeriesColor($colorIncome);
+		}
+		.ct-series-b {
+			@include chartSeriesColor($colorExpenses);
+		}
 	}
 }

@@ -1,11 +1,10 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
+import {CommonModule} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {TranslateModule, TranslateLoader, TranslateStaticLoader} from "ng2-translate/ng2-translate";
 import {HttpModule, Http} from "@angular/http";
-
-import {AppComponent} from './app.component';
+import {AppComponent} from "./app.component";
 import {AppRoutingModule} from "./app.routing";
 import {ButtonComponent} from "./core/components/button.component";
 import {AuthService} from "./services/auth.service";
@@ -77,98 +76,99 @@ import {ModalModule} from "./core/modal.module";
 import {ConfirmComponent} from "./core/components/confirm.component";
 
 export function translateStaticLoaderFactory(http: Http) {
-    return new TranslateStaticLoader(http, '/assets/i18n', '.json');
+	return new TranslateStaticLoader(http, '/assets/i18n', '.json');
 }
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        InternalComponent,
-        DashboardComponent,
-        LoginComponent,
-        PublicComponent,
-        SignupComponent,
-        CustomersComponent,
-        ButtonComponent,
-        IconComponent,
-        AlertBarComponent,
-        ForgotPasswordComponent,
-        ControlMessagesComponent,
-        LoginLayoutComponent,
-        ResetPasswordComponent,
-        ReportsComponent,
-        InputComponent,
-        SelectComponent,
-        NumberPipe,
-        TableComponent,
-        TableHeaderCellComponent,
-        SpinnerComponent,
-        IncomeListComponent,
-        ExpensesComponent,
-        MonthSelectionComponent,
-        YearSelectionComponent,
-        ExpenseEditComponent,
-        DocumentUploadComponent,
-        PageNavigationComponent,
-        SettingsComponent,
-        AccountSettingsComponent,
-        ProfileSettingsComponent,
-        ModalComponent,
-        ExpenseCategorySelectionComponent,
-        DatePickerDirective,
-        CustomerEditComponent,
-        AmountDirective,
-        IncomeEditComponent,
-        IncomeComponent,
-        InvoicesComponent,
-        InvoiceEditComponent,
-        InvoiceLineComponent,
-        PaymentsComponent,
-        DropdownComponent,
-        ExportComponent,
-        SafePipe,
-        DocumentPreviewComponent,
-        DatePipe,
-        FiveZeroThreeComponent,
-        ConfirmComponent
-    ],
-    imports: [
-        BrowserModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpModule,
-        TranslateModule.forRoot({
-            provide: TranslateLoader,
-            useFactory: translateStaticLoaderFactory,
-            deps: [Http]
-        }),
-        AppRoutingModule,
-        SimpleNotificationsModule,
-        MdProgressCircleModule,
-        ModalModule
-    ],
-    providers: [
-        AuthService,
-        UserService,
-        CustomerService,
-        IncomeService,
-        ReportService,
-        ExpenseService,
-        State,
-        LoggedInGuard,
-        ErrorHandler,
-        Config,
-        NumberPipe,
-        DatePipe,
-        BootstrapResolver,
-        BootstrapService,
-        FileService,
-        Formatter,
-        TaxRateService,
-        InvoiceService,
-        AccountService
-    ],
-    bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		InternalComponent,
+		DashboardComponent,
+		LoginComponent,
+		PublicComponent,
+		SignupComponent,
+		CustomersComponent,
+		ButtonComponent,
+		IconComponent,
+		AlertBarComponent,
+		ForgotPasswordComponent,
+		ControlMessagesComponent,
+		LoginLayoutComponent,
+		ResetPasswordComponent,
+		ReportsComponent,
+		InputComponent,
+		SelectComponent,
+		NumberPipe,
+		TableComponent,
+		TableHeaderCellComponent,
+		SpinnerComponent,
+		IncomeListComponent,
+		ExpensesComponent,
+		MonthSelectionComponent,
+		YearSelectionComponent,
+		ExpenseEditComponent,
+		DocumentUploadComponent,
+		PageNavigationComponent,
+		SettingsComponent,
+		AccountSettingsComponent,
+		ProfileSettingsComponent,
+		ModalComponent,
+		ExpenseCategorySelectionComponent,
+		DatePickerDirective,
+		CustomerEditComponent,
+		AmountDirective,
+		IncomeEditComponent,
+		IncomeComponent,
+		InvoicesComponent,
+		InvoiceEditComponent,
+		InvoiceLineComponent,
+		PaymentsComponent,
+		DropdownComponent,
+		ExportComponent,
+		SafePipe,
+		DocumentPreviewComponent,
+		DatePipe,
+		FiveZeroThreeComponent,
+		ConfirmComponent
+	],
+	imports: [
+		BrowserModule,
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		HttpModule,
+		TranslateModule.forRoot({
+			provide: TranslateLoader,
+			useFactory: translateStaticLoaderFactory,
+			deps: [Http]
+		}),
+		AppRoutingModule,
+		SimpleNotificationsModule,
+		MdProgressCircleModule,
+		ModalModule
+	],
+	providers: [
+		AuthService,
+		UserService,
+		CustomerService,
+		IncomeService,
+		ReportService,
+		ExpenseService,
+		State,
+		LoggedInGuard,
+		ErrorHandler,
+		Config,
+		NumberPipe,
+		DatePipe,
+		BootstrapResolver,
+		BootstrapService,
+		FileService,
+		Formatter,
+		TaxRateService,
+		InvoiceService,
+		AccountService
+	],
+	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
