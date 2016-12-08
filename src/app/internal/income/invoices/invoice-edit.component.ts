@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {Invoice} from "../../../models/invoice";
 import {InvoiceLine} from "../../../models/invoice-line";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {InvoiceService} from "../../../services/invoice.service";
 import {Country} from "../../../models/country";
 import {BootstrapService} from "../../../services/bootstrap.service";
@@ -11,6 +11,7 @@ import {TranslateService} from "ng2-translate";
 import {ModalComponent} from "../../../core/components/modal.component";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {FormValidator} from "../../../core/form-validator";
+import {Location} from "@angular/common";
 var moment = require('moment');
 
 @Component({
@@ -37,7 +38,8 @@ export class InvoiceEditComponent implements OnInit {
 				private state: State,
 				private notificationService: NotificationsService,
 				private translate: TranslateService,
-				private fb: FormBuilder) {
+				private fb: FormBuilder,
+				private location: Location) {
 
 		this.invoice = new Invoice();
 		this.invoice.due_date = moment().add(1, 'M');
@@ -121,15 +123,24 @@ export class InvoiceEditComponent implements OnInit {
 		this.saving = true;
 		this.invoiceService.saveInvoice(this.invoice)
 			.subscribe(
-				invoice => {
-					if (!this.invoice.id && !this.invoice.draft) {
+				(updatedInvoice: Invoice) => {
+
+					// Update nextInvoiceNumber if invoice has been issued
+					if (this.invoice.draft && !updatedInvoice.draft) {
 						this.state.nextInvoiceNumber++;
+						this.notificationService.success(null, this.translate.instant('invoice.issue-success'));
+					} else {
+						this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
 					}
-					this.invoice = invoice;
+
+					if(!this.invoice.id && updatedInvoice.id) {
+						this.location.replaceState(`/invoices/${updatedInvoice.id}`);
+					}
+
+					this.invoice = updatedInvoice;
 					this.saving = false;
 					this.savingDraft = false;
 					this.createMode = false;
-					this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
 				},
 				error => {
 					// TODO

@@ -166,6 +166,7 @@
 		"issued": "Ausgestellt",
 		"add-payment": "Zahlung buchen",
 		"edit-success": "Rechnung gespeichert",
+		"issue-success": "Rechnung erfolgreich fertiggestellt.",
 		"preview": "Vorschau"
 	},
 	"expenses": {
