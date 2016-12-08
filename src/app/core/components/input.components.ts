@@ -17,6 +17,7 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 		<textarea 
 		*ngIf="selector == 'nvry-textarea'"
 		[placeholder]="placeholder"
+		[attr.name]="name"
 		[(ngModel)]="value"
 		(blur)="onBlur($event)"
 		(focus)="onFocus($event)"
@@ -31,6 +32,7 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 		nvry-datepicker
 		type="text"
 		[placeholder]="placeholder"
+		[attr.name]="name"
 		[(ngModel)]="value"
 		(blur)="onBlur($event)"
 		(focus)="onFocus($event)"
@@ -42,6 +44,7 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 		*ngIf="type != 'date' && type != 'money' && selector == 'nvry-input'"
 		[type]="type"
 		[placeholder]="placeholder"
+		[attr.name]="name"
 		[(ngModel)]="value"
 		(blur)="onBlur($event)"
 		(focus)="onFocus($event)"
@@ -55,6 +58,7 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 		[alwaysShowDecimals]="alwaysShowDecimals"
 		type="text"
 		[placeholder]="placeholder"
+		[attr.name]="name"
 		[(ngModel)]="value"
 		(blur)="onBlur($event)"
 		(focus)="onFocus($event)"
@@ -91,9 +95,29 @@ export class InputComponent implements ControlValueAccessor {
     private selector: string;
     private disabledSet: boolean = false;
 
+    name: string;
+
     constructor(el: ElementRef) {
         this.selector = el.nativeElement.localName;
     }
+
+	ngOnInit(): void {
+		this.name = this.getFieldName();
+	}
+
+	getFieldName(): string {
+		let parent = this.formControl['_parent'];
+		if (!parent) {
+			return;
+		}
+		let siblings = Object.keys(parent.controls);
+		for (let i = 0; i < siblings.length; i++) {
+			let key = siblings[i];
+			if (parent.controls[key] == this.formControl) {
+				return key;
+			}
+		}
+	}
 
     writeValue(value: any) {
         this.value = value;
