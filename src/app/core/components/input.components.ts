@@ -108,7 +108,7 @@ export class InputComponent implements ControlValueAccessor {
 	}
 
 	getFieldName(): string {
-		let parent = this.formControl['_parent'];
+		let parent = this.formControl ? this.formControl['_parent'] : null;
 		if (!parent) {
 			return;
 		}
