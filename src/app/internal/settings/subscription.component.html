@@ -1,0 +1,69 @@
+<h2>{{ 'settings.subscription.title' | translate }}</h2>
+
+
+<!-- Add animations on Braintree Hosted Fields events -->
+
+<!-- Card numbers
+4111 1111 1111 1111: Visa
+5555 5555 5555 4444: MasterCard
+3714 496353 98431: American Express
+-->
+
+<!--[if IE 9]>
+<style>
+
+	header {
+		margin-top: 1em;
+		text-align: center;
+	}
+
+	#my-sample-form {
+		margin: 0 auto;
+		padding-top: 2em;
+	}
+
+	#button-pay {
+		margin: 1em auto 0;
+		display: block;
+	}
+
+	.cardinfo-exp-date, .cardinfo-cvv {
+		width: 45%;
+		float: left;
+	}
+
+	.cardinfo-wrapper {
+		overflow: hidden;
+	}
+
+</style>
+<![endif]-->
+
+<div class="form-container">
+
+	<header>
+		<h1>Payment Method</h1>
+	</header>
+
+	<form id="my-sample-form" class="scale-down">
+		<div class="cardinfo-card-number">
+			<label class="cardinfo-label" for="card-number">Card Number</label>
+			<div class='input-wrapper' id="card-number"></div>
+			<div id="card-image"></div>
+		</div>
+
+		<div class="cardinfo-wrapper">
+			<div class="cardinfo-exp-date">
+				<label class="cardinfo-label" for="expiration-date">Valid Thru</label>
+				<div class='input-wrapper' id="expiration-date"></div>
+			</div>
+
+			<div class="cardinfo-cvv">
+				<label class="cardinfo-label" for="cvv">CVV</label>
+				<div class='input-wrapper' id="cvv"></div>
+			</div>
+		</div>
+	</form>
+
+	<input id="button-pay" type="submit" value="Continue" />
+</div>

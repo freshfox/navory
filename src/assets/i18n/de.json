@@ -191,6 +191,9 @@
 			"title": "Profil",
 			"success-message": "Profil erfolgreich gespeichert"
 		},
+		"subscription": {
+			"title": "Pläne und Preise"
+		},
 		"change-password": {
 			"title": "Passwort ändern",
 			"current": "Aktuelles Passwort",

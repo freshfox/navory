@@ -74,6 +74,7 @@ import {MdProgressCircleModule} from "@angular2-material/progress-circle";
 import {FiveZeroThreeComponent} from "./core/components/503.component";
 import {ModalModule} from "./core/modal.module";
 import {ConfirmComponent} from "./core/components/confirm.component";
+import {SubscriptionComponent} from "./internal/settings/subscription.component";
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -129,7 +130,8 @@ export function translateStaticLoaderFactory(http: Http) {
 		DocumentPreviewComponent,
 		DatePipe,
 		FiveZeroThreeComponent,
-		ConfirmComponent
+		ConfirmComponent,
+		SubscriptionComponent
 	],
 	imports: [
 		BrowserModule,

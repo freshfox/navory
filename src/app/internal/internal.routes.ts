@@ -16,6 +16,7 @@ import {IncomeComponent} from "./income/income.component";
 import {InvoicesComponent} from "./income/invoices/invoices.component";
 import {InvoiceEditComponent} from "./income/invoices/invoice-edit.component";
 import {PaymentsComponent} from "./payments/payments.component";
+import {SubscriptionComponent} from "./settings/subscription.component";
 
 export const InternalRoutes: Routes = [
 	{
@@ -56,7 +57,8 @@ export const InternalRoutes: Routes = [
 				component: SettingsComponent,
 				children: [
 					{path: 'account', component: AccountSettingsComponent},
-					{path: 'profile', component: ProfileSettingsComponent}
+					{path: 'profile', component: ProfileSettingsComponent},
+					{path: 'subscription', component: SubscriptionComponent}
 				]
 			}
 		]

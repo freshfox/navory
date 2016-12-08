@@ -30,6 +30,7 @@
     "@angular2-material/progress-circle": "^2.0.0-alpha.8-2",
     "angular2-notifications": "^0.4.46",
     "bourbon": "^4.2.7",
+    "braintree-web": "^3.6.1",
     "chartist": "^0.9.8",
     "core-js": "^2.4.1",
     "dropzone": "^4.3.0",
