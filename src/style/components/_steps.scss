@@ -1,0 +1,41 @@
+nvry-steps {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	padding: 30px;
+
+	.step {
+		text-align: center;
+		width: 230px;
+
+		border-right: 1px solid $colorGray;
+
+		&:last-child {
+			margin-right: 0;
+			border: 0;
+		}
+
+		nvry-icon {
+			width: 30px;
+			height: 30px;
+			margin: 0 auto;
+			margin-bottom: 10px;
+			fill: $colorDisabled;
+		}
+
+		.text {
+			color: $colorDisabled;
+			display: block;
+		}
+
+		&.step--current {
+			nvry-icon {
+				fill: $colorPrimary;
+			}
+
+			.text {
+				color: $textColor;
+			}
+		}
+	}
+}

@@ -1,7 +1,33 @@
-<h2>{{ 'settings.subscription.title' | translate }}</h2>
+<nvry-steps [numberOfSteps]="numberOfSteps" [stepInfo]="stepInfo" [currentIndex]="currentStepIndex"></nvry-steps>
 
 
-<!-- Add animations on Braintree Hosted Fields events -->
+<div *ngIf="currentStepIndex == 0">
+	<div class="default-section">
+		<h2>{{ 'settings.subscription.choose-plan' | translate }}</h2>
+
+		<p>Premium kann alles</p>
+
+		<div class="right">
+			<nvry-button (click)="goToDetails()">{{ 'general.continue' | translate }}</nvry-button>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="currentStepIndex == 1">
+	<div class="default-section">
+		<form>
+			<nvry-input [label]="'general.company' | translate"></nvry-input>
+			<nvry-input [label]="'general.address' | translate"></nvry-input>
+			<nvry-input [label]="'general.zip' | translate"></nvry-input>
+			<nvry-input [label]="'general.city' | translate"></nvry-input>
+			<nvry-input [label]="'general.country' | translate"
+						[disabled]="true"></nvry-input>
+			<nvry-input [label]="'general.vat-id' | translate"></nvry-input>
+		</form>
+
+		<nvry-button [loading]="loading" (click)="submitAccount()">{{ 'general.continue' | translate }}</nvry-button>
+	</div>
+</div>
 
 <!-- Card numbers
 4111 1111 1111 1111: Visa
@@ -9,61 +35,29 @@
 3714 496353 98431: American Express
 -->
 
-<!--[if IE 9]>
-<style>
+<div *ngIf="currentStepIndex == 2">
 
-	header {
-		margin-top: 1em;
-		text-align: center;
-	}
-
-	#my-sample-form {
-		margin: 0 auto;
-		padding-top: 2em;
-	}
-
-	#button-pay {
-		margin: 1em auto 0;
-		display: block;
-	}
-
-	.cardinfo-exp-date, .cardinfo-cvv {
-		width: 45%;
-		float: left;
-	}
-
-	.cardinfo-wrapper {
-		overflow: hidden;
-	}
-
-</style>
-<![endif]-->
-
-<div class="form-container">
-
-	<header>
-		<h1>Payment Method</h1>
-	</header>
-
-	<form id="my-sample-form" class="scale-down">
-		<div class="cardinfo-card-number">
-			<label class="cardinfo-label" for="card-number">Card Number</label>
-			<div class='input-wrapper' id="card-number"></div>
-			<div id="card-image"></div>
-		</div>
-
-		<div class="cardinfo-wrapper">
-			<div class="cardinfo-exp-date">
-				<label class="cardinfo-label" for="expiration-date">Valid Thru</label>
-				<div class='input-wrapper' id="expiration-date"></div>
+	<div class="default-section">
+		<form class="credit-card-form scale-down">
+			<div class="cardinfo-card-number">
+				<label class="cardinfo-label" for="card-number">Card Number</label>
+				<div class='input-wrapper' id="card-number"></div>
+				<div id="card-image"></div>
 			</div>
 
-			<div class="cardinfo-cvv">
-				<label class="cardinfo-label" for="cvv">CVV</label>
-				<div class='input-wrapper' id="cvv"></div>
-			</div>
-		</div>
-	</form>
+			<div class="cardinfo-wrapper">
+				<div class="cardinfo-exp-date">
+					<label class="cardinfo-label" for="expiration-date">Valid Thru</label>
+					<div class='input-wrapper' id="expiration-date"></div>
+				</div>
 
-	<input id="button-pay" type="submit" value="Continue" />
+				<div class="cardinfo-cvv">
+					<label class="cardinfo-label" for="cvv">CVV</label>
+					<div class='input-wrapper' id="cvv"></div>
+				</div>
+			</div>
+		</form>
+
+		<nvry-button (click)="submit()">{{ 'settings.subscription.pay' | translate }}</nvry-button>
+	</div>
 </div>

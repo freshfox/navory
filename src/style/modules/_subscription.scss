@@ -17,49 +17,10 @@ General
 --------------------*/
 
 nvry-subscription {
-	header {
-		z-index: 2;
-		transform: translate(0, 5.5em);
-		transition: all .5s ease;
-		&.header-slide {
-			transform: translate(0, 0);
-		}
-	}
-
-	h1 {
-		font-weight: 100;
-		font-size: 1.4em;
-		display: block;
-	}
-
-	.form-container {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 100%;
-		flex-direction: column;
-		border: 1em solid #fff;
-		box-sizing: border-box;
-		position: relative;
-
-		@media (max-width: $small-screen) {
-			border: none;
-		}
-	}
 
 	.cardinfo-wrapper {
 		display: flex;
 		justify-content: space-around;
-	}
-
-	.bg-illustration {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		z-index: 0;
-		svg {
-			width: 100%;
-		}
 	}
 
 	.card-shape {
@@ -72,19 +33,12 @@ nvry-subscription {
 	}
 
 	// Form wrapper styling
-	#my-sample-form {
-		background-color: #FFF;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-		padding: 8em 3em 2em;
-		width: 20em;
+	.credit-card-form {
+		border: 1px solid $colorGrayLight;
+		padding: 2em 3em;
 		margin-bottom: 2em;
-		transition: all 600ms $bouncy;
-		animation: cardIntro 500ms $bouncy;
 		z-index: 1;
-
-		&:hover {
-			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
-		}
+		width: 40%;
 
 		@media (max-width: $small-screen) {
 			box-sizing: border-box;
@@ -93,45 +47,32 @@ nvry-subscription {
 		}
 		// Change background color based on the card type
 		&.visa {
-			@extend .card-shape;
 			color: $white;
 			background-color: #0D4AA2;
 		}
 		&.master-card {
-			@extend .card-shape;
 			color: $white;
 			background-color: #363636;
 			background: linear-gradient(115deg,#d82332, #d82332 50%, #f1ad3d 50%, #f1ad3d);
 		}
 		&.maestro {
-			@extend .card-shape;
 			color: $white;
 			background-color: #363636;
 			background: linear-gradient(115deg,#009ddd, #009ddd 50%, #ed1c2e 50%, #ed1c2e);
 		}
 		&.american-express {
-			@extend .card-shape;
 			color: $white;
 			background-color: #007CC3;
 		}
 		&.discover {
-			@extend .card-shape;
 			color: $white;
 			background-color: #ff6000;
 			background: linear-gradient(#d14310, #f7961e);
 		}
 		&.unionpay, &.jcb, &.diners-club {
-			@extend .card-shape;
 			color: $white;
 			background-color: #363636;
 		}
-	}
-
-	.cardinfo-label {
-		display: block;
-		font-size: 11px;
-		margin-bottom: 0.5em;
-		text-transform: uppercase;
 	}
 
 	.cardinfo-exp-date {
@@ -143,33 +84,6 @@ nvry-subscription {
 		width: 100%;
 	}
 
-	#button-pay {
-		cursor: pointer;
-		width: 16em;
-		font-size: 15px;
-		border: 0;
-		padding: 1.2em 1em;
-		color: #fff;
-		background: #282c37;
-		border-radius: $radius;
-		z-index: 0;
-		transform: translateY(-100px);
-		transition: all 500ms $bouncy;
-		opacity: 0;
-		-webkit-appearance: none;
-
-		&:hover {
-			background: lighten(#282c37, 20%);
-		}
-		&:active {
-			animation: cardIntro 200ms $bouncy;
-		}
-		&.show-button {
-			transform: translateY(0);
-			opacity: 1;
-		}
-	}
-
 	// Card type image styles
 	.cardinfo-card-number {
 		position: relative;
@@ -177,7 +91,7 @@ nvry-subscription {
 
 	#card-image {
 		position: absolute;
-		top: 2em;
+		top: 1.8em;
 		right: 1em;
 		width: 44px;
 		height: 28px;

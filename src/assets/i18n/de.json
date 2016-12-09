@@ -53,7 +53,8 @@
 		"bank_account_owner": "Kontoinhaber",
 		"iban": "IBAN",
 		"bic": "BIC",
-		"month": "Monat"
+		"month": "Monat",
+		"continue": "Weiter"
 	},
 	"app": {
 		"name": "Navory",
@@ -192,7 +193,13 @@
 			"success-message": "Profil erfolgreich gespeichert"
 		},
 		"subscription": {
-			"title": "Pläne und Preise"
+			"title": "Pläne und Preise",
+			"steps": {
+				"choose-plan": "Plan auswählen",
+				"payment-method": "Zahlung",
+				"details": "Rechnungsdetails"
+			},
+			"pay": "Abonnement bestellen"
 		},
 		"change-password": {
 			"title": "Passwort ändern",

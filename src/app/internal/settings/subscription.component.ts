@@ -1,4 +1,8 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {StepInfo} from "../../core/components/steps.component";
+import {TranslateService} from "ng2-translate";
+import {Account} from "../../models/account";
+import {State} from "../../core/state";
 let braintree = require('braintree-web');
 let $ = require('jquery');
 
@@ -6,12 +10,48 @@ let $ = require('jquery');
     selector: 'nvry-subscription',
     templateUrl: './subscription.component.html'
 })
-export class SubscriptionComponent implements AfterViewInit {
-    constructor() { }
+export class SubscriptionComponent implements OnInit, AfterViewInit {
+
+	private hostedFieldsInstance;
+	private stepInfo: StepInfo[];
+	private numberOfSteps: number = 3;
+	private currentStepIndex = 0;
+	private account: Account;
+
+    constructor(private translate: TranslateService, private state: State) { }
+
+    ngOnInit() {
+    	this.stepInfo = [
+			{
+				name: this.translate.instant('settings.subscription.steps.choose-plan'),
+				icon: 'document-text'
+			},
+			{
+				name: this.translate.instant('settings.subscription.steps.details'),
+				icon: 'pen'
+			},
+			{
+				name: this.translate.instant('settings.subscription.steps.payment-method'),
+				icon: 'credit-card'
+			}
+		];
+
+    	this.account = this.state.user.account;
+	}
 
     ngAfterViewInit() {
-    	braintree.client.create({
-    		authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b'
+
+	}
+
+	private goToDetails() {
+    	this.currentStepIndex = 1;
+	}
+
+	private goToPayment() {
+    	this.currentStepIndex = 2;
+
+		braintree.client.create({
+			authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b'
 		}, (err, clientInstance) => {
 			if (err) {
 				console.error(err);
@@ -21,9 +61,13 @@ export class SubscriptionComponent implements AfterViewInit {
 		});
 	}
 
+	private submitAccount() {
+    	this.goToPayment();
+	}
+
 	private createHostedFields(braintreeClient) {
 
-		var form = document.querySelector('#my-sample-form');
+		var form = document.querySelector('.credit-card-form');
 		var submit = document.querySelector('input[type="submit"]');
 
 		// Create input fields and add text styles
@@ -70,11 +114,13 @@ export class SubscriptionComponent implements AfterViewInit {
 					placeholder: '10 / 2019'
 				}
 			}
-		}, function (err, hostedFieldsInstance) {
+		}, (err, hostedFieldsInstance) => {
 			if (err) {
 				console.error(err);
 				return;
 			}
+
+			this.hostedFieldsInstance = hostedFieldsInstance;
 
 			hostedFieldsInstance.on('validityChange', function (event) {
 				// Check if all fields are valid, then show submit button
@@ -92,13 +138,11 @@ export class SubscriptionComponent implements AfterViewInit {
 			hostedFieldsInstance.on('empty', function (event) {
 				$('header').removeClass('header-slide');
 				$('#card-image').removeClass();
-				$(form).removeClass();
 			});
 
 			hostedFieldsInstance.on('cardTypeChange', function (event) {
 				// Change card bg depending on card type
 				if (event.cards.length === 1) {
-					$(form).removeClass().addClass(event.cards[0].type);
 					$('#card-image').removeClass().addClass(event.cards[0].type);
 					$('header').addClass('header-slide');
 
@@ -110,20 +154,18 @@ export class SubscriptionComponent implements AfterViewInit {
 					hostedFieldsInstance.setPlaceholder('cvv', '123');
 				}
 			});
+		});
+	}
 
-			submit.addEventListener('click', function (event) {
-				event.preventDefault();
+	submit() {
+		this.hostedFieldsInstance.tokenize(function (err, payload) {
+			if (err) {
+				console.error(err);
+				return;
+			}
 
-				hostedFieldsInstance.tokenize(function (err, payload) {
-					if (err) {
-						console.error(err);
-						return;
-					}
-
-					// This is where you would submit payload.nonce to your server
-					alert('Submit your nonce to your server here!');
-				});
-			}, false);
+			// This is where you would submit payload.nonce to your server
+			alert('Submit your nonce to your server here!');
 		});
 	}
 }

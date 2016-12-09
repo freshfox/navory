@@ -16,6 +16,7 @@ export class AccountService extends BaseService {
 
 	private pathExport = '/account/export';
 	private pathAccount = '/account';
+	private pathPaymentToken = '/payment/token';
 
 	constructor(http: Http, private fileService: FileService, private state: State) {
 		super(http);
@@ -36,6 +37,14 @@ export class AccountService extends BaseService {
 				this.state.user.account = account;
 				return account;
 			});
+	}
+
+	/**
+	 * Get a one-time Braintree payment token that can be used to enter payment information
+	 * @returns {Observable<any>}
+	 */
+	getPaymentToken(): Observable<string> {
+		return this.get(this.pathPaymentToken);
 	}
 
 }
