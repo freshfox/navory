@@ -37,8 +37,6 @@ export class AmountDirective implements OnInit, ControlValueAccessor {
 	}
 
 	setValue(value) {
-		console.log('show decimals: ' + this.alwaysShowDecimals);
-		console.log(this.formatter.amount(value, this.numberOfDecimals, false));
 		this.el.nativeElement.value = this.formatter.amount(value, this.numberOfDecimals, this.alwaysShowDecimals);
 		this.rawValue = value;
 	}

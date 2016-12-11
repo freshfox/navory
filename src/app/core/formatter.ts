@@ -65,8 +65,6 @@ export class Formatter {
 			value = 0;
 		}
 
-		console.log(alwaysShowDecimals);
-
 		return numbro(value).format(format);
 	}
 
