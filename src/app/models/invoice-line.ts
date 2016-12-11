@@ -28,7 +28,7 @@ export class InvoiceLine extends BaseModel {
 	}
 
 	getTaxAmount(): number {
-		return Calculator.mult(this.getNetAmount(), this.getTaxrate()) / 100;
+		return this.getNetAmount() * this.getTaxrate() / 100;
 	}
 
 	getTaxrate(): number {
