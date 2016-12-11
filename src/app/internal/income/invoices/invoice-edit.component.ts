@@ -12,6 +12,7 @@ import {ModalComponent} from "../../../core/components/modal.component";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {FormValidator} from "../../../core/form-validator";
 import {Location} from "@angular/common";
+import {Helpers} from "../../../core/helpers";
 var moment = require('moment');
 
 @Component({
@@ -107,45 +108,50 @@ export class InvoiceEditComponent implements OnInit {
 	}
 
 	saveDraft() {
-		this.invoice.draft = true;
-		this.savingDraft = true;
-		this.save();
+		if(this.form.valid) {
+			this.invoice.draft = true;
+			this.savingDraft = true;
+			this.save();
+		}
 	}
 
 	saveAndIssue() {
-		this.invoice.draft = false;
-		this.invoice.number = this.invoice.number || this.nextInvoiceNumber;
-		this.save();
+		if(this.form.valid) {
+			this.invoice.draft = false;
+			this.invoice.number = this.invoice.number || this.nextInvoiceNumber;
+			this.save();
+		}
 	}
 
 	save() {
+		Helpers.validateAllFields(this.form);
+		if(this.form.valid) {
+			this.saving = true;
+			this.invoiceService.saveInvoice(this.invoice)
+				.subscribe(
+					(updatedInvoice: Invoice) => {
 
-		this.saving = true;
-		this.invoiceService.saveInvoice(this.invoice)
-			.subscribe(
-				(updatedInvoice: Invoice) => {
+						// Update nextInvoiceNumber if invoice has been issued
+						if (this.invoice.draft && !updatedInvoice.draft) {
+							this.state.nextInvoiceNumber++;
+							this.notificationService.success(null, this.translate.instant('invoice.issue-success'));
+						} else {
+							this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
+						}
 
-					// Update nextInvoiceNumber if invoice has been issued
-					if (this.invoice.draft && !updatedInvoice.draft) {
-						this.state.nextInvoiceNumber++;
-						this.notificationService.success(null, this.translate.instant('invoice.issue-success'));
-					} else {
-						this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
-					}
+						if(!this.invoice.id && updatedInvoice.id) {
+							this.location.replaceState(`/invoices/${updatedInvoice.id}`);
+						}
 
-					if(!this.invoice.id && updatedInvoice.id) {
-						this.location.replaceState(`/invoices/${updatedInvoice.id}`);
-					}
-
-					this.invoice = updatedInvoice;
-					this.saving = false;
-					this.savingDraft = false;
-					this.createMode = false;
-				},
-				error => {
-					// TODO
-				});
-
+						this.invoice = updatedInvoice;
+						this.saving = false;
+						this.savingDraft = false;
+						this.createMode = false;
+					},
+					error => {
+						// TODO
+					});
+		}
 	}
 
 	showPreview() {
