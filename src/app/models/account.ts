@@ -8,4 +8,8 @@ export class Account {
 	phone: string;
 	email: string;
 	website: string;
+	bank_account_owner: string;
+	bank_name: string;
+	bank_iban: string;
+	bank_bic: string;
 }
