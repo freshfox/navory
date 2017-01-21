@@ -55,7 +55,7 @@ export class ExpensesComponent implements OnInit {
 
 		let momentInstance = moment();
 		this.selectedMonthIndex = this.state.selectedExpenseMonthIndex || momentInstance.month();
-		this.selectedYear = momentInstance.year();
+		this.selectedYear = this.state.selectedExpenseYear || momentInstance.year();
 
 		this.loading = true;
 		this.expenseService.getExpenses()
@@ -71,6 +71,7 @@ export class ExpensesComponent implements OnInit {
 
 	filter() {
 		this.state.selectedExpenseMonthIndex = this.selectedMonthIndex;
+		this.state.selectedExpenseYear = this.selectedYear;
 		this.filteredExpenses = this.expenses.filter((expense) => {
 			let momentInstance = moment(expense.date);
 			let month = momentInstance.month();

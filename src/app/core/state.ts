@@ -10,6 +10,7 @@ export class State {
 
 	user: User;
 	selectedExpenseMonthIndex: number;
+	selectedExpenseYear: number;
 	selectedIncomeMonthIndex: number;
 	expenseCategories: Category[];
 	units: Unit[];
