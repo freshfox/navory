@@ -62,7 +62,7 @@ export class IncomeListComponent implements OnInit {
 
 		let momentInstance = moment();
 		this.selectedMonthIndex = this.state.selectedIncomeMonthIndex || momentInstance.month();
-		this.selectedYear = momentInstance.year();
+		this.selectedYear = this.state.selectedIncomeYear || momentInstance.year();
 
 		this.loading = true;
 		this.incomeService.getIncomes()
@@ -78,6 +78,7 @@ export class IncomeListComponent implements OnInit {
 
 	filter() {
 		this.state.selectedIncomeMonthIndex = this.selectedMonthIndex;
+		this.state.selectedIncomeYear = this.selectedYear;
 		this.filteredIncomes = this.incomes.filter((income) => {
 			let momentInstance = moment(income.date);
 			let month = momentInstance.month();

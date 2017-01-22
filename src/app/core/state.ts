@@ -12,6 +12,7 @@ export class State {
 	selectedExpenseMonthIndex: number;
 	selectedExpenseYear: number;
 	selectedIncomeMonthIndex: number;
+	selectedIncomeYear: number;
 	expenseCategories: Category[];
 	units: Unit[];
 	countries: Country[];
