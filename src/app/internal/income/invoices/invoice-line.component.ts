@@ -54,7 +54,7 @@ export class InvoiceLineComponent implements OnInit {
 	private units: Unit[];
 	private taxRates: TaxRate[];
 	private defaultTaxRate: TaxRate;
-	private numberOfQuantityDecimals: number = 3;
+	private numberOfQuantityDecimals: number = 4;
 	private amount: number = 0;
 
 	private titleFieldInFocus: boolean = false;
