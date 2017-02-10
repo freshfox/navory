@@ -1,0 +1,18 @@
+<div class="page-header">
+
+</div>
+
+<nvry-table [options]="tableOptions" [rows]="payments" [loading]="loading">
+
+	<div empty class="empty-view">
+		<p class="title">{{ 'payments.empty-state-message' | translate }}</p>
+	</div>
+
+</nvry-table>
+
+
+<template #actionsColumn let-row="row" let-value="value">
+	<nvry-dropdown>
+		<button (click)="deletePayment(row)">{{ 'actions.delete' | translate }}</button>
+	</nvry-dropdown>
+</template>

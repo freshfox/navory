@@ -76,6 +76,7 @@ import {ModalModule} from "./core/modal.module";
 import {ConfirmComponent} from "./core/components/confirm.component";
 import {SubscriptionComponent} from "./internal/settings/subscription.component";
 import {StepsComponent} from "./core/components/steps.component";
+import {PaymentService} from "./services/payment.service";
 import {UnitService} from "./services/unit.service";
 
 export function translateStaticLoaderFactory(http: Http) {
@@ -172,6 +173,7 @@ export function translateStaticLoaderFactory(http: Http) {
 		TaxRateService,
 		InvoiceService,
 		AccountService,
+		PaymentService,
 		UnitService
 	],
 	bootstrap: [AppComponent]
