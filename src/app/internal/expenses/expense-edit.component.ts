@@ -77,7 +77,7 @@ export class ExpenseEditComponent implements OnInit {
 								this.expense.description = expense.description;
 								this.expense.price = expense.price;
 								this.expense.category = expense.category;
-								this.expense.eu_vat_tax_rate = expense.eu_vat_tax_rate;
+								this.expense.eu_tax_rate = expense.eu_tax_rate;
 								this.expense.eu_vat_type = expense.eu_vat_type;
 
 								this.taxRateService.getTaxRate(expense.tax_rate.id)
@@ -85,9 +85,9 @@ export class ExpenseEditComponent implements OnInit {
 										this.expense.tax_rate = rate;
 									});
 
-								this.taxRateService.getTaxRate(expense.eu_vat_tax_rate.id)
+								this.taxRateService.getTaxRate(expense.eu_tax_rate.id)
 									.subscribe((rate) => {
-										this.expense.eu_vat_tax_rate = rate;
+										this.expense.eu_tax_rate = rate;
 									});
 
 								this.loading = false;
@@ -110,11 +110,18 @@ export class ExpenseEditComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	euVatTypeChanged() {
+		if(this.expense.eu_vat_type == EuVatType.None) {
+			this.expense.eu_tax_rate = null;
+		}
+	}
+
 	taxRateChanged(id: number) {
 		this.taxRateService.getTaxRate(id)
 			.subscribe(rate => {
 				if (rate.rate !== 0) {
 					this.expense.eu_vat_type = EuVatType.None;
+					this.expense.eu_tax_rate = null;
 				}
 				this.expense.tax_rate = rate;
 			});
@@ -123,7 +130,7 @@ export class ExpenseEditComponent implements OnInit {
 	euTaxRateChanged(id: number) {
 		this.taxRateService.getTaxRate(id)
 			.subscribe(rate => {
-				this.expense.eu_vat_tax_rate = rate;
+				this.expense.eu_tax_rate = rate;
 			})
 	}
 

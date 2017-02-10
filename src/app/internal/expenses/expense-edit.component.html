@@ -59,12 +59,12 @@
 					<div class="bit-100 combined-fields" *ngIf="expense.tax_rate?.rate == 0">
 						<div class="combined-fields__side">
 							<nvry-select [label]="'income.edit.intra-community' | translate" [options]="euVatTypes"
-										 valueKey="value" [(selectedValue)]="expense.eu_vat_type"></nvry-select>
+										 valueKey="value" [(selectedValue)]="expense.eu_vat_type" (selectedValueChange)="euVatTypeChanged()"></nvry-select>
 						</div>
 						<div class="combined-fields__side">
 							<div *ngIf="expense.eu_vat_type != 'none'">
 								<nvry-select [label]="'expenses.eu_tax_rate' | translate" [options]="taxRates"
-											 [selectedValue]="expense.eu_vat_tax_rate?.id"
+											 [selectedValue]="expense.eu_tax_rate?.id"
 											 (selectedValueChange)="euTaxRateChanged($event)"></nvry-select>
 							</div>
 						</div>

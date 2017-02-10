@@ -12,7 +12,7 @@ export class Expense {
 	price: number = 0;
 	file: File;
 	tax_rate: TaxRate;
-	eu_vat_tax_rate: TaxRate;
+	eu_tax_rate: TaxRate;
 	eu_vat_type: EuVatType;
 	category: Category;
 
