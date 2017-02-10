@@ -1,6 +1,7 @@
 import {TaxRate} from "./tax-rate";
 import {BaseModel} from "../core/base.model";
 import {Calculator} from "../core/calculator";
+import {Unit} from "./unit";
 
 export class InvoiceLine extends BaseModel {
 
@@ -9,9 +10,8 @@ export class InvoiceLine extends BaseModel {
 	description: string;
 	quantity: number;
 	price: number;
-	tax_rate_id: number;
 	tax_rate: TaxRate;
-	unit_id: number;
+	unit: Unit;
 
 	constructor(data?: any) {
 		super(data);

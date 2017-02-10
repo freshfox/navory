@@ -5,6 +5,7 @@ import {BootstrapService} from "../../../services/bootstrap.service";
 import {TaxRate} from "../../../models/tax-rate";
 import {TaxRateService} from "../../../services/tax-rate.service";
 import {Config} from "../../../core/config";
+import {UnitService} from "../../../services/unit.service";
 
 @Component({
 	selector: 'nvry-invoice-line',
@@ -25,7 +26,8 @@ import {Config} from "../../../core/config";
                 
                 <nvry-select 
                 [options]="units" 
-                [(selectedValue)]="invoiceLine.unit_id" 
+                [selectedValue]="invoiceLine.unit.id"
+                (selectedValueChange)="unitChanged($event)"
                 class="unit-field connected-with-next"></nvry-select>
                 
                 <nvry-input type="money" [(ngModel)]="invoiceLine.price" class="amount-field connected-with-next"></nvry-input>
@@ -61,13 +63,13 @@ export class InvoiceLineComponent implements OnInit {
 	private descriptionFieldInFocus: boolean = false;
 
 
-	constructor(private bootstrapService: BootstrapService, private taxRateService: TaxRateService) {
+	constructor(private bootstrapService: BootstrapService, private taxRateService: TaxRateService, private unitService: UnitService) {
 
 	}
 
 	ngOnInit() {
-		if (!this.invoiceLine.unit_id) {
-			this.invoiceLine.unit_id = Config.defaultUnitId;
+		if (!this.invoiceLine.unit) {
+			this.invoiceLine.unit = new Unit({ id: Config.defaultUnitId });
 		}
 		this.bootstrapService.getUnits()
 			.subscribe(units => this.units = units);
@@ -91,6 +93,11 @@ export class InvoiceLineComponent implements OnInit {
 	taxRateChanged(id: number) {
 		this.taxRateService.getTaxRate(id)
 			.subscribe(rate => this.invoiceLine.tax_rate = rate);
+	}
+
+	unitChanged(id: number) {
+		this.unitService.getUnit(id)
+			.subscribe(unit => this.invoiceLine.unit = unit);
 	}
 
 	deleteLine() {
