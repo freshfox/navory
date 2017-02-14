@@ -28,7 +28,8 @@ export class PageNavigationComponent implements OnInit {
 	}
 
 	private goToPage(pageIndex: number) {
-		this.currentPageIndex = ((this.currentPageIndex + 1) + this.numberOfPages) % this.numberOfPages;
+		this.currentPageIndex = (pageIndex + this.numberOfPages) % this.numberOfPages;
+
 		this.currentPageIndexChange.emit(this.currentPageIndex);
 	}
 
