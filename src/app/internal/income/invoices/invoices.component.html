@@ -15,6 +15,10 @@
 
 </nvry-table>
 
+<div class="page-row tc" style="padding-top: 20px; padding-bottom: 20px;">
+	{{ 'invoices.sum-amount' | translate }} <strong>{{ getFullAmount() | nvryNumber }}</strong>
+</div>
+
 <template #statusColumn let-row="row" let-value="value">
 	<span class="badge badge--{{ getBadgeData(row).cssClass }}">{{ getBadgeData(row).text }}</span>
 </template>

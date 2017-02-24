@@ -9,6 +9,7 @@ import {NumberPipe} from "../../../core/pipes/number.pipe";
 import {ColumnAlignment} from "../../../core/components/table/column-alignment.enum";
 import {Router} from "@angular/router";
 import {ModalService} from "../../../core/modal.module";
+import {Calculator} from "../../../core/calculator";
 var moment = require('moment');
 
 @Component({
@@ -17,7 +18,7 @@ var moment = require('moment');
 })
 export class InvoicesComponent implements OnInit {
 
-	private invoices: Invoice[];
+	private invoices: Invoice[] = [];
 
 	@ViewChild('statusColumn') statusColumnTpl: TemplateRef<any>;
 	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
@@ -136,6 +137,15 @@ export class InvoicesComponent implements OnInit {
 		}
 
 		return status;
+	}
+
+	getFullAmount(): number {
+		let amount = 0;
+		this.invoices.forEach((invoice) => {
+			amount = Calculator.add(amount, invoice.getTotalNet());
+		});
+
+		return amount;
 	}
 
 	isInvoicePaid(invoice) {

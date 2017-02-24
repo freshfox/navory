@@ -16,7 +16,15 @@ export class InvoiceService extends BaseService {
 	}
 
 	getInvoices(): Observable<Invoice[]> {
-		return this.get(this.pathInvoices);
+		return this.get(this.pathInvoices)
+			.map(invoicesData => {
+				let invoices: Invoice[] = [];
+				invoicesData.forEach((invoiceData) => {
+					let invoice = new Invoice(invoiceData);
+					invoices.push(invoice);
+				});
+				return invoices;
+			});
 	}
 
 	getInvoice(id: number): Observable<Invoice> {
