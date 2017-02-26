@@ -10,6 +10,7 @@ import * as moment from "moment";
 import {State} from "../../core/state";
 import {Router} from "@angular/router";
 import {ModalService} from "../../core/modal.module";
+import {isNullOrUndefined} from "util";
 
 @Component({
 	templateUrl: './expenses.component.html'
@@ -54,8 +55,8 @@ export class ExpensesComponent implements OnInit {
 		});
 
 		let momentInstance = moment();
-		this.selectedMonthIndex = this.state.selectedExpenseMonthIndex || momentInstance.month();
-		this.selectedYear = this.state.selectedExpenseYear || momentInstance.year();
+		this.selectedMonthIndex = this.state.selectedExpenseMonthIndex !== undefined ? this.state.selectedExpenseMonthIndex : momentInstance.month();
+		this.selectedYear = this.state.selectedExpenseYear !== undefined ? this.state.selectedExpenseYear : momentInstance.year();
 
 		this.loading = true;
 		this.expenseService.getExpenses()

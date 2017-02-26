@@ -61,8 +61,8 @@ export class IncomeListComponent implements OnInit {
 		});
 
 		let momentInstance = moment();
-		this.selectedMonthIndex = this.state.selectedIncomeMonthIndex || momentInstance.month();
-		this.selectedYear = this.state.selectedIncomeYear || momentInstance.year();
+		this.selectedMonthIndex = this.state.selectedIncomeMonthIndex !== undefined ? this.state.selectedIncomeMonthIndex : momentInstance.month();
+		this.selectedYear = this.state.selectedIncomeYear !== undefined ? this.state.selectedIncomeYear : momentInstance.year();
 
 		this.loading = true;
 		this.incomeService.getIncomes()
