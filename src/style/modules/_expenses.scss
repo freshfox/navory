@@ -1,6 +1,6 @@
 .expenses-component-page-header {
 	display: flex;
-	@include align-items(center);
+	align-items: center;
 
 	.create-button {
 		margin-left: auto;
@@ -19,7 +19,7 @@ nvry-month-selection {
 		padding: 0;
 		margin: 0;
 		display: flex;
-		@include align-items(center);
+		align-items: center;
 
 		li {
 			margin: 0;
@@ -44,8 +44,8 @@ nvry-month-selection {
 
 .category-selection {
 	display: flex;
-	@include flex-direction(column);
-	@include flex-wrap(wrap);
+	flex-direction: column;
+	flex-wrap: wrap;
 	max-height: 800px;
 
 	.category-selection__column {
@@ -64,7 +64,7 @@ nvry-month-selection {
 		padding-top: 2px;
 		text-align: left;
 		padding-bottom: 2px;
-		@include transition(color .25s ease);
+		transition: color .25s ease;
 
 		&:hover {
 			color: $colorPrimary;

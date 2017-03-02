@@ -3,7 +3,7 @@ button {
 	border: 0;
 	white-space: normal;
 	outline: 0;
-	@include appearance(none);
+	appearance: none;
 	cursor: pointer;
 }
 
@@ -17,14 +17,14 @@ nvry-button {
 
 .button {
 	display: flex;
-	@include align-items(center);
+	align-items: center;
 	zoom: 1;
 	line-height: normal;
 	vertical-align: baseline;
 	text-align: center;
 	cursor: pointer;
 	-webkit-user-drag: none;
-	@include user-select(none);
+	user-select: none;
 
 	font-family: inherit;
 	font-size: 100%;
@@ -35,7 +35,7 @@ nvry-button {
 	border: 1px solid $buttonPrimaryBackground;
 	text-decoration: none;
 	border-radius: $buttonBorderRadius;
-	@include transition(color .25s ease, background .25s ease);
+	transition: color .25s ease, background .25s ease;
 
 	nvry-icon {
 		width: 12px;

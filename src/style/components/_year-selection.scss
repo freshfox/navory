@@ -4,7 +4,7 @@ nvry-year-selection {
 
 .nvry-year-selection__inner {
 	display: flex;
-	@include align-items(center);
+	align-items: center;
 	width: auto;
 
 	background-color: $colorLightAccent;

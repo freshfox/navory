@@ -17,7 +17,7 @@
 
 	.vat-report-amount-to-pay-container {
 		display: flex;
-		@include align-items(center);
+		align-items: center;
 		margin-bottom: 20px;
 
 		nvry-spinner {

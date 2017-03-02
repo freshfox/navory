@@ -127,5 +127,5 @@ img {
  * Transformation stuff
  */
 .rotate-180-deg {
-	@include transform(rotateX(180deg));
+	transform: rotateX(180deg);
 }

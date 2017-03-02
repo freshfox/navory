@@ -13,7 +13,7 @@
 nvry-book-payment {
 
 	.add-payment-form {
-		@include display(flex);
+		display: flex;
 		background-color: $colorGrayUltraLight;
 		padding: 20px 15px;
 

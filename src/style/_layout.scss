@@ -38,7 +38,7 @@
 
 		.buttons {
 			display: flex;
-			@include align-items(center);
+			align-items: center;
 			margin-left: auto;
 		}
 
@@ -56,8 +56,8 @@
 	padding-top: 20px;
 	padding-bottom: 20px;
 	display: flex;
-	@include align-items(center);
-	@include flex-wrap(wrap);
+	align-items: center;
+	flex-wrap: wrap;
 
 	&.page-header--no-margin {
 		margin-bottom: 0;
@@ -99,7 +99,7 @@
 .frame {
 	width: 100%;
 	display: flex;
-	@include flex-wrap(wrap);
+	flex-wrap: wrap;
 
 	&.frame--padding {
 		padding-left: 25px;

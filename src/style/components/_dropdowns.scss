@@ -28,7 +28,7 @@ nvry-dropdown {
 		outline: 0;
 		background: #fff;
 		display: flex;
-		@include align-items(center);
+		align-items: center;
 		margin: 0 auto;
 		cursor: pointer;
 		position: relative;
@@ -36,7 +36,7 @@ nvry-dropdown {
 		nvry-icon {
 			width: 18px;
 			height: 18px;
-			@include transition(transform .2s ease-out);
+			transition: transform .2s ease-out;
 		}
 	}
 

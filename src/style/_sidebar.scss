@@ -83,11 +83,10 @@
 			font-size: 14px;
 			padding: 4px 0;
 			color: #7c7c7c;
-			display: block;
 			text-decoration: none;
 
 			display: flex;
-			@include align-items(center);
+			align-items: center;
 		}
 	}
 }

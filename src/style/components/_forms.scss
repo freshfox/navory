@@ -3,7 +3,7 @@
 	display: inline-block;
 	border: 1px solid $formFieldBorderColor;
 	border-radius: $formFieldBorderRadius;
-	@include transition(background-color .2s ease);
+	transition: background-color .2s ease;
 	width: 100%;
 
 	&:focus {
@@ -111,7 +111,7 @@ label {
 	}
 }
 
-@include placeholder {
+::placeholder {
 	font-weight: normal;
 }
 

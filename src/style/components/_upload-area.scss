@@ -52,7 +52,7 @@
 		right: 10px;
 		top: 15px;
 		display: flex;
-		@include align-items(center);
+		align-items: center;
 
 		nvry-button {
 			margin-right: 10px;
@@ -91,7 +91,7 @@
 			height: 20px;
 			border-radius: $defaultBorderRadius;
 			background: $colorPrimary;
-			@include transition(all .5s ease);
+			transition: all .5s ease;
 		}
 	}
 
@@ -106,7 +106,7 @@
 
 nvry-page-navigation {
 	display: flex;
-	@include align-items(center);
+	align-items: center;
 
 	.button {
 		background: $colorUltraDarkAccent;

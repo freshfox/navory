@@ -79,7 +79,7 @@ nvry-table {
 
 			.nvry-table-header-cell__inner {
 				display: flex;
-				@include align-items(center);
+				align-items: center;
 
 				nvry-icon {
 					width: 20px;

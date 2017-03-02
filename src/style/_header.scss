@@ -5,7 +5,7 @@
 
 	.main-header__inner {
 		display: flex;
-		@include align-items(center);
+		align-items: center;
 
 		.user {
 			margin-left: auto;
@@ -20,7 +20,7 @@
 
 	.user {
 		display: flex;
-		@include align-items(center);
+		align-items: center;
 
 		.username {
 			margin-right: 10px;

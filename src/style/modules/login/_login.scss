@@ -11,7 +11,7 @@
 		border: 1px solid $colorGrayUltraDark;
 		color: white;
 
-		@include placeholder {
+		::placeholder {
 			color: #ccc;
 		}
 
@@ -98,8 +98,8 @@
 		padding: 6px 10px;
 		margin-left: 10px;
 		font-size: 12px;
-		@include transform-origin(-6px 0);
-		@include transform(translate3d(0, -50%, 0) scale(1));
+		transform-origin: -6px 0;
+		transform: translate3d(0, -50%, 0) scale(1);
 
 		&:before {
 			$formErrorArrowSize: 6px;

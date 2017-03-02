@@ -2,12 +2,12 @@
 	overflow: hidden;
 	margin-bottom: 10px;
 	text-align: center;
-	@include transition(height .2s ease, transform .4s ease, opacity .4s linear);
+	transition: height .2s ease, transform .4s ease, opacity .4s linear;
 
 	.msg {
-		@include transform-origin(50% 0);
-		@include transition(opacity .2s linear, transform .6s ease);
-		@include transform(scale(0));
+		transform-origin: 50% 0;
+		transition: opacity .2s linear, transform .6s ease;
+		transform: scale(0);
 		opacity: 0;
 		padding: 6px 15px;
 		background: $colorError;
@@ -21,9 +21,9 @@
 
 	&.visible {
 		.msg {
-			@include transform(scale(1));
+			transform: scale(1);
 			opacity: 1;
-			@include transition(opacity .2s linear, transform 250ms cubic-bezier(.4, 1.5, .5, 1));
+			transition: opacity .2s linear, transform 250ms cubic-bezier(.4, 1.5, .5, 1);
 		}
 	}
 
