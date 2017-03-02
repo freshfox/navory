@@ -70,7 +70,6 @@ import {AccountService} from "./services/account.service";
 import {SimpleNotificationsModule} from "angular2-notifications/src/simple-notifications.module";
 import {SafePipe} from "./core/pipes/safe.pipe";
 import {DocumentPreviewComponent} from "./core/components/document-preview.component";
-import {MdProgressCircleModule} from "@angular2-material/progress-circle";
 import {FiveZeroThreeComponent} from "./core/components/503.component";
 import {ModalModule} from "./core/modal.module";
 import {ConfirmComponent} from "./core/components/confirm.component";
@@ -78,6 +77,7 @@ import {SubscriptionComponent} from "./internal/settings/subscription.component"
 import {StepsComponent} from "./core/components/steps.component";
 import {PaymentService} from "./services/payment.service";
 import {UnitService} from "./services/unit.service";
+import {MaterialModule} from "@angular/material";
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -149,8 +149,8 @@ export function translateStaticLoaderFactory(http: Http) {
 			deps: [Http]
 		}),
 		AppRoutingModule,
-		SimpleNotificationsModule,
-		MdProgressCircleModule,
+		SimpleNotificationsModule.forRoot(),
+		MaterialModule,
 		ModalModule
 	],
 	providers: [
