@@ -1,6 +1,7 @@
 import {InvoiceLine} from "./invoice-line";
 import {BaseModel} from "../core/base.model";
 import {Calculator} from "../core/calculator";
+import {Payment} from "./payment";
 
 export class Invoice extends BaseModel {
 
@@ -12,11 +13,12 @@ export class Invoice extends BaseModel {
 	service_date_start: string;
 	service_date_end: string;
 	invoice_lines: InvoiceLine[];
-	payment_date: string;
 	customer_name: string;
 	customer_address: string;
 	customer_country_id: number;
 	customer_vat_number: string;
+	unpaid_amount: number;
+	payments: Payment[];
 
 	constructor(data?: any) {
 		super(data);
@@ -54,7 +56,7 @@ export class Invoice extends BaseModel {
 export enum InvoiceStatus {
 	Draft = 'draft' as any,
 	Issued = 'issued' as any,
-	PartyPaid = 'partly-paid' as any,
+	PartlyPaid = 'partly-paid' as any,
 	Paid = 'paid' as any,
 	Overdue = 'overdue' as any
 }

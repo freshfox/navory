@@ -54,7 +54,9 @@
 		"iban": "IBAN",
 		"bic": "BIC",
 		"month": "Monat",
-		"continue": "Weiter"
+		"continue": "Weiter",
+		"book-payment": "Zahlung buchen",
+		"book-incoming-payment": "Eingehende Zahlung buchen"
 	},
 	"app": {
 		"name": "Navory",
@@ -259,6 +261,10 @@
 		}
 	},
 	"payments": {
-		"title": "Zahlungen"
+		"title": "Zahlungen",
+		"delete-confirm-title": "Zahlung löschen",
+		"delete-confirm-message": "Möchtest du diese Zahlung sicher Löschen? Etwaige Buchungen, die durch diese Zahlung durchgeführt werden, werden entfernt. Dieser Vorgang kann nicht rückgängig gemacht werden.",
+		"empty-state-message": "Du hast noch keine Zahlungen gebucht. Gehe zu deinen Rechnungen oder Ausgaben, um eine Zahlung dafür anzulegen.",
+		"default-income-description": "Zahlung für Rechnung {{number}}"
 	}
 }

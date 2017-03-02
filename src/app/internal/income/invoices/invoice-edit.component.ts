@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit, ViewChild, ComponentRef} from "@angular/core";
 import {Invoice} from "../../../models/invoice";
 import {InvoiceLine} from "../../../models/invoice-line";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -13,6 +13,9 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {FormValidator} from "../../../core/form-validator";
 import {Location} from "@angular/common";
 import {Helpers} from "../../../core/helpers";
+import {ModalService} from "../../../core/modal.module";
+import {BookPaymentComponent} from "../../payments/book-payment.component";
+import {Payment} from "../../../models/payment";
 var moment = require('moment');
 
 @Component({
@@ -32,6 +35,8 @@ export class InvoiceEditComponent implements OnInit {
 	private createMode: boolean = true;
 
 	@ViewChild('previewModal') private previewModal: ModalComponent;
+	@ViewChild('addPaymentModal') private addPaymentModal: ModalComponent;
+
 
 	constructor(private route: ActivatedRoute,
 				private invoiceService: InvoiceService,
@@ -39,6 +44,7 @@ export class InvoiceEditComponent implements OnInit {
 				private state: State,
 				private notificationService: NotificationsService,
 				private translate: TranslateService,
+				private modalService: ModalService,
 				private fb: FormBuilder,
 				private location: Location) {
 
@@ -162,6 +168,23 @@ export class InvoiceEditComponent implements OnInit {
 
 	downloadPDF() {
 		this.invoiceService.downloadInvoicePDF(this.invoice);
+	}
+
+	addPayment() {
+		this.modalService.createModal(BookPaymentComponent, {
+			invoiceId: this.invoice.id,
+			amount: this.invoice.unpaid_amount,
+			description: this.translate.instant('payments.default-income-description', { number: this.invoice.number })
+		}).subscribe((ref: ComponentRef<BookPaymentComponent>) => {
+			ref.instance.onSaved.subscribe((payment: Payment) => {
+				this.invoice.payments
+				this.modalService.hideCurrentModal();
+			});
+
+			ref.instance.onCancel.subscribe(() => {
+				this.modalService.hideCurrentModal();
+			});
+		});
 	}
 
 }

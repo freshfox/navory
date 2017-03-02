@@ -1,0 +1,40 @@
+.payments-table {
+
+	.payment-amount {
+		color: $colorIncome;
+	}
+
+	.payment-amount--negative {
+		color: $colorExpenses;
+	}
+
+}
+
+nvry-book-payment {
+
+	.add-payment-form {
+		@include display(flex);
+		background-color: $colorGrayUltraLight;
+		padding: 20px 15px;
+
+		nvry-input {
+			margin: 0;
+			margin-right: 20px;
+			width: 40%;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			&.description {
+				width: 100%;
+			}
+
+			&.amount {
+				input {
+					color: $colorIncome;
+				}
+			}
+		}
+	}
+}

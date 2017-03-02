@@ -78,6 +78,7 @@ import {StepsComponent} from "./core/components/steps.component";
 import {PaymentService} from "./services/payment.service";
 import {UnitService} from "./services/unit.service";
 import {MaterialModule} from "@angular/material";
+import {BookPaymentComponent} from "./internal/payments/book-payment.component";
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -135,7 +136,8 @@ export function translateStaticLoaderFactory(http: Http) {
 		FiveZeroThreeComponent,
 		ConfirmComponent,
 		SubscriptionComponent,
-		StepsComponent
+		StepsComponent,
+		BookPaymentComponent
 	],
 	imports: [
 		BrowserModule,

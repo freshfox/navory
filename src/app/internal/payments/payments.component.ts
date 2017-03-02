@@ -6,6 +6,8 @@ import {TranslateService} from "ng2-translate";
 import {DatePipe} from "../../core/pipes/date.pipe";
 import {NumberPipe} from "../../core/pipes/number.pipe";
 import {ModalService} from "../../core/modal.module";
+import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";
+import {SortDirection} from "../../core/components/table/sort-direction.enum";
 
 @Component({
 	selector: 'nvry-payments',
@@ -15,8 +17,10 @@ export class PaymentsComponent implements OnInit {
 
 	private payments: Payment[] = [];
 	private tableOptions: TableOptions;
+	private loading: boolean = false;
 
 	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
+	@ViewChild('amountColumn') amountColumn: TemplateRef<any>;
 
 	constructor(private paymentService: PaymentService,
 				private translate: TranslateService,
@@ -27,24 +31,38 @@ export class PaymentsComponent implements OnInit {
 
 	ngOnInit() {
 		this.tableOptions = new TableOptions({
+			itemsClickable: false,
 			columns: [
-				{name: this.translate.instant('general.date'), prop: 'date', width: 12, pipe: this.datePipe},
 				{name: this.translate.instant('general.description'), prop: 'description'},
-				{name: this.translate.instant('general.amount'), prop: 'amount', width: 10, pipe: this.numberPipe },
+				{
+					name: this.translate.instant('general.date'),
+					prop: 'date', width: 12,
+					pipe: this.datePipe,
+					sortDirection: SortDirection.Desc
+				},
+				{
+					name: this.translate.instant('general.amount'),
+					cellTemplate: this.amountColumn,
+					prop: 'amount',
+					width: 10,
+					alignment: ColumnAlignment.Right
+				},
 				{width: 5, cellTemplate: this.actionsColumn, sortable: false},
 			]
 		});
 
+		this.loading = true;
 		this.paymentService.getPayments()
 			.subscribe(payments => {
 				this.payments = payments;
+				this.loading = false;
 			})
 	}
 
 	deletePayment(payment) {
 		this.modalService.createConfirmRequest(
-			this.translate.instant('expenses.delete-confirm-title'),
-			this.translate.instant('expenses.delete-confirm-message'),
+			this.translate.instant('payments.delete-confirm-title'),
+			this.translate.instant('payments.delete-confirm-message'),
 			() => {
 				this.modalService.hideCurrentModal();
 			},

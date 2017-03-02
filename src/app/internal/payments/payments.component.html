@@ -2,7 +2,7 @@
 
 </div>
 
-<nvry-table [options]="tableOptions" [rows]="payments" [loading]="loading">
+<nvry-table [options]="tableOptions" [rows]="payments" [loading]="loading" class="payments-table">
 
 	<div empty class="empty-view">
 		<p class="title">{{ 'payments.empty-state-message' | translate }}</p>
@@ -15,4 +15,9 @@
 	<nvry-dropdown>
 		<button (click)="deletePayment(row)">{{ 'actions.delete' | translate }}</button>
 	</nvry-dropdown>
+</template>
+
+<template #amountColumn let-row="row" let-value="value">
+	<span class="payment-amount"
+		  [class.payment-amount--negative]="row.amount < 0">{{ value | nvryNumber }}</span>
 </template>

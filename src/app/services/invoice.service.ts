@@ -5,6 +5,7 @@ import {Http} from "@angular/http";
 import {Invoice} from "../models/invoice";
 import {FileService} from "./file.service";
 import {Calculator} from "../core/calculator";
+import {Payment} from "../models/payment";
 
 @Injectable()
 export class InvoiceService extends BaseService {
@@ -95,5 +96,9 @@ export class InvoiceService extends BaseService {
 		this.fileService.downloadFromURL(url);
 	}
 
+	addPayment(invoiceId: string, payment: Payment): Observable<Payment> {
+		let path = `/invoices/${invoiceId}/payments`;
+		return this.post(path, payment);
+	}
 }
 

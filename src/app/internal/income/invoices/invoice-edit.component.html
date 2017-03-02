@@ -32,7 +32,12 @@
 				{{ 'invoices.save-draft' | translate }}
 			</nvry-button>
 
-			<nvry-button (click)="save()" [loading]="saving && !savingDraft" *ngIf="!invoice.draft">{{ 'general.save' | translate }}</nvry-button>
+			<nvry-button (click)="save()"
+						 class="button--secondary"
+						 [loading]="saving && !savingDraft"
+						 *ngIf="!invoice.draft">{{ 'general.save' | translate }}</nvry-button>
+
+			<nvry-button (click)="addPayment()">{{ 'general.book-payment' | translate }}</nvry-button>
 
 			<nvry-button (click)="saveAndIssue()"
 						 [loading]="saving && !savingDraft"
@@ -142,4 +147,8 @@
 	<div class="document-preview">
 		<iframe [src]="invoicePreviewURL | safe" frameborder="0"></iframe>
 	</div>
+</nvry-modal>
+
+<nvry-modal #addPaymentModal>
+	<nvry-book-payment [amount]="invoice.unpaid_amount"></nvry-book-payment>
 </nvry-modal>
