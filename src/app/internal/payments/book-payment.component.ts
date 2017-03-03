@@ -4,6 +4,7 @@ import {FormValidator} from "../../core/form-validator";
 import {Helpers} from "../../core/helpers";
 import {Payment} from "../../models/payment";
 import {InvoiceService} from "../../services/invoice.service";
+import {BankAccount} from "../../models/bank-account";
 
 @Component({
     selector: 'nvry-book-payment',
@@ -69,6 +70,7 @@ export class BookPaymentComponent implements OnInit {
     private save() {
     	Helpers.validateAllFields(this.form);
     	this.loading = true;
+    	this.payment.bank_account = new BankAccount({ id: 1 });
 		this.invoiceService.addPayment(this.invoiceId, this.payment)
 			.subscribe((payment: Payment) => {
 				this.onSaved.emit(payment);

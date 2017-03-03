@@ -37,13 +37,20 @@
 						 [loading]="saving && !savingDraft"
 						 *ngIf="!invoice.draft">{{ 'general.save' | translate }}</nvry-button>
 
-			<nvry-button (click)="addPayment()">{{ 'general.book-payment' | translate }}</nvry-button>
+			<nvry-button (click)="addPayment()" *ngIf="!invoice.draft">{{ 'general.book-payment' | translate }}</nvry-button>
 
 			<nvry-button (click)="saveAndIssue()"
 						 [loading]="saving && !savingDraft"
 						 *ngIf="invoice.draft"
 						 [disabled]="savingDraft">{{ 'invoices.issue' | translate }}
 			</nvry-button>
+		</div>
+	</div>
+
+	<div class="default-section">
+		<h3>{{ 'general.payments' | translate }}</h3>
+		<div>
+			<nvry-booked-payment *ngFor="let payment of invoice.payments" [payment]="payment"></nvry-booked-payment>
 		</div>
 	</div>
 

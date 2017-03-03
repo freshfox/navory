@@ -20,7 +20,9 @@
 </div>
 
 <template #statusColumn let-row="row" let-value="value">
-	<span class="badge badge--{{ getBadgeData(row).cssClass }}">{{ getBadgeData(row).text }}</span>
+	<div class="badge badge--{{ getBadgeData(row).cssClass }}">
+		<span clasS="badge__text">{{ getBadgeData(row).text }}</span>
+	</div>
 </template>
 
 <template #actionsColumn let-row="row" let-value="value">

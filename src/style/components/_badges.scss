@@ -7,16 +7,39 @@
 	font-size: 10px;
 	text-align: center;
 
+	.badge__text {
+		position: relative;
+	}
+
 	&.badge--customer {
 		background: $colorClients;
 	}
+
 	&.badge--gray {
 		background: $colorGray;
 	}
+
 	&.badge--income {
 		background: $colorIncome;
 	}
+
 	&.badge--expense {
 		background: $colorExpenses;
+	}
+
+	&.badge--income-part {
+		background: $colorGray;
+		position: relative;
+		overflow: hidden;
+
+		&:before {
+			content: '';
+			width: 50%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			background: $colorIncome;
+		}
 	}
 }

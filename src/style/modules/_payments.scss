@@ -38,3 +38,42 @@ nvry-book-payment {
 		}
 	}
 }
+
+
+.booked-payment {
+	margin-bottom: 0;
+	border: 1px solid $colorGrayLight;
+	padding: 15px 20px;
+	border-top: 0;
+	background-color:$colorGrayUltraLight;
+	display: flex;
+	width: 100%;
+
+	.description {
+		text-overflow: ellipsis;
+	}
+
+	.date {
+		margin-left: auto;
+		padding-right: 20px;
+	}
+
+	.amount {
+		text-align: right;
+		width: 20%;
+		margin-right: 0;
+		color: $colorIncome;
+
+		&.amount--expense {
+			color: $colorExpenses;
+		}
+	}
+
+	&:first-child {
+		border-top: 1px solid $colorGrayLight;
+	}
+
+	&:last-child {
+		margin-bottom: 30px;
+	}
+}

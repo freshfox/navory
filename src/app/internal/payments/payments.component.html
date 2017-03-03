@@ -2,22 +2,6 @@
 
 </div>
 
-<nvry-table [options]="tableOptions" [rows]="payments" [loading]="loading" class="payments-table">
+<nvry-spinner *ngIf="loading"></nvry-spinner>
 
-	<div empty class="empty-view">
-		<p class="title">{{ 'payments.empty-state-message' | translate }}</p>
-	</div>
-
-</nvry-table>
-
-
-<template #actionsColumn let-row="row" let-value="value">
-	<nvry-dropdown>
-		<button (click)="deletePayment(row)">{{ 'actions.delete' | translate }}</button>
-	</nvry-dropdown>
-</template>
-
-<template #amountColumn let-row="row" let-value="value">
-	<span class="payment-amount"
-		  [class.payment-amount--negative]="row.amount < 0">{{ value | nvryNumber }}</span>
-</template>
+<nvry-payments-bank-account [bankAccount]="selectedBankAccount" *ngIf="selectedBankAccount"></nvry-payments-bank-account>

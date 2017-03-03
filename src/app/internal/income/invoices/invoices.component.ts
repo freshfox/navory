@@ -105,6 +105,10 @@ export class InvoicesComponent implements OnInit {
 				text = this.translate.instant('general.paid');
 				badgeClass = 'income';
 				break;
+			case InvoiceStatus.PartlyPaid:
+				text = this.translate.instant('general.partly-paid');
+				badgeClass = 'income-part';
+				break;
 			case InvoiceStatus.Overdue:
 				text = this.translate.instant('general.overdue');
 				badgeClass = 'expense';
@@ -131,6 +135,8 @@ export class InvoicesComponent implements OnInit {
 			status = InvoiceStatus.Issued;
 			if (this.isInvoicePaid(invoice)) {
 				status = InvoiceStatus.Paid;
+			} else if (this.isInvoicePartlyPaid(invoice)) {
+				status = InvoiceStatus.PartlyPaid;
 			} else if (this.isInvoiceOverdue(invoice)) {
 				status = InvoiceStatus.Overdue;
 			}
@@ -149,7 +155,11 @@ export class InvoicesComponent implements OnInit {
 	}
 
 	isInvoicePaid(invoice) {
-		return !!invoice.payment_date;
+		return invoice.unpaid_amount == 0;
+	}
+
+	isInvoicePartlyPaid(invoice: Invoice) {
+		return invoice.payments.length > 0 && !this.isInvoicePaid(invoice);
 	}
 
 	isInvoiceOverdue(invoice) {
