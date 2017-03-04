@@ -171,7 +171,7 @@ export class InvoiceEditComponent implements OnInit {
 	}
 
 	addPayment() {
-		this.modalService.createModal(BookPaymentComponent, {
+		this.modalService.create(BookPaymentComponent, {
 			invoiceId: this.invoice.id,
 			amount: this.invoice.unpaid_amount,
 			description: this.translate.instant('payments.default-income-description', { number: this.invoice.number })

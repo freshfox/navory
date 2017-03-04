@@ -14,11 +14,12 @@ import {
 	style,
 	animate,
 	AfterViewInit,
-	state
+	state,
+	ComponentFactory,
+	ComponentFactoryResolver
 } from "@angular/core";
 import {Observable, ReplaySubject} from "rxjs/Rx";
 import {BrowserModule} from "@angular/platform-browser";
-import {AppModule} from "../app.module";
 import {ConfirmComponent} from "./components/confirm.component";
 
 @Injectable()
@@ -29,7 +30,7 @@ export class ModalService {
 
 	private placeholder: ModalPlaceholderComponent;
 
-	constructor(private compiler: Compiler) {
+	constructor(private compiler: Compiler, private componentFactoryResolver: ComponentFactoryResolver) {
 	}
 
 	hideCurrentModal() {
@@ -48,42 +49,39 @@ export class ModalService {
 		this.injector = injector;
 	}
 
-	createModal<T>(component: any, parameters?: Object) {
-		return this.create(AppModule, component, parameters);
-	}
-
-	create<T>(module: any, component: any, parameters?: Object): Observable<ComponentRef<T>> {
-		let componentRef$ = new ReplaySubject();
-		this.compiler.compileModuleAndAllComponentsAsync(module)
-			.then(factory => {
-				this.placeholder.show();
-
-				let componentFactory = factory.componentFactories.filter(item => item.componentType === component)[0];
-				const childInjector = ReflectiveInjector.resolveAndCreate([], this.injector);
-				let componentRef = this.vcRef.createComponent(componentFactory, 0, childInjector);
-				Object.assign(componentRef.instance, parameters); // pass the @Input parameters to the instance
-				this.activeInstances++;
-				componentRef.instance["componentIndex"] = this.activeInstances;
-
-				this.placeholder.registerComponentRef(componentRef);
-				componentRef.instance["destroy"] = () => {
-					this.activeInstances--;
-					this.placeholder.hide();
-					componentRef.destroy();
-				};
-				componentRef$.next(componentRef);
-				componentRef$.complete();
-			});
-		return <Observable<ComponentRef<T>>> componentRef$.asObservable();
-	}
-
 	createConfirmRequest(title: string, message: string, onCancel: Function, onConfirm: Function) {
-		this.create(AppModule, ConfirmComponent, {
+		this.create(ConfirmComponent, {
 			title: title,
 			message: message,
 			onCancel: onCancel,
 			onConfirm: onConfirm
 		});
+	}
+
+	create<T>(component: any, parameters?: Object): Observable<ComponentRef<T>> {
+		let factory = this.componentFactoryResolver.resolveComponentFactory(component);
+		return this.createFromFactory(factory, parameters);
+	}
+
+	private createFromFactory<T>(componentFactory: ComponentFactory<T>,
+								 parameters?: Object): Observable<ComponentRef<T>> {
+		this.placeholder.show();
+
+		let componentRef$ = new ReplaySubject();
+		const childInjector = ReflectiveInjector.resolveAndCreate([], this.injector);
+		let componentRef = this.vcRef.createComponent(componentFactory, 0, childInjector);
+		// pass the @Input parameters to the instance
+		Object.assign(componentRef.instance, parameters);
+		this.activeInstances++;
+
+		this.placeholder.registerComponentRef(componentRef);
+		componentRef.instance["destroy"] = () => {
+			this.activeInstances--;
+			componentRef.destroy();
+		};
+		componentRef$.next(componentRef);
+		componentRef$.complete();
+		return componentRef$.asObservable();
 	}
 }
 

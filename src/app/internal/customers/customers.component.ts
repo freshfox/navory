@@ -53,7 +53,7 @@ export class CustomersComponent implements OnInit {
 	}
 
 	editCustomer(customer: Customer) {
-		this.modalService.createModal(CustomerEditComponent, {
+		this.modalService.create(CustomerEditComponent, {
 			customer: customer
 		}).subscribe((ref: ComponentRef<CustomerEditComponent>) => {
 			ref.instance.onSaved.subscribe((savedCustomer: Customer) => {

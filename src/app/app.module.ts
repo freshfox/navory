@@ -143,6 +143,11 @@ export function translateStaticLoaderFactory(http: Http) {
 		PaymentsBankAccountComponent,
 		BookedPaymentComponent
 	],
+	entryComponents: [
+		CustomerEditComponent,
+		BookPaymentComponent,
+		ConfirmComponent
+	],
 	imports: [
 		BrowserModule,
 		CommonModule,
