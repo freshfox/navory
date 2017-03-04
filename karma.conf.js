@@ -25,7 +25,7 @@ module.exports = function (config) {
 			}
 		},
 		angularCli: {
-			config: './angular-cli.json',
+			config: './.angular-cli.json',
 			environment: 'dev'
 		},
 		reporters: ['progress', 'karma-remap-istanbul'],

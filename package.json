@@ -13,18 +13,18 @@
     "deploy": "firebase deploy"
   },
   "engines": {
-    "node": "6.9.1"
+    "node": "6.10.0"
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "2.4.5",
-    "@angular/compiler": "2.4.5",
-    "@angular/core": "2.4.5",
-    "@angular/forms": "2.4.5",
-    "@angular/http": "2.4.5",
+    "@angular/common": "2.4.9",
+    "@angular/compiler": "2.4.9",
+    "@angular/core": "2.4.9",
+    "@angular/forms": "2.4.9",
+    "@angular/http": "2.4.9",
     "@angular/material": "2.0.0-beta.2",
-    "@angular/platform-browser": "2.4.5",
-    "@angular/platform-browser-dynamic": "2.4.5",
+    "@angular/platform-browser": "2.4.9",
+    "@angular/platform-browser-dynamic": "2.4.9",
     "@angular/router": "3.4.5",
     "angular2-notifications": "^0.4.49",
     "bourbon": "4.3.3",
@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@angular/cli": "1.0.0-rc.0",
-    "@angular/compiler-cli": "2.4.5",
+    "@angular/compiler-cli": "2.4.9",
     "@types/jasmine": "2.5.38",
     "@types/jquery": "^2.0.33",
     "@types/node": "^6.0.60",
@@ -57,7 +57,6 @@
     "gulp-svgmin": "^1.2.3",
     "gulp-svgstore": "^6.0.0",
     "jasmine-core": "2.5.2",
-    "jasmine-spec-reporter": "2.5.0",
     "karma": "1.2.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-cli": "^1.0.1",

@@ -29,7 +29,7 @@ module.exports = function (config) {
         html: 'coverage'
       }
     },
-    angularCliConfig: './angular-cli.json',
+    angularCliConfig: './.angular-cli.json',
     reporters: ['progress', 'karma-remap-istanbul'],
     port: 9876,
     colors: true,
