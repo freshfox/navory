@@ -78,9 +78,11 @@ import {StepsComponent} from "./core/components/steps.component";
 import {PaymentService} from "./services/payment.service";
 import {UnitService} from "./services/unit.service";
 import {MaterialModule} from "@angular/material";
-import {BookPaymentComponent} from "./internal/payments/book-payment.component";
+import {InvoiceBookPaymentComponent} from "./internal/payments/invoice-book-payment.component";
 import {PaymentsBankAccountComponent} from "./internal/payments/payments-bank-account.component";
 import {BookedPaymentComponent} from "./core/components/booked-payment.component";
+import {IncomeBookPaymentComponent} from "./internal/payments/income-book-payment.component";
+import {BookPaymentComponent} from "./internal/payments/book-payment.component";
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -140,12 +142,15 @@ export function translateStaticLoaderFactory(http: Http) {
 		SubscriptionComponent,
 		StepsComponent,
 		BookPaymentComponent,
+		InvoiceBookPaymentComponent,
+		IncomeBookPaymentComponent,
 		PaymentsBankAccountComponent,
 		BookedPaymentComponent
 	],
 	entryComponents: [
 		CustomerEditComponent,
-		BookPaymentComponent,
+		InvoiceBookPaymentComponent,
+		IncomeBookPaymentComponent,
 		ConfirmComponent
 	],
 	imports: [

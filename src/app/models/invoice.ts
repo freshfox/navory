@@ -17,7 +17,6 @@ export class Invoice extends BaseModel {
 	customer_address: string;
 	customer_country_id: number;
 	customer_vat_number: string;
-	unpaid_amount: number;
 	payments: Payment[];
 
 	constructor(data?: any) {
@@ -50,6 +49,28 @@ export class Invoice extends BaseModel {
 
 	isIssued(): boolean {
 		return !this.draft;
+	}
+
+	get isFullyPaid(): boolean {
+		return this.unpaid_amount <= 0;
+	}
+
+	_unpaid_amount: number;
+	get unpaid_amount(): number {
+		if (!this.payments) {
+			return this._unpaid_amount;
+		}
+
+		let paidAmount = 0;
+		this.payments.forEach((payment: Payment) => {
+			paidAmount = Calculator.add(paidAmount, payment.amount);
+		});
+
+		return Calculator.sub(this.getTotalGross(), paidAmount);
+	}
+
+	set unpaid_amount(amount: number) {
+		this._unpaid_amount = amount;
 	}
 }
 

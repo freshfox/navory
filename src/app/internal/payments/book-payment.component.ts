@@ -1,14 +1,13 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {FormValidator} from "../../core/form-validator";
 import {Helpers} from "../../core/helpers";
 import {Payment} from "../../models/payment";
-import {InvoiceService} from "../../services/invoice.service";
 import {BankAccount} from "../../models/bank-account";
 
 @Component({
-    selector: 'nvry-book-payment',
-    template: `
+	selector: 'nvry-book-payment',
+	template: `
 		<div class="modal-header">
 				{{ 'general.book-incoming-payment' | translate }}
 		</div>
@@ -33,27 +32,27 @@ import {BankAccount} from "../../models/bank-account";
 		
 		<div class="modal-footer">
 			<nvry-button class="button--secondary" (click)="cancel()">{{ 'general.cancel' | translate }}</nvry-button>
-			<nvry-button (click)="save()">{{ 'general.save' | translate }}</nvry-button>
+			<nvry-button (click)="save()" [loading]="saving">{{ 'general.save' | translate }}</nvry-button>
 		</div>
 	`
 })
 export class BookPaymentComponent implements OnInit {
 
-	@Input() invoiceId: string;
 	@Input() amount: number;
 	@Input() description: string;
+	@Input() saving: boolean = false;
 
-	@Output() onSaved: EventEmitter<Payment> = new EventEmitter<Payment>();
+	@Output() onSave: EventEmitter<Payment> = new EventEmitter<Payment>();
 	@Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
 	private form: FormGroup;
 	private payment: Payment;
 	private loading: boolean = false;
 
-    constructor(private fb: FormBuilder, private invoiceService: InvoiceService) {
+	constructor(private fb: FormBuilder) {
 	}
 
-    ngOnInit() {
+	ngOnInit() {
 		this.payment = new Payment();
 		this.payment.amount = this.amount;
 		this.payment.description = this.description;
@@ -64,18 +63,15 @@ export class BookPaymentComponent implements OnInit {
 	}
 
 	private cancel() {
-    	this.onCancel.next();
+		this.onCancel.next();
 	}
 
-    private save() {
-    	Helpers.validateAllFields(this.form);
-    	this.loading = true;
-    	this.payment.bank_account = new BankAccount({ id: 1 });
-		this.invoiceService.addPayment(this.invoiceId, this.payment)
-			.subscribe((payment: Payment) => {
-				this.onSaved.emit(payment);
-				this.loading = false;
-			});
+	private save() {
+		Helpers.validateAllFields(this.form);
+		if (this.form.valid) {
+			this.loading = true;
+			this.payment.bank_account = new BankAccount({id: 1});
+			this.onSave.emit(this.payment);
+		}
 	}
-
 }

@@ -14,7 +14,7 @@ import {FormValidator} from "../../../core/form-validator";
 import {Location} from "@angular/common";
 import {Helpers} from "../../../core/helpers";
 import {ModalService} from "../../../core/modal.module";
-import {BookPaymentComponent} from "../../payments/book-payment.component";
+import {InvoiceBookPaymentComponent} from "../../payments/invoice-book-payment.component";
 import {Payment} from "../../../models/payment";
 var moment = require('moment');
 
@@ -35,8 +35,6 @@ export class InvoiceEditComponent implements OnInit {
 	private createMode: boolean = true;
 
 	@ViewChild('previewModal') private previewModal: ModalComponent;
-	@ViewChild('addPaymentModal') private addPaymentModal: ModalComponent;
-
 
 	constructor(private route: ActivatedRoute,
 				private invoiceService: InvoiceService,
@@ -171,11 +169,11 @@ export class InvoiceEditComponent implements OnInit {
 	}
 
 	addPayment() {
-		this.modalService.create(BookPaymentComponent, {
+		this.modalService.create(InvoiceBookPaymentComponent, {
 			invoiceId: this.invoice.id,
 			amount: this.invoice.unpaid_amount,
 			description: this.translate.instant('payments.default-income-description', { number: this.invoice.number })
-		}).subscribe((ref: ComponentRef<BookPaymentComponent>) => {
+		}).subscribe((ref: ComponentRef<InvoiceBookPaymentComponent>) => {
 			ref.instance.onSaved.subscribe((payment: Payment) => {
 				this.invoice.payments.push(payment);
 				this.modalService.hideCurrentModal();

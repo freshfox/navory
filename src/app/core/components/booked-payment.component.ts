@@ -1,8 +1,8 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input} from "@angular/core";
 import {Payment} from "../../models/payment";
 
 @Component({
-    selector: 'nvry-booked-payment',
+	selector: 'nvry-booked-payment',
 	host: {'class': 'booked-payment'},
 	template: `
 		<span class="description">
@@ -20,18 +20,18 @@ export class BookedPaymentComponent implements OnInit {
 
 	@Input() private payment: Payment;
 
-    constructor() { }
+	constructor() {
+	}
 
-    ngOnInit() {
-    	this.payment.amount = -1000;
+	ngOnInit() {
 	}
 
 	private amount() {
-    	return Math.abs(this.payment.amount);
+		return Math.abs(this.payment.amount);
 	}
 
-    private isAmountNegative() {
-    	return this.payment.amount < 0;
+	private isAmountNegative() {
+		return this.payment.amount < 0;
 	}
 
 }

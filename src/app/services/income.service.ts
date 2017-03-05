@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Income} from "../models/income";
 import {Http} from "@angular/http";
 import {EuVatType} from "../core/enums/eu-vat-type.enum";
+import {Payment} from "../models/payment";
 
 @Injectable()
 export class IncomeService extends BaseService {
@@ -36,6 +37,11 @@ export class IncomeService extends BaseService {
 
 	deleteIncome(income: Income): Observable<any> {
 		return this.delete(this.getRestEntityPath(this.pathIncome, income.id));
+	}
+
+	addPayment(income: Income, payment: Payment) {
+		let path = `/incomes/${income.id}/payments`;
+		return this.post(path, payment);
 	}
 
 }
