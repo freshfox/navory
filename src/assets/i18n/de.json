@@ -58,7 +58,8 @@
 		"continue": "Weiter",
 		"book-payment": "Zahlung buchen",
 		"book-incoming-payment": "Eingehende Zahlung buchen",
-		"payments": "Zahlungen"
+		"payments": "Zahlungen",
+		"total": "Gesamt"
 	},
 	"app": {
 		"name": "Navory",
@@ -173,7 +174,8 @@
 		"edit-success": "Rechnung gespeichert",
 		"issue-success": "Rechnung erfolgreich fertiggestellt.",
 		"preview": "Vorschau",
-		"sum-amount": "Gesamtbetrag"
+		"sum-amount": "Gesamtbetrag",
+		"open": "Offen"
 	},
 	"expenses": {
 		"title": "Ausgaben",

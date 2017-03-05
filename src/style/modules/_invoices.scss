@@ -11,6 +11,24 @@
 
 }
 
+.invoice-stats {
+	display: flex;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+	.invoice-stats__item {
+		width: 150px;
+
+		.title {
+			display: block;
+		}
+
+		.amount {
+			font-size: 20px;
+		}
+	}
+}
+
 .invoice-payment-notice {
 	@include fontBold;
 

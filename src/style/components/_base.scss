@@ -111,6 +111,14 @@ img {
 }
 
 /**
+ * Color helpers
+ */
+.color-expenses { color: $colorExpenses }
+.color-income { color: $colorIncome }
+.color-customers { color: $colorClients }
+.color-gray { color: $colorGray }
+
+/**
  * Clearfix
  */
 .cf:before,

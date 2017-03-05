@@ -145,10 +145,33 @@ export class InvoicesComponent implements OnInit {
 		return status;
 	}
 
-	getFullAmount(): number {
+	private getInvoiceAmount(status: InvoiceStatus) {
 		let amount = 0;
 		this.invoices.forEach((invoice) => {
-			amount = Calculator.add(amount, invoice.getTotalNet());
+			if(this.getInvoiceStatus(invoice) == status) {
+				amount = Calculator.add(amount, invoice.getTotalNet());
+			}
+		});
+
+		return amount;
+	}
+
+	private getOverdueAmount(): number {
+		return this.getInvoiceAmount(InvoiceStatus.Overdue);
+	}
+
+	private getIssuedAmount(): number {
+		return this.getInvoiceAmount(InvoiceStatus.Issued);
+	}
+
+	private getDraftAmount(): number {
+		return this.getInvoiceAmount(InvoiceStatus.Draft);
+	}
+
+	private getTotalAmount(): number {
+		let amount = 0;
+		this.invoices.forEach((invoice) => {
+			amount = Calculator.add(amount, invoice.getTotalGross());
 		});
 
 		return amount;
