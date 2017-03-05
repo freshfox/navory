@@ -177,7 +177,7 @@ export class InvoiceEditComponent implements OnInit {
 			description: this.translate.instant('payments.default-income-description', { number: this.invoice.number })
 		}).subscribe((ref: ComponentRef<BookPaymentComponent>) => {
 			ref.instance.onSaved.subscribe((payment: Payment) => {
-				this.invoice.payments
+				this.invoice.payments.push(payment);
 				this.modalService.hideCurrentModal();
 			});
 
