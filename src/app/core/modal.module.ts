@@ -4,7 +4,6 @@ import {
 	ViewChild,
 	OnInit,
 	ViewContainerRef,
-	Compiler,
 	ReflectiveInjector,
 	Injectable,
 	Injector,
@@ -30,7 +29,7 @@ export class ModalService {
 
 	private placeholder: ModalPlaceholderComponent;
 
-	constructor(private compiler: Compiler, private componentFactoryResolver: ComponentFactoryResolver) {
+	constructor(private componentFactoryResolver: ComponentFactoryResolver) {
 	}
 
 	hideCurrentModal() {
