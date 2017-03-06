@@ -27,11 +27,11 @@ export class BookedPaymentComponent implements OnInit {
 	}
 
 	private amount() {
-		return Math.abs(this.payment.amount);
+		return Math.abs(this.payment.pivot_amount);
 	}
 
 	private isAmountNegative() {
-		return this.payment.amount < 0;
+		return this.payment.pivot_amount < 0;
 	}
 
 }

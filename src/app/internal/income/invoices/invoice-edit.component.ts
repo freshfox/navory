@@ -172,7 +172,7 @@ export class InvoiceEditComponent implements OnInit {
 		this.modalService.create(InvoiceBookPaymentComponent, {
 			invoiceId: this.invoice.id,
 			amount: this.invoice.unpaid_amount,
-			description: this.translate.instant('payments.default-income-description', { number: this.invoice.number })
+			description: this.translate.instant('payments.default-invoice-description', { number: this.invoice.number })
 		}).subscribe((ref: ComponentRef<InvoiceBookPaymentComponent>) => {
 			ref.instance.onSaved.subscribe((payment: Payment) => {
 				this.invoice.payments.push(payment);

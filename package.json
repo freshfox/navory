@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "test": "ng test",
+    "test": "ng test --single-run",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build": "gulp && ng build --prod",

@@ -58,6 +58,7 @@
 		"continue": "Weiter",
 		"book-payment": "Zahlung buchen",
 		"book-incoming-payment": "Eingehende Zahlung buchen",
+		"book-outgoing-payment": "Ausgehende Zahlung buchen",
 		"payments": "Zahlungen",
 		"total": "Gesamt"
 	},
@@ -150,7 +151,8 @@
 			"intra-community-service": "Dienstleistung (Reverse Charge)",
 			"intra-community-product": "Produkt (Innergem. Lieferung)"
 		},
-		"empty-state-message": "Du hast für den ausgewählten Zeitraum noch keine sonstigen Einnahmen angelegt."
+		"empty-state-message": "Du hast für den ausgewählten Zeitraum noch keine sonstigen Einnahmen angelegt.",
+		"save-success": "Einnahme erfolgreich gespeichert."
 	},
 	"invoices": {
 		"title": "Rechnungen",
@@ -269,6 +271,8 @@
 		"delete-confirm-title": "Zahlung löschen",
 		"delete-confirm-message": "Möchtest du diese Zahlung sicher Löschen? Etwaige Buchungen, die durch diese Zahlung durchgeführt werden, werden entfernt. Dieser Vorgang kann nicht rückgängig gemacht werden.",
 		"empty-state-message": "Du hast noch keine Zahlungen gebucht. Gehe zu deinen Rechnungen oder Ausgaben, um eine Zahlung dafür anzulegen.",
-		"default-income-description": "Zahlung für Rechnung {{number}}"
+		"default-invoice-description": "Zahlung für Rechnung {{number}}",
+		"default-income-description": "Zahlung für Einnahme {{number}}",
+		"default-expense-description": "Zahlung für Ausgabe {{number}}"
 	}
 }

@@ -14,9 +14,17 @@
 		<div class="buttons">
 			<nvry-button [routerLink]="['/income']" class="button--secondary">{{ 'general.cancel' | translate }}
 			</nvry-button>
+			<nvry-button (click)="addPayment()" *ngIf="isNew && !income.isFullyPaid">{{ 'general.book-payment' | translate }}</nvry-button>
 			<nvry-button (click)="save()" [loading]="saving">{{ 'general.save' | translate }}</nvry-button>
 		</div>
 
+	</div>
+
+	<div class="default-section" *ngIf="income.payments?.length">
+		<h3>{{ 'general.payments' | translate }}</h3>
+		<div>
+			<nvry-booked-payment *ngFor="let payment of income.payments" [payment]="payment"></nvry-booked-payment>
+		</div>
 	</div>
 
 	<div class="frame default-section">
@@ -64,6 +72,10 @@
 					</div>
 				</div>
 			</form>
+
+			<div class="income-total">
+				<nvry-total-indicator [totalNet]="getTotalNet()" [totalGross]="getTotalGross()" [rates]="getOccuringTaxRates()"></nvry-total-indicator>
+			</div>
 		</div>
 	</div>
 </div>

@@ -1,12 +1,13 @@
 import {Component, Input, Output, EventEmitter} from "@angular/core";
 import {Payment} from "../../models/payment";
-import {IncomeService} from "../../services/income.service";
 import {Income} from "../../models/income";
+import {PaymentService} from "../../services/payment.service";
 
 @Component({
-	selector: 'nvry-invoice-book-payment',
+	selector: 'nvry-income-book-payment',
 	template: `
-		<nvry-book-payment 	[amount]="amount" 
+		<nvry-book-payment 	[headline]="'general.book-incoming-payment' | translate"
+							[amount]="amount" 
 							[description]="description" 
 							[saving]="saving" 
 							(onSave)="save($event)"
@@ -24,7 +25,7 @@ export class IncomeBookPaymentComponent {
 
 	private saving: boolean = false;
 
-	constructor(private incomeService: IncomeService) {
+	constructor(private paymentService: PaymentService) {
 	}
 
 	private cancel() {
@@ -33,7 +34,7 @@ export class IncomeBookPaymentComponent {
 
 	private save(payment: Payment) {
 		this.saving = true;
-		this.incomeService.addPayment(this.income, payment)
+		this.paymentService.addPaymentToIncome(this.income, payment)
 			.subscribe((payment: Payment) => {
 				this.onSaved.emit(payment);
 				this.saving = false;

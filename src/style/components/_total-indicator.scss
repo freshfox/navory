@@ -1,0 +1,31 @@
+.total-indicator {
+	text-align: right;
+
+	.line {
+		@extend .cf;
+		margin-bottom: 10px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&.line--total {
+			padding-top: 8px;
+			font-size: $fontSizeLarge;
+			font-weight: $fontWeightBold;
+		}
+	}
+
+	span {
+		display: inline-block;
+
+		&.title {
+			float: left;
+		}
+
+		&.value {
+			float: right;
+			text-align: right;
+		}
+	}
+}

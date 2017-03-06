@@ -126,22 +126,7 @@
 			</div>
 
 			<div class="invoice-edit-paper-section invoice-total">
-				<div class="invoice-total__inner">
-					<div class="line">
-						<span class="title">Zwischensumme</span>
-						<span class="value">{{ getTotalNet() | nvryNumber }}</span>
-					</div>
-
-					<div class="line" *ngFor="let rate of getOccuringTaxRates()">
-						<span class="title">USt. {{ rate.rate }}% von {{ rate.netAmount | nvryNumber }}</span>
-						<span class="value">{{ rate.amount | nvryNumber}}</span>
-					</div>
-
-					<div class="line line--total">
-						<span class="title">Gesamt EUR</span>
-						<span class="value">{{ getTotalGross() | nvryNumber }}</span>
-					</div>
-				</div>
+				<nvry-total-indicator [totalNet]="getTotalNet()" [totalGross]="getTotalGross()" [rates]="getOccuringTaxRates()"></nvry-total-indicator>
 			</div>
 		</div>
 	</div>

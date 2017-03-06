@@ -1,5 +1,5 @@
 <div class="page-header">
-	<div class="invoice-stats">
+	<div class="invoice-stats" *ngIf="!loading">
 		<div class="invoice-stats__item">
 			<span class="title">{{ 'general.overdue' | translate }}</span>
 			<span class="amount color-expenses">{{ getOverdueAmount() | nvryNumber }}</span>

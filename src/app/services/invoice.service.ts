@@ -95,10 +95,5 @@ export class InvoiceService extends BaseService {
 		let url = this.getDownloadURL(invoice);
 		this.fileService.downloadFromURL(url);
 	}
-
-	addPayment(invoiceId: string, payment: Payment): Observable<Payment> {
-		let path = `/invoices/${invoiceId}/payments`;
-		return this.post(path, payment);
-	}
 }
 

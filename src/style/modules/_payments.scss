@@ -34,6 +34,12 @@ nvry-book-payment {
 				input {
 					color: $colorIncome;
 				}
+
+				&.amount--expense {
+					input {
+						color: $colorExpenses;
+					}
+				}
 			}
 		}
 	}

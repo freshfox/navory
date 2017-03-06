@@ -20,7 +20,11 @@ export class IncomeService extends BaseService {
 	}
 
 	getIncome(id: number): Observable<Income> {
-		return this.get(this.getRestEntityPath(this.pathIncome, id));
+		return this.get(this.getRestEntityPath(this.pathIncome, id))
+			.map(incomeData => {
+				let income = new Income(incomeData);
+				return income;
+			});
 	}
 
 	saveIncome(income: Income) {
@@ -32,16 +36,15 @@ export class IncomeService extends BaseService {
 			return this.patch(this.getRestEntityPath(this.pathIncome, income.id), income);
 		}
 
-		return this.post(this.pathIncome, income);
+		return this.post(this.pathIncome, income)
+			.map(incomeData => {
+				let income = new Income(incomeData);
+				return income;
+			});
 	}
 
 	deleteIncome(income: Income): Observable<any> {
 		return this.delete(this.getRestEntityPath(this.pathIncome, income.id));
-	}
-
-	addPayment(income: Income, payment: Payment) {
-		let path = `/incomes/${income.id}/payments`;
-		return this.post(path, payment);
 	}
 
 }

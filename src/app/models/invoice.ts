@@ -27,6 +27,12 @@ export class Invoice extends BaseModel {
 		} else {
 			this.invoice_lines = [];
 		}
+
+		if (this.payments) {
+			this.payments = this.payments.map(data => new Payment(data));
+		} else {
+			this.payments = [];
+		}
 	}
 
 	getTotalNet(): number {
@@ -63,7 +69,7 @@ export class Invoice extends BaseModel {
 
 		let paidAmount = 0;
 		this.payments.forEach((payment: Payment) => {
-			paidAmount = Calculator.add(paidAmount, payment.amount);
+			paidAmount = Calculator.add(paidAmount, payment.pivot_amount);
 		});
 
 		return Calculator.sub(this.getTotalGross(), paidAmount);

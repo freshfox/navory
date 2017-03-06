@@ -152,35 +152,14 @@ nvry-invoice-line {
 .invoice-total {
 	text-align: right;
 
-	.invoice-total__inner {
+	.total-indicator {
 		width: 40%;
 		display: inline-block;
 	}
 
-	.line {
-		@extend .cf;
-		margin-bottom: 10px;
-
-		&:last-child {
-			margin-bottom: 0;
-		}
-
-		&.line--total {
-			font-size: 20px;
-			font-weight: bold;
-		}
+	.line.line--total {
+		font-size: 20px;
+		font-weight: bold;
 	}
 
-	span {
-		display: inline-block;
-
-		&.title {
-			float: left;
-		}
-
-		&.value {
-			float: right;
-			text-align: right;
-		}
-	}
 }

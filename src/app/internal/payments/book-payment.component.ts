@@ -4,62 +4,87 @@ import {FormValidator} from "../../core/form-validator";
 import {Helpers} from "../../core/helpers";
 import {Payment} from "../../models/payment";
 import {BankAccount} from "../../models/bank-account";
+import {PaymentService} from "../../services/payment.service";
 
 @Component({
 	selector: 'nvry-book-payment',
 	template: `
 		<div class="modal-header">
-				{{ 'general.book-incoming-payment' | translate }}
+				{{ headline }}
 		</div>
 		<div class="modal-inner">
-			<div class="add-payment-form">
-				<nvry-input class="description" [(ngModel)]="payment.description" [label]="'general.description' | translate"></nvry-input>
+			<div class="add-payment-form" *ngIf="!loading">
+				<nvry-input class="description" [(ngModel)]="description" [label]="'general.description' | translate"></nvry-input>
 				
 				<nvry-input type="date"
 						[formControl]="form.controls.date"
-						[(ngModel)]="payment.date"
+						[(ngModel)]="date"
 						[label]="'general.date' | translate"></nvry-input>
 		
 				<nvry-input 
 				class="amount" 
+				[class.amount--expense]="isExpenseBooking"
 				type="money" 
 				[label]="'general.amount' | translate" 
-				[(ngModel)]="payment.amount" 
+				[(ngModel)]="amount"
+				(ngModelChange)="onPaymentAmountChange($event)"
 				></nvry-input>
 			</div>
+			
+			<nvry-spinner *ngIf="loading"></nvry-spinner>
 		</div>
 		
 		
 		<div class="modal-footer">
 			<nvry-button class="button--secondary" (click)="cancel()">{{ 'general.cancel' | translate }}</nvry-button>
-			<nvry-button (click)="save()" [loading]="saving">{{ 'general.save' | translate }}</nvry-button>
+			<nvry-button (click)="save()" [loading]="saving" [disabled]="loading">{{ 'general.save' | translate }}</nvry-button>
 		</div>
+		
 	`
 })
 export class BookPaymentComponent implements OnInit {
 
+	@Input() headline: string;
+	@Input() isExpenseBooking: boolean = false;
+
 	@Input() amount: number;
 	@Input() description: string;
+	private date: string;
+
 	@Input() saving: boolean = false;
 
 	@Output() onSave: EventEmitter<Payment> = new EventEmitter<Payment>();
 	@Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
+
 	private form: FormGroup;
 	private payment: Payment;
+	private realPaymentAmount: number;
 	private loading: boolean = false;
+	private bankAccounts: BankAccount[];
 
-	constructor(private fb: FormBuilder) {
+	constructor(private fb: FormBuilder, private paymentService: PaymentService) {
 	}
 
 	ngOnInit() {
-		this.payment = new Payment();
-		this.payment.amount = this.amount;
-		this.payment.description = this.description;
+		this.loading = true;
+		this.paymentService.getBankAccounts()
+			.subscribe(bankAccounts => {
+				this.bankAccounts = bankAccounts;
+				this.loading = false;
+			});
 
 		this.form = this.fb.group({
 			date: ['', Validators.compose([Validators.required, FormValidator.date])],
 		});
+	}
+
+	private onPaymentAmountChange(amount: number) {
+		if (this.isExpenseBooking) {
+			this.realPaymentAmount = amount * -1;
+		} else {
+			this.realPaymentAmount = amount;
+		}
 	}
 
 	private cancel() {
@@ -69,9 +94,13 @@ export class BookPaymentComponent implements OnInit {
 	private save() {
 		Helpers.validateAllFields(this.form);
 		if (this.form.valid) {
-			this.loading = true;
-			this.payment.bank_account = new BankAccount({id: 1});
-			this.onSave.emit(this.payment);
+			let payment = new Payment();
+			payment.amount = this.realPaymentAmount;
+			payment.date = this.date;
+			payment.description = this.description;
+			payment.bank_account = this.bankAccounts[0];
+
+			this.onSave.emit(payment);
 		}
 	}
 }

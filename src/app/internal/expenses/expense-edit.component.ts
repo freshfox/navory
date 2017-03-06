@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit, ViewChild, ComponentRef} from "@angular/core";
 import {ExpenseService} from "../../services/expense.service";
 import {FormGroup, Validators, FormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -13,6 +13,10 @@ import {Helpers} from "../../core/helpers";
 import {BootstrapService} from "../../services/bootstrap.service";
 import {EuVatType} from "../../core/enums/eu-vat-type.enum";
 import {ServiceError, FieldValidationError} from "../../services/base.service";
+import {Payment} from "../../models/payment";
+import {ModalService} from "../../core/modal.module";
+import {TranslateService} from "ng2-translate";
+import {ExpenseBookPaymentComponent} from "../payments/expense-book-payment.component";
 
 @Component({
 	templateUrl: './expense-edit.component.html'
@@ -40,7 +44,9 @@ export class ExpenseEditComponent implements OnInit {
 				private taxRateService: TaxRateService,
 				private state: State,
 				private errorHandler: ErrorHandler,
-				private bootstrapService: BootstrapService) {
+				private bootstrapService: BootstrapService,
+				private modalService: ModalService,
+				private translate: TranslateService) {
 
 		this.expense = new Expense();
 		this.expenseCategories = this.state.expenseCategories;
@@ -110,6 +116,10 @@ export class ExpenseEditComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	get isNew(): boolean {
+		return !!this.expense.id;
+	}
+
 	euVatTypeChanged() {
 		if(this.expense.eu_vat_type == EuVatType.None) {
 			this.expense.eu_tax_rate = null;
@@ -168,6 +178,39 @@ export class ExpenseEditComponent implements OnInit {
 					});
 		}
 
+	}
+
+	getTotalNet() {
+		return this.expense.price;
+	}
+
+	getTotalGross() {
+		return this.expense.getAmountGross();
+	}
+
+	getOccuringTaxRates() {
+		return [{
+			rate: this.expense.getTaxrate(),
+			amount: this.expense.getTaxAmount(),
+			netAmount: this.expense.price
+		}];
+	}
+
+	addPayment() {
+		this.modalService.create(ExpenseBookPaymentComponent, {
+			expense: this.expense,
+			amount: this.expense.unpaid_amount,
+			description: this.translate.instant('payments.default-expense-description', {number: this.expense.number})
+		}).subscribe((ref: ComponentRef<ExpenseBookPaymentComponent>) => {
+			ref.instance.onSaved.subscribe((payment: Payment) => {
+				this.expense.payments.push(payment);
+				this.modalService.hideCurrentModal();
+			});
+
+			ref.instance.onCancel.subscribe(() => {
+				this.modalService.hideCurrentModal();
+			});
+		});
 	}
 
 }

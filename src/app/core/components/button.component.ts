@@ -16,7 +16,7 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
 	@Input() loading;
 	@Input() class;
 	@Input() icon: string;
-	@Input() disabled: boolean;
+	@Input() disabled: boolean = false;
 
 	private laddaButton: any;
 

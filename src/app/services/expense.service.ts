@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Http} from "@angular/http";
 import {Expense} from "../models/expense";
 import {EuVatType} from "../core/enums/eu-vat-type.enum";
+import {Payment} from "../models/payment";
 
 @Injectable()
 export class ExpenseService extends BaseService {
@@ -20,7 +21,11 @@ export class ExpenseService extends BaseService {
 
 	getExpense(id: number): Observable<Expense> {
 		let path = this.pathExpenses + `/${id}`;
-		return this.get(path);
+		return this.get(path)
+			.map(data => {
+				let expense = new Expense(data);
+				return expense;
+			});
 	}
 
 	saveExpense(expense: Expense): Observable<Expense> {
@@ -33,7 +38,11 @@ export class ExpenseService extends BaseService {
 		}
 
 		let path = this.pathExpenses + `/${expense.id}`;
-		return this.patch(path, expense);
+		return this.patch(path, expense)
+			.map(data => {
+				let expense = new Expense(data);
+				return expense;
+			});
 	}
 
 	deleteExpense(expense: Expense): Observable<any> {

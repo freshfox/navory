@@ -83,6 +83,8 @@ import {PaymentsBankAccountComponent} from "./internal/payments/payments-bank-ac
 import {BookedPaymentComponent} from "./core/components/booked-payment.component";
 import {IncomeBookPaymentComponent} from "./internal/payments/income-book-payment.component";
 import {BookPaymentComponent} from "./internal/payments/book-payment.component";
+import {TotalIndicatorComponent} from "./core/components/total-indicator.component";
+import {ExpenseBookPaymentComponent} from "./internal/payments/expense-book-payment.component";
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -145,12 +147,15 @@ export function translateStaticLoaderFactory(http: Http) {
 		InvoiceBookPaymentComponent,
 		IncomeBookPaymentComponent,
 		PaymentsBankAccountComponent,
-		BookedPaymentComponent
+		BookedPaymentComponent,
+		TotalIndicatorComponent,
+		ExpenseBookPaymentComponent
 	],
 	entryComponents: [
 		CustomerEditComponent,
 		InvoiceBookPaymentComponent,
 		IncomeBookPaymentComponent,
+		ExpenseBookPaymentComponent,
 		ConfirmComponent
 	],
 	imports: [

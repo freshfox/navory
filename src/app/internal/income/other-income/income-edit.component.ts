@@ -1,7 +1,7 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ComponentRef} from "@angular/core";
 import {IncomeService} from "../../../services/income.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {TaxRateService} from "../../../services/tax-rate.service";
 import {State} from "../../../core/state";
 import {Income} from "../../../models/income";
@@ -12,6 +12,11 @@ import {TaxRate} from "../../../models/tax-rate";
 import {BootstrapService} from "../../../services/bootstrap.service";
 import {EuVatType} from "../../../core/enums/eu-vat-type.enum";
 import {ServiceError, FieldValidationError} from "../../../services/base.service";
+import {NotificationsService} from "angular2-notifications";
+import {TranslateService} from "ng2-translate";
+import {ModalService} from "../../../core/modal.module";
+import {IncomeBookPaymentComponent} from "../../payments/income-book-payment.component";
+import {Payment} from "../../../models/payment";
 
 @Component({
 	selector: 'nvry-income-edit',
@@ -33,11 +38,13 @@ export class IncomeEditComponent implements OnInit {
 	constructor(private incomeService: IncomeService,
 				private fb: FormBuilder,
 				private route: ActivatedRoute,
-				private router: Router,
 				private taxRateService: TaxRateService,
 				private state: State,
 				private errorHandler: ErrorHandler,
-				private bootstrapService: BootstrapService) {
+				private bootstrapService: BootstrapService,
+				private notificationService: NotificationsService,
+				private translate: TranslateService,
+				private modalService: ModalService) {
 
 		this.income = new Income();
 		this.nextIncomeNumber = this.state.nextIncomeNumber;
@@ -60,6 +67,10 @@ export class IncomeEditComponent implements OnInit {
 			description: [""],
 			price: ["", Validators.required],
 		});
+	}
+
+	get isNew(): boolean {
+		return !!this.income.id;
 	}
 
 	ngOnInit() {
@@ -121,7 +132,7 @@ export class IncomeEditComponent implements OnInit {
 						}
 						this.income = income;
 						this.saving = false;
-						this.router.navigate(['/income']);
+						this.notificationService.success(null, this.translate.instant('income.save-success'));
 					},
 					(error: ServiceError) => {
 						this.saving = false;
@@ -134,6 +145,38 @@ export class IncomeEditComponent implements OnInit {
 		}
 	}
 
+	getTotalNet() {
+		return this.income.price;
+	}
+
+	getTotalGross() {
+		return this.income.getAmountGross();
+	}
+
+	getOccuringTaxRates() {
+		return [{
+			rate: this.income.getTaxrate(),
+			amount: this.income.getAmountGross(),
+			netAmount: this.income.price
+		}];
+	}
+
+	addPayment() {
+		this.modalService.create(IncomeBookPaymentComponent, {
+			income: this.income,
+			amount: this.income.unpaid_amount,
+			description: this.translate.instant('payments.default-income-description', {number: this.income.number})
+		}).subscribe((ref: ComponentRef<IncomeBookPaymentComponent>) => {
+			ref.instance.onSaved.subscribe((payment: Payment) => {
+				this.income.payments.push(payment);
+				this.modalService.hideCurrentModal();
+			});
+
+			ref.instance.onCancel.subscribe(() => {
+				this.modalService.hideCurrentModal();
+			});
+		});
+	}
 
 
 }

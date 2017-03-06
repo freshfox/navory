@@ -17,7 +17,6 @@
 @import "../../node_modules/select2/src/scss/core";
 @import "../../node_modules/chartist/dist/scss/chartist";
 
-
 /**
  * Application specific styles
  */
@@ -52,6 +51,7 @@
 @import "components/forms/dropdowns";
 @import "components/forms/toggles";
 @import "components/forms/datepicker";
+@import "components/total-indicator";
 
 // Layout Styling
 @import "layout";
