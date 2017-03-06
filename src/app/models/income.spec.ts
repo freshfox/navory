@@ -1,5 +1,6 @@
 import {async} from "@angular/core/testing";
 import {Income} from "./income";
+import {Payment} from "./payment";
 
 describe('Income', () => {
 
@@ -16,9 +17,9 @@ describe('Income', () => {
 		let income2 = new Income({
 			price: 100,
 			payments: [
-				{
-					amount: 50
-				}
+				new Payment({
+					_pivot_amount: 50
+				})
 			]
 		});
 		let unpaidAmount2 = income2.unpaid_amount;
