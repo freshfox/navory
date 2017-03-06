@@ -18,7 +18,7 @@ import {Component, OnInit, Input} from '@angular/core';
 			<span class="value">{{ totalGross | nvryNumber }}</span>
 		</div>
 	`,
-	host: { ['class']: 'total-indicator' }
+	host: { 'class': 'total-indicator' }
 })
 export class TotalIndicatorComponent implements OnInit {
 
