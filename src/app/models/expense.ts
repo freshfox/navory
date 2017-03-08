@@ -23,6 +23,12 @@ export class Expense extends BaseModel {
 	constructor(data?: any) {
 		super(data);
 		this.price = this.price || 0;
+
+		if (this.payments) {
+			this.payments = this.payments.map(data => new Payment(data));
+		} else {
+			this.payments = [];
+		}
 	}
 
 	get isFullyPaid(): boolean {
