@@ -18,6 +18,6 @@ case ${ENV} in
 		deploy navory-dev
 		;;
 	"production")
-		deploy navory
+		deploy project-5028999388129729441
 		;;
 esac
