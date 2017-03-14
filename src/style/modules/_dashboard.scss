@@ -8,13 +8,62 @@
 
 	.ct-area {
 		fill: $color;
-		fill-opacity: .2;
+		fill-opacity: .08;
 	}
 }
 
 .dashboard-page {
 
 	padding: 30px $contentSidePadding;
+
+	display: flex;
+
+	.dashboard-box {
+		padding: 20px;
+		width: 50%;
+
+		.title {
+			margin-bottom: 0;
+		}
+
+		.small {
+			color: $colorGray;
+		}
+
+		.number {
+			font-size: 32px;
+		}
+
+		.ct-chart {
+			.ct-label {
+				font-size: 12px;
+				font-weight: normal;
+				color: $colorGrayMedium;
+
+				&.ct-horizontal {
+					top: 10px;
+					position: relative;
+				}
+			}
+
+			.ct-point {
+				display: none;
+			}
+
+			.ct-grid {
+				stroke-dasharray: none;
+				stroke: rgba(0, 0, 0, 0.1);
+			}
+
+			.ct-line {
+				stroke-width: 2px;
+			}
+
+			.ct-series-a {
+				@include chartSeriesColor($colorPrimary);
+			}
+		}
+	}
 
 	.dashboard-overview-box-wrapper {
 		margin-bottom: 40px;

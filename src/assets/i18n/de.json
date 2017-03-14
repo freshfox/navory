@@ -126,7 +126,7 @@
 	},
 	"dashboard": {
 		"title": "Übersicht",
-		"welcome": "Willkommen",
+		"profit": "Gewinn",
 		"income_expenses": "Einnahmen und Ausgaben (netto)",
 		"current_year_notice": "Die Zahlen beziehen sich auf das aktuelle Kalenderjahr."
 	},

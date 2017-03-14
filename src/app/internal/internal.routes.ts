@@ -27,7 +27,7 @@ export const InternalRoutes: Routes = [
 			bootstrap: BootstrapResolver
 		},
 		children: [
-			{path: '', component: DashboardComponent},
+			{path: '', redirectTo: 'dashboard', pathMatch: 'full'},
 			{path: 'dashboard', component: DashboardComponent},
 			{path: 'customers', component: CustomersComponent},
 			{path: 'payments', component: PaymentsComponent},
