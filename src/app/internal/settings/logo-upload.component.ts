@@ -86,7 +86,7 @@ export class LogoUploadComponent implements OnInit, AfterViewInit {
 
 
 		this.dropzone.on('error', (file, errorMessage) => {
-			this.alertMessage = errorMessage;
+			this.alertMessage = errorMessage as string;
 		});
 	}
 
