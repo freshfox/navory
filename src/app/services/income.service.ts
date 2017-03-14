@@ -33,7 +33,11 @@ export class IncomeService extends BaseService {
 		}
 
 		if (income.id) {
-			return this.patch(this.getRestEntityPath(this.pathIncome, income.id), income);
+			return this.patch(this.getRestEntityPath(this.pathIncome, income.id), income)
+				.map(incomeData => {
+					let income = new Income(incomeData);
+					return income;
+				});
 		}
 
 		return this.post(this.pathIncome, income)
