@@ -19,7 +19,7 @@ export class IncomeService extends BaseService {
 		return this.get(this.pathIncome);
 	}
 
-	getIncome(id: number): Observable<Income> {
+	getIncome(id: string): Observable<Income> {
 		return this.get(this.getRestEntityPath(this.pathIncome, id))
 			.map(incomeData => {
 				let income = new Income(incomeData);
