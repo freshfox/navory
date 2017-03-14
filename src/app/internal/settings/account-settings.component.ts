@@ -4,6 +4,7 @@ import {Account} from "../../models/account";
 import {ErrorHandler} from "../../core/error-handler";
 import {NotificationsService} from "angular2-notifications/src/notifications.service";
 import {TranslateService} from "ng2-translate";
+import {AccountSettings} from "../../models/account-settings";
 
 @Component({
 	templateUrl: './account-settings.component.html'
@@ -11,7 +12,9 @@ import {TranslateService} from "ng2-translate";
 export class AccountSettingsComponent implements OnInit {
 
 	private account: Account;
-	private loading: boolean = false;
+	private settings: AccountSettings;
+
+	private saving: boolean = false;
 	private alertMessage: string;
 
 	constructor(private accountService: AccountService,
@@ -22,21 +25,25 @@ export class AccountSettingsComponent implements OnInit {
 	}
 
 	ngOnInit() {
+
+		this.accountService.getSettings()
+			.subscribe(settings => {
+				this.settings = settings;
+			});
 	}
 
 	save() {
-		this.loading = true;
+		this.saving = true;
 		this.accountService.updateAccount(this.account)
 			.subscribe(
 				account => {
-					this.loading = false;
+					this.saving = false;
 					this.notificationService.success('', this.translate.instant('settings.company.success-message'));
 				},
 				error => {
 					this.alertMessage = this.errorHandler.getDefaultErrorMessage(error.code);
-					this.loading = false;
+					this.saving = false;
 				}
 			);
 	}
-
 }

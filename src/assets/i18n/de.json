@@ -197,6 +197,7 @@
 	"settings": {
 		"account": "Account",
 		"title": "Einstellungen",
+		"upload-logo": "Logo hochladen",
 		"profile": {
 			"title": "Profil",
 			"success-message": "Profil erfolgreich gespeichert"
@@ -251,7 +252,8 @@
 		"choose-file": "Datei auswählen",
 		"errors": {
 			"general": "Beim Upload deiner Datei ist ein Fehler passiert. Bitte probiere es nocheinmal.",
-			"filetype-not-allowed": "Dieser Dateityp ist leider nicht erlaubt."
+			"filetype-not-allowed": "Dieser Dateityp ist leider nicht erlaubt.",
+			"file-too-big": "Diese Datei ist zu groß ({{filesize}}MB). Maximale Dateigröße: {{maxFilesize}}MB"
 		}
 	},
 	"customers": {

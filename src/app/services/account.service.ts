@@ -5,6 +5,7 @@ import {FileService} from "./file.service";
 import {State} from "../core/state";
 import {Account} from "../models/account";
 import {Observable} from "rxjs";
+import {AccountSettings} from "../models/account-settings";
 
 export enum ExportType {
 	Income = 'INCOME' as any,
@@ -16,6 +17,7 @@ export class AccountService extends BaseService {
 
 	private pathExport = '/account/export';
 	private pathAccount = '/account';
+	private pathAccountSettings = '/account/settings';
 	private pathPaymentToken = '/payment/token';
 
 	constructor(http: Http, private fileService: FileService, private state: State) {
@@ -24,6 +26,14 @@ export class AccountService extends BaseService {
 
 	getAccount(): Account {
 		return this.state.user.account;
+	}
+
+	getSettings(): Observable<AccountSettings> {
+		return this.get(this.pathAccountSettings);
+	}
+
+	deleteLogo(): Observable<AccountSettings> {
+		return this.patch(this.pathAccountSettings, { logo: null });
 	}
 
 	downloadExport(type: ExportType, startDate: string, endDate: string) {

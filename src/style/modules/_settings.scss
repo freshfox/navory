@@ -27,3 +27,60 @@
 		}
 	}
 }
+
+.logo-upload {
+	margin-top: 20px;
+	display: block;
+
+	.logo-upload__img-wrapper {
+		position: relative;
+		display: inline-block;
+		width: 150px;
+	}
+
+	.logo-upload__area {
+		transition: border-color .25s ease;
+		border: 2px dashed $colorGray;
+		width: 230px;
+		height: 120px;
+		text-align: center;
+		color: $colorGray;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&.dz-drag-hover {
+			border-color: $colorPrimary;
+		}
+
+		.logo-upload__area__content {
+
+		}
+	}
+
+	.logo-upload__remove-button {
+		$removeButtonSize: 25px;
+		background-color: $colorGray;
+		fill: white;
+		border-radius: 999px;
+		width: $removeButtonSize;
+		height: $removeButtonSize;
+		position: absolute;
+		top: -($removeButtonSize/2);
+		right: -($removeButtonSize/2);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		nvry-icon,
+		nvry-spinner {
+			width: 18px;
+			height: 18px;
+			margin: 0;
+		}
+
+		nvry-spinner svg path {
+			stroke: white !important;
+		}
+	}
+}

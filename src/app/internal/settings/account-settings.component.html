@@ -23,7 +23,7 @@
 			</div>
 		</div>
 		<div class="bit-100">
-			<nvry-button [loading]="loading" (click)="save()">{{ 'general.save' | translate }}</nvry-button>
+			<nvry-button [loading]="saving" (click)="save()">{{ 'general.save' | translate }}</nvry-button>
 		</div>
 	</div>
 </section>
@@ -35,6 +35,7 @@
 	<div class="bit-75">
 		<div class="bit-1">
 			<p>{{ 'settings.logo.description' | translate }}</p>
+			<nvry-logo-upload [(logo)]="settings.logo" *ngIf="settings"></nvry-logo-upload>
 		</div>
 	</div>
 </section>
@@ -59,7 +60,7 @@
 			</div>
 		</div>
 		<div class="bit-100">
-			<nvry-button [loading]="loading" (click)="save()">{{ 'general.save' | translate }}</nvry-button>
+			<nvry-button [loading]="saving" (click)="save()">{{ 'general.save' | translate }}</nvry-button>
 		</div>
 	</div>
 </section>
