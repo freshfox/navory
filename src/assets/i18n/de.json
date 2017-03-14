@@ -177,7 +177,9 @@
 		"issue-success": "Rechnung erfolgreich fertiggestellt.",
 		"preview": "Vorschau",
 		"sum-amount": "Gesamtbetrag",
-		"open": "Offen"
+		"open": "Offen",
+		"edit-customer": "Kunde bearbeiten",
+		"remove-customer-link": "Kundenverknüpfung entfernen"
 	},
 	"expenses": {
 		"title": "Ausgaben",

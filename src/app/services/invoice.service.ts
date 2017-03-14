@@ -28,7 +28,7 @@ export class InvoiceService extends BaseService {
 			});
 	}
 
-	getInvoice(id: number): Observable<Invoice> {
+	getInvoice(id: string): Observable<Invoice> {
 		return this.get(this.getRestEntityPath(this.pathInvoices, id))
 			.map(invoiceData => {
 				let invoice = new Invoice(invoiceData);

@@ -94,7 +94,7 @@ export class BaseService {
 		return this.baseUrl + url;
 	}
 
-	getRestEntityPath(path: string, id: number) {
+	getRestEntityPath(path: string, id: string) {
 		return `${path}/${id}`;
 	}
 

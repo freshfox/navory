@@ -115,6 +115,26 @@ nvry-button {
 		padding: 5px 12px;
 	}
 
+	&.button--mini-rounded {
+		border-radius: 999px;
+		background-color: transparent;
+		border: 0;
+		width: 16px;
+		height: 16px;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		nvry-icon {
+			width: 14px;
+			height: 14px;
+			margin: 0;
+			fill: $colorGrayUltraDark;
+		}
+	}
+
 	&.button--dark {
 		background: darken($colorUltraDarkAccent, 15%);
 		border: 0;

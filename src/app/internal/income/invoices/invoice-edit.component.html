@@ -4,7 +4,7 @@
 	</nvry-button>
 	<hr>
 </div>
-<template [ngIf]="!loading">
+<div [hidden]="loading">
 	<div class="page-row button-row">
 		<h1 class="module-title">
 			<span *ngIf="!createMode && !invoice.draft">{{ 'invoices.edit_title' | translate:{ number: invoice.number } }}</span>
@@ -47,7 +47,7 @@
 		</div>
 	</div>
 
-	<div class="default-section">
+	<div class="default-section" *ngIf="invoice.payments.length">
 		<h3>{{ 'general.payments' | translate }}</h3>
 		<div>
 			<nvry-booked-payment *ngFor="let payment of invoice.payments" [payment]="payment"></nvry-booked-payment>
@@ -60,8 +60,26 @@
 			<div class="invoice-edit-paper-section">
 				<div class="frame">
 					<div class="bit-50 customer-area">
-						<nvry-input [label]="'general.customer' | translate"
+						<div #customerName class="invoice-edit-customer-name-wrapper">
+
+							<div class="invoice-edit-customer-edit-link-wrapper" *ngIf="invoice.customer">
+								<a  class="invoice-edit-customer-edit-link"
+									href="javascript:void(0)"
+									(click)="editCustomer()">
+									{{ 'invoices.edit-customer' | translate }}
+								</a>
+
+								<div>
+									<button class="button button--mini-rounded" [mdTooltip]="'invoices.remove-customer-link' | translate" (click)="removeCustomerLink()">
+										<nvry-icon name="cross"></nvry-icon>
+									</button>
+								</div>
+							</div>
+
+							<nvry-input [label]="'general.customer' | translate"
 									[(ngModel)]="invoice.customer_name"></nvry-input>
+						</div>
+
 						<nvry-textarea [label]="'general.address' | translate"
 									   [(ngModel)]="invoice.customer_address"></nvry-textarea>
 
@@ -130,7 +148,7 @@
 			</div>
 		</div>
 	</div>
-</template>
+</div>
 
 <nvry-spinner *ngIf="loading"></nvry-spinner>
 

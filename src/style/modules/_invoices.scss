@@ -61,6 +61,24 @@
 	}
 }
 
+.invoice-edit-customer-name-wrapper {
+	position: relative;
+
+	.invoice-edit-customer-edit-link-wrapper {
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 10;
+
+		display: flex;
+		align-items: center;
+
+		.invoice-edit-customer-edit-link {
+			margin-right: 10px;
+		}
+	}
+}
+
 .customer-area {
 	padding-right: 80px;
 }

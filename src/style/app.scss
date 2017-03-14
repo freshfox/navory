@@ -16,6 +16,9 @@
 @import "../../node_modules/pikaday/scss/pikaday";
 @import "../../node_modules/select2/src/scss/core";
 @import "../../node_modules/chartist/dist/scss/chartist";
+@import "../../node_modules/javascript-autocomplete/auto-complete";
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+
 
 /**
  * Application specific styles
@@ -51,6 +54,7 @@
 @import "components/forms/dropdowns";
 @import "components/forms/toggles";
 @import "components/forms/datepicker";
+@import "components/forms/autocomplete";
 @import "components/total-indicator";
 
 // Layout Styling

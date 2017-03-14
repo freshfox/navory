@@ -13,6 +13,19 @@ export class CustomerService extends BaseService {
 		super(http);
 	}
 
+	searchCustomers(query: string): Observable<Customer[]> {
+		return this.getCustomers()
+			.map(customers => {
+				return customers.filter(customer => {
+					return customer.name.toLowerCase().indexOf(query.toLowerCase()) > -1;
+				});
+			});
+	}
+
+	getCustomer(id: string): Observable<Customer> {
+		return this.get(this.getRestEntityPath(this.pathCustomers, id));
+	}
+
 	getCustomers(): Observable<Customer[]> {
 		return this.get(this.pathCustomers)
 			.map(data => data as Customer[])
