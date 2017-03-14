@@ -88,13 +88,21 @@ export class ModalService {
 @Component({
 	selector: "nvry-modal-placeholder",
 	template: `
-            <div [@modal]="state" tabindex="1" class="modal" [class.modal--no-padding]="!padding" [class.modal--slim]="slim" (click)="onClick($event)">
-                <div class="modal-dialog">
-                    <div #modalplaceholder></div>
-                </div>                                
-            </div>
-            <div [@backdrop]="state" class="modal-backdrop"></div>`,
+			<div class="modal-outer" [@modalOuter]="state">
+				<div [@modal]="state" tabindex="1" class="modal" [class.modal--no-padding]="!padding" [class.modal--slim]="slim">
+					<div class="modal-dialog">
+						<div #modalplaceholder></div>
+					</div>                                
+				</div>
+				<div [@backdrop]="state" class="modal-backdrop" (click)="onBackdropClicked()"></div>
+			</div>
+            
+	`,
 	animations: [
+		trigger('modalOuter', [
+			state('shown', style({display: 'flex'})),
+			state('hidden', style({display: 'none'})),
+		]),
 		trigger('modal', [
 			state('shown', style({transform: 'scale3d(1, 1, 1)', display: 'block'})),
 			state('hidden', style({transform: 'scale3d(0, 0, 0)'})),
@@ -115,7 +123,8 @@ export class ModalService {
 				animate('250ms ease')
 			])
 		])
-	]
+	],
+	host: { 'class': 'modal-placeholder' }
 })
 export class ModalPlaceholderComponent implements OnInit, AfterViewInit {
 
@@ -146,10 +155,8 @@ export class ModalPlaceholderComponent implements OnInit, AfterViewInit {
 		this.componentRef = componentRef;
 	}
 
-	private onClick(event) {
-		if (event.target.className.startsWith('modal')) {
-			this.hide();
-		}
+	private onBackdropClicked() {
+		this.hide();
 	}
 
 	show() {

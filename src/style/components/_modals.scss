@@ -35,18 +35,25 @@ $modalSlimWidth: 600px;
 	z-index: 800;
 }
 
-.modal {
+.modal-outer {
 	position: fixed;
 	left: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
 	overflow-y: scroll;
-	z-index: 1000;
 	padding-top: 50px;
 	padding-bottom: 50px;
 	outline: 0;
 	border: 0;
+
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.modal {
+	position: relative;
+	z-index: 1000;
 
 	&.modal--no-padding {
 		.modal-dialog {
