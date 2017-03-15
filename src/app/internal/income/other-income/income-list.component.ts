@@ -56,7 +56,7 @@ export class IncomeListComponent implements OnInit {
 					width: 10,
 					alignment: ColumnAlignment.Right
 				},
-				{cellTemplate: this.actionsColumn, width: 5, sortable: false},
+				{cellTemplate: this.actionsColumn, width: 4, sortable: false},
 			]
 		});
 

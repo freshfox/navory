@@ -5,7 +5,7 @@ import {Component, OnInit} from "@angular/core";
 	template: `
         <div class="dropdown__inner" (click)="onClickInner($event)">
             <button class="dropdown-target" (click)="toggle($event)">
-                <nvry-icon name="arrow-sorted-down" [class.rotate-180-deg]="shown"></nvry-icon>
+                <nvry-icon name="more" [class.rotate-180-deg]="shown"></nvry-icon>
             </button>
             <div class="dropdown-content" *ngIf="shown" (click)="hide()">
                 <ng-content></ng-content>

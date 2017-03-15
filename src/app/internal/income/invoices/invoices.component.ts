@@ -65,7 +65,7 @@ export class InvoicesComponent implements OnInit {
 					width: 15,
 					alignment: ColumnAlignment.Right
 				},
-				{width: 6, cellTemplate: this.actionsColumn},
+				{width: 4, cellTemplate: this.actionsColumn},
 			]
 		});
 	}

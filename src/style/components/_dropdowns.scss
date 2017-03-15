@@ -1,10 +1,11 @@
 nvry-dropdown {
-	$dropdownTargetSize: 28px;
+	$dropdownTargetWidth: 36px;
+	$dropdownTargetHeight: 25px;
 	$dropdownTargetSizeFormField: 39px;
 
 	position: relative;
 	padding: 5px 0;
-	display: inline-block;
+	display: flex;
 	text-align: center;
 
 	.dropdown__inner {
@@ -16,27 +17,38 @@ nvry-dropdown {
 	&.dropdown--shown {
 		.dropdown-target {
 			z-index: 110;
+
+			nvry-icon {
+				fill: $colorPrimary;
+			}
 		}
 	}
 
 	.dropdown-target {
-		width: $dropdownTargetSize;
-		height: $dropdownTargetSize;
-		border-radius: $defaultBorderRadius;
-		border: 1px solid $colorGray;
+		width: $dropdownTargetWidth;
 		text-align: center;
 		outline: 0;
-		background: #fff;
+		background: transparent;
 		display: flex;
 		align-items: center;
 		margin: 0 auto;
 		cursor: pointer;
+		padding: 0;
 		position: relative;
 
 		nvry-icon {
-			width: 18px;
-			height: 18px;
-			transition: transform .2s ease-out;
+			display: block;
+			width: $dropdownTargetWidth;
+			height: $dropdownTargetHeight;
+			margin: 3px 0;
+			fill: $colorGrayMedium;
+			transition: fill .5s ease;
+		}
+
+		&:hover {
+			nvry-icon {
+				fill: $colorPrimary;
+			}
 		}
 	}
 

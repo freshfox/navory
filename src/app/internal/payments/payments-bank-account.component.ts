@@ -48,7 +48,7 @@ export class PaymentsBankAccountComponent implements OnInit {
 					width: 10,
 					alignment: ColumnAlignment.Right
 				},
-				{width: 5, cellTemplate: this.actionsColumn, sortable: false},
+				{width: 4, cellTemplate: this.actionsColumn, sortable: false},
 			]
 		});
 	}

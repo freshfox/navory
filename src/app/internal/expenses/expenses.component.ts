@@ -50,7 +50,7 @@ export class ExpensesComponent implements OnInit {
 				{name: this.translate.instant('general.date'), prop: 'date', width: 12, pipe: this.datePipe},
 				{name: this.translate.instant('general.category'), prop: 'category.name', width: 20},
 				{name: this.translate.instant('general.amount_net'), prop: 'price', width: 10, pipe: this.numberPipe},
-				{width: 5, cellTemplate: this.actionsColumn, sortable: false},
+				{width: 4, cellTemplate: this.actionsColumn, sortable: false},
 			]
 		});
 
