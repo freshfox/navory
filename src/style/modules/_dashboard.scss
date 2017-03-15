@@ -17,10 +17,17 @@
 	padding: 30px $contentSidePadding;
 
 	display: flex;
+	flex-wrap: wrap;
 
 	.dashboard-box {
-		padding: 20px;
+		padding: 20px 30px;
+		padding-top: 0;
 		width: 50%;
+		margin-bottom: 30px;
+
+		&.dashboard-box--full {
+			width: 100%;
+		}
 
 		.title {
 			margin-bottom: 0;
@@ -34,11 +41,12 @@
 			font-size: 32px;
 		}
 
-		.ct-chart {
+		.revenue-chart {
 			.ct-label {
-				font-size: 12px;
+				font-size: 10px;
 				font-weight: normal;
 				color: $colorGrayMedium;
+				text-transform: uppercase;
 
 				&.ct-horizontal {
 					top: 10px;
@@ -101,14 +109,36 @@
 		}
 	}
 
-	.ct-chart {
+	.invoice-stats-items {
+		margin-top: 10px;
+	}
+
+	.invoice-stats-item {
+		margin-bottom: 15px;
+
+		.title {
+			display: block;
+		}
+
+		.amount {
+			font-size: 22px;
+		}
+	}
+
+	.income-expense-chart {
+		margin-top: 15px;
+
+		svg {
+			overflow: visible;
+		}
+
 		.ct-label {
-			font-size: 12px;
-			font-weight: bold;
+			font-size: 10px;
 			color: $colorGrayMedium;
+			text-transform: uppercase;
 
 			&.ct-horizontal {
-				top: 10px;
+				top: 5px;
 				position: relative;
 			}
 		}

@@ -60,7 +60,8 @@
 		"book-incoming-payment": "Eingehende Zahlung buchen",
 		"book-outgoing-payment": "Ausgehende Zahlung buchen",
 		"payments": "Zahlungen",
-		"total": "Gesamt"
+		"total": "Gesamt",
+		"invoices": "Rechnungen"
 	},
 	"app": {
 		"name": "Navory",
@@ -127,7 +128,7 @@
 	"dashboard": {
 		"title": "Übersicht",
 		"profit": "Gewinn",
-		"income_expenses": "Einnahmen und Ausgaben (netto)",
+		"income_expenses": "Einnahmen und Ausgaben",
 		"current_year_notice": "Die Zahlen beziehen sich auf das aktuelle Kalenderjahr."
 	},
 	"income": {

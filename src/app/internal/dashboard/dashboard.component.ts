@@ -11,6 +11,7 @@ var Chartist = require('chartist');
 export class DashboardComponent {
 
 	private data;
+	private year: string;
 	private loading: boolean = false;
 
 	constructor(private reportService: ReportService, private el: ElementRef, private modalService: ModalService, private numberPipe: NumberPipe) {
@@ -24,8 +25,11 @@ export class DashboardComponent {
 				this.data = data;
 				setTimeout(() => {
 					this.showRevenueChart();
+					this.showIncomeExpenseChart();
 				}, 100);
 			});
+
+		this.year = '' + new Date().getFullYear();
 	}
 
 	ngAfterViewInit() {
@@ -52,15 +56,16 @@ export class DashboardComponent {
 	showRevenueChart() {
 		let revenue = [];
 		this.data.months.forEach((month) => {
-			revenue.push(month.revenue.totalGross);
+			revenue.push(month.revenue.accumulatedTotalGross);
 		});
 
-		var chart = new Chartist.Line('.ct-chart', {
+		var chart = new Chartist.Line('.revenue-chart', {
 				labels: moment.monthsShort(),
 				series: [
 					revenue,
 				]
 			}, {
+				seriesBarDistance: 0,
 				height: '120px',
 				lineSmooth: Chartist.Interpolation.none(),
 				chartPadding: {
@@ -85,29 +90,29 @@ export class DashboardComponent {
 		);
 	}
 
-	showChart() {
-		var income = [];
-		var expenses = [];
+	showIncomeExpenseChart() {
+		let income = [];
+		let expenses = [];
 		this.data.months.forEach((month) => {
 			income.push(month.income.totalNet);
-			expenses.push(month.expense.totalNet);
+			expenses.push(month.expense.totalNet * -1);
 		});
 
-		var chart = new Chartist.Line('.ct-chart', {
+		var chart = new Chartist.Bar('.income-expense-chart', {
 				labels: moment.monthsShort(),
 				series: [
 					income,
 					expenses
 				]
 			}, {
+				seriesBarDistance: 0,
 				height: '240px',
 				lineSmooth: Chartist.Interpolation.simple({
 					divisor: 2
 				}),
 				chartPadding: {
-					left: 40
+					left: 20
 				},
-				low: 0,
 				fullWidth: true,
 				showArea: true,
 				axisY: {

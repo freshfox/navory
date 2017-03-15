@@ -4,35 +4,37 @@
 	<template [ngIf]="data">
 		<div class="dashboard-box">
 			<h2 class="title">{{ 'dashboard.profit' | translate }}</h2>
-			<p class="small">2017</p>
+			<p class="small">{{ year }}</p>
 
 			<div class="number">€ {{ data?.revenue.totalGross | nvryNumber }}</div>
 			<p class="small" *ngIf="profitInfo">{{ profitInfo }}</p>
 
-			<div class="ct-chart"></div>
+			<div class="revenue-chart"></div>
 		</div>
-		<div class="dashboard-box"></div>
-	</template>
+		<div class="dashboard-box">
+			<h2 class="title">{{ 'general.invoices' | translate }}</h2>
 
-
-	<!--<div *ngIf="!loading">
-		<div class="dashboard-overview-box-wrapper">
-			<div class="dashboard-overview-box">
-				<div class="dashboard-overview-box__column">
-					<span class="title">{{ 'general.income' | translate }} ({{ 'general.net' | translate }})</span>
-					<span class="amount">&euro; {{ data?.income.totalNet | nvryNumber }}</span>
+			<div class="invoice-stats-items">
+				<div class="invoice-stats-item">
+					<span class="title">{{ 'general.overdue' | translate }}</span>
+					<span class="amount color-expenses">€ {{ data.invoice_amounts.overdue | nvryNumber }}</span>
 				</div>
-				<div class="dashboard-overview-box__column">
-					<span class="title">{{ 'general.expenses' | translate }} ({{ 'general.net' | translate }})</span>
-					<span class="amount">&euro; {{ data?.expense.totalNet | nvryNumber }}</span>
+				<div class="invoice-stats-item">
+					<span class="title">{{ 'invoices.open' | translate }}</span>
+					<span class="amount color-customers">€ {{ data.invoice_amounts.issued | nvryNumber }}</span>
+				</div>
+				<div class="invoice-stats-item">
+					<span class="title">{{ 'general.draft' | translate }}</span>
+					<span class="amount color-gray">€ {{ data.invoice_amounts.draft | nvryNumber }}</span>
 				</div>
 			</div>
-			<small>{{ 'dashboard.current_year_notice' | translate }}</small>
 		</div>
 
-		<h2 class="page-headline">{{ 'dashboard.income_expenses' | translate }}</h2>
-	</div>
-
-	<div class="ct-chart"></div>-->
+		<div class="dashboard-box dashboard-box--full">
+			<h2 class="title">{{ 'dashboard.income_expenses' | translate }}</h2>
+			<p class="small">{{ 'general.net' | translate }}</p>
+			<div class="income-expense-chart"></div>
+		</div>
+	</template>
 </div>
 
