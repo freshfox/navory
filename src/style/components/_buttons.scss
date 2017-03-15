@@ -16,8 +16,7 @@ nvry-button {
 }
 
 .button {
-	display: flex;
-	align-items: center;
+	display: block;
 	zoom: 1;
 	line-height: normal;
 	vertical-align: baseline;
@@ -36,6 +35,11 @@ nvry-button {
 	text-decoration: none;
 	border-radius: $buttonBorderRadius;
 	transition: color .25s ease, background .25s ease;
+
+	.button__inner {
+		display: flex;
+		align-items: center;
+	}
 
 	nvry-icon {
 		width: 12px;
