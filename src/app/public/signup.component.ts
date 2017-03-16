@@ -3,7 +3,7 @@ import {AuthService} from "../services/auth.service";
 import {FormGroup, FormBuilder, Validators, AbstractControl} from "@angular/forms";
 import {Helpers} from "../core/helpers";
 import {FormValidator} from "../core/form-validator";
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute, Params} from "@angular/router";
 import {ErrorHandler} from "../core/error-handler";
 
 @Component({
@@ -15,7 +15,11 @@ export class SignupComponent {
 	private loading: boolean = false;
 	private alertMessage: string;
 
-	constructor(private authService: AuthService, private fb: FormBuilder, private router: Router, private errorHandler: ErrorHandler) {
+	constructor(private authService: AuthService,
+				private fb: FormBuilder,
+				private router: Router,
+				private errorHandler: ErrorHandler,
+				private route: ActivatedRoute) {
 
 		this.form = fb.group({
 			company: ['', Validators.required],
@@ -23,6 +27,20 @@ export class SignupComponent {
 			lastname: ['', Validators.required],
 			email: ['', Validators.compose([Validators.required, FormValidator.email])],
 			password: ['', Validators.compose([Validators.required, FormValidator.passwordLength])],
+		});
+	}
+
+	ngOnInit() {
+		this.route.params.subscribe((params: Params) => {
+			let dataString = params['data'];
+
+			try {
+				let data = JSON.parse(atob(decodeURIComponent(dataString)));
+				let nameParts = data['name'].split(' ');
+				this.form.controls['firstname'].setValue(nameParts.shift());
+				this.form.controls['lastname'].setValue(nameParts.join(' '));
+				this.form.controls['email'].setValue(data['email']);
+			} catch (err) {}
 		});
 	}
 
