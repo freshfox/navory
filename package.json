@@ -27,6 +27,7 @@
     "@angular/platform-browser-dynamic": "2.4.9",
     "@angular/router": "3.4.9",
     "angular2-notifications": "^0.4.49",
+    "angulartics2": "^1.6.4",
     "bourbon": "4.3.3",
     "braintree-web": "^3.6.1",
     "chartist": "^0.9.8",

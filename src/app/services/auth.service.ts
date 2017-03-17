@@ -5,6 +5,7 @@ import {User} from "../models/user";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs";
 import {State} from "../core/state";
+import {Angulartics2} from "angulartics2";
 
 @Injectable()
 export class AuthService extends BaseService {
@@ -14,7 +15,7 @@ export class AuthService extends BaseService {
 	private pathRequestPasswordReset = '/password/reset';
 	private pathResetPassword = '/password/reset';
 
-	constructor(http: Http, private state: State) {
+	constructor(http: Http, private state: State, private analytics: Angulartics2) {
 		super(http);
 	}
 
@@ -24,6 +25,8 @@ export class AuthService extends BaseService {
 			password: password,
 			remember: remember
 		}).map(data => {
+			this.analytics.eventTrack.next({ action: 'login', properties: { category: 'auth' } });
+
 			let account = data.account as Account;
 			let user = data as User;
 			this.setLoggedInUser(user);
@@ -72,6 +75,8 @@ export class AuthService extends BaseService {
 			password: data.password
 		})
 			.map(data => {
+				this.analytics.eventTrack.next({ action: 'signup', properties: { category: 'auth' } });
+
 				let user = data as User;
 				this.setLoggedInUser(user);
 				return data;
