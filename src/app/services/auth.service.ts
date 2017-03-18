@@ -41,12 +41,22 @@ export class AuthService extends BaseService {
 		return this.delete(this.pathLogin)
 			.map(data => {
 				this.removeLoggedInUser();
+				(window as any).Intercom('shutdown');
 				return data;
 			});
 	}
 
 	setLoggedInUser(user: User) {
 		this.state.user = user;
+
+		(window as any).Intercom('update', {
+			user_id: user.id,
+			user_hash: user.intercom_user_hash,
+			name: user.firstname + ' ' + user.lastname,
+			email: user.email,
+			created_at: parseInt((new Date(user.created_at).getTime() / 1000).toFixed(0)) // Unix timestamp
+		});
+
 	}
 
 	removeLoggedInUser() {
