@@ -87,6 +87,7 @@ import {TotalIndicatorComponent} from "./core/components/total-indicator.compone
 import {ExpenseBookPaymentComponent} from "./internal/payments/expense-book-payment.component";
 import {LogoUploadComponent} from "./internal/settings/logo-upload.component";
 import {Angulartics2Module, Angulartics2GoogleAnalytics} from "angulartics2";
+import {AnalyticsService} from "./services/analytics.service";
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -199,7 +200,8 @@ export function translateStaticLoaderFactory(http: Http) {
 		InvoiceService,
 		AccountService,
 		PaymentService,
-		UnitService
+		UnitService,
+		AnalyticsService
 	],
 	bootstrap: [AppComponent]
 })
