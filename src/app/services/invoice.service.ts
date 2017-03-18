@@ -5,14 +5,14 @@ import {Http} from "@angular/http";
 import {Invoice} from "../models/invoice";
 import {FileService} from "./file.service";
 import {Calculator} from "../core/calculator";
-import {Angulartics2} from "angulartics2";
+import {AnalyticsService, AnalyticsEventType} from "./analytics.service";
 
 @Injectable()
 export class InvoiceService extends BaseService {
 
 	private pathInvoices = '/invoices';
 
-	constructor(http: Http, private fileService: FileService, private analytics: Angulartics2) {
+	constructor(http: Http, private fileService: FileService, private analytics: AnalyticsService) {
 		super(http);
 	}
 
@@ -40,13 +40,13 @@ export class InvoiceService extends BaseService {
 		if (invoice.id) {
 			return this.patch(this.getRestEntityPath(this.pathInvoices, invoice.id), invoice)
 				.map(invoice => {
-					this.analytics.eventTrack.next({action: 'update-invoice', properties: {category: 'invoices'}});
+					this.analytics.trackEvent(AnalyticsEventType.UpdateInvoice);
 					return new Invoice(invoice)
 				});
 		}
 		return this.post(this.pathInvoices, invoice)
 			.map(invoice => {
-				this.analytics.eventTrack.next({action: 'create-invoice', properties: {category: 'invoices'}});
+				this.analytics.trackEvent(AnalyticsEventType.CreateInvoice);
 				return new Invoice(invoice)
 			});
 	}
