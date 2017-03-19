@@ -9,7 +9,8 @@ import {AccountSettings} from "../models/account-settings";
 
 export enum ExportType {
 	Income = 'INCOME' as any,
-	Expenses = 'EXPENSES' as any
+	Expenses = 'EXPENSES' as any,
+	Invoices = 'INVOICES' as any
 }
 
 @Injectable()
