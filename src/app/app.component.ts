@@ -15,11 +15,10 @@ export class AppComponent {
 	}
 
 	private initIntercom() {
-		// if(environment.production) {
+		if(environment.production) {
 			(window as any).Intercom("boot", {
 				app_id: environment.intercomAppId
 			});
-		// }
-
+		}
 	}
 }
