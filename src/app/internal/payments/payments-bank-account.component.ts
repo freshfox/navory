@@ -27,7 +27,6 @@ export class PaymentsBankAccountComponent implements OnInit {
 				private translate: TranslateService,
 				private datePipe: DatePipe,
 				private modalService: ModalService) {
-		console.log('HEYHO');
 	}
 
 	ngOnInit() {
