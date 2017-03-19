@@ -92,6 +92,7 @@
 		"remember": "Eingeloggt bleiben",
 		"submit": "Login",
 		"error-wrong-credentials": "Hmm, sieht so aus als wären diese Anmeldedaten nicht korrekt.",
+		"error-session-invalid": "Du warst zu lange inaktiv und wurdest deswegen automatisch ausgeloggt. Bitte logge dich erneut ein.",
 		"forgot-password": {
 			"link": "Passwort vergessen?",
 			"title": "Passwort zurücksetzen",
