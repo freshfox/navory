@@ -10,7 +10,7 @@ import * as moment from "moment";
 import {State} from "../../core/state";
 import {Router} from "@angular/router";
 import {ModalService} from "../../core/modal.module";
-import {isNullOrUndefined} from "util";
+import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";
 
 @Component({
 	templateUrl: './expenses.component.html'
@@ -49,7 +49,13 @@ export class ExpensesComponent implements OnInit {
 				{name: this.translate.instant('general.description'), prop: 'description'},
 				{name: this.translate.instant('general.date'), prop: 'date', width: 12, pipe: this.datePipe},
 				{name: this.translate.instant('general.category'), prop: 'category.name', width: 20},
-				{name: this.translate.instant('general.amount_net'), prop: 'price', width: 10, pipe: this.numberPipe},
+				{
+					name: this.translate.instant('general.amount_net'),
+					prop: 'price',
+					width: 10,
+					pipe: this.numberPipe,
+					alignment: ColumnAlignment.Right
+				},
 				{width: 4, cellTemplate: this.actionsColumn, sortable: false},
 			]
 		});
