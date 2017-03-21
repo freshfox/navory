@@ -4,7 +4,10 @@
 
 <div class="content-wrapper signup-wrapper">
 	<div class="header">
-		<h2 class="headline" [innerHTML]="'login.signup.welcome' | translate"></h2>
+		<div class="headline-wrapper">
+			<h2 class="headline" [innerHTML]="'login.signup.welcome' | translate"></h2>
+			<nvry-logo></nvry-logo>
+		</div>
 		<p class="sub">{{ 'login.signup.tagline' | translate }}</p>
 	</div>
 

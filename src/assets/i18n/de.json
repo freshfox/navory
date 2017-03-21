@@ -112,7 +112,7 @@
 		},
 		"signup": {
 			"login-notice": "Du hast schon einen Account? <strong>Hier einloggen</strong>",
-			"welcome": "Willkommen bei <span class='logo'>Navory</span>",
+			"welcome": "Willkommen bei",
 			"tagline": "Du bist nur noch ein paar Schritte von einfacher Buchhaltung entfernt.",
 			"steps": {
 				"signup": "Registrieren",

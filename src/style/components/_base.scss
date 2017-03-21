@@ -34,10 +34,13 @@ html, body {
  * Logo
  */
 .logo {
-	font-size: 30px;
-	@include fontBold;
-	text-transform: uppercase;
-	letter-spacing: 8px;
+	display: block;
+
+	nvry-icon {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
 }
 
 /**

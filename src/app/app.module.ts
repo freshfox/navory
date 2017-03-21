@@ -88,6 +88,7 @@ import {ExpenseBookPaymentComponent} from "./internal/payments/expense-book-paym
 import {LogoUploadComponent} from "./internal/settings/logo-upload.component";
 import {Angulartics2Module, Angulartics2GoogleAnalytics} from "angulartics2";
 import {AnalyticsService} from "./services/analytics.service";
+import {LogoComponent} from "./core/components/logo.component";
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -153,7 +154,8 @@ export function translateStaticLoaderFactory(http: Http) {
 		BookedPaymentComponent,
 		TotalIndicatorComponent,
 		ExpenseBookPaymentComponent,
-		LogoUploadComponent
+		LogoUploadComponent,
+		LogoComponent
 	],
 	entryComponents: [
 		CustomerEditComponent,

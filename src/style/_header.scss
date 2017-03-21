@@ -1,6 +1,6 @@
 .main-header {
 	background: white;
-	padding: 14px 0;
+	padding: 10px 0;
 	border-bottom: 1px solid $colorSpacerLines;
 
 	.main-header__inner {
@@ -13,9 +13,10 @@
 	}
 
 	.logo {
-		font-size: 22px;
 		display: inline-block;
 		vertical-align: middle;
+		height: 20px;
+		fill: $textColor;
 	}
 
 	.user {
