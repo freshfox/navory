@@ -23,15 +23,15 @@ import {ExpenseBookPaymentComponent} from "../payments/expense-book-payment.comp
 })
 export class ExpenseEditComponent implements OnInit {
 
-	private form: FormGroup;
-	private loading = false;
-	private saving = false;
-	private alertMessage: string;
+	form: FormGroup;
+	loading = false;
+	saving = false;
+	alertMessage: string;
 
-	private expense: Expense;
-	private taxRates;
-	private expenseCategories: Category[];
-	private euVatTypes: any[];
+	expense: Expense;
+	taxRates;
+	expenseCategories: Category[];
+	euVatTypes: any[];
 	private nextExpenseNumber: number;
 
 	@ViewChild('selectCategory') private selectCategoryModal: ModalComponent;

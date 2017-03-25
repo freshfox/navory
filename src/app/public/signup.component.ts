@@ -11,9 +11,9 @@ import {ErrorHandler} from "../core/error-handler";
 })
 export class SignupComponent {
 
-	private form: FormGroup;
-	private loading: boolean = false;
-	private alertMessage: string;
+	form: FormGroup;
+	loading: boolean = false;
+	alertMessage: string;
 
 	constructor(private authService: AuthService,
 				private fb: FormBuilder,

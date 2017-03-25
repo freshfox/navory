@@ -46,7 +46,7 @@ import {
 })
 export class ModalComponent implements OnDestroy {
 
-	private isShown: boolean = false;
+	isShown: boolean = false;
 	private data: any;
 	@Input() class: string;
 	@Input() clean: boolean = false;

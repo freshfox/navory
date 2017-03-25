@@ -16,9 +16,9 @@ import {BankAccount} from "../../models/bank-account";
 export class PaymentsBankAccountComponent implements OnInit {
 
 	@Input() private bankAccount: BankAccount;
-	private payments: Payment[] = [];
-	private tableOptions: TableOptions;
-	private loading: boolean = false;
+	payments: Payment[] = [];
+	tableOptions: TableOptions;
+	loading: boolean = false;
 
 	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
 	@ViewChild('amountColumn') amountColumn: TemplateRef<any>;

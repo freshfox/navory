@@ -17,12 +17,12 @@ import {ColumnAlignment} from "../../core/components/table/column-alignment.enum
 })
 export class ExpensesComponent implements OnInit {
 
-	private expenses: Expense[];
-	private filteredExpenses: Expense[];
-	private loading = false;
-	private selectedMonthIndex: number;
-	private selectedYear: number;
-	private tableOptions: TableOptions;
+	expenses: Expense[];
+	filteredExpenses: Expense[];
+	loading = false;
+	selectedMonthIndex: number;
+	selectedYear: number;
+	tableOptions: TableOptions;
 
 	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
 	@ViewChild('attachmentColumn') attachmentColumn: TemplateRef<any>;

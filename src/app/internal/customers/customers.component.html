@@ -16,9 +16,9 @@
 
 </nvry-table>
 
-<template #actionsColumn let-row="row" let-value="value">
+<ng-template #actionsColumn let-row="row" let-value="value">
 	<nvry-dropdown>
 		<button (click)="editCustomer(row)">{{ 'actions.view' | translate }}</button>
 		<button (click)="deleteCustomer(row)">{{ 'actions.delete' | translate }}</button>
 	</nvry-dropdown>
-</template>
+</ng-template>

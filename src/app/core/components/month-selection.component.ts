@@ -1,6 +1,5 @@
-import {Component, OnInit, EventEmitter} from "@angular/core";
+import {Component, OnInit, EventEmitter, Input, Output} from "@angular/core";
 import * as moment from "moment";
-import {Input, Output} from "@angular/core/src/metadata/directives";
 
 @Component({
 	selector: 'nvry-month-selection',
@@ -16,7 +15,7 @@ export class MonthSelectionComponent implements OnInit {
 
 	@Input() selectedMonthIndex: number = 0;
 	@Output() selectedMonthIndexChange: EventEmitter<number> = new EventEmitter<number>();
-	private months: string[];
+	months: string[];
 
 	constructor() {
 

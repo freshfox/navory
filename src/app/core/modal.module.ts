@@ -146,7 +146,7 @@ export class ModalPlaceholderComponent implements OnInit, AfterViewInit {
 		this.componentRef = componentRef;
 	}
 
-	private onClick(event) {
+	onClick(event) {
 		if (event.target.className.startsWith('modal')) {
 			this.hide();
 		}

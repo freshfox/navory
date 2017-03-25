@@ -10,9 +10,9 @@ var Chartist = require('chartist');
 })
 export class DashboardComponent {
 
-	private data;
 	private year: string;
-	private loading: boolean = false;
+	data;
+	loading: boolean = false;
 
 	constructor(private reportService: ReportService, private el: ElementRef, private modalService: ModalService, private numberPipe: NumberPipe) {
 	}

@@ -19,7 +19,7 @@ import {Component, OnInit} from "@angular/core";
 })
 export class DropdownComponent implements OnInit {
 
-	private shown: boolean = false;
+	shown: boolean = false;
 
 	constructor() {
 	}

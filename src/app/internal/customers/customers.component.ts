@@ -13,8 +13,8 @@ import {CustomerEditComponent} from "./customer-edit.component";
 })
 export class CustomersComponent implements OnInit {
 
-	private customers: Customer[];
-	private loading = false;
+	customers: Customer[];
+	loading = false;
 
 	@ViewChild('actionsColumn') private actionsColumn: TemplateRef<any>;
 

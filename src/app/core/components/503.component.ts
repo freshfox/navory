@@ -20,7 +20,7 @@ import {Location} from "@angular/common";
 })
 export class FiveZeroThreeComponent implements OnInit {
 
-	private refreshing: boolean = false;
+	refreshing: boolean = false;
 
 	constructor(private location: Location) {
 	}

@@ -53,14 +53,14 @@ export class InvoiceLineComponent implements OnInit {
 	@Input() invoiceLine: InvoiceLine;
 	@Input() dropdownShown: boolean = true;
 	@Output() onDelete: EventEmitter<InvoiceLine> = new EventEmitter<InvoiceLine>();
-	private units: Unit[];
-	private taxRates: TaxRate[];
-	private defaultTaxRate: TaxRate;
-	private numberOfQuantityDecimals: number = 4;
-	private amount: number = 0;
+	units: Unit[];
+	taxRates: TaxRate[];
+	defaultTaxRate: TaxRate;
+	numberOfQuantityDecimals: number = 4;
+	amount: number = 0;
 
-	private titleFieldInFocus: boolean = false;
-	private descriptionFieldInFocus: boolean = false;
+	titleFieldInFocus: boolean = false;
+	descriptionFieldInFocus: boolean = false;
 
 
 	constructor(private bootstrapService: BootstrapService, private taxRateService: TaxRateService, private unitService: UnitService) {

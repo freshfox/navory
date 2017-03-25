@@ -16,7 +16,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 })
 export class StepsComponent {
 
-	private steps: Array<number>;
+	steps: Array<number>;
 
 	@Input() currentIndex: number = 0;
 	@Input() numberOfSteps: number;

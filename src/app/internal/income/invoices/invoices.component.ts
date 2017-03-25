@@ -18,12 +18,12 @@ var moment = require('moment');
 })
 export class InvoicesComponent implements OnInit {
 
-	private invoices: Invoice[] = [];
+	invoices: Invoice[] = [];
 
 	@ViewChild('statusColumn') statusColumnTpl: TemplateRef<any>;
 	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
-	private loading: boolean = false;
-	private tableOptions: TableOptions;
+	loading: boolean = false;
+	tableOptions: TableOptions;
 
 	constructor(private translate: TranslateService,
 				private invoiceService: InvoiceService,

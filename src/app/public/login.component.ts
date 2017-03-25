@@ -11,7 +11,7 @@ import {AlertBarType} from "../core/components/alert-bar.component";
 
 
 @Component({
-	templateUrl: '././login.html',
+	templateUrl: './login.html',
 })
 export class LoginComponent {
 

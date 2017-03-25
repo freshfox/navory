@@ -17,15 +17,16 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "2.4.10",
-    "@angular/compiler": "2.4.10",
-    "@angular/core": "2.4.10",
-    "@angular/forms": "2.4.10",
-    "@angular/http": "2.4.10",
+    "@angular/animations": "4.0.0",
+    "@angular/common": "4.0.0",
+    "@angular/compiler": "4.0.0",
+    "@angular/core": "4.0.0",
+    "@angular/forms": "4.0.0",
+    "@angular/http": "4.0.0",
     "@angular/material": "2.0.0-beta.2",
-    "@angular/platform-browser": "2.4.10",
-    "@angular/platform-browser-dynamic": "2.4.10",
-    "@angular/router": "3.4.10",
+    "@angular/platform-browser": "4.0.0",
+    "@angular/platform-browser-dynamic": "4.0.0",
+    "@angular/router": "4.0.0",
     "angular2-notifications": "^0.4.49",
     "angulartics2": "^1.6.4",
     "bourbon": "4.3.3",
@@ -46,11 +47,11 @@
     "select2": "^4.0.3",
     "ts-helpers": "^1.1.1",
     "validator": "^6.0.0",
-    "zone.js": "^0.7.6"
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.0-rc.2",
-    "@angular/compiler-cli": "2.4.10",
+    "@angular/cli": "1.0.0",
+    "@angular/compiler-cli": "4.0.0",
     "@types/chartist": "^0.9.34",
     "@types/dropzone": "^4.3.34",
     "@types/jasmine": "2.5.38",
@@ -65,6 +66,7 @@
     "gulp-svgmin": "^1.2.3",
     "gulp-svgstore": "^6.0.0",
     "jasmine-core": "2.5.2",
+    "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
     "karma-chrome-launcher": "~2.0.0",
     "karma-cli": "~1.0.1",
@@ -74,7 +76,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
-    "tslint": "~4.4.2",
-    "typescript": "~2.0.0"
+    "tslint": "~4.5.0",
+    "typescript": "~2.2.0"
   }
 }

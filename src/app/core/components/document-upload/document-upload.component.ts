@@ -1,9 +1,7 @@
-import {Component, OnInit, EventEmitter, Output} from "@angular/core";
-import {Input} from "@angular/core/src/metadata/directives";
+import {Component, OnInit, EventEmitter, Output, Input, ViewChild} from "@angular/core";
 import {File} from "../../../models/file";
 import {FileService} from "../../../services/file.service";
 import {environment} from "../../../../environments/environment";
-import {ViewChild} from "@angular/core/src/metadata/di";
 import {TranslateService} from "ng2-translate";
 var Dropzone = require('dropzone');
 
@@ -18,11 +16,11 @@ export class DocumentUploadComponent implements OnInit {
 
 	@ViewChild('uploadArea') private uploadArea;
 
-	private currentPageIndex: number = 0;
-	private alertMessage: string;
-	private loading = false;
-	private progress = 0;
-	private uploading = false;
+	currentPageIndex: number = 0;
+	alertMessage: string;
+	loading = false;
+	progress = 0;
+	uploading = false;
 
 	private dropzone: any;
 

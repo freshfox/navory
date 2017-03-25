@@ -9,8 +9,8 @@ import {BankAccount} from "../../models/bank-account";
 export class PaymentsComponent implements OnInit {
 
 	private bankAccounts: BankAccount[];
-	private selectedBankAccount: BankAccount;
-	private loading: boolean;
+	selectedBankAccount: BankAccount;
+	loading: boolean;
 
 	constructor(private paymentService: PaymentService) {
 	}

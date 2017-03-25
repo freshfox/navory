@@ -28,15 +28,15 @@ const AutoComplete = require('javascript-autocomplete');
 })
 export class InvoiceEditComponent implements OnInit, AfterViewInit {
 
-	private invoice: Invoice;
-	private countries: Country[];
+	invoice: Invoice;
+	countries: Country[];
 
-	private loading: boolean = false;
-	private saving: boolean = false;
-	private savingDraft: boolean = false;
+	loading: boolean = false;
+	saving: boolean = false;
+	savingDraft: boolean = false;
 
-	private form: FormGroup;
-	private createMode: boolean = true;
+	form: FormGroup;
+	createMode: boolean = true;
 
 	@ViewChild('previewModal') private previewModal: ModalComponent;
 	@ViewChild('customerName') private customerName: ElementRef;

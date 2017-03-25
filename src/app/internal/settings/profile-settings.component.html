@@ -38,9 +38,9 @@
 				<nvry-input [label]="'settings.change-password.current' | translate" type="password"
 							[formControl]="passwordForm.controls.password"></nvry-input>
 				<nvry-input [label]="'settings.change-password.new' | translate" type="password"
-							[formControl]="passwordForm.controls.new_passwords.controls.new_password"></nvry-input>
+							[formControl]="newPasswordsGroup.controls.new_password"></nvry-input>
 				<nvry-input [label]="'settings.change-password.new-confirmation' | translate" type="password"
-							[formControl]="passwordForm.controls.new_passwords.controls.new_password_confirmation"></nvry-input>
+							[formControl]="newPasswordsGroup.controls.new_password_confirmation"></nvry-input>
 			</form>
 
 			<nvry-button [loading]="savingPassword" (click)="savePassword()">{{ 'settings.change-password.title' |

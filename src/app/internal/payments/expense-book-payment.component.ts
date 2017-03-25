@@ -24,16 +24,16 @@ export class ExpenseBookPaymentComponent {
 	@Output() onSaved: EventEmitter<Payment> = new EventEmitter<Payment>();
 	@Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
-	private saving: boolean = false;
+	saving: boolean = false;
 
 	constructor(private paymentService: PaymentService) {
 	}
 
-	private cancel() {
+	cancel() {
 		this.onCancel.next();
 	}
 
-	private save(payment: Payment) {
+	save(payment: Payment) {
 		this.saving = true;
 		this.paymentService.addPaymentToExpense(this.expense, payment)
 			.subscribe((payment: Payment) => {

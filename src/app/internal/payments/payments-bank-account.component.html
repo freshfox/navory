@@ -11,13 +11,13 @@
 </nvry-table>
 
 
-<template #actionsColumn let-row="row" let-value="value">
+<ng-template #actionsColumn let-row="row" let-value="value">
 	<nvry-dropdown>
 		<button (click)="deletePayment(row)">{{ 'actions.delete' | translate }}</button>
 	</nvry-dropdown>
-</template>
+</ng-template>
 
-<template #amountColumn let-row="row" let-value="value">
+<ng-template #amountColumn let-row="row" let-value="value">
 	<span class="payment-amount"
 		  [class.payment-amount--negative]="row.amount < 0">{{ value | nvryNumber }}</span>
-</template>
+</ng-template>

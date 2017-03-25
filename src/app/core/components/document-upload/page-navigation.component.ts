@@ -1,5 +1,4 @@
-import {Component, OnInit, EventEmitter} from "@angular/core";
-import {Input, Output} from "@angular/core/src/metadata/directives";
+import {Component, OnInit, EventEmitter, Input, Output} from "@angular/core";
 
 @Component({
 	selector: 'nvry-page-navigation',
@@ -33,11 +32,11 @@ export class PageNavigationComponent implements OnInit {
 		this.currentPageIndexChange.emit(this.currentPageIndex);
 	}
 
-	private previousPage() {
+	previousPage() {
 		this.goToPage(this.currentPageIndex - 1);
 	}
 
-	private nextPage() {
+	nextPage() {
 		this.goToPage(this.currentPageIndex + 1);
 	}
 

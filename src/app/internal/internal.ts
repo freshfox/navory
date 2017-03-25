@@ -53,21 +53,21 @@ export class InternalComponent {
 		},
 	];
 
-	private loggingOut: boolean = false;
-	private notificationOptions = {
+	loggingOut: boolean = false;
+	notificationOptions = {
 		position: ["top", "right"],
 		timeOut: 5000,
 		showProgressBar: false,
 		maxStack: 4
 	}
 
-	constructor(private state: State, private authService: AuthService, private router: Router, private route: ActivatedRoute) {
+	constructor(public state: State, private authService: AuthService, private router: Router, private route: ActivatedRoute) {
 		let bootstrap = this.route.snapshot.data['bootstrap'];
 		Object.assign(this.state, bootstrap);
 		this.state.expenseCategories = bootstrap.categories;
 	}
 
-	private logout() {
+	logout() {
 		this.loggingOut = true;
 		this.authService.logout()
 			.subscribe(() => {

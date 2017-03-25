@@ -18,7 +18,7 @@ import {Payment} from "../../models/payment";
 })
 export class BookedPaymentComponent implements OnInit {
 
-	@Input() private payment: Payment;
+	@Input() payment: Payment;
 
 	constructor() {
 	}
@@ -26,11 +26,11 @@ export class BookedPaymentComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	private amount() {
+	amount() {
 		return Math.abs(this.payment.pivot_amount);
 	}
 
-	private isAmountNegative() {
+	isAmountNegative() {
 		return this.payment.pivot_amount < 0;
 	}
 

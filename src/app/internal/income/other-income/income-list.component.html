@@ -20,14 +20,14 @@
 </nvry-table>
 
 
-<template #actionsColumn let-row="row" let-value="value">
+<ng-template #actionsColumn let-row="row" let-value="value">
 	<nvry-dropdown>
 		<button (click)="editIncome(row)">{{ 'actions.view' | translate }}</button>
 		<button (click)="copyIncome(row)">{{ 'actions.copy' | translate }}</button>
 		<button (click)="deleteIncome(row)">{{ 'actions.delete' | translate }}</button>
 	</nvry-dropdown>
-</template>
+</ng-template>
 
-<template #attachmentColumn let-row="row" let-value="value">
+<ng-template #attachmentColumn let-row="row" let-value="value">
 	<nvry-icon name="paperclip" *ngIf="row.file.id" class="attachment-indicator-icon"></nvry-icon>
-</template>
+</ng-template>

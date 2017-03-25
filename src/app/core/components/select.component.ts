@@ -1,5 +1,4 @@
-import {Component, OnInit, EventEmitter, ElementRef} from "@angular/core";
-import {Input, Output} from "@angular/core/src/metadata/directives";
+import {Component, OnInit, EventEmitter, ElementRef, Input, Output} from "@angular/core";
 var $ = require('jquery');
 require('select2');
 
@@ -7,7 +6,7 @@ require('select2');
 	selector: 'nvry-select',
 	template: `
         <label *ngIf="label">{{ label }}</label>
-        <select (change)="onChange(s.value)" #s [(ngModel)]="selectedValue" class="{{ class }}" [disabled]="disabledSet">
+        <select (change)="onChange()" #s [(ngModel)]="selectedValue" class="{{ class }}" [disabled]="disabledSet">
            <option 
            *ngFor="let option of options" 
            [attr.value]="getValue(option)">{{ getName(option) }}</option>
@@ -32,7 +31,7 @@ export class SelectComponent implements OnInit {
 
 	@Input() enableSearchField: boolean = true;
 
-	private disabledSet: boolean = false;
+	disabledSet: boolean = false;
 	private select;
 	private select2Element;
 	private initialValue;
@@ -84,7 +83,7 @@ export class SelectComponent implements OnInit {
 		$(this.select).select2('destroy');
 	}
 
-	private getValue(option) {
+	getValue(option) {
 		let value = option[this.valueKey]
 		return value !== undefined ? value : '';
 	}
@@ -93,11 +92,11 @@ export class SelectComponent implements OnInit {
 		return this.getValue(this.options[index]);
 	}
 
-	private getName(option) {
+	getName(option) {
 		return option[this.nameKey] || this.getValue(option);
 	}
 
-	private onChange() {
+	onChange() {
 		this.selectedValueChange.emit(this.selectedValue);
 	}
 

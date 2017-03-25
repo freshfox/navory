@@ -11,11 +11,11 @@ import {AccountSettings} from "../../models/account-settings";
 })
 export class AccountSettingsComponent implements OnInit {
 
-	private account: Account;
-	private settings: AccountSettings;
+	account: Account;
+	settings: AccountSettings;
 
-	private saving: boolean = false;
-	private alertMessage: string;
+	saving: boolean = false;
+	alertMessage: string;
 
 	constructor(private accountService: AccountService,
 				private errorHandler: ErrorHandler,

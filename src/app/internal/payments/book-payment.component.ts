@@ -49,7 +49,7 @@ export class BookPaymentComponent implements OnInit {
 
 	@Input() amount: number;
 	@Input() description: string;
-	private date: string;
+	date: string;
 
 	@Input() saving: boolean = false;
 
@@ -60,7 +60,7 @@ export class BookPaymentComponent implements OnInit {
 	private form: FormGroup;
 	private payment: Payment;
 	private realPaymentAmount: number;
-	private loading: boolean = false;
+	loading: boolean = false;
 	private bankAccounts: BankAccount[];
 
 	constructor(private fb: FormBuilder, private paymentService: PaymentService) {
@@ -87,11 +87,11 @@ export class BookPaymentComponent implements OnInit {
 		}
 	}
 
-	private cancel() {
+	cancel() {
 		this.onCancel.next();
 	}
 
-	private save() {
+	save() {
 		Helpers.validateAllFields(this.form);
 		if (this.form.valid) {
 			let payment = new Payment();
