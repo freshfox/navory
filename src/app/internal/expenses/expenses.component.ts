@@ -10,19 +10,19 @@ import * as moment from "moment";
 import {State} from "../../core/state";
 import {Router} from "@angular/router";
 import {ModalService} from "../../core/modal.module";
-import {isNullOrUndefined} from "util";
+import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";
 
 @Component({
 	templateUrl: './expenses.component.html'
 })
 export class ExpensesComponent implements OnInit {
 
-	private expenses: Expense[];
-	private filteredExpenses: Expense[];
-	private loading = false;
-	private selectedMonthIndex: number;
-	private selectedYear: number;
-	private tableOptions: TableOptions;
+	expenses: Expense[];
+	filteredExpenses: Expense[];
+	loading = false;
+	selectedMonthIndex: number;
+	selectedYear: number;
+	tableOptions: TableOptions;
 
 	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
 	@ViewChild('attachmentColumn') attachmentColumn: TemplateRef<any>;
@@ -49,8 +49,14 @@ export class ExpensesComponent implements OnInit {
 				{name: this.translate.instant('general.description'), prop: 'description'},
 				{name: this.translate.instant('general.date'), prop: 'date', width: 12, pipe: this.datePipe},
 				{name: this.translate.instant('general.category'), prop: 'category.name', width: 20},
-				{name: this.translate.instant('general.amount_net'), prop: 'price', width: 10, pipe: this.numberPipe},
-				{width: 5, cellTemplate: this.actionsColumn, sortable: false},
+				{
+					name: this.translate.instant('general.amount_net'),
+					prop: 'price',
+					width: 10,
+					pipe: this.numberPipe,
+					alignment: ColumnAlignment.Right
+				},
+				{width: 4, cellTemplate: this.actionsColumn, sortable: false},
 			]
 		});
 

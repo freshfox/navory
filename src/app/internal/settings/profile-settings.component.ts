@@ -13,12 +13,13 @@ import {State} from "../../core/state";
 })
 export class ProfileSettingsComponent implements OnInit {
 
-	private user: User;
-	private form: FormGroup;
-	private passwordForm: FormGroup;
+	user: User;
+	form: FormGroup;
+	passwordForm: FormGroup;
+	newPasswordsGroup: FormGroup;
 
-	private saving: boolean = false;
-	private savingPassword: boolean = false;
+	saving: boolean = false;
+	savingPassword: boolean = false;
 
 	constructor(private fb: FormBuilder,
 				private userService: UserService,
@@ -46,6 +47,8 @@ export class ProfileSettingsComponent implements OnInit {
 				new_password_confirmation: ["", passwordValidators],
 			}, {validator: FormValidator.matchingPasswords})
 		});
+
+		this.newPasswordsGroup = this.passwordForm.controls.new_passwords as FormGroup;
 	}
 
 	ngOnInit() {

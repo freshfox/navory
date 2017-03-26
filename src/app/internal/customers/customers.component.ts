@@ -13,8 +13,8 @@ import {CustomerEditComponent} from "./customer-edit.component";
 })
 export class CustomersComponent implements OnInit {
 
-	private customers: Customer[];
-	private loading = false;
+	customers: Customer[];
+	loading = false;
 
 	@ViewChild('actionsColumn') private actionsColumn: TemplateRef<any>;
 
@@ -32,7 +32,7 @@ export class CustomersComponent implements OnInit {
 				{name: this.translate.instant('general.name'), prop: 'name', sortDirection: SortDirection.Asc},
 				{name: this.translate.instant('general.email'), prop: 'email', width: 20},
 				{name: this.translate.instant('general.phone'), prop: 'phone', width: 15},
-				{width: 5, cellTemplate: this.actionsColumn, sortable: false},
+				{width: 4, cellTemplate: this.actionsColumn, sortable: false},
 			]
 		});
 

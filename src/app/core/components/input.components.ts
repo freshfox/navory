@@ -96,7 +96,7 @@ export class InputComponent implements ControlValueAccessor {
 	};
 
 	private value: any = '';
-	private selector: string;
+	selector: string;
 	private disabledSet: boolean = false;
 
 	name: string;

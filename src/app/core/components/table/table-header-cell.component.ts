@@ -1,6 +1,5 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {TableColumn} from "./table-column.model";
-import {Input} from "@angular/core/src/metadata/directives";
 import {SortDirection} from "./sort-direction.enum";
 
 @Component({

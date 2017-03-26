@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable, EventEmitter} from "@angular/core";
 import {Http, Response} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {environment} from "../../environments/environment";
@@ -10,6 +10,8 @@ export class BaseService {
 	protected baseUrl: string;
 
 	private defaultHttpOptions = {withCredentials: true};
+
+	static onUnauthorized: EventEmitter<String> = new EventEmitter<String>();
 
 	constructor(private http: Http) {
 		this.baseUrl = environment.apiUrl;
@@ -60,6 +62,7 @@ export class BaseService {
 				break;
 			case 401:
 				errCode = ServiceErrorCode.Unauthorized;
+				BaseService.onUnauthorized.emit();
 				break;
 			case 503:
 				errCode = ServiceErrorCode.ServiceUnavailable;
@@ -94,7 +97,7 @@ export class BaseService {
 		return this.baseUrl + url;
 	}
 
-	getRestEntityPath(path: string, id: number) {
+	getRestEntityPath(path: string, id: string) {
 		return `${path}/${id}`;
 	}
 

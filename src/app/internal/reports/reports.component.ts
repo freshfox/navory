@@ -7,12 +7,12 @@ var moment = require('moment');
 })
 export class ReportsComponent implements OnInit {
 
-	private report;
+	report;
 
-	private loading: boolean = false;
-	private selectedQuarter: number;
-	private selectedYear: number;
-	private quarters = [
+	loading: boolean = false;
+	selectedQuarter: number;
+	selectedYear: number;
+	quarters = [
 		{
 			value: 0,
 			name: 'Q1'

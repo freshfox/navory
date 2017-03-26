@@ -16,8 +16,7 @@ nvry-button {
 }
 
 .button {
-	display: flex;
-	align-items: center;
+	display: block;
 	zoom: 1;
 	line-height: normal;
 	vertical-align: baseline;
@@ -36,6 +35,12 @@ nvry-button {
 	text-decoration: none;
 	border-radius: $buttonBorderRadius;
 	transition: color .25s ease, background .25s ease;
+
+	.button__inner {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
 	nvry-icon {
 		width: 12px;
@@ -113,6 +118,26 @@ nvry-button {
 	&.button--xsmall {
 		font-size: 11px;
 		padding: 5px 12px;
+	}
+
+	&.button--mini-rounded {
+		border-radius: 999px;
+		background-color: transparent;
+		border: 0;
+		width: 16px;
+		height: 16px;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		nvry-icon {
+			width: 14px;
+			height: 14px;
+			margin: 0;
+			fill: $colorGrayUltraDark;
+		}
 	}
 
 	&.button--dark {

@@ -1,16 +1,24 @@
 .signup-wrapper {
 
 	.header {
+
+		.headline-wrapper {
+			display: flex;
+			align-items: baseline;
+			justify-content: center;
+		}
+
 		.headline {
 			font-size: 46px;
 			line-height: 52px;
 			@include fontLight;
 			margin-bottom: 16px;
+		}
 
-			.logo {
-				font-size: 46px;
-				line-height: 52px;
-			}
+		.logo {
+			height: 36px;
+			flex: 0 0 230px;
+			margin-left: 20px;
 		}
 
 		.sub {

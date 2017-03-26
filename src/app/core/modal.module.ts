@@ -155,7 +155,7 @@ export class ModalPlaceholderComponent implements OnInit, AfterViewInit {
 		this.componentRef = componentRef;
 	}
 
-	private onBackdropClicked() {
+	onBackdropClicked() {
 		this.hide();
 	}
 

@@ -24,15 +24,15 @@ import {Payment} from "../../../models/payment";
 })
 export class IncomeEditComponent implements OnInit {
 
-	private loading: boolean = false;
-	private saving: boolean = false;
-	private form: FormGroup;
-	private alertMessage: string;
-	private nextIncomeNumber: number;
+	loading: boolean = false;
+	saving: boolean = false;
+	form: FormGroup;
+	alertMessage: string;
+	nextIncomeNumber: number;
 
-	private euVatTypes: any;
-	private taxRates: TaxRate[];
-	private income: Income;
+	euVatTypes: any;
+	taxRates: TaxRate[];
+	income: Income;
 
 
 	constructor(private incomeService: IncomeService,

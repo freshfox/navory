@@ -15,8 +15,12 @@
 		color: #fff;
 	}
 
-	&.success .msg {
+	&.alert--success .msg {
 		background: $colorSuccess;
+	}
+
+	&.alert--warning .msg {
+		background: $colorWarning;
 	}
 
 	&.visible {

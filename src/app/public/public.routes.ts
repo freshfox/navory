@@ -15,6 +15,7 @@ export const PublicRoutes: Routes = [
 			{path: 'forgot-password', component: ForgotPasswordComponent},
 			{path: 'forgot-password/:token', component: ResetPasswordComponent},
 			{path: 'signup', component: SignupComponent},
+			{path: 'signup/:data', component: SignupComponent},
 		]
 	},
 	{

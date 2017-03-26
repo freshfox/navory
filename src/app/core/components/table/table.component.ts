@@ -1,5 +1,4 @@
-import {Component, OnInit, EventEmitter, SimpleChange} from "@angular/core";
-import {Input, Output} from "@angular/core/src/metadata/directives";
+import {Component, OnInit, EventEmitter, SimpleChange, Input, Output} from "@angular/core";
 import {TableOptions} from "./table-options.model";
 import {TableColumn} from "./table-column.model";
 import {SortDirection} from "./sort-direction.enum";
@@ -21,11 +20,11 @@ import {Helpers} from "../../helpers";
                     
                     <span *ngIf="!column.cellTemplate" class="text">{{ getColumnValue(column, row) }}</span>
                     
-                    <template
+                    <ng-template
                         *ngIf="column.cellTemplate"
                         [ngTemplateOutlet]="column.cellTemplate"
                         [ngOutletContext]="{ value: getColumnValue(column, row), row: row, column: column }">
-                    </template>
+                    </ng-template>
                 </td>
             </tr>
         </tbody>

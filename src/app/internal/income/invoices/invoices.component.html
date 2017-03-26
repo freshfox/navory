@@ -35,16 +35,16 @@
 
 </nvry-table>
 
-<template #statusColumn let-row="row" let-value="value">
+<ng-template #statusColumn let-row="row" let-value="value">
 	<div class="badge badge--{{ getBadgeData(row).cssClass }}">
 		<span clasS="badge__text">{{ getBadgeData(row).text }}</span>
 	</div>
-</template>
+</ng-template>
 
-<template #actionsColumn let-row="row" let-value="value">
+<ng-template #actionsColumn let-row="row" let-value="value">
 	<nvry-dropdown>
 		<button (click)="editInvoice(row)">{{ 'actions.view' | translate }}</button>
 		<button (click)="deleteInvoice(row)">{{ 'actions.delete' | translate }}</button>
 	</nvry-dropdown>
-</template>
+</ng-template>
 

@@ -15,12 +15,12 @@ import {ErrorHandler} from "../../core/error-handler";
 })
 export class CustomerEditComponent implements OnInit {
 
-	private form: FormGroup;
-	private loading: boolean = false;
-	private countries: Country[];
-	private headerText: string;
-	private alertMessage: string;
-	private selectedCountryId: number;
+	form: FormGroup;
+	loading: boolean = false;
+	countries: Country[];
+	headerText: string;
+	alertMessage: string;
+	selectedCountryId: number;
 
 	@Input() customer: Customer;
 	@Output() onSaved: EventEmitter<Customer> = new EventEmitter<Customer>();

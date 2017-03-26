@@ -16,9 +16,9 @@ import {BankAccount} from "../../models/bank-account";
 export class PaymentsBankAccountComponent implements OnInit {
 
 	@Input() private bankAccount: BankAccount;
-	private payments: Payment[] = [];
-	private tableOptions: TableOptions;
-	private loading: boolean = false;
+	payments: Payment[] = [];
+	tableOptions: TableOptions;
+	loading: boolean = false;
 
 	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
 	@ViewChild('amountColumn') amountColumn: TemplateRef<any>;
@@ -27,7 +27,6 @@ export class PaymentsBankAccountComponent implements OnInit {
 				private translate: TranslateService,
 				private datePipe: DatePipe,
 				private modalService: ModalService) {
-		console.log('HEYHO');
 	}
 
 	ngOnInit() {
@@ -48,7 +47,7 @@ export class PaymentsBankAccountComponent implements OnInit {
 					width: 10,
 					alignment: ColumnAlignment.Right
 				},
-				{width: 5, cellTemplate: this.actionsColumn, sortable: false},
+				{width: 4, cellTemplate: this.actionsColumn, sortable: false},
 			]
 		});
 	}

@@ -15,7 +15,7 @@
 				<nvry-input [formControl]="form.controls.endDate" [(ngModel)]="endDate" type="date"
 							[label]="'settings.export.to' | translate"></nvry-input>
 
-				<nvry-button [loading]="loading" (click)="download()">{{ 'settings.export.download' | translate }}
+				<nvry-button (click)="download()">{{ 'settings.export.download' | translate }}
 				</nvry-button>
 			</div>
 		</div>

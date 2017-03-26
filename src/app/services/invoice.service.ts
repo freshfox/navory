@@ -5,14 +5,14 @@ import {Http} from "@angular/http";
 import {Invoice} from "../models/invoice";
 import {FileService} from "./file.service";
 import {Calculator} from "../core/calculator";
-import {Payment} from "../models/payment";
+import {AnalyticsService, AnalyticsEventType} from "./analytics.service";
 
 @Injectable()
 export class InvoiceService extends BaseService {
 
 	private pathInvoices = '/invoices';
 
-	constructor(http: Http, private fileService: FileService) {
+	constructor(http: Http, private fileService: FileService, private analytics: AnalyticsService) {
 		super(http);
 	}
 
@@ -28,7 +28,7 @@ export class InvoiceService extends BaseService {
 			});
 	}
 
-	getInvoice(id: number): Observable<Invoice> {
+	getInvoice(id: string): Observable<Invoice> {
 		return this.get(this.getRestEntityPath(this.pathInvoices, id))
 			.map(invoiceData => {
 				let invoice = new Invoice(invoiceData);
@@ -39,10 +39,16 @@ export class InvoiceService extends BaseService {
 	saveInvoice(invoice: Invoice) {
 		if (invoice.id) {
 			return this.patch(this.getRestEntityPath(this.pathInvoices, invoice.id), invoice)
-				.map(invoice => new Invoice(invoice));
+				.map(invoice => {
+					this.analytics.trackEvent(AnalyticsEventType.UpdateInvoice);
+					return new Invoice(invoice)
+				});
 		}
 		return this.post(this.pathInvoices, invoice)
-			.map(invoice => new Invoice(invoice));
+			.map(invoice => {
+				this.analytics.trackEvent(AnalyticsEventType.CreateInvoice);
+				return new Invoice(invoice)
+			});
 	}
 
 	deleteInvoice(invoice: Invoice): Observable<any> {

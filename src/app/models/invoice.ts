@@ -2,10 +2,11 @@ import {InvoiceLine} from "./invoice-line";
 import {BaseModel} from "../core/base.model";
 import {Calculator} from "../core/calculator";
 import {Payment} from "./payment";
+import {Customer} from "./customer";
 
 export class Invoice extends BaseModel {
 
-	id: number;
+	id: string;
 	number: number;
 	draft: boolean;
 	date: string;
@@ -13,6 +14,8 @@ export class Invoice extends BaseModel {
 	service_date_start: string;
 	service_date_end: string;
 	invoice_lines: InvoiceLine[];
+
+	customer: Customer;
 	customer_name: string;
 	customer_address: string;
 	customer_country_id: number;

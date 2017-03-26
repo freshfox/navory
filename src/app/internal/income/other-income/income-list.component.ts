@@ -17,13 +17,13 @@ import {ModalService} from "../../../core/modal.module";
 })
 export class IncomeListComponent implements OnInit {
 
-	private incomes: Income[];
-	private filteredIncomes: Income[];
+	incomes: Income[];
+	filteredIncomes: Income[];
 
-	private loading = false;
-	private selectedMonthIndex: number;
-	private selectedYear: number;
-	private tableOptions: TableOptions;
+	loading = false;
+	selectedMonthIndex: number;
+	selectedYear: number;
+	tableOptions: TableOptions;
 
 	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
 	@ViewChild('attachmentColumn') attachmentColumn: TemplateRef<any>;
@@ -56,7 +56,7 @@ export class IncomeListComponent implements OnInit {
 					width: 10,
 					alignment: ColumnAlignment.Right
 				},
-				{cellTemplate: this.actionsColumn, width: 5, sortable: false},
+				{cellTemplate: this.actionsColumn, width: 4, sortable: false},
 			]
 		});
 

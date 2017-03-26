@@ -22,16 +22,16 @@ export class InvoiceBookPaymentComponent {
 	@Output() onSaved: EventEmitter<Payment> = new EventEmitter<Payment>();
 	@Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
-	private saving: boolean = false;
+	saving: boolean = false;
 
 	constructor(private paymentService: PaymentService) {
 	}
 
-	private cancel() {
+	cancel() {
 		this.onCancel.next();
 	}
 
-	private save(payment: Payment) {
+	save(payment: Payment) {
 		this.saving = true;
 		this.paymentService.addPaymentToInvoice(this.invoiceId, payment)
 			.subscribe((payment: Payment) => {

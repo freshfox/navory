@@ -8,13 +8,70 @@
 
 	.ct-area {
 		fill: $color;
-		fill-opacity: .2;
+		fill-opacity: .08;
 	}
 }
 
 .dashboard-page {
 
 	padding: 30px $contentSidePadding;
+
+	display: flex;
+	flex-wrap: wrap;
+
+	.dashboard-box {
+		padding: 20px 30px;
+		padding-top: 0;
+		width: 50%;
+		margin-bottom: 30px;
+
+		&.dashboard-box--full {
+			width: 100%;
+		}
+
+		.title {
+			margin-bottom: 0;
+		}
+
+		.small {
+			color: $colorGray;
+		}
+
+		.number {
+			font-size: 32px;
+		}
+
+		.revenue-chart {
+			.ct-label {
+				font-size: 10px;
+				font-weight: normal;
+				color: $colorGrayMedium;
+				text-transform: uppercase;
+
+				&.ct-horizontal {
+					top: 10px;
+					position: relative;
+				}
+			}
+
+			.ct-point {
+				display: none;
+			}
+
+			.ct-grid {
+				stroke-dasharray: none;
+				stroke: rgba(0, 0, 0, 0.1);
+			}
+
+			.ct-line {
+				stroke-width: 2px;
+			}
+
+			.ct-series-a {
+				@include chartSeriesColor($colorPrimary);
+			}
+		}
+	}
 
 	.dashboard-overview-box-wrapper {
 		margin-bottom: 40px;
@@ -52,14 +109,36 @@
 		}
 	}
 
-	.ct-chart {
+	.invoice-stats-items {
+		margin-top: 10px;
+	}
+
+	.invoice-stats-item {
+		margin-bottom: 15px;
+
+		.title {
+			display: block;
+		}
+
+		.amount {
+			font-size: 22px;
+		}
+	}
+
+	.income-expense-chart {
+		margin-top: 15px;
+
+		svg {
+			overflow: visible;
+		}
+
 		.ct-label {
-			font-size: 12px;
-			font-weight: bold;
+			font-size: 10px;
 			color: $colorGrayMedium;
+			text-transform: uppercase;
 
 			&.ct-horizontal {
-				top: 10px;
+				top: 5px;
 				position: relative;
 			}
 		}

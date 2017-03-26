@@ -19,6 +19,7 @@ $colorGrayUltraDark: #1d2125;
 $colorDisabled: $colorGray;
 
 $colorSuccess: #7ece65;
+$colorWarning: #febb08;
 $colorError: #f87979;
 
 $colorIncome: #7ece65;
@@ -69,6 +70,7 @@ $contentSidePadding: 20px;
  * Typography
  */
 $fontFamily: 'Lato', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$fontSizeSmall: 11px;
 $fontSize: 13px;
 $fontSizeLarge: 16px;
 $defaultLineHeight: 1.5;

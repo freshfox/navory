@@ -1,5 +1,4 @@
-import {Component, OnInit, EventEmitter} from "@angular/core";
-import {Input, Output} from "@angular/core/src/metadata/directives";
+import {Component, OnInit, EventEmitter, Input, Output} from "@angular/core";
 
 @Component({
 	selector: 'nvry-year-selection',

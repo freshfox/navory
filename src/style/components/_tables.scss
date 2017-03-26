@@ -60,6 +60,10 @@ nvry-table {
 					}
 				}
 			}
+
+			&:last-child {
+				padding-right: 0;
+			}
 		}
 
 		th {

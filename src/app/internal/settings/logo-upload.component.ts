@@ -37,10 +37,10 @@ export class LogoUploadComponent implements OnInit, AfterViewInit {
 	@Input() logo: File;
 	@Output() logoChange: EventEmitter<File> = new EventEmitter<File>();
 	private dropzone: Dropzone;
-	private progress: number = 0;
-	private uploading: boolean = false;
-	private deleting: boolean = false;
-	private alertMessage: string;
+	progress: number = 0;
+	uploading: boolean = false;
+	deleting: boolean = false;
+	alertMessage: string;
 	@ViewChild('uploadArea') private uploadArea;
 
 	constructor(private accountService: AccountService, private translate: TranslateService) {

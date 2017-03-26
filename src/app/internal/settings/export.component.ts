@@ -10,18 +10,22 @@ var moment = require("moment");
 })
 export class ExportComponent implements OnInit {
 
-	private exportTypes;
-	private type: ExportType;
-	private startDate: string;
-	private endDate: string;
+	exportTypes;
+	type: ExportType;
+	startDate: string;
+	endDate: string;
 
-	private form: FormGroup;
+	form: FormGroup;
 
 	constructor(private translate: TranslateService, private fb: FormBuilder, private accountService: AccountService) {
 		this.exportTypes = [
 			{
 				value: ExportType.Income,
 				name: this.translate.instant('general.income')
+			},
+			{
+				value: ExportType.Invoices,
+				name: this.translate.instant('general.invoices')
 			},
 			{
 				value: ExportType.Expenses,

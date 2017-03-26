@@ -5,6 +5,7 @@ import {User} from "../models/user";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs";
 import {State} from "../core/state";
+import {Angulartics2} from "angulartics2";
 
 @Injectable()
 export class AuthService extends BaseService {
@@ -14,7 +15,7 @@ export class AuthService extends BaseService {
 	private pathRequestPasswordReset = '/password/reset';
 	private pathResetPassword = '/password/reset';
 
-	constructor(http: Http, private state: State) {
+	constructor(http: Http, private state: State, private analytics: Angulartics2) {
 		super(http);
 	}
 
@@ -24,6 +25,8 @@ export class AuthService extends BaseService {
 			password: password,
 			remember: remember
 		}).map(data => {
+			this.analytics.eventTrack.next({ action: 'login', properties: { category: 'auth' } });
+
 			let account = data.account as Account;
 			let user = data as User;
 			this.setLoggedInUser(user);
@@ -38,12 +41,22 @@ export class AuthService extends BaseService {
 		return this.delete(this.pathLogin)
 			.map(data => {
 				this.removeLoggedInUser();
+				(window as any).Intercom('shutdown');
 				return data;
 			});
 	}
 
 	setLoggedInUser(user: User) {
 		this.state.user = user;
+
+		(window as any).Intercom('update', {
+			user_id: user.id,
+			user_hash: user.intercom_user_hash,
+			name: user.firstname + ' ' + user.lastname,
+			email: user.email,
+			created_at: parseInt((new Date(user.created_at).getTime() / 1000).toFixed(0)) // Unix timestamp
+		});
+
 	}
 
 	removeLoggedInUser() {
@@ -72,6 +85,8 @@ export class AuthService extends BaseService {
 			password: data.password
 		})
 			.map(data => {
+				this.analytics.eventTrack.next({ action: 'signup', properties: { category: 'auth' } });
+
 				let user = data as User;
 				this.setLoggedInUser(user);
 				return data;

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ComponentRef} from "@angular/core";
+import {Component, OnInit, ViewChild, ComponentRef, AfterViewInit, ContentChild, ElementRef} from "@angular/core";
 import {Invoice} from "../../../models/invoice";
 import {InvoiceLine} from "../../../models/invoice-line";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -16,25 +16,30 @@ import {Helpers} from "../../../core/helpers";
 import {ModalService} from "../../../core/modal.module";
 import {InvoiceBookPaymentComponent} from "../../payments/invoice-book-payment.component";
 import {Payment} from "../../../models/payment";
-var moment = require('moment');
+import {CustomerService} from "../../../services/customer.service";
+import {Customer} from "../../../models/customer";
+import {CustomerEditComponent} from "../../customers/customer-edit.component";
+const moment = require('moment');
+const AutoComplete = require('javascript-autocomplete');
 
 @Component({
 	selector: 'nvry-invoice-edit',
 	templateUrl: './invoice-edit.component.html'
 })
-export class InvoiceEditComponent implements OnInit {
+export class InvoiceEditComponent implements OnInit, AfterViewInit {
 
-	private invoice: Invoice;
-	private countries: Country[];
+	invoice: Invoice;
+	countries: Country[];
 
-	private loading: boolean = false;
-	private saving: boolean = false;
-	private savingDraft: boolean = false;
+	loading: boolean = false;
+	saving: boolean = false;
+	savingDraft: boolean = false;
 
-	private form: FormGroup;
-	private createMode: boolean = true;
+	form: FormGroup;
+	createMode: boolean = true;
 
 	@ViewChild('previewModal') private previewModal: ModalComponent;
+	@ViewChild('customerName') private customerName: ElementRef;
 
 	constructor(private route: ActivatedRoute,
 				private invoiceService: InvoiceService,
@@ -44,7 +49,8 @@ export class InvoiceEditComponent implements OnInit {
 				private translate: TranslateService,
 				private modalService: ModalService,
 				private fb: FormBuilder,
-				private location: Location) {
+				private location: Location,
+				private customerService: CustomerService) {
 
 		this.invoice = new Invoice();
 		this.invoice.due_date = moment().add(1, 'M');
@@ -78,6 +84,61 @@ export class InvoiceEditComponent implements OnInit {
 			service_date_start: ["", Validators.compose([Validators.required, FormValidator.date])],
 			service_date_end: ["", Validators.compose([Validators.required, FormValidator.date])],
 			due_date: ["", Validators.compose([Validators.required, FormValidator.date])],
+		});
+	}
+
+	ngAfterViewInit() {
+		this.initCustomerAutocomplete();
+	}
+
+	initCustomerAutocomplete() {
+		let autocomplete = new AutoComplete({
+			selector: this.customerName.nativeElement.querySelector('input'),
+			delay: 50,
+			minChars: 2,
+			source: (term, response) => {
+				this.customerService.searchCustomers(term)
+					.subscribe(response);
+			},
+			renderItem: function (customer, search){
+				search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+				let re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+				return `<div class="autocomplete-suggestion" data-val="${customer.name}" data-id="${customer.id}">${customer.name.replace(re, "<b>$1</b>")}</div>`;
+			},
+			onSelect: (event, value, item) => {
+				let id = item.dataset.id;
+				this.customerService.getCustomer(id)
+					.subscribe(customer => {
+						this.updateCustomer(customer);
+					});
+			}
+		});
+	}
+
+	private updateCustomer(customer: Customer) {
+		this.invoice.customer = customer;
+		this.invoice.customer_name = customer.name;
+		this.invoice.customer_address = customer.address;
+		this.invoice.customer_vat_number = customer.vat_number;
+		this.invoice.customer_country_id = customer.country_id;
+	}
+
+	private removeCustomerLink() {
+		this.invoice.customer = null;
+	}
+
+	private editCustomer() {
+		this.modalService.create(CustomerEditComponent, {
+			customer: this.invoice.customer
+		}).subscribe((ref: ComponentRef<CustomerEditComponent>) => {
+			ref.instance.onSaved.subscribe((savedCustomer: Customer) => {
+				this.updateCustomer(savedCustomer);
+				this.modalService.hideCurrentModal();
+			});
+
+			ref.instance.onCancel.subscribe(() => {
+				this.modalService.hideCurrentModal();
+			});
 		});
 	}
 

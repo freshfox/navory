@@ -1,5 +1,4 @@
-import {Component, OnInit, SimpleChange, OnDestroy} from "@angular/core";
-import {Input} from "@angular/core/src/metadata/directives";
+import {Component, OnInit, SimpleChange, OnDestroy, Input} from "@angular/core";
 
 @Component({
 	selector: 'nvry-spinner',

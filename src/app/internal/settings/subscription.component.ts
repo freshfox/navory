@@ -13,10 +13,10 @@ let $ = require('jquery');
 export class SubscriptionComponent implements OnInit, AfterViewInit {
 
 	private hostedFieldsInstance;
-	private stepInfo: StepInfo[];
-	private numberOfSteps: number = 3;
-	private currentStepIndex = 0;
-	private account: Account;
+	stepInfo: StepInfo[];
+	numberOfSteps: number = 3;
+	currentStepIndex = 0;
+	account: Account;
 
     constructor(private translate: TranslateService, private state: State) { }
 

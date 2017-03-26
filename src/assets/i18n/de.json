@@ -60,7 +60,8 @@
 		"book-incoming-payment": "Eingehende Zahlung buchen",
 		"book-outgoing-payment": "Ausgehende Zahlung buchen",
 		"payments": "Zahlungen",
-		"total": "Gesamt"
+		"total": "Gesamt",
+		"invoices": "Rechnungen"
 	},
 	"app": {
 		"name": "Navory",
@@ -91,6 +92,7 @@
 		"remember": "Eingeloggt bleiben",
 		"submit": "Login",
 		"error-wrong-credentials": "Hmm, sieht so aus als wären diese Anmeldedaten nicht korrekt.",
+		"error-session-invalid": "Du warst zu lange inaktiv und wurdest deswegen automatisch ausgeloggt. Bitte logge dich erneut ein.",
 		"forgot-password": {
 			"link": "Passwort vergessen?",
 			"title": "Passwort zurücksetzen",
@@ -110,7 +112,7 @@
 		},
 		"signup": {
 			"login-notice": "Du hast schon einen Account? <strong>Hier einloggen</strong>",
-			"welcome": "Willkommen bei <span class='logo'>Navory</span>",
+			"welcome": "Willkommen bei",
 			"tagline": "Du bist nur noch ein paar Schritte von einfacher Buchhaltung entfernt.",
 			"steps": {
 				"signup": "Registrieren",
@@ -126,8 +128,8 @@
 	},
 	"dashboard": {
 		"title": "Übersicht",
-		"welcome": "Willkommen",
-		"income_expenses": "Einnahmen und Ausgaben (netto)",
+		"profit": "Gewinn",
+		"income_expenses": "Einnahmen und Ausgaben",
 		"current_year_notice": "Die Zahlen beziehen sich auf das aktuelle Kalenderjahr."
 	},
 	"income": {
@@ -177,7 +179,9 @@
 		"issue-success": "Rechnung erfolgreich fertiggestellt.",
 		"preview": "Vorschau",
 		"sum-amount": "Gesamtbetrag",
-		"open": "Offen"
+		"open": "Offen",
+		"edit-customer": "Kunde bearbeiten",
+		"remove-customer-link": "Kundenverknüpfung entfernen"
 	},
 	"expenses": {
 		"title": "Ausgaben",
