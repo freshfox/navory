@@ -23,7 +23,7 @@ export class AuthService extends BaseService {
 		return this.post(this.pathLogin, {
 			email: email,
 			password: password,
-			remember: remember
+			durable: remember
 		}).map(data => {
 			this.analytics.eventTrack.next({ action: 'login', properties: { category: 'auth' } });
 

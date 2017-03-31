@@ -31,7 +31,7 @@ export class LoginComponent {
 		this.form = fb.group({
 			'email': ["", Validators.compose([Validators.required, FormValidator.email])],
 			'password': ["", Validators.required],
-			// 'durable': [""]
+			'durable': [""]
 		});
 	}
 
