@@ -13,7 +13,7 @@
     "deploy": "firebase deploy"
   },
   "engines": {
-    "node": "6.10.0"
+    "node": "6.10.1"
   },
   "private": true,
   "dependencies": {
