@@ -90,6 +90,7 @@ import {Angulartics2Module, Angulartics2GoogleAnalytics} from "angulartics2";
 import {AnalyticsService} from "./services/analytics.service";
 import {LogoComponent} from "./core/components/logo.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {PublicGuard} from "./guards/public.guard";
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -192,6 +193,7 @@ export function translateStaticLoaderFactory(http: Http) {
 		ExpenseService,
 		State,
 		LoggedInGuard,
+		PublicGuard,
 		ErrorHandler,
 		Config,
 		NumberPipe,
