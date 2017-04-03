@@ -140,6 +140,11 @@ nvry-button {
 		}
 	}
 
+	&.button--gray {
+		background-color: $colorGray;
+		border-color: $colorGray;
+	}
+
 	&.button--dark {
 		background: darken($colorUltraDarkAccent, 15%);
 		border: 0;

@@ -1,39 +1,44 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 
 @Component({
 	selector: 'nvry-steps',
 	template: `
-		<div 	class="step"
-				[class.step--current]="step == currentIndex" 
-				[class.step--done]="step < currentIndex"
-				*ngFor="let step of steps" 
-				(click)="stepClicked(step)">
-			
-				<nvry-icon [name]="stepInfo[step].icon"></nvry-icon>
-				<span class="text">{{ step + 1 }}. {{ stepInfo[step].name }}</span>
+		<div class="step"
+			 [class.step--current]="indexForStep(step) == currentIndex"
+			 [class.step--done]="isStepDone(step)"
+			 *ngFor="let step of steps"
+			 (click)="stepClicked(step)">
+
+			<div class="text">{{ step.name }}</div>
+			<nvry-button class="button--clear step__change-link" *ngIf="isStepDone(step)">ändern</nvry-button>
 		</div>
 	`,
 })
 export class StepsComponent {
 
-	steps: Array<number>;
 
 	@Input() currentIndex: number = 0;
 	@Input() numberOfSteps: number;
-	@Input() stepInfo: StepInfo[];
-	@Output() currentIndexChange:EventEmitter<number> = new EventEmitter<number>();
+	@Input() steps: Step[];
+	@Output() currentIndexChange: EventEmitter<number> = new EventEmitter<number>();
 
 	ngOnInit() {
-		this.steps = Array(this.numberOfSteps).fill(1).map((x,i)=>i);
+	}
+
+	indexForStep(step): number {
+		return this.steps.indexOf(step);
+	}
+
+	isStepDone(step): boolean {
+		return this.indexForStep(step) < this.currentIndex;
 	}
 
 	stepClicked(number) {
-		//this.currentIndex = number;
-		//this.currentIndexChange.emit(this.currentIndex);
+		this.currentIndex = number;
+		this.currentIndexChange.emit(this.currentIndex);
 	}
 }
 
-export interface StepInfo {
+export interface Step {
 	name: string;
-	icon: string;
 }

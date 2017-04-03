@@ -57,14 +57,14 @@ export class ModalService {
 		});
 	}
 
-	create<T>(component: any, parameters?: Object): Observable<ComponentRef<T>> {
+	create<T>(component: any, parameters?: Object, slim: boolean = true): Observable<ComponentRef<T>> {
 		let factory = this.componentFactoryResolver.resolveComponentFactory(component);
-		return this.createFromFactory(factory, parameters);
+		return this.createFromFactory(factory, parameters, slim);
 	}
 
-	private createFromFactory<T>(componentFactory: ComponentFactory<T>,
-								 parameters?: Object): Observable<ComponentRef<T>> {
+	private createFromFactory<T>(componentFactory: ComponentFactory<T>, parameters?: Object, slim: boolean = true): Observable<ComponentRef<T>> {
 		this.placeholder.show();
+		this.placeholder.slim = slim;
 
 		let componentRef$ = new ReplaySubject();
 		const childInjector = ReflectiveInjector.resolveAndCreate([], this.injector);

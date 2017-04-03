@@ -91,6 +91,7 @@ import {AnalyticsService} from "./services/analytics.service";
 import {LogoComponent} from "./core/components/logo.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {PublicGuard} from "./guards/public.guard";
+import {SubscriptionFormComponent} from "./internal/settings/subscription-form.component";
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -157,14 +158,16 @@ export function translateStaticLoaderFactory(http: Http) {
 		TotalIndicatorComponent,
 		ExpenseBookPaymentComponent,
 		LogoUploadComponent,
-		LogoComponent
+		LogoComponent,
+		SubscriptionFormComponent
 	],
 	entryComponents: [
 		CustomerEditComponent,
 		InvoiceBookPaymentComponent,
 		IncomeBookPaymentComponent,
 		ExpenseBookPaymentComponent,
-		ConfirmComponent
+		ConfirmComponent,
+		SubscriptionFormComponent
 	],
 	imports: [
 		BrowserModule,

@@ -1,0 +1,71 @@
+<div class="content-column">
+
+	<div *ngIf="currentStepIndex == 0">
+		<div class="plan">
+			<div class="plan__inner">
+				<h3>Jährliche Zahlung</h3>
+				<div class="price">&euro; 10,-</div>
+				<div class="subtitle">pro Monat</div>
+			</div>
+		</div>
+
+		<div class="plan">
+			<div class="plan__inner">
+				<h3>Monatliche Zahlung</h3>
+				<div class="price">&euro; 12,-</div>
+				<div class="subtitle">pro Monat</div>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="currentStepIndex == 1">
+		<form>
+			<nvry-input [label]="'general.company' | translate"></nvry-input>
+			<nvry-input [label]="'general.address' | translate"></nvry-input>
+			<nvry-input [label]="'general.zip' | translate"></nvry-input>
+			<nvry-input [label]="'general.city' | translate"></nvry-input>
+			<nvry-input [label]="'general.country' | translate"
+						[disabled]="true"></nvry-input>
+			<nvry-input [label]="'general.vat-id' | translate"></nvry-input>
+		</form>
+	</div>
+
+	<!-- Card numbers
+    4111 1111 1111 1111: Visa
+    5555 5555 5555 4444: MasterCard
+    3714 496353 98431: American Express
+    -->
+
+	<div *ngIf="currentStepIndex == 2">
+
+		<div class="default-section">
+			<form class="credit-card-form scale-down">
+				<div class="cardinfo-card-number">
+					<label class="cardinfo-label" for="card-number">Card Number</label>
+					<div class='input-wrapper' id="card-number"></div>
+					<div id="card-image"></div>
+				</div>
+
+				<div class="cardinfo-wrapper">
+					<div class="cardinfo-exp-date">
+						<label class="cardinfo-label" for="expiration-date">Valid Thru</label>
+						<div class='input-wrapper' id="expiration-date"></div>
+					</div>
+
+					<div class="cardinfo-cvv">
+						<label class="cardinfo-label" for="cvv">CVV</label>
+						<div class='input-wrapper' id="cvv"></div>
+					</div>
+				</div>
+			</form>
+
+			<nvry-button (click)="submit()">{{ 'settings.subscription.pay' | translate }}</nvry-button>
+		</div>
+	</div>
+</div>
+
+<div class="steps-column">
+	<nvry-steps [numberOfSteps]="numberOfSteps" [steps]="stepInfo" [currentIndex]="currentStepIndex"></nvry-steps>
+
+	<nvry-button (click)="goToNextStep()">{{ 'general.next' | translate }}</nvry-button>
+</div>

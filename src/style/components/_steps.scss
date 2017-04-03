@@ -1,41 +1,44 @@
 nvry-steps {
-	display: flex;
-	justify-content: center;
 	width: 100%;
-	padding: 30px;
+	display: block;
 
 	.step {
-		text-align: center;
-		width: 230px;
+		border-left: 1px solid $colorPrimaryLight;
+		display: flex;
+		padding: 0 20px 30px;
+		position: relative;
 
-		border-right: 1px solid $colorGray;
+		&:first-child {
+			padding-top: 30px;
+		}
 
 		&:last-child {
-			margin-right: 0;
-			border: 0;
+			border-left: 0;
 		}
 
-		nvry-icon {
-			width: 30px;
-			height: 30px;
-			margin: 0 auto;
-			margin-bottom: 10px;
-			fill: $colorDisabled;
-		}
-
-		.text {
-			color: $colorDisabled;
+		&:before {
+			content: '';
 			display: block;
+			width: 15px;
+			height: 15px;
+			background-color: $colorPrimary;
+			border-radius: 999px;
+			position: absolute;
+			left: -8px;
+			transition: background-color .25s ease;
+			border: 1px solid $colorPrimaryLight;
 		}
 
 		&.step--current {
-			nvry-icon {
-				fill: $colorPrimary;
+			&:before {
+				background-color: white;
+				border-color: white;
 			}
+		}
 
-			.text {
-				color: $textColor;
-			}
+		.step__change-link {
+			margin-left: 10px;
+			color: $colorPrimaryDark;
 		}
 	}
 }

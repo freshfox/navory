@@ -5,7 +5,10 @@ import {Component, Input} from "@angular/core";
 	template: `
 	<svg>
 		<use attr.xlink:href="/assets/images/icons.svg#{{ name }}"></use>
-	</svg>`
+	</svg>`,
+	host: {
+		'class': 'icon'
+	}
 })
 export class IconComponent {
 	@Input() name;

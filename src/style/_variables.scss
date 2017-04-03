@@ -2,6 +2,7 @@
  * Colors
  */
 $colorPrimary: #4c89fb;
+$colorPrimaryDark: darken($colorPrimary, 50%);
 $colorPrimaryLight: lighten($colorPrimary, 10%);
 $colorPrimaryUltraLight: lighten($colorPrimary, 38%);
 $colorPrimaryUltraLighter: lighten($colorPrimary, 50%);

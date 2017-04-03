@@ -27,6 +27,7 @@
 @import "mixins/forms";
 @import "mixins/typography";
 @import "mixins/metrics";
+@import "mixins/misc";
 
 // Libraries that can't be imported via bower or are only available as CSS files
 @import "lib/dropzone";
@@ -71,8 +72,9 @@
 @import "modules/income";
 @import "modules/invoices";
 @import "modules/settings";
+@import "modules/settings/subscription";
+@import "modules/subscription";
 @import "modules/reports/vat";
 @import "modules/expenses";
 @import "modules/customers";
-@import "modules/subscription";
 @import "modules/payments";
