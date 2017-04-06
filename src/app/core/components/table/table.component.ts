@@ -16,6 +16,7 @@ import {Helpers} from "../../helpers";
             <tr *ngFor="let row of rows" (click)="rowClicked(row)">
                 <td *ngFor="let column of options.columns" 
                     [class.nvry-table-cell--align-right]="column.alignment == 'right'"
+					[class.nvry-table-cell--align-center]="column.alignment == 'center'"
                     [style.width] = "column.width + '%'">
                     
                     <span *ngIf="!column.cellTemplate" class="text">{{ getColumnValue(column, row) }}</span>

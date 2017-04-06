@@ -26,6 +26,7 @@ export class ExpensesComponent implements OnInit {
 
 	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
 	@ViewChild('attachmentColumn') attachmentColumn: TemplateRef<any>;
+	@ViewChild('paidColumn') paidColumn: TemplateRef<any>;
 
 	constructor(private expenseService: ExpenseService,
 				private translate: TranslateService,
@@ -49,6 +50,7 @@ export class ExpensesComponent implements OnInit {
 				{name: this.translate.instant('general.description'), prop: 'description'},
 				{name: this.translate.instant('general.date'), prop: 'date', width: 12, pipe: this.datePipe},
 				{name: this.translate.instant('general.category'), prop: 'category.name', width: 20},
+				{name: this.translate.instant('general.paid'), width: 8, cellTemplate: this.paidColumn, alignment: ColumnAlignment.Center},
 				{
 					name: this.translate.instant('general.amount_net'),
 					prop: 'price',
@@ -99,6 +101,19 @@ export class ExpensesComponent implements OnInit {
 		this.router.navigate([`/expenses/new`], {
 			queryParams: {copy: expense.id}
 		});
+	}
+
+
+	isFullyPaid(expense: Expense) {
+		return expense.unpaid_amount <= 0;
+	}
+
+	isPartlyPaid(expense: Expense) {
+		return !this.isFullyPaid(expense) && !this.isNotPaid(expense);
+	}
+
+	isNotPaid(expense: Expense) {
+		return expense.getAmountGross() === expense.unpaid_amount;
 	}
 
 
