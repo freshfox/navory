@@ -5,6 +5,7 @@ import {ErrorHandler} from "../../core/error-handler";
 import {NotificationsService} from "angular2-notifications/src/notifications.service";
 import {TranslateService} from "ng2-translate";
 import {AccountSettings} from "../../models/account-settings";
+import {BootstrapService} from "../../services/bootstrap.service";
 
 @Component({
 	templateUrl: './account-settings.component.html'
@@ -18,6 +19,7 @@ export class AccountSettingsComponent implements OnInit {
 	alertMessage: string;
 
 	constructor(private accountService: AccountService,
+				private bootstrapService: BootstrapService,
 				private errorHandler: ErrorHandler,
 				private notificationService: NotificationsService,
 				private translate: TranslateService) {
@@ -45,5 +47,17 @@ export class AccountSettingsComponent implements OnInit {
 					this.saving = false;
 				}
 			);
+	}
+
+	get accountCountryName(): string {
+		let countries = this.bootstrapService.getCountries()
+		let foundCountry = null;
+		countries.forEach((country) => {
+			if (country.id === this.account.country_id) {
+				foundCountry = country;
+			}
+		});
+
+		return foundCountry.name;
 	}
 }
