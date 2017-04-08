@@ -10,6 +10,36 @@
 		.user {
 			margin-left: auto;
 		}
+
+		.whats-new-badge {
+			display: flex;
+			align-items: center;
+			margin-right: 40px;
+
+			#HW_badge_cont {
+				display: flex;
+				align-items: center;
+				width: 100%;
+
+				&:before {
+					content: 'Was ist neu?';
+					display: block;
+					margin-right: 5px;
+				}
+			}
+
+			#HW_badge {
+				background: $colorPrimary;
+				left: auto;
+				top: 0;
+				right: 0;
+				position: relative;
+
+				&.HW_softHidden {
+					background: $colorGray;
+				}
+			}
+		}
 	}
 
 	.logo {
@@ -47,7 +77,7 @@
 		}
 
 		.username {
-			margin-right: 10px;
+			margin-right: 2px;
 		}
 	}
 }
