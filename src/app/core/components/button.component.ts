@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, SimpleChange, AfterViewInit, OnChanges} from "@angular/core";
+import {Component, ElementRef, Input, SimpleChange, AfterViewInit, OnChanges, OnDestroy} from "@angular/core";
 let Ladda = require('ladda');
 
 @Component({
@@ -14,7 +14,7 @@ let Ladda = require('ladda');
 		   
 		</button>`
 })
-export class ButtonComponent implements AfterViewInit, OnChanges {
+export class ButtonComponent implements AfterViewInit, OnChanges, OnDestroy {
 
 	@Input() loading;
 	@Input() class;
@@ -42,6 +42,12 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
 		}
 	}
 
+	ngOnDestroy() {
+		if(this.laddaButton) {
+			this.laddaButton.remove();
+		}
+	}
+
 	updateLoadingState(newLoadingState) {
 		if (this.laddaButton) {
 			if (newLoadingState) {
@@ -51,5 +57,6 @@ export class ButtonComponent implements AfterViewInit, OnChanges {
 			}
 		}
 	}
+
 
 }
