@@ -32,7 +32,7 @@
 				{{ 'invoices.save-draft' | translate }}
 			</nvry-button>
 
-			<nvry-button (click)="save()"
+			<nvry-button (click)="saveOnly()"
 						 class="button--secondary"
 						 [loading]="saving && !savingDraft"
 						 *ngIf="!invoice.draft">{{ 'general.save' | translate }}</nvry-button>

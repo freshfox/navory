@@ -193,7 +193,15 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	save(): Observable<any> {
+	saveOnly() {
+		if(this.form.valid) {
+			this.save().subscribe(() => {
+				this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
+			});
+		}
+	}
+
+	private save(): Observable<any> {
 		Helpers.validateAllFields(this.form);
 		if(this.form.valid) {
 			this.saving = true;
