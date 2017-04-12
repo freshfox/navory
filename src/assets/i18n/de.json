@@ -181,7 +181,8 @@
 		"sum-amount": "Gesamtbetrag",
 		"open": "Offen",
 		"edit-customer": "Kunde bearbeiten",
-		"remove-customer-link": "Kundenverknüpfung entfernen"
+		"remove-customer-link": "Kundenverknüpfung entfernen",
+		"save-error": "Die Rechnung konnte nicht gespeichert werden."
 	},
 	"expenses": {
 		"title": "Ausgaben",

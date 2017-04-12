@@ -19,6 +19,7 @@ import {Payment} from "../../../models/payment";
 import {CustomerService} from "../../../services/customer.service";
 import {Customer} from "../../../models/customer";
 import {CustomerEditComponent} from "../../customers/customer-edit.component";
+import {Observable} from "rxjs";
 const moment = require('moment');
 const AutoComplete = require('javascript-autocomplete');
 
@@ -176,46 +177,50 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 		if(this.form.valid) {
 			this.invoice.draft = true;
 			this.savingDraft = true;
-			this.save();
+			this.save().subscribe(() => {
+				this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
+			});
 		}
 	}
 
 	saveAndIssue() {
 		if(this.form.valid) {
 			this.invoice.draft = false;
-			this.invoice.number = this.invoice.number || this.nextInvoiceNumber;
-			this.save();
+			this.save().subscribe(() => {
+				this.state.nextInvoiceNumber++;
+				this.notificationService.success(null, this.translate.instant('invoice.issue-success'));
+			});
 		}
 	}
 
-	save() {
+	save(): Observable<any> {
 		Helpers.validateAllFields(this.form);
 		if(this.form.valid) {
 			this.saving = true;
-			this.invoiceService.saveInvoice(this.invoice)
-				.subscribe(
-					(updatedInvoice: Invoice) => {
 
-						// Update nextInvoiceNumber if invoice has been issued
-						if (this.invoice.draft && !updatedInvoice.draft) {
-							this.state.nextInvoiceNumber++;
-							this.notificationService.success(null, this.translate.instant('invoice.issue-success'));
-						} else {
-							this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
-						}
+			let complete = new Observable(observer => {
+				this.invoiceService.saveInvoice(this.invoice)
+					.subscribe((updatedInvoice: Invoice) => {
+							if(!this.invoice.id && updatedInvoice.id) {
+								this.location.replaceState(`/invoices/${updatedInvoice.id}`);
+							}
 
-						if(!this.invoice.id && updatedInvoice.id) {
-							this.location.replaceState(`/invoices/${updatedInvoice.id}`);
-						}
+							this.invoice = updatedInvoice;
+							this.saving = false;
+							this.savingDraft = false;
+							this.createMode = false;
 
-						this.invoice = updatedInvoice;
-						this.saving = false;
-						this.savingDraft = false;
-						this.createMode = false;
-					},
-					error => {
-						// TODO
-					});
+							observer.next();
+							observer.complete();
+						},
+						error => {
+							this.saving = false;
+							this.notificationService.error(null, this.translate.instant('invoices.save-error'));
+						});
+
+			});
+
+			return complete;
 		}
 	}
 
