@@ -1,25 +1,39 @@
-import {Component, ElementRef} from "@angular/core";
+import {AfterViewInit, Component} from "@angular/core";
 import {ReportService} from "../../services/report.service";
-import {ModalService} from "../../core/modal.module";
 import {NumberPipe} from "../../core/pipes/number.pipe";
-var moment = require('moment');
-var Chartist = require('chartist');
+let moment = require('moment');
+let Chartist = require('chartist');
 
 @Component({
 	templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent {
+export class DashboardComponent implements AfterViewInit {
 
-	private year: string;
+	year: number;
 	data;
 	loading: boolean = false;
 
-	constructor(private reportService: ReportService, private el: ElementRef, private modalService: ModalService, private numberPipe: NumberPipe) {
+	private revenueChart: any;
+
+	constructor(private reportService: ReportService, private numberPipe: NumberPipe) {
 	}
 
 	ngOnInit() {
+		this.year = new Date().getFullYear();
+	}
+
+	ngAfterViewInit() {
 		this.loading = true;
-		this.reportService.getFinanceOverview()
+		this.updateData();
+	}
+
+	yearChanged() {
+		this.updateData();
+	}
+
+	updateData() {
+		console.log(this.year);
+		this.reportService.getFinanceOverview(this.year)
 			.subscribe((data) => {
 				this.loading = false;
 				this.data = data;
@@ -28,29 +42,32 @@ export class DashboardComponent {
 					this.showIncomeExpenseChart();
 				}, 100);
 			});
-
-		this.year = '' + new Date().getFullYear();
-	}
-
-	ngAfterViewInit() {
 	}
 
 	get profitInfo(): string {
 		let monthIndex = new Date().getMonth();
 		let month = this.data.months[monthIndex];
 
+		let formatted = this.numberPipe.transform(month.revenue.totalGross);
 		if (month.revenue.totalGross > 0) {
-			let formatted = this.numberPipe.transform(month.revenue.totalGross);
-			return `Diesen Monat hast du € ${formatted} Gewinn gemacht.`;
+			if (this.isCurrentYearSelected()) {
+				return `Diesen Monat hast du € ${formatted} Gewinn gemacht.`;
+			}
 		}
 
 		month = this.data.months[monthIndex - 1];
 		if (month.revenue.totalGross > 0) {
-			let formatted = this.numberPipe.transform(month.revenue.totalGross);
-			return `Letzten Monat hast du € ${formatted} Gewinn gemacht.`;
+			if (this.isCurrentYearSelected()) {
+				return `Letzten Monat hast du € ${formatted} Gewinn gemacht.`;
+			}
 		}
 
-		return null;
+		let monthName = moment().format('MMMM');
+		return `Im ${monthName} ${this.year} hast du € ${formatted} Gewinn gemacht.`;
+	}
+
+	isCurrentYearSelected() {
+		return this.year === new Date().getFullYear();
 	}
 
 	showRevenueChart() {
@@ -59,35 +76,56 @@ export class DashboardComponent {
 			revenue.push(month.revenue.accumulatedTotalGross);
 		});
 
-		var chart = new Chartist.Line('.revenue-chart', {
-				labels: moment.monthsShort(),
-				series: [
-					revenue,
-				]
-			}, {
-				seriesBarDistance: 0,
-				height: '120px',
-				lineSmooth: Chartist.Interpolation.none(),
-				chartPadding: {
-					left: 0,
-					right: 0
-				},
-				low: 0,
-				fullWidth: true,
-				showArea: true,
-				axisY: {
-					onlyInteger: true,
-					offset: 0,
-					showGrid: false,
-					labelInterpolationFnc: function (value) {
-						return '';
+		let chartData = {
+			labels: moment.monthsShort(),
+			series: [
+				revenue,
+			]
+		};
+
+		if (!this.revenueChart) {
+			this.revenueChart = new Chartist.Line('.revenue-chart', chartData, {
+					seriesBarDistance: 0,
+					height: '120px',
+					lineSmooth: Chartist.Interpolation.none(),
+					chartPadding: {
+						left: 0,
+						right: 0
 					},
-				},
-				axisX: {
-					showGrid: false
+					low: 0,
+					fullWidth: true,
+					showArea: true,
+					axisY: {
+						onlyInteger: true,
+						offset: 0,
+						showGrid: false,
+						labelInterpolationFnc: function (value) {
+							return '';
+						},
+					},
+					axisX: {
+						showGrid: false
+					}
 				}
-			}
-		);
+			);
+
+			this.revenueChart.on('draw', function (data) {
+				let duration = 250;
+				if(data.type === 'line' || data.type === 'area') {
+					data.element.animate({
+						d: {
+							begin: 0,
+							dur: 5000,
+							to: data.path.clone().stringify(),
+							easing: Chartist.Svg.Easing.easeOutQuint
+						}
+					});
+				}
+			});
+		}
+
+		this.revenueChart.update(chartData);
+
 	}
 
 	showIncomeExpenseChart() {
@@ -129,8 +167,20 @@ export class DashboardComponent {
 		);
 
 		chart.on('draw', function (data) {
-			if (data.type === 'line' || data.type === 'area') {
+			let durations = 500;
+			console.log(data.type);
+			if (data.type === 'bar') {
+				console.log(data);
+				data.element.animate({
+					y2: {
+						begin: 0,
+						dur: durations,
+						from: data.y1,
+						to: data.y2,
+						easing: 'easeOutQuart'
+					},
 
+				});
 			}
 		});
 	}

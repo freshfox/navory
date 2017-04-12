@@ -2,6 +2,7 @@ import {BaseService} from "./base.service";
 import {Http} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
+const moment = require('moment');
 
 @Injectable()
 export class ReportService extends BaseService {
@@ -19,8 +20,15 @@ export class ReportService extends BaseService {
 		return this.get(path);
 	}
 
-	getFinanceOverview(): Observable<any> {
-		return this.get(this.pathFinance);
+	getFinanceOverview(year: number): Observable<any> {
+		let yearDate = new Date();
+		yearDate.setFullYear(year);
+		let start = moment(yearDate).startOf('year').format('YYYY-MM-DD');
+		let end = moment(yearDate).endOf('year').format('YYYY-MM-DD');
+
+		let path = `${this.pathFinance}?start=${start}&end=${end}`;
+
+		return this.get(path);
 	}
 
 }
