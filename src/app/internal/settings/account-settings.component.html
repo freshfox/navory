@@ -11,7 +11,7 @@
 				<nvry-input [label]="'general.address' | translate" [(ngModel)]="account.address"></nvry-input>
 				<nvry-input [label]="'general.zip' | translate" [(ngModel)]="account.zip"></nvry-input>
 				<nvry-input [label]="'general.city' | translate" [(ngModel)]="account.city"></nvry-input>
-				<nvry-input [label]="'general.country' | translate" (ngModel)="accountCountryName"
+				<nvry-input [label]="'general.country' | translate" [ngModel]="accountCountryName"
 							[disabled]="true"></nvry-input>
 			</div>
 
