@@ -32,7 +32,6 @@ export class DashboardComponent implements AfterViewInit {
 	}
 
 	updateData() {
-		console.log(this.year);
 		this.reportService.getFinanceOverview(this.year)
 			.subscribe((data) => {
 				this.loading = false;
@@ -168,9 +167,7 @@ export class DashboardComponent implements AfterViewInit {
 
 		chart.on('draw', function (data) {
 			let durations = 500;
-			console.log(data.type);
 			if (data.type === 'bar') {
-				console.log(data);
 				data.element.animate({
 					y2: {
 						begin: 0,
