@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {AccountService} from "../../services/account.service";
 import {Account} from "../../models/account";
 import {ErrorHandler} from "../../core/error-handler";
-import {NotificationsService} from "angular2-notifications/src/notifications.service";
+import {NotificationsService} from "angular2-notifications";
 import {TranslateService} from "ng2-translate";
 import {AccountSettings} from "../../models/account-settings";
 import {BootstrapService} from "../../services/bootstrap.service";
