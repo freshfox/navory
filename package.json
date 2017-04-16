@@ -32,6 +32,7 @@
     "bourbon": "4.3.3",
     "braintree-web": "^3.6.1",
     "chartist": "^0.9.8",
+    "chosen-js": "^1.7.0",
     "core-js": "^2.4.1",
     "dropzone": "^4.3.0",
     "gulp": "^3.9.1",
@@ -44,7 +45,6 @@
     "numbro": "^1.9.3",
     "pikaday": "^1.4.0",
     "rxjs": "^5.1.0",
-    "select2": "^4.0.3",
     "ts-helpers": "^1.1.1",
     "validator": "^6.0.0",
     "zone.js": "^0.8.4"

@@ -61,7 +61,8 @@
 		"book-outgoing-payment": "Ausgehende Zahlung buchen",
 		"payments": "Zahlungen",
 		"total": "Gesamt",
-		"invoices": "Rechnungen"
+		"invoices": "Rechnungen",
+		"no-results-for": "Keine Ergebnisse für"
 	},
 	"app": {
 		"name": "Navory",

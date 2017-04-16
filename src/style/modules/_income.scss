@@ -29,7 +29,7 @@
 
 		&:first-child {
 			input,
-			.select2-selection--single {
+			.chosen-single {
 				border-top-right-radius: 0;
 				border-bottom-right-radius: 0;
 			}
@@ -37,7 +37,7 @@
 
 		&:last-child {
 			input,
-			.select2-selection--single {
+			.chosen-single {
 				border-left-width: 0;
 				border-top-left-radius: 0;
 				border-bottom-left-radius: 0;
