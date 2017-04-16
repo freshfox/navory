@@ -188,7 +188,7 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 			this.invoice.draft = false;
 			this.save().subscribe(() => {
 				this.state.nextInvoiceNumber++;
-				this.notificationService.success(null, this.translate.instant('invoice.issue-success'));
+				this.notificationService.success(null, this.translate.instant('invoices.issue-success'));
 			});
 		}
 	}
