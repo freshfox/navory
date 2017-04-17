@@ -17,6 +17,7 @@ import {Payment} from "../../models/payment";
 import {ModalService} from "../../core/modal.module";
 import {TranslateService} from "ng2-translate";
 import {ExpenseBookPaymentComponent} from "../payments/expense-book-payment.component";
+import {NotificationsService} from "angular2-notifications";
 
 @Component({
 	templateUrl: './expense-edit.component.html'
@@ -40,7 +41,7 @@ export class ExpenseEditComponent implements OnInit {
 	constructor(private expenseService: ExpenseService,
 				private fb: FormBuilder,
 				private route: ActivatedRoute,
-				private router: Router,
+				private notificationService: NotificationsService,
 				private taxRateService: TaxRateService,
 				private state: State,
 				private errorHandler: ErrorHandler,
@@ -166,7 +167,7 @@ export class ExpenseEditComponent implements OnInit {
 						}
 						this.expense = expense;
 						this.saving = false;
-						this.router.navigate(['/expenses']);
+						this.notificationService.success(null, this.translate.instant('expenses.save-success'));
 					},
 					(error: ServiceError) => {
 						this.saving = false;

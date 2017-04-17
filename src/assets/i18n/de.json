@@ -194,7 +194,8 @@
 		"create_title": "Neue Ausgabe",
 		"edit_title": "Ausgabe bearbeiten",
 		"copy_title": "Ausgabe kopieren",
-		"eu_tax_rate": "Zu versteuern mit"
+		"eu_tax_rate": "Zu versteuern mit",
+		"save-success": "Ausgabe erfolgreich gespeichert."
 	},
 	"reports": {
 		"title": "Berichte",
