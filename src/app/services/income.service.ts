@@ -4,7 +4,6 @@ import {Observable} from "rxjs";
 import {Income} from "../models/income";
 import {Http} from "@angular/http";
 import {EuVatType} from "../core/enums/eu-vat-type.enum";
-import {Payment} from "../models/payment";
 
 @Injectable()
 export class IncomeService extends BaseService {
