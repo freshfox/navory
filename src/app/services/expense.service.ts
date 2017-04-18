@@ -42,7 +42,10 @@ export class ExpenseService extends BaseService {
 		}
 
 		if (!expense.id) {
-			return this.post(this.pathExpenses, expense);
+			return this.post(this.pathExpenses, expense)
+				.map(data => {
+					return new Expense(data);
+				});
 		}
 
 		let path = this.pathExpenses + `/${expense.id}`;
