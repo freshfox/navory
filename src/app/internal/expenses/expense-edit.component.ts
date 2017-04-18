@@ -18,6 +18,7 @@ import {ModalService} from "../../core/modal.module";
 import {TranslateService} from "ng2-translate";
 import {ExpenseBookPaymentComponent} from "../payments/expense-book-payment.component";
 import {NotificationsService} from "angular2-notifications";
+import {Location} from "@angular/common";
 
 @Component({
 	templateUrl: './expense-edit.component.html'
@@ -47,7 +48,8 @@ export class ExpenseEditComponent implements OnInit {
 				private errorHandler: ErrorHandler,
 				private bootstrapService: BootstrapService,
 				private modalService: ModalService,
-				private translate: TranslateService) {
+				private translate: TranslateService,
+				private location: Location) {
 
 		this.expense = new Expense();
 		this.expenseCategories = this.state.expenseCategories;
@@ -164,6 +166,7 @@ export class ExpenseEditComponent implements OnInit {
 						let isNew = !this.expense.id;
 						if (isNew) {
 							this.state.nextExpenseNumber++;
+							this.location.replaceState(`/expenses/${expense.id}`);
 						}
 						this.expense = expense;
 						this.saving = false;

@@ -17,6 +17,7 @@ import {TranslateService} from "ng2-translate";
 import {ModalService} from "../../../core/modal.module";
 import {IncomeBookPaymentComponent} from "../../payments/income-book-payment.component";
 import {Payment} from "../../../models/payment";
+import {Location} from "@angular/common";
 
 @Component({
 	selector: 'nvry-income-edit',
@@ -44,7 +45,8 @@ export class IncomeEditComponent implements OnInit {
 				private bootstrapService: BootstrapService,
 				private notificationService: NotificationsService,
 				private translate: TranslateService,
-				private modalService: ModalService) {
+				private modalService: ModalService,
+				private location: Location) {
 
 		this.income = new Income();
 		this.nextIncomeNumber = this.state.nextIncomeNumber;
@@ -129,6 +131,7 @@ export class IncomeEditComponent implements OnInit {
 						let isNew = !this.income.id;
 						if (isNew) {
 							this.state.nextIncomeNumber++;
+							this.location.replaceState(`/income/${income.id}`);
 						}
 						this.income = income;
 						this.saving = false;
