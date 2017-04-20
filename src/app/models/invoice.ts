@@ -13,6 +13,7 @@ export class Invoice extends BaseModel {
 	due_date: string;
 	service_date_start: string;
 	service_date_end: string;
+	comment: string;
 	invoice_lines: InvoiceLine[];
 
 	customer: Customer;

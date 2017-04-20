@@ -62,7 +62,12 @@
 		"payments": "Zahlungen",
 		"total": "Gesamt",
 		"invoices": "Rechnungen",
-		"no-results-for": "Keine Ergebnisse für"
+		"no-results-for": "Keine Ergebnisse für",
+		"note": "Hinweis",
+		"unit": "Einheit",
+		"vat-abbr": "USt.",
+		"price-net": "Preis (netto)",
+		"quantity": "Menge"
 	},
 	"app": {
 		"name": "Navory",
@@ -183,7 +188,9 @@
 		"open": "Offen",
 		"edit-customer": "Kunde bearbeiten",
 		"remove-customer-link": "Kundenverknüpfung entfernen",
-		"save-error": "Die Rechnung konnte nicht gespeichert werden."
+		"save-error": "Die Rechnung konnte nicht gespeichert werden.",
+		"new-line": "Neue Zeile",
+		"comment-placeholder": "Gib hier Hinweise für deinen Kunden ein."
 	},
 	"expenses": {
 		"title": "Ausgaben",

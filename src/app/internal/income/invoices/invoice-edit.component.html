@@ -124,12 +124,12 @@
 			<div class="invoice-edit-paper-section lines">
 				<div class="invoice-lines-container">
 					<div class="header">
-						<span class="title-header">Produkt</span>
-						<span class="quantity-header">Menge</span>
-						<span class="unit-header">Einheit</span>
-						<span class="price-header">Preis (netto)</span>
-						<span class="taxrate-header">USt.</span>
-						<span class="amount-header">Betrag (netto)</span>
+						<span class="title-header">{{ 'general.product' | translate }}</span>
+						<span class="quantity-header">{{ 'general.quantity' | translate }}</span>
+						<span class="unit-header">{{ 'general.unit' | translate }}</span>
+						<span class="price-header">{{ 'general.price-net' | translate }}</span>
+						<span class="taxrate-header">{{ 'general.vat-abbr' | translate }}</span>
+						<span class="amount-header">{{ 'general.amount_net' | translate }}</span>
 					</div>
 
 					<div id="lines-list">
@@ -140,11 +140,15 @@
 					</div>
 				</div>
 
-				<nvry-button class="button--secondary" (click)="addLine()">Neue Zeile</nvry-button>
+				<nvry-button class="button--secondary" (click)="addLine()">{{ 'invoices.new-line' | translate }}</nvry-button>
 			</div>
 
 			<div class="invoice-edit-paper-section invoice-total">
 				<nvry-total-indicator [totalNet]="getTotalNet()" [totalGross]="getTotalGross()" [rates]="getOccuringTaxRates()"></nvry-total-indicator>
+			</div>
+
+			<div class="invoice-edit-paper-section">
+				<nvry-textarea [label]="'general.note' | translate" [placeholder]="'invoices.comment-placeholder' | translate" [(ngModel)]="invoice.comment"></nvry-textarea>
 			</div>
 		</div>
 	</div>
