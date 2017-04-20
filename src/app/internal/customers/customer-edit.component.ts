@@ -20,7 +20,7 @@ export class CustomerEditComponent implements OnInit {
 	countries: Country[];
 	headerText: string;
 	alertMessage: string;
-	selectedCountryId: number;
+	selectedCountryId: string;
 
 	@Input() customer: Customer;
 	@Output() onSaved: EventEmitter<Customer> = new EventEmitter<Customer>();

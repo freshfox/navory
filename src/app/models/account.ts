@@ -3,7 +3,7 @@ export class Account {
 	address: string;
 	zip: string;
 	city: string;
-	country: string;
+	country_id: string;
 	vat_number: string;
 	phone: string;
 	email: string;

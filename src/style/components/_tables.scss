@@ -61,6 +61,14 @@ nvry-table {
 				}
 			}
 
+			&.nvry-table-cell--align-center {
+				text-align: center;
+
+				.nvry-table-header-cell__inner {
+					justify-content: center;
+				}
+			}
+
 			&:last-child {
 				padding-right: 0;
 			}

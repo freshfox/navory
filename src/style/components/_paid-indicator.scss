@@ -1,0 +1,31 @@
+.paid-indicator {
+
+	$paidIndicatorSize: 12px;
+	width: $paidIndicatorSize;
+	height: $paidIndicatorSize;
+	display: block;
+	border-radius: 999px;
+	border: 2px solid $colorExpenses;
+	margin: 0 auto;
+	position: relative;
+
+	&.paid-indicator--full {
+		background-color: $colorIncome;
+		border-color: $colorIncome;
+	}
+
+	&.paid-indicator--partly {
+		border-color: $colorWarning;
+		&:before {
+			content: '';
+			display: block;
+			width: 100%;
+			left: 0;
+			bottom: 0;
+			height: 55%;
+			position: absolute;
+			background-color: $colorWarning;
+		}
+	}
+
+}

@@ -67,7 +67,7 @@ import {PaymentsComponent} from "./internal/payments/payments.component";
 import {DropdownComponent} from "./core/components/dropdown.component";
 import {ExportComponent} from "./internal/settings/export.component";
 import {AccountService} from "./services/account.service";
-import {SimpleNotificationsModule} from "angular2-notifications/src/simple-notifications.module";
+import {SimpleNotificationsModule} from "angular2-notifications";
 import {SafePipe} from "./core/pipes/safe.pipe";
 import {DocumentPreviewComponent} from "./core/components/document-preview.component";
 import {FiveZeroThreeComponent} from "./core/components/503.component";

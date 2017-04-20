@@ -1,12 +1,14 @@
-import {Component} from "@angular/core";
+import {AfterViewInit, Component} from "@angular/core";
 import {State} from "../core/state";
 import {Router, ActivatedRoute} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 
+declare let Headway: any;
+
 @Component({
 	templateUrl: './internal.component.html'
 })
-export class InternalComponent {
+export class InternalComponent implements AfterViewInit {
 
 	navItems = [
 		{
@@ -65,6 +67,36 @@ export class InternalComponent {
 		let bootstrap = this.route.snapshot.data['bootstrap'];
 		Object.assign(this.state, bootstrap);
 		this.state.expenseCategories = bootstrap.categories;
+	}
+
+	ngAfterViewInit() {
+		this.initHeadway();
+	}
+
+	ngOnDestroy() {
+		console.log('destroying headway');
+		this.destroyHeadway();
+	}
+
+	initHeadway() {
+		let config = {
+			selector: ".whats-new-badge",
+			account: "JP3nD7",
+			translations: {
+				title: "Updates",
+				readMore: "Mehr",
+				labels: {
+					"new": "Neu",
+					"improvement": "Updates",
+					"fix": "Bugfix"
+				}
+			}
+		};
+		Headway.init(config);
+	}
+
+	destroyHeadway() {
+		Headway.destroy();
 	}
 
 	logout() {

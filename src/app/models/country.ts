@@ -1,6 +1,6 @@
 export class Country {
 
-	id: number;
+	id: string;
 	name: string;
 	cca2: string;
 	cca3: string;

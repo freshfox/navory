@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewChild, ComponentRef} from "@angular/core";
+import {Component, ComponentRef, OnInit, ViewChild} from "@angular/core";
 import {ExpenseService} from "../../services/expense.service";
-import {FormGroup, Validators, FormBuilder} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute} from "@angular/router";
 import {Expense} from "../../models/expense";
 import {ModalComponent} from "../../core/components/modal.component";
 import {Category} from "../../models/category";
@@ -12,11 +12,13 @@ import {ErrorHandler} from "../../core/error-handler";
 import {Helpers} from "../../core/helpers";
 import {BootstrapService} from "../../services/bootstrap.service";
 import {EuVatType} from "../../core/enums/eu-vat-type.enum";
-import {ServiceError, FieldValidationError} from "../../services/base.service";
+import {FieldValidationError, ServiceError} from "../../services/base.service";
 import {Payment} from "../../models/payment";
 import {ModalService} from "../../core/modal.module";
 import {TranslateService} from "ng2-translate";
 import {ExpenseBookPaymentComponent} from "../payments/expense-book-payment.component";
+import {NotificationsService} from "angular2-notifications";
+import {Location} from "@angular/common";
 
 @Component({
 	templateUrl: './expense-edit.component.html'
@@ -40,13 +42,14 @@ export class ExpenseEditComponent implements OnInit {
 	constructor(private expenseService: ExpenseService,
 				private fb: FormBuilder,
 				private route: ActivatedRoute,
-				private router: Router,
+				private notificationService: NotificationsService,
 				private taxRateService: TaxRateService,
 				private state: State,
 				private errorHandler: ErrorHandler,
 				private bootstrapService: BootstrapService,
 				private modalService: ModalService,
-				private translate: TranslateService) {
+				private translate: TranslateService,
+				private location: Location) {
 
 		this.expense = new Expense();
 		this.expenseCategories = this.state.expenseCategories;
@@ -163,10 +166,11 @@ export class ExpenseEditComponent implements OnInit {
 						let isNew = !this.expense.id;
 						if (isNew) {
 							this.state.nextExpenseNumber++;
+							this.location.replaceState(`/expenses/${expense.id}`);
 						}
 						this.expense = expense;
 						this.saving = false;
-						this.router.navigate(['/expenses']);
+						this.notificationService.success(null, this.translate.instant('expenses.save-success'));
 					},
 					(error: ServiceError) => {
 						this.saving = false;

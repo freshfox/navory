@@ -1,18 +1,36 @@
-import {Component, OnInit, EventEmitter, ElementRef, Input, Output} from "@angular/core";
-var $ = require('jquery');
-require('select2');
+import {
+	AfterViewInit,
+	Component,
+	ElementRef,
+	EventEmitter,
+	Input,
+	OnChanges,
+	OnDestroy,
+	OnInit,
+	Output
+} from "@angular/core";
+
+import * as $ from 'jquery';
+import {TranslateService} from "ng2-translate";
+window['jQuery'] = window['$'] = $;
+//require('select2');
+require('chosen-js');
 
 @Component({
 	selector: 'nvry-select',
 	template: `
-        <label *ngIf="label">{{ label }}</label>
-        <select (change)="onChange()" #s [(ngModel)]="selectedValue" class="{{ class }}" [disabled]="disabledSet">
-           <option 
-           *ngFor="let option of options" 
-           [attr.value]="getValue(option)">{{ getName(option) }}</option>
-        </select>`
+		<label *ngIf="label">{{ label }}</label>
+		<select #s class="{{ class }}" [disabled]="disabledSet">
+			<option
+				*ngFor="let option of options"
+				[attr.value]="getValue(option)">{{ getName(option) }}
+			</option>
+		</select>`,
+	host: {
+		'[class.nvry-focused]': 'isFocused',
+	}
 })
-export class SelectComponent implements OnInit {
+export class SelectComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
 
 	@Input() options: any;
 	@Input() valueKey: string = 'id';
@@ -33,10 +51,12 @@ export class SelectComponent implements OnInit {
 
 	disabledSet: boolean = false;
 	private select;
-	private select2Element;
+	private $select;
 	private initialValue;
+	private isFocused: boolean = false;
+	private isOpen: boolean = false;
 
-	constructor(private el: ElementRef) {
+	constructor(private el: ElementRef, private translate: TranslateService) {
 	}
 
 	ngOnInit() {
@@ -57,30 +77,59 @@ export class SelectComponent implements OnInit {
 	}
 
 	ngOnChanges() {
-		if (this.select2Element) {
-			this.select2Element.val(this.selectedValue).trigger('change');
-		}
+		this.updateValue();
 	}
 
 	ngAfterViewInit() {
 		this.select = this.el.nativeElement.querySelector('select');
 
-		let minimumResults = this.enableSearchField ? 1 : -1;
-		this.select2Element = $(this.select).select2({
-			minimumResultsForSearch: minimumResults
+		this.$select = $(this.select).chosen({
+			no_results_text: this.translate.instant('general.no-results-for'),
+			disable_search: !this.enableSearchField
 		});
 
-		this.select2Element.val(this.initialValue).trigger('change');
-
-		this.select2Element.on('select2:select', (e: Event) => {
-			this.selectedValue = this.select.value;
+		this.$select.change((e, params) => {
+			this.selectedValue = params.selected;
 			this.onChange();
+		});
+
+		this.updateValue();
+
+		this.$select.on('chosen:showing_dropdown chosen:hiding_dropdown', function(e){
+			var chosen_container = $( e.target ).next( '.chosen-container' ),
+				classState = e.type == 'chosen:showing_dropdown' && dropdownExceedsBottomViewport();
+
+			function dropdownExceedsBottomViewport(){
+				var dropdown        = chosen_container.find( '.chosen-drop' ),
+					dropdown_top    = dropdown.offset().top - document.documentElement.scrollTop,
+					dropdown_height = dropdown.height(),
+					viewport_height = document.documentElement.clientHeight;
+
+				return dropdown_top + dropdown_height > viewport_height;
+			}
+
+			chosen_container.toggleClass( 'chosen-drop-up', classState );
+		});
+
+		let $chosenSingle = this.$select.find('.chosen-search-input');
+
+		$chosenSingle.on('focus', () => {
+			this.isFocused = true;
+		});
+
+		$chosenSingle.on('blur', () => {
+			this.isFocused = false;
 		});
 	}
 
+	private updateValue() {
+		if (this.$select) {
+			this.$select.val(this.selectedValue).trigger('chosen:updated');
+		}
+	}
+
 	ngOnDestroy() {
-		this.select2Element.off("select2:select");
-		$(this.select).select2('destroy');
+		this.$select.chosen('destroy');
 	}
 
 	getValue(option) {

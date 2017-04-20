@@ -61,7 +61,13 @@
 		"book-outgoing-payment": "Ausgehende Zahlung buchen",
 		"payments": "Zahlungen",
 		"total": "Gesamt",
-		"invoices": "Rechnungen"
+		"invoices": "Rechnungen",
+		"no-results-for": "Keine Ergebnisse für",
+		"note": "Hinweis",
+		"unit": "Einheit",
+		"vat-abbr": "USt.",
+		"price-net": "Preis (netto)",
+		"quantity": "Menge"
 	},
 	"app": {
 		"name": "Navory",
@@ -181,7 +187,10 @@
 		"sum-amount": "Gesamtbetrag",
 		"open": "Offen",
 		"edit-customer": "Kunde bearbeiten",
-		"remove-customer-link": "Kundenverknüpfung entfernen"
+		"remove-customer-link": "Kundenverknüpfung entfernen",
+		"save-error": "Die Rechnung konnte nicht gespeichert werden.",
+		"new-line": "Neue Zeile",
+		"comment-placeholder": "Gib hier Hinweise für deinen Kunden ein."
 	},
 	"expenses": {
 		"title": "Ausgaben",
@@ -192,7 +201,8 @@
 		"create_title": "Neue Ausgabe",
 		"edit_title": "Ausgabe bearbeiten",
 		"copy_title": "Ausgabe kopieren",
-		"eu_tax_rate": "Zu versteuern mit"
+		"eu_tax_rate": "Zu versteuern mit",
+		"save-success": "Ausgabe erfolgreich gespeichert."
 	},
 	"reports": {
 		"title": "Berichte",
