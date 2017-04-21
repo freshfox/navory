@@ -85,6 +85,12 @@ nvry-button {
 		color: $colorPrimary;
 	}
 
+	&.button--outline {
+		background: none;
+		color: white;
+		border-color: white;
+	}
+
 	&.button--clear {
 		background: none;
 		border: 0;

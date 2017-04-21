@@ -1,34 +1,39 @@
 <div class="content-column">
 
-	<div *ngIf="currentStepIndex == 0">
-		<div class="plan">
-			<div class="plan__inner">
-				<h3>Jährliche Zahlung</h3>
-				<div class="price">&euro; 10,-</div>
-				<div class="subtitle">pro Monat</div>
+	<section *ngIf="currentStepIndex == 0" class="plans">
+		<h2>Wähle einen Zahlungsintervall</h2>
+		<small></small>
+
+		<div class="plan" *ngFor="let plan of plans" [class.plan--selected]="isPlanSelected(plan)">
+			<div class="plan__inner" (click)="selectPlan(plan)">
+				<div class="plan__info">
+					<h3 class="plan__title">{{ plan.title }} <span *ngIf="plan.savings" class="plan__savings">Spare {{ plan.savings }}%!</span></h3>
+					<div class="plan__price">&euro; {{ plan.price }},-</div>
+					<div class="plan__note">{{ plan.note }}</div>
+				</div>
 			</div>
 		</div>
+	</section>
 
-		<div class="plan">
-			<div class="plan__inner">
-				<h3>Monatliche Zahlung</h3>
-				<div class="price">&euro; 12,-</div>
-				<div class="subtitle">pro Monat</div>
+	<section *ngIf="currentStepIndex == 1">
+		<h2>Rechnungsdetails</h2>
+		<p>Rechnungen werden an die Firmendaten aus deinen Account Einstellungen ausgestellt. Prüfe und aktualisiere bei Bedarf deine Eingaben.</p>
+		<form [formGroup]="accountForm" class="account-form">
+			<nvry-input [label]="'general.company' | translate" [formControl]="accountForm.controls.company_name"></nvry-input>
+			<nvry-input [label]="'general.address' | translate" [formControl]="accountForm.controls.address"></nvry-input>
+
+			<div class="flex-row">
+				<nvry-input [label]="'general.zip' | translate" [formControl]="accountForm.controls.zip"></nvry-input>
+				<nvry-input [label]="'general.city' | translate" [formControl]="accountForm.controls.city"></nvry-input>
 			</div>
-		</div>
-	</div>
 
-	<div *ngIf="currentStepIndex == 1">
-		<form>
-			<nvry-input [label]="'general.company' | translate"></nvry-input>
-			<nvry-input [label]="'general.address' | translate"></nvry-input>
-			<nvry-input [label]="'general.zip' | translate"></nvry-input>
-			<nvry-input [label]="'general.city' | translate"></nvry-input>
-			<nvry-input [label]="'general.country' | translate"
-						[disabled]="true"></nvry-input>
-			<nvry-input [label]="'general.vat-id' | translate"></nvry-input>
+			<div class="flex-row">
+				<nvry-input [label]="'general.country' | translate"
+							[disabled]="true" placeholder="Österreich"></nvry-input>
+				<nvry-input [label]="'general.vat-id' | translate"></nvry-input>
+			</div>
 		</form>
-	</div>
+	</section>
 
 	<!-- Card numbers
     4111 1111 1111 1111: Visa
@@ -36,36 +41,55 @@
     3714 496353 98431: American Express
     -->
 
-	<div *ngIf="currentStepIndex == 2">
+	<section [hidden]="currentStepIndex !== 2" class="payment-form">
 
-		<div class="default-section">
-			<form class="credit-card-form scale-down">
+		<header class="payment-form__header">
+			<h2>Zahlungsmethode</h2>
+			<a href="https://www.braintreegateway.com/merchants/YOUR_MERCHANT_ID/verified" target="_blank" class="braintree-badge">
+				<img src="https://s3.amazonaws.com/braintree-badges/braintree-badge-wide-light.png">
+			</a>
+		</header>
+
+		<p>Wir akzeptieren alle gängigen Kreditkarten sowie PayPal.</p>
+
+		<div class="form-container">
+			<form id="credit-card-form" class="scale-down">
 				<div class="cardinfo-card-number">
-					<label class="cardinfo-label" for="card-number">Card Number</label>
+					<label class="cardinfo-label" for="card-number">Kartennummer</label>
 					<div class='input-wrapper' id="card-number"></div>
 					<div id="card-image"></div>
 				</div>
 
 				<div class="cardinfo-wrapper">
 					<div class="cardinfo-exp-date">
-						<label class="cardinfo-label" for="expiration-date">Valid Thru</label>
+						<label class="cardinfo-label" for="expiration-date">Gültig bis</label>
 						<div class='input-wrapper' id="expiration-date"></div>
 					</div>
 
 					<div class="cardinfo-cvv">
-						<label class="cardinfo-label" for="cvv">CVV</label>
+						<label class="cardinfo-label" for="cvv">Prüfnummer</label>
 						<div class='input-wrapper' id="cvv"></div>
 					</div>
 				</div>
 			</form>
-
-			<nvry-button (click)="submit()">{{ 'settings.subscription.pay' | translate }}</nvry-button>
 		</div>
-	</div>
+
+		<div class="payment-separator">
+			<span>oder</span>
+		</div>
+
+		<div>
+			<nvry-button id="paypal-button">
+				<img src="assets/images/paypal.svg" alt="Mit PayPal bezahlen">
+			</nvry-button>
+		</div>
+	</section>
 </div>
 
 <div class="steps-column">
-	<nvry-steps [numberOfSteps]="numberOfSteps" [steps]="stepInfo" [currentIndex]="currentStepIndex"></nvry-steps>
+	<nvry-steps [numberOfSteps]="numberOfSteps" [steps]="stepInfo" [(currentIndex)]="currentStepIndex"></nvry-steps>
 
-	<nvry-button (click)="goToNextStep()">{{ 'general.next' | translate }}</nvry-button>
+	<div class="steps-column__bottom">
+		<nvry-button (click)="goToNextStep()" class="button--block button--l">{{ 'general.next' | translate }}</nvry-button>
+	</div>
 </div>

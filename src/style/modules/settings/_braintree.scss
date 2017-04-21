@@ -1,22 +1,23 @@
-/*--------------------
-Shared Variables
---------------------*/
+.payment-form {
+	$small-screen: 476px;
+	$grey: #111;
+	$white: #fff;
+	$radius: 4px;
+	$bouncy: cubic-bezier(.20, 1.3, .7, 1);
 
-$small-screen: 476px;
-$grey: #111;
-$blue: #5db6e8;
-$darkBlue: #282c37;
-$red: #E53A40;
-$green: #8CD790;
-$white: #fff;
-$radius: 4px;
-$bouncy: cubic-bezier(.20, 1.3, .7, 1);
+	.form-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		flex-direction: column;
+		box-sizing: border-box;
+		position: relative;
 
-/*--------------------
-General
---------------------*/
-
-nvry-subscription {
+		@media (max-width: $small-screen) {
+			border: none;
+		}
+	}
 
 	.cardinfo-wrapper {
 		display: flex;
@@ -25,7 +26,7 @@ nvry-subscription {
 
 	.card-shape {
 		border-radius: 6px;
-		padding: 2em 2em 1em;
+		padding: 3.5em 2em 3em;
 
 		@media (max-width: $small-screen) {
 			padding: 2em 1.5em 1em;
@@ -33,18 +34,28 @@ nvry-subscription {
 	}
 
 	// Form wrapper styling
-	.credit-card-form {
-		border: 1px solid $colorGrayLight;
-		padding: 2em 3em;
-		margin-bottom: 2em;
+	#credit-card-form {
+		border: 1px solid $colorGray;
+		width: 100%;
+		transition: all 600ms $bouncy;
+		animation: cardIntro 500ms $bouncy;
 		z-index: 1;
-		width: 40%;
+		@extend .card-shape;
 
 		@media (max-width: $small-screen) {
 			box-sizing: border-box;
 			padding: 7em 2em 2em;
 			width: 100%;
 		}
+
+		&.card-type {
+			label {
+				color: white;
+			}
+
+			border-color: white;
+		}
+
 		// Change background color based on the card type
 		&.visa {
 			color: $white;
@@ -53,12 +64,12 @@ nvry-subscription {
 		&.master-card {
 			color: $white;
 			background-color: #363636;
-			background: linear-gradient(115deg,#d82332, #d82332 50%, #f1ad3d 50%, #f1ad3d);
+			background: linear-gradient(115deg, #d82332, #d82332 50%, #f1ad3d 50%, #f1ad3d);
 		}
 		&.maestro {
 			color: $white;
 			background-color: #363636;
-			background: linear-gradient(115deg,#009ddd, #009ddd 50%, #ed1c2e 50%, #ed1c2e);
+			background: linear-gradient(115deg, #009ddd, #009ddd 50%, #ed1c2e 50%, #ed1c2e);
 		}
 		&.american-express {
 			color: $white;
@@ -75,6 +86,13 @@ nvry-subscription {
 		}
 	}
 
+	.cardinfo-label {
+		display: block;
+		font-size: 11px;
+		margin-bottom: 0.5em;
+		text-transform: uppercase;
+	}
+
 	.cardinfo-exp-date {
 		margin-right: 1em;
 		width: 100%;
@@ -84,6 +102,33 @@ nvry-subscription {
 		width: 100%;
 	}
 
+	#button-pay {
+		cursor: pointer;
+		width: 16em;
+		font-size: 15px;
+		border: 0;
+		padding: 1.2em 1em;
+		color: #fff;
+		background: #282c37;
+		border-radius: $radius;
+		z-index: 0;
+		transform: translateY(-100px);
+		transition: all 500ms $bouncy;
+		opacity: 0;
+		-webkit-appearance: none;
+
+		&:hover {
+			background: lighten(#282c37, 20%);
+		}
+		&:active {
+			animation: cardIntro 200ms $bouncy;
+		}
+		&.show-button {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
 	// Card type image styles
 	.cardinfo-card-number {
 		position: relative;
@@ -91,7 +136,7 @@ nvry-subscription {
 
 	#card-image {
 		position: absolute;
-		top: 1.8em;
+		top: 2em;
 		right: 1em;
 		width: 44px;
 		height: 28px;
@@ -130,11 +175,10 @@ nvry-subscription {
 
 	// Styling for input wrappers, internal font styles are handled in javascript
 	.input-wrapper {
-		border-radius: 2px;
+		border-radius: $formFieldBorderRadius;
 		background: rgba(255, 255, 255, 0.86);
 		height: 2.75em;
-		border: 1px solid #eee;
-		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+		border: 1px solid $formFieldBorderColor;
 		padding: 5px 10px;
 		margin-bottom: 1em;
 	}
@@ -148,18 +192,17 @@ nvry-subscription {
 	// Change styles of the input wrappers using Braintree's provided classes.
 	// Styles the wrapper of the focused input
 	.braintree-hosted-fields-focused {
-		border-color: $blue;
+		border-color: $colorPrimary;
 	}
 
 	// Styles the wrapper of the invalid input
 	.braintree-hosted-fields-invalid {
-		border-color: $red;
+		border-color: $colorError;
 		animation: shake 500ms $bouncy both;
 		transform: translate3d(0, 0, 0);
 		backface-visibility: hidden;
 		perspective: 1000px;
 	}
-
 
 	/*--------------------
     Animations

@@ -6,11 +6,10 @@ import {Component, EventEmitter, Input, Output} from "@angular/core";
 		<div class="step"
 			 [class.step--current]="indexForStep(step) == currentIndex"
 			 [class.step--done]="isStepDone(step)"
-			 *ngFor="let step of steps"
-			 (click)="stepClicked(step)">
+			 *ngFor="let step of steps">
 
 			<div class="text">{{ step.name }}</div>
-			<nvry-button class="button--clear step__change-link" *ngIf="isStepDone(step)">ändern</nvry-button>
+			<a href="javascript:void(0)"class="step__change-link" *ngIf="isStepDone(step)" (click)="changeLinkClicked(step)">ändern</a>
 		</div>
 	`,
 })
@@ -33,9 +32,13 @@ export class StepsComponent {
 		return this.indexForStep(step) < this.currentIndex;
 	}
 
-	stepClicked(number) {
+	setCurrentIndex(number) {
 		this.currentIndex = number;
 		this.currentIndexChange.emit(this.currentIndex);
+	}
+
+	changeLinkClicked(step: Step) {
+		this.setCurrentIndex(this.indexForStep(step));
 	}
 }
 

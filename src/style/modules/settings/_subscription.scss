@@ -106,27 +106,174 @@
 
 .subscription-form {
 	display: flex;
+	height: 520px;
 
 	.steps-column {
+		display: flex;
+		flex-direction: column;
 		width: 100%;
-		flex: 0 0 40%;
+		flex: 0 0 35%;
 		background-color: $colorPrimary;
 		color: white;
-		padding: 0 20px 0 40px;
+		padding: 32px;
+		padding-top: 0;
+
+		nvry-steps {
+			.step__change-link {
+				color: $colorPrimaryUltraLight;
+				margin-right: 0;
+
+				&:hover {
+					color: white;
+				}
+			}
+		}
+
+
+		.steps-column__bottom {
+			margin-top: auto;
+			align-self: flex-end;
+			width: 100%;
+
+			.button {
+				background-color: #77c697;
+				border: none;
+				display: block;
+				margin-bottom: 0;
+			}
+		}
+
 	}
 
 	.content-column {
 		padding: 32px;
 		width: 100%;
 
+		.plans {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+		}
+
 		.plan {
-			border-radius: $defaultBorderRadius;
-			border: 1px solid $colorGray;
-			padding: 16px;
+			height: 100%;
+			padding-bottom: 16px;
+			padding-top: 16px;
+
+			&:first-child {
+				padding-top: 0;
+			}
+
+			&:last-child {
+				padding-bottom: 0;
+			}
 
 			&.plan--selected {
-				color: $colorPrimary;
-				border-color: $colorPrimary;
+
+				.plan__inner {
+					outline-color: $colorPrimary;
+					outline-width: 3px;
+				}
+			}
+		}
+
+		.plan__inner {
+			border-radius: $defaultBorderRadius;
+			outline: 1px solid $colorGray;
+			padding: 16px 24px;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+
+			.plan__title {
+				font-size: $fontSizeLarge;
+				font-weight: $fontWeightBold;
+			}
+
+			.plan__price {
+				font-size: 48px;
+			}
+
+			.plan__note {
+				color: $colorGray;
+			}
+
+			.plan__savings {
+				color: $colorIncome;
+				margin-left: 20px;
+			}
+		}
+
+
+
+		.account-form {
+			.flex-row {
+				display:flex;
+
+				nvry-input {
+					width: 100%;
+
+					&:first-child {
+						margin-right: 10px;
+						width: auto;
+					}
+				}
+			}
+		}
+
+		.payment-form {
+
+			.payment-form__header {
+				display: flex;
+
+				.braintree-badge {
+					margin-left: auto;
+					margin-right: 0;
+
+					img {
+						max-width: 160px;
+						display: block;
+					}
+				}
+			}
+
+			#paypal-button {
+				margin-bottom: 30px;
+				width: 100%;
+				display: block;
+
+				img {
+					max-width: 100px;
+				}
+
+				.button {
+					padding: 16px;
+					display: block;
+					width: 100%;
+				}
+			}
+
+
+
+			.payment-separator {
+				display: flex;
+				align-items: center;
+				color: $colorGray;
+				margin: 30px 0;
+
+				&:before,
+				&:after {
+					display: block;
+					content: '';
+					height: 1px;
+					background-color: $colorGrayLight;
+					width: 100%;
+				}
+
+				span {
+					margin: 0 10px;
+				}
 			}
 		}
 	}

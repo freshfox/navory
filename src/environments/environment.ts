@@ -8,4 +8,5 @@ export const environment = {
 	apiUrl: 'http://localhost:3000',
 	minPasswordLength: 8,
 	intercomAppId: '',
+	braintreeMerchantId: '',
 };
