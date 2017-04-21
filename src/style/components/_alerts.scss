@@ -1,6 +1,10 @@
+nvry-alert-bar {
+	display: block;
+}
+
 .alert {
 	overflow: hidden;
-	margin-bottom: 10px;
+	margin-bottom: 8px;
 	text-align: center;
 	transition: height .2s ease, transform .4s ease, opacity .4s linear;
 

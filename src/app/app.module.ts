@@ -92,6 +92,7 @@ import {LogoComponent} from "./core/components/logo.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {PublicGuard} from "./guards/public.guard";
 import {SubscriptionFormComponent} from "./internal/settings/subscription-form.component";
+import {SubscriptionService} from "./services/subscription.service";
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -210,7 +211,8 @@ export function translateStaticLoaderFactory(http: Http) {
 		AccountService,
 		PaymentService,
 		UnitService,
-		AnalyticsService
+		AnalyticsService,
+		SubscriptionService
 	],
 	bootstrap: [AppComponent]
 })

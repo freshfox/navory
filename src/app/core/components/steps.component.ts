@@ -8,7 +8,10 @@ import {Component, EventEmitter, Input, Output} from "@angular/core";
 			 [class.step--done]="isStepDone(step)"
 			 *ngFor="let step of steps">
 
-			<div class="text">{{ step.name }}</div>
+			<div class="text">
+				<div>{{ step.name }}</div>
+				<p *ngIf="step.getValue" class="step__value">{{ step.getValue() }}</p>
+			</div>
 			<a href="javascript:void(0)"class="step__change-link" *ngIf="isStepDone(step)" (click)="changeLinkClicked(step)">ändern</a>
 		</div>
 	`,
@@ -42,6 +45,7 @@ export class StepsComponent {
 	}
 }
 
-export interface Step {
+export class Step {
 	name: string;
+	getValue?: Function;
 }

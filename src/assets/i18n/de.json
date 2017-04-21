@@ -221,7 +221,8 @@
 			"steps": {
 				"choose-plan": "Plan auswählen",
 				"payment-method": "Zahlung",
-				"details": "Rechnungsdetails"
+				"details": "Rechnungsdetails",
+				"review": "Zusammenfassung"
 			},
 			"pay": "Abonnement bestellen"
 		},

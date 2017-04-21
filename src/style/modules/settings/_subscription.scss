@@ -119,14 +119,7 @@
 		padding-top: 0;
 
 		nvry-steps {
-			.step__change-link {
-				color: $colorPrimaryUltraLight;
-				margin-right: 0;
 
-				&:hover {
-					color: white;
-				}
-			}
 		}
 
 
@@ -136,7 +129,7 @@
 			width: 100%;
 
 			.button {
-				background-color: #77c697;
+				background-color: $colorIncome;
 				border: none;
 				display: block;
 				margin-bottom: 0;
@@ -223,6 +216,7 @@
 		}
 
 		.payment-form {
+			height: 100%;
 
 			.payment-form__header {
 				display: flex;
@@ -273,6 +267,23 @@
 
 				span {
 					margin: 0 10px;
+				}
+			}
+
+			.paypal-box {
+				border: 1px solid $colorGray;
+				border-radius: $defaultBorderRadius;
+				padding: 24px;
+				margin-top: 40px;
+
+				.paypal-box__bottom {
+					padding-top: 24px;
+					display: flex;
+
+					nvry-button {
+						margin-left: auto;
+						margin-right: 0;
+					}
 				}
 			}
 		}

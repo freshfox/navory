@@ -30,7 +30,7 @@
 			<div class="flex-row">
 				<nvry-input [label]="'general.country' | translate"
 							[disabled]="true" placeholder="Österreich"></nvry-input>
-				<nvry-input [label]="'general.vat-id' | translate"></nvry-input>
+				<nvry-input [label]="'general.vat-id' | translate" [formControl]="accountForm.controls.vat_number"></nvry-input>
 			</div>
 		</form>
 	</section>
@@ -45,51 +45,82 @@
 
 		<header class="payment-form__header">
 			<h2>Zahlungsmethode</h2>
-			<a href="https://www.braintreegateway.com/merchants/YOUR_MERCHANT_ID/verified" target="_blank" class="braintree-badge">
+			<a href="https://www.braintreegateway.com/merchants/{{ merchantId }}/verified" target="_blank" class="braintree-badge">
 				<img src="https://s3.amazonaws.com/braintree-badges/braintree-badge-wide-light.png">
 			</a>
 		</header>
 
-		<p>Wir akzeptieren alle gängigen Kreditkarten sowie PayPal.</p>
+		<div [hidden]="isPayPalAccountLinked()">
+			<p>Wir akzeptieren alle gängigen Kreditkarten sowie PayPal.</p>
 
-		<div class="form-container">
-			<form id="credit-card-form" class="scale-down">
-				<div class="cardinfo-card-number">
-					<label class="cardinfo-label" for="card-number">Kartennummer</label>
-					<div class='input-wrapper' id="card-number"></div>
-					<div id="card-image"></div>
-				</div>
-
-				<div class="cardinfo-wrapper">
-					<div class="cardinfo-exp-date">
-						<label class="cardinfo-label" for="expiration-date">Gültig bis</label>
-						<div class='input-wrapper' id="expiration-date"></div>
+			<div class="form-container">
+				<form id="credit-card-form" class="scale-down">
+					<div class="cardinfo-card-number">
+						<label class="cardinfo-label" for="card-number">Kartennummer</label>
+						<div class='input-wrapper' id="card-number"></div>
+						<div id="card-image"></div>
 					</div>
 
-					<div class="cardinfo-cvv">
-						<label class="cardinfo-label" for="cvv">Prüfnummer</label>
-						<div class='input-wrapper' id="cvv"></div>
+					<div class="cardinfo-wrapper">
+						<div class="cardinfo-exp-date">
+							<label class="cardinfo-label" for="expiration-date">Gültig bis</label>
+							<div class='input-wrapper' id="expiration-date"></div>
+						</div>
+
+						<div class="cardinfo-cvv">
+							<label class="cardinfo-label" for="cvv">Prüfnummer</label>
+							<div class='input-wrapper' id="cvv"></div>
+						</div>
 					</div>
+				</form>
+			</div>
+
+			<div class="payment-separator">
+				<span>oder</span>
+			</div>
+
+			<div>
+				<nvry-button id="paypal-button">
+					<img src="assets/images/paypal.svg" alt="Mit PayPal bezahlen">
+				</nvry-button>
+			</div>
+		</div>
+
+		<ng-template #payPalInfoTemplate [ngIf]="isPayPalAccountLinked()">
+			<div class="paypal-box">
+				<img src="assets/images/paypal-color.svg" alt="PayPal">
+
+				<div class="paypal-box__bottom">
+					<div>
+						{{ payPalInfo.name }}<br>
+						{{ payPalInfo.email }}
+					</div>
+					<nvry-button class="button--secondary" (click)="removePayPalLink()">Entfernen</nvry-button>
 				</div>
-			</form>
-		</div>
+			</div>
+		</ng-template>
+	</section>
 
-		<div class="payment-separator">
-			<span>oder</span>
-		</div>
+	<section *ngIf="currentStepIndex === 3">
+		<h2>Zusammenfassung deiner Daten</h2>
 
-		<div>
-			<nvry-button id="paypal-button">
-				<img src="assets/images/paypal.svg" alt="Mit PayPal bezahlen">
-			</nvry-button>
-		</div>
+		<h3>Rechnungsdetails</h3>
+		<p>{{ getAddressInfo() }}</p>
+
+		<h3>Dein Zahlung</h3>
+		<p>{{ getSelectedPlanInfo() }}</p>
+		<small>Startet am 01.05.2017</small>
+
+		<h3>Deine Zahlungsmethode</h3>
+		<p>{{ getPaymentInfo() }}</p>
 	</section>
 </div>
 
 <div class="steps-column">
-	<nvry-steps [numberOfSteps]="numberOfSteps" [steps]="stepInfo" [(currentIndex)]="currentStepIndex"></nvry-steps>
+	<nvry-steps [numberOfSteps]="numberOfSteps" [steps]="stepInfo" [(currentIndex)]="currentStepIndex" (currentIndex)="previousStepSelected()"></nvry-steps>
 
 	<div class="steps-column__bottom">
-		<nvry-button (click)="goToNextStep()" class="button--block button--l">{{ 'general.next' | translate }}</nvry-button>
+		<nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
+		<nvry-button [loading]="sending" (click)="goToNextStep()" class="button--block button--l">{{ 'general.next' | translate }}</nvry-button>
 	</div>
 </div>
