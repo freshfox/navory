@@ -11,7 +11,7 @@ import {
 } from "@angular/core";
 
 import * as $ from 'jquery';
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 window['jQuery'] = window['$'] = $;
 //require('select2');
 require('chosen-js');

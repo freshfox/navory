@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild, ComponentRef, TemplateRef} from "@angular/core";
 import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../models/customer";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 import {TableOptions} from "../../core/components/table/table-options.model";
 import {SortDirection} from "../../core/components/table/sort-direction.enum";
 import {ModalService} from "../../core/modal.module";

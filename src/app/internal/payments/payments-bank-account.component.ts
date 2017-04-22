@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef, ViewChild, Input} from "@angular/core";
 import {PaymentService} from "../../services/payment.service";
 import {Payment} from "../../models/payment";
 import {TableOptions} from "../../core/components/table/table-options.model";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 import {DatePipe} from "../../core/pipes/date.pipe";
 import {ModalService} from "../../core/modal.module";
 import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";

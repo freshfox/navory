@@ -6,7 +6,7 @@ import {InvoiceService} from "../../../services/invoice.service";
 import {Country} from "../../../models/country";
 import {BootstrapService} from "../../../services/bootstrap.service";
 import {State} from "../../../core/state";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 import {ModalComponent} from "../../../core/components/modal.component";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormValidator} from "../../../core/form-validator";

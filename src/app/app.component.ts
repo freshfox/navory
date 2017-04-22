@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 import {environment} from "../environments/environment";
 import {BaseService} from "./services/base.service";
 import {AuthService} from "./services/auth.service";

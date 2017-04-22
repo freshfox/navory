@@ -2,7 +2,7 @@ import {Component, OnInit, EventEmitter, Output, Input, ViewChild} from "@angula
 import {File} from "../../../models/file";
 import {FileService} from "../../../services/file.service";
 import {environment} from "../../../../environments/environment";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 var Dropzone = require('dropzone');
 
 @Component({

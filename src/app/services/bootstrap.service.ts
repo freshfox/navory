@@ -3,7 +3,7 @@ import {Http} from "@angular/http";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 import {EuVatType} from "../core/enums/eu-vat-type.enum";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 import {Unit} from "../models/unit";
 import {State} from "../core/state";
 import {Country} from "../models/country";

@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {AuthService} from "../services/auth.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {FormGroup, Validators, FormBuilder} from "@angular/forms";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 import {ErrorHandler} from "../core/error-handler";
 import {FormValidator} from "../core/form-validator";
 import {Helpers} from "../core/helpers";

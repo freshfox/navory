@@ -13,7 +13,7 @@ import {BootstrapService} from "../../../services/bootstrap.service";
 import {EuVatType} from "../../../core/enums/eu-vat-type.enum";
 import {FieldValidationError, ServiceError} from "../../../services/base.service";
 import {NotificationsService} from "angular2-notifications";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 import {ModalService} from "../../../core/modal.module";
 import {IncomeBookPaymentComponent} from "../../payments/income-book-payment.component";
 import {Payment} from "../../../models/payment";

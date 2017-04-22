@@ -6,7 +6,7 @@ import {FormValidator} from "../core/form-validator";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Config} from "../core/config";
 import {Helpers} from "../core/helpers";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
 	templateUrl: './reset-password.html'
