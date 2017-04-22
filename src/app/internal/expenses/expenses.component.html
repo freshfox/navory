@@ -27,6 +27,11 @@
 	</nvry-dropdown>
 </ng-template>
 
+<ng-template #paidColumn let-row="row" let-value="value">
+	<div class="paid-indicator" [class.paid-indicator--full]="isFullyPaid(row)" [class.paid-indicator--partly]="isPartlyPaid(row)"></div>
+</ng-template>
+
+
 <ng-template #attachmentColumn let-row="row" let-value="value">
 	<nvry-icon name="paperclip" *ngIf="row.file.id" class="attachment-indicator-icon"></nvry-icon>
 </ng-template>

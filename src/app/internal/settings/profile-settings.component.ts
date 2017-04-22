@@ -3,8 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormValidator} from "../../core/form-validator";
 import {User} from "../../models/user";
 import {UserService} from "../../services/user.service";
-import {NotificationsService} from "angular2-notifications/src/notifications.service";
-import {TranslateService} from "ng2-translate";
+import {NotificationsService} from "angular2-notifications";
+import {TranslateService} from "@ngx-translate/core";
 import {Helpers} from "../../core/helpers";
 import {State} from "../../core/state";
 

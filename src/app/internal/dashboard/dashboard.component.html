@@ -1,7 +1,11 @@
 <div class="dashboard-page">
 	<nvry-spinner *ngIf="loading"></nvry-spinner>
 
-	<ng-template [ngIf]="data">
+	<div *ngIf="data" style="margin-bottom: 20px; margin-left: 30px;">
+		<nvry-year-selection [(year)]="year" (yearChange)="yearChanged()"></nvry-year-selection>
+	</div>
+
+	<div class="dashboard-wrapper" *ngIf="data">
 		<div class="dashboard-box">
 			<h2 class="title">{{ 'dashboard.profit' | translate }}</h2>
 			<p class="small">{{ year }}</p>
@@ -35,6 +39,6 @@
 			<p class="small">{{ 'general.net' | translate }}</p>
 			<div class="income-expense-chart"></div>
 		</div>
-	</ng-template>
+	</div>
 </div>
 

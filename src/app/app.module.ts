@@ -2,7 +2,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {TranslateModule, TranslateLoader, TranslateStaticLoader} from "ng2-translate/ng2-translate";
+import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {HttpModule, Http} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {AppRoutingModule} from "./app.routing";
@@ -67,7 +67,7 @@ import {PaymentsComponent} from "./internal/payments/payments.component";
 import {DropdownComponent} from "./core/components/dropdown.component";
 import {ExportComponent} from "./internal/settings/export.component";
 import {AccountService} from "./services/account.service";
-import {SimpleNotificationsModule} from "angular2-notifications/src/simple-notifications.module";
+import {SimpleNotificationsModule} from "angular2-notifications";
 import {SafePipe} from "./core/pipes/safe.pipe";
 import {DocumentPreviewComponent} from "./core/components/document-preview.component";
 import {FiveZeroThreeComponent} from "./core/components/503.component";
@@ -90,9 +90,11 @@ import {Angulartics2Module, Angulartics2GoogleAnalytics} from "angulartics2";
 import {AnalyticsService} from "./services/analytics.service";
 import {LogoComponent} from "./core/components/logo.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {PublicGuard} from "./guards/public.guard";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 export function translateStaticLoaderFactory(http: Http) {
-	return new TranslateStaticLoader(http, '/assets/i18n', '.json');
+	return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 
 @NgModule({
@@ -173,9 +175,11 @@ export function translateStaticLoaderFactory(http: Http) {
 		HttpModule,
 		BrowserAnimationsModule,
 		TranslateModule.forRoot({
-			provide: TranslateLoader,
-			useFactory: translateStaticLoaderFactory,
-			deps: [Http]
+			loader: {
+				provide: TranslateLoader,
+				useFactory: translateStaticLoaderFactory,
+				deps: [Http]
+			}
 		}),
 		AppRoutingModule,
 		SimpleNotificationsModule.forRoot(),
@@ -192,6 +196,7 @@ export function translateStaticLoaderFactory(http: Http) {
 		ExpenseService,
 		State,
 		LoggedInGuard,
+		PublicGuard,
 		ErrorHandler,
 		Config,
 		NumberPipe,

@@ -16,8 +16,10 @@
 
 	padding: 30px $contentSidePadding;
 
-	display: flex;
-	flex-wrap: wrap;
+	.dashboard-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+	}
 
 	.dashboard-box {
 		padding: 20px 30px;

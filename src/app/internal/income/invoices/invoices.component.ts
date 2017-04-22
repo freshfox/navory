@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild, TemplateRef} from "@angular/core";
 import {TableOptions} from "../../../core/components/table/table-options.model";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 import {SortDirection} from "../../../core/components/table/sort-direction.enum";
 import {Invoice, InvoiceStatus} from "../../../models/invoice";
 import {InvoiceService} from "../../../services/invoice.service";

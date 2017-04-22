@@ -6,7 +6,7 @@ import {CustomerService} from "../../services/customer.service";
 import {Helpers} from "../../core/helpers";
 import {State} from "../../core/state";
 import {Country} from "../../models/country";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 import {ErrorHandler} from "../../core/error-handler";
 
 @Component({
@@ -20,7 +20,7 @@ export class CustomerEditComponent implements OnInit {
 	countries: Country[];
 	headerText: string;
 	alertMessage: string;
-	selectedCountryId: number;
+	selectedCountryId: string;
 
 	@Input() customer: Customer;
 	@Output() onSaved: EventEmitter<Customer> = new EventEmitter<Customer>();

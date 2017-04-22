@@ -1,6 +1,6 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {StepInfo} from "../../core/components/steps.component";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 import {Account} from "../../models/account";
 import {State} from "../../core/state";
 let braintree = require('braintree-web');

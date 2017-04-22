@@ -14,7 +14,8 @@ import {SortDirection} from "./sort-direction.enum";
 		'[class.nvry-table-header-cell--sortable]': 'column.sortable',
 		'[class.nvry-table-header-cell--sorted]': 'column.sortDirection',
 		'[style.width]': 'column.width + "%"',
-		'[class.nvry-table-cell--align-right]': 'column.alignment == "right"'
+		'[class.nvry-table-cell--align-right]': 'column.alignment == "right"',
+		'[class.nvry-table-cell--align-center]': 'column.alignment == "center"'
 	}
 })
 export class TableHeaderCellComponent implements OnInit {

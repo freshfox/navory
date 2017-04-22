@@ -69,6 +69,9 @@ export const NVRY_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 		<nvry-control-messages *ngIf="formControl" [control]="formControl"></nvry-control-messages>
 	`,
 	providers: [NVRY_INPUT_CONTROL_VALUE_ACCESSOR],
+	host: {
+		'[class.nvry-focused]': 'isFocused',
+	}
 })
 export class InputComponent implements ControlValueAccessor {
 
@@ -90,10 +93,9 @@ export class InputComponent implements ControlValueAccessor {
 	@Output() focus: EventEmitter<any> = new EventEmitter<any>();
 	@Output() blur: EventEmitter<any> = new EventEmitter<any>();
 
-	private onTouchedCallback: () => void = () => {
-	};
-	private onChangeCallback: (_: any) => void = () => {
-	};
+	private onTouchedCallback: () => void = () => {};
+	private onChangeCallback: (_: any) => void = () => {};
+	private isFocused: boolean = false;
 
 	private value: any = '';
 	selector: string;
@@ -133,10 +135,12 @@ export class InputComponent implements ControlValueAccessor {
 
 	onFocus(event) {
 		this.focus.next(event);
+		this.isFocused = true;
 	}
 
 	onBlur(event) {
 		this.blur.next(event);
+		this.isFocused = false;
 		this.onTouchedCallback();
 	}
 

@@ -1,15 +1,14 @@
-import {Component, OnInit, ViewChild, ComponentRef, AfterViewInit, ContentChild, ElementRef} from "@angular/core";
+import {AfterViewInit, Component, ComponentRef, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {Invoice} from "../../../models/invoice";
 import {InvoiceLine} from "../../../models/invoice-line";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {InvoiceService} from "../../../services/invoice.service";
 import {Country} from "../../../models/country";
 import {BootstrapService} from "../../../services/bootstrap.service";
 import {State} from "../../../core/state";
-import {NotificationsService} from "angular2-notifications/src/notifications.service";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 import {ModalComponent} from "../../../core/components/modal.component";
-import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormValidator} from "../../../core/form-validator";
 import {Location} from "@angular/common";
 import {Helpers} from "../../../core/helpers";
@@ -19,6 +18,8 @@ import {Payment} from "../../../models/payment";
 import {CustomerService} from "../../../services/customer.service";
 import {Customer} from "../../../models/customer";
 import {CustomerEditComponent} from "../../customers/customer-edit.component";
+import {Observable} from "rxjs";
+import {NotificationsService} from "angular2-notifications";
 const moment = require('moment');
 const AutoComplete = require('javascript-autocomplete');
 
@@ -100,7 +101,7 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 				this.customerService.searchCustomers(term)
 					.subscribe(response);
 			},
-			renderItem: function (customer, search){
+			renderItem: function (customer, search) {
 				search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 				let re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
 				return `<div class="autocomplete-suggestion" data-val="${customer.name}" data-id="${customer.id}">${customer.name.replace(re, "<b>$1</b>")}</div>`;
@@ -173,49 +174,61 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 	}
 
 	saveDraft() {
-		if(this.form.valid) {
+		if (this.form.valid) {
 			this.invoice.draft = true;
 			this.savingDraft = true;
-			this.save();
+			this.save().subscribe(() => {
+				this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
+			});
 		}
 	}
 
 	saveAndIssue() {
-		if(this.form.valid) {
+		if (this.form.valid) {
 			this.invoice.draft = false;
-			this.invoice.number = this.invoice.number || this.nextInvoiceNumber;
-			this.save();
+			this.save().subscribe(() => {
+				this.state.nextInvoiceNumber++;
+				this.notificationService.success(null, this.translate.instant('invoices.issue-success'));
+			});
 		}
 	}
 
-	save() {
+	saveOnly() {
+		if (this.form.valid) {
+			this.save().subscribe(() => {
+				this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
+			});
+		}
+	}
+
+	private save(): Observable<any> {
 		Helpers.validateAllFields(this.form);
-		if(this.form.valid) {
+		if (this.form.valid) {
 			this.saving = true;
-			this.invoiceService.saveInvoice(this.invoice)
-				.subscribe(
-					(updatedInvoice: Invoice) => {
 
-						// Update nextInvoiceNumber if invoice has been issued
-						if (this.invoice.draft && !updatedInvoice.draft) {
-							this.state.nextInvoiceNumber++;
-							this.notificationService.success(null, this.translate.instant('invoice.issue-success'));
-						} else {
-							this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
-						}
+			let complete = new Observable(observer => {
+				this.invoiceService.saveInvoice(this.invoice)
+					.subscribe((updatedInvoice: Invoice) => {
+							if (!this.invoice.id && updatedInvoice.id) {
+								this.location.replaceState(`/invoices/${updatedInvoice.id}`);
+							}
 
-						if(!this.invoice.id && updatedInvoice.id) {
-							this.location.replaceState(`/invoices/${updatedInvoice.id}`);
-						}
+							this.invoice = updatedInvoice;
+							this.saving = false;
+							this.savingDraft = false;
+							this.createMode = false;
 
-						this.invoice = updatedInvoice;
-						this.saving = false;
-						this.savingDraft = false;
-						this.createMode = false;
-					},
-					error => {
-						// TODO
-					});
+							observer.next();
+							observer.complete();
+						},
+						error => {
+							this.saving = false;
+							this.notificationService.error(null, this.translate.instant('invoices.save-error'));
+						});
+
+			});
+
+			return complete;
 		}
 	}
 
@@ -233,7 +246,7 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 		this.modalService.create(InvoiceBookPaymentComponent, {
 			invoiceId: this.invoice.id,
 			amount: this.invoice.unpaid_amount,
-			description: this.translate.instant('payments.default-invoice-description', { number: this.invoice.number })
+			description: this.translate.instant('payments.default-invoice-description', {number: this.invoice.number})
 		}).subscribe((ref: ComponentRef<InvoiceBookPaymentComponent>) => {
 			ref.instance.onSaved.subscribe((payment: Payment) => {
 				this.invoice.payments.push(payment);

@@ -16,7 +16,15 @@ export class ExpenseService extends BaseService {
 	}
 
 	getExpenses(): Observable<Expense[]> {
-		return this.get(this.pathExpenses);
+		return this.get(this.pathExpenses)
+			.map(data => {
+				let expenses: Expense[] = [];
+				data.forEach((expenseData) => {
+					let expense = new Expense(expenseData);
+					expenses.push(expense);
+				});
+				return expenses;
+			});;
 	}
 
 	getExpense(id: number): Observable<Expense> {
@@ -34,7 +42,10 @@ export class ExpenseService extends BaseService {
 		}
 
 		if (!expense.id) {
-			return this.post(this.pathExpenses, expense);
+			return this.post(this.pathExpenses, expense)
+				.map(data => {
+					return new Expense(data);
+				});
 		}
 
 		let path = this.pathExpenses + `/${expense.id}`;
