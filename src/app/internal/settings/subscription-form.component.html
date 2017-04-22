@@ -101,18 +101,28 @@
 		</ng-template>
 	</section>
 
-	<section *ngIf="currentStepIndex === 3">
+	<section *ngIf="currentStepIndex === 3" class="review-step">
+
 		<h2>Zusammenfassung deiner Daten</h2>
 
-		<h3>Rechnungsdetails</h3>
-		<p>{{ getAddressInfo() }}</p>
+		<p>Um deinen Plan zu aktivieren, klicke den Button rechts unten.</p>
 
-		<h3>Dein Zahlung</h3>
-		<p>{{ getSelectedPlanInfo() }}</p>
-		<small>Startet am 01.05.2017</small>
+		<div class="box">
+			<h3 class="label">Rechnungsdetails</h3>
+			<p>{{ getAddressInfo() }}</p>
 
-		<h3>Deine Zahlungsmethode</h3>
-		<p>{{ getPaymentInfo() }}</p>
+			<div class="flex-row">
+				<div>
+					<h3  class="label">Deine Zahlung</h3>
+					<p>{{ getSelectedPlanInfo() }}</p>
+				</div>
+
+				<div>
+					<h3  class="label">Deine Zahlungsmethode</h3>
+					<p>{{ getPaymentInfo() }}</p>
+				</div>
+			</div>
+		</div>
 	</section>
 </div>
 
@@ -121,6 +131,6 @@
 
 	<div class="steps-column__bottom">
 		<nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
-		<nvry-button [loading]="sending" (click)="goToNextStep()" class="button--block button--l">{{ 'general.next' | translate }}</nvry-button>
+		<nvry-button [loading]="sending" (click)="goToNextStep()" class="button--block button--l">{{ getNextButtonText() }}</nvry-button>
 	</div>
 </div>

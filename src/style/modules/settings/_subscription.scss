@@ -111,17 +111,12 @@
 	.steps-column {
 		display: flex;
 		flex-direction: column;
-		width: 100%;
-		flex: 0 0 35%;
+		width: 38%;
+		flex: 0 0 38%;
 		background-color: $colorPrimary;
 		color: white;
 		padding: 32px;
 		padding-top: 0;
-
-		nvry-steps {
-
-		}
-
 
 		.steps-column__bottom {
 			margin-top: auto;
@@ -141,6 +136,12 @@
 	.content-column {
 		padding: 32px;
 		width: 100%;
+
+		.box {
+			border-radius: $defaultBorderRadius;
+			border: 1px solid $colorGray;
+			padding: 24px;
+		}
 
 		.plans {
 			display: flex;
@@ -164,15 +165,14 @@
 			&.plan--selected {
 
 				.plan__inner {
-					outline-color: $colorPrimary;
-					outline-width: 3px;
+					box-shadow: 0 0 0 3px $colorPrimary;
 				}
 			}
 		}
 
 		.plan__inner {
+			box-shadow: 0 0 0 1px $colorGray;
 			border-radius: $defaultBorderRadius;
-			outline: 1px solid $colorGray;
 			padding: 16px 24px;
 			height: 100%;
 			display: flex;
@@ -271,9 +271,7 @@
 			}
 
 			.paypal-box {
-				border: 1px solid $colorGray;
-				border-radius: $defaultBorderRadius;
-				padding: 24px;
+				@extend .box;
 				margin-top: 40px;
 
 				.paypal-box__bottom {
@@ -286,6 +284,30 @@
 					}
 				}
 			}
+		}
+
+		.review-step {
+
+			.box {
+				p {
+					white-space: pre;
+					font-size: $fontSizeLarge;
+				}
+
+				.label {
+					font-size: $fontSize;
+					color: $colorGray;
+				}
+
+				.flex-row {
+					display: flex;
+
+					> div {
+						width: 100%;
+					}
+				}
+			}
+
 		}
 	}
 

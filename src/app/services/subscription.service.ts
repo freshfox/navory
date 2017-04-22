@@ -7,6 +7,7 @@ import {Observable} from "rxjs";
 export class SubscriptionService extends BaseService {
 
 	private pathToken = '/payment/token';
+	private pathSubscribe = '/payment/subscribe';
 
 	constructor(http: Http) {
 		super(http);
@@ -19,9 +20,14 @@ export class SubscriptionService extends BaseService {
 			});
 	}
 
-	/*activateSubscription(): Observable<any> {
+	activateSubscription(planId: string, nonce: string): Observable<any> {
+		return this.getPaymentToken();
 
-	}*/
+		/*return this.post(this.pathSubscribe, {
+			payment_method_nonce: nonce,
+			pland_id: planId
+		});*/
+	}
 
 
 }

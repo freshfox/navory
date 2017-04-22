@@ -224,7 +224,7 @@
 				"details": "Rechnungsdetails",
 				"review": "Zusammenfassung"
 			},
-			"pay": "Abonnement bestellen"
+			"finish-button": "Plan aktivieren"
 		},
 		"change-password": {
 			"title": "Passwort ändern",

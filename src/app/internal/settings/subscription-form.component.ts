@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, NgZone, OnInit} from "@angular/core";
+import {AfterViewInit, Component, ElementRef, EventEmitter, NgZone, OnInit, Output} from "@angular/core";
 import {Step} from "../../core/components/steps.component";
 import {TranslateService} from "ng2-translate";
 import {Account} from "../../models/account";
@@ -23,7 +23,7 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 	merchantId: string = environment.braintreeMerchantId;
 	stepInfo: Step[];
 	numberOfSteps: number = 3;
-	currentStepIndex = 2;
+	currentStepIndex = 0;
 	account: Account;
 
 	plans: SubscriptionPlan[] = [
@@ -53,6 +53,8 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 	private nonce: string;
 	private paymentType: PaymentType;
 	payPalInfo: PayPalInfo;
+
+	@Output() onSuccess: EventEmitter<any> = new EventEmitter<any>();
 
 
 	constructor(private state: State,
@@ -114,6 +116,14 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 			});
 	}
 
+	getNextButtonText(): string {
+		if (this.currentStepIndex === 3) {
+			return this.translate.instant('settings.subscription.finish-button');
+		}
+
+		return this.translate.instant('general.next');
+	}
+
 	goToNextStep() {
 		this.alertMessage = null;
 		switch (this.currentStepIndex) {
@@ -129,6 +139,8 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 				break;
 			case 2:
 				this.goToReviewStep();
+			case 3:
+				this.submit();
 		}
 	}
 
@@ -162,7 +174,7 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 	getPaymentInfo() {
 		switch (this.paymentType) {
 			case PaymentType.PayPal:
-				return 'PayPal';
+				return `PayPal\n${this.payPalInfo.email}`;
 			case PaymentType.CreditCard:
 				return 'Kreditkarte';
 		}
@@ -201,7 +213,11 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 		this.sending = true;
 		this.accountService.updateAccount(this.accountFormValue)
 			.subscribe(() => {
-
+				this.subscriptionService.activateSubscription(this.selectedPlan.id, this.nonce)
+					.subscribe(() => {
+						this.sending = false;
+						this.onSuccess.next();
+					});
 			});
 	}
 
@@ -212,6 +228,7 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 	removePayPalLink() {
 		this.paymentType = null;
 		this.payPalInfo = null;
+		this.nonce = null;
 	}
 
 	private createPayPalButton(clientInstance) {
@@ -236,6 +253,7 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 					this.zone.run(() => {
 						this.nonce = data.nonce;
 						this.paymentType = PaymentType.PayPal;
+						this.alertMessage = null;
 						this.payPalInfo = {
 							name: `${data.details.firstName} ${data.details.lastName}`,
 							email: data.details.email
