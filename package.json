@@ -59,7 +59,6 @@
     "@types/jquery": "^2.0.33",
     "@types/node": "^6.0.64",
     "@types/pikaday": "0.0.32",
-    "@types/select2": "^4.0.31",
     "cheerio": "^0.22.0",
     "codelyzer": "~2.0.0",
     "firebase-tools": "^3.1.0",
