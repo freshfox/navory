@@ -20,6 +20,7 @@ import {Customer} from "../../../models/customer";
 import {CustomerEditComponent} from "../../customers/customer-edit.component";
 import {Observable} from "rxjs";
 import {NotificationsService} from "angular2-notifications";
+import {PaymentService} from "../../../services/payment.service";
 const moment = require('moment');
 const AutoComplete = require('javascript-autocomplete');
 
@@ -51,7 +52,8 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 				private modalService: ModalService,
 				private fb: FormBuilder,
 				private location: Location,
-				private customerService: CustomerService) {
+				private customerService: CustomerService,
+				private paymentService: PaymentService) {
 
 		this.invoice = new Invoice();
 		this.invoice.due_date = moment().add(1, 'M');
@@ -257,6 +259,16 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 				this.modalService.hideCurrentModal();
 			});
 		});
+	}
+
+	removePaymentLink(payment: Payment) {
+		this.paymentService.removePaymentFromInvoice(this.invoice, payment)
+			.subscribe(() => {
+				let index = this.invoice.payments.indexOf(payment);
+				if (index > -1) {
+					this.invoice.payments.splice(index, 1);
+				}
+			});
 	}
 
 }
