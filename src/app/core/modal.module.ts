@@ -88,7 +88,7 @@ export class ModalService {
 @Component({
 	selector: "nvry-modal-placeholder",
 	template: `
-            <div [@modal]="state" tabindex="1" class="modal" [class.modal--no-padding]="!padding" [class.modal--slim]="slim" (click)="onClick($event)">
+            <div [@modal]="state" tabindex="1" class="modal--wrapper modal" [class.modal--no-padding]="!padding" [class.modal--slim]="slim" (click)="onClick($event)">
                 <div class="modal-dialog">
                     <div #modalplaceholder></div>
                 </div>                                
@@ -147,7 +147,7 @@ export class ModalPlaceholderComponent implements OnInit, AfterViewInit {
 	}
 
 	onClick(event) {
-		if (event.target.className.startsWith('modal')) {
+		if (event.target.className.startsWith('modal--wrapper')) {
 			this.hide();
 		}
 	}
