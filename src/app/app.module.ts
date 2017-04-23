@@ -165,7 +165,9 @@ export function translateStaticLoaderFactory(http: Http) {
 		InvoiceBookPaymentComponent,
 		IncomeBookPaymentComponent,
 		ExpenseBookPaymentComponent,
-		ConfirmComponent
+		ConfirmComponent,
+		ExpenseCategorySelectionComponent,
+		DocumentPreviewComponent
 	],
 	imports: [
 		BrowserModule,

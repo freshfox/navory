@@ -12,7 +12,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormValidator} from "../../../core/form-validator";
 import {Location} from "@angular/common";
 import {Helpers} from "../../../core/helpers";
-import {ModalService} from "../../../core/modal.module";
+import {ModalService, ModalSize} from "../../../core/modal.module";
 import {InvoiceBookPaymentComponent} from "../../payments/invoice-book-payment.component";
 import {Payment} from "../../../models/payment";
 import {CustomerService} from "../../../services/customer.service";
@@ -20,6 +20,7 @@ import {Customer} from "../../../models/customer";
 import {CustomerEditComponent} from "../../customers/customer-edit.component";
 import {Observable} from "rxjs";
 import {NotificationsService} from "angular2-notifications";
+import {DocumentPreviewComponent} from "../../../core/components/document-preview.component";
 const moment = require('moment');
 const AutoComplete = require('javascript-autocomplete');
 
@@ -130,7 +131,9 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 
 	private editCustomer() {
 		this.modalService.create(CustomerEditComponent, {
-			customer: this.invoice.customer
+			parameters: {
+				customer: this.invoice.customer
+			}
 		}).subscribe((ref: ComponentRef<CustomerEditComponent>) => {
 			ref.instance.onSaved.subscribe((savedCustomer: Customer) => {
 				this.updateCustomer(savedCustomer);
@@ -233,9 +236,15 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 	}
 
 	showPreview() {
-		let url = this.invoiceService.getPreviewURL(this.invoice);
+		this.modalService.create(DocumentPreviewComponent, {
+			parameters: {
+				url: this.invoicePreviewURL
+			},
+			clean: true,
+			size: ModalSize.FullWidth
+		}).subscribe((ref: ComponentRef<DocumentPreviewComponent>) => {
 
-		this.previewModal.show();
+		});
 	}
 
 	downloadPDF() {
@@ -244,9 +253,11 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 
 	addPayment() {
 		this.modalService.create(InvoiceBookPaymentComponent, {
-			invoiceId: this.invoice.id,
-			amount: this.invoice.unpaid_amount,
-			description: this.translate.instant('payments.default-invoice-description', {number: this.invoice.number})
+			parameters: {
+				invoiceId: this.invoice.id,
+				amount: this.invoice.unpaid_amount,
+				description: this.translate.instant('payments.default-invoice-description', {number: this.invoice.number})
+			}
 		}).subscribe((ref: ComponentRef<InvoiceBookPaymentComponent>) => {
 			ref.instance.onSaved.subscribe((payment: Payment) => {
 				this.invoice.payments.push(payment);

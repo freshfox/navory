@@ -1,6 +1,3 @@
-$modalDefaultWidth: 750px;
-$modalSlimWidth: 600px;
-
 .modal-footer {
 	text-align: right;
 	background: $colorGrayUltraLighter;
@@ -42,10 +39,10 @@ $modalSlimWidth: 600px;
 	width: 100%;
 	height: 100%;
 	overflow-y: scroll;
-	padding-top: 50px;
-	padding-bottom: 50px;
+
 	outline: 0;
 	border: 0;
+	z-index: 1000;
 
 	align-items: flex-start;
 	justify-content: center;
@@ -53,7 +50,9 @@ $modalSlimWidth: 600px;
 
 .modal {
 	position: relative;
-	z-index: 1000;
+	z-index: 900;
+	padding-top: 50px;
+	padding-bottom: 50px;
 
 	&.modal--no-padding {
 		.modal-dialog {
@@ -61,28 +60,30 @@ $modalSlimWidth: 600px;
 		}
 	}
 
-	&.modal--slim {
+	&.modal--large {
 		.modal-dialog {
-			width: $modalSlimWidth;
+			width: $modalWidthLarge;
+		}
+	}
+
+	&.modal--full-width {
+		width: 100%;
+
+		.modal-dialog {
+			width: 100%;
 		}
 	}
 
 	.modal-dialog {
-		$modalDialogPadding: 30px $modalSidePadding;
-		width: $modalDefaultWidth;
+		$modalDialogPadding: 32px $modalSidePadding;
+		width: $modalWidthDefault;
 		margin: 0 auto;
 		background-color: white;
-		border-radius: 3px;
+		border-radius: $defaultBorderRadius;
 		padding: $modalDialogPadding;
 
-		@media(max-width: $modalDefaultWidth) {
-			width: 100%;
-			padding-left: 30px;
-			padding-right: 30px;
-		}
-
 		.modal-inner {
-			padding: 15px $modalSidePadding;
+			padding: 16px $modalSidePadding;
 		}
 	}
 
@@ -90,7 +91,7 @@ $modalSlimWidth: 600px;
 		.modal-dialog {
 			background-color: transparent;
 			padding: 0;
-			width: 100%;
+			border-radius: 0;
 		}
 	}
 

@@ -166,9 +166,11 @@ export class IncomeEditComponent implements OnInit {
 
 	addPayment() {
 		this.modalService.create(IncomeBookPaymentComponent, {
-			income: this.income,
-			amount: this.income.unpaid_amount,
-			description: this.translate.instant('payments.default-income-description', {number: this.income.number})
+			parameters: {
+				income: this.income,
+				amount: this.income.unpaid_amount,
+				description: this.translate.instant('payments.default-income-description', {number: this.income.number})
+			}
 		}).subscribe((ref: ComponentRef<IncomeBookPaymentComponent>) => {
 			ref.instance.onSaved.subscribe((payment: Payment) => {
 				this.income.payments.push(payment);

@@ -5,7 +5,7 @@ var iFrameResizer = require('iframe-resizer');
 	selector: 'nvry-document-preview',
 	template: `<iframe [src]="url | safe" frameborder="0"></iframe>`,
 	host: {
-		'[class.document-preview]': 'true'
+		'class': 'document-preview'
 	}
 })
 export class DocumentPreviewComponent implements AfterViewInit {
@@ -13,6 +13,8 @@ export class DocumentPreviewComponent implements AfterViewInit {
 	@Input() url: string;
 
 	ngAfterViewInit() {
-		iFrameResizer.iframeResizer({checkOrigin: false});
+		setTimeout(() => {
+			iFrameResizer.iframeResizer({checkOrigin: false});
+		}, 5000);
 	}
 }
