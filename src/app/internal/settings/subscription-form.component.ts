@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, NgZone, OnInit, Output} from "@angular/core";
 import {Step} from "../../core/components/steps.component";
-import {TranslateService} from "ng2-translate";
 import {Account} from "../../models/account";
 import {State} from "../../core/state";
 import * as braintree from "braintree-web";
@@ -10,6 +9,7 @@ import {Helpers} from "../../core/helpers";
 import {SubscriptionService} from "../../services/subscription.service";
 import {environment} from "../../../environments/environment";
 import {AccountService} from "../../services/account.service";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
