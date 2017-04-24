@@ -13,8 +13,6 @@ export class DocumentPreviewComponent implements AfterViewInit {
 	@Input() url: string;
 
 	ngAfterViewInit() {
-		setTimeout(() => {
-			iFrameResizer.iframeResizer({checkOrigin: false});
-		}, 5000);
+		iFrameResizer.iframeResizer({checkOrigin: false});
 	}
 }

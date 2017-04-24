@@ -7,7 +7,6 @@ import {Country} from "../../../models/country";
 import {BootstrapService} from "../../../services/bootstrap.service";
 import {State} from "../../../core/state";
 import {TranslateService} from "@ngx-translate/core";
-import {ModalComponent} from "../../../core/components/modal.component";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormValidator} from "../../../core/form-validator";
 import {Location} from "@angular/common";
@@ -41,7 +40,6 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 	form: FormGroup;
 	createMode: boolean = true;
 
-	@ViewChild('previewModal') private previewModal: ModalComponent;
 	@ViewChild('customerName') private customerName: ElementRef;
 
 	constructor(private route: ActivatedRoute,
@@ -243,7 +241,8 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 				url: this.invoicePreviewURL
 			},
 			clean: true,
-			size: ModalSize.FullWidth
+			size: ModalSize.FullWidth,
+			showCloseButton: true
 		}).subscribe((ref: ComponentRef<DocumentPreviewComponent>) => {
 
 		});

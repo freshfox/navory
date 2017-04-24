@@ -155,10 +155,3 @@
 </div>
 
 <nvry-spinner *ngIf="loading"></nvry-spinner>
-
-
-<nvry-modal [clean]="true" [showCloseButton]="true" #previewModal>
-	<div class="document-preview">
-		<iframe [src]="invoicePreviewURL | safe" frameborder="0"></iframe>
-	</div>
-</nvry-modal>

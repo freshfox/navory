@@ -16,6 +16,7 @@ import {Observable, ReplaySubject} from "rxjs/Rx";
 import {BrowserModule} from "@angular/platform-browser";
 import {ConfirmComponent} from "./components/confirm.component";
 import {animate, AnimationEvent, state, style, transition, trigger} from "@angular/animations";
+import {CoreModule} from "./core.module";
 
 @Injectable()
 export class ModalService {
@@ -59,7 +60,8 @@ export class ModalService {
 		options = Object.assign({}, {
 			size: ModalSize.Regular,
 			padding: false,
-			clean: false
+			clean: false,
+			showCloseButton: false
 		}, options);
 
 		let factory = this.componentFactoryResolver.resolveComponentFactory(component);
@@ -78,6 +80,7 @@ export class ModalService {
 		this.placeholder.padding = options.padding;
 		this.placeholder.modalSize = options.size;
 		this.placeholder.clean = options.clean;
+		this.placeholder.showCloseButton = options.showCloseButton;
 
 		this.placeholder.registerComponentRef(componentRef);
 		componentRef$.next(componentRef);
@@ -101,6 +104,9 @@ export class ModalService {
 				</div>
 			</div>
 			<div [@backdrop]="state" class="modal-backdrop" (click)="onBackdropClicked()"></div>
+			<nvry-button *ngIf="showCloseButton" class="modal__close-button" [@closeButton]="state" (click)="hide()">
+				<nvry-icon name="cross"></nvry-icon>
+			</nvry-button>
 		</div>
 	`,
 	animations: [
@@ -124,6 +130,13 @@ export class ModalService {
 			transition('hidden <=> shown', [
 				animate('0.2s ease')
 			])
+		]),
+		trigger('closeButton', [
+			state('shown', style({opacity: 1, display: 'block'})),
+			state('hidden', style({opacity: 0, display: 'none'})),
+			transition('hidden <=> shown', [
+				animate('0.1s ease')
+			])
 		])
 	],
 	host: {'class': 'modal-placeholder'}
@@ -135,6 +148,7 @@ export class ModalPlaceholderComponent implements OnInit, AfterViewInit {
 	padding: boolean = false;
 	modalSize: ModalSize = ModalSize.Regular;
 	clean: boolean = false;
+	showCloseButton: boolean = false;
 
 	@ViewChild("modalplaceholder", {read: ViewContainerRef}) viewContainerRef;
 
@@ -220,12 +234,13 @@ export class ModalOptions {
 	size?: ModalSize;
 	clean?: boolean;
 	padding?: boolean;
+	showCloseButton?: boolean;
 }
 
 
 // module definition
 @NgModule({
-	imports: [BrowserModule],
+	imports: [BrowserModule, CoreModule],
 	declarations: [ModalPlaceholderComponent],
 	exports: [ModalPlaceholderComponent],
 	providers: [ModalService]

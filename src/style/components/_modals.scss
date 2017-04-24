@@ -46,13 +46,32 @@
 
 	align-items: flex-start;
 	justify-content: center;
+
+	nvry-button.modal__close-button {
+		position: fixed;
+		top: 40px;
+		right: 40px;
+		z-index: 5000;
+
+		.button {
+			width: 40px;
+			height: 40px;
+		}
+
+		nvry-icon {
+			width: 20px;
+			height: 20px;
+			margin: 0;
+			display: block;
+		}
+	}
 }
 
 .modal {
 	position: relative;
 	z-index: 900;
-	padding-top: 50px;
-	padding-bottom: 50px;
+	padding-top: 48px;
+	padding-bottom: 48px;
 
 	&.modal--no-padding {
 		.modal-dialog {
@@ -92,21 +111,6 @@
 			background-color: transparent;
 			padding: 0;
 			border-radius: 0;
-		}
-	}
-
-	.modal__close-button {
-		position: fixed;
-		top: 40px;
-		right: 40px;
-		z-index: 5000;
-		width: 50px;
-		height: 50px;
-
-		nvry-icon {
-			width: 30px;
-			height: 30px;
-			margin: 0;
 		}
 	}
 
