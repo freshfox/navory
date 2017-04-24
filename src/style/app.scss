@@ -58,6 +58,7 @@
 @import "components/forms/autocomplete";
 @import "components/total-indicator";
 @import "components/paid-indicator";
+@import "components/sections";
 
 // Layout Styling
 @import "layout";
@@ -73,8 +74,10 @@
 @import "modules/income";
 @import "modules/invoices";
 @import "modules/settings";
-@import "modules/settings/subscription";
-@import "modules/settings/braintree";
+@import "modules/settings/subscription/subscription-form";
+@import "modules/settings/subscription/subscription";
+@import "modules/settings/subscription/braintree";
+@import "modules/settings/subscription/pricing-plans";
 @import "modules/reports/vat";
 @import "modules/expenses";
 @import "modules/customers";

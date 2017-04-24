@@ -1,5 +1,5 @@
 <div class="module-subscription">
-	<div class="pricing-plans" *ngIf="!planActive">
+	<div class="pricing-plans" *ngIf="!isPlanActive">
 		<div class="buttons">
 			<button class="button button--xsmall" (click)="yearly = false" [class.button--gray]="yearly">Monatlich</button>
 			<button class="button button--xsmall" (click)="yearly = true" [class.button--gray]="!yearly">Jährlich</button>
@@ -30,7 +30,7 @@
 					<span class="price-notice">pro Monat<span class="yearly-note" *ngIf="yearly">, bezahlt jährlich</span>.</span>
 				</p>
 
-				<ul class="feature-list">
+				<ul class="pricing-plan-feature-list">
 					<li><nvry-icon name="tick"></nvry-icon>
 						Rechnungserstellung
 					</li>
@@ -61,15 +61,71 @@
 	</div>
 
 
-	<ng-template [ngIf]="planActive">
-		<div class="default-section">
-			<h2>Rechnungen</h2>
+	<ng-template [ngIf]="isPlanActive">
+		<section class="section default-section">
+			<div class="current-plan-box">
+				<div>
+					<h2>Aktueller Plan</h2>
+					<p class="plan-title">
+						Pro - {{ activePlan.title }}
+					</p>
+
+					<h2>Preis</h2>
+					<p>
+						EUR {{ 12 | nvryNumber }} <small>exkl. USt. pro Monat</small>
+					</p>
+
+					<h2>Nächste Abrechnung</h2>
+					<p>
+						{{ activePlan.period_end_date | nvryDate }}
+					</p>
+
+					<div>
+						<nvry-button class="button--danger button--small" (click)="cancelSubscription()">Plan kündigen</nvry-button>
+					</div>
+				</div>
+				<div class="current-plan-box__features">
+					<h2>Deine Features</h2>
+					<ul class="pricing-plan-feature-list">
+						<li><nvry-icon name="tick"></nvry-icon>
+							Rechnungserstellung
+						</li>
+						<li><nvry-icon name="tick"></nvry-icon>
+							Kundenverwaltung
+						</li>
+						<li><nvry-icon name="tick"></nvry-icon>
+							Einnahmen
+						</li>
+						<li><nvry-icon name="tick"></nvry-icon>
+							Ausgaben
+						</li>
+						<li><nvry-icon name="tick"></nvry-icon>
+							Zahlungsbuchung
+						</li>
+						<li><nvry-icon name="tick"></nvry-icon>
+							UVA Bericht
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+
+		<section class="section">
+			<div class="default-section">
+				<h2>{{ 'general.invoices' | translate }}</h2>
+			</div>
 
 			<nvry-table [options]="invoiceTableOptions" [rows]="invoices"></nvry-table>
-
-			<ng-template #actionsColumn let-row="row" let-value="value">
-				<nvry-button (click)="downloadInvoice(row)">{{ 'general.download' }}</nvry-button>
-			</ng-template>
-		</div>
+		</section>
 	</ng-template>
 </div>
+
+<ng-template #servicePeriodColumn let-row="row" let-value="value">
+	{{ row.service_date_start | nvryDate }} - {{ row.service_date_end | nvryDate }}
+</ng-template>
+
+
+<ng-template #actionsColumn let-row="row" let-value="value">
+	<nvry-button (click)="downloadInvoice(row)" class="button--small">{{ 'actions.view' | translate }}</nvry-button>
+</ng-template>

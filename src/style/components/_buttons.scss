@@ -96,10 +96,15 @@ nvry-button {
 		border: 0;
 		color: $textColor;
 		padding: 0;
+		letter-spacing: inherit;
 
 		&:hover {
 			color: $colorPrimary;
 		}
+	}
+
+	&.button--danger {
+		background: $colorError;
 	}
 
 	&.button--block {

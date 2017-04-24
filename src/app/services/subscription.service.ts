@@ -2,12 +2,15 @@ import {Injectable} from "@angular/core";
 import {BaseService} from "./base.service";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs";
+import {Subscription} from "../models/subscription";
+import {Invoice} from "../models/invoice";
 
 @Injectable()
 export class SubscriptionService extends BaseService {
 
-	private pathToken = '/payment/token';
-	private pathSubscribe = '/payment/subscribe';
+	private pathToken = '/subscription/token';
+	private pathSubscription = '/subscription';
+	private pathInvoices = '/subscription/invoices';
 
 	constructor(http: Http) {
 		super(http);
@@ -20,13 +23,19 @@ export class SubscriptionService extends BaseService {
 			});
 	}
 
-	activateSubscription(planId: string, nonce: string): Observable<any> {
-		return this.getPaymentToken();
+	getSubscription(): Observable<Subscription> {
+		return this.get(this.pathSubscription);
+	}
 
-		/*return this.post(this.pathSubscribe, {
+	activateSubscription(planId: string, nonce: string): Observable<any> {
+		return this.post(this.pathSubscription, {
 			payment_method_nonce: nonce,
-			pland_id: planId
-		});*/
+			plan_id: planId
+		});
+	}
+
+	getSubscriptionInvoices(): Observable<Invoice[]> {
+		return this.get(this.pathInvoices);
 	}
 
 

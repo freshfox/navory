@@ -1,0 +1,75 @@
+.module-subscription {
+
+	.current-plan-box {
+		background-color: $colorPrimary;
+		color: white;
+		border-radius: $defaultBorderRadius;
+		display: flex;
+		width: 55%;
+		flex: 0 0 60%;
+		margin: 0 auto;
+
+		> div {
+			width: 100%;
+			padding: 24px;
+		}
+
+		h2 {
+			font-size: $fontSize;
+			margin-bottom: 0;
+			color: $colorPrimaryUltraLighter;
+		}
+
+		p {
+			font-size: $fontSizeLarge;
+		}
+
+		.current-plan-box__features {
+			.pricing-plan-feature-list {
+				margin: 0;
+
+				.icon {
+					fill: $colorSuccess;
+				}
+
+				li {
+					font-size: $fontSizeLarge;
+				}
+			}
+		}
+	}
+
+}
+
+
+.pricing-plan-feature-list {
+	width: auto;
+	display: inline-block;
+	margin: 20px auto 30px;
+	list-style: none;
+	padding: 0;
+	text-align: left;
+
+	li {
+		display: flex;
+		align-items: center;
+
+		.icon {
+			width: 20px;
+			height: 20px;
+			margin-right: 5px;
+			display: block;
+			fill: $colorPrimary;
+		}
+	}
+
+	.feature-not-included {
+		color: $colorGrayMedium;
+
+		.icon {
+			fill: $colorGrayMedium;
+		}
+	}
+}
+
+

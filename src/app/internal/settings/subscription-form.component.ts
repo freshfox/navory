@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, NgZone, OnInit, Output} from "@angular/core";
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output} from "@angular/core";
 import {Step} from "../../core/components/steps.component";
 import {Account} from "../../models/account";
 import {State} from "../../core/state";
@@ -10,6 +10,7 @@ import {SubscriptionService} from "../../services/subscription.service";
 import {environment} from "../../../environments/environment";
 import {AccountService} from "../../services/account.service";
 import {TranslateService} from "@ngx-translate/core";
+import {SubscriptionPlan} from "app/internal/settings/subscription.component";
 
 
 @Component({
@@ -26,22 +27,7 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 	currentStepIndex = 0;
 	account: Account;
 
-	plans: SubscriptionPlan[] = [
-		{
-			id: 'pro-yearly',
-			title: 'Jährliche Zahlung',
-			savings: 20,
-			price: 120,
-			note: 'exl. USt. pro Jahr'
-		},
-		{
-			id: 'pro-monthly',
-			title: 'Monatliche Zahlung',
-			price: 12,
-			savings: null,
-			note: 'exkl. USt. pro Monat'
-		}
-	];
+	@Input() plans: SubscriptionPlan[];
 
 	selectedPlan: SubscriptionPlan = this.plans[0];
 	accountForm: FormGroup;
@@ -372,12 +358,4 @@ interface PayPalInfo {
 enum PaymentType {
 	PayPal = 'paypal' as any,
 	CreditCard = 'creditcard' as any
-}
-
-class SubscriptionPlan {
-	id: string;
-	title: string;
-	savings: number;
-	price: number;
-	note: string;
 }
