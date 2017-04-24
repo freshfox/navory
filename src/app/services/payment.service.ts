@@ -6,6 +6,7 @@ import {Payment} from "../models/payment";
 import {BankAccount} from "../models/bank-account";
 import {Income} from "../models/income";
 import {Expense} from "../models/expense";
+import {Invoice} from "../models/invoice";
 
 @Injectable()
 export class PaymentService extends BaseService {
@@ -46,6 +47,21 @@ export class PaymentService extends BaseService {
 		let path = `/expenses/${expense.id}/payments`;
 		return this.post(path, payment)
 			.map(this.parsePayment);
+	}
+
+	removePaymentFromInvoice(invoice: Invoice, payment: Payment) {
+		let path = `/invoices/${invoice.id}/payments/${payment.id}/link`;
+		return this.delete(path);
+	}
+
+	removePaymentFromIncome(income: Income, payment: Payment) {
+		let path = `/incomes/${income.id}/payments/${payment.id}/link`;
+		return this.delete(path);
+	}
+
+	removePaymentFromExpense(expense: Expense, payment: Payment) {
+		let path = `/expenses/${expense.id}/payments/${payment.id}/link`;
+		return this.delete(path);
 	}
 
 	private parsePayment(data): Payment {

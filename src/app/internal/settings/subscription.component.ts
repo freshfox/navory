@@ -2,11 +2,11 @@ import {Component, ComponentRef, OnInit, TemplateRef, ViewChild} from "@angular/
 import {ModalService} from "../../core/modal.module";
 import {SubscriptionFormComponent} from "./subscription-form.component";
 import {TableOptions} from "../../core/components/table/table-options.model";
-import {TranslateService} from "ng2-translate";
 import {DatePipe} from "../../core/pipes/date.pipe";
 import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";
 import {NumberPipe} from "../../core/pipes/number.pipe";
 import {Invoice} from "../../models/invoice";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
 	selector: 'nvry-subscription',

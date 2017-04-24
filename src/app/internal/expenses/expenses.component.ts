@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, TemplateRef} from "@angular/core";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 import {TableOptions} from "../../core/components/table/table-options.model";
 import {NumberPipe} from "../../core/pipes/number.pipe";
 import {DatePipe} from "../../core/pipes/date.pipe";

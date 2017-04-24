@@ -2,7 +2,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {TranslateModule, TranslateLoader, TranslateStaticLoader} from "ng2-translate/ng2-translate";
+import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {HttpModule, Http} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {AppRoutingModule} from "./app.routing";
@@ -93,9 +93,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {PublicGuard} from "./guards/public.guard";
 import {SubscriptionFormComponent} from "./internal/settings/subscription-form.component";
 import {SubscriptionService} from "./services/subscription.service";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 export function translateStaticLoaderFactory(http: Http) {
-	return new TranslateStaticLoader(http, '/assets/i18n', '.json');
+	return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 
 @NgModule({
@@ -178,9 +179,11 @@ export function translateStaticLoaderFactory(http: Http) {
 		HttpModule,
 		BrowserAnimationsModule,
 		TranslateModule.forRoot({
-			provide: TranslateLoader,
-			useFactory: translateStaticLoaderFactory,
-			deps: [Http]
+			loader: {
+				provide: TranslateLoader,
+				useFactory: translateStaticLoaderFactory,
+				deps: [Http]
+			}
 		}),
 		AppRoutingModule,
 		SimpleNotificationsModule.forRoot(),

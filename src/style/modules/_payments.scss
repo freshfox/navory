@@ -53,6 +53,7 @@ nvry-book-payment {
 	border-top: 0;
 	background-color:$colorGrayUltraLight;
 	display: flex;
+	align-items: center;
 	width: 100%;
 
 	.description {
@@ -62,6 +63,11 @@ nvry-book-payment {
 	.date {
 		margin-left: auto;
 		padding-right: 20px;
+	}
+
+	.remove-button {
+		margin-bottom: 0;
+		margin-left: 30px;
 	}
 
 	.amount {

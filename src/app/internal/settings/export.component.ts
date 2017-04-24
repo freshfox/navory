@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {TranslateService} from "ng2-translate";
+import {TranslateService} from "@ngx-translate/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ExportType, AccountService} from "../../services/account.service";
 var moment = require("moment");
