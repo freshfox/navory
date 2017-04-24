@@ -19,6 +19,7 @@ import {ExpenseBookPaymentComponent} from "../payments/expense-book-payment.comp
 import {NotificationsService} from "angular2-notifications";
 import {Location} from "@angular/common";
 import {ExpenseCategorySelectionComponent} from "./expense-category-selection.component";
+import {PaymentService} from "../../services/payment.service";
 
 @Component({
 	templateUrl: './expense-edit.component.html'
@@ -46,7 +47,8 @@ export class ExpenseEditComponent implements OnInit {
 				private bootstrapService: BootstrapService,
 				private modalService: ModalService,
 				private translate: TranslateService,
-				private location: Location) {
+				private location: Location,
+				private paymentService: PaymentService) {
 
 		this.expense = new Expense();
 		this.expenseCategories = this.state.expenseCategories;
@@ -223,6 +225,16 @@ export class ExpenseEditComponent implements OnInit {
 				this.modalService.hideCurrentModal();
 			});
 		});
+	}
+
+	removePaymentLink(payment: Payment) {
+		this.paymentService.removePaymentFromExpense(this.expense, payment)
+			.subscribe(() => {
+				let index = this.expense.payments.indexOf(payment);
+				if (index > -1) {
+					this.expense.payments.splice(index, 1);
+				}
+			});
 	}
 
 }

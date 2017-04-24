@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, OnInit, Input, EventEmitter, Output} from "@angular/core";
 import {Payment} from "../../models/payment";
 
 @Component({
@@ -14,11 +14,13 @@ import {Payment} from "../../models/payment";
 		<span class="amount" [class.amount--expense]="isAmountNegative()">
 			{{ amount() | nvryNumber }}
 		</span>
+		<nvry-button class="button--xsmall button--secondary remove-button" (click)="onClickRemove()">{{ 'general.remove' | translate }}</nvry-button>
 	`,
 })
 export class BookedPaymentComponent implements OnInit {
 
 	@Input() payment: Payment;
+	@Output() onRemove: EventEmitter<Payment> = new EventEmitter<Payment>();
 
 	constructor() {
 	}
@@ -34,4 +36,7 @@ export class BookedPaymentComponent implements OnInit {
 		return this.payment.pivot_amount < 0;
 	}
 
+	onClickRemove() {
+		this.onRemove.next(this.payment);
+	}
 }

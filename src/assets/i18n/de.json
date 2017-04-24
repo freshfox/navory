@@ -67,7 +67,8 @@
 		"unit": "Einheit",
 		"vat-abbr": "USt.",
 		"price-net": "Preis (netto)",
-		"quantity": "Menge"
+		"quantity": "Menge",
+		"remove": "Entfernen"
 	},
 	"app": {
 		"name": "Navory",

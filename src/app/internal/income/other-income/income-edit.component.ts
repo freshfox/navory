@@ -18,6 +18,7 @@ import {ModalService} from "../../../core/modal.module";
 import {IncomeBookPaymentComponent} from "../../payments/income-book-payment.component";
 import {Payment} from "../../../models/payment";
 import {Location} from "@angular/common";
+import {PaymentService} from "../../../services/payment.service";
 
 @Component({
 	selector: 'nvry-income-edit',
@@ -46,7 +47,8 @@ export class IncomeEditComponent implements OnInit {
 				private notificationService: NotificationsService,
 				private translate: TranslateService,
 				private modalService: ModalService,
-				private location: Location) {
+				private location: Location,
+				private paymentService: PaymentService) {
 
 		this.income = new Income();
 		this.nextIncomeNumber = this.state.nextIncomeNumber;
@@ -181,6 +183,16 @@ export class IncomeEditComponent implements OnInit {
 				this.modalService.hideCurrentModal();
 			});
 		});
+	}
+
+	removePaymentLink(payment: Payment) {
+		this.paymentService.removePaymentFromIncome(this.income, payment)
+			.subscribe(() => {
+				let index = this.income.payments.indexOf(payment);
+				if (index > -1) {
+					this.income.payments.splice(index, 1);
+				}
+			});
 	}
 
 
