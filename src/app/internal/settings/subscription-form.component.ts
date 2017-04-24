@@ -139,8 +139,10 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 				break;
 			case 2:
 				this.goToReviewStep();
+				break;
 			case 3:
 				this.submit();
+				break;
 		}
 	}
 
