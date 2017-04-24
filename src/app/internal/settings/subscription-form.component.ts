@@ -32,14 +32,14 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 			title: 'Jährliche Zahlung',
 			savings: 20,
 			price: 120,
-			note: 'pro Jahr'
+			note: 'exl. USt. pro Jahr'
 		},
 		{
 			id: 'pro-monthly',
 			title: 'Monatliche Zahlung',
 			price: 12,
 			savings: null,
-			note: 'pro Monat'
+			note: 'exkl. USt. pro Monat'
 		}
 	];
 
