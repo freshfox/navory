@@ -98,9 +98,3 @@
 <div class="page-row" *ngIf="loading">
 	<nvry-spinner></nvry-spinner>
 </div>
-
-
-<nvry-modal #selectCategory>
-	<nvry-expense-category-selection [categories]="expenseCategories"
-									 (categorySelected)="categorySelected($event)"></nvry-expense-category-selection>
-</nvry-modal>

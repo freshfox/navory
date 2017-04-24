@@ -1,9 +1,8 @@
-import {Component, ComponentRef, OnInit, ViewChild} from "@angular/core";
+import {Component, ComponentRef, OnInit} from "@angular/core";
 import {ExpenseService} from "../../services/expense.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {Expense} from "../../models/expense";
-import {ModalComponent} from "../../core/components/modal.component";
 import {Category} from "../../models/category";
 import {FormValidator} from "../../core/form-validator";
 import {TaxRateService} from "../../services/tax-rate.service";
@@ -14,11 +13,12 @@ import {BootstrapService} from "../../services/bootstrap.service";
 import {EuVatType} from "../../core/enums/eu-vat-type.enum";
 import {FieldValidationError, ServiceError} from "../../services/base.service";
 import {Payment} from "../../models/payment";
-import {ModalService} from "../../core/modal.module";
+import {ModalService, ModalSize} from "../../core/modal.module";
 import {TranslateService} from "@ngx-translate/core";
 import {ExpenseBookPaymentComponent} from "../payments/expense-book-payment.component";
 import {NotificationsService} from "angular2-notifications";
 import {Location} from "@angular/common";
+import {ExpenseCategorySelectionComponent} from "./expense-category-selection.component";
 import {PaymentService} from "../../services/payment.service";
 
 @Component({
@@ -36,9 +36,6 @@ export class ExpenseEditComponent implements OnInit {
 	expenseCategories: Category[];
 	euVatTypes: any[];
 	private nextExpenseNumber: number;
-
-	@ViewChild('selectCategory') private selectCategoryModal: ModalComponent;
-
 
 	constructor(private expenseService: ExpenseService,
 				private fb: FormBuilder,
@@ -126,7 +123,7 @@ export class ExpenseEditComponent implements OnInit {
 	}
 
 	euVatTypeChanged() {
-		if(this.expense.eu_vat_type == EuVatType.None) {
+		if (this.expense.eu_vat_type == EuVatType.None) {
 			this.expense.eu_tax_rate = null;
 		}
 	}
@@ -150,11 +147,20 @@ export class ExpenseEditComponent implements OnInit {
 	}
 
 	showCategories() {
-		this.selectCategoryModal.show();
+		this.modalService.create(ExpenseCategorySelectionComponent, {
+			parameters: {
+				categories: this.expenseCategories
+			},
+			size: ModalSize.Large
+		}).subscribe((ref: ComponentRef<ExpenseCategorySelectionComponent>) => {
+			ref.instance.categorySelected.subscribe((category: Category) => {
+				this.modalService.hideCurrentModal();
+				this.categorySelected(category);
+			});
+		});
 	}
 
 	categorySelected(category: Category) {
-		this.selectCategoryModal.hide();
 		this.expense.category = category;
 	}
 
@@ -204,9 +210,11 @@ export class ExpenseEditComponent implements OnInit {
 
 	addPayment() {
 		this.modalService.create(ExpenseBookPaymentComponent, {
-			expense: this.expense,
-			amount: this.expense.unpaid_amount,
-			description: this.translate.instant('payments.default-expense-description', {number: this.expense.number})
+			parameters: {
+				expense: this.expense,
+				amount: this.expense.unpaid_amount,
+				description: this.translate.instant('payments.default-expense-description', {number: this.expense.number})
+			}
 		}).subscribe((ref: ComponentRef<ExpenseBookPaymentComponent>) => {
 			ref.instance.onSaved.subscribe((payment: Payment) => {
 				this.expense.payments.push(payment);

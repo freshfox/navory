@@ -54,7 +54,9 @@ export class CustomersComponent implements OnInit {
 
 	editCustomer(customer: Customer) {
 		this.modalService.create(CustomerEditComponent, {
-			customer: customer
+			parameters: {
+				customer: customer
+			}
 		}).subscribe((ref: ComponentRef<CustomerEditComponent>) => {
 			ref.instance.onSaved.subscribe((savedCustomer: Customer) => {
 				let foundCustomer = false;

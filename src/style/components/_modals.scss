@@ -1,6 +1,3 @@
-$modalDefaultWidth: 750px;
-$modalSlimWidth: 600px;
-
 .modal-footer {
 	text-align: right;
 	background: $colorGrayUltraLighter;
@@ -35,18 +32,46 @@ $modalSlimWidth: 600px;
 	z-index: 800;
 }
 
-.modal {
+.modal-outer {
 	position: fixed;
 	left: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
 	overflow-y: scroll;
-	z-index: 1000;
-	padding-top: 50px;
-	padding-bottom: 50px;
+
 	outline: 0;
 	border: 0;
+	z-index: 1000;
+
+	align-items: flex-start;
+	justify-content: center;
+
+	nvry-button.modal__close-button {
+		position: fixed;
+		top: 40px;
+		right: 40px;
+		z-index: 5000;
+
+		.button {
+			width: 40px;
+			height: 40px;
+		}
+
+		nvry-icon {
+			width: 20px;
+			height: 20px;
+			margin: 0;
+			display: block;
+		}
+	}
+}
+
+.modal {
+	position: relative;
+	z-index: 900;
+	padding-top: 48px;
+	padding-bottom: 48px;
 
 	&.modal--no-padding {
 		.modal-dialog {
@@ -54,28 +79,30 @@ $modalSlimWidth: 600px;
 		}
 	}
 
-	&.modal--slim {
+	&.modal--large {
 		.modal-dialog {
-			width: $modalSlimWidth;
+			width: $modalWidthLarge;
+		}
+	}
+
+	&.modal--full-width {
+		width: 100%;
+
+		.modal-dialog {
+			width: 100%;
 		}
 	}
 
 	.modal-dialog {
-		$modalDialogPadding: 30px $modalSidePadding;
-		width: $modalDefaultWidth;
+		$modalDialogPadding: 32px $modalSidePadding;
+		width: $modalWidthDefault;
 		margin: 0 auto;
 		background-color: white;
-		border-radius: 3px;
+		border-radius: $defaultBorderRadius;
 		padding: $modalDialogPadding;
 
-		@media(max-width: $modalDefaultWidth) {
-			width: 100%;
-			padding-left: 30px;
-			padding-right: 30px;
-		}
-
 		.modal-inner {
-			padding: 15px $modalSidePadding;
+			padding: 16px $modalSidePadding;
 		}
 	}
 
@@ -83,22 +110,7 @@ $modalSlimWidth: 600px;
 		.modal-dialog {
 			background-color: transparent;
 			padding: 0;
-			width: 100%;
-		}
-	}
-
-	.modal__close-button {
-		position: fixed;
-		top: 40px;
-		right: 40px;
-		z-index: 5000;
-		width: 50px;
-		height: 50px;
-
-		nvry-icon {
-			width: 30px;
-			height: 30px;
-			margin: 0;
+			border-radius: 0;
 		}
 	}
 

@@ -6,11 +6,9 @@ import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {HttpModule, Http} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {AppRoutingModule} from "./app.routing";
-import {ButtonComponent} from "./core/components/button.component";
 import {AuthService} from "./services/auth.service";
 import {UserService} from "./services/user.service";
 import {State} from "./core/state";
-import {IconComponent} from "./core/components/icon";
 import {CustomerService} from "./services/customer.service";
 import {LoggedInGuard} from "./guards/logged-in.guard";
 import {DashboardComponent} from "./internal/dashboard/dashboard.component";
@@ -50,7 +48,6 @@ import {PageNavigationComponent} from "./core/components/document-upload/page-na
 import {SettingsComponent} from "./internal/settings/settings.component";
 import {AccountSettingsComponent} from "./internal/settings/account-settings.component";
 import {ProfileSettingsComponent} from "./internal/settings/profile-settings.component";
-import {ModalComponent} from "./core/components/modal.component";
 import {ExpenseCategorySelectionComponent} from "./internal/expenses/expense-category-selection.component";
 import {DatePickerDirective} from "./core/directives/input-date.directive";
 import {Formatter} from "./core/formatter";
@@ -94,6 +91,7 @@ import {PublicGuard} from "./guards/public.guard";
 import {SubscriptionFormComponent} from "./internal/settings/subscription-form.component";
 import {SubscriptionService} from "./services/subscription.service";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {CoreModule} from "./core/core.module";
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -108,8 +106,6 @@ export function translateStaticLoaderFactory(http: Http) {
 		PublicComponent,
 		SignupComponent,
 		CustomersComponent,
-		ButtonComponent,
-		IconComponent,
 		AlertBarComponent,
 		ForgotPasswordComponent,
 		ControlMessagesComponent,
@@ -132,7 +128,6 @@ export function translateStaticLoaderFactory(http: Http) {
 		SettingsComponent,
 		AccountSettingsComponent,
 		ProfileSettingsComponent,
-		ModalComponent,
 		ExpenseCategorySelectionComponent,
 		DatePickerDirective,
 		CustomerEditComponent,
@@ -169,7 +164,9 @@ export function translateStaticLoaderFactory(http: Http) {
 		IncomeBookPaymentComponent,
 		ExpenseBookPaymentComponent,
 		ConfirmComponent,
-		SubscriptionFormComponent
+		SubscriptionFormComponent,
+		ExpenseCategorySelectionComponent,
+		DocumentPreviewComponent
 	],
 	imports: [
 		BrowserModule,
@@ -189,7 +186,8 @@ export function translateStaticLoaderFactory(http: Http) {
 		SimpleNotificationsModule.forRoot(),
 		MaterialModule,
 		ModalModule,
-		Angulartics2Module.forRoot([Angulartics2GoogleAnalytics])
+		Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
+		CoreModule
 	],
 	providers: [
 		AuthService,
