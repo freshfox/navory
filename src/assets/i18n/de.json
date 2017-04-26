@@ -226,7 +226,9 @@
 				"details": "Rechnungsdetails",
 				"review": "Zusammenfassung"
 			},
-			"finish-button": "Plan aktivieren"
+			"finish-button": "Plan aktivieren",
+			"subscription-cancel-success": "Plan erfolgreich gekündigt",
+			"invoices-empty-state-message": "Deine Navory Rechnungen werden hier auftauchen, sobald deine erste Abrechnungsperiode beginnt."
 		},
 		"change-password": {
 			"title": "Passwort ändern",

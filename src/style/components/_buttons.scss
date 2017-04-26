@@ -105,6 +105,7 @@ nvry-button {
 
 	&.button--danger {
 		background: $colorError;
+		border-color: $colorError;
 	}
 
 	&.button--block {

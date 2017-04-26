@@ -29,7 +29,7 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 
 	@Input() plans: SubscriptionPlan[];
 
-	selectedPlan: SubscriptionPlan = this.plans[0];
+	selectedPlan: SubscriptionPlan;
 	accountForm: FormGroup;
 	accountFormValue: Account;
 	sending: boolean = false;
@@ -53,6 +53,10 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 	}
 
 	ngOnInit() {
+		if(this.plans) {
+			this.selectedPlan = this.plans[0];
+		}
+
 		this.stepInfo = [
 			{
 				name: this.translate.instant('settings.subscription.steps.choose-plan'),
@@ -176,24 +180,26 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 		if (this.nonce) {
 			this.currentStepIndex++;
 		} else {
-			this.sending = true;
-			this.creditCardForm.tokenize((err, payload) => {
-				this.sending = false;
-				if (err) {
-					console.log(err);
-					switch(err.code) {
-						case 'HOSTED_FIELDS_FIELDS_EMPTY':
-							this.alertMessage = 'Bitte trage deine Zahlungsdaten ein.';
-							break;
-						default:
-							this.alertMessage = 'Wir konnten diese Kreditkarte nicht verifizieren.';
+			if(this.creditCardForm) {
+				this.sending = true;
+				this.creditCardForm.tokenize((err, payload) => {
+					this.sending = false;
+					if (err) {
+						console.log(err);
+						switch(err.code) {
+							case 'HOSTED_FIELDS_FIELDS_EMPTY':
+								this.alertMessage = 'Bitte trage deine Zahlungsdaten ein.';
+								break;
+							default:
+								this.alertMessage = 'Wir konnten diese Kreditkarte nicht verifizieren.';
+						}
+						return;
 					}
-					return;
-				}
 
-				this.nonce = payload.nonce;
-				this.currentStepIndex++;
-			});
+					this.nonce = payload.nonce;
+					this.currentStepIndex++;
+				});
+			}
 		}
 	}
 

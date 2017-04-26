@@ -9,6 +9,8 @@ import {Invoice} from "../../models/invoice";
 import {TranslateService} from "@ngx-translate/core";
 import {InvoiceService} from "../../services/invoice.service";
 import {SubscriptionService} from "../../services/subscription.service";
+import {CancelSubscriptionComponent} from "./cancel-subscription.component";
+import {NotificationsService} from "angular2-notifications/dist";
 
 @Component({
 	selector: 'nvry-subscription',
@@ -47,8 +49,9 @@ export class SubscriptionComponent implements OnInit {
 				private datePipe: DatePipe,
 				private numberPipe: NumberPipe,
 				private invoiceService: InvoiceService,
-				private subscriptionService: SubscriptionService) {
-		this.activePlan = this.plans[0];
+				private subscriptionService: SubscriptionService,
+				private notificationService: NotificationsService) {
+		//this.activePlan = this.plans[0];
 	}
 
 	ngOnInit() {
@@ -104,6 +107,20 @@ export class SubscriptionComponent implements OnInit {
 
 	downloadInvoice(invoice: Invoice) {
 		this.invoiceService.downloadInvoicePDF(invoice);
+	}
+
+	cancelSubscription() {
+		this.modalService.create(CancelSubscriptionComponent)
+			.subscribe((ref: ComponentRef<CancelSubscriptionComponent>) => {
+				ref.instance.onCancel.subscribe(() => {
+					this.modalService.hideCurrentModal();
+				});
+
+				ref.instance.onSuccess.subscribe(() => {
+					this.modalService.hideCurrentModal();
+					this.notificationService.success(this.translate.instant('settings.subscription.subscription-cancel-success'));
+				});
+			});;
 	}
 }
 

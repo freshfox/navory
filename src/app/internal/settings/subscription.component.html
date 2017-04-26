@@ -13,7 +13,7 @@
 					<span class="price-notice">für immer.</span>
 				</p>
 
-				<ul class="feature-list">
+				<ul class="pricing-plan-feature-list">
 					<li><nvry-icon name="tick"></nvry-icon> Rechnungserstellung</li>
 					<li><nvry-icon name="tick"></nvry-icon> Kundenverwaltung</li>
 					<li class="feature-not-included"><nvry-icon name="cross"></nvry-icon> Einnahmen</li>
@@ -80,8 +80,8 @@
 						{{ activePlan.period_end_date | nvryDate }}
 					</p>
 
-					<div>
-						<nvry-button class="button--danger button--small" (click)="cancelSubscription()">Plan kündigen</nvry-button>
+					<div style="padding-top: 16px">
+						<nvry-button class="button--outline button--small" (click)="cancelSubscription()">Plan kündigen</nvry-button>
 					</div>
 				</div>
 				<div class="current-plan-box__features">
@@ -116,7 +116,11 @@
 				<h2>{{ 'general.invoices' | translate }}</h2>
 			</div>
 
-			<nvry-table [options]="invoiceTableOptions" [rows]="invoices"></nvry-table>
+			<nvry-table [options]="invoiceTableOptions" [rows]="invoices">
+				<div empty class="empty-view">
+					<p class="title" [innerHTML]="'settings.subscription.invoices-empty-state-message' | translate"></p>
+				</div>
+			</nvry-table>
 		</section>
 	</ng-template>
 </div>

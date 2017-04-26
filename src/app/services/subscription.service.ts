@@ -34,6 +34,10 @@ export class SubscriptionService extends BaseService {
 		});
 	}
 
+	cancelSubscription(): Observable<any> {
+		return this.delete(this.pathSubscription);
+	}
+
 	getSubscriptionInvoices(): Observable<Invoice[]> {
 		return this.get(this.pathInvoices);
 	}

@@ -92,6 +92,7 @@ import {SubscriptionFormComponent} from "./internal/settings/subscription-form.c
 import {SubscriptionService} from "./services/subscription.service";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {CoreModule} from "./core/core.module";
+import {CancelSubscriptionComponent} from "./internal/settings/cancel-subscription.component";
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -156,7 +157,8 @@ export function translateStaticLoaderFactory(http: Http) {
 		ExpenseBookPaymentComponent,
 		LogoUploadComponent,
 		LogoComponent,
-		SubscriptionFormComponent
+		SubscriptionFormComponent,
+		CancelSubscriptionComponent
 	],
 	entryComponents: [
 		CustomerEditComponent,
@@ -166,7 +168,8 @@ export function translateStaticLoaderFactory(http: Http) {
 		ConfirmComponent,
 		SubscriptionFormComponent,
 		ExpenseCategorySelectionComponent,
-		DocumentPreviewComponent
+		DocumentPreviewComponent,
+		CancelSubscriptionComponent
 	],
 	imports: [
 		BrowserModule,

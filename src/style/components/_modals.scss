@@ -20,6 +20,10 @@
 	font-size: 20px;
 	padding: 20px $modalSidePadding;
 	margin-bottom: 20px;
+
+	&.modal-header--danger {
+		background: $colorError;
+	}
 }
 
 .modal-backdrop {
@@ -72,6 +76,7 @@
 	z-index: 900;
 	padding-top: 48px;
 	padding-bottom: 48px;
+	outline: 0;
 
 	&.modal--no-padding {
 		.modal-dialog {
