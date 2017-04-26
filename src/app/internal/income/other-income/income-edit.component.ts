@@ -135,7 +135,10 @@ export class IncomeEditComponent implements OnInit {
 							this.state.nextIncomeNumber++;
 							this.location.replaceState(`/income/${income.id}`);
 						}
+						let file = this.income.file;
 						this.income = income;
+						this.income.file = file;
+
 						this.saving = false;
 						this.notificationService.success(null, this.translate.instant('income.save-success'));
 					},
