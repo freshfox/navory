@@ -176,7 +176,10 @@ export class ExpenseEditComponent implements OnInit {
 							this.state.nextExpenseNumber++;
 							this.location.replaceState(`/expenses/${expense.id}`);
 						}
+						let file = this.expense.file;
 						this.expense = expense;
+						this.expense.file = file;
+
 						this.saving = false;
 						this.notificationService.success(null, this.translate.instant('expenses.save-success'));
 					},
