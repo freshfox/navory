@@ -146,7 +146,7 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 
 	getSelectedPlanInfo() {
 		let plan = this.selectedPlan;
-		return `${plan.title}\nEUR ${plan.price},- ${plan.note}`;
+		return `${plan.title}\nEUR ${plan.price},-\n${plan.note}`;
 	}
 
 	getAddressInfo() {

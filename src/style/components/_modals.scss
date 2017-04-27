@@ -69,6 +69,26 @@
 			display: block;
 		}
 	}
+
+	nvry-button.modal__close-button-inside {
+		position: absolute;
+		top: 0;
+		right: 0;
+
+		.button {
+			padding: 0;
+			width: 30px;
+			height: 30px;
+		}
+
+		.icon {
+			fill: $colorPrimary;
+			width: 20px;
+			height: 20px;
+			margin: 0;
+			display: block;
+		}
+	}
 }
 
 .modal {
@@ -81,6 +101,11 @@
 	&.modal--no-padding {
 		.modal-dialog {
 			padding: 0;
+		}
+
+		nvry-button.modal__close-button-inside {
+			top: 8px;
+			right: 8px;
 		}
 	}
 
@@ -105,6 +130,10 @@
 		background-color: white;
 		border-radius: $defaultBorderRadius;
 		padding: $modalDialogPadding;
+
+		.modal-dialog__inner {
+			position: relative;
+		}
 
 		.modal-inner {
 			padding: 16px $modalSidePadding;

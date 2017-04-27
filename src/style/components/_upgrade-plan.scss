@@ -1,0 +1,22 @@
+.upgrade-plan {
+	//background-color: $colorPrimary;
+	padding: 32px;
+	//color: white;
+	display: block;
+	text-align: center;
+
+	.icon {
+		width: 90px;
+
+		svg {
+			fill: $colorSuccess;
+		}
+	}
+
+	p {
+		max-width: 415px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 40px;
+	}
+}

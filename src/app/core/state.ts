@@ -4,6 +4,8 @@ import {Category} from "../models/category";
 import {Unit} from "../models/unit";
 import {Country} from "../models/country";
 import {TaxRate} from "../models/tax-rate";
+import {AccountFeatures} from "../models/account-features";
+import {Subscription} from "../models/subscription";
 
 @Injectable()
 export class State {
@@ -20,6 +22,8 @@ export class State {
 	nextExpenseNumber: number;
 	nextIncomeNumber: number;
 	nextInvoiceNumber: number;
+	features: AccountFeatures;
+	subscription: Subscription;
 
 	getAustria(): Country {
 		var aut;

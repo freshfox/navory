@@ -11,6 +11,7 @@ import * as moment from "moment";
 import {State} from "../../../core/state";
 import {Router} from "@angular/router";
 import {ModalService} from "../../../core/modal.module";
+import {SubscriptionService} from "../../../services/subscription.service";
 
 @Component({
 	templateUrl: './income-list.component.html'
@@ -34,7 +35,8 @@ export class IncomeListComponent implements OnInit {
 				private datePipe: DatePipe,
 				private state: State,
 				private router: Router,
-				private modalService: ModalService) {
+				private modalService: ModalService,
+				private subscriptionService: SubscriptionService) {
 	}
 
 	ngOnInit() {
@@ -88,7 +90,11 @@ export class IncomeListComponent implements OnInit {
 	}
 
 	createIncome() {
-		this.router.navigate(['/income/new']);
+		if (this.subscriptionService.incomeEnabled()) {
+			this.router.navigate(['/income/new']);
+		} else {
+			this.subscriptionService.showUpgradeModal();
+		}
 	}
 
 	editIncome(income: Income) {

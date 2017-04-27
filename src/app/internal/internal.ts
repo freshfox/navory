@@ -1,14 +1,15 @@
-import {AfterViewInit, Component} from "@angular/core";
+import {AfterViewInit, Component, OnDestroy} from "@angular/core";
 import {State} from "../core/state";
 import {Router, ActivatedRoute} from "@angular/router";
 import {AuthService} from "../services/auth.service";
+import * as moment from 'moment';
 
 declare let Headway: any;
 
 @Component({
 	templateUrl: './internal.component.html'
 })
-export class InternalComponent implements AfterViewInit {
+export class InternalComponent implements AfterViewInit, OnDestroy {
 
 	navItems = [
 		{
@@ -106,5 +107,16 @@ export class InternalComponent implements AfterViewInit {
 				this.loggingOut = false;
 				this.router.navigate(['/login']);
 			});
+	}
+
+	get trialMessage(): string {
+		if (this.state.subscription.plan_id === 'trial' && this.state.subscription.active) {
+			let endDate = moment(this.state.subscription.period_end_date);
+			let today = moment();
+			let days = endDate.diff(today, 'days');
+			return `Deine Testzeit läuft noch ${days} Tag${days > 1 ? 'e' : ''}. Jetzt upgraden!`;
+		}
+
+		return null;
 	}
 }

@@ -1,5 +1,5 @@
 <div class="module-subscription">
-	<div class="pricing-plans" *ngIf="!isPlanActive">
+	<div class="pricing-plans" *ngIf="!isSubscriptionActive">
 		<div class="buttons">
 			<button class="button button--xsmall" (click)="yearly = false" [class.button--gray]="yearly">Monatlich</button>
 			<button class="button button--xsmall" (click)="yearly = true" [class.button--gray]="!yearly">Jährlich</button>
@@ -61,7 +61,7 @@
 	</div>
 
 
-	<ng-template [ngIf]="isPlanActive">
+	<ng-template [ngIf]="isSubscriptionActive">
 		<section class="section default-section">
 			<div class="current-plan-box">
 				<div>
@@ -72,17 +72,23 @@
 
 					<h2>Preis</h2>
 					<p>
-						EUR {{ 12 | nvryNumber }} <small>exkl. USt. pro Monat</small>
+						EUR {{ activePlan.price | nvryNumber }} <small>{{ activePlan.note }}</small>
 					</p>
 
-					<h2>Nächste Abrechnung</h2>
-					<p>
-						{{ activePlan.period_end_date | nvryDate }}
-					</p>
+					<div *ngIf="subscription.active && !subscription.canceled; else canceledTemplate">
+						<h2>Nächste Abrechnung</h2>
+						<p>
+							{{ subscription.period_end_date | nvryDate }}
+						</p>
 
-					<div style="padding-top: 16px">
-						<nvry-button class="button--outline button--small" (click)="cancelSubscription()">Plan kündigen</nvry-button>
+						<div style="padding-top: 16px">
+							<nvry-button class="button--outline button--small" (click)="cancelSubscription()">Plan kündigen</nvry-button>
+						</div>
 					</div>
+
+					<ng-template #canceledTemplate>
+						Du hast deinen Plan gekündigt. Du kannst alle Features noch bis zum {{ subscription.period_end_date | nvryDate }} nutzen.
+					</ng-template>
 				</div>
 				<div class="current-plan-box__features">
 					<h2>Deine Features</h2>
@@ -109,20 +115,19 @@
 				</div>
 			</div>
 		</section>
-
-
-		<section class="section">
-			<div class="default-section">
-				<h2>{{ 'general.invoices' | translate }}</h2>
-			</div>
-
-			<nvry-table [options]="invoiceTableOptions" [rows]="invoices">
-				<div empty class="empty-view">
-					<p class="title" [innerHTML]="'settings.subscription.invoices-empty-state-message' | translate"></p>
-				</div>
-			</nvry-table>
-		</section>
 	</ng-template>
+
+	<section class="section">
+		<div class="default-section">
+			<h2>{{ 'general.invoices' | translate }}</h2>
+		</div>
+
+		<nvry-table [options]="invoiceTableOptions" [rows]="invoices">
+			<div empty class="empty-view">
+				<p class="title" [innerHTML]="'settings.subscription.invoices-empty-state-message' | translate"></p>
+			</div>
+		</nvry-table>
+	</section>
 </div>
 
 <ng-template #servicePeriodColumn let-row="row" let-value="value">

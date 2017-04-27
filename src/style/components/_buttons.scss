@@ -91,6 +91,12 @@ nvry-button {
 		border-color: white;
 	}
 
+	&.button--white {
+		color: $colorPrimary;
+		background: white;
+		border-color: white;
+	}
+
 	&.button--clear {
 		background: none;
 		border: 0;

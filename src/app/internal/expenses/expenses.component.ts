@@ -11,6 +11,7 @@ import {State} from "../../core/state";
 import {Router} from "@angular/router";
 import {ModalService} from "../../core/modal.module";
 import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";
+import {SubscriptionService} from "../../services/subscription.service";
 
 @Component({
 	templateUrl: './expenses.component.html'
@@ -34,7 +35,8 @@ export class ExpensesComponent implements OnInit {
 				private datePipe: DatePipe,
 				private state: State,
 				private router: Router,
-				private modalService: ModalService) {
+				private modalService: ModalService,
+				private subscriptionService: SubscriptionService) {
 	}
 
 	ngOnInit() {
@@ -90,7 +92,11 @@ export class ExpensesComponent implements OnInit {
 	}
 
 	createExpense() {
-		this.router.navigate(['/expenses/new']);
+		if (this.subscriptionService.expensesEnabled()) {
+			this.router.navigate(['/expenses/new']);
+		} else {
+			this.subscriptionService.showUpgradeModal();
+		}
 	}
 
 	editExpense(expense) {

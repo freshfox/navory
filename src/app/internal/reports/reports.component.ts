@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ReportService} from "../../services/report.service";
+import {SubscriptionService} from "../../services/subscription.service";
 var moment = require('moment');
 
 @Component({
@@ -31,13 +32,19 @@ export class ReportsComponent implements OnInit {
 		}
 	];
 
-	constructor(private reportService: ReportService) {
+	reportsEnabled: boolean;
+
+	constructor(private reportService: ReportService, private subscriptionService: SubscriptionService) {
 		this.selectedYear = new Date().getFullYear();
 		this.selectedQuarter = moment().quarter() - 1;
 	}
 
 	ngOnInit() {
-		this.refreshReport();
+		this.reportsEnabled = this.subscriptionService.reportsEnabled();
+
+		if(this.reportsEnabled) {
+			this.refreshReport();
+		}
 	}
 
 	getAbsoluteAmount(amount: number) {

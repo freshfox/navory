@@ -1,9 +1,12 @@
-import {Injectable} from "@angular/core";
+import {ComponentRef, Injectable} from "@angular/core";
 import {BaseService} from "./base.service";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs";
 import {Subscription} from "../models/subscription";
 import {Invoice} from "../models/invoice";
+import {State} from "../core/state";
+import {ModalService} from "../core/modal.module";
+import {UpgradePlanComponent} from "../core/components/upgrade-plan.component";
 
 @Injectable()
 export class SubscriptionService extends BaseService {
@@ -12,7 +15,7 @@ export class SubscriptionService extends BaseService {
 	private pathSubscription = '/subscription';
 	private pathInvoices = '/subscription/invoices';
 
-	constructor(http: Http) {
+	constructor(http: Http, private state: State, private modalService: ModalService) {
 		super(http);
 	}
 
@@ -42,5 +45,28 @@ export class SubscriptionService extends BaseService {
 		return this.get(this.pathInvoices);
 	}
 
+	expensesEnabled(): boolean {
+		return this.state.features.expenses;
+	}
 
+	incomeEnabled(): boolean {
+		return this.state.features.income;
+	}
+
+	reportsEnabled(): boolean {
+		return this.state.features.reports;
+	}
+
+	paymentsEnabled(): boolean {
+		return this.state.features.payments;
+	}
+
+	showUpgradeModal() {
+		this.modalService.create(UpgradePlanComponent)
+			.subscribe((ref: ComponentRef<UpgradePlanComponent>) => {
+				ref.instance.onClickPlans.subscribe(() => {
+					this.modalService.hideCurrentModal();
+				});
+			});
+	}
 }

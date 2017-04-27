@@ -61,7 +61,7 @@ export class ModalService {
 			size: ModalSize.Regular,
 			padding: false,
 			clean: false,
-			showCloseButton: false
+			showCloseButton: true
 		}, options);
 
 		let factory = this.componentFactoryResolver.resolveComponentFactory(component);
@@ -100,11 +100,16 @@ export class ModalService {
 				 [class.modal--full-width]="isFullWidth()"
 				 [class.modal--clean]="isClean()">
 				<div class="modal-dialog">
-					<ng-template #modalplaceholder></ng-template>
+					<div class="modal-dialog__inner">
+						<ng-template #modalplaceholder></ng-template>
+						<nvry-button *ngIf="showCloseButton && !clean" class="button--clear modal__close-button-inside" (click)="hide()">
+							<nvry-icon name="cross"></nvry-icon>
+						</nvry-button>
+					</div>
 				</div>
 			</div>
 			<div [@backdrop]="state" class="modal-backdrop" (click)="onBackdropClicked()"></div>
-			<nvry-button *ngIf="showCloseButton" class="modal__close-button" [@closeButton]="state" (click)="hide()">
+			<nvry-button *ngIf="showCloseButton && clean" class="modal__close-button" [@closeButton]="state" (click)="hide()">
 				<nvry-icon name="cross"></nvry-icon>
 			</nvry-button>
 		</div>
@@ -148,7 +153,7 @@ export class ModalPlaceholderComponent implements OnInit, AfterViewInit {
 	padding: boolean = false;
 	modalSize: ModalSize = ModalSize.Regular;
 	clean: boolean = false;
-	showCloseButton: boolean = false;
+	showCloseButton: boolean = true;
 
 	@ViewChild("modalplaceholder", {read: ViewContainerRef}) viewContainerRef;
 

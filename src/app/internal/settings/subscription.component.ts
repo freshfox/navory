@@ -11,6 +11,7 @@ import {InvoiceService} from "../../services/invoice.service";
 import {SubscriptionService} from "../../services/subscription.service";
 import {CancelSubscriptionComponent} from "./cancel-subscription.component";
 import {NotificationsService} from "angular2-notifications/dist";
+import {Subscription} from "../../models/subscription";
 
 @Component({
 	selector: 'nvry-subscription',
@@ -20,7 +21,6 @@ export class SubscriptionComponent implements OnInit {
 
 
 	yearly: boolean = true;
-	activePlan: SubscriptionPlan;
 
 	plans: SubscriptionPlan[] = [
 		{
@@ -41,6 +41,8 @@ export class SubscriptionComponent implements OnInit {
 
 	invoiceTableOptions: TableOptions;
 	invoices: Invoice[] = [];
+	subscription: Subscription;
+
 	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
 	@ViewChild('servicePeriodColumn') servicePeriodColumn: TemplateRef<any>;
 
@@ -51,12 +53,14 @@ export class SubscriptionComponent implements OnInit {
 				private invoiceService: InvoiceService,
 				private subscriptionService: SubscriptionService,
 				private notificationService: NotificationsService) {
-		//this.activePlan = this.plans[0];
 	}
 
 	ngOnInit() {
 		this.subscriptionService.getSubscriptionInvoices()
 			.subscribe(invoices => this.invoices = invoices);
+
+		this.subscriptionService.getSubscription()
+			.subscribe(subscription => this.subscription = subscription);
 
 		this.invoiceTableOptions = new TableOptions({
 			itemsClickable: false,
@@ -83,8 +87,22 @@ export class SubscriptionComponent implements OnInit {
 		});
 	}
 
-	get isPlanActive(): boolean {
+	get isSubscriptionActive(): boolean {
 		return !!this.activePlan;
+	}
+
+	get activePlan(): SubscriptionPlan {
+		let activePlan = null;
+
+		if (this.subscription) {
+			for (let plan of this.plans) {
+				if (plan.id == this.subscription.plan_id) {
+					return plan;
+				}
+			}
+		}
+
+		return activePlan;
 	}
 
 	openPaymentModal() {
@@ -95,10 +113,10 @@ export class SubscriptionComponent implements OnInit {
 				plans: this.plans
 			}
 		}).subscribe((ref: ComponentRef<SubscriptionFormComponent>) => {
-				ref.instance.onSuccess.subscribe(() => {
-					this.modalService.hideCurrentModal();
-				});
+			ref.instance.onSuccess.subscribe(() => {
+				this.modalService.hideCurrentModal();
 			});
+		});
 	}
 
 	get proPrice(): number {
@@ -120,7 +138,8 @@ export class SubscriptionComponent implements OnInit {
 					this.modalService.hideCurrentModal();
 					this.notificationService.success(this.translate.instant('settings.subscription.subscription-cancel-success'));
 				});
-			});;
+			});
+		;
 	}
 }
 
