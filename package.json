@@ -51,7 +51,7 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.0",
+    "@angular/cli": "1.0.1",
     "@angular/compiler-cli": "4.1.0",
     "@types/chartist": "^0.9.34",
     "@types/dropzone": "^4.3.34",
