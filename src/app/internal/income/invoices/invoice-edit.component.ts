@@ -146,6 +146,27 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 		});
 	}
 
+	saveCustomer() {
+		this.modalService.create(CustomerEditComponent, {
+			parameters: {
+				customer: {
+					name: this.invoice.customer_name,
+					address: this.invoice.customer_address,
+					country_id: this.invoice.customer_country_id
+				}
+			}
+		}).subscribe((ref: ComponentRef<CustomerEditComponent>) => {
+			ref.instance.onSaved.subscribe((savedCustomer: Customer) => {
+				this.updateCustomer(savedCustomer);
+				this.modalService.hideCurrentModal();
+			});
+
+			ref.instance.onCancel.subscribe(() => {
+				this.modalService.hideCurrentModal();
+			});
+		});
+	}
+
 	get nextInvoiceNumber(): number {
 		return this.state.nextInvoiceNumber;
 	}

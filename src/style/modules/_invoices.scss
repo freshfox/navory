@@ -66,7 +66,7 @@
 .invoice-edit-customer-name-wrapper {
 	position: relative;
 
-	.invoice-edit-customer-edit-link-wrapper {
+	.invoice-edit-customer-link-wrapper {
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -75,8 +75,8 @@
 		display: flex;
 		align-items: center;
 
-		.invoice-edit-customer-edit-link {
-			margin-right: 10px;
+		.invoice-edit-customer-link-button-wrapper {
+			margin-left: 8px;
 		}
 	}
 }
