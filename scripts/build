@@ -1,6 +1,5 @@
 #!/bin/bash
-
-npm run build
+ENV=$1
 
 if [ -z $1 ]; then
 	echo "Usage: `basename $0` <environment>"
