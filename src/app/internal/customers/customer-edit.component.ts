@@ -21,7 +21,7 @@ export class CustomerEditComponent implements OnInit {
 	countries: Country[];
 	headerText: string;
 	alertMessage: string;
-	selectedCountryId: string;
+	selectedCountryCode: string;
 
 	@Input() customer: Customer;
 	@Output() onSaved: EventEmitter<Customer> = new EventEmitter<Customer>();
@@ -48,7 +48,7 @@ export class CustomerEditComponent implements OnInit {
 		});
 
 		this.customer = this.customer ? Object.assign({}, this.customer) : new Customer;
-		this.selectedCountryId = this.customer.country_code || this.bootstrapService.getDefaultCountry().code;
+		this.selectedCountryCode = this.customer.country_code || this.bootstrapService.getDefaultCountry().code;
 		this.headerText = this.customer.id ? this.translate.instant('customers.edit-title') : this.translate.instant('customers.create-title');
 	}
 
@@ -60,7 +60,7 @@ export class CustomerEditComponent implements OnInit {
 		Helpers.validateAllFields(this.form);
 		if (this.form.valid) {
 			this.loading = true;
-			this.customer.country_code = this.selectedCountryId;
+			this.customer.country_code = this.selectedCountryCode;
 			this.customerService.saveCustomer(this.customer)
 				.subscribe(
 					customer => {
