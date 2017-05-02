@@ -9,7 +9,7 @@ fi
 function deploy {
     PROJECT=$1
 
-    npm run build
+    scripts/build
     npm run deploy -- --project ${PROJECT} --token="$FIREBASE_TOKEN";
 }
 
