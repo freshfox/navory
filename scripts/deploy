@@ -9,15 +9,16 @@ fi
 function deploy {
     PROJECT=$1
 
-    scripts/build
     npm run deploy -- --project ${PROJECT} --token="$FIREBASE_TOKEN";
 }
 
 case ${ENV} in
-	"development")
+	"staging")
+		scripts/build staging
 		deploy navory-dev
 		;;
 	"production")
+		scripts/build production
 		deploy project-5028999388129729441
 		;;
 esac

@@ -9,7 +9,9 @@
     "test": "ng test --single-run",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build": "gulp beforeBuild && ng build --prod && gulp afterBuild",
+    "build": "npm run build-prod",
+    "build-production": "gulp beforeBuild && ng build --env=prod && gulp afterBuild",
+    "build-staging": "gulp beforeBuild && ng build --env=staging && gulp afterBuild",
     "deploy": "firebase deploy"
   },
   "engines": {
