@@ -12,7 +12,6 @@ import {Country} from "../models/country";
 export class BootstrapService extends BaseService {
 
 	private pathBootstrap = '/bootstrap';
-	private defaultCountryCCA2 = 'AT';
 
 	constructor(http: Http, private translate: TranslateService, private state: State) {
 		super(http);
@@ -48,14 +47,17 @@ export class BootstrapService extends BaseService {
 	}
 
 	getDefaultCountry(): Country {
-		var defaultCountry;
-		this.getCountries().forEach(country => {
-			if (country.cca2 == this.defaultCountryCCA2) {
-				defaultCountry = country;
-			}
-		});
+		return this.getCountryByCode(this.state.user.account.country_code);
+	}
 
-		return defaultCountry;
+	getAustria(): Country {
+		return this.getCountryByCode('AUT');
+	}
+
+	getCountryByCode(code: string) {
+		return this.getCountries().find(country => {
+			return country.code === code
+		});
 	}
 
 }

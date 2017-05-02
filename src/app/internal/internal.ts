@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnDestroy} from "@angular/core";
 import {State} from "../core/state";
-import {Router, ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 import * as moment from 'moment';
 
@@ -80,24 +80,28 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 	}
 
 	initHeadway() {
-		let config = {
-			selector: ".whats-new-badge",
-			account: "JP3nD7",
-			translations: {
-				title: "Updates",
-				readMore: "Mehr",
-				labels: {
-					"new": "Neu",
-					"improvement": "Updates",
-					"fix": "Bugfix"
+		if (Headway) {
+			let config = {
+				selector: ".whats-new-badge",
+				account: "JP3nD7",
+				translations: {
+					title: "Updates",
+					readMore: "Mehr",
+					labels: {
+						"new": "Neu",
+						"improvement": "Updates",
+						"fix": "Bugfix"
+					}
 				}
-			}
-		};
-		Headway.init(config);
+			};
+			Headway.init(config);
+		}
 	}
 
 	destroyHeadway() {
-		Headway.destroy();
+		if (Headway) {
+			Headway.destroy();
+		}
 	}
 
 	logout() {

@@ -192,7 +192,8 @@
 		"remove-customer-link": "Kundenverknüpfung entfernen",
 		"save-error": "Die Rechnung konnte nicht gespeichert werden.",
 		"new-line": "Neue Zeile",
-		"comment-placeholder": "Gib hier Hinweise für deinen Kunden ein."
+		"comment-placeholder": "Gib hier Hinweise für deinen Kunden ein.",
+		"save-customer": "Kunde speichern"
 	},
 	"expenses": {
 		"title": "Ausgaben",

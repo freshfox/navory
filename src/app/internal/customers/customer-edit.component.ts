@@ -8,6 +8,7 @@ import {State} from "../../core/state";
 import {Country} from "../../models/country";
 import {TranslateService} from "@ngx-translate/core";
 import {ErrorHandler} from "../../core/error-handler";
+import {BootstrapService} from "../../services/bootstrap.service";
 
 @Component({
 	selector: 'nvry-customer-edit',
@@ -20,7 +21,7 @@ export class CustomerEditComponent implements OnInit {
 	countries: Country[];
 	headerText: string;
 	alertMessage: string;
-	selectedCountryId: string;
+	selectedCountryCode: string;
 
 	@Input() customer: Customer;
 	@Output() onSaved: EventEmitter<Customer> = new EventEmitter<Customer>();
@@ -28,6 +29,7 @@ export class CustomerEditComponent implements OnInit {
 
 	constructor(private fb: FormBuilder,
 				private customerService: CustomerService,
+				private bootstrapService: BootstrapService,
 				private state: State,
 				private translate: TranslateService,
 				private errorHandler: ErrorHandler) {
@@ -46,7 +48,7 @@ export class CustomerEditComponent implements OnInit {
 		});
 
 		this.customer = this.customer ? Object.assign({}, this.customer) : new Customer;
-		this.selectedCountryId = this.customer.country_id || this.state.getAustria().id;
+		this.selectedCountryCode = this.customer.country_code || this.bootstrapService.getDefaultCountry().code;
 		this.headerText = this.customer.id ? this.translate.instant('customers.edit-title') : this.translate.instant('customers.create-title');
 	}
 
@@ -58,7 +60,7 @@ export class CustomerEditComponent implements OnInit {
 		Helpers.validateAllFields(this.form);
 		if (this.form.valid) {
 			this.loading = true;
-			this.customer.country_id = this.selectedCountryId;
+			this.customer.country_code = this.selectedCountryCode;
 			this.customerService.saveCustomer(this.customer)
 				.subscribe(
 					customer => {

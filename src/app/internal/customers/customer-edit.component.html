@@ -12,8 +12,8 @@
 						[(ngModel)]="customer.name"></nvry-input>
 			<nvry-textarea [label]="'general.address' | translate" [formControl]="form.controls.address"
 						   [(ngModel)]="customer.address"></nvry-textarea>
-			<nvry-select [label]="'general.country' | translate" [options]="countries" valueKey="id"
-						 [(selectedValue)]="selectedCountryId"></nvry-select>
+			<nvry-select [label]="'general.country' | translate" [options]="countries" valueKey="code"
+						 [(selectedValue)]="selectedCountryCode"></nvry-select>
 		</div>
 		<div class="bit-50">
 			<nvry-input [label]="'general.number' | translate" [formControl]="form.controls.number"

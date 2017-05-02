@@ -6,7 +6,6 @@
 export const environment = {
 	production: false,
 	apiUrl: 'http://localhost:3000',
-	minPasswordLength: 8,
 	intercomAppId: '',
 	braintreeMerchantId: '8c5bwf97hnwvgpgj',
 };

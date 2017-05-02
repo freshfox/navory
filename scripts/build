@@ -1,0 +1,16 @@
+#!/bin/bash
+ENV=$1
+
+if [ -z $1 ]; then
+	echo "Usage: `basename $0` <environment>"
+	exit 1
+fi
+
+case ${ENV} in
+	"production")
+		npm run build-production
+		;;
+	"staging")
+		npm run build-staging
+		;;
+esac

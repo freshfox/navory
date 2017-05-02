@@ -50,11 +50,6 @@ export class AccountSettingsComponent implements OnInit {
 	}
 
 	get accountCountryName(): string {
-		let countries = this.bootstrapService.getCountries()
-		let foundCountry = countries.find((country) => {
-			return country.id === this.account.country_id;
-		});
-
-		return foundCountry.name;
+		return this.bootstrapService.getCountryByCode(this.account.country_code).name;
 	}
 }

@@ -62,18 +62,26 @@
 					<div class="bit-50 customer-area">
 						<div #customerName class="invoice-edit-customer-name-wrapper">
 
-							<div class="invoice-edit-customer-edit-link-wrapper" *ngIf="invoice.customer">
-								<a  class="invoice-edit-customer-edit-link"
-									href="javascript:void(0)"
-									(click)="editCustomer()">
-									{{ 'invoices.edit-customer' | translate }}
-								</a>
+							<div class="invoice-edit-customer-link-wrapper">
+								<ng-template  [ngIf]="invoice.customer">
+									<a  class="invoice-edit-customer-link"
+										href="javascript:void(0)"
+										(click)="editCustomer()">
+										{{ 'invoices.edit-customer' | translate }}
+									</a>
 
-								<div>
-									<button class="button button--mini-rounded" [mdTooltip]="'invoices.remove-customer-link' | translate" (click)="removeCustomerLink()">
-										<nvry-icon name="cross"></nvry-icon>
-									</button>
-								</div>
+									<div class="invoice-edit-customer-link-button-wrapper">
+										<button class="button button--mini-rounded" [mdTooltip]="'invoices.remove-customer-link' | translate" (click)="removeCustomerLink()">
+											<nvry-icon name="cross"></nvry-icon>
+										</button>
+									</div>
+								</ng-template>
+
+								<ng-template [ngIf]="invoice.customer_name && !invoice.customer">
+									<a href="javascript:void(0)" class="invoice-edit-customer-link" (click)="saveCustomer()">
+										{{ 'invoices.save-customer' | translate }}
+									</a>
+								</ng-template>
 							</div>
 
 							<nvry-input [label]="'general.customer' | translate"
@@ -83,8 +91,8 @@
 						<nvry-textarea [label]="'general.address' | translate"
 									   [(ngModel)]="invoice.customer_address"></nvry-textarea>
 
-						<nvry-select [label]="'general.country' | translate" [options]="countries"
-									 [(selectedValue)]="invoice.customer_country_id"></nvry-select>
+						<nvry-select [label]="'general.country' | translate" [options]="countries" valueKey="code"
+									 [(selectedValue)]="invoice.customer_country_code"></nvry-select>
 					</div>
 					<div class="bit-50">
 						<div class="frame frame--bit-spacing">

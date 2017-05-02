@@ -25,15 +25,4 @@ export class State {
 	features: AccountFeatures;
 	subscription: Subscription;
 
-	getAustria(): Country {
-		var aut;
-		this.countries.forEach(country => {
-			if (country.cca3 === 'AUT') {
-				aut = country;
-			}
-		});
-
-		return aut;
-	}
-
 }
