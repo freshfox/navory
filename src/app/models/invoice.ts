@@ -19,7 +19,7 @@ export class Invoice extends BaseModel {
 	customer: Customer;
 	customer_name: string;
 	customer_address: string;
-	customer_country_id: string;
+	customer_country_code: string;
 	customer_vat_number: string;
 	payments: Payment[];
 

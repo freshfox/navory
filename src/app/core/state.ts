@@ -21,15 +21,4 @@ export class State {
 	nextIncomeNumber: number;
 	nextInvoiceNumber: number;
 
-	getAustria(): Country {
-		var aut;
-		this.countries.forEach(country => {
-			if (country.cca3 === 'AUT') {
-				aut = country;
-			}
-		});
-
-		return aut;
-	}
-
 }

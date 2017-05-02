@@ -56,7 +56,7 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 
 		this.invoice = new Invoice();
 		this.invoice.due_date = moment().add(1, 'M');
-		this.invoice.customer_country_id = this.bootstrapService.getDefaultCountry().id;
+		this.invoice.customer_country_code = this.bootstrapService.getDefaultCountry().code;
 		this.invoice.invoice_lines.push(new InvoiceLine());
 		this.invoice.draft = true;
 
@@ -122,7 +122,7 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 		this.invoice.customer_name = customer.name;
 		this.invoice.customer_address = customer.address;
 		this.invoice.customer_vat_number = customer.vat_number;
-		this.invoice.customer_country_id = customer.country_id;
+		this.invoice.customer_country_code = customer.country_code;
 	}
 
 	private removeCustomerLink() {
@@ -147,13 +147,14 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 	}
 
 	saveCustomer() {
+		let customer = new Customer();
+		customer.name = this.invoice.customer_name;
+		customer.address = this.invoice.customer_address;
+		customer.country_code = this.invoice.customer_country_code;
+
 		this.modalService.create(CustomerEditComponent, {
 			parameters: {
-				customer: {
-					name: this.invoice.customer_name,
-					address: this.invoice.customer_address,
-					country_id: this.invoice.customer_country_id
-				}
+				customer: customer
 			}
 		}).subscribe((ref: ComponentRef<CustomerEditComponent>) => {
 			ref.instance.onSaved.subscribe((savedCustomer: Customer) => {

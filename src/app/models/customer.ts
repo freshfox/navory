@@ -7,5 +7,5 @@ export class Customer {
 	email: string;
 	phone: string;
 	vat_number: string;
-	country_id: string;
+	country_code: string;
 }
