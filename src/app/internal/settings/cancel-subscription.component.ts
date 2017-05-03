@@ -37,9 +37,9 @@ export class CancelSubscriptionComponent implements OnInit {
 	cancelSubscription() {
 		this.sending = true;
 		this.subscriptionService.cancelSubscription()
-			.subscribe(() => {
+			.subscribe((data) => {
 				this.sending = false;
-				this.onSuccess.next();
+				this.onSuccess.next(data);
 			});
 	}
 

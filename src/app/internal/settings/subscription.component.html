@@ -1,5 +1,8 @@
 <div class="module-subscription">
-	<div class="pricing-plans" *ngIf="!isSubscriptionActive">
+
+	<nvry-spinner *ngIf="loading"></nvry-spinner>
+
+	<div class="pricing-plans" *ngIf="!isSubscriptionActive && !loading">
 		<div class="buttons">
 			<button class="button button--xsmall" (click)="yearly = false" [class.button--gray]="yearly">Monatlich</button>
 			<button class="button button--xsmall" (click)="yearly = true" [class.button--gray]="!yearly">Jährlich</button>
@@ -61,7 +64,7 @@
 	</div>
 
 
-	<ng-template [ngIf]="isSubscriptionActive">
+	<ng-template [ngIf]="isSubscriptionActive && !loading">
 		<section class="section default-section">
 			<div class="current-plan-box">
 				<div>

@@ -208,9 +208,9 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 		this.accountService.updateAccount(this.accountFormValue)
 			.subscribe(() => {
 				this.subscriptionService.activateSubscription(this.selectedPlan.id, this.nonce)
-					.subscribe(() => {
+					.subscribe((data) => {
 						this.sending = false;
-						this.onSuccess.next();
+						this.onSuccess.next(data);
 					});
 			});
 	}
@@ -241,7 +241,6 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 					enableShippingAddress: false
 				}, (err, tokenizationPayload) => {
 					// Tokenization complete
-					console.log(tokenizationPayload);
 					let data = tokenizationPayload;
 
 					this.zone.run(() => {
