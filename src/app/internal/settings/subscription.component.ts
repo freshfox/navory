@@ -114,6 +114,7 @@ export class SubscriptionComponent implements OnInit {
 			}
 		}).subscribe((ref: ComponentRef<SubscriptionFormComponent>) => {
 			ref.instance.onSuccess.subscribe(() => {
+				window.location.reload();
 				this.modalService.hideCurrentModal();
 			});
 		});

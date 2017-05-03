@@ -114,7 +114,7 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 	}
 
 	get trialMessage(): string {
-		if (this.state.subscription.plan_id === 'trial' && this.state.subscription.active) {
+		if (this.state.subscription && this.state.subscription.plan_id === 'trial' && this.state.subscription.active) {
 			let endDate = moment(this.state.subscription.period_end_date);
 			let today = moment();
 			let days = endDate.diff(today, 'days');

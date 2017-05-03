@@ -20,6 +20,7 @@ import {NotificationsService} from "angular2-notifications";
 import {Location} from "@angular/common";
 import {ExpenseCategorySelectionComponent} from "./expense-category-selection.component";
 import {PaymentService} from "../../services/payment.service";
+import {SubscriptionService} from "../../services/subscription.service";
 
 @Component({
 	templateUrl: './expense-edit.component.html'
@@ -48,7 +49,8 @@ export class ExpenseEditComponent implements OnInit {
 				private modalService: ModalService,
 				private translate: TranslateService,
 				private location: Location,
-				private paymentService: PaymentService) {
+				private paymentService: PaymentService,
+				private subscriptionService: SubscriptionService) {
 
 		this.expense = new Expense();
 		this.expenseCategories = this.state.expenseCategories;
@@ -212,6 +214,11 @@ export class ExpenseEditComponent implements OnInit {
 	}
 
 	addPayment() {
+		if (!this.subscriptionService.paymentsEnabled()) {
+			this.subscriptionService.showUpgradeModal();
+			return;
+		}
+
 		this.modalService.create(ExpenseBookPaymentComponent, {
 			parameters: {
 				expense: this.expense,

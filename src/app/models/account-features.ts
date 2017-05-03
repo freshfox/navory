@@ -2,9 +2,8 @@ import {BaseModel} from "../core/base.model";
 
 export class AccountFeatures extends BaseModel {
 
-	income: boolean;
-	expenses: boolean;
-	payments: boolean;
-	reports: boolean;
+	income_access: boolean;
+	expense_access: boolean;
+	report_uva: boolean;
 
 }

@@ -46,19 +46,19 @@ export class SubscriptionService extends BaseService {
 	}
 
 	expensesEnabled(): boolean {
-		return this.state.features.expenses;
+		return this.state.features.expense_access;
 	}
 
 	incomeEnabled(): boolean {
-		return this.state.features.income;
+		return this.state.features.income_access;
 	}
 
 	reportsEnabled(): boolean {
-		return this.state.features.reports;
+		return this.state.features.report_uva;
 	}
 
 	paymentsEnabled(): boolean {
-		return this.state.features.payments;
+		return this.state.features.report_uva;
 	}
 
 	showUpgradeModal() {

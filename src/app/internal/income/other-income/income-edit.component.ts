@@ -19,6 +19,7 @@ import {IncomeBookPaymentComponent} from "../../payments/income-book-payment.com
 import {Payment} from "../../../models/payment";
 import {Location} from "@angular/common";
 import {PaymentService} from "../../../services/payment.service";
+import {SubscriptionService} from "../../../services/subscription.service";
 
 @Component({
 	selector: 'nvry-income-edit',
@@ -48,7 +49,8 @@ export class IncomeEditComponent implements OnInit {
 				private translate: TranslateService,
 				private modalService: ModalService,
 				private location: Location,
-				private paymentService: PaymentService) {
+				private paymentService: PaymentService,
+				private subscriptionService: SubscriptionService) {
 
 		this.income = new Income();
 		this.nextIncomeNumber = this.state.nextIncomeNumber;
@@ -170,6 +172,11 @@ export class IncomeEditComponent implements OnInit {
 	}
 
 	addPayment() {
+		if (!this.subscriptionService.paymentsEnabled()) {
+			this.subscriptionService.showUpgradeModal();
+			return;
+		}
+
 		this.modalService.create(IncomeBookPaymentComponent, {
 			parameters: {
 				income: this.income,

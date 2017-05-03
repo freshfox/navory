@@ -21,6 +21,8 @@ import {Observable} from "rxjs";
 import {NotificationsService} from "angular2-notifications";
 import {DocumentPreviewComponent} from "../../../core/components/document-preview.component";
 import {PaymentService} from "../../../services/payment.service";
+import {ServiceError, ServiceErrorCode} from "../../../services/base.service";
+import {SubscriptionService} from "../../../services/subscription.service";
 const moment = require('moment');
 const AutoComplete = require('javascript-autocomplete');
 
@@ -52,7 +54,8 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 				private fb: FormBuilder,
 				private location: Location,
 				private customerService: CustomerService,
-				private paymentService: PaymentService) {
+				private paymentService: PaymentService,
+				private subscriptionService: SubscriptionService) {
 
 		this.invoice = new Invoice();
 		this.invoice.due_date = moment().add(1, 'M');
@@ -200,18 +203,26 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 
 	saveDraft() {
 		if (this.form.valid) {
-			this.invoice.draft = true;
 			this.savingDraft = true;
-			this.save().subscribe(() => {
+
+			let invoice = new Invoice(this.invoice);
+			invoice.draft = true;
+			this.save(invoice).subscribe((invoice) => {
+				this.invoice = invoice;
 				this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
+			},
+			() => {
+				this.savingDraft = false;
 			});
 		}
 	}
 
 	saveAndIssue() {
 		if (this.form.valid) {
-			this.invoice.draft = false;
-			this.save().subscribe(() => {
+			let invoice = new Invoice(this.invoice);
+			invoice.draft = false;
+			this.save(invoice).subscribe((invoice) => {
+				this.invoice = invoice;
 				this.state.nextInvoiceNumber++;
 				this.notificationService.success(null, this.translate.instant('invoices.issue-success'));
 			});
@@ -220,35 +231,44 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 
 	saveOnly() {
 		if (this.form.valid) {
-			this.save().subscribe(() => {
+			let invoice = new Invoice(this.invoice);
+			this.save(invoice).subscribe((invoice) => {
+				this.invoice = invoice;
 				this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
 			});
 		}
 	}
 
-	private save(): Observable<any> {
+	private save(invoice: Invoice): Observable<any> {
 		Helpers.validateAllFields(this.form);
 		if (this.form.valid) {
 			this.saving = true;
 
 			let complete = new Observable(observer => {
-				this.invoiceService.saveInvoice(this.invoice)
+				this.invoiceService.saveInvoice(invoice)
 					.subscribe((updatedInvoice: Invoice) => {
-							if (!this.invoice.id && updatedInvoice.id) {
+							if (!invoice.id && updatedInvoice.id) {
 								this.location.replaceState(`/invoices/${updatedInvoice.id}`);
 							}
 
-							this.invoice = updatedInvoice;
 							this.saving = false;
 							this.savingDraft = false;
 							this.createMode = false;
 
-							observer.next();
+							observer.next(updatedInvoice);
 							observer.complete();
 						},
-						error => {
+						(error: ServiceError) => {
 							this.saving = false;
-							this.notificationService.error(null, this.translate.instant('invoices.save-error'));
+
+							if (error.code === ServiceErrorCode.Forbidden) {
+								this.subscriptionService.showUpgradeModal();
+							} else {
+								this.notificationService.error(null, this.translate.instant('invoices.save-error'));
+							}
+
+							observer.error();
+							observer.complete();
 						});
 
 			});
