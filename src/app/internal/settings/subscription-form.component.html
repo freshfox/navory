@@ -51,7 +51,7 @@
 		</header>
 
 		<div [hidden]="isPayPalAccountLinked()">
-			<p>Wir akzeptieren alle gängigen Kreditkarten.</p>
+			<p>Wir akzeptieren alle gängigen Kreditkarten sowie PayPal.</p>
 
 			<div class="form-container">
 				<form id="credit-card-form" class="scale-down">
@@ -75,17 +75,15 @@
 				</form>
 			</div>
 
-			<ng-template [ngIf]="false">
-				<div class="payment-separator">
-					<span>oder</span>
-				</div>
+			<div class="payment-separator">
+				<span>oder</span>
+			</div>
 
-				<div>
-					<nvry-button id="paypal-button">
-						<img src="assets/images/paypal.svg" alt="Mit PayPal bezahlen">
-					</nvry-button>
-				</div>
-			</ng-template>
+			<div>
+				<nvry-button id="paypal-button">
+					<img src="assets/images/paypal.svg" alt="Mit PayPal bezahlen">
+				</nvry-button>
+			</div>
 		</div>
 
 		<ng-template #payPalInfoTemplate [ngIf]="isPayPalAccountLinked()">
