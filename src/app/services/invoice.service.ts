@@ -11,6 +11,7 @@ import {AnalyticsService, AnalyticsEventType} from "./analytics.service";
 export class InvoiceService extends BaseService {
 
 	private pathInvoices = '/invoices';
+	private pathAccountInvoices = '/account/invoices';
 
 	constructor(http: Http, private fileService: FileService, private analytics: AnalyticsService) {
 		super(http);
@@ -97,8 +98,17 @@ export class InvoiceService extends BaseService {
 		return this.constructApiUrl(`${this.pathInvoices}/${invoice.id}/pdf`);
 	}
 
+	getSubscriptionDownloadUrl(invoice: Invoice): string {
+		return this.constructApiUrl(`${this.pathAccountInvoices}/${invoice.id}/pdf`);
+	}
+
 	downloadInvoicePDF(invoice: Invoice) {
 		let url = this.getDownloadURL(invoice);
+		this.fileService.downloadFromURL(url);
+	}
+
+	downloadSubscriptionInvoicePDF(invoice: Invoice) {
+		let url = this.getSubscriptionDownloadUrl(invoice);
 		this.fileService.downloadFromURL(url);
 	}
 }

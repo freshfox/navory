@@ -13,7 +13,7 @@ export class SubscriptionService extends BaseService {
 
 	private pathToken = '/subscription/token';
 	private pathSubscription = '/subscription';
-	private pathInvoices = '/subscription/invoices';
+	private pathInvoices = '/account/invoices';
 
 	constructor(http: Http, private state: State, private modalService: ModalService) {
 		super(http);

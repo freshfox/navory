@@ -125,7 +125,7 @@ export class SubscriptionComponent implements OnInit {
 	}
 
 	downloadInvoice(invoice: Invoice) {
-		this.invoiceService.downloadInvoicePDF(invoice);
+		this.invoiceService.downloadSubscriptionInvoicePDF(invoice);
 	}
 
 	cancelSubscription() {
