@@ -197,6 +197,7 @@ export class SubscriptionFormComponent implements OnInit, AfterViewInit {
 					}
 
 					this.nonce = payload.nonce;
+					this.paymentType = PaymentType.CreditCard;
 					this.currentStepIndex++;
 				});
 			}
