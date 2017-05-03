@@ -3,5 +3,4 @@ export const environment = {
 	apiUrl: 'https://api.navory.com',
 	intercomAppId: 'ddlcldls',
 	braintreeMerchantId: '',
-
 };
