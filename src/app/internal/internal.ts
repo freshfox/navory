@@ -76,7 +76,6 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 	}
 
 	ngOnDestroy() {
-		console.log('destroying headway');
 		this.destroyHeadway();
 	}
 
