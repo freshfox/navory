@@ -42,10 +42,9 @@ export class AppComponent {
 		BaseService.onUnauthorized.subscribe(() => {
 			if (this.state.user) {
 				this.authService.removeLoggedInUser();
-				(window as any).location.reload();
-				/*this.router.navigate(['/login'], {
+				this.router.navigate(['/login'], {
 					queryParams: {message: 'unauthorized'}
-				});*/
+				});
 			}
 		});
 	}

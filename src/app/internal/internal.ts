@@ -110,8 +110,7 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 		this.authService.logout()
 			.subscribe(() => {
 				this.loggingOut = false;
-				(window as any).location.reload();
-				//this.router.navigate(['/login']);
+				this.router.navigate(['/login']);
 			});
 	}
 
