@@ -3,7 +3,7 @@
 		<div class="container main-header__inner">
 			<img src="/assets/images/icons/logo-graydark.svg" alt="" class="logo">
 			<div class="user">
-				<a *ngIf="trialMessage" class="trial-message" [routerLink]="'/settings/subscription'">{{ trialMessage }}</a>
+				<a *ngIf="trialMessage" class="trial-message" [routerLink]="'/settings/subscription'" (click)="onTrialMessageClick()">{{ trialMessage }}</a>
 				<div class="whats-new-badge">
 				</div>
 				<div class="user-image"></div>

@@ -23,6 +23,7 @@ import {DocumentPreviewComponent} from "../../../core/components/document-previe
 import {PaymentService} from "../../../services/payment.service";
 import {ServiceError, ServiceErrorCode} from "../../../services/base.service";
 import {SubscriptionService} from "../../../services/subscription.service";
+import {AnalyticsEventType, AnalyticsService} from "../../../services/analytics.service";
 const moment = require('moment');
 const AutoComplete = require('javascript-autocomplete');
 
@@ -55,7 +56,8 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 				private location: Location,
 				private customerService: CustomerService,
 				private paymentService: PaymentService,
-				private subscriptionService: SubscriptionService) {
+				private subscriptionService: SubscriptionService,
+				private analytics: AnalyticsService) {
 
 		this.invoice = new Invoice();
 		this.invoice.due_date = moment().add(1, 'M');
@@ -278,6 +280,7 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 	}
 
 	showPreview() {
+		this.analytics.trackEvent(AnalyticsEventType.InvoicePreview);
 		this.modalService.create(DocumentPreviewComponent, {
 			parameters: {
 				url: this.invoicePreviewURL

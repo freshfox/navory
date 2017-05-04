@@ -2,7 +2,8 @@ import {AfterViewInit, Component, OnDestroy} from "@angular/core";
 import {State} from "../core/state";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
-import * as moment from 'moment';
+import * as moment from "moment";
+import {AnalyticsEventType, AnalyticsService} from "../services/analytics.service";
 
 declare let Headway: any;
 
@@ -64,7 +65,7 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 		maxStack: 4
 	}
 
-	constructor(public state: State, private authService: AuthService, private router: Router, private route: ActivatedRoute) {
+	constructor(public state: State, private authService: AuthService, private router: Router, private route: ActivatedRoute, private analytics: AnalyticsService) {
 		let bootstrap = this.route.snapshot.data['bootstrap'];
 		Object.assign(this.state, bootstrap);
 		this.state.expenseCategories = bootstrap.categories;
@@ -122,5 +123,9 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 		}
 
 		return null;
+	}
+
+	onTrialMessageClick() {
+		this.analytics.trackEvent(AnalyticsEventType.ClickOnTrialBanner);
 	}
 }

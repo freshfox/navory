@@ -1,5 +1,6 @@
-export class Customer {
+import {BaseModel} from "../core/base.model";
 
+export class Customer extends BaseModel {
 	id: string;
 	number: string;
 	name: string;

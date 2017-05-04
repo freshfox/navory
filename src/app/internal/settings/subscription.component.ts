@@ -13,6 +13,7 @@ import {CancelSubscriptionComponent} from "./cancel-subscription.component";
 import {NotificationsService} from "angular2-notifications/dist";
 import {Subscription} from "../../models/subscription";
 import {State} from "../../core/state";
+import {AnalyticsEventType, AnalyticsService} from "../../services/analytics.service";
 
 @Component({
 	selector: 'nvry-subscription',
@@ -55,7 +56,8 @@ export class SubscriptionComponent implements OnInit {
 				private invoiceService: InvoiceService,
 				private state: State,
 				private subscriptionService: SubscriptionService,
-				private notificationService: NotificationsService) {
+				private notificationService: NotificationsService,
+				private analytics: AnalyticsService) {
 	}
 
 	ngOnInit() {
@@ -114,6 +116,7 @@ export class SubscriptionComponent implements OnInit {
 	}
 
 	openPaymentModal() {
+		this.analytics.trackEvent(AnalyticsEventType.ClickOnPlanBuyButton);
 		this.modalService.create(SubscriptionFormComponent, {
 			size: ModalSize.Large,
 			padding: false,
@@ -122,6 +125,7 @@ export class SubscriptionComponent implements OnInit {
 			}
 		}).subscribe((ref: ComponentRef<SubscriptionFormComponent>) => {
 			ref.instance.onSuccess.subscribe((data) => {
+				this.analytics.trackEvent(AnalyticsEventType.ActivateSubscription);
 				this.subscription = data.subscription;
 				this.state.features = data.features;
 				this.modalService.hideCurrentModal();

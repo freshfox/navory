@@ -5,13 +5,14 @@ import {Http} from "@angular/http";
 import {Expense} from "../models/expense";
 import {EuVatType} from "../core/enums/eu-vat-type.enum";
 import {Payment} from "../models/payment";
+import {AnalyticsEventType, AnalyticsService} from "./analytics.service";
 
 @Injectable()
 export class ExpenseService extends BaseService {
 
 	private pathExpenses = '/expenses';
 
-	constructor(http: Http) {
+	constructor(http: Http, private analytics: AnalyticsService) {
 		super(http);
 	}
 
@@ -31,8 +32,7 @@ export class ExpenseService extends BaseService {
 		let path = this.pathExpenses + `/${id}`;
 		return this.get(path)
 			.map(data => {
-				let expense = new Expense(data);
-				return expense;
+				return new Expense(data);
 			});
 	}
 
@@ -44,6 +44,7 @@ export class ExpenseService extends BaseService {
 		if (!expense.id) {
 			return this.post(this.pathExpenses, expense)
 				.map(data => {
+					this.analytics.trackEvent(AnalyticsEventType.ExpenseCreate);
 					return new Expense(data);
 				});
 		}
@@ -51,12 +52,13 @@ export class ExpenseService extends BaseService {
 		let path = this.pathExpenses + `/${expense.id}`;
 		return this.patch(path, expense)
 			.map(data => {
-				let expense = new Expense(data);
-				return expense;
+				this.analytics.trackEvent(AnalyticsEventType.ExpenseUpdate);
+				return new Expense(data);
 			});
 	}
 
 	deleteExpense(expense: Expense): Observable<any> {
+		this.analytics.trackEvent(AnalyticsEventType.ExpenseDelete);
 		return this.delete(this.getRestEntityPath(this.pathExpenses, expense.id));
 	}
 

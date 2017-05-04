@@ -41,18 +41,20 @@ export class InvoiceService extends BaseService {
 		if (invoice.id) {
 			return this.patch(this.getRestEntityPath(this.pathInvoices, invoice.id), invoice)
 				.map(invoice => {
-					this.analytics.trackEvent(AnalyticsEventType.UpdateInvoice);
+					this.analytics.trackEvent(AnalyticsEventType.InvoiceUpdate);
 					return new Invoice(invoice)
 				});
 		}
 		return this.post(this.pathInvoices, invoice)
 			.map(invoice => {
-				this.analytics.trackEvent(AnalyticsEventType.CreateInvoice);
-				return new Invoice(invoice)
+				this.analytics.trackEvent(AnalyticsEventType.InvoiceCreate);
+				return new Invoice(invoice);
 			});
 	}
 
 	deleteInvoice(invoice: Invoice): Observable<any> {
+		this.analytics.trackEvent(AnalyticsEventType.InvoiceDelete);
+
 		return this.delete(this.getRestEntityPath(this.pathInvoices, invoice.id));
 	}
 
@@ -104,6 +106,7 @@ export class InvoiceService extends BaseService {
 
 	downloadInvoicePDF(invoice: Invoice) {
 		let url = this.getDownloadURL(invoice);
+		this.analytics.trackEvent(AnalyticsEventType.InvoiceDownload);
 		this.fileService.downloadFromURL(url);
 	}
 

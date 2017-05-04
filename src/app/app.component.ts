@@ -3,8 +3,9 @@ import {TranslateService} from "@ngx-translate/core";
 import {environment} from "../environments/environment";
 import {BaseService} from "./services/base.service";
 import {AuthService} from "./services/auth.service";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {State} from "./core/state";
+import {AnalyticsService} from "./services/analytics.service";
 
 @Component({
 	selector: 'nvry-app-root',
@@ -15,18 +16,25 @@ export class AppComponent {
 	constructor(private translate: TranslateService,
 				private authService: AuthService,
 				private state: State,
-				private router: Router) {
+				private router: Router,
+				private analyticsService: AnalyticsService) {
 		translate.use('de');
 
-		this.initIntercom();
+		this.initAnalytics();
 		this.initUnauthenticatedListener();
 	}
 
-	private initIntercom() {
+	ngOnInit() {
+		this.router.events.subscribe(event => {
+			if (event instanceof NavigationEnd) {
+				this.analyticsService.trackPageView();
+			}
+		});
+	}
+
+	private initAnalytics() {
 		if(environment.production) {
-			(window as any).Intercom("boot", {
-				app_id: environment.intercomAppId
-			});
+			this.analyticsService.initIntercom(environment.intercomAppId);
 		}
 	}
 

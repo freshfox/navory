@@ -3,13 +3,14 @@ import {Customer} from "../models/customer";
 import {Http} from "@angular/http";
 import {BaseService} from "./base.service";
 import {Observable} from "rxjs";
+import {AnalyticsEventType, AnalyticsService} from "./analytics.service";
 
 @Injectable()
 export class CustomerService extends BaseService {
 
 	private pathCustomers = '/customers';
 
-	constructor(http: Http) {
+	constructor(http: Http, private analytics: AnalyticsService) {
 		super(http);
 	}
 
@@ -39,16 +40,25 @@ export class CustomerService extends BaseService {
 	}
 
 	deleteCustomer(customer: Customer): Observable<any> {
+		this.analytics.trackEvent(AnalyticsEventType.CustomerDelete);
 		return this.delete(this.getRestEntityPath(this.pathCustomers, customer.id));
 	}
 
 	private createCustomer(customer: Customer) {
-		return this.post(this.pathCustomers, customer);
+		return this.post(this.pathCustomers, customer)
+			.map(data => {
+				this.analytics.trackEvent(AnalyticsEventType.CustomerCreate);
+				return new Customer(data);
+			});
 	}
 
 	private updateCustomer(customer: Customer) {
 		let path = this.pathCustomers + `/${customer.id}`;
-		return this.patch(path, customer);
+		return this.patch(path, customer)
+			.map(data => {
+				this.analytics.trackEvent(AnalyticsEventType.CustomerUpdate);
+				return new Customer(data);
+			});
 	}
 
 }
