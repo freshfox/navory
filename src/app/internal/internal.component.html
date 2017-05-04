@@ -7,7 +7,7 @@
 				<div class="whats-new-badge">
 				</div>
 				<div class="user-image"></div>
-				<span class="username">{{ state.user.firstname }} {{ state.user.lastname }}</span>
+				<span class="username">{{ state.user?.firstname }} {{ state.user?.lastname }}</span>
 
 				<nvry-dropdown>
 					<button (click)="logout()">{{ 'general.logout' | translate }}</button>
