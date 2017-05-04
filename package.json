@@ -32,7 +32,6 @@
     "@ngx-translate/core": "^6.0.1",
     "@ngx-translate/http-loader": "0.0.3",
     "angular2-notifications": "0.5.7",
-    "angulartics2": "^1.6.4",
     "bourbon": "4.3.3",
     "braintree-web": "^3.6.1",
     "chartist": "^0.9.8",

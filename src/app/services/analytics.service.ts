@@ -1,4 +1,5 @@
 import {Injectable} from "@angular/core";
+import {User} from "../models/user";
 
 @Injectable()
 export class AnalyticsService {
@@ -6,6 +7,20 @@ export class AnalyticsService {
 	initIntercom(intercomAppId: string) {
 		(window as any).Intercom('boot', {
 			app_id: intercomAppId
+		});
+	}
+
+	shutdownIntercom() {
+		(window as any).Intercom('shutdown');
+	}
+
+	setIntercomUser(user: User) {
+		(window as any).Intercom('update', {
+			user_id: user.id,
+			user_hash: user.intercom_user_hash,
+			name: user.firstname + ' ' + user.lastname,
+			email: user.email,
+			created_at: parseInt((new Date(user.created_at).getTime() / 1000).toFixed(0)) // Unix timestamp
 		});
 	}
 
