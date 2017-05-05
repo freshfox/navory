@@ -1,6 +1,8 @@
 import {TranslateService} from "@ngx-translate/core";
 import {Injectable} from "@angular/core";
 var numbro = require('numbro');
+import * as moment from 'moment';
+import {Config} from "./config";
 
 let numbroDELang = {
 	langLocaleCode: 'de',
@@ -74,6 +76,10 @@ export class Formatter {
 			return 0;
 		}
 		return parsed;
+	}
+
+	formatDateForApi(date): string {
+		return moment(date).format(Config.apiDateFormat);
 	}
 
 }
