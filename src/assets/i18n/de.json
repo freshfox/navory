@@ -75,7 +75,7 @@
 	},
 	"app": {
 		"name": "Navory",
-		"tagline": "Gratis Buchhaltung für alle."
+		"tagline": "Einfache Buchhaltung für alle."
 	},
 	"actions": {
 		"view": "Anzeigen",
@@ -123,7 +123,7 @@
 		"signup": {
 			"login-notice": "Du hast schon einen Account? <strong>Hier einloggen</strong>",
 			"welcome": "Willkommen bei",
-			"tagline": "Du bist nur noch ein paar Schritte von einfacher Buchhaltung entfernt.",
+			"tagline": "Gratis Rechnungserstellung und einfache Buchhaltung. Teste alle Funktionen für 30 Tage.",
 			"steps": {
 				"signup": "Registrieren",
 				"setup": "Einrichtung",
