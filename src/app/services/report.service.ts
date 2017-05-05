@@ -30,5 +30,4 @@ export class ReportService extends BaseService {
 
 		return this.get(path);
 	}
-
 }

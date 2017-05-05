@@ -48,12 +48,13 @@ export class DatePickerDirective implements OnInit, ControlValueAccessor {
 		if (value == undefined) {
 			value = new Date();
 		}
+		console.log(value);
 		this.picker.setDate(value);
 		this.onChange();
 	}
 
 	onChange() {
-		var val = this.el.nativeElement.value;
+		let val = this.el.nativeElement.value;
 		let momentInstance = moment(val, this.format);
 
 		if (momentInstance.isValid()) {

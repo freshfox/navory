@@ -3,7 +3,6 @@ import {CustomersComponent} from "./customers/customers.component";
 import {InternalComponent} from "./internal";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {LoggedInGuard} from "../guards/logged-in.guard";
-import {ReportsComponent} from "./reports/reports.component";
 import {IncomeListComponent} from "./income/other-income/income-list.component";
 import {ExpensesComponent} from "./expenses/expenses.component";
 import {ExpenseEditComponent} from "./expenses/expense-edit.component";
@@ -17,6 +16,9 @@ import {InvoicesComponent} from "./income/invoices/invoices.component";
 import {InvoiceEditComponent} from "./income/invoices/invoice-edit.component";
 import {PaymentsComponent} from "./payments/payments.component";
 import {SubscriptionComponent} from "./settings/subscription.component";
+import {ReportsComponent} from "app/internal/reports/reports.component";
+import {VatReportComponent} from "./reports/vat-report.component";
+import {ProfitLossReportComponent} from "./reports/profit-loss-report.component";
 
 export const InternalRoutes: Routes = [
 	{
@@ -31,8 +33,14 @@ export const InternalRoutes: Routes = [
 			{path: 'dashboard', component: DashboardComponent},
 			{path: 'customers', component: CustomersComponent},
 			{path: 'payments', component: PaymentsComponent},
-			{path: 'reports', component: ReportsComponent},
-
+			{
+				path: 'reports',
+				component: ReportsComponent,
+				children: [
+					{path: 'vat', component: VatReportComponent},
+					{path: 'profit-loss', component: ProfitLossReportComponent}
+				]
+			},
 			{
 				path: '',
 				component: IncomeComponent,

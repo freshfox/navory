@@ -69,7 +69,9 @@
 		"price-net": "Preis (netto)",
 		"quantity": "Menge",
 		"remove": "Entfernen",
-		"period": "Zeitraum"
+		"period": "Zeitraum",
+		"date-start": "Startdatum",
+		"date-end": "Enddatum"
 	},
 	"app": {
 		"name": "Navory",
@@ -209,7 +211,8 @@
 	},
 	"reports": {
 		"title": "Berichte",
-		"vat": "UVA"
+		"vat": "UVA",
+		"profit-loss": "Gewinn/Verlust"
 	},
 	"settings": {
 		"account": "Account",

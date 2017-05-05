@@ -40,7 +40,7 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 		{
 			'key': 'reports',
 			'icon': 'chart-line-outline',
-			'routerLink': '/reports',
+			'routerLink': '/reports/vat',
 			'title': 'reports.title',
 		},
 		{

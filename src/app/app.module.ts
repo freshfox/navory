@@ -94,6 +94,8 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {CoreModule} from "./core/core.module";
 import {CancelSubscriptionComponent} from "./internal/settings/cancel-subscription.component";
 import {UpgradePlanComponent} from "./core/components/upgrade-plan.component";
+import {VatReportComponent} from "./internal/reports/vat-report.component";
+import {ProfitLossReportComponent} from "./internal/reports/profit-loss-report.component";
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -113,7 +115,7 @@ export function translateStaticLoaderFactory(http: Http) {
 		ControlMessagesComponent,
 		LoginLayoutComponent,
 		ResetPasswordComponent,
-		ReportsComponent,
+		VatReportComponent,
 		InputComponent,
 		SelectComponent,
 		NumberPipe,
@@ -160,7 +162,9 @@ export function translateStaticLoaderFactory(http: Http) {
 		LogoComponent,
 		SubscriptionFormComponent,
 		CancelSubscriptionComponent,
-		UpgradePlanComponent
+		UpgradePlanComponent,
+		ReportsComponent,
+		ProfitLossReportComponent
 	],
 	entryComponents: [
 		CustomerEditComponent,
