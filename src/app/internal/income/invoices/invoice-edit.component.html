@@ -142,9 +142,9 @@
 
 					<div id="lines-list">
 						<nvry-invoice-line [invoiceLine]="line"
-										   [dropdownShown]="invoice.invoice_lines.length > 1"
+										   [deleteShown]="invoice.invoice_lines.length > 1"
 										   *ngFor="let line of invoice.invoice_lines"
-										   (onDelete)="deleteLine($event)"></nvry-invoice-line>
+										   (onDelete)="deleteLine($event)" (onCopy)="copyLine($event)"></nvry-invoice-line>
 					</div>
 				</div>
 

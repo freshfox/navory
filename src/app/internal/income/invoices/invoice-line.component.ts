@@ -36,9 +36,10 @@ import {UnitService} from "../../../services/unit.service";
                 
                 <nvry-input type="money" [ngModel]="getAmount()" disabled></nvry-input>
                 
-                <nvry-dropdown *ngIf="dropdownShown">
-                    <button (click)="deleteLine()">{{ 'general.delete' | translate }}</button>
-                </nvry-dropdown>
+                <nvry-dropdown>
+					<button (click)="copyLine()">{{ 'actions.copy' | translate }}</button>
+					<button (click)="deleteLine()" *ngIf="deleteShown">{{ 'general.delete' | translate }}</button>
+				</nvry-dropdown>
             </div>
             
             <nvry-textarea 
@@ -51,8 +52,9 @@ import {UnitService} from "../../../services/unit.service";
 export class InvoiceLineComponent implements OnInit {
 
 	@Input() invoiceLine: InvoiceLine;
-	@Input() dropdownShown: boolean = true;
+	@Input() deleteShown: boolean = true;
 	@Output() onDelete: EventEmitter<InvoiceLine> = new EventEmitter<InvoiceLine>();
+	@Output() onCopy: EventEmitter<InvoiceLine> = new EventEmitter<InvoiceLine>();
 	units: Unit[];
 	taxRates: TaxRate[];
 	defaultTaxRate: TaxRate;
@@ -102,6 +104,10 @@ export class InvoiceLineComponent implements OnInit {
 
 	deleteLine() {
 		this.onDelete.next(this.invoiceLine);
+	}
+
+	copyLine() {
+		this.onCopy.next(this.invoiceLine);
 	}
 
 }

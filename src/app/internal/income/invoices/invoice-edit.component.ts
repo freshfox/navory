@@ -191,6 +191,13 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 		});
 	}
 
+	copyLine(invoiceLine) {
+		let index = this.invoice.invoice_lines.indexOf(invoiceLine);
+		let lineCopy = new InvoiceLine(invoiceLine);
+
+		this.invoice.invoice_lines.splice(index, 0, lineCopy);
+	}
+
 	getTotalNet() {
 		return this.invoice.getTotalNet();
 	}
