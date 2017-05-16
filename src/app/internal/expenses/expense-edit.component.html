@@ -70,7 +70,7 @@
 										 valueKey="value" [(selectedValue)]="expense.eu_vat_type" (selectedValueChange)="euVatTypeChanged()"></nvry-select>
 						</div>
 						<div class="combined-fields__side">
-							<div *ngIf="expense.eu_vat_type != 'none'">
+							<div *ngIf="expense.eu_vat_type">
 								<nvry-select [label]="'expenses.eu_tax_rate' | translate" [options]="taxRates"
 											 [selectedValue]="expense.eu_tax_rate?.id"
 											 (selectedValueChange)="euTaxRateChanged($event)"></nvry-select>
