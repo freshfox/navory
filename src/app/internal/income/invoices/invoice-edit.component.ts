@@ -182,7 +182,9 @@ export class InvoiceEditComponent implements OnInit, AfterViewInit {
 	}
 
 	addLine() {
-		this.invoice.invoice_lines.push(new InvoiceLine());
+		let lastLine = this.invoice.invoice_lines[this.invoice.invoice_lines.length - 1];
+		let lastTaxRate = lastLine.tax_rate;
+		this.invoice.invoice_lines.push(new InvoiceLine({ tax_rate: lastTaxRate }));
 	}
 
 	deleteLine(invoiceLine) {
