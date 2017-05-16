@@ -38,6 +38,7 @@ export class DatePickerDirective implements OnInit, ControlValueAccessor {
 				weekdaysShort: moment.localeData()._weekdaysShort
 			}
 		});
+		document.removeEventListener('keydown', this.picker._onKeyChange);
 	}
 
 	ngOnDestroy() {
