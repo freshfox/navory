@@ -37,6 +37,7 @@ export const InternalRoutes: Routes = [
 				path: 'reports',
 				component: ReportsComponent,
 				children: [
+					{path: '', redirectTo: 'vat', pathMatch: 'full'},
 					{path: 'vat', component: VatReportComponent},
 					{path: 'profit-loss', component: ProfitLossReportComponent}
 				]
