@@ -134,7 +134,7 @@ export class SelectComponent implements OnInit, AfterViewInit, OnChanges, OnDest
 
 	getValue(option) {
 		let value = option[this.valueKey]
-		return value !== undefined ? value : '';
+		return (value === undefined || value === null) ? '' : value;
 	}
 
 	private getValueForIndex(index: number) {
