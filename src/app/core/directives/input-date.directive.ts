@@ -49,7 +49,6 @@ export class DatePickerDirective implements OnInit, ControlValueAccessor {
 		if (value == undefined) {
 			value = new Date();
 		}
-		console.log(value);
 		this.picker.setDate(value);
 		this.onChange();
 	}
