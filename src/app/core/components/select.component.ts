@@ -89,18 +89,22 @@ export class SelectComponent implements OnInit, AfterViewInit, OnChanges, OnDest
 		});
 
 		this.$select.change((e, params) => {
-			this.selectedValue = params.selected;
+			let value = params.selected;
+			if (value === '') {
+				value = null;
+			}
+			this.selectedValue = value;
 			this.onChange();
 		});
 
 		this.updateValue();
 
 		this.$select.on('chosen:showing_dropdown chosen:hiding_dropdown', function(e){
-			var chosen_container = $( e.target ).next( '.chosen-container' ),
+			let chosen_container = $( e.target ).next( '.chosen-container' ),
 				classState = e.type == 'chosen:showing_dropdown' && dropdownExceedsBottomViewport();
 
 			function dropdownExceedsBottomViewport(){
-				var dropdown        = chosen_container.find( '.chosen-drop' ),
+				let dropdown        = chosen_container.find( '.chosen-drop' ),
 					dropdown_top    = dropdown.offset().top - document.documentElement.scrollTop,
 					dropdown_height = dropdown.height(),
 					viewport_height = document.documentElement.clientHeight;
