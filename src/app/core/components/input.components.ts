@@ -103,12 +103,23 @@ export class InputComponent implements ControlValueAccessor {
 
 	name: string;
 
-	constructor(el: ElementRef) {
+	constructor(private el: ElementRef) {
 		this.selector = el.nativeElement.localName;
 	}
 
 	ngOnInit(): void {
 		this.name = this.getFieldName();
+	}
+
+	ngAfterViewInit() {
+		if (this.selector === 'nvry-textarea') {
+			let textarea = this.el.nativeElement.querySelector('textarea');
+			if (textarea) {
+				setTimeout(() => {
+					this.autoGrow(textarea);
+				}, 1);
+			}
+		}
 	}
 
 	getFieldName(): string {
