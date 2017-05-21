@@ -123,8 +123,8 @@ export class ModalService {
 			])
 		]),
 		trigger('modal', [
-			state('shown', style({transform: 'scale3d(1, 1, 1)', display: 'block'})),
-			state('hidden', style({transform: 'scale3d(0, 0, 0)'})),
+			state('shown', style({transform: 'scale3d(1, 1, 1)', opacity: 1, display: 'block'})),
+			state('hidden', style({transform: 'scale3d(0.7, 0.7, 0.7)', opacity: 0})),
 			transition('hidden <=> shown', [
 				animate('0.2s ease')
 			])
