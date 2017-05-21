@@ -89,7 +89,7 @@ export class SubscriptionComponent implements OnInit {
 					alignment: ColumnAlignment.Right
 				},
 				{
-					width: 10,
+					width: 15,
 					cellTemplate: this.actionsColumn,
 					alignment: ColumnAlignment.Right
 				},
