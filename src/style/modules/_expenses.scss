@@ -8,7 +8,26 @@
 }
 
 .expense-edit {
+	.category-field {
+		position: relative;
+		
+		&:hover {
+			cursor: pointer;
 
+			input {
+				background: $colorPrimaryUltraLighter;
+			}
+		}
+
+		.category-field__clickable {
+			position: absolute;
+			top: 0;
+			left :0;
+			width: 100%;
+			height: 100%;
+			z-index: 10;
+		}
+	}
 }
 
 nvry-month-selection {
