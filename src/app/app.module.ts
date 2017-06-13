@@ -85,7 +85,6 @@ import {VatReportComponent} from "./internal/reports/vat-report.component";
 import {ProfitLossReportComponent} from "./internal/reports/profit-loss-report.component";
 import {FFCoreModule, ValidationMessageProvider} from "./core/ffc-angular/ff-core.module";
 import {ValidationMessageProviderImpl} from "./core/validation-message-provider";
-import {NumberPipe} from "./core/pipes/number.pipe";
 
 export function validationMessageProviderFactory() {
 	return new ValidationMessageProviderImpl();
@@ -178,7 +177,12 @@ export function translateStaticLoaderFactory(http: Http) {
 		}),
 		AppRoutingModule,
 		SimpleNotificationsModule.forRoot(),
-		FFCoreModule.forRoot()
+		FFCoreModule.forRoot({
+			validationMessageProvider: {
+				provide: ValidationMessageProvider,
+				useFactory: validationMessageProviderFactory
+			}
+		})
 	],
 	providers: [
 		AuthService,

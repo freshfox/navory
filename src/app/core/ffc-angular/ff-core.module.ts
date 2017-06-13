@@ -73,13 +73,12 @@ export {NumberPipe} from './pipes/number.pipe';
 export class FFCoreModule {
 
     static forRoot(config: FFCoreModuleConfig = {}): ModuleWithProviders {
-        let module = {
+        return {
             ngModule: FFCoreModule,
             providers: [
                 config.validationMessageProvider || {provide: ValidationMessageProvider, useClass: FakeValidationMessageProvider},
             ]
         };
-        return module;
     }
 }
 

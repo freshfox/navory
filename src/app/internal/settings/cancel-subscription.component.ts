@@ -23,7 +23,7 @@ import {SubscriptionService} from "../../services/subscription.service";
 })
 export class CancelSubscriptionComponent implements OnInit {
 
-	private sending: boolean = false;
+	sending: boolean = false;
 
 	@Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 	@Output() onSuccess: EventEmitter<any> = new EventEmitter<any>();
