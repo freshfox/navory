@@ -4,8 +4,8 @@
 
 	<div class="pricing-plans" *ngIf="!isSubscriptionActive && !loading">
 		<div class="buttons">
-			<button class="button ff-button--xsmall" (click)="yearly = false" [class.button--gray]="yearly">Monatlich</button>
-			<button class="button ff-button--xsmall" (click)="yearly = true" [class.button--gray]="!yearly">Jährlich</button>
+			<button class="button ff-button--xsmall" (click)="yearly = false" [class.ff-button--gray]="yearly">Monatlich</button>
+			<button class="button ff-button--xsmall" (click)="yearly = true" [class.ff-button--gray]="!yearly">Jährlich</button>
 		</div>
 		<div class="pricing-plan-wrapper">
 			<div class="pricing-plan">
@@ -85,7 +85,7 @@
 						</p>
 
 						<div style="padding-top: 16px">
-							<button ff-button class="button--outline button--small" (click)="cancelSubscription()">Plan kündigen</button>
+							<button ff-button class="ff-button--outline ff-button--small" (click)="cancelSubscription()">Plan kündigen</button>
 						</div>
 					</div>
 
@@ -139,5 +139,5 @@
 
 
 <ng-template #actionsColumn let-row="row" let-value="value">
-	<button ff-button (click)="downloadInvoice(row)" class="button--small">{{ 'actions.download' | translate }}</button>
+	<button ff-button (click)="downloadInvoice(row)" class="ff-button--small">{{ 'actions.download' | translate }}</button>
 </ng-template>

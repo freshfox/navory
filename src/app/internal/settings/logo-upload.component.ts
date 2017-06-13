@@ -17,7 +17,7 @@ import * as Dropzone from "dropzone";
 				<p>
 				{{ 'settings.upload-logo' | translate }}
 				</p>
-				<button ff-button class="dz-clickable button--small">{{ 'upload-area.choose-file' | translate }}</button>
+				<button ff-button class="dz-clickable ff-button--small">{{ 'upload-area.choose-file' | translate }}</button>
 			</div>
 			
 		</div>
