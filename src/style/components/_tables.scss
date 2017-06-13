@@ -85,7 +85,7 @@ nvry-table {
 			&.nvry-table-header-cell--sorted {
 				color: $colorPrimary;
 
-				nvry-icon {
+				.ff-icon {
 					fill: $colorPrimary;
 				}
 			}
@@ -94,7 +94,7 @@ nvry-table {
 				display: flex;
 				align-items: center;
 
-				nvry-icon {
+				.ff-icon {
 					width: 20px;
 					height: 20px;
 				}

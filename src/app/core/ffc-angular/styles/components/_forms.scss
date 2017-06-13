@@ -28,6 +28,7 @@
     }
   }
 }
+
 @include form-fields-with-extensions {
   &.connected-with-next {
 
@@ -74,6 +75,11 @@
   }
 }
 
+.formfield-wrapper {
+	margin-bottom: 15px;
+	position: relative;
+}
+
 select {
   width: 100%;
 }
@@ -81,4 +87,66 @@ select {
 textarea {
   min-height: 110px;
   resize: none;
+}
+
+ff-input,
+ff-textarea,
+ff-select {
+	margin-bottom: 16px;
+	display: block;
+}
+
+/**
+ * Form errors
+ */
+.control-message {
+	display: block;
+	color: $colorError;
+	font-size: 12px;
+}
+
+/**
+ * Checkboxes
+ */
+.checkbox {
+	margin-bottom: 14px;
+	display: block;
+
+	label {
+		display: inline-block;
+		cursor: pointer;
+		position: relative;
+		padding-left: $checkboxSize + 15px;
+		margin-bottom: 10px;
+		line-height: $checkboxSize;
+
+		&:before {
+			content: "";
+			display: inline-block;
+			width: $checkboxSize;
+			height: $checkboxSize;
+			line-height: $checkboxSize;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: $colorGrayUltraDark;
+			border-radius: $defaultBorderRadius;
+			font-size: 22px;
+			color: #fff;
+			text-align: center;
+		}
+	}
+
+	input[type=checkbox] {
+		display: none;
+
+		&:checked + label:before {
+			content: "\2713";
+		}
+
+		&:disabled + label:before {
+			background: $colorGrayLight;
+			border-color: $colorGrayLight;
+		}
+	}
 }

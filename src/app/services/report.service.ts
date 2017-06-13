@@ -3,7 +3,7 @@ import {Http} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Config} from "../core/config";
-import {Formatter} from "../core/formatter";
+import {Formatter123} from "../core/formatter";
 import * as moment from 'moment';
 import {FileService} from "./file.service";
 
@@ -13,7 +13,7 @@ export class ReportService extends BaseService {
 	private pathVatReport = '/reports/vat';
 	private pathFinance = '/finance';
 
-	constructor(http: Http, private formatter: Formatter, private fileService: FileService) {
+	constructor(http: Http, private formatter: Formatter123, private fileService: FileService) {
 		super(http);
 	}
 

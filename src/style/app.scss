@@ -32,11 +32,13 @@
 @import "lib/dropzone";
 @import "lib/chosen";
 
+
+@import '../app/core/ffc-angular/styles/main';
+@include ffCoreAngular();
+
 // Components
 @import "components/base";
 @import "components/headings";
-@import "components/forms";
-@import "components/buttons";
 @import "components/tables";
 @import "components/tabs";
 @import "components/links";
@@ -44,12 +46,10 @@
 @import "components/alerts";
 @import "components/pageload";
 @import "components/upload-area";
-@import "components/spinner";
 @import "components/dropdowns";
 @import "components/document-preview";
 @import "components/notifications";
 @import "components/badges";
-@import "components/icons";
 @import "components/steps";
 @import "components/year-selection";
 @import "components/forms/dropdowns";

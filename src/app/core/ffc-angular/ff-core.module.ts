@@ -14,6 +14,7 @@ import {DecimalDirective} from "./directives/input-decimal.directive";
 import {NumberPipe} from "./pipes/number.pipe";
 import {SafePipe} from "./pipes/safe.pipe";
 import {ModalPlaceholderComponent, ModalService} from "./services/modal.service";
+import {Formatter} from "./formatter";
 
 export * from './components/button.component';
 export * from './components/confirm.component';
@@ -57,7 +58,7 @@ export {NumberPipe} from './pipes/number.pipe';
         SelectComponent,
 		ModalPlaceholderComponent,
 		NumberPipe,
-		SafePipe
+		SafePipe,
     ],
 	entryComponents: [
 		ConfirmComponent
@@ -65,7 +66,8 @@ export {NumberPipe} from './pipes/number.pipe';
 	providers: [
 		ModalService,
 		NumberPipe,
-		SafePipe
+		SafePipe,
+		Formatter
 	]
 })
 export class FFCoreModule {

@@ -18,7 +18,7 @@ nvry-dropdown {
 		.dropdown-target {
 			z-index: 110;
 
-			nvry-icon {
+			.ff-icon {
 				fill: $colorPrimary;
 			}
 		}
@@ -36,7 +36,7 @@ nvry-dropdown {
 		padding: 0;
 		position: relative;
 
-		nvry-icon {
+		.ff-icon {
 			display: block;
 			width: $dropdownTargetWidth;
 			height: $dropdownTargetHeight;
@@ -46,7 +46,7 @@ nvry-dropdown {
 		}
 
 		&:hover {
-			nvry-icon {
+			.ff-icon {
 				fill: $colorPrimary;
 			}
 		}

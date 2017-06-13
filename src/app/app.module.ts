@@ -44,7 +44,7 @@ import {SettingsComponent} from "./internal/settings/settings.component";
 import {AccountSettingsComponent} from "./internal/settings/account-settings.component";
 import {ProfileSettingsComponent} from "./internal/settings/profile-settings.component";
 import {ExpenseCategorySelectionComponent} from "./internal/expenses/expense-category-selection.component";
-import {Formatter} from "./core/formatter";
+import {Formatter123} from "./core/formatter";
 import {CustomerEditComponent} from "./internal/customers/customer-edit.component";
 import {TaxRateService} from "./services/tax-rate.service";
 import {IncomeEditComponent} from "./internal/income/other-income/income-edit.component";
@@ -196,7 +196,7 @@ export function translateStaticLoaderFactory(http: Http) {
 		BootstrapResolver,
 		BootstrapService,
 		FileService,
-		Formatter,
+		Formatter123,
 		TaxRateService,
 		InvoiceService,
 		AccountService,

@@ -1,9 +1,11 @@
 
-@mixin ffAngularCore() {
-	@import 'mixins';
-	@import 'components/buttons';
-	@import 'components/forms';
-	@import 'components/icons';
-	@import 'components/selects';
-	@import 'components/spinners';
+@mixin ffCoreAngular() {
+
 }
+
+@import 'mixins';
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/icons';
+@import 'components/selects';
+@import 'components/spinners';

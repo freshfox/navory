@@ -42,7 +42,7 @@ nvry-button {
 		justify-content: center;
 	}
 
-	nvry-icon {
+	.ff-icon {
 		width: 12px;
 		height: 12px;
 		fill: currentColor;
@@ -150,7 +150,7 @@ nvry-button {
 		align-items: center;
 		justify-content: center;
 
-		nvry-icon {
+		.ff-icon {
 			width: 14px;
 			height: 14px;
 			margin: 0;
@@ -169,7 +169,7 @@ nvry-button {
 	}
 
 	&.button--icon-medium {
-		nvry-icon {
+		.ff-icon {
 			width: 18px;
 			height: 18px;
 		}
