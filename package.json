@@ -10,8 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build": "npm run build-production",
-    "build-production": "gulp beforeBuild && ng build --env=prod && gulp afterBuild",
-    "build-staging": "gulp beforeBuild && ng build --env=staging && gulp afterBuild",
+    "build-production": "gulp beforeBuild && ng build --target=production --env=prod && gulp afterBuild",
+    "build-staging": "gulp beforeBuild && ng build --target=production --env=staging && gulp afterBuild",
     "deploy": "firebase deploy"
   },
   "engines": {
