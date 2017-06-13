@@ -3,8 +3,7 @@ import {environment} from "../../../environments/environment";
 import {File} from "../../models/file";
 import {AccountService} from "../../services/account.service";
 import {TranslateService} from "@ngx-translate/core";
-
-let Dropzone = require('dropzone');
+import * as Dropzone from "dropzone";
 
 @Component({
 	selector: 'nvry-logo-upload',
