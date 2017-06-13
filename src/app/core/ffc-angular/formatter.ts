@@ -1,6 +1,6 @@
 import {TranslateService} from "@ngx-translate/core";
 import {Injectable} from "@angular/core";
-import * as numbro from 'numbro';
+const numbro = require('numbro');
 
 let numbroDELang = {
 	langLocaleCode: 'de',
