@@ -4,8 +4,8 @@ import {Customer} from "../../models/customer";
 import {TranslateService} from "@ngx-translate/core";
 import {TableOptions} from "../../core/components/table/table-options.model";
 import {SortDirection} from "../../core/components/table/sort-direction.enum";
-import {ModalService} from "../../core/modal.module";
 import {CustomerEditComponent} from "./customer-edit.component";
+import {ModalService} from "ffc-angular";
 
 @Component({
 	selector: 'nvry-customers',

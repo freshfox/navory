@@ -13,7 +13,6 @@ import {BootstrapService} from "../../services/bootstrap.service";
 import {EuVatType} from "../../core/enums/eu-vat-type.enum";
 import {FieldValidationError, ServiceError} from "../../services/base.service";
 import {Payment} from "../../models/payment";
-import {ModalService, ModalSize} from "../../core/modal.module";
 import {TranslateService} from "@ngx-translate/core";
 import {ExpenseBookPaymentComponent} from "../payments/expense-book-payment.component";
 import {NotificationsService} from "angular2-notifications";
@@ -21,6 +20,8 @@ import {Location} from "@angular/common";
 import {ExpenseCategorySelectionComponent} from "./expense-category-selection.component";
 import {PaymentService} from "../../services/payment.service";
 import {SubscriptionService} from "../../services/subscription.service";
+import {ModalService} from "ffc-angular";
+import {ModalSize} from "ffc-angular/dist/components/modal.component";
 
 @Component({
 	templateUrl: './expense-edit.component.html'

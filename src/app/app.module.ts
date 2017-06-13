@@ -20,18 +20,14 @@ import {InternalComponent} from "./internal/internal";
 import {AlertBarComponent} from "./core/components/alert-bar.component";
 import {ErrorHandler} from "./core/error-handler";
 import {ForgotPasswordComponent} from "./public/forgot-password.component";
-import {ControlMessagesComponent} from "./core/components/control-messages.component";
 import {LoginLayoutComponent} from "./public/login-layout.component";
 import {ResetPasswordComponent} from "./public/reset-password.component";
 import {Config} from "./core/config";
-import {InputComponent} from "./core/components/input.components";
 import {ReportsComponent} from "./internal/reports/reports.component";
-import {SelectComponent} from "./core/components/select.component";
 import {NumberPipe} from "./core/pipes/number.pipe";
 import {ReportService} from "./services/report.service";
 import {TableComponent} from "./core/components/table/table.component";
 import {TableHeaderCellComponent} from "./core/components/table/table-header-cell.component";
-import {SpinnerComponent} from "./core/components/spinner.component";
 import {IncomeService} from "./services/income.service";
 import {IncomeListComponent} from "./internal/income/other-income/income-list.component";
 import {DatePipe} from "./core/pipes/date.pipe";
@@ -49,7 +45,6 @@ import {SettingsComponent} from "./internal/settings/settings.component";
 import {AccountSettingsComponent} from "./internal/settings/account-settings.component";
 import {ProfileSettingsComponent} from "./internal/settings/profile-settings.component";
 import {ExpenseCategorySelectionComponent} from "./internal/expenses/expense-category-selection.component";
-import {DatePickerDirective} from "./core/directives/input-date.directive";
 import {Formatter} from "./core/formatter";
 import {CustomerEditComponent} from "./internal/customers/customer-edit.component";
 import {AmountDirective} from "./core/directives/input-amount.directive";
@@ -68,13 +63,10 @@ import {SimpleNotificationsModule} from "angular2-notifications";
 import {SafePipe} from "./core/pipes/safe.pipe";
 import {DocumentPreviewComponent} from "./core/components/document-preview.component";
 import {FiveZeroThreeComponent} from "./core/components/503.component";
-import {ModalModule} from "./core/modal.module";
-import {ConfirmComponent} from "./core/components/confirm.component";
 import {SubscriptionComponent} from "./internal/settings/subscription.component";
 import {StepsComponent} from "./core/components/steps.component";
 import {PaymentService} from "./services/payment.service";
 import {UnitService} from "./services/unit.service";
-import {MaterialModule} from "@angular/material";
 import {InvoiceBookPaymentComponent} from "./internal/payments/invoice-book-payment.component";
 import {PaymentsBankAccountComponent} from "./internal/payments/payments-bank-account.component";
 import {BookedPaymentComponent} from "./core/components/booked-payment.component";
@@ -83,7 +75,6 @@ import {BookPaymentComponent} from "./internal/payments/book-payment.component";
 import {TotalIndicatorComponent} from "./core/components/total-indicator.component";
 import {ExpenseBookPaymentComponent} from "./internal/payments/expense-book-payment.component";
 import {LogoUploadComponent} from "./internal/settings/logo-upload.component";
-import {Angulartics2Module, Angulartics2GoogleAnalytics} from "angulartics2";
 import {AnalyticsService} from "./services/analytics.service";
 import {LogoComponent} from "./core/components/logo.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -91,11 +82,16 @@ import {PublicGuard} from "./guards/public.guard";
 import {SubscriptionFormComponent} from "./internal/settings/subscription-form.component";
 import {SubscriptionService} from "./services/subscription.service";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-import {CoreModule} from "./core/core.module";
 import {CancelSubscriptionComponent} from "./internal/settings/cancel-subscription.component";
 import {UpgradePlanComponent} from "./core/components/upgrade-plan.component";
 import {VatReportComponent} from "./internal/reports/vat-report.component";
 import {ProfitLossReportComponent} from "./internal/reports/profit-loss-report.component";
+import {FFCoreModule, ValidationMessageProvider} from "./core/ffc-angular/ffc-core.module";
+import {ValidationMessageProviderImpl} from "./core/validation-message-provider";
+
+export function validationMessageProviderFactory() {
+	return new ValidationMessageProviderImpl();
+}
 
 export function translateStaticLoaderFactory(http: Http) {
 	return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -112,16 +108,12 @@ export function translateStaticLoaderFactory(http: Http) {
 		CustomersComponent,
 		AlertBarComponent,
 		ForgotPasswordComponent,
-		ControlMessagesComponent,
 		LoginLayoutComponent,
 		ResetPasswordComponent,
 		VatReportComponent,
-		InputComponent,
-		SelectComponent,
 		NumberPipe,
 		TableComponent,
 		TableHeaderCellComponent,
-		SpinnerComponent,
 		IncomeListComponent,
 		ExpensesComponent,
 		MonthSelectionComponent,
@@ -133,7 +125,6 @@ export function translateStaticLoaderFactory(http: Http) {
 		AccountSettingsComponent,
 		ProfileSettingsComponent,
 		ExpenseCategorySelectionComponent,
-		DatePickerDirective,
 		CustomerEditComponent,
 		AmountDirective,
 		IncomeEditComponent,
@@ -148,7 +139,6 @@ export function translateStaticLoaderFactory(http: Http) {
 		DocumentPreviewComponent,
 		DatePipe,
 		FiveZeroThreeComponent,
-		ConfirmComponent,
 		SubscriptionComponent,
 		StepsComponent,
 		BookPaymentComponent,
@@ -171,7 +161,6 @@ export function translateStaticLoaderFactory(http: Http) {
 		InvoiceBookPaymentComponent,
 		IncomeBookPaymentComponent,
 		ExpenseBookPaymentComponent,
-		ConfirmComponent,
 		SubscriptionFormComponent,
 		ExpenseCategorySelectionComponent,
 		DocumentPreviewComponent,
@@ -194,10 +183,12 @@ export function translateStaticLoaderFactory(http: Http) {
 		}),
 		AppRoutingModule,
 		SimpleNotificationsModule.forRoot(),
-		MaterialModule,
-		ModalModule,
-		Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
-		CoreModule
+		FFCoreModule.forRoot({
+			validationMessageProvider: {
+				provide: ValidationMessageProvider,
+				useFactory: validationMessageProviderFactory,
+			}
+		})
 	],
 	providers: [
 		AuthService,

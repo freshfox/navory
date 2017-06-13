@@ -11,7 +11,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormValidator} from "../../../core/form-validator";
 import {Location} from "@angular/common";
 import {Helpers} from "../../../core/helpers";
-import {ModalService, ModalSize} from "../../../core/modal.module";
 import {InvoiceBookPaymentComponent} from "../../payments/invoice-book-payment.component";
 import {Payment} from "../../../models/payment";
 import {CustomerService} from "../../../services/customer.service";
@@ -24,6 +23,8 @@ import {PaymentService} from "../../../services/payment.service";
 import {ServiceError, ServiceErrorCode} from "../../../services/base.service";
 import {SubscriptionService} from "../../../services/subscription.service";
 import {AnalyticsEventType, AnalyticsService} from "../../../services/analytics.service";
+import {ModalService} from "ffc-angular";
+import {ModalSize} from "ffc-angular/dist/components/modal.component";
 const moment = require('moment');
 const AutoComplete = require('javascript-autocomplete');
 

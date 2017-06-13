@@ -5,8 +5,8 @@ import {Observable} from "rxjs";
 import {Subscription} from "../models/subscription";
 import {Invoice} from "../models/invoice";
 import {State} from "../core/state";
-import {ModalService} from "../core/modal.module";
 import {UpgradePlanComponent} from "../core/components/upgrade-plan.component";
+import {ModalService} from "ffc-angular";
 
 @Injectable()
 export class SubscriptionService extends BaseService {

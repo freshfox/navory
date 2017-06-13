@@ -10,8 +10,8 @@ import {ColumnAlignment} from "../../../core/components/table/column-alignment.e
 import * as moment from "moment";
 import {State} from "../../../core/state";
 import {Router} from "@angular/router";
-import {ModalService} from "../../../core/modal.module";
 import {SubscriptionService} from "../../../services/subscription.service";
+import {ModalService} from "ffc-angular";
 
 @Component({
 	templateUrl: './income-list.component.html'

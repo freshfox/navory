@@ -1,5 +1,4 @@
 import {Component, ComponentRef, OnInit, TemplateRef, ViewChild} from "@angular/core";
-import {ModalService, ModalSize} from "../../core/modal.module";
 import {SubscriptionFormComponent} from "./subscription-form.component";
 import {TableOptions} from "../../core/components/table/table-options.model";
 import {DatePipe} from "../../core/pipes/date.pipe";
@@ -14,6 +13,8 @@ import {NotificationsService} from "angular2-notifications/dist";
 import {Subscription} from "../../models/subscription";
 import {State} from "../../core/state";
 import {AnalyticsEventType, AnalyticsService} from "../../services/analytics.service";
+import {ModalService} from "ffc-angular";
+import {ModalSize} from "ffc-angular/dist/components/modal.component";
 
 @Component({
 	selector: 'nvry-subscription',

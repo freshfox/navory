@@ -9,9 +9,9 @@ import {ExpenseService} from "../../services/expense.service";
 import * as moment from "moment";
 import {State} from "../../core/state";
 import {Router} from "@angular/router";
-import {ModalService} from "../../core/modal.module";
 import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";
 import {SubscriptionService} from "../../services/subscription.service";
+import {ModalService} from "ffc-angular";
 
 @Component({
 	templateUrl: './expenses.component.html'

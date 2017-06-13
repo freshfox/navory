@@ -4,10 +4,10 @@ import {Payment} from "../../models/payment";
 import {TableOptions} from "../../core/components/table/table-options.model";
 import {TranslateService} from "@ngx-translate/core";
 import {DatePipe} from "../../core/pipes/date.pipe";
-import {ModalService} from "../../core/modal.module";
 import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";
 import {SortDirection} from "../../core/components/table/sort-direction.enum";
 import {BankAccount} from "../../models/bank-account";
+import {ModalService} from "ffc-angular";
 
 @Component({
 	selector: 'nvry-payments-bank-account',

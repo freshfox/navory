@@ -1,0 +1,84 @@
+@include form-fields {
+  padding: 9px 6px;
+  display: inline-block;
+  border: 1px solid $formFieldBorderColor;
+  border-radius: $formFieldBorderRadius;
+  transition: background-color .2s ease;
+  width: 100%;
+
+  &:focus {
+    outline: 0;
+    border-color: $colorPrimary;
+  }
+
+  .form-stacked & {
+    width: 100%;
+  }
+
+  &[disabled] {
+    background: $colorGrayLight;
+  }
+
+  &.clickable-field {
+    background: white;
+
+    &:hover {
+      background: $colorPrimaryUltraLighter;
+      cursor: pointer;
+    }
+  }
+}
+@include form-fields-with-extensions {
+  &.connected-with-next {
+
+    input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: 0;
+    }
+
+    &.nvry-focused {
+      + .ff-input input:not([type=hidden]) {
+        border-left-color: $colorPrimary;
+      }
+
+      + .ff-select .chosen-single {
+        border-left-color: $colorPrimary;
+      }
+    }
+
+    + .ff-input input:not([type=hidden]),
+    + input[type=hidden] + input {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    + .ff-select .chosen-single {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-right: 0 !important;
+    }
+
+    + .ff-select .chosen-single {
+
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+
+      + .ff-input input:not([type=hidden]),
+      + input[type=hidden] + input {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-left: 0;
+      }
+    }
+  }
+}
+
+select {
+  width: 100%;
+}
+
+textarea {
+  min-height: 110px;
+  resize: none;
+}
