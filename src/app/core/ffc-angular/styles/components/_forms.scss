@@ -27,6 +27,10 @@
       cursor: pointer;
     }
   }
+
+	&[ff-decimal] {
+		text-align: right;
+	}
 }
 
 @include form-fields-with-extensions {
