@@ -38,34 +38,34 @@
       border-right: 0;
     }
 
-    &.nvry-focused {
-      + .ff-input input:not([type=hidden]) {
+    &.ff-focused {
+      + ff-input input:not([type=hidden]) {
         border-left-color: $colorPrimary;
       }
 
-      + .ff-select .chosen-single {
+      + ff-select .chosen-single {
         border-left-color: $colorPrimary;
       }
     }
 
-    + .ff-input input:not([type=hidden]),
+    + ff-input input:not([type=hidden]),
     + input[type=hidden] + input {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
 
-    + .ff-select .chosen-single {
+    + ff-select .chosen-single {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
       border-right: 0 !important;
     }
 
-    + .ff-select .chosen-single {
+    + ff-select .chosen-single {
 
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
 
-      + .ff-input input:not([type=hidden]),
+      + ff-input input:not([type=hidden]),
       + input[type=hidden] + input {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;

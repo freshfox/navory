@@ -15,14 +15,14 @@
 	.export-fields {
 		display: flex;
 
-		nvry-input,
+		ff-input,
 		nvry-select {
 			width: 150px;
 			margin-right: 10px;
 			margin-bottom: 0;
 		}
 
-		nvry-button {
+		.ff-button {
 			align-self: flex-end;
 		}
 	}

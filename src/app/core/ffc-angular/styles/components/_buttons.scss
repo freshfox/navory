@@ -7,8 +7,9 @@ button {
   cursor: pointer;
 }
 
-.ff-button {
-  display: block;
+.ff-button,
+.button {
+  display: inline-block;
   zoom: 1;
   line-height: normal;
   vertical-align: baseline;

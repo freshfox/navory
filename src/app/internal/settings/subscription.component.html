@@ -4,8 +4,8 @@
 
 	<div class="pricing-plans" *ngIf="!isSubscriptionActive && !loading">
 		<div class="buttons">
-			<button class="button button--xsmall" (click)="yearly = false" [class.button--gray]="yearly">Monatlich</button>
-			<button class="button button--xsmall" (click)="yearly = true" [class.button--gray]="!yearly">Jährlich</button>
+			<button class="button ff-button--xsmall" (click)="yearly = false" [class.button--gray]="yearly">Monatlich</button>
+			<button class="button ff-button--xsmall" (click)="yearly = true" [class.button--gray]="!yearly">Jährlich</button>
 		</div>
 		<div class="pricing-plan-wrapper">
 			<div class="pricing-plan">

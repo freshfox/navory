@@ -7,7 +7,7 @@ import {Component, Input} from "@angular/core";
             <use attr.xlink:href="/assets/images/icons.svg#{{ name }}"></use>
         </svg>`,
     host: {
-        'class': 'ff-icon'
+        'class': 'ff-icon icon'
     }
 })
 export class IconComponent {

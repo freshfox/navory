@@ -98,7 +98,7 @@ export class ModalService {
 				<div class="modal-dialog">
 					<div class="modal-dialog__inner">
 						<ng-template #modalplaceholder></ng-template>
-						<button ff-button *ngIf="showCloseButton && !clean" class="button--clear modal__close-button-inside"
+						<button ff-button *ngIf="showCloseButton && !clean" class="ff-button--clear modal__close-button-inside"
 								(click)="hide()">
 							<ff-icon name="cross"></ff-icon>
 						</button>

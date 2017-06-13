@@ -19,11 +19,19 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 
+@mixin links {
+	a,
+	a:visited,
+	a:focus {
+		@content;
+	}
+}
+
+
 /**
  * Application specific styles
  */
 // Mixins
-@import "mixins/forms";
 @import "mixins/typography";
 @import "mixins/metrics";
 @import "mixins/misc";
@@ -34,7 +42,6 @@
 
 
 @import '../app/core/ffc-angular/styles/main';
-@include ffCoreAngular();
 
 // Components
 @import "components/base";
@@ -42,7 +49,6 @@
 @import "components/tables";
 @import "components/tabs";
 @import "components/links";
-@import "components/modals";
 @import "components/alerts";
 @import "components/pageload";
 @import "components/upload-area";

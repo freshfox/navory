@@ -1,5 +1,5 @@
 <div class="page-header page-header--no-bottom-padding">
-	<button ff-button class="button--clear" [routerLink]="['/invoices']" icon="arrow-left">
+	<button ff-button class="ff-button--clear" [routerLink]="['/invoices']" icon="arrow-left">
 		{{ 'invoices.title' | translate }}
 	</button>
 	<hr>
@@ -13,18 +13,18 @@
 		</h1>
 		<div class="buttons">
 			<button ff-button icon="download"
-						 class="button--secondary"
+						 class="ff-button--secondary"
 						 (click)="downloadPDF()"
 						 *ngIf="invoice.id">{{ 'actions.download' | translate }}
 			</button>
 
 			<button ff-button (click)="showPreview()"
-						 class="button--secondary button--icon-medium"
+						 class="ff-button--secondary button--icon-medium"
 						 icon="eye-outline"
 						 *ngIf="invoice.id">{{ 'invoices.preview' | translate }}
 			</button>
 
-			<button ff-button class="button--secondary"
+			<button ff-button class="ff-button--secondary"
 						 (click)="saveDraft()"
 						 [disabled]="saving"
 						 [loading]="saving && savingDraft"
@@ -33,7 +33,7 @@
 			</button>
 
 			<button ff-button (click)="saveOnly()"
-						 class="button--secondary"
+						 class="ff-button--secondary"
 						 [loading]="saving && !savingDraft"
 						 *ngIf="!invoice.draft">{{ 'general.save' | translate }}</button>
 
@@ -71,11 +71,11 @@
 									</a>
 
 									<div class="invoice-edit-customer-link-button-wrapper">
-										<!--<button class="button button--mini-rounded" [mdTooltip]="'invoices.remove-customer-link' | translate" (click)="removeCustomerLink()">
+										<!--<button class="button ff-button--mini-rounded" [mdTooltip]="'invoices.remove-customer-link' | translate" (click)="removeCustomerLink()">
 											<ff-icon name="cross"></ff-icon>
 										</button>-->
 
-										<button class="button button--mini-rounded" (click)="removeCustomerLink()">
+										<button class="button ff-button--mini-rounded" (click)="removeCustomerLink()">
 											<ff-icon name="cross"></ff-icon>
 										</button>
 									</div>
@@ -152,7 +152,7 @@
 					</div>
 				</div>
 
-				<button ff-button class="button--secondary" (click)="addLine()">{{ 'invoices.new-line' | translate }}</button>
+				<button ff-button class="ff-button--secondary" (click)="addLine()">{{ 'invoices.new-line' | translate }}</button>
 			</div>
 
 			<div class="invoice-edit-paper-section invoice-total">

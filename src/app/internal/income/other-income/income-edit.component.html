@@ -1,5 +1,5 @@
 <div class="page-header page-header--no-bottom-padding">
-	<button ff-button class="button--clear" [routerLink]="['/income']" icon="arrow-left">{{ 'income.other-income' | translate
+	<button ff-button class="ff-button--clear" [routerLink]="['/income']" icon="arrow-left">{{ 'income.other-income' | translate
 		}}
 	</button>
 	<hr>
@@ -12,7 +12,7 @@
 			<span *ngIf="!income.id">{{ 'income.create_title' | translate }}</span>
 		</h1>
 		<div class="buttons">
-			<button ff-button [routerLink]="['/income']" class="button--secondary">{{ 'general.cancel' | translate }}
+			<button ff-button [routerLink]="['/income']" class="ff-button--secondary">{{ 'general.cancel' | translate }}
 			</button>
 			<button ff-button (click)="addPayment()" *ngIf="isNew && !income.isFullyPaid">{{ 'general.book-payment' | translate }}</button>
 			<button ff-button (click)="save()" [loading]="saving">{{ 'general.save' | translate }}</button>

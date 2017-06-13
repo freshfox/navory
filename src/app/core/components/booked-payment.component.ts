@@ -14,7 +14,7 @@ import {Payment} from "../../models/payment";
 		<span class="amount" [class.amount--expense]="isAmountNegative()">
 			{{ amount() | ffNumber }}
 		</span>
-		<button ff-button class="button--xsmall button--secondary remove-button" (click)="onClickRemove()">{{ 'general.remove' | translate }}</button>
+		<button ff-button class="ff-button--xsmall ff-button--secondary remove-button" (click)="onClickRemove()">{{ 'general.remove' | translate }}</button>
 	`,
 })
 export class BookedPaymentComponent implements OnInit {

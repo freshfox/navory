@@ -12,7 +12,7 @@ import {Component, OnInit, Input, Output} from "@angular/core";
         </div>
 
         <div class="modal-footer">
-            <button ff-button class="button--secondary" (click)="cancel()">Abbrechen</button>
+            <button ff-button class="ff-button--secondary" (click)="cancel()">Abbrechen</button>
             <button ff-button (click)="confirm()">Löschen</button>
         </div>
     `

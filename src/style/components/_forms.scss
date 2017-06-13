@@ -47,7 +47,7 @@
 		}
 
 		&.nvry-focused {
-			+ nvry-input input:not([type=hidden]) {
+			+ ff-input input:not([type=hidden]) {
 				border-left-color: $colorPrimary;
 			}
 
@@ -56,7 +56,7 @@
 			}
 		}
 
-		+ nvry-input input:not([type=hidden]),
+		+ ff-input input:not([type=hidden]),
 		+ input[type=hidden] + input {
 			border-top-left-radius: 0;
 			border-bottom-left-radius: 0;
@@ -73,7 +73,7 @@
 			border-top-right-radius: 0;
 			border-bottom-right-radius: 0;
 
-			+ nvry-input input:not([type=hidden]),
+			+ ff-input input:not([type=hidden]),
 			+ input[type=hidden] + input {
 				border-top-left-radius: 0;
 				border-bottom-left-radius: 0;
@@ -121,7 +121,7 @@ label {
 	font-weight: normal;
 }
 
-nvry-input,
+ff-input,
 nvry-textarea,
 nvry-select {
 	margin-bottom: 15px;

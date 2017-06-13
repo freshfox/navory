@@ -36,9 +36,9 @@
   input[type="color"],
   select,
   textarea,
-  .ff-input,
-  .ff-textarea,
-  .ff-select {
+  ff-input,
+  ff-textarea,
+  ff-select {
     @content
   }
 }

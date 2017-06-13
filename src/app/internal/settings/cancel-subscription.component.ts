@@ -16,7 +16,7 @@ import {SubscriptionService} from "../../services/subscription.service";
 			</p>
 		</div>
 		<div class="modal-footer">
-			<button ff-button class="button--secondary" (click)="cancelClicked()">{{ 'general.cancel' | translate }}</button>
+			<button ff-button class="ff-button--secondary" (click)="cancelClicked()">{{ 'general.cancel' | translate }}</button>
 			<button ff-button class="button--danger" (click)="cancelSubscription()" [loading]="sending">Plan endgültig kündigen</button>
 		</div>
 	`

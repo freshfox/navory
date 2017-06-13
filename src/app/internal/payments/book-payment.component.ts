@@ -36,7 +36,7 @@ import {PaymentService} from "../../services/payment.service";
 		
 		
 		<div class="modal-footer">
-			<button ff-button class="button--secondary" (click)="cancel()">{{ 'general.cancel' | translate }}</button>
+			<button ff-button class="ff-button--secondary" (click)="cancel()">{{ 'general.cancel' | translate }}</button>
 			<button ff-button (click)="save()" [loading]="saving" [disabled]="loading">{{ 'general.save' | translate }}</button>
 		</div>
 		

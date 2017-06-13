@@ -9,9 +9,10 @@ import {
     OnInit,
     Output
 } from "@angular/core";
+
 import * as $ from 'jquery';
 window['jQuery'] = window['$'] = $;
-//import 'chosen-js';
+require('chosen-js');
 
 @Component({
     selector: 'ff-select',
@@ -24,6 +25,7 @@ window['jQuery'] = window['$'] = $;
             </option>
         </select>`,
     host: {
+    	'class': 'ff-select',
         '[class.ff-focused]': 'isFocused',
     }
 })
