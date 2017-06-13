@@ -1,7 +1,7 @@
 <div class="page-row page-header">
-	<nvry-button class="button--no-margin create-button" (click)="createCustomer()" icon="plus">{{ 'customers.create' |
+	<button ff-button class="button--no-margin create-button" (click)="createCustomer()" icon="plus">{{ 'customers.create' |
 		translate }}
-	</nvry-button>
+	</button>
 </div>
 
 <nvry-table [rows]="customers"
@@ -11,7 +11,7 @@
 
 	<div empty class="empty-view">
 		<p class="title" [innerHTML]="'customers.empty-state-message' | translate"></p>
-		<nvry-button icon="plus" (click)="createCustomer()">{{ 'customers.create' | translate }}</nvry-button>
+		<button ff-button icon="plus" (click)="createCustomer()">{{ 'customers.create' | translate }}</button>
 	</div>
 
 </nvry-table>

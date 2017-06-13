@@ -7,16 +7,16 @@
 			<p>{{ 'settings.export.description' | translate }}</p>
 
 			<div class="export-fields">
-				<nvry-select [options]="exportTypes" [label]="'settings.export.type' | translate"
-							 [enableSearchField]="false" [(selectedValue)]="type" valueKey="value"></nvry-select>
+				<ff-select [options]="exportTypes" [label]="'settings.export.type' | translate"
+							 [enableSearchField]="false" [(selectedValue)]="type" valueKey="value"></ff-select>
 
-				<nvry-input [formControl]="form.controls.startDate" [(ngModel)]="startDate" type="date"
-							[label]="'settings.export.from' | translate"></nvry-input>
-				<nvry-input [formControl]="form.controls.endDate" [(ngModel)]="endDate" type="date"
-							[label]="'settings.export.to' | translate"></nvry-input>
+				<ff-input [formControl]="form.controls.startDate" [(ngModel)]="startDate" type="date"
+							[label]="'settings.export.from' | translate"></ff-input>
+				<ff-input [formControl]="form.controls.endDate" [(ngModel)]="endDate" type="date"
+							[label]="'settings.export.to' | translate"></ff-input>
 
-				<nvry-button (click)="download()">{{ 'settings.export.download' | translate }}
-				</nvry-button>
+				<button ff-button (click)="download()">{{ 'settings.export.download' | translate }}
+				</button>
 			</div>
 		</div>
 	</div>

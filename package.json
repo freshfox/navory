@@ -37,7 +37,6 @@
     "chartist": "^0.9.8",
     "core-js": "^2.4.1",
     "dropzone": "^4.3.0",
-    "ffc-angular": "git+ssh://git@bitbucket.org/freshfox/ffc-angular.git#f7abde5",
     "gulp": "^3.9.1",
     "iframe-resizer": "^3.5.5",
     "javascript-autocomplete": "github:navory/javascript-autocomplete#1f458223f017fe56fd03a8fdfa355cf4b71d6fce",

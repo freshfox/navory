@@ -2,26 +2,26 @@
 	<div class="invoice-stats" *ngIf="!loading">
 		<div class="invoice-stats__item">
 			<span class="title">{{ 'general.overdue' | translate }}</span>
-			<span class="amount color-expenses">{{ getOverdueAmount() | nvryNumber }}</span>
+			<span class="amount color-expenses">{{ getOverdueAmount() | ffNumber }}</span>
 		</div>
 		<div class="invoice-stats__item">
 			<span class="title">{{ 'invoices.open' | translate }}</span>
-			<span class="amount color-customers">{{ getIssuedAmount() | nvryNumber }}</span>
+			<span class="amount color-customers">{{ getIssuedAmount() | ffNumber }}</span>
 		</div>
 		<div class="invoice-stats__item">
 			<span class="title">{{ 'general.draft' | translate }}</span>
-			<span class="amount color-gray">{{ getDraftAmount() | nvryNumber }}</span>
+			<span class="amount color-gray">{{ getDraftAmount() | ffNumber }}</span>
 		</div>
 		<div class="invoice-stats__item">
 			<span class="title">{{ 'general.total' | translate }}</span>
-			<span class="amount">{{ getTotalAmount() | nvryNumber }}</span>
+			<span class="amount">{{ getTotalAmount() | ffNumber }}</span>
 		</div>
 	</div>
 
 
-	<nvry-button icon="plus" class="create-button" (click)="createInvoice()">
+	<button ff-button icon="plus" class="create-button" (click)="createInvoice()">
 		{{ 'invoices.new' | translate }}
-	</nvry-button>
+	</button>
 </div>
 
 <nvry-table [options]="tableOptions" [loading]="loading" [rows]="invoices" (onRowClicked)="editInvoice($event)"
@@ -29,8 +29,8 @@
 
 	<div empty class="empty-view">
 		<p class="title" [innerHTML]="'invoices.empty-state-message' | translate"></p>
-		<nvry-button icon="plus" class="create-button" (click)="createInvoice()">{{ 'invoices.new' | translate }}
-		</nvry-button>
+		<button ff-button icon="plus" class="create-button" (click)="createInvoice()">{{ 'invoices.new' | translate }}
+		</button>
 	</div>
 
 </nvry-table>

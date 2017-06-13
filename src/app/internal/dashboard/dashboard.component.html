@@ -1,5 +1,5 @@
 <div class="dashboard-page">
-	<nvry-spinner *ngIf="loading"></nvry-spinner>
+	<ff-spinner *ngIf="loading"></ff-spinner>
 
 	<div *ngIf="data" style="margin-bottom: 20px; margin-left: 30px;">
 		<nvry-year-selection [(year)]="year" (yearChange)="yearChanged()"></nvry-year-selection>
@@ -10,7 +10,7 @@
 			<h2 class="title">{{ 'dashboard.profit' | translate }}</h2>
 			<p class="small">{{ year }}</p>
 
-			<div class="number">€ {{ data?.revenue.totalGross | nvryNumber }}</div>
+			<div class="number">€ {{ data?.revenue.totalGross | ffNumber }}</div>
 			<p class="small" *ngIf="profitInfo">{{ profitInfo }}</p>
 
 			<div class="revenue-chart"></div>
@@ -21,15 +21,15 @@
 			<div class="invoice-stats-items">
 				<div class="invoice-stats-item">
 					<span class="title">{{ 'general.overdue' | translate }}</span>
-					<span class="amount color-expenses">€ {{ data.invoice_amounts.overdue | nvryNumber }}</span>
+					<span class="amount color-expenses">€ {{ data.invoice_amounts.overdue | ffNumber }}</span>
 				</div>
 				<div class="invoice-stats-item">
 					<span class="title">{{ 'invoices.open' | translate }}</span>
-					<span class="amount color-customers">€ {{ data.invoice_amounts.issued | nvryNumber }}</span>
+					<span class="amount color-customers">€ {{ data.invoice_amounts.issued | ffNumber }}</span>
 				</div>
 				<div class="invoice-stats-item">
 					<span class="title">{{ 'general.draft' | translate }}</span>
-					<span class="amount color-gray">€ {{ data.invoice_amounts.draft | nvryNumber }}</span>
+					<span class="amount color-gray">€ {{ data.invoice_amounts.draft | ffNumber }}</span>
 				</div>
 			</div>
 		</div>

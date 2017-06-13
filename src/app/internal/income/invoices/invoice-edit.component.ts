@@ -23,8 +23,7 @@ import {PaymentService} from "../../../services/payment.service";
 import {ServiceError, ServiceErrorCode} from "../../../services/base.service";
 import {SubscriptionService} from "../../../services/subscription.service";
 import {AnalyticsEventType, AnalyticsService} from "../../../services/analytics.service";
-import {ModalService} from "ffc-angular";
-import {ModalSize} from "ffc-angular/dist/components/modal.component";
+import {ModalService, ModalSize} from "../../../core/ffc-angular/services/modal.service";
 const moment = require('moment');
 const AutoComplete = require('javascript-autocomplete');
 

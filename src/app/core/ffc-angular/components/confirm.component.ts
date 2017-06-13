@@ -12,8 +12,8 @@ import {Component, OnInit, Input, Output} from "@angular/core";
         </div>
 
         <div class="modal-footer">
-            <button ff-button class="button--secondary" (click)="cancel()">{{ 'general.cancel' | translate }}</button>
-            <button ff-button (click)="confirm()">{{ 'general.delete' | translate }}</button>
+            <button ff-button class="button--secondary" (click)="cancel()">Abbrechen</button>
+            <button ff-button (click)="confirm()">Löschen</button>
         </div>
     `
 })

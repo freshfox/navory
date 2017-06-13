@@ -1,7 +1,7 @@
 <div class="page-header page-header--no-bottom-padding">
-	<nvry-button class="button--clear" [routerLink]="['/invoices']" icon="arrow-left">
+	<button ff-button class="button--clear" [routerLink]="['/invoices']" icon="arrow-left">
 		{{ 'invoices.title' | translate }}
-	</nvry-button>
+	</button>
 	<hr>
 </div>
 <div [hidden]="loading">
@@ -12,38 +12,38 @@
 			<span *ngIf="createMode">{{ 'invoices.create_title' | translate }}</span>
 		</h1>
 		<div class="buttons">
-			<nvry-button icon="download"
+			<button ff-button icon="download"
 						 class="button--secondary"
 						 (click)="downloadPDF()"
 						 *ngIf="invoice.id">{{ 'actions.download' | translate }}
-			</nvry-button>
+			</button>
 
-			<nvry-button (click)="showPreview()"
+			<button ff-button (click)="showPreview()"
 						 class="button--secondary button--icon-medium"
 						 icon="eye-outline"
 						 *ngIf="invoice.id">{{ 'invoices.preview' | translate }}
-			</nvry-button>
+			</button>
 
-			<nvry-button class="button--secondary"
+			<button ff-button class="button--secondary"
 						 (click)="saveDraft()"
 						 [disabled]="saving"
 						 [loading]="saving && savingDraft"
 						 *ngIf="createMode || invoice.draft">
 				{{ 'invoices.save-draft' | translate }}
-			</nvry-button>
+			</button>
 
-			<nvry-button (click)="saveOnly()"
+			<button ff-button (click)="saveOnly()"
 						 class="button--secondary"
 						 [loading]="saving && !savingDraft"
-						 *ngIf="!invoice.draft">{{ 'general.save' | translate }}</nvry-button>
+						 *ngIf="!invoice.draft">{{ 'general.save' | translate }}</button>
 
-			<nvry-button (click)="addPayment()" *ngIf="!invoice.draft && !invoice.isFullyPaid">{{ 'general.book-payment' | translate }}</nvry-button>
+			<button ff-button (click)="addPayment()" *ngIf="!invoice.draft && !invoice.isFullyPaid">{{ 'general.book-payment' | translate }}</button>
 
-			<nvry-button (click)="saveAndIssue()"
+			<button ff-button (click)="saveAndIssue()"
 						 [loading]="saving && !savingDraft"
 						 *ngIf="invoice.draft"
 						 [disabled]="savingDraft">{{ 'invoices.issue' | translate }}
-			</nvry-button>
+			</button>
 		</div>
 	</div>
 
@@ -71,8 +71,12 @@
 									</a>
 
 									<div class="invoice-edit-customer-link-button-wrapper">
-										<button class="button button--mini-rounded" [mdTooltip]="'invoices.remove-customer-link' | translate" (click)="removeCustomerLink()">
-											<nvry-icon name="cross"></nvry-icon>
+										<!--<button class="button button--mini-rounded" [mdTooltip]="'invoices.remove-customer-link' | translate" (click)="removeCustomerLink()">
+											<ff-icon name="cross"></ff-icon>
+										</button>-->
+
+										<button class="button button--mini-rounded" (click)="removeCustomerLink()">
+											<ff-icon name="cross"></ff-icon>
 										</button>
 									</div>
 								</ng-template>
@@ -84,45 +88,45 @@
 								</ng-template>
 							</div>
 
-							<nvry-input [label]="'general.customer' | translate"
-									[(ngModel)]="invoice.customer_name"></nvry-input>
+							<ff-input [label]="'general.customer' | translate"
+									[(ngModel)]="invoice.customer_name"></ff-input>
 						</div>
 
-						<nvry-textarea [label]="'general.address' | translate"
-									   [(ngModel)]="invoice.customer_address"></nvry-textarea>
+						<ff-textarea [label]="'general.address' | translate"
+									   [(ngModel)]="invoice.customer_address"></ff-textarea>
 
-						<nvry-select [label]="'general.country' | translate" [options]="countries" valueKey="code"
-									 [(selectedValue)]="invoice.customer_country_code"></nvry-select>
+						<ff-select [label]="'general.country' | translate" [options]="countries" valueKey="code"
+									 [(selectedValue)]="invoice.customer_country_code"></ff-select>
 					</div>
 					<div class="bit-50">
 						<div class="frame frame--bit-spacing">
 							<div class="bit-50">&nbsp;</div>
 							<div class="bit-50">
-								<nvry-input [formControl]="form.controls.number"
+								<ff-input [formControl]="form.controls.number"
 											[(ngModel)]="invoice.number"
 											[label]="'invoices.number' | translate"
 											[placeholder]="nextInvoiceNumber"
-											[disabled]="!invoice.draft"></nvry-input>
+											[disabled]="!invoice.draft"></ff-input>
 							</div>
 						</div>
 						<div class="frame frame--bit-spacing">
 							<div class="bit-50">
-								<nvry-input type="date"
+								<ff-input type="date"
 											[formControl]="form.controls.date"
 											[(ngModel)]="invoice.date"
-											[label]="'general.date' | translate"></nvry-input>
-								<nvry-input type="date"
+											[label]="'general.date' | translate"></ff-input>
+								<ff-input type="date"
 											[formControl]="form.controls.service_date_start"
 											[(ngModel)]="invoice.service_date_start"
-											[label]="'invoices.service-date-start' | translate"></nvry-input>
+											[label]="'invoices.service-date-start' | translate"></ff-input>
 							</div>
 							<div class="bit-50">
-								<nvry-input type="date" [formControl]="form.controls.due_date"
+								<ff-input type="date" [formControl]="form.controls.due_date"
 											[(ngModel)]="invoice.due_date"
-											[label]="'invoices.date-due' | translate"></nvry-input>
-								<nvry-input type="date" [formControl]="form.controls.service_date_end"
+											[label]="'invoices.date-due' | translate"></ff-input>
+								<ff-input type="date" [formControl]="form.controls.service_date_end"
 											[(ngModel)]="invoice.service_date_end"
-											[label]="'invoices.service-date-end' | translate"></nvry-input>
+											[label]="'invoices.service-date-end' | translate"></ff-input>
 							</div>
 						</div>
 					</div>
@@ -148,7 +152,7 @@
 					</div>
 				</div>
 
-				<nvry-button class="button--secondary" (click)="addLine()">{{ 'invoices.new-line' | translate }}</nvry-button>
+				<button ff-button class="button--secondary" (click)="addLine()">{{ 'invoices.new-line' | translate }}</button>
 			</div>
 
 			<div class="invoice-edit-paper-section invoice-total">
@@ -156,10 +160,10 @@
 			</div>
 
 			<div class="invoice-edit-paper-section">
-				<nvry-textarea [label]="'general.note' | translate" [placeholder]="'invoices.comment-placeholder' | translate" [(ngModel)]="invoice.comment"></nvry-textarea>
+				<ff-textarea [label]="'general.note' | translate" [placeholder]="'invoices.comment-placeholder' | translate" [(ngModel)]="invoice.comment"></ff-textarea>
 			</div>
 		</div>
 	</div>
 </div>
 
-<nvry-spinner *ngIf="loading"></nvry-spinner>
+<ff-spinner *ngIf="loading"></ff-spinner>

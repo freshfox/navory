@@ -1,9 +1,9 @@
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
-import {MdProgressSpinnerModule} from "@angular/material";
+import {MdProgressSpinnerModule, MdTooltipModule} from "@angular/material";
 
 @NgModule({
-    imports: [BrowserModule, MdProgressSpinnerModule],
+    imports: [BrowserModule, MdProgressSpinnerModule, MdTooltipModule],
 })
 export class FFMaterialModule {
 }

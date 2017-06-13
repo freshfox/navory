@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {Formatter} from "../ffc-angular/formatter";
+import {Formatter} from "../formatter";
 
 @Pipe({name: 'ffNumber'})
 export class NumberPipe implements PipeTransform {

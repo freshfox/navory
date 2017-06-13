@@ -9,9 +9,9 @@ import {
     OnInit,
     Output
 } from "@angular/core";
-import $ from 'jquery';
+import * as $ from 'jquery';
 window['jQuery'] = window['$'] = $;
-import 'chosen-js'
+//import 'chosen-js';
 
 @Component({
     selector: 'ff-select',
@@ -80,7 +80,7 @@ export class SelectComponent implements OnInit, AfterViewInit, OnChanges, OnDest
     ngAfterViewInit() {
         this.select = this.el.nativeElement.querySelector('select');
 
-        this.$select = $(this.select).chosen({
+        this.$select = ($(this.select) as any).chosen({
             no_results_text: 'Keine Ergebnisse für',
             disable_search: !this.enableSearchField
         });

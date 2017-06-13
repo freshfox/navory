@@ -19,18 +19,18 @@
 		<h2>Rechnungsdetails</h2>
 		<p>Rechnungen werden an die Firmendaten aus deinen Account Einstellungen ausgestellt. Prüfe und aktualisiere bei Bedarf deine Eingaben.</p>
 		<form [formGroup]="accountForm" class="account-form">
-			<nvry-input [label]="'general.company' | translate" [formControl]="accountForm.controls.company_name"></nvry-input>
-			<nvry-input [label]="'general.address' | translate" [formControl]="accountForm.controls.address"></nvry-input>
+			<ff-input [label]="'general.company' | translate" [formControl]="accountForm.controls.company_name"></ff-input>
+			<ff-input [label]="'general.address' | translate" [formControl]="accountForm.controls.address"></ff-input>
 
 			<div class="flex-row">
-				<nvry-input [label]="'general.zip' | translate" [formControl]="accountForm.controls.zip"></nvry-input>
-				<nvry-input [label]="'general.city' | translate" [formControl]="accountForm.controls.city"></nvry-input>
+				<ff-input [label]="'general.zip' | translate" [formControl]="accountForm.controls.zip"></ff-input>
+				<ff-input [label]="'general.city' | translate" [formControl]="accountForm.controls.city"></ff-input>
 			</div>
 
 			<div class="flex-row">
-				<nvry-input [label]="'general.country' | translate"
-							[disabled]="true" placeholder="Österreich"></nvry-input>
-				<nvry-input [label]="'general.vat-id' | translate" [formControl]="accountForm.controls.vat_number"></nvry-input>
+				<ff-input [label]="'general.country' | translate"
+							[disabled]="true" placeholder="Österreich"></ff-input>
+				<ff-input [label]="'general.vat-id' | translate" [formControl]="accountForm.controls.vat_number"></ff-input>
 			</div>
 		</form>
 	</section>
@@ -80,9 +80,9 @@
 			</div>
 
 			<div>
-				<nvry-button id="paypal-button">
+				<button ff-button id="paypal-button">
 					<img src="assets/images/paypal.svg" alt="Mit PayPal bezahlen">
-				</nvry-button>
+				</button>
 			</div>
 		</div>
 
@@ -95,7 +95,7 @@
 						{{ payPalInfo.name }}<br>
 						{{ payPalInfo.email }}
 					</div>
-					<nvry-button class="button--secondary" (click)="removePayPalLink()">Entfernen</nvry-button>
+					<button ff-button class="button--secondary" (click)="removePayPalLink()">Entfernen</button>
 				</div>
 			</div>
 		</ng-template>
@@ -131,6 +131,6 @@
 
 	<div class="steps-column__bottom">
 		<nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
-		<nvry-button [loading]="sending" (click)="goToNextStep()" class="button--block button--l">{{ getNextButtonText() }}</nvry-button>
+		<button ff-button [loading]="sending" (click)="goToNextStep()" class="button--block button--l">{{ getNextButtonText() }}</button>
 	</div>
 </div>

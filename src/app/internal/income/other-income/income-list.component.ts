@@ -3,7 +3,6 @@ import {TranslateService} from "@ngx-translate/core";
 import {TableOptions} from "../../../core/components/table/table-options.model";
 import {IncomeService} from "../../../services/income.service";
 import {Income} from "../../../models/income";
-import {NumberPipe} from "../../../core/pipes/number.pipe";
 import {DatePipe} from "../../../core/pipes/date.pipe";
 import {SortDirection} from "../../../core/components/table/sort-direction.enum";
 import {ColumnAlignment} from "../../../core/components/table/column-alignment.enum";
@@ -11,7 +10,8 @@ import * as moment from "moment";
 import {State} from "../../../core/state";
 import {Router} from "@angular/router";
 import {SubscriptionService} from "../../../services/subscription.service";
-import {ModalService} from "ffc-angular";
+import {NumberPipe} from "../../../core/ffc-angular/pipes/number.pipe";
+import {ModalService} from "../../../core/ffc-angular/services/modal.service";
 
 @Component({
 	templateUrl: './income-list.component.html'

@@ -52,7 +52,7 @@ export const FF_INPUT_CONTROL_VALUE_ACCESSOR: any = {
                 [tabindex]="tabindex ? tabindex : null">
 
         <input
-                ff-amount
+                ff-decimal
                 *ngIf="type == 'money' && selector == 'ff-input'"
                 [alwaysShowDecimals]="alwaysShowDecimals"
                 [numberOfDecimals]="numberOfDecimals"

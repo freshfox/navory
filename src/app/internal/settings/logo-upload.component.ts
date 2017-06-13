@@ -12,21 +12,21 @@ let Dropzone = require('dropzone');
 		<nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
 		<div #uploadArea class="logo-upload__area" [hidden]="logo">
 			
-			<nvry-spinner *ngIf="uploading" [progress]="progress"></nvry-spinner>
+			<ff-spinner *ngIf="uploading" [progress]="progress"></ff-spinner>
 
 			<div class="logo-upload__area__content" *ngIf="!uploading">
 				<p>
 				{{ 'settings.upload-logo' | translate }}
 				</p>
-				<nvry-button class="dz-clickable button--small">{{ 'upload-area.choose-file' | translate }}</nvry-button>
+				<button ff-button class="dz-clickable button--small">{{ 'upload-area.choose-file' | translate }}</button>
 			</div>
 			
 		</div>
 		<div class="logo-upload__img-wrapper" *ngIf="logo">
 			<img class="logo-upload__img" src="{{ logo.url }}" alt="" (onChange)="onLogoFileSelected($event)">
 			<button class="logo-upload__remove-button" (click)="removeFile()">
-				<nvry-spinner *ngIf="deleting"></nvry-spinner>
-				<nvry-icon name="cross" *ngIf="!deleting"></nvry-icon>
+				<ff-spinner *ngIf="deleting"></ff-spinner>
+				<ff-icon name="cross" *ngIf="!deleting"></ff-icon>
 			</button>
 		</div>
 	`,

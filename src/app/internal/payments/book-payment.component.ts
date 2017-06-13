@@ -14,30 +14,30 @@ import {PaymentService} from "../../services/payment.service";
 		</div>
 		<div class="modal-inner">
 			<div class="add-payment-form" *ngIf="!loading">
-				<nvry-input class="description" [(ngModel)]="description" [label]="'general.description' | translate"></nvry-input>
+				<ff-input class="description" [(ngModel)]="description" [label]="'general.description' | translate"></ff-input>
 				
-				<nvry-input type="date"
+				<ff-input type="date"
 						[formControl]="form.controls.date"
 						[(ngModel)]="date"
-						[label]="'general.date' | translate"></nvry-input>
+						[label]="'general.date' | translate"></ff-input>
 		
-				<nvry-input 
+				<ff-input 
 				class="amount" 
 				[class.amount--expense]="isExpenseBooking"
 				type="money" 
 				[label]="'general.amount' | translate" 
 				[(ngModel)]="amount"
 				(ngModelChange)="onPaymentAmountChange($event)"
-				></nvry-input>
+				></ff-input>
 			</div>
 			
-			<nvry-spinner *ngIf="loading"></nvry-spinner>
+			<ff-spinner *ngIf="loading"></ff-spinner>
 		</div>
 		
 		
 		<div class="modal-footer">
-			<nvry-button class="button--secondary" (click)="cancel()">{{ 'general.cancel' | translate }}</nvry-button>
-			<nvry-button (click)="save()" [loading]="saving" [disabled]="loading">{{ 'general.save' | translate }}</nvry-button>
+			<button ff-button class="button--secondary" (click)="cancel()">{{ 'general.cancel' | translate }}</button>
+			<button ff-button (click)="save()" [loading]="saving" [disabled]="loading">{{ 'general.save' | translate }}</button>
 		</div>
 		
 	`

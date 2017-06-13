@@ -1,6 +1,6 @@
 import {AfterViewInit, Component} from "@angular/core";
 import {ReportService} from "../../services/report.service";
-import {NumberPipe} from "../../core/pipes/number.pipe";
+import {NumberPipe} from "../../core/ffc-angular/ff-core.module";
 let moment = require('moment');
 let Chartist = require('chartist');
 

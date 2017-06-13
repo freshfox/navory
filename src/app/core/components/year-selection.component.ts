@@ -5,11 +5,11 @@ import {Component, OnInit, EventEmitter, Input, Output} from "@angular/core";
 	template: `
       <div class="nvry-year-selection__inner">
         <button (click)="lastYear()">
-            <nvry-icon name="arrow-left"></nvry-icon>
+            <ff-icon name="arrow-left"></ff-icon>
         </button>
         <span>{{ year }}</span>
         <button (click)="nextYear()">
-            <nvry-icon name="arrow-right"></nvry-icon>
+            <ff-icon name="arrow-right"></ff-icon>
         </button>
      </div>
     `

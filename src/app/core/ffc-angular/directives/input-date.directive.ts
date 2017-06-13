@@ -1,7 +1,7 @@
 import {OnInit, ElementRef, Directive, forwardRef} from "@angular/core";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
-import Pikaday from 'pikaday';
-import moment from 'moment';
+import * as Pikaday from 'pikaday';
+import * as moment from 'moment';
 
 export const DATEPICKER_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -36,7 +36,7 @@ export class DatePickerDirective implements OnInit, ControlValueAccessor {
                 weekdays: moment.localeData().weekdays(),
                 weekdaysShort: moment.localeData().weekdaysShort()
             }
-        });
+        } as any);
         document.removeEventListener('keydown', this.picker._onKeyChange);
     }
 

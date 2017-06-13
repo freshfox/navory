@@ -4,16 +4,16 @@
 						  (selectedMonthIndexChange)="filter()"></nvry-month-selection>
 	<nvry-year-selection [(year)]="selectedYear" (yearChange)="filter()"></nvry-year-selection>
 
-	<nvry-button class="create-button" icon="plus" (click)="createExpense()">
+	<button ff-button class="create-button" icon="plus" (click)="createExpense()">
 		{{ 'expenses.new' | translate }}
-	</nvry-button>
+	</button>
 </div>
 
 <nvry-table [options]="tableOptions" [rows]="filteredExpenses" [loading]="loading" (onRowClicked)="editExpense($event)">
 
 	<div empty class="empty-view">
 		<p class="title">{{ 'expenses.empty-state-message' | translate }}</p>
-		<nvry-button icon="plus" (click)="createExpense()">{{ 'expenses.new' | translate }}</nvry-button>
+		<button ff-button icon="plus" (click)="createExpense()">{{ 'expenses.new' | translate }}</button>
 	</div>
 
 </nvry-table>
@@ -33,5 +33,5 @@
 
 
 <ng-template #attachmentColumn let-row="row" let-value="value">
-	<nvry-icon name="paperclip" *ngIf="row.file.id" class="attachment-indicator-icon"></nvry-icon>
+	<ff-icon name="paperclip" *ngIf="row.file.id" class="attachment-indicator-icon"></ff-icon>
 </ng-template>

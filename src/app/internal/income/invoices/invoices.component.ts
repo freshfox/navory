@@ -5,11 +5,11 @@ import {SortDirection} from "../../../core/components/table/sort-direction.enum"
 import {Invoice, InvoiceStatus} from "../../../models/invoice";
 import {InvoiceService} from "../../../services/invoice.service";
 import {DatePipe} from "../../../core/pipes/date.pipe";
-import {NumberPipe} from "../../../core/pipes/number.pipe";
 import {ColumnAlignment} from "../../../core/components/table/column-alignment.enum";
 import {Router} from "@angular/router";
 import {Calculator} from "../../../core/calculator";
-import {ModalService} from "ffc-angular";
+import {NumberPipe} from "../../../core/ffc-angular/pipes/number.pipe";
+import {ModalService} from "../../../core/ffc-angular/services/modal.service";
 var moment = require('moment');
 
 @Component({

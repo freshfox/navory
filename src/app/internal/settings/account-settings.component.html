@@ -7,23 +7,23 @@
 
 		<div class="frame frame--bit-spacing">
 			<div class="bit-50">
-				<nvry-input [label]="'general.company' | translate" [(ngModel)]="account.company_name"></nvry-input>
-				<nvry-input [label]="'general.address' | translate" [(ngModel)]="account.address"></nvry-input>
-				<nvry-input [label]="'general.zip' | translate" [(ngModel)]="account.zip"></nvry-input>
-				<nvry-input [label]="'general.city' | translate" [(ngModel)]="account.city"></nvry-input>
-				<nvry-input [label]="'general.country' | translate" [ngModel]="accountCountryName"
-							[disabled]="true"></nvry-input>
+				<ff-input [label]="'general.company' | translate" [(ngModel)]="account.company_name"></ff-input>
+				<ff-input [label]="'general.address' | translate" [(ngModel)]="account.address"></ff-input>
+				<ff-input [label]="'general.zip' | translate" [(ngModel)]="account.zip"></ff-input>
+				<ff-input [label]="'general.city' | translate" [(ngModel)]="account.city"></ff-input>
+				<ff-input [label]="'general.country' | translate" [ngModel]="accountCountryName"
+							[disabled]="true"></ff-input>
 			</div>
 
 			<div class="bit-50">
-				<nvry-input [label]="'general.email' | translate" [(ngModel)]="account.email" type="email"></nvry-input>
-				<nvry-input [label]="'general.phone' | translate" [(ngModel)]="account.phone"></nvry-input>
-				<nvry-input [label]="'general.website' | translate" [(ngModel)]="account.website"></nvry-input>
-				<nvry-input [label]="'general.vat-id' | translate" [(ngModel)]="account.vat_number"></nvry-input>
+				<ff-input [label]="'general.email' | translate" [(ngModel)]="account.email" type="email"></ff-input>
+				<ff-input [label]="'general.phone' | translate" [(ngModel)]="account.phone"></ff-input>
+				<ff-input [label]="'general.website' | translate" [(ngModel)]="account.website"></ff-input>
+				<ff-input [label]="'general.vat-id' | translate" [(ngModel)]="account.vat_number"></ff-input>
 			</div>
 		</div>
 		<div class="bit-100">
-			<nvry-button [loading]="saving" (click)="save()">{{ 'general.save' | translate }}</nvry-button>
+			<button ff-button [loading]="saving" (click)="save()">{{ 'general.save' | translate }}</button>
 		</div>
 	</div>
 </section>
@@ -50,17 +50,17 @@
 		</div>
 		<div class="frame frame--bit-spacing">
 			<div class="bit-50">
-				<nvry-input [label]="'general.bank_name' | translate" [(ngModel)]="account.bank_name"></nvry-input>
-				<nvry-input [label]="'general.iban' | translate" [(ngModel)]="account.bank_iban"></nvry-input>
+				<ff-input [label]="'general.bank_name' | translate" [(ngModel)]="account.bank_name"></ff-input>
+				<ff-input [label]="'general.iban' | translate" [(ngModel)]="account.bank_iban"></ff-input>
 			</div>
 			<div class="bit-50">
-				<nvry-input [label]="'general.bank_account_owner' | translate"
-							[(ngModel)]="account.bank_account_owner"></nvry-input>
-				<nvry-input [label]="'general.bic' | translate" [(ngModel)]="account.bank_bic"></nvry-input>
+				<ff-input [label]="'general.bank_account_owner' | translate"
+							[(ngModel)]="account.bank_account_owner"></ff-input>
+				<ff-input [label]="'general.bic' | translate" [(ngModel)]="account.bank_bic"></ff-input>
 			</div>
 		</div>
 		<div class="bit-100">
-			<nvry-button [loading]="saving" (click)="save()">{{ 'general.save' | translate }}</nvry-button>
+			<button ff-button [loading]="saving" (click)="save()">{{ 'general.save' | translate }}</button>
 		</div>
 	</div>
 </section>

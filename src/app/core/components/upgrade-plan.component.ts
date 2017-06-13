@@ -4,13 +4,13 @@ import {Router} from "@angular/router";
 @Component({
 	selector: 'nvry-upgrade-plan',
 	template: `
-		<nvry-icon name="rocket"></nvry-icon>
+		<ff-icon name="rocket"></ff-icon>
 		
 		<h2>Jetzt upgraden, um diese Funktion zu nutzen.</h2>
 		
 		<p>Nicht alle Funktionen in Navory sind kostenlos verfügbar. Um den vollen Umfang von Navory zu nutzen und deine Buchhaltung so einfach wie möglich zu machen, aktualisiere deinen Plan <strong>ab EUR 10,- pro Monat</strong>.</p>
 		
-		<nvry-button class="button--l" (click)="clickPlans()">Pläne anzeigen</nvry-button>
+		<button ff-button class="button--l" (click)="clickPlans()">Pläne anzeigen</button>
 	`,
 	host: {
 		'class': 'upgrade-plan'

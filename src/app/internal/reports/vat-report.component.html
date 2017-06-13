@@ -16,11 +16,11 @@
 			<nvry-year-selection [(year)]="selectedYear" (yearChange)="refreshReport()"></nvry-year-selection>
 
 			<label>{{ 'general.quarter' | translate }}</label>
-			<nvry-select [(selectedValue)]="selectedQuarter"
+			<ff-select [(selectedValue)]="selectedQuarter"
 						 (selectedValueChange)="refreshReport()"
 						 [options]="quarters"
 						 valueKey="value"
-						 [enableSearchField]="false"></nvry-select>
+						 [enableSearchField]="false"></ff-select>
 		</div>
 
 		<div *ngIf="report">
@@ -30,9 +30,9 @@
                 <span *ngIf="report.amountToPay >= 0">Vorauszahlung:</span>
                 <span *ngIf="report.amountToPay < 0">Rückerstattung:</span>
 
-                <span class="amount">{{ getAbsoluteAmount(report.amountToPay) | nvryNumber }}</span>
+                <span class="amount">{{ getAbsoluteAmount(report.amountToPay) | ffNumber }}</span>
             </span>
-				<nvry-spinner *ngIf="loading"></nvry-spinner>
+				<ff-spinner *ngIf="loading"></ff-spinner>
 			</div>
 
 			<div class="vat-report-paper">
@@ -40,7 +40,7 @@
 					<h2 class="category-headline">{{ category.title }}</h2>
 					<ul class="vat-report-field-list">
 						<li *ngFor="let field of category.fields">
-							<span class="value">{{ field.value | nvryNumber }}</span>
+							<span class="value">{{ field.value | ffNumber }}</span>
 							<span class="title">{{ field.number }}</span>
 							<span class="description">{{ field.description_simple }}&nbsp;</span>
 						</li>

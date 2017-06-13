@@ -7,21 +7,21 @@
 			<form [formGroup]="form">
 				<div class="frame frame--bit-spacing">
 					<div class="bit-50">
-						<nvry-input [ngModel]="user.firstname" [formControl]="form.controls.firstname"
+						<ff-input [ngModel]="user.firstname" [formControl]="form.controls.firstname"
 									[label]="'general.firstname' | translate"
-									[tabindex]="1"></nvry-input>
-						<nvry-input [ngModel]="user.email" [formControl]="form.controls.email"
+									[tabindex]="1"></ff-input>
+						<ff-input [ngModel]="user.email" [formControl]="form.controls.email"
 									[label]="'general.email' | translate"
-									[tabindex]="3" type="email"></nvry-input>
+									[tabindex]="3" type="email"></ff-input>
 
-						<nvry-button [loading]="saving" [tabindex]="4" (click)="saveUser()">{{ 'general.save' |
+						<button ff-button [loading]="saving" [tabindex]="4" (click)="saveUser()">{{ 'general.save' |
 							translate }}
-						</nvry-button>
+						</button>
 					</div>
 					<div class="bit-50">
-						<nvry-input [ngModel]="user.lastname" [formControl]="form.controls.lastname"
+						<ff-input [ngModel]="user.lastname" [formControl]="form.controls.lastname"
 									[label]="'general.lastname' | translate"
-									[tabindex]="2"></nvry-input>
+									[tabindex]="2"></ff-input>
 					</div>
 				</div>
 			</form>
@@ -35,17 +35,17 @@
 	<div class="bit-75">
 		<div class="bit-25">
 			<form [formGroup]="passwordForm">
-				<nvry-input [label]="'settings.change-password.current' | translate" type="password"
-							[formControl]="passwordForm.controls.password"></nvry-input>
-				<nvry-input [label]="'settings.change-password.new' | translate" type="password"
-							[formControl]="newPasswordsGroup.controls.new_password"></nvry-input>
-				<nvry-input [label]="'settings.change-password.new-confirmation' | translate" type="password"
-							[formControl]="newPasswordsGroup.controls.new_password_confirmation"></nvry-input>
+				<ff-input [label]="'settings.change-password.current' | translate" type="password"
+							[formControl]="passwordForm.controls.password"></ff-input>
+				<ff-input [label]="'settings.change-password.new' | translate" type="password"
+							[formControl]="newPasswordsGroup.controls.new_password"></ff-input>
+				<ff-input [label]="'settings.change-password.new-confirmation' | translate" type="password"
+							[formControl]="newPasswordsGroup.controls.new_password_confirmation"></ff-input>
 			</form>
 
-			<nvry-button [loading]="savingPassword" (click)="savePassword()">{{ 'settings.change-password.title' |
+			<button ff-button [loading]="savingPassword" (click)="savePassword()">{{ 'settings.change-password.title' |
 				translate }}
-			</nvry-button>
+			</button>
 		</div>
 	</div>
 </section>

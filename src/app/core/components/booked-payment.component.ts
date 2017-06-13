@@ -12,9 +12,9 @@ import {Payment} from "../../models/payment";
 			{{ payment.date | nvryDate }}	
 		</span>
 		<span class="amount" [class.amount--expense]="isAmountNegative()">
-			{{ amount() | nvryNumber }}
+			{{ amount() | ffNumber }}
 		</span>
-		<nvry-button class="button--xsmall button--secondary remove-button" (click)="onClickRemove()">{{ 'general.remove' | translate }}</nvry-button>
+		<button ff-button class="button--xsmall button--secondary remove-button" (click)="onClickRemove()">{{ 'general.remove' | translate }}</button>
 	`,
 })
 export class BookedPaymentComponent implements OnInit {

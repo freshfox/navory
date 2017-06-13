@@ -4,13 +4,13 @@ import {Component, OnInit, EventEmitter, Input, Output} from "@angular/core";
 	selector: 'nvry-page-navigation',
 	template: `
         <button class="button prev-page-button" (click)="previousPage()">
-            <nvry-icon name="arrow-left"></nvry-icon>
+            <ff-icon name="arrow-left"></ff-icon>
         </button>
         <span class="page-count">
             <span class="current-page">{{ currentPageIndex + 1 }}</span> / {{ numberOfPages }}
         </span>
         <button class="button" (click)="nextPage()">
-            <nvry-icon name="arrow-right"></nvry-icon>
+            <ff-icon name="arrow-right"></ff-icon>
         </button>
 `
 })

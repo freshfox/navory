@@ -19,15 +19,15 @@
 			{{ 'upload-area.drop-files' | translate }}<br>
 			(JPG, PNG, GIF, PDF)
 		</p>
-		<nvry-button class="dz-clickable">{{ 'upload-area.choose-file' | translate }}</nvry-button>
+		<button ff-button class="dz-clickable">{{ 'upload-area.choose-file' | translate }}</button>
 	</div>
 
 	<div class="upload-area__action-buttons" *ngIf="isFileUploaded() && !loading">
-		<nvry-button class="button--small" icon="trash" (click)="removeFile()"></nvry-button>
-		<nvry-button class="button--small" icon="download" (click)="downloadFile()"></nvry-button>
+		<button ff-button class="button--small" icon="trash" (click)="removeFile()"></button>
+		<button ff-button class="button--small" icon="download" (click)="downloadFile()"></button>
 	</div>
 
 
-	<nvry-spinner *ngIf="loading || uploading" [progress]="progress"></nvry-spinner>
+	<ff-spinner *ngIf="loading || uploading" [progress]="progress"></ff-spinner>
 
 </div>

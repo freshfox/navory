@@ -1,6 +1,6 @@
 <div class="module-subscription">
 
-	<nvry-spinner *ngIf="loading"></nvry-spinner>
+	<ff-spinner *ngIf="loading"></ff-spinner>
 
 	<div class="pricing-plans" *ngIf="!isSubscriptionActive && !loading">
 		<div class="buttons">
@@ -17,12 +17,12 @@
 				</p>
 
 				<ul class="pricing-plan-feature-list">
-					<li><nvry-icon name="tick"></nvry-icon> Rechnungserstellung (max. 20)</li>
-					<li><nvry-icon name="tick"></nvry-icon> Kundenverwaltung</li>
-					<li class="feature-not-included"><nvry-icon name="cross"></nvry-icon> Einnahmen</li>
-					<li class="feature-not-included"><nvry-icon name="cross"></nvry-icon> Ausgaben</li>
-					<li class="feature-not-included"><nvry-icon name="cross"></nvry-icon> Zahlungsbuchung</li>
-					<li class="feature-not-included"><nvry-icon name="cross"></nvry-icon> UVA Bericht</li>
+					<li><ff-icon name="tick"></ff-icon> Rechnungserstellung (max. 20)</li>
+					<li><ff-icon name="tick"></ff-icon> Kundenverwaltung</li>
+					<li class="feature-not-included"><ff-icon name="cross"></ff-icon> Einnahmen</li>
+					<li class="feature-not-included"><ff-icon name="cross"></ff-icon> Ausgaben</li>
+					<li class="feature-not-included"><ff-icon name="cross"></ff-icon> Zahlungsbuchung</li>
+					<li class="feature-not-included"><ff-icon name="cross"></ff-icon> UVA Bericht</li>
 				</ul>
 			</div>
 			<div class="pricing-plan">
@@ -34,28 +34,28 @@
 				</p>
 
 				<ul class="pricing-plan-feature-list">
-					<li><nvry-icon name="tick"></nvry-icon>
+					<li><ff-icon name="tick"></ff-icon>
 						Rechnungserstellung
 					</li>
-					<li><nvry-icon name="tick"></nvry-icon>
+					<li><ff-icon name="tick"></ff-icon>
 						Kundenverwaltung
 					</li>
-					<li><nvry-icon name="tick"></nvry-icon>
+					<li><ff-icon name="tick"></ff-icon>
 						Einnahmen
 					</li>
-					<li><nvry-icon name="tick"></nvry-icon>
+					<li><ff-icon name="tick"></ff-icon>
 						Ausgaben
 					</li>
-					<li><nvry-icon name="tick"></nvry-icon>
+					<li><ff-icon name="tick"></ff-icon>
 						Zahlungsbuchung
 					</li>
-					<li><nvry-icon name="tick"></nvry-icon>
+					<li><ff-icon name="tick"></ff-icon>
 						UVA Bericht
 					</li>
 				</ul>
 
 				<div>
-					<nvry-button (click)="openPaymentModal()">Jetzt loslegen</nvry-button>
+					<button ff-button (click)="openPaymentModal()">Jetzt loslegen</button>
 				</div>
 			</div>
 		</div>
@@ -75,7 +75,7 @@
 
 					<h2>Preis</h2>
 					<p>
-						EUR {{ activePlan.price | nvryNumber }} <small>{{ activePlan.note }}</small>
+						EUR {{ activePlan.price | ffNumber }} <small>{{ activePlan.note }}</small>
 					</p>
 
 					<div *ngIf="subscription.active && !subscription.canceled; else canceledTemplate">
@@ -85,7 +85,7 @@
 						</p>
 
 						<div style="padding-top: 16px">
-							<nvry-button class="button--outline button--small" (click)="cancelSubscription()">Plan kündigen</nvry-button>
+							<button ff-button class="button--outline button--small" (click)="cancelSubscription()">Plan kündigen</button>
 						</div>
 					</div>
 
@@ -96,22 +96,22 @@
 				<div class="current-plan-box__features">
 					<h2>Deine Features</h2>
 					<ul class="pricing-plan-feature-list">
-						<li><nvry-icon name="tick"></nvry-icon>
+						<li><ff-icon name="tick"></ff-icon>
 							Rechnungserstellung
 						</li>
-						<li><nvry-icon name="tick"></nvry-icon>
+						<li><ff-icon name="tick"></ff-icon>
 							Kundenverwaltung
 						</li>
-						<li><nvry-icon name="tick"></nvry-icon>
+						<li><ff-icon name="tick"></ff-icon>
 							Einnahmen
 						</li>
-						<li><nvry-icon name="tick"></nvry-icon>
+						<li><ff-icon name="tick"></ff-icon>
 							Ausgaben
 						</li>
-						<li><nvry-icon name="tick"></nvry-icon>
+						<li><ff-icon name="tick"></ff-icon>
 							Zahlungsbuchung
 						</li>
-						<li><nvry-icon name="tick"></nvry-icon>
+						<li><ff-icon name="tick"></ff-icon>
 							UVA Bericht
 						</li>
 					</ul>
@@ -139,5 +139,5 @@
 
 
 <ng-template #actionsColumn let-row="row" let-value="value">
-	<nvry-button (click)="downloadInvoice(row)" class="button--small">{{ 'actions.download' | translate }}</nvry-button>
+	<button ff-button (click)="downloadInvoice(row)" class="button--small">{{ 'actions.download' | translate }}</button>
 </ng-template>

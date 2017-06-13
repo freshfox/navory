@@ -11,9 +11,9 @@ import {Location} from "@angular/common";
                 <div class="text">
                     <h1 [innerHTML]="'timeout.text' | translate"></h1>
                 </div>
-                <nvry-button [loading]="refreshing" (click)="onRefresh()">
+                <button ff-button [loading]="refreshing" (click)="onRefresh()">
                     {{ 'timeout.button' | translate }}
-                </nvry-button>
+                </button>
             </div>
         </div>
 `

@@ -3,12 +3,12 @@
 		<nvry-alert-bar [message]="alertMessage" [type]="alertType"></nvry-alert-bar>
 
 		<div class="formfield-wrapper">
-			<nvry-input [placeholder]="'general.email' | translate" [formControl]="form.controls.email"></nvry-input>
+			<ff-input [placeholder]="'general.email' | translate" [formControl]="form.controls.email"></ff-input>
 		</div>
 
 		<div class="formfield-wrapper">
-			<nvry-input [placeholder]="'general.password' | translate" [formControl]="form.controls.password"
-						type="password"></nvry-input>
+			<ff-input [placeholder]="'general.password' | translate" [formControl]="form.controls.password"
+						type="password"></ff-input>
 		</div>
 
 		<div class="checkbox">
@@ -17,9 +17,9 @@
 				{{ 'login.remember' | translate }}
 			</label>
 		</div>
-		<nvry-button class="button--l button--block" [loading]="loading">
+		<button ff-button class="button--l button--block" [loading]="loading">
 			{{ 'login.submit' | translate }}
-		</nvry-button>
+		</button>
 	</form>
 
 	<div class="after-form">

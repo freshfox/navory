@@ -19,7 +19,7 @@ import {Payment} from "../../../models/payment";
 import {Location} from "@angular/common";
 import {PaymentService} from "../../../services/payment.service";
 import {SubscriptionService} from "../../../services/subscription.service";
-import {ModalService} from "ffc-angular";
+import {ModalService} from "../../../core/ffc-angular/services/modal.service";
 
 @Component({
 	selector: 'nvry-income-edit',

@@ -1,6 +1,6 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, Optional} from "@angular/core";
 import {FormControl} from "@angular/forms";
-import {ValidationMessageProvider} from "../ffc-core.module";
+import {ValidationMessageProvider} from "../ff-core.module";
 
 @Component({
     selector: 'ff-control-messages',
@@ -9,8 +9,9 @@ import {ValidationMessageProvider} from "../ffc-core.module";
 export class ControlMessagesComponent {
     @Input() control: FormControl;
 
+	private validationMessageProvider: ValidationMessageProvider;
 
-    constructor(private validationMessageProvider: ValidationMessageProvider) {
+    constructor() {
 
     }
 
@@ -18,7 +19,9 @@ export class ControlMessagesComponent {
         if (this.control) {
             for (let propertyName in this.control.errors) {
                 if (this.control.errors.hasOwnProperty(propertyName) && this.control.touched) {
-                    return this.validationMessageProvider.getValidationMessage(propertyName,  this.control.errors[propertyName]);
+                	if(this.validationMessageProvider) {
+						return this.validationMessageProvider.getValidationMessage(propertyName,  this.control.errors[propertyName]);
+					}
                 }
             }
         }

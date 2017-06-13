@@ -24,7 +24,6 @@ import {LoginLayoutComponent} from "./public/login-layout.component";
 import {ResetPasswordComponent} from "./public/reset-password.component";
 import {Config} from "./core/config";
 import {ReportsComponent} from "./internal/reports/reports.component";
-import {NumberPipe} from "./core/pipes/number.pipe";
 import {ReportService} from "./services/report.service";
 import {TableComponent} from "./core/components/table/table.component";
 import {TableHeaderCellComponent} from "./core/components/table/table-header-cell.component";
@@ -47,7 +46,6 @@ import {ProfileSettingsComponent} from "./internal/settings/profile-settings.com
 import {ExpenseCategorySelectionComponent} from "./internal/expenses/expense-category-selection.component";
 import {Formatter} from "./core/formatter";
 import {CustomerEditComponent} from "./internal/customers/customer-edit.component";
-import {AmountDirective} from "./core/directives/input-amount.directive";
 import {TaxRateService} from "./services/tax-rate.service";
 import {IncomeEditComponent} from "./internal/income/other-income/income-edit.component";
 import {IncomeComponent} from "./internal/income/income.component";
@@ -60,7 +58,6 @@ import {DropdownComponent} from "./core/components/dropdown.component";
 import {ExportComponent} from "./internal/settings/export.component";
 import {AccountService} from "./services/account.service";
 import {SimpleNotificationsModule} from "angular2-notifications";
-import {SafePipe} from "./core/pipes/safe.pipe";
 import {DocumentPreviewComponent} from "./core/components/document-preview.component";
 import {FiveZeroThreeComponent} from "./core/components/503.component";
 import {SubscriptionComponent} from "./internal/settings/subscription.component";
@@ -86,8 +83,9 @@ import {CancelSubscriptionComponent} from "./internal/settings/cancel-subscripti
 import {UpgradePlanComponent} from "./core/components/upgrade-plan.component";
 import {VatReportComponent} from "./internal/reports/vat-report.component";
 import {ProfitLossReportComponent} from "./internal/reports/profit-loss-report.component";
-import {FFCoreModule, ValidationMessageProvider} from "./core/ffc-angular/ffc-core.module";
+import {FFCoreModule, ValidationMessageProvider} from "./core/ffc-angular/ff-core.module";
 import {ValidationMessageProviderImpl} from "./core/validation-message-provider";
+import {NumberPipe} from "./core/pipes/number.pipe";
 
 export function validationMessageProviderFactory() {
 	return new ValidationMessageProviderImpl();
@@ -111,7 +109,6 @@ export function translateStaticLoaderFactory(http: Http) {
 		LoginLayoutComponent,
 		ResetPasswordComponent,
 		VatReportComponent,
-		NumberPipe,
 		TableComponent,
 		TableHeaderCellComponent,
 		IncomeListComponent,
@@ -126,7 +123,6 @@ export function translateStaticLoaderFactory(http: Http) {
 		ProfileSettingsComponent,
 		ExpenseCategorySelectionComponent,
 		CustomerEditComponent,
-		AmountDirective,
 		IncomeEditComponent,
 		IncomeComponent,
 		InvoicesComponent,
@@ -135,7 +131,6 @@ export function translateStaticLoaderFactory(http: Http) {
 		PaymentsComponent,
 		DropdownComponent,
 		ExportComponent,
-		SafePipe,
 		DocumentPreviewComponent,
 		DatePipe,
 		FiveZeroThreeComponent,
@@ -154,7 +149,7 @@ export function translateStaticLoaderFactory(http: Http) {
 		CancelSubscriptionComponent,
 		UpgradePlanComponent,
 		ReportsComponent,
-		ProfitLossReportComponent
+		ProfitLossReportComponent,
 	],
 	entryComponents: [
 		CustomerEditComponent,
@@ -183,12 +178,7 @@ export function translateStaticLoaderFactory(http: Http) {
 		}),
 		AppRoutingModule,
 		SimpleNotificationsModule.forRoot(),
-		FFCoreModule.forRoot({
-			validationMessageProvider: {
-				provide: ValidationMessageProvider,
-				useFactory: validationMessageProviderFactory,
-			}
-		})
+		FFCoreModule.forRoot()
 	],
 	providers: [
 		AuthService,
@@ -202,7 +192,6 @@ export function translateStaticLoaderFactory(http: Http) {
 		PublicGuard,
 		ErrorHandler,
 		Config,
-		NumberPipe,
 		DatePipe,
 		BootstrapResolver,
 		BootstrapService,
@@ -214,7 +203,7 @@ export function translateStaticLoaderFactory(http: Http) {
 		PaymentService,
 		UnitService,
 		AnalyticsService,
-		SubscriptionService
+		SubscriptionService,
 	],
 	bootstrap: [AppComponent]
 })

@@ -15,28 +15,28 @@
 		<nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
 
 		<div class="formfield-wrapper">
-			<nvry-input [placeholder]="'general.company' | translate"
-						[formControl]="form.controls.company"></nvry-input>
+			<ff-input [placeholder]="'general.company' | translate"
+						[formControl]="form.controls.company"></ff-input>
 		</div>
 		<div class="formfield-wrapper">
-			<nvry-input [placeholder]="'general.firstname' | translate"
-						[formControl]="form.controls.firstname"></nvry-input>
+			<ff-input [placeholder]="'general.firstname' | translate"
+						[formControl]="form.controls.firstname"></ff-input>
 		</div>
 		<div class="formfield-wrapper">
-			<nvry-input [placeholder]="'general.lastname' | translate"
-						[formControl]="form.controls.lastname"></nvry-input>
+			<ff-input [placeholder]="'general.lastname' | translate"
+						[formControl]="form.controls.lastname"></ff-input>
 		</div>
 		<div class="formfield-wrapper">
-			<nvry-input [placeholder]="'general.email' | translate" [formControl]="form.controls.email"></nvry-input>
+			<ff-input [placeholder]="'general.email' | translate" [formControl]="form.controls.email"></ff-input>
 		</div>
 		<div class="formfield-wrapper">
-			<nvry-input type="password" [placeholder]="'general.password' | translate"
-						[formControl]="form.controls.password"></nvry-input>
+			<ff-input type="password" [placeholder]="'general.password' | translate"
+						[formControl]="form.controls.password"></ff-input>
 		</div>
 
-		<nvry-button class="button--l button--block" [loading]="loading">
+		<button ff-button class="button--l button--block" [loading]="loading">
 			{{ 'login.signup.submit' | translate }}
-		</nvry-button>
+		</button>
 	</form>
 
 </div>

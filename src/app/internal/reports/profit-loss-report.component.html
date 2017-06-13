@@ -5,10 +5,10 @@
 		<h2>Gewinn/Verlust Bericht</h2>
 
 		<div class="profit-loss__date-selection">
-			<nvry-input type="date" [label]="'general.date-start' | translate" [(ngModel)]="startDate" (ngModel)="rangeChanged()"></nvry-input>
-			<nvry-input type="date" [label]="'general.date-end' | translate" [(ngModel)]="endDate" (ngModel)="rangeChanged()"></nvry-input>
+			<ff-input type="date" [label]="'general.date-start' | translate" [(ngModel)]="startDate" (ngModel)="rangeChanged()"></ff-input>
+			<ff-input type="date" [label]="'general.date-end' | translate" [(ngModel)]="endDate" (ngModel)="rangeChanged()"></ff-input>
 
-			<nvry-button (click)="downloadReport()" icon="download">Herunterladen</nvry-button>
+			<button ff-button (click)="downloadReport()" icon="download">Herunterladen</button>
 		</div>
 
 		<nvry-document-preview [url]="reportUrl"></nvry-document-preview>

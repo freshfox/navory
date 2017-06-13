@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild, TemplateRef} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
 import {TableOptions} from "../../core/components/table/table-options.model";
-import {NumberPipe} from "../../core/pipes/number.pipe";
 import {DatePipe} from "../../core/pipes/date.pipe";
 import {SortDirection} from "../../core/components/table/sort-direction.enum";
 import {Expense} from "../../models/expense";
@@ -11,7 +10,8 @@ import {State} from "../../core/state";
 import {Router} from "@angular/router";
 import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";
 import {SubscriptionService} from "../../services/subscription.service";
-import {ModalService} from "ffc-angular";
+import {NumberPipe} from "../../core/ffc-angular/pipes/number.pipe";
+import {ModalService} from "../../core/ffc-angular/services/modal.service";
 
 @Component({
 	templateUrl: './expenses.component.html'

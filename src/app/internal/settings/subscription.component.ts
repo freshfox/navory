@@ -3,7 +3,6 @@ import {SubscriptionFormComponent} from "./subscription-form.component";
 import {TableOptions} from "../../core/components/table/table-options.model";
 import {DatePipe} from "../../core/pipes/date.pipe";
 import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";
-import {NumberPipe} from "../../core/pipes/number.pipe";
 import {Invoice} from "../../models/invoice";
 import {TranslateService} from "@ngx-translate/core";
 import {InvoiceService} from "../../services/invoice.service";
@@ -13,8 +12,8 @@ import {NotificationsService} from "angular2-notifications/dist";
 import {Subscription} from "../../models/subscription";
 import {State} from "../../core/state";
 import {AnalyticsEventType, AnalyticsService} from "../../services/analytics.service";
-import {ModalService} from "ffc-angular";
-import {ModalSize} from "ffc-angular/dist/components/modal.component";
+import {ModalService, ModalSize} from "../../core/ffc-angular/services/modal.service";
+import {NumberPipe} from "../../core/ffc-angular/pipes/number.pipe";
 
 @Component({
 	selector: 'nvry-subscription',

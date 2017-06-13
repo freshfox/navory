@@ -19,5 +19,5 @@
 
 <ng-template #amountColumn let-row="row" let-value="value">
 	<span class="payment-amount"
-		  [class.payment-amount--negative]="row.amount < 0">{{ value | nvryNumber }}</span>
+		  [class.payment-amount--negative]="row.amount < 0">{{ value | ffNumber }}</span>
 </ng-template>

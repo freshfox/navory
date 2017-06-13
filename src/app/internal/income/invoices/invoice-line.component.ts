@@ -11,30 +11,30 @@ import {UnitService} from "../../../services/unit.service";
 	selector: 'nvry-invoice-line',
 	template: `
             <div class="invoice-line__row">
-                <nvry-input 
+                <ff-input 
                 placeholder="Name" 
                 [(ngModel)]="invoiceLine.title" 
                 class="title-field connected-with-next" 
-                (focus)="titleFieldInFocus = true;" (blur)="titleFieldInFocus = false;"></nvry-input>
+                (focus)="titleFieldInFocus = true;" (blur)="titleFieldInFocus = false;"></ff-input>
                 
-                <nvry-input 
+                <ff-input 
                 type="money" 
                 [alwaysShowDecimals]="false"
                 [numberOfDecimals]="numberOfQuantityDecimals"
                 [(ngModel)]="invoiceLine.quantity" 
-                class="quantity-field connected-with-next"></nvry-input>
+                class="quantity-field connected-with-next"></ff-input>
                 
-                <nvry-select 
+                <ff-select 
                 [options]="units" 
                 [selectedValue]="invoiceLine.unit.id"
                 (selectedValueChange)="unitChanged($event)"
-                class="unit-field connected-with-next"></nvry-select>
+                class="unit-field connected-with-next"></ff-select>
                 
-                <nvry-input type="money" [(ngModel)]="invoiceLine.price" class="amount-field connected-with-next"></nvry-input>
+                <ff-input type="money" [(ngModel)]="invoiceLine.price" class="amount-field connected-with-next"></ff-input>
                 
-                <nvry-select [options]="taxRates" [selectedValue]="invoiceLine.tax_rate.id" (selectedValueChange)="taxRateChanged($event)" class="taxrate-field connected-with-next"></nvry-select>
+                <ff-select [options]="taxRates" [selectedValue]="invoiceLine.tax_rate.id" (selectedValueChange)="taxRateChanged($event)" class="taxrate-field connected-with-next"></ff-select>
                 
-                <nvry-input type="money" [ngModel]="getAmount()" disabled></nvry-input>
+                <ff-input type="money" [ngModel]="getAmount()" disabled></ff-input>
                 
                 <nvry-dropdown>
 					<button (click)="copyLine()">{{ 'actions.copy' | translate }}</button>
@@ -42,11 +42,11 @@ import {UnitService} from "../../../services/unit.service";
 				</nvry-dropdown>
             </div>
             
-            <nvry-textarea 
+            <ff-textarea 
                 [placeholder]="'general.description' | translate"
                 [(ngModel)]="invoiceLine.description" class="description-field" 
                 [class.description-field--visible]="invoiceLine.description || titleFieldInFocus || descriptionFieldInFocus"
-                (focus)="descriptionFieldInFocus = true;" (blur)="descriptionFieldInFocus = false;"></nvry-textarea>                            
+                (focus)="descriptionFieldInFocus = true;" (blur)="descriptionFieldInFocus = false;"></ff-textarea>                            
     `
 })
 export class InvoiceLineComponent implements OnInit {

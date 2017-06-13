@@ -34,7 +34,7 @@ import {Helpers} from "../../helpers";
     
     <ng-content select="[empty]" *ngIf="!loading && !rows.length"></ng-content>
     
-    <nvry-spinner class="table-spinner" *ngIf="loading"></nvry-spinner>
+    <ff-spinner class="table-spinner" *ngIf="loading"></ff-spinner>
     `,
 
 })

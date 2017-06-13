@@ -3,13 +3,17 @@ import {BrowserModule} from "@angular/platform-browser";
 import {IconComponent} from "./components/icon.component";
 import {ButtonComponent} from "./components/button.component";
 import {SpinnerComponent} from "./components/spinner.component";
-import {FFMaterialModule} from "./components/material.module";
 import {ConfirmComponent} from "./components/confirm.component";
 import {ControlMessagesComponent} from "./components/control-messages.component";
 import {InputComponent} from "./components/input.component";
 import {SelectComponent} from "./components/select.component";
-import {ModalPlaceholderComponent, ModalPlaceholderComponent} from "./components/modal.component";
 import {DatePickerDirective} from "./directives/input-date.directive";
+import {MaterialModule} from "@angular/material";
+import {FormsModule} from "@angular/forms";
+import {DecimalDirective} from "./directives/input-decimal.directive";
+import {NumberPipe} from "./pipes/number.pipe";
+import {SafePipe} from "./pipes/safe.pipe";
+import {ModalPlaceholderComponent, ModalService} from "./services/modal.service";
 
 export * from './components/button.component';
 export * from './components/confirm.component';
@@ -18,17 +22,17 @@ export * from './components/icon.component';
 export * from './components/icon.component';
 export * from './components/input.component';
 export * from './components/material.module';
-export * from './components/modal.component';
 export * from './components/select.component';
 export * from './components/spinner.component';
 
 export * from './services/modal.service';
 export * from './directives/input-date.directive';
 
+export {NumberPipe} from './pipes/number.pipe';
 
 
 @NgModule({
-    imports: [BrowserModule, FFMaterialModule],
+    imports: [BrowserModule, MaterialModule, FormsModule],
     declarations: [
         IconComponent,
         ButtonComponent,
@@ -38,7 +42,10 @@ export * from './directives/input-date.directive';
         InputComponent,
         SelectComponent,
 		ModalPlaceholderComponent,
-		DatePickerDirective
+		DatePickerDirective,
+		DecimalDirective,
+		NumberPipe,
+		SafePipe,
     ],
     exports: [
         IconComponent,
@@ -48,21 +55,29 @@ export * from './directives/input-date.directive';
         ControlMessagesComponent,
         InputComponent,
         SelectComponent,
-		ModalPlaceholderComponent
+		ModalPlaceholderComponent,
+		NumberPipe,
+		SafePipe
     ],
 	entryComponents: [
 		ConfirmComponent
+	],
+	providers: [
+		ModalService,
+		NumberPipe,
+		SafePipe
 	]
 })
 export class FFCoreModule {
 
     static forRoot(config: FFCoreModuleConfig = {}): ModuleWithProviders {
-        return {
+        let module = {
             ngModule: FFCoreModule,
             providers: [
                 config.validationMessageProvider || {provide: ValidationMessageProvider, useClass: FakeValidationMessageProvider},
             ]
         };
+        return module;
     }
 }
 

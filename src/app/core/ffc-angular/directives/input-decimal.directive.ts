@@ -4,16 +4,16 @@ import {Formatter} from "../formatter";
 
 export const AMOUNT_VALUE_ACCESSOR: any = {
 	provide: NG_VALUE_ACCESSOR,
-	useExisting: forwardRef(() => AmountDirective),
+	useExisting: forwardRef(() => DecimalDirective),
 	multi: true
 };
 
 @Directive({
-	selector: 'input[nvry-amount]',
+	selector: 'input[ff-decimal]',
 	providers: [AMOUNT_VALUE_ACCESSOR],
 	host: {'(change)': 'onChange()', '(blur)': 'onBlur()'},
 })
-export class AmountDirective implements OnInit, ControlValueAccessor {
+export class DecimalDirective implements OnInit, ControlValueAccessor {
 
 	private rawValue: number;
 	private onChangeCallback: (_: any) => void = () => {};
