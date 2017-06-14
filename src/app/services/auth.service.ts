@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {BaseService} from "./base.service";
+import {NavoryApi} from "./base.service";
 import {Account} from "../models/account";
 import {User} from "../models/user";
 import {Http} from "@angular/http";
@@ -9,7 +9,7 @@ import {UserService} from "./user.service";
 import {AnalyticsService} from "./analytics.service";
 
 @Injectable()
-export class AuthService extends BaseService {
+export class AuthService extends NavoryApi {
 
 	private pathSignup = '/register';
 	private pathLogin = '/auth';

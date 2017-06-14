@@ -1,4 +1,4 @@
-import {BaseService} from "./base.service";
+import {NavoryApi} from "./base.service";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
@@ -9,7 +9,7 @@ import {State} from "../core/state";
 import {Country} from "../models/country";
 
 @Injectable()
-export class BootstrapService extends BaseService {
+export class BootstrapService extends NavoryApi {
 
 	private pathBootstrap = '/bootstrap';
 

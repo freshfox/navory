@@ -1,4 +1,4 @@
-import {BaseService} from "./base.service";
+import {NavoryApi} from "./base.service";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Income} from "../models/income";
@@ -7,7 +7,7 @@ import {EuVatType} from "../core/enums/eu-vat-type.enum";
 import {AnalyticsEventType, AnalyticsService} from "./analytics.service";
 
 @Injectable()
-export class IncomeService extends BaseService {
+export class IncomeService extends NavoryApi {
 
 	private pathIncome = '/incomes';
 

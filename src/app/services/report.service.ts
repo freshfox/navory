@@ -1,4 +1,4 @@
-import {BaseService} from "./base.service";
+import {NavoryApi} from "./base.service";
 import {Http} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
@@ -8,7 +8,7 @@ import * as moment from 'moment';
 import {FileService} from "./file.service";
 
 @Injectable()
-export class ReportService extends BaseService {
+export class ReportService extends NavoryApi {
 
 	private pathVatReport = '/reports/vat';
 	private pathFinance = '/finance';

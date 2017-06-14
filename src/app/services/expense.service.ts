@@ -1,4 +1,4 @@
-import {BaseService} from "./base.service";
+import {NavoryApi} from "./base.service";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Http} from "@angular/http";
@@ -8,7 +8,7 @@ import {Payment} from "../models/payment";
 import {AnalyticsEventType, AnalyticsService} from "./analytics.service";
 
 @Injectable()
-export class ExpenseService extends BaseService {
+export class ExpenseService extends NavoryApi {
 
 	private pathExpenses = '/expenses';
 

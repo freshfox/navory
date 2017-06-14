@@ -1,4 +1,4 @@
-import {BaseService} from "./base.service";
+import {NavoryApi} from "./base.service";
 import {Http} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {FileService} from "./file.service";
@@ -14,7 +14,7 @@ export enum ExportType {
 }
 
 @Injectable()
-export class AccountService extends BaseService {
+export class AccountService extends NavoryApi {
 
 	private pathExport = '/account/export';
 	private pathAccount = '/account';

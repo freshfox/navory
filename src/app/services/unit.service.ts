@@ -1,12 +1,12 @@
 import {Injectable} from "@angular/core";
-import {BaseService} from "./base.service";
+import {NavoryApi} from "./base.service";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs";
 import {State} from "../core/state";
 import {Unit} from "../models/unit";
 
 @Injectable()
-export class UnitService extends BaseService {
+export class UnitService extends NavoryApi {
 
 
 	constructor(http: Http, private state: State) {

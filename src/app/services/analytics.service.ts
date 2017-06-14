@@ -46,6 +46,12 @@ export enum AnalyticsEventType {
 	InvoicePreview = 'preview_invoice' as any,
 	InvoiceDownload = 'download_invoice' as any,
 
+	QuoteCreate = 'create_quote' as any,
+	QuoteUpdate = 'update_quote' as any,
+	QuoteDelete = 'delete_quote' as any,
+	QuotePreview = 'preview_quote' as any,
+	QuoteDownload = 'download_quote' as any,
+
 	ExpenseCreate = 'create_expense' as any,
 	ExpenseUpdate = 'update_expense' as any,
 	ExpenseDelete = 'delete_expense' as any,

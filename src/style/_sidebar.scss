@@ -34,6 +34,9 @@
 					&.income .title {
 						color: darken($colorIncome, 20%);
 					}
+					&.quotes .title {
+						color: darken($colorQuotes, 20%);
+					}
 					&.expenses .title {
 						color: darken($colorExpenses, 20%);
 					}
@@ -56,6 +59,9 @@
 				}
 				.income svg {
 					fill: $colorIncome;
+				}
+				.quotes svg {
+					fill: $colorQuotes;
 				}
 				.expenses svg {
 					fill: $colorExpenses;

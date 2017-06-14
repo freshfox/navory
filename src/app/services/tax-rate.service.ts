@@ -1,12 +1,12 @@
 import {Injectable} from "@angular/core";
-import {BaseService} from "./base.service";
+import {NavoryApi} from "./base.service";
 import {Http} from "@angular/http";
 import {TaxRate} from "../models/tax-rate";
 import {State} from "../core/state";
 import {Observable} from "rxjs";
 
 @Injectable()
-export class TaxRateService extends BaseService {
+export class TaxRateService extends NavoryApi {
 
 	private defaultTaxRate = 20;
 

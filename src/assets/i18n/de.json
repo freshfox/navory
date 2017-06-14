@@ -71,7 +71,10 @@
 		"remove": "Entfernen",
 		"period": "Zeitraum",
 		"date-start": "Startdatum",
-		"date-end": "Enddatum"
+		"date-end": "Enddatum",
+		"valid-to": "Gültig bis",
+		"finished": "Fertiggestellt",
+		"issued": "Ausgestellt"
 	},
 	"app": {
 		"name": "Navory",
@@ -196,6 +199,13 @@
 		"new-line": "Neue Zeile",
 		"comment-placeholder": "Gib hier Hinweise für deinen Kunden ein.",
 		"save-customer": "Kunde speichern"
+	},
+	"quotes": {
+		"title": "Angebote",
+		"new": "Neues Angebot",
+		"empty-state-message": "Du hast noch keine Angebote angelegt.<br>Erstelle hier Angebote und sende Sie an deine Kunden.",
+		"delete-confirm-title": "Angebot löschen",
+		"delete-confirm-message": "Willst du dieses Angebot wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden."
 	},
 	"expenses": {
 		"title": "Ausgaben",

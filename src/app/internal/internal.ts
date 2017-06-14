@@ -26,6 +26,12 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 			'title': 'income.title',
 		},
 		{
+			'key': 'quotes',
+			'icon': 'document-text',
+			'routerLink': '/quotes',
+			'title': 'quotes.title',
+		},
+		{
 			'key': 'expenses',
 			'icon': 'document-text',
 			'routerLink': '/expenses',

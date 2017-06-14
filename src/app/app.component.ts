@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
 import {environment} from "../environments/environment";
-import {BaseService} from "./services/base.service";
+import {NavoryApi} from "./services/base.service";
 import {AuthService} from "./services/auth.service";
 import {NavigationEnd, Router} from "@angular/router";
 import {State} from "./core/state";
@@ -39,7 +39,7 @@ export class AppComponent {
 	}
 
 	private initUnauthenticatedListener() {
-		BaseService.onUnauthorized.subscribe(() => {
+		NavoryApi.onUnauthorized.subscribe(() => {
 			if (this.state.user) {
 				this.authService.removeLoggedInUser();
 				this.router.navigate(['/login'], {

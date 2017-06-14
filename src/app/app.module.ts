@@ -85,6 +85,9 @@ import {VatReportComponent} from "./internal/reports/vat-report.component";
 import {ProfitLossReportComponent} from "./internal/reports/profit-loss-report.component";
 import {FFCoreModule, ValidationMessageProvider} from "./core/ffc-angular/ff-core.module";
 import {ValidationMessageProviderImpl} from "./core/validation-message-provider";
+import {QuotesComponent} from "./internal/quotes/quotes.component";
+import {QuoteService} from "./services/quote.service";
+import {BaseInvoiceService} from "./services/base-invoice.service";
 
 export function validationMessageProviderFactory() {
 	return new ValidationMessageProviderImpl();
@@ -149,6 +152,7 @@ export function translateStaticLoaderFactory(http: Http) {
 		UpgradePlanComponent,
 		ReportsComponent,
 		ProfitLossReportComponent,
+		QuotesComponent
 	],
 	entryComponents: [
 		CustomerEditComponent,
@@ -208,6 +212,8 @@ export function translateStaticLoaderFactory(http: Http) {
 		UnitService,
 		AnalyticsService,
 		SubscriptionService,
+		QuoteService,
+		BaseInvoiceService
 	],
 	bootstrap: [AppComponent]
 })

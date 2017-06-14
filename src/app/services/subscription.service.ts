@@ -1,5 +1,5 @@
 import {ComponentRef, Injectable} from "@angular/core";
-import {BaseService} from "./base.service";
+import {NavoryApi} from "./base.service";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs";
 import {Subscription} from "../models/subscription";
@@ -9,7 +9,7 @@ import {UpgradePlanComponent} from "../core/components/upgrade-plan.component";
 import {ModalService} from "../core/ffc-angular/services/modal.service";
 
 @Injectable()
-export class SubscriptionService extends BaseService {
+export class SubscriptionService extends NavoryApi {
 
 	private pathToken = '/subscription/token';
 	private pathSubscription = '/subscription';

@@ -1,0 +1,45 @@
+<div class="page-header">
+	<div class="invoice-stats" *ngIf="!loading">
+		<div class="invoice-stats__item">
+			<span class="title">{{ 'general.issued' | translate }}</span>
+			<span class="amount color-customers">{{ getIssuedAmount() | ffNumber }}</span>
+		</div>
+		<div class="invoice-stats__item">
+			<span class="title">{{ 'general.draft' | translate }}</span>
+			<span class="amount color-gray">{{ getDraftAmount() | ffNumber }}</span>
+		</div>
+		<div class="invoice-stats__item">
+			<span class="title">{{ 'general.total' | translate }}</span>
+			<span class="amount">{{ getTotalAmount() | ffNumber }}</span>
+		</div>
+	</div>
+
+	<button ff-button icon="plus" class="create-button" (click)="createQuote()">
+		{{ 'quotes.new' | translate }}
+	</button>
+</div>
+
+<nvry-table [options]="tableOptions" [loading]="loading" [rows]="quotes" (onRowClicked)="editQuote($event)"
+			class="invoice-list-table">
+
+	<div empty class="empty-view">
+		<p class="title" [innerHTML]="'quotes.empty-state-message' | translate"></p>
+		<button ff-button icon="plus" class="create-button" (click)="createQuote()">{{ 'quotes.new' | translate }}
+		</button>
+	</div>
+
+</nvry-table>
+
+<ng-template #statusColumn let-row="row" let-value="value">
+	<div class="badge badge--{{ getBadgeData(row).cssClass }}">
+		<span clasS="badge__text">{{ getBadgeData(row).text }}</span>
+	</div>
+</ng-template>
+
+<ng-template #actionsColumn let-row="row" let-value="value">
+	<nvry-dropdown>
+		<button (click)="editQuote(row)">{{ 'actions.view' | translate }}</button>
+		<button (click)="deleteQuote(row)">{{ 'actions.delete' | translate }}</button>
+	</nvry-dropdown>
+</ng-template>
+

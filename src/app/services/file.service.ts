@@ -1,11 +1,11 @@
-import {BaseService} from "./base.service";
+import {NavoryApi} from "./base.service";
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {File} from "../models/file";
 import {Observable} from "rxjs";
 
 @Injectable()
-export class FileService extends BaseService {
+export class FileService extends NavoryApi {
 
 	private pathFile = '/files';
 

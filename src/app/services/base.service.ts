@@ -5,7 +5,7 @@ import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 
 @Injectable()
-export class BaseService {
+export class NavoryApi {
 
 	protected baseUrl: string;
 
@@ -62,7 +62,7 @@ export class BaseService {
 				break;
 			case 401:
 				errCode = ServiceErrorCode.Unauthorized;
-				BaseService.onUnauthorized.emit();
+				NavoryApi.onUnauthorized.emit();
 				break;
 			case 403:
 				errCode = ServiceErrorCode.Forbidden;
