@@ -47,7 +47,7 @@ export class QuoteEditComponent implements OnInit {
 				private analytics: AnalyticsService) {
 
 		this.quote = new Quote();
-		this.quote.valid_to_date = moment().add(1, 'M');
+		this.quote.valid_to_date = moment().add(30, 'd').toDate();
 		this.quote.customer_country_code = this.bootstrapService.getDefaultCountry().code;
 		this.quote.invoice_lines.push(new InvoiceLine());
 		this.quote.draft = true;

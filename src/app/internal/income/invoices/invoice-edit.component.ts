@@ -51,7 +51,7 @@ export class InvoiceEditComponent implements OnInit {
 				private analytics: AnalyticsService) {
 
 		this.invoice = new Invoice();
-		this.invoice.due_date = moment().add(1, 'M');
+		this.invoice.due_date = moment().add(30, 'd').toDate();
 		this.invoice.customer_country_code = this.bootstrapService.getDefaultCountry().code;
 		this.invoice.invoice_lines.push(new InvoiceLine());
 		this.invoice.draft = true;
