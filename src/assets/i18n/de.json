@@ -212,7 +212,8 @@
 		"convert-to-invoice": "In Rechnung umwandeln",
 		"edit-success": "Angebot gespeichert",
 		"issue-success": "Angebot erfolgreich fertiggestellt.",
-		"save-error": "Dein Angebot konnte nicht gespeichert werden."
+		"save-error": "Dein Angebot konnte nicht gespeichert werden.",
+		"number": "Angebotsnummer"
 	},
 	"expenses": {
 		"title": "Ausgaben",
