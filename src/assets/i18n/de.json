@@ -203,6 +203,7 @@
 	"quotes": {
 		"title": "Angebote",
 		"new": "Neues Angebot",
+		"create_title": "Neues Angebot",
 		"empty-state-message": "Du hast noch keine Angebote angelegt.<br>Erstelle hier Angebote und sende Sie an deine Kunden.",
 		"delete-confirm-title": "Angebot löschen",
 		"delete-confirm-message": "Willst du dieses Angebot wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
