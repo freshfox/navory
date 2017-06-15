@@ -38,14 +38,17 @@ export class InvoiceService extends NavoryApi {
 	}
 
 	saveInvoice(invoice: Invoice) {
+		let data = Object.assign({}, invoice) as any;
+		data.invoice_lines = data.lines;
+
 		if (invoice.id) {
-			return this.patch(this.getRestEntityPath(this.pathInvoices, invoice.id), invoice)
+			return this.patch(this.getRestEntityPath(this.pathInvoices, invoice.id), data)
 				.map(invoice => {
 					this.analytics.trackEvent(AnalyticsEventType.InvoiceUpdate);
 					return new Invoice(invoice)
 				});
 		}
-		return this.post(this.pathInvoices, invoice)
+		return this.post(this.pathInvoices, data)
 			.map(invoice => {
 				this.analytics.trackEvent(AnalyticsEventType.InvoiceCreate);
 				return new Invoice(invoice);

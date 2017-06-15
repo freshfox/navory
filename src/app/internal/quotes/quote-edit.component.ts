@@ -1,6 +1,6 @@
 import {Component, ComponentRef, OnInit} from "@angular/core";
-import {InvoiceLine} from "../../models/invoice-line";
-import {ActivatedRoute} from "@angular/router";
+import {Line} from "../../models/invoice-line";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BootstrapService} from "../../services/bootstrap.service";
 import {State} from "../../core/state";
 import {TranslateService} from "@ngx-translate/core";
@@ -44,12 +44,13 @@ export class QuoteEditComponent implements OnInit {
 				private fb: FormBuilder,
 				private location: Location,
 				private subscriptionService: SubscriptionService,
-				private analytics: AnalyticsService) {
+				private analytics: AnalyticsService,
+				private router: Router) {
 
 		this.quote = new Quote();
 		this.quote.valid_to_date = moment().add(30, 'd').toDate();
 		this.quote.customer_country_code = this.bootstrapService.getDefaultCountry().code;
-		this.quote.invoice_lines.push(new InvoiceLine());
+		this.quote.lines.push(new Line());
 		this.quote.draft = true;
 
 
@@ -105,7 +106,7 @@ export class QuoteEditComponent implements OnInit {
 			quote.draft = true;
 			this.save(quote).subscribe((quote) => {
 					this.quote = quote;
-					this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
+					this.notificationService.success(null, this.translate.instant('quotes.edit-success'));
 				},
 				() => {
 					this.savingDraft = false;
@@ -120,7 +121,7 @@ export class QuoteEditComponent implements OnInit {
 			this.save(quote).subscribe((quote) => {
 				this.quote = quote;
 				this.state.nextQuoteNumber++;
-				this.notificationService.success(null, this.translate.instant('invoices.issue-success'));
+				this.notificationService.success(null, this.translate.instant('quotes.issue-success'));
 			});
 		}
 	}
@@ -130,7 +131,7 @@ export class QuoteEditComponent implements OnInit {
 			let quote = new Quote(this.quote);
 			this.save(quote).subscribe((quote) => {
 				this.quote = quote;
-				this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
+				this.notificationService.success(null, this.translate.instant('quotes.edit-success'));
 			});
 		}
 	}
@@ -160,7 +161,7 @@ export class QuoteEditComponent implements OnInit {
 							if (error.code === ServiceErrorCode.Forbidden) {
 								this.subscriptionService.showUpgradeModal();
 							} else {
-								this.notificationService.error(null, this.translate.instant('invoices.save-error'));
+								this.notificationService.error(null, this.translate.instant('quotes.save-error'));
 							}
 
 							observer.error();
@@ -189,5 +190,13 @@ export class QuoteEditComponent implements OnInit {
 
 	downloadPDF() {
 		this.quoteService.downloadQuotePDF(this.quote);
+	}
+
+	convertToInvoice() {
+		this.save(this.quote).subscribe(() => {
+			this.router.navigate([`/invoices/new`], {
+				queryParams: {fromQuote: this.quote.id}
+			});
+		})
 	}
 }

@@ -17,6 +17,8 @@ export class Invoice extends BaseInvoice {
 		} else {
 			this.payments = [];
 		}
+
+		this.initLines('invoice_lines');
 	}
 
 	get isFullyPaid(): boolean {

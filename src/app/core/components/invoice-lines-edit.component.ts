@@ -1,5 +1,9 @@
-import {Component, Input} from "@angular/core";
-import {InvoiceLine} from "../../models/invoice-line";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {Line} from "../../models/invoice-line";
+import {BootstrapService} from "../../services/bootstrap.service";
+import {TaxRateService} from "../../services/tax-rate.service";
+import {TaxRate} from "../../models/tax-rate";
+import {Unit} from "../../models/unit";
 
 @Component({
 	selector: 'nvry-invoice-lines-edit',
@@ -17,8 +21,10 @@ import {InvoiceLine} from "../../models/invoice-line";
 
 				<div>
 					<nvry-invoice-line [invoiceLine]="line"
-									   [deleteShown]="invoiceLines.length > 1"
-									   *ngFor="let line of invoiceLines"
+									   [units]="units"
+									   [taxRates]="taxRates"
+									   [deleteShown]="lines.length > 1"
+									   *ngFor="let line of lines"
 									   (onDelete)="deleteLine($event)" (onCopy)="copyLine($event)"></nvry-invoice-line>
 				</div>
 			</div>
@@ -29,24 +35,37 @@ import {InvoiceLine} from "../../models/invoice-line";
 })
 export class InvoiceLinesEditComponent {
 
-	@Input() invoiceLines: InvoiceLine[];
+	@Input() lines: Line[];
+	@Output() linesChange: EventEmitter<Line[]> = new EventEmitter<Line[]>();
+	units: Unit[];
+	taxRates: TaxRate[];
+
+	constructor(private bootstrapService: BootstrapService, private taxRateService: TaxRateService) {}
+
+	ngOnInit() {
+		this.bootstrapService.getUnits()
+			.subscribe(units => this.units = units);
+
+		this.taxRateService.getFormattedTaxRates()
+			.subscribe(taxRates => this.taxRates = taxRates);
+	}
 
 	addLine() {
-		let lastLine = this.invoiceLines[this.invoiceLines.length - 1];
+		let lastLine = this.lines[this.lines.length - 1];
 		let lastTaxRate = lastLine.tax_rate;
-		this.invoiceLines.push(new InvoiceLine({ tax_rate: lastTaxRate }));
+		this.lines.push(new Line({ tax_rate: lastTaxRate }));
 	}
 
 	deleteLine(invoiceLine) {
-		this.invoiceLines = this.invoiceLines.filter((line) => {
+		this.lines = this.lines.filter((line) => {
 			return line !== invoiceLine;
 		});
 	}
 
 	copyLine(invoiceLine) {
-		let index = this.invoiceLines.indexOf(invoiceLine);
-		let lineCopy = new InvoiceLine(invoiceLine);
+		let index = this.lines.indexOf(invoiceLine);
+		let lineCopy = new Line(invoiceLine);
 
-		this.invoiceLines.splice(index, 0, lineCopy);
+		this.lines.splice(index, 0, lineCopy);
 	}
 }

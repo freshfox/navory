@@ -205,7 +205,13 @@
 		"new": "Neues Angebot",
 		"empty-state-message": "Du hast noch keine Angebote angelegt.<br>Erstelle hier Angebote und sende Sie an deine Kunden.",
 		"delete-confirm-title": "Angebot löschen",
-		"delete-confirm-message": "Willst du dieses Angebot wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden."
+		"delete-confirm-message": "Willst du dieses Angebot wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+		"edit_title_draft": "Angebotsentwurf",
+		"edit_title": "Angebot Nr. {{ number }}",
+		"convert-to-invoice": "In Rechnung umwandeln",
+		"edit-success": "Angebot gespeichert",
+		"issue-success": "Angebot erfolgreich fertiggestellt.",
+		"save-error": "Dein Angebot konnte nicht gespeichert werden."
 	},
 	"expenses": {
 		"title": "Ausgaben",

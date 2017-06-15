@@ -1,4 +1,4 @@
-import {InvoiceLine} from "./invoice-line";
+import {Line} from "./invoice-line";
 import {BaseModel} from "../core/base.model";
 import {Calculator} from "../core/calculator";
 import {Customer} from "./customer";
@@ -10,7 +10,7 @@ export class BaseInvoice extends BaseModel {
 	draft: boolean;
 	date: string;
 	comment: string;
-	invoice_lines: InvoiceLine[];
+	lines: Line[];
 
 	customer: Customer;
 	customer_name: string;
@@ -20,17 +20,23 @@ export class BaseInvoice extends BaseModel {
 
 	constructor(data?: any) {
 		super(data);
+	}
 
-		if (this.invoice_lines) {
-			this.invoice_lines = this.invoice_lines.map(currentLine => new InvoiceLine(currentLine));
-		} else {
-			this.invoice_lines = [];
+	protected initLines(apiLinesPropertyName: string) {
+		if (this.lines) {
+			this.lines = this.lines.map(currentLine => new Line(currentLine));
+		}
+		else if (this[apiLinesPropertyName]) {
+			this.lines = this[apiLinesPropertyName].map(currentLine => new Line(currentLine));
+		}
+		else {
+			this.lines = [];
 		}
 	}
 
 	getTotalNet(): number {
 		var amount = 0;
-		this.invoice_lines.forEach(invoiceLine => {
+		this.lines.forEach(invoiceLine => {
 			amount = Calculator.add(amount, invoiceLine.getNetAmount());
 		});
 
@@ -39,7 +45,7 @@ export class BaseInvoice extends BaseModel {
 
 	getTotalGross(): number {
 		var amount = 0;
-		this.invoice_lines.forEach(invoiceLine => {
+		this.lines.forEach(invoiceLine => {
 			amount = Calculator.add(amount, invoiceLine.getGrossAmount());
 		});
 

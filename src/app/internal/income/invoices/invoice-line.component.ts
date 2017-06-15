@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, EventEmitter, Output} from "@angular/core";
-import {InvoiceLine} from "../../../models/invoice-line";
+import {Line} from "../../../models/invoice-line";
 import {Unit} from "../../../models/unit";
 import {BootstrapService} from "../../../services/bootstrap.service";
 import {TaxRate} from "../../../models/tax-rate";
@@ -51,12 +51,12 @@ import {UnitService} from "../../../services/unit.service";
 })
 export class InvoiceLineComponent implements OnInit {
 
-	@Input() invoiceLine: InvoiceLine;
+	@Input() invoiceLine: Line;
 	@Input() deleteShown: boolean = true;
-	@Output() onDelete: EventEmitter<InvoiceLine> = new EventEmitter<InvoiceLine>();
-	@Output() onCopy: EventEmitter<InvoiceLine> = new EventEmitter<InvoiceLine>();
-	units: Unit[];
-	taxRates: TaxRate[];
+	@Output() onDelete: EventEmitter<Line> = new EventEmitter<Line>();
+	@Output() onCopy: EventEmitter<Line> = new EventEmitter<Line>();
+	@Input() units: Unit[];
+	@Input() taxRates: TaxRate[];
 	defaultTaxRate: TaxRate;
 	numberOfQuantityDecimals: number = 4;
 	amount: number = 0;
@@ -73,11 +73,6 @@ export class InvoiceLineComponent implements OnInit {
 		if (!this.invoiceLine.unit) {
 			this.invoiceLine.unit = new Unit({ id: Config.defaultUnitId });
 		}
-		this.bootstrapService.getUnits()
-			.subscribe(units => this.units = units);
-
-		this.taxRateService.getFormattedTaxRates()
-			.subscribe(taxRates => this.taxRates = taxRates);
 
 		this.taxRateService.getDefaultTaxRate()
 			.subscribe(rate => {

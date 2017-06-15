@@ -3,7 +3,7 @@ import {BaseModel} from "../core/base.model";
 import {Calculator} from "../core/calculator";
 import {Unit} from "./unit";
 
-export class InvoiceLine extends BaseModel {
+export class Line extends BaseModel {
 
 	id: number;
 	title: string;

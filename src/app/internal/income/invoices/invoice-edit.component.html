@@ -97,7 +97,7 @@
 				</div>
 			</div>
 
-			<nvry-invoice-lines-edit [(invoiceLines)]="invoice.invoice_lines"></nvry-invoice-lines-edit>
+			<nvry-invoice-lines-edit [(lines)]="invoice.lines"></nvry-invoice-lines-edit>
 
 			<div class="invoice-edit-paper-section invoice-total">
 				<nvry-total-indicator [totalNet]="getTotalNet()" [totalGross]="getTotalGross()" [rates]="getOccuringTaxRates()"></nvry-total-indicator>
@@ -109,7 +109,7 @@
 		</div>
 	</div>
 
-	<pre>{{ invoice | json }}</pre>
+
 </div>
 
 <ff-spinner *ngIf="loading"></ff-spinner>

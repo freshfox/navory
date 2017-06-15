@@ -37,14 +37,17 @@ export class QuoteService extends NavoryApi {
 	}
 
 	saveQuote(quote: Quote) {
+		let data = Object.assign({}, quote) as any;
+		data.quote_lines = data.lines;
+
 		if (quote.id) {
-			return this.patch(this.getRestEntityPath(this.pathQuotes, quote.id), quote)
+			return this.patch(this.getRestEntityPath(this.pathQuotes, quote.id), data)
 				.map(quote => {
 					this.analytics.trackEvent(AnalyticsEventType.QuoteUpdate);
 					return new Quote(quote)
 				});
 		}
-		return this.post(this.pathQuotes, quote)
+		return this.post(this.pathQuotes, data)
 			.map(quote => {
 				this.analytics.trackEvent(AnalyticsEventType.QuoteCreate);
 				return new Quote(quote);

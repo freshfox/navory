@@ -1,6 +1,6 @@
 import {Component, ComponentRef, OnInit} from "@angular/core";
 import {Invoice} from "../../../models/invoice";
-import {InvoiceLine} from "../../../models/invoice-line";
+import {Line} from "../../../models/invoice-line";
 import {ActivatedRoute} from "@angular/router";
 import {InvoiceService} from "../../../services/invoice.service";
 import {BootstrapService} from "../../../services/bootstrap.service";
@@ -20,6 +20,8 @@ import {ServiceError, ServiceErrorCode} from "../../../services/base.service";
 import {SubscriptionService} from "../../../services/subscription.service";
 import {AnalyticsEventType, AnalyticsService} from "../../../services/analytics.service";
 import {ModalService, ModalSize} from "../../../core/ffc-angular/services/modal.service";
+import {QuoteService} from "../../../services/quote.service";
+import {Quote} from "../../../models/quote.model";
 const moment = require('moment');
 
 @Component({
@@ -48,12 +50,13 @@ export class InvoiceEditComponent implements OnInit {
 				private location: Location,
 				private paymentService: PaymentService,
 				private subscriptionService: SubscriptionService,
-				private analytics: AnalyticsService) {
+				private analytics: AnalyticsService,
+				private quoteService: QuoteService) {
 
 		this.invoice = new Invoice();
 		this.invoice.due_date = moment().add(30, 'd').toDate();
 		this.invoice.customer_country_code = this.bootstrapService.getDefaultCountry().code;
-		this.invoice.invoice_lines.push(new InvoiceLine());
+		this.invoice.lines.push(new Line());
 		this.invoice.draft = true;
 
 
@@ -68,7 +71,25 @@ export class InvoiceEditComponent implements OnInit {
 						this.invoice = invoice;
 					});
 			} else {
-				this.loading = false;
+				this.route.queryParams.subscribe(params => {
+					let quoteId = params['fromQuote'];
+					if (quoteId) {
+						this.quoteService.getQuote(quoteId)
+							.subscribe((quote: Quote) => {
+
+								this.invoice.customer = quote.customer;
+								this.invoice.customer_name = quote.customer_name;
+								this.invoice.customer_address = quote.customer_address;
+								this.invoice.customer_country_code = quote.customer_country_code;
+								this.invoice.customer_vat_number = quote.customer_vat_number;
+								this.invoice.lines = quote.lines;
+
+								this.loading = false;
+							});
+					} else {
+						this.loading = false;
+					}
+				});
 			}
 		});
 	}

@@ -8,7 +8,7 @@ export class BaseInvoiceService {
 	getTaxAmounts(invoice: BaseInvoice): any[] {
 
 		var amounts = [];
-		invoice.invoice_lines.forEach((line) => {
+		invoice.lines.forEach((line) => {
 			var rate = line.getTaxrate();
 			var taxAmount = line.getTaxAmount();
 			var netAmount = line.getNetAmount();

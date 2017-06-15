@@ -42,6 +42,8 @@
 					*ngIf="quote.draft"
 					[disabled]="savingDraft">{{ 'invoices.issue' | translate }}
 			</button>
+
+			<button ff-button (click)="convertToInvoice()" *ngIf="!quote.draft">{{ 'quotes.convert-to-invoice' | translate }}</button>
 		</div>
 	</div>
 
@@ -81,7 +83,7 @@
 				</div>
 			</div>
 
-			<nvry-invoice-lines-edit [(invoiceLines)]="quote.invoice_lines"></nvry-invoice-lines-edit>
+			<nvry-invoice-lines-edit [lines]="quote.lines"></nvry-invoice-lines-edit>
 
 			<div class="invoice-edit-paper-section invoice-total">
 				<nvry-total-indicator [totalNet]="getTotalNet()" [totalGross]="getTotalGross()" [rates]="getOccuringTaxRates()"></nvry-total-indicator>
