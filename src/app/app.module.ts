@@ -93,12 +93,14 @@ import {MaterialModule} from "@angular/material";
 import {InvoiceEditCustomerComponent} from "./core/components/invoice-edit-customer.component";
 import {QuoteEditComponent} from "./internal/quotes/quote-edit.component";
 
+declare let window: any;
+
 export function validationMessageProviderFactory() {
 	return new ValidationMessageProviderImpl();
 }
 
 export function translateStaticLoaderFactory(http: Http) {
-	return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+	return new TranslateHttpLoader(http, '/assets/i18n/', `${window.I18N_HASH || ''}.json`);
 }
 
 @NgModule({
