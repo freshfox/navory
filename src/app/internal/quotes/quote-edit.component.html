@@ -1,0 +1,97 @@
+<div class="page-header page-header--no-bottom-padding">
+	<button ff-button class="ff-button--clear" [routerLink]="['/quotes']" icon="arrow-left">
+		{{ 'quotes.title' | translate }}
+	</button>
+	<hr>
+</div>
+<div [hidden]="loading">
+	<div class="page-row button-row">
+		<h1 class="module-title">
+			<span *ngIf="!createMode && !quote.draft">{{ 'quotes.edit_title' | translate:{ number: quote.number } }}</span>
+			<span *ngIf="!createMode && quote.draft">{{ 'quotes.edit_title_draft' | translate }}</span>
+			<span *ngIf="createMode">{{ 'quotes.create_title' | translate }}</span>
+		</h1>
+		<div class="buttons">
+			<button ff-button icon="download"
+					class="ff-button--secondary"
+					(click)="downloadPDF()"
+					*ngIf="quote.id">{{ 'actions.download' | translate }}
+			</button>
+
+			<button ff-button (click)="showPreview()"
+					class="ff-button--secondary ff-button--icon-medium"
+					icon="eye-outline"
+					*ngIf="quote.id">{{ 'invoices.preview' | translate }}
+			</button>
+
+			<button ff-button class="ff-button--secondary"
+					(click)="saveDraft()"
+					[disabled]="saving"
+					[loading]="saving && savingDraft"
+					*ngIf="createMode || quote.draft">
+				{{ 'invoices.save-draft' | translate }}
+			</button>
+
+			<button ff-button (click)="saveOnly()"
+					class="ff-button--secondary"
+					[loading]="saving && !savingDraft"
+					*ngIf="!quote.draft">{{ 'general.save' | translate }}</button>
+
+			<button ff-button (click)="saveAndIssue()"
+					[loading]="saving && !savingDraft"
+					*ngIf="quote.draft"
+					[disabled]="savingDraft">{{ 'invoices.issue' | translate }}
+			</button>
+		</div>
+	</div>
+
+	<div class="default-section">
+		<div class="invoice-edit-paper">
+
+			<div class="invoice-edit-paper-section">
+				<div class="frame">
+
+					<nvry-invoice-edit-customer [invoice]="quote"></nvry-invoice-edit-customer>
+
+					<div class="bit-50">
+						<div class="frame frame--bit-spacing">
+							<div class="bit-50">&nbsp;</div>
+							<div class="bit-50">
+								<ff-input [formControl]="form.controls.number"
+										  [(ngModel)]="quote.number"
+										  [label]="'invoices.number' | translate"
+										  [placeholder]="nextQuoteNumber"
+										  [disabled]="!quote.draft"></ff-input>
+							</div>
+						</div>
+						<div class="frame frame--bit-spacing">
+							<div class="bit-50">
+								<ff-input type="date"
+										  [formControl]="form.controls.date"
+										  [(ngModel)]="quote.date"
+										  [label]="'general.date' | translate"></ff-input>
+							</div>
+							<div class="bit-50">
+								<ff-input type="date" [formControl]="form.controls.valid_to_date"
+										  [(ngModel)]="quote.valid_to_date"
+										  [label]="'general.valid-to' | translate"></ff-input>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<nvry-invoice-lines-edit [(invoiceLines)]="quote.invoice_lines"></nvry-invoice-lines-edit>
+
+			<div class="invoice-edit-paper-section invoice-total">
+				<nvry-total-indicator [totalNet]="getTotalNet()" [totalGross]="getTotalGross()" [rates]="getOccuringTaxRates()"></nvry-total-indicator>
+			</div>
+
+			<div class="invoice-edit-paper-section">
+				<ff-textarea [label]="'general.note' | translate" [placeholder]="'invoices.comment-placeholder' | translate" [(ngModel)]="quote.comment"></ff-textarea>
+			</div>
+		</div>
+	</div>
+</div>
+
+<ff-spinner *ngIf="loading"></ff-spinner>

@@ -22,6 +22,7 @@ export class State {
 	nextExpenseNumber: number;
 	nextIncomeNumber: number;
 	nextInvoiceNumber: number;
+	nextQuoteNumber: number;
 	features: AccountFeatures;
 	subscription: Subscription;
 

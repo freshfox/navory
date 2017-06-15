@@ -20,6 +20,7 @@ import {ReportsComponent} from "app/internal/reports/reports.component";
 import {VatReportComponent} from "./reports/vat-report.component";
 import {ProfitLossReportComponent} from "./reports/profit-loss-report.component";
 import {QuotesComponent} from "./quotes/quotes.component";
+import {QuoteEditComponent} from "./quotes/quote-edit.component";
 
 export const InternalRoutes: Routes = [
 	{
@@ -53,8 +54,8 @@ export const InternalRoutes: Routes = [
 			},
 
 			{path: 'quotes', component: QuotesComponent},
-			//{path: 'quotes/new', component: QuoteEditComponent},
-			//{path: 'quotes/:id', component: QuoteEditComponent},
+			{path: 'quotes/new', component: QuoteEditComponent},
+			{path: 'quotes/:id', component: QuoteEditComponent},
 
 			{path: 'invoices/new', component: InvoiceEditComponent},
 			{path: 'invoices/:id', component: InvoiceEditComponent},

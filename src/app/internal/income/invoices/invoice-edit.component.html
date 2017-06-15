@@ -59,45 +59,9 @@
 
 			<div class="invoice-edit-paper-section">
 				<div class="frame">
-					<div class="bit-50 customer-area">
-						<div #customerName class="invoice-edit-customer-name-wrapper">
 
-							<div class="invoice-edit-customer-link-wrapper">
-								<ng-template  [ngIf]="invoice.customer">
-									<a  class="invoice-edit-customer-link"
-										href="javascript:void(0)"
-										(click)="editCustomer()">
-										{{ 'invoices.edit-customer' | translate }}
-									</a>
+					<nvry-invoice-edit-customer [invoice]="invoice"></nvry-invoice-edit-customer>
 
-									<div class="invoice-edit-customer-link-button-wrapper">
-										<!--<button class="button ff-button--mini-rounded" [mdTooltip]="'invoices.remove-customer-link' | translate" (click)="removeCustomerLink()">
-											<ff-icon name="cross"></ff-icon>
-										</button>-->
-
-										<button class="button ff-button--mini-rounded" (click)="removeCustomerLink()">
-											<ff-icon name="cross"></ff-icon>
-										</button>
-									</div>
-								</ng-template>
-
-								<ng-template [ngIf]="invoice.customer_name && !invoice.customer">
-									<a href="javascript:void(0)" class="invoice-edit-customer-link" (click)="saveCustomer()">
-										{{ 'invoices.save-customer' | translate }}
-									</a>
-								</ng-template>
-							</div>
-
-							<ff-input [label]="'general.customer' | translate"
-									[(ngModel)]="invoice.customer_name"></ff-input>
-						</div>
-
-						<ff-textarea [label]="'general.address' | translate"
-									   [(ngModel)]="invoice.customer_address"></ff-textarea>
-
-						<ff-select [label]="'general.country' | translate" [options]="countries" valueKey="code"
-									 [(selectedValue)]="invoice.customer_country_code"></ff-select>
-					</div>
 					<div class="bit-50">
 						<div class="frame frame--bit-spacing">
 							<div class="bit-50">&nbsp;</div>
@@ -133,27 +97,7 @@
 				</div>
 			</div>
 
-			<div class="invoice-edit-paper-section lines">
-				<div class="invoice-lines-container">
-					<div class="header">
-						<span class="title-header">{{ 'general.product' | translate }}</span>
-						<span class="quantity-header">{{ 'general.quantity' | translate }}</span>
-						<span class="unit-header">{{ 'general.unit' | translate }}</span>
-						<span class="price-header">{{ 'general.price-net' | translate }}</span>
-						<span class="taxrate-header">{{ 'general.vat-abbr' | translate }}</span>
-						<span class="amount-header">{{ 'general.amount_net' | translate }}</span>
-					</div>
-
-					<div id="lines-list">
-						<nvry-invoice-line [invoiceLine]="line"
-										   [deleteShown]="invoice.invoice_lines.length > 1"
-										   *ngFor="let line of invoice.invoice_lines"
-										   (onDelete)="deleteLine($event)" (onCopy)="copyLine($event)"></nvry-invoice-line>
-					</div>
-				</div>
-
-				<button ff-button class="ff-button--secondary" (click)="addLine()">{{ 'invoices.new-line' | translate }}</button>
-			</div>
+			<nvry-invoice-lines-edit [(invoiceLines)]="invoice.invoice_lines"></nvry-invoice-lines-edit>
 
 			<div class="invoice-edit-paper-section invoice-total">
 				<nvry-total-indicator [totalNet]="getTotalNet()" [totalGross]="getTotalGross()" [rates]="getOccuringTaxRates()"></nvry-total-indicator>
@@ -164,6 +108,8 @@
 			</div>
 		</div>
 	</div>
+
+	<pre>{{ invoice | json }}</pre>
 </div>
 
 <ff-spinner *ngIf="loading"></ff-spinner>

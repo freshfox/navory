@@ -88,6 +88,10 @@ import {ValidationMessageProviderImpl} from "./core/validation-message-provider"
 import {QuotesComponent} from "./internal/quotes/quotes.component";
 import {QuoteService} from "./services/quote.service";
 import {BaseInvoiceService} from "./services/base-invoice.service";
+import {InvoiceLinesEditComponent} from "./core/components/invoice-lines-edit.component";
+import {MaterialModule} from "@angular/material";
+import {InvoiceEditCustomerComponent} from "./core/components/invoice-edit-customer.component";
+import {QuoteEditComponent} from "./internal/quotes/quote-edit.component";
 
 export function validationMessageProviderFactory() {
 	return new ValidationMessageProviderImpl();
@@ -152,7 +156,10 @@ export function translateStaticLoaderFactory(http: Http) {
 		UpgradePlanComponent,
 		ReportsComponent,
 		ProfitLossReportComponent,
-		QuotesComponent
+		QuotesComponent,
+		InvoiceLinesEditComponent,
+		InvoiceEditCustomerComponent,
+		QuoteEditComponent
 	],
 	entryComponents: [
 		CustomerEditComponent,
@@ -181,6 +188,7 @@ export function translateStaticLoaderFactory(http: Http) {
 		}),
 		AppRoutingModule,
 		SimpleNotificationsModule.forRoot(),
+		MaterialModule,
 		FFCoreModule.forRoot({
 			validationMessageProvider: {
 				provide: ValidationMessageProvider,

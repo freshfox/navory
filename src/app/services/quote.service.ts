@@ -36,7 +36,7 @@ export class QuoteService extends NavoryApi {
 			});
 	}
 
-	saveInvoice(quote: Quote) {
+	saveQuote(quote: Quote) {
 		if (quote.id) {
 			return this.patch(this.getRestEntityPath(this.pathQuotes, quote.id), quote)
 				.map(quote => {

@@ -121,7 +121,13 @@
 
 nvry-invoice-line {
 	@extend .cf;
-	margin-bottom: 15px;
+	margin-bottom: 16px;
+	display: block;
+
+	ff-input,
+	ff-select {
+		margin-bottom: 0;
+	}
 
 	.invoice-line__row {
 		display: flex;
