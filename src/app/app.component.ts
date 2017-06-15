@@ -6,12 +6,15 @@ import {AuthService} from "./services/auth.service";
 import {NavigationEnd, Router} from "@angular/router";
 import {State} from "./core/state";
 import {AnalyticsService} from "./services/analytics.service";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
 	selector: 'nvry-app-root',
 	templateUrl: './app.component.html'
 })
 export class AppComponent {
+
+	private routerSubscription: Subscription;
 
 	constructor(private translate: TranslateService,
 				private authService: AuthService,
@@ -30,6 +33,16 @@ export class AppComponent {
 				this.analyticsService.trackPageView();
 			}
 		});
+
+		this.routerSubscription = this.router.events
+			.filter(event => event instanceof NavigationEnd)
+			.subscribe(event => {
+				document.body.scrollTop = 0;
+			});
+	}
+
+	ngOnDestroy() {
+		this.routerSubscription.unsubscribe();
 	}
 
 	private initAnalytics() {
