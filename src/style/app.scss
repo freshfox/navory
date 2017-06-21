@@ -11,12 +11,13 @@
  * Third party styles
  */
 @import "lib/normalize";
-@import "../../node_modules/ladda/css/ladda";
-@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
-@import "../../node_modules/pikaday/scss/pikaday";
-@import "../../node_modules/chartist/dist/scss/chartist";
-@import "../../node_modules/javascript-autocomplete/auto-complete";
+@import "~ladda/css/ladda";
+@import "~bourbon/app/assets/stylesheets/bourbon";
+@import "~pikaday/scss/pikaday";
+@import "~chartist/dist/scss/chartist";
+@import "~javascript-autocomplete/auto-complete";
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~dropzone/dist/dropzone.css';
 
 
 @mixin links {
@@ -35,11 +36,6 @@
 @import "mixins/typography";
 @import "mixins/metrics";
 @import "mixins/misc";
-
-// Libraries that can't be imported via bower or are only available as CSS files
-@import "lib/dropzone";
-@import "lib/chosen";
-
 
 @import '../app/core/ffc-angular/styles/main';
 
