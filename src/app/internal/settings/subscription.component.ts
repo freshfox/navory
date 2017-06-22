@@ -13,6 +13,8 @@ import {SubscriptionService} from '../../services/subscription.service';
 import {CancelSubscriptionComponent} from './cancel-subscription.component';
 import {InvoiceService} from '../../services/invoice.service';
 import {SubscriptionFormComponent} from './subscription-form.component';
+import {State} from '../../core/state';
+import {NotificationsService} from 'angular2-notifications';
 
 @Component({
 	selector: 'nvry-subscription',
@@ -53,9 +55,9 @@ export class SubscriptionComponent implements OnInit {
 				private datePipe: DatePipe,
 				private numberPipe: NumberPipe,
 				private invoiceService: InvoiceService,
-				//private state: State,
+				private state: State,
 				private subscriptionService: SubscriptionService,
-				//private notificationService: NotificationsService,
+				private notificationService: NotificationsService,
 				private analytics: AnalyticsService
 	) {
 	}
@@ -63,14 +65,14 @@ export class SubscriptionComponent implements OnInit {
 	ngOnInit() {
 		this.loading = true;
 
-		/*this.subscriptionService.getSubscriptionInvoices()
+		this.subscriptionService.getSubscriptionInvoices()
 			.subscribe(invoices => this.invoices = invoices);
 
 		this.subscriptionService.getSubscription()
 			.subscribe(subscription => {
 				this.loading = false;
 				this.subscription = subscription
-			});*/
+			});
 
 		this.invoiceTableOptions = new TableOptions({
 			itemsClickable: false,
@@ -116,7 +118,7 @@ export class SubscriptionComponent implements OnInit {
 	}
 
 	openPaymentModal() {
-		//this.analytics.trackEvent(AnalyticsEventType.ClickOnPlanBuyButton);
+		this.analytics.trackEvent(AnalyticsEventType.ClickOnPlanBuyButton);
 		this.modalService.create(SubscriptionFormComponent, {
 			size: ModalSize.Large,
 			padding: false,
@@ -127,7 +129,7 @@ export class SubscriptionComponent implements OnInit {
 			ref.instance.onSuccess.subscribe((data) => {
 				this.analytics.trackEvent(AnalyticsEventType.ActivateSubscription);
 				this.subscription = data.subscription;
-				//this.state.features = data.features;
+				this.state.features = data.features;
 				this.modalService.hideCurrentModal();
 			});
 		});
@@ -150,9 +152,9 @@ export class SubscriptionComponent implements OnInit {
 
 				ref.instance.onSuccess.subscribe((data) => {
 					this.subscription = data.subscription;
-					//this.state.features = data.features;
+					this.state.features = data.features;
 					this.modalService.hideCurrentModal();
-					//this.notificationService.success(null, this.translate.instant('settings.subscription.subscription-cancel-success'));
+					this.notificationService.success(null, this.translate.instant('settings.subscription.subscription-cancel-success'));
 				});
 			});
 	}
