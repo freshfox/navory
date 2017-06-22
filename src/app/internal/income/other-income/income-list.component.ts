@@ -1,17 +1,17 @@
 import {Component, OnInit, ViewChild, TemplateRef} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
-import {TableOptions} from "../../../core/components/table/table-options.model";
 import {IncomeService} from "../../../services/income.service";
 import {Income} from "../../../models/income";
 import {DatePipe} from "../../../core/pipes/date.pipe";
-import {SortDirection} from "../../../core/components/table/sort-direction.enum";
-import {ColumnAlignment} from "../../../core/components/table/column-alignment.enum";
 import * as moment from "moment";
 import {State} from "../../../core/state";
 import {Router} from "@angular/router";
 import {SubscriptionService} from "../../../services/subscription.service";
 import {NumberPipe} from "../../../lib/ffc-angular/pipes/number.pipe";
 import {ModalService} from "../../../lib/ffc-angular/services/modal.service";
+import {TableOptions} from '../../../lib/ffc-angular/components/table/table-options.model';
+import {SortDirection} from '../../../lib/ffc-angular/components/table/sort-direction.enum';
+import {ColumnAlignment} from '../../../lib/ffc-angular/components/table/column-alignment.enum';
 
 @Component({
 	templateUrl: './income-list.component.html'

@@ -24,7 +24,7 @@
 	</button>
 </div>
 
-<nvry-table [options]="tableOptions" [loading]="loading" [rows]="invoices" (onRowClicked)="editInvoice($event)"
+<ff-table [options]="tableOptions" [loading]="loading" [rows]="invoices" (onRowClicked)="editInvoice($event)"
 			class="invoice-list-table">
 
 	<div empty class="empty-view">
@@ -33,7 +33,7 @@
 		</button>
 	</div>
 
-</nvry-table>
+</ff-table>
 
 <ng-template #statusColumn let-row="row" let-value="value">
 	<div class="badge badge--{{ getBadgeData(row).cssClass }}">

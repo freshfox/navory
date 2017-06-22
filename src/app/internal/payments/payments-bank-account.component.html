@@ -2,13 +2,13 @@
 
 </div>
 
-<nvry-table [options]="tableOptions" [rows]="payments" [loading]="loading" class="payments-table">
+<ff-table [options]="tableOptions" [rows]="payments" [loading]="loading" class="payments-table">
 
 	<div empty class="empty-view">
 		<p class="title">{{ 'payments.empty-state-message' | translate }}</p>
 	</div>
 
-</nvry-table>
+</ff-table>
 
 
 <ng-template #actionsColumn let-row="row" let-value="value">

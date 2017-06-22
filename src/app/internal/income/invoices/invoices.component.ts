@@ -1,15 +1,15 @@
 import {Component, OnInit, ViewChild, TemplateRef} from "@angular/core";
-import {TableOptions} from "../../../core/components/table/table-options.model";
 import {TranslateService} from "@ngx-translate/core";
-import {SortDirection} from "../../../core/components/table/sort-direction.enum";
 import {Invoice, InvoiceStatus} from "../../../models/invoice";
 import {InvoiceService} from "../../../services/invoice.service";
 import {DatePipe} from "../../../core/pipes/date.pipe";
-import {ColumnAlignment} from "../../../core/components/table/column-alignment.enum";
 import {Router} from "@angular/router";
 import {Calculator} from "../../../core/calculator";
 import {NumberPipe} from "../../../lib/ffc-angular/pipes/number.pipe";
 import {ModalService} from "../../../lib/ffc-angular/services/modal.service";
+import {TableOptions} from '../../../lib/ffc-angular/components/table/table-options.model';
+import {SortDirection} from '../../../lib/ffc-angular/components/table/sort-direction.enum';
+import {ColumnAlignment} from '../../../lib/ffc-angular/components/table/column-alignment.enum';
 var moment = require('moment');
 
 @Component({

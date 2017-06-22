@@ -1,13 +1,13 @@
 import {Component, OnInit, TemplateRef, ViewChild, Input} from "@angular/core";
 import {PaymentService} from "../../services/payment.service";
 import {Payment} from "../../models/payment";
-import {TableOptions} from "../../core/components/table/table-options.model";
 import {TranslateService} from "@ngx-translate/core";
 import {DatePipe} from "../../core/pipes/date.pipe";
-import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";
-import {SortDirection} from "../../core/components/table/sort-direction.enum";
 import {BankAccount} from "../../models/bank-account";
 import {ModalService} from "../../lib/ffc-angular/services/modal.service";
+import {TableOptions} from '../../lib/ffc-angular/components/table/table-options.model';
+import {SortDirection} from '../../lib/ffc-angular/components/table/sort-direction.enum';
+import {ColumnAlignment} from '../../lib/ffc-angular/components/table/column-alignment.enum';
 
 @Component({
 	selector: 'nvry-payments-bank-account',

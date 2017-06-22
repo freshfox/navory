@@ -125,11 +125,11 @@
 			<h2>{{ 'general.invoices' | translate }}</h2>
 		</div>
 
-		<nvry-table [options]="invoiceTableOptions" [rows]="invoices">
+		<ff-table [options]="invoiceTableOptions" [rows]="invoices">
 			<div empty class="empty-view">
 				<p class="title" [innerHTML]="'settings.subscription.invoices-empty-state-message' | translate"></p>
 			</div>
-		</nvry-table>
+		</ff-table>
 	</section>
 </div>
 

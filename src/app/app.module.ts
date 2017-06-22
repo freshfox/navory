@@ -25,8 +25,6 @@ import {ResetPasswordComponent} from "./public/reset-password.component";
 import {Config} from "./core/config";
 import {ReportsComponent} from "./internal/reports/reports.component";
 import {ReportService} from "./services/report.service";
-import {TableComponent} from "./core/components/table/table.component";
-import {TableHeaderCellComponent} from "./core/components/table/table-header-cell.component";
 import {IncomeService} from "./services/income.service";
 import {IncomeListComponent} from "./internal/income/other-income/income-list.component";
 import {DatePipe} from "./core/pipes/date.pipe";
@@ -117,8 +115,6 @@ export function translateStaticLoaderFactory(http: Http) {
 		LoginLayoutComponent,
 		ResetPasswordComponent,
 		VatReportComponent,
-		TableComponent,
-		TableHeaderCellComponent,
 		IncomeListComponent,
 		ExpensesComponent,
 		MonthSelectionComponent,

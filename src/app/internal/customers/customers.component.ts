@@ -2,10 +2,10 @@ import {Component, OnInit, ViewChild, ComponentRef, TemplateRef} from "@angular/
 import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../models/customer";
 import {TranslateService} from "@ngx-translate/core";
-import {TableOptions} from "../../core/components/table/table-options.model";
-import {SortDirection} from "../../core/components/table/sort-direction.enum";
 import {CustomerEditComponent} from "./customer-edit.component";
 import {ModalService} from "../../lib/ffc-angular/services/modal.service";
+import {TableOptions} from '../../lib/ffc-angular/components/table/table-options.model';
+import {SortDirection} from '../../lib/ffc-angular/components/table/sort-direction.enum';
 
 @Component({
 	selector: 'nvry-customers',

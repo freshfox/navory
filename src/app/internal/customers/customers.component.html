@@ -4,7 +4,7 @@
 	</button>
 </div>
 
-<nvry-table [rows]="customers"
+<ff-table [rows]="customers"
 			[options]="tableOptions"
 			[loading]="loading"
 			(onRowClicked)="editCustomer($event)">
@@ -14,7 +14,7 @@
 		<button ff-button icon="plus" (click)="createCustomer()">{{ 'customers.create' | translate }}</button>
 	</div>
 
-</nvry-table>
+</ff-table>
 
 <ng-template #actionsColumn let-row="row" let-value="value">
 	<nvry-dropdown>
