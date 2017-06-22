@@ -20,7 +20,7 @@ import {Location} from "@angular/common";
 import {ExpenseCategorySelectionComponent} from "./expense-category-selection.component";
 import {PaymentService} from "../../services/payment.service";
 import {SubscriptionService} from "../../services/subscription.service";
-import {ModalService, ModalSize} from "../../core/ffc-angular/services/modal.service";
+import {ModalService, ModalSize} from "../../lib/ffc-angular/services/modal.service";
 
 @Component({
 	templateUrl: './expense-edit.component.html'

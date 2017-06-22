@@ -10,8 +10,8 @@ import {State} from "../../core/state";
 import {Router} from "@angular/router";
 import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";
 import {SubscriptionService} from "../../services/subscription.service";
-import {NumberPipe} from "../../core/ffc-angular/pipes/number.pipe";
-import {ModalService} from "../../core/ffc-angular/services/modal.service";
+import {NumberPipe} from "../../lib/ffc-angular/pipes/number.pipe";
+import {ModalService} from "../../lib/ffc-angular/services/modal.service";
 
 @Component({
 	templateUrl: './expenses.component.html'

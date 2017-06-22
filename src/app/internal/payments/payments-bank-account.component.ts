@@ -7,7 +7,7 @@ import {DatePipe} from "../../core/pipes/date.pipe";
 import {ColumnAlignment} from "../../core/components/table/column-alignment.enum";
 import {SortDirection} from "../../core/components/table/sort-direction.enum";
 import {BankAccount} from "../../models/bank-account";
-import {ModalService} from "../../core/ffc-angular/services/modal.service";
+import {ModalService} from "../../lib/ffc-angular/services/modal.service";
 
 @Component({
 	selector: 'nvry-payments-bank-account',

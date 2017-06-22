@@ -8,8 +8,8 @@ import {DatePipe} from "../../../core/pipes/date.pipe";
 import {ColumnAlignment} from "../../../core/components/table/column-alignment.enum";
 import {Router} from "@angular/router";
 import {Calculator} from "../../../core/calculator";
-import {NumberPipe} from "../../../core/ffc-angular/pipes/number.pipe";
-import {ModalService} from "../../../core/ffc-angular/services/modal.service";
+import {NumberPipe} from "../../../lib/ffc-angular/pipes/number.pipe";
+import {ModalService} from "../../../lib/ffc-angular/services/modal.service";
 var moment = require('moment');
 
 @Component({

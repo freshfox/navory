@@ -12,8 +12,8 @@ import {NotificationsService} from "angular2-notifications/dist";
 import {Subscription} from "../../models/subscription";
 import {State} from "../../core/state";
 import {AnalyticsEventType, AnalyticsService} from "../../services/analytics.service";
-import {ModalService, ModalSize} from "../../core/ffc-angular/services/modal.service";
-import {NumberPipe} from "../../core/ffc-angular/pipes/number.pipe";
+import {ModalService, ModalSize} from "../../lib/ffc-angular/services/modal.service";
+import {NumberPipe} from "../../lib/ffc-angular/pipes/number.pipe";
 
 @Component({
 	selector: 'nvry-subscription',

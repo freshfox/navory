@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ComponentRef, ElementRef, Input, ViewChild} from "@angular/core";
 import {BaseInvoice} from "../../models/invoice-base.model";
-import {ModalService} from "../ffc-angular/services/modal.service";
+import {ModalService} from "../../lib/ffc-angular/services/modal.service";
 import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../models/customer";
 import {CustomerEditComponent} from "../../internal/customers/customer-edit.component";

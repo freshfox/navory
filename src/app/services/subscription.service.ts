@@ -6,7 +6,7 @@ import {Subscription} from "../models/subscription";
 import {Invoice} from "../models/invoice";
 import {State} from "../core/state";
 import {UpgradePlanComponent} from "../core/components/upgrade-plan.component";
-import {ModalService} from "../core/ffc-angular/services/modal.service";
+import {ModalService} from "../lib/ffc-angular/services/modal.service";
 
 @Injectable()
 export class SubscriptionService extends NavoryApi {

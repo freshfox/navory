@@ -83,7 +83,7 @@ import {CancelSubscriptionComponent} from "./internal/settings/cancel-subscripti
 import {UpgradePlanComponent} from "./core/components/upgrade-plan.component";
 import {VatReportComponent} from "./internal/reports/vat-report.component";
 import {ProfitLossReportComponent} from "./internal/reports/profit-loss-report.component";
-import {FFCoreModule, ValidationMessageProvider} from "./core/ffc-angular/ff-core.module";
+import {FFCoreModule, ValidationMessageProvider} from "./lib/ffc-angular/ff-core.module";
 import {ValidationMessageProviderImpl} from "./core/validation-message-provider";
 import {QuotesComponent} from "./internal/quotes/quotes.component";
 import {QuoteService} from "./services/quote.service";
