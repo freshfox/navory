@@ -1,0 +1,3 @@
+[submodule "src/app/lib/ffc-angular"]
+	path = src/app/lib/ffc-angular
+	url = git@bitbucket.org:freshfox/ffc-angular.git
