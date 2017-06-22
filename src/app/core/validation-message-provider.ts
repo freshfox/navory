@@ -1,9 +1,8 @@
-import {Injectable} from "@angular/core";
+import {ValidationMessageProvider} from '../lib/ffc-angular/ff-core.module';
 
-@Injectable()
-export class ValidationMessageProviderImpl {
+export class ValidationMessageProviderImpl implements ValidationMessageProvider {
 
-	getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
+	getValidationMessage(validatorName: string, validatorValue?: any) {
 		let config = {
 			'required': 'Dies ist ein Pflichtfeld',
 			'invalidEmailAddress': 'Ungültige E-Mail Adresse',
