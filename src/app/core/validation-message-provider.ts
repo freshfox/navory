@@ -1,4 +1,4 @@
-import {ValidationMessageProvider} from '../lib/ffc-angular/ff-core.module';
+import {ValidationMessageProvider} from '../lib/ffc-angular/validation-message-provider';
 
 export class ValidationMessageProviderImpl implements ValidationMessageProvider {
 
