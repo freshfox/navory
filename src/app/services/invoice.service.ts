@@ -129,7 +129,12 @@ export class InvoiceService extends NavoryApi {
 	}
 
 	getInvoiceStatus(invoice): InvoiceStatus {
-		var status;
+		let status;
+
+		if (invoice.canceled) {
+			return InvoiceStatus.Canceled;
+		}
+
 		if (invoice.draft) {
 			status = InvoiceStatus.Draft;
 		} else {
