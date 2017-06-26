@@ -1,6 +1,6 @@
-import {Calculator} from "../core/calculator";
-import {Payment} from "./payment";
-import {BaseInvoice} from "./invoice-base.model";
+import {Calculator} from '../core/calculator';
+import {Payment} from './payment';
+import {BaseInvoice} from './invoice-base.model';
 
 export class Invoice extends BaseInvoice {
 
@@ -8,6 +8,7 @@ export class Invoice extends BaseInvoice {
 	service_date_start: string;
 	service_date_end: string;
 	payments: Payment[];
+	canceled: boolean;
 
 	constructor(data?: any) {
 		super(data);
@@ -46,6 +47,7 @@ export class Invoice extends BaseInvoice {
 
 export enum InvoiceStatus {
 	Draft = 'draft' as any,
+	Canceled = 'canceled' as any,
 	Issued = 'issued' as any,
 	PartlyPaid = 'partly-paid' as any,
 	Paid = 'paid' as any,

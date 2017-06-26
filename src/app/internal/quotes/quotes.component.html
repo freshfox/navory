@@ -37,9 +37,9 @@
 </ng-template>
 
 <ng-template #actionsColumn let-row="row" let-value="value">
-	<nvry-dropdown>
+	<ff-dropdown>
 		<button (click)="editQuote(row)">{{ 'actions.view' | translate }}</button>
 		<button (click)="deleteQuote(row)">{{ 'actions.delete' | translate }}</button>
-	</nvry-dropdown>
+	</ff-dropdown>
 </ng-template>
 

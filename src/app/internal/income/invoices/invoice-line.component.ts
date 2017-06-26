@@ -36,10 +36,10 @@ import {UnitService} from "../../../services/unit.service";
                 
                 <ff-input type="money" [ngModel]="getAmount()" disabled></ff-input>
                 
-                <nvry-dropdown>
+                <ff-dropdown>
 					<button (click)="copyLine()">{{ 'actions.copy' | translate }}</button>
 					<button (click)="deleteLine()" *ngIf="deleteShown">{{ 'general.delete' | translate }}</button>
-				</nvry-dropdown>
+				</ff-dropdown>
             </div>
             
             <ff-textarea 

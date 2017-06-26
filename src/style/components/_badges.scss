@@ -11,6 +11,10 @@
 		position: relative;
 	}
 
+	&.badge--clear {
+		color: $colorGray;
+	}
+
 	&.badge--customer {
 		background: $colorClients;
 	}

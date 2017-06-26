@@ -93,56 +93,12 @@ export class InvoicesComponent implements OnInit {
 			});
 	}
 
-	getBadgeData(invoice) {
-		let text;
-		let badgeClass;
-		switch (this.getInvoiceStatus(invoice)) {
-			case InvoiceStatus.Draft:
-				text = this.translate.instant('general.draft');
-				badgeClass = 'gray';
-				break;
-			case InvoiceStatus.Paid:
-				text = this.translate.instant('general.paid');
-				badgeClass = 'income';
-				break;
-			case InvoiceStatus.PartlyPaid:
-				text = this.translate.instant('general.partly-paid');
-				badgeClass = 'income-part';
-				break;
-			case InvoiceStatus.Overdue:
-				text = this.translate.instant('general.overdue');
-				badgeClass = 'expense';
-				break;
-			case InvoiceStatus.Issued:
-				text = this.translate.instant('invoices.issued');
-				badgeClass = 'customer';
-				break;
-			default:
-				break;
-		}
-
-		return {
-			text: text,
-			cssClass: badgeClass
-		};
+	getBadgeData(invoice: Invoice) {
+		return this.invoiceService.getBadgeData(invoice);
 	}
 
-	getInvoiceStatus(invoice): InvoiceStatus {
-		var status;
-		if (invoice.draft) {
-			status = InvoiceStatus.Draft;
-		} else {
-			status = InvoiceStatus.Issued;
-			if (this.isInvoicePaid(invoice)) {
-				status = InvoiceStatus.Paid;
-			} else if (this.isInvoicePartlyPaid(invoice)) {
-				status = InvoiceStatus.PartlyPaid;
-			} else if (this.isInvoiceOverdue(invoice)) {
-				status = InvoiceStatus.Overdue;
-			}
-		}
-
-		return status;
+	getInvoiceStatus(invoice: Invoice): InvoiceStatus {
+		return this.invoiceService.getInvoiceStatus(invoice);
 	}
 
 	private getInvoiceAmount(status: InvoiceStatus) {
@@ -176,21 +132,4 @@ export class InvoicesComponent implements OnInit {
 
 		return amount;
 	}
-
-	isInvoicePaid(invoice) {
-		return invoice.unpaid_amount == 0;
-	}
-
-	isInvoicePartlyPaid(invoice: Invoice) {
-		return invoice.payments.length > 0 && !this.isInvoicePaid(invoice);
-	}
-
-	isInvoiceOverdue(invoice) {
-		if (!this.isInvoicePaid(invoice)) {
-			return moment().startOf('day').isAfter(invoice.due_date);
-		}
-
-		return false;
-	}
-
 }

@@ -52,7 +52,6 @@ import {InvoiceService} from "./services/invoice.service";
 import {InvoiceEditComponent} from "./internal/income/invoices/invoice-edit.component";
 import {InvoiceLineComponent} from "./internal/income/invoices/invoice-line.component";
 import {PaymentsComponent} from "./internal/payments/payments.component";
-import {DropdownComponent} from "./core/components/dropdown.component";
 import {ExportComponent} from "./internal/settings/export.component";
 import {AccountService} from "./services/account.service";
 import {SimpleNotificationsModule} from "angular2-notifications";
@@ -91,6 +90,7 @@ import {MaterialModule} from "@angular/material";
 import {InvoiceEditCustomerComponent} from "./core/components/invoice-edit-customer.component";
 import {QuoteEditComponent} from "./internal/quotes/quote-edit.component";
 import {ValidationMessageProvider} from './lib/ffc-angular/validation-message-provider';
+import {BadgeComponent} from './core/components/badge.component';
 
 declare let window: any;
 
@@ -134,7 +134,6 @@ export function translateStaticLoaderFactory(http: Http) {
 		InvoiceEditComponent,
 		InvoiceLineComponent,
 		PaymentsComponent,
-		DropdownComponent,
 		ExportComponent,
 		DocumentPreviewComponent,
 		DatePipe,
@@ -158,7 +157,8 @@ export function translateStaticLoaderFactory(http: Http) {
 		QuotesComponent,
 		InvoiceLinesEditComponent,
 		InvoiceEditCustomerComponent,
-		QuoteEditComponent
+		QuoteEditComponent,
+		BadgeComponent
 	],
 	entryComponents: [
 		CustomerEditComponent,

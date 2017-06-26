@@ -35,6 +35,7 @@
 	&.button-row {
 		display: flex;
 		padding-bottom: 30px;
+		align-items: center;
 
 		.buttons {
 			display: flex;
@@ -42,10 +43,17 @@
 			margin-left: auto;
 		}
 
-		.ff-button {
+		.ff-button,
+		.ff-dropdown {
 			margin-right: 10px;
 
 			&:last-child {
+				margin-right: 0;
+			}
+		}
+
+		.ff-dropdown {
+			.ff-button {
 				margin-right: 0;
 			}
 		}

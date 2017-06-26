@@ -1,5 +1,5 @@
 import {Component, ComponentRef, OnInit} from "@angular/core";
-import {Invoice} from "../../../models/invoice";
+import {Invoice, InvoiceStatus} from '../../../models/invoice';
 import {Line} from "../../../models/invoice-line";
 import {ActivatedRoute} from "@angular/router";
 import {InvoiceService} from "../../../services/invoice.service";
@@ -124,6 +124,14 @@ export class InvoiceEditComponent implements OnInit {
 		return this.invoiceService.getTaxAmounts(this.invoice);
 	}
 
+	getBadgeData() {
+		return this.invoiceService.getBadgeData(this.invoice);
+	}
+
+	getInvoiceStatus(): InvoiceStatus {
+		return this.invoiceService.getInvoiceStatus(this.invoice);
+	}
+
 	saveDraft() {
 		if (this.form.valid) {
 			this.savingDraft = true;
@@ -237,6 +245,10 @@ export class InvoiceEditComponent implements OnInit {
 		});
 	}
 
+	canAddPayment(): boolean {
+		return !this.invoice.draft && !this.invoice.isFullyPaid && !this.invoice.canceled;
+	}
+
 	removePaymentLink(payment: Payment) {
 		this.paymentService.removePaymentFromInvoice(this.invoice, payment)
 			.subscribe(() => {
@@ -245,6 +257,29 @@ export class InvoiceEditComponent implements OnInit {
 					this.invoice.payments.splice(index, 1);
 				}
 			});
+	}
+
+	cancelInvoice() {
+		this.modalService.createConfirmRequest(
+			this.translate.instant('invoices.cancel-confirm-title'),
+			this.translate.instant('invoices.cancel-confirm-message'),
+			() => {
+				// cancel, do nothing
+				this.modalService.hideCurrentModal();
+			},
+			() => {
+				this.invoice.canceled = true;
+
+				this.save(this.invoice)
+					.subscribe((invoice: Invoice) => {
+						this.invoice = invoice;
+						this.notificationService.success(null, this.translate.instant('invoices.cancel-success'));
+					});
+
+				this.modalService.hideCurrentModal();
+			},
+			this.translate.instant('invoices.cancel')
+		)
 	}
 
 }

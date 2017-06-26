@@ -74,7 +74,8 @@
 		"date-end": "Enddatum",
 		"valid-to": "Gültig bis",
 		"finished": "Fertiggestellt",
-		"issued": "Ausgestellt"
+		"issued": "Ausgestellt",
+		"more": "Mehr"
 	},
 	"app": {
 		"name": "Navory",
@@ -198,7 +199,11 @@
 		"save-error": "Die Rechnung konnte nicht gespeichert werden.",
 		"new-line": "Neue Zeile",
 		"comment-placeholder": "Gib hier Hinweise für deinen Kunden ein.",
-		"save-customer": "Kunde speichern"
+		"save-customer": "Kunde speichern",
+		"cancel": "Stornieren",
+		"cancel-confirm-title": "Rechnung wirklich stornieren?",
+		"cancel-confirm-message": "Diese Aktion kann nicht rückgängig gemacht werden. Auf der Rechnung können nach dem stornieren keine Zahlungen mehr verbucht werden.",
+		"cancel-success": "Rechnung erfolgreich storniert"
 	},
 	"quotes": {
 		"title": "Angebote",
