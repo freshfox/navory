@@ -30,7 +30,7 @@
 				<button ff-button icon="cross"
 						class="ff-button--secondary"
 						(click)="cancelInvoice()"
-						*ngIf="!invoice.draft">{{ 'invoices.cancel' | translate }}
+						*ngIf="!invoice.draft && !invoice.canceled">{{ 'invoices.cancel' | translate }}
 				</button>
 			</ff-dropdown>
 

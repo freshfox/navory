@@ -98,6 +98,7 @@ export class InvoiceService extends NavoryApi {
 			case InvoiceStatus.Canceled:
 				text = this.translate.instant('general.canceled');
 				badgeClass = 'gray';
+				break;
 			case InvoiceStatus.Draft:
 				text = this.translate.instant('general.draft');
 				badgeClass = 'clear';
@@ -128,7 +129,7 @@ export class InvoiceService extends NavoryApi {
 		};
 	}
 
-	getInvoiceStatus(invoice): InvoiceStatus {
+	getInvoiceStatus(invoice: Invoice): InvoiceStatus {
 		let status;
 
 		if (invoice.canceled) {

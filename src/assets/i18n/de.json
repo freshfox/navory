@@ -75,7 +75,8 @@
 		"valid-to": "Gültig bis",
 		"finished": "Fertiggestellt",
 		"issued": "Ausgestellt",
-		"more": "Mehr"
+		"more": "Mehr",
+		"canceled": "Storniert"
 	},
 	"app": {
 		"name": "Navory",
