@@ -76,7 +76,8 @@
 		"finished": "Fertiggestellt",
 		"issued": "Ausgestellt",
 		"more": "Mehr",
-		"canceled": "Storniert"
+		"canceled": "Storniert",
+		"bookings": "Buchungen"
 	},
 	"app": {
 		"name": "Navory",

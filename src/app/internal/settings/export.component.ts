@@ -30,6 +30,10 @@ export class ExportComponent implements OnInit {
 			{
 				value: ExportType.Expenses,
 				name: this.translate.instant('general.expenses')
+			},
+			{
+				value: ExportType.Payments,
+				name: this.translate.instant('general.bookings')
 			}];
 	}
 
