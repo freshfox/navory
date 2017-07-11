@@ -111,7 +111,7 @@ export class ExpensesComponent implements OnInit {
 
 
 	isFullyPaid(expense: Expense) {
-		return expense.unpaid_amount <= 0;
+		return expense.unpaid_amount <= 0 && expense.getAmountGross() > 0;
 	}
 
 	isPartlyPaid(expense: Expense) {
