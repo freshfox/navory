@@ -83,6 +83,9 @@ export class InvoiceEditComponent implements OnInit {
 								this.invoice.customer_country_code = quote.customer_country_code;
 								this.invoice.customer_vat_number = quote.customer_vat_number;
 								this.invoice.lines = quote.lines;
+								this.invoice.lines.forEach((line) => {
+									line.id = undefined;
+								});
 
 								this.loading = false;
 							});
