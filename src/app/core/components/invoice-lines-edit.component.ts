@@ -56,10 +56,11 @@ export class InvoiceLinesEditComponent {
 		this.lines.push(new Line({ tax_rate: lastTaxRate }));
 	}
 
-	deleteLine(invoiceLine) {
-		this.lines = this.lines.filter((line) => {
-			return line !== invoiceLine;
-		});
+	deleteLine(lineToDelete: Line) {
+		const index = this.lines.indexOf(lineToDelete);
+		if (index > -1) {
+			this.lines.splice(index, 1);
+		}
 	}
 
 	copyLine(invoiceLine) {
