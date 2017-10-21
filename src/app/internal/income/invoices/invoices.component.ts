@@ -105,7 +105,7 @@ export class InvoicesComponent implements OnInit {
 		let amount = 0;
 		this.invoices.forEach((invoice) => {
 			if(this.getInvoiceStatus(invoice) == status) {
-				amount = Calculator.add(amount, invoice.getTotalGross());
+				amount = Calculator.add(amount, invoice.getTotalNet());
 			}
 		});
 
