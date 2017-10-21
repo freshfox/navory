@@ -7,10 +7,10 @@
 
 	<div class="dashboard-wrapper" *ngIf="data">
 		<div class="dashboard-box">
-			<h2 class="title">{{ 'dashboard.profit' | translate }}</h2>
+			<h2 class="title">{{ 'dashboard.profit' | translate }} ({{'general.net' | translate}})</h2>
 			<p class="small">{{ year }}</p>
 
-			<div class="number">€ {{ data?.revenue.totalGross | ffNumber }}</div>
+			<div class="number">€ {{ data?.revenue.totalNet | ffNumber }}</div>
 			<p class="small" *ngIf="profitInfo">{{ profitInfo }}</p>
 
 			<div class="revenue-chart"></div>
