@@ -47,15 +47,16 @@ export class DashboardComponent implements AfterViewInit {
 		let monthIndex = new Date().getMonth();
 		let month = this.data.months[monthIndex];
 
-		let formatted = this.numberPipe.transform(month.revenue.totalGross);
-		if (month.revenue.totalGross > 0) {
+		let formatted = this.numberPipe.transform(month.revenue.totalNet);
+		if (month.revenue.totalNet > 0) {
 			if (this.isCurrentYearSelected()) {
 				return `Diesen Monat hast du € ${formatted} Gewinn gemacht.`;
 			}
 		}
 
 		month = this.data.months[monthIndex - 1];
-		if (month.revenue.totalGross > 0) {
+		formatted = this.numberPipe.transform(month.revenue.totalNet);
+		if (month.revenue.totalNet > 0) {
 			if (this.isCurrentYearSelected()) {
 				return `Letzten Monat hast du € ${formatted} Gewinn gemacht.`;
 			}
