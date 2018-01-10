@@ -54,11 +54,13 @@ export class DashboardComponent implements AfterViewInit {
 			}
 		}
 
-		month = this.data.months[monthIndex - 1];
-		formatted = this.numberPipe.transform(month.revenue.totalNet);
-		if (month.revenue.totalNet > 0) {
-			if (this.isCurrentYearSelected()) {
-				return `Letzten Monat hast du € ${formatted} Gewinn gemacht.`;
+		if (monthIndex > 0) {
+			month = this.data.months[monthIndex - 1];
+			formatted = this.numberPipe.transform(month.revenue.totalNet);
+			if (month.revenue.totalNet > 0) {
+				if (this.isCurrentYearSelected()) {
+					return `Letzten Monat hast du € ${formatted} Gewinn gemacht.`;
+				}
 			}
 		}
 
