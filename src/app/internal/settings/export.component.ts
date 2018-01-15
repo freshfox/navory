@@ -17,6 +17,7 @@ export class ExportComponent implements OnInit {
 
 	form: FormGroup;
 
+
 	constructor(private translate: TranslateService, private fb: FormBuilder, private accountService: AccountService) {
 		this.exportTypes = [
 			{
@@ -35,6 +36,7 @@ export class ExportComponent implements OnInit {
 				value: ExportType.Payments,
 				name: this.translate.instant('general.bookings')
 			}];
+
 	}
 
 	ngOnInit() {

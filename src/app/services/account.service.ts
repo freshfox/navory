@@ -21,6 +21,7 @@ export class AccountService extends NavoryApi {
 	private pathAccount = '/account';
 	private pathAccountSettings = '/account/settings';
 	private pathPaymentToken = '/payment/token';
+	private pathAnnualAccountsExport = '/account/export-year';
 
 	constructor(http: Http, private fileService: FileService, private state: State) {
 		super(http);
@@ -41,6 +42,10 @@ export class AccountService extends NavoryApi {
 	downloadExport(type: ExportType, startDate: string, endDate: string) {
 		let path = this.constructApiUrl(this.pathExport + `?type=${type}&from=${startDate}&to=${endDate}`);
 		this.fileService.downloadFromURL(path);
+	}
+
+	downloadAnnualAccountsExport(year: number) {
+		return this.post(this.pathAnnualAccountsExport, { year: year });
 	}
 
 	updateAccount(account: Account): Observable<Account> {

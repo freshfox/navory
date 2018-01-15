@@ -77,7 +77,8 @@
 		"issued": "Ausgestellt",
 		"more": "Mehr",
 		"canceled": "Storniert",
-		"bookings": "Buchungen"
+		"bookings": "Buchungen",
+		"year": "Jahr"
 	},
 	"app": {
 		"name": "Navory",
@@ -293,6 +294,12 @@
 			"from": "Von",
 			"to": "Bis",
 			"download": "Herunterladen"
+		},
+		"annual-accounts": {
+			"title": "Jahresabschluss",
+			"description": "Exportiere alle deine Rechnungen, Einnahmen, Ausgaben, Zahlungen und Belege eines ganzen Jahres auf einmal. Du erhältst einen Download-Link zu einer ZIP-Datei.",
+			"success-message": "Export läuft. Du erhältst eine E-Mail mit einem Download Link, sobald deine Daten fertig exportiert wurden.",
+			"submit": "Export starten"
 		}
 	},
 	"upload-area": {

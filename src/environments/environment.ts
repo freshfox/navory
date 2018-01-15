@@ -5,7 +5,7 @@
 
 export const environment = {
 	production: false,
-	apiUrl: 'http://localhost:3000',
+	apiUrl: 'https://api.navory.com',
 	intercomAppId: '',
 	braintreeMerchantId: '8c5bwf97hnwvgpgj',
 };
