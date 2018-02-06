@@ -199,7 +199,7 @@
 		"open": "Offen",
 		"edit-customer": "Kunde bearbeiten",
 		"remove-customer-link": "Kundenverknüpfung entfernen",
-		"save-error": "Die Rechnung konnte nicht gespeichert werden.",
+		"save-error": "Die Rechnung konnte nicht gespeichert werden. Bitte überprüfe alle Felder auf Fehler.",
 		"new-line": "Neue Zeile",
 		"comment-placeholder": "Gib hier Hinweise für deinen Kunden ein.",
 		"save-customer": "Kunde speichern",

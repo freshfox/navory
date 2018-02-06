@@ -11,6 +11,7 @@ export class ValidationMessageProviderImpl implements ValidationMessageProvider 
 			'invalidDate': 'Bitte gib ein korrektes Datum ein',
 			'userWithEmailExists': 'Ein Benutzer mit dieser E-Mail Adresse ist bereits in unserem System vorhanden.',
 			'notNumeric': 'Bitte gib eine Zahl ein',
+			'invoiceNumberNotUnique': 'Diese Rechnungsnummer ist bereits vergeben.',
 			numberNotUnique: 'Diese Nummer ist bereits belegt.'
 		};
 

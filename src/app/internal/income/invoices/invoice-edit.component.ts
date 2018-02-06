@@ -197,8 +197,13 @@ export class InvoiceEditComponent implements OnInit {
 
 							if (error.code === ServiceErrorCode.Forbidden) {
 								this.subscriptionService.showUpgradeModal();
+							} else if (error.code === ServiceErrorCode.ValidationError) {
+								if (error.data['number'].indexOf('NOT_UNIQUE') > -1) {
+									this.form.controls.number.setErrors({ invoiceNumberNotUnique: true } )
+									this.notificationService.error(null, this.translate.instant('invoices.save-error'));
+								}
 							} else {
-								this.notificationService.error(null, this.translate.instant('invoices.save-error'));
+								this.notificationService.error(null, this.translate.instant('invoices.save-error' + ' CODE: ' + error.code));
 							}
 
 							observer.error();
