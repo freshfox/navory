@@ -16,7 +16,7 @@
 
 		<div class="buttons">
 
-			<ff-dropdown [text]="'general.more' | translate">
+			<ff-dropdown [text]="'general.more' | translate" *ngIf="invoice.id || (!invoice.draft && !invoice.canceled)">
 				<button ff-button (click)="showPreview()"
 						class="ff-button--secondary ff-button--icon-medium"
 						icon="eye-outline"
