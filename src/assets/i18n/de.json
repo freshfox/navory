@@ -78,7 +78,8 @@
 		"more": "Mehr",
 		"canceled": "Storniert",
 		"bookings": "Buchungen",
-		"year": "Jahr"
+		"year": "Jahr",
+		"language": "Sprache"
 	},
 	"app": {
 		"name": "Navory",

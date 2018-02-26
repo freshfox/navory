@@ -39,6 +39,17 @@ export class InvoiceEditComponent implements OnInit {
 	form: FormGroup;
 	createMode: boolean = true;
 
+	locales = [
+		{
+			id: 'de',
+			name: 'Deutsch'
+		},
+		{
+			id: 'en',
+			name: 'Englisch'
+		}
+	];
+
 	constructor(private route: ActivatedRoute,
 				private invoiceService: InvoiceService,
 				private bootstrapService: BootstrapService,
@@ -58,6 +69,7 @@ export class InvoiceEditComponent implements OnInit {
 		this.invoice.customer_country_code = this.bootstrapService.getDefaultCountry().code;
 		this.invoice.lines.push(new Line());
 		this.invoice.draft = true;
+		this.invoice.locale = 'de';
 
 
 		this.loading = true;
@@ -105,6 +117,10 @@ export class InvoiceEditComponent implements OnInit {
 			service_date_end: ["", Validators.compose([Validators.required, FormValidator.date])],
 			due_date: ["", Validators.compose([Validators.required, FormValidator.date])],
 		});
+	}
+
+	localeChanged(locale: string) {
+		this.invoice.locale = locale;
 	}
 
 	get nextInvoiceNumber(): number {

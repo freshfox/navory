@@ -105,6 +105,13 @@
 								<ff-input type="date" [formControl]="form.controls.service_date_end"
 											[(ngModel)]="invoice.service_date_end"
 											[label]="'invoices.service-date-end' | translate"></ff-input>
+
+								<ff-select
+									[label]="'general.language' | translate"
+									[options]="locales"
+									[selectedValue]="invoice.locale"
+									(selectedValueChange)="localeChanged($event)"></ff-select>
+
 							</div>
 						</div>
 					</div>

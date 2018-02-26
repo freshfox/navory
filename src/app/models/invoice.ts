@@ -9,6 +9,7 @@ export class Invoice extends BaseInvoice {
 	service_date_end: string;
 	payments: Payment[];
 	canceled: boolean;
+	locale: string;
 
 	constructor(data?: any) {
 		super(data);
