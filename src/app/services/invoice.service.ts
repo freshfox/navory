@@ -35,6 +35,11 @@ export class InvoiceService extends NavoryApi {
 		return this.get(this.getRestEntityPath(this.pathInvoices, id))
 			.map(invoiceData => {
 				let invoice = new Invoice(invoiceData);
+
+				if(!invoice.locale) {
+					invoice.locale = 'de';
+				}
+
 				return invoice;
 			});
 	}
