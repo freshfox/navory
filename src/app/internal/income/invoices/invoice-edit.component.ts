@@ -22,6 +22,7 @@ import {AnalyticsEventType, AnalyticsService} from "../../../services/analytics.
 import {ModalService, ModalSize} from "../../../lib/ffc-angular/services/modal.service";
 import {QuoteService} from "../../../services/quote.service";
 import {Quote} from "../../../models/quote.model";
+import {Expense} from '../../../models/expense';
 const moment = require('moment');
 
 @Component({
@@ -85,6 +86,8 @@ export class InvoiceEditComponent implements OnInit {
 			} else {
 				this.route.queryParams.subscribe(params => {
 					let quoteId = params['fromQuote'];
+					let copyId = params['copy'];
+
 					if (quoteId) {
 						this.quoteService.getQuote(quoteId)
 							.subscribe((quote: Quote) => {
@@ -95,6 +98,23 @@ export class InvoiceEditComponent implements OnInit {
 								this.invoice.customer_country_code = quote.customer_country_code;
 								this.invoice.customer_vat_number = quote.customer_vat_number;
 								this.invoice.lines = quote.lines;
+								this.invoice.lines.forEach((line) => {
+									line.id = undefined;
+								});
+
+								this.loading = false;
+							});
+					} else if (copyId) {
+						this.invoiceService.getInvoice(copyId)
+							.subscribe(invoice => {
+								this.invoice.customer = invoice.customer;
+								this.invoice.customer_name = invoice.customer_name;
+								this.invoice.customer_address = invoice.customer_address;
+								this.invoice.customer_country_code = invoice.customer_country_code;
+								this.invoice.customer_vat_number = invoice.customer_vat_number;
+								this.invoice.lines = invoice.lines;
+								this.invoice.comment = invoice.comment;
+								this.invoice.locale = invoice.locale;
 								this.invoice.lines.forEach((line) => {
 									line.id = undefined;
 								});

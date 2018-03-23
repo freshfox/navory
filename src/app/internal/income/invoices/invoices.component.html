@@ -42,6 +42,7 @@
 <ng-template #actionsColumn let-row="row" let-value="value">
 	<ff-dropdown>
 		<button (click)="editInvoice(row)">{{ 'actions.view' | translate }}</button>
+		<button (click)="copyInvoice(row)">{{ 'actions.copy' | translate }}</button>
 		<button (click)="deleteInvoice(row)">{{ 'actions.delete' | translate }}</button>
 	</ff-dropdown>
 </ng-template>

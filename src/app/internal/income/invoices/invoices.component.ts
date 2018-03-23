@@ -10,7 +10,6 @@ import {ModalService} from "../../../lib/ffc-angular/services/modal.service";
 import {TableOptions} from '../../../lib/ffc-angular/components/table/table-options.model';
 import {SortDirection} from '../../../lib/ffc-angular/components/table/sort-direction.enum';
 import {ColumnAlignment} from '../../../lib/ffc-angular/components/table/column-alignment.enum';
-var moment = require('moment');
 
 @Component({
 	selector: 'nvry-invoices',
@@ -76,6 +75,12 @@ export class InvoicesComponent implements OnInit {
 
 	editInvoice(invoice: Invoice) {
 		this.router.navigate([`/invoices/${invoice.id}`]);
+	}
+
+	copyInvoice(invoice: Invoice) {
+		this.router.navigate([`/invoices/new`], {
+			queryParams: {copy: invoice.id}
+		});
 	}
 
 	deleteInvoice(invoice: Invoice) {
