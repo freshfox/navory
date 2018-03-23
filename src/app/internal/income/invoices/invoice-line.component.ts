@@ -40,6 +40,11 @@ import {UnitService} from "../../../services/unit.service";
 					<button (click)="copyLine()">{{ 'actions.copy' | translate }}</button>
 					<button (click)="deleteLine()" *ngIf="deleteShown">{{ 'general.delete' | translate }}</button>
 				</ff-dropdown>
+				
+				<div class="invoice-line__sort">
+					<ff-icon name="arrow-sorted-up" (click)="moveUp.next(invoiceLine)" *ngIf="upShown"></ff-icon>
+					<ff-icon name="arrow-sorted-down" (click)="moveDown.next(invoiceLine)" *ngIf="downShown"></ff-icon>
+				</div>
             </div>
             
             <ff-textarea 
@@ -52,9 +57,14 @@ import {UnitService} from "../../../services/unit.service";
 export class InvoiceLineComponent implements OnInit {
 
 	@Input() invoiceLine: Line;
-	@Input() deleteShown: boolean = true;
-	@Output() onDelete: EventEmitter<Line> = new EventEmitter<Line>();
-	@Output() onCopy: EventEmitter<Line> = new EventEmitter<Line>();
+	@Input() deleteShown = true;
+	@Input() upShown = true;
+	@Input() downShown = true;
+	@Output() onDelete = new EventEmitter<Line>();
+	@Output() onCopy = new EventEmitter<Line>();
+	@Output() moveUp = new EventEmitter<Line>();
+	@Output() moveDown = new EventEmitter<Line>();
+
 	@Input() units: Unit[];
 	@Input() taxRates: TaxRate[];
 	defaultTaxRate: TaxRate;

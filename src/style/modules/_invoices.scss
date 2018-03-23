@@ -62,7 +62,7 @@ $invoiceBadgeWidth: 80px;
 }
 
 .invoice-edit-paper-section {
-	padding: 30px;
+	padding: 30px 36px;
 	border-bottom: 1px solid $colorGrayLight;
 
 	&:last-child {
@@ -130,6 +130,7 @@ nvry-invoice-line {
 	@extend .cf;
 	margin-bottom: 16px;
 	display: block;
+	position: relative;
 
 	ff-input,
 	ff-select {
@@ -138,6 +139,31 @@ nvry-invoice-line {
 
 	.invoice-line__row {
 		display: flex;
+	}
+
+	.invoice-line__sort {
+		display: flex;
+		position: absolute;
+		left: -36px;
+		align-items: center;
+		width: 40px;
+		height: 40px;
+
+		.icon {
+			fill: $colorGrayMedium;
+			width: 18px;
+			height: 24px;
+			cursor: pointer;
+			display: none;
+		}
+	}
+
+	&:hover {
+		.invoice-line__sort {
+			.icon {
+				display: block;
+			}
+		}
 	}
 
 	.title-field,

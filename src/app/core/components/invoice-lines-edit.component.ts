@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {Line} from "../../models/invoice-line";
-import {BootstrapService} from "../../services/bootstrap.service";
-import {TaxRateService} from "../../services/tax-rate.service";
-import {TaxRate} from "../../models/tax-rate";
-import {Unit} from "../../models/unit";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Line} from '../../models/invoice-line';
+import {BootstrapService} from '../../services/bootstrap.service';
+import {TaxRateService} from '../../services/tax-rate.service';
+import {TaxRate} from '../../models/tax-rate';
+import {Unit} from '../../models/unit';
 
 @Component({
 	selector: 'nvry-invoice-lines-edit',
@@ -20,12 +20,16 @@ import {Unit} from "../../models/unit";
 				</div>
 
 				<div>
-					<nvry-invoice-line [invoiceLine]="line"
+					<nvry-invoice-line *ngFor="let line of lines; let i = index"
+									   [invoiceLine]="line"
 									   [units]="units"
 									   [taxRates]="taxRates"
 									   [deleteShown]="lines.length > 1"
-									   *ngFor="let line of lines"
-									   (onDelete)="deleteLine($event)" (onCopy)="copyLine($event)"></nvry-invoice-line>
+									   [upShown]="i > 0 && lines.length > 1"
+									   [downShown]="i < (lines.length - 1) && lines.length > 1" 
+									   (onDelete)="deleteLine($event)" (onCopy)="copyLine($event)"
+									   (moveUp)="moveUpLine($event)"
+									   (moveDown)="moveDownLine($event)"></nvry-invoice-line>
 				</div>
 			</div>
 
@@ -40,7 +44,8 @@ export class InvoiceLinesEditComponent {
 	units: Unit[];
 	taxRates: TaxRate[];
 
-	constructor(private bootstrapService: BootstrapService, private taxRateService: TaxRateService) {}
+	constructor(private bootstrapService: BootstrapService, private taxRateService: TaxRateService) {
+	}
 
 	ngOnInit() {
 		this.bootstrapService.getUnits()
@@ -53,7 +58,7 @@ export class InvoiceLinesEditComponent {
 	addLine() {
 		let lastLine = this.lines[this.lines.length - 1];
 		let lastTaxRate = lastLine.tax_rate;
-		this.lines.push(new Line({ tax_rate: lastTaxRate }));
+		this.lines.push(new Line({tax_rate: lastTaxRate}));
 	}
 
 	deleteLine(lineToDelete: Line) {
@@ -68,5 +73,32 @@ export class InvoiceLinesEditComponent {
 		let lineCopy = new Line(invoiceLine);
 
 		this.lines.splice(index, 0, lineCopy);
+	}
+
+	moveUpLine(line: Line) {
+		const index = this.lines.indexOf(line);
+		if (index > 0) {
+			this.lines = this.arrayMove(this.lines, index, index - 1);
+			this.linesChange.next(this.lines);
+		}
+	}
+
+	moveDownLine(line: Line) {
+		const index = this.lines.indexOf(line);
+		if (index < this.lines.length - 1) {
+			this.lines = this.arrayMove(this.lines, index, index + 1);
+			this.linesChange.next(this.lines);
+		}
+	}
+
+	private arrayMove(arr, oldIndex, newIndex) {
+		if (newIndex >= arr.length) {
+			let k = newIndex - arr.length + 1;
+			while (k--) {
+				arr.push(undefined);
+			}
+		}
+		arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0]);
+		return arr;
 	}
 }
