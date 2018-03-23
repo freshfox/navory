@@ -33,5 +33,5 @@
 
 
 <ng-template #attachmentColumn let-row="row" let-value="value">
-	<ff-icon name="paperclip" *ngIf="row.file.id" class="attachment-indicator-icon"></ff-icon>
+	<ff-icon name="paperclip" *ngIf="row.file?.id" class="attachment-indicator-icon"></ff-icon>
 </ng-template>

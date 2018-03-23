@@ -24,6 +24,8 @@ export class Expense extends BaseModel {
 		super(data);
 		this.price = this.price || 0;
 
+		this.category = this.category || {} as any;
+
 		if (this.payments) {
 			this.payments = this.payments.map(data => new Payment(data));
 		} else {
