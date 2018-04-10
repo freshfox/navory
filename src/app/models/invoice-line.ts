@@ -16,7 +16,7 @@ export class Line extends BaseModel {
 	constructor(data?: any) {
 		super(data);
 		this.price = this.price || 0;
-		this.quantity = this.quantity || 1;
+		this.quantity = this.quantity || this.quantity === 0 ? this.quantity : 1;
 	}
 
 	getNetAmount(): number {
