@@ -1,0 +1,130 @@
+.ff-dropdown {
+	position: relative;
+	display: flex;
+	text-align: center;
+	padding: 5px 0;
+
+	.dropdown__inner {
+		position: relative;
+		width: auto;
+		display: inline-block;
+	}
+
+	&.ff-dropdown--shown {
+		.dropdown-target {
+			z-index: 110;
+
+			.ff-icon {
+				fill: $colorPrimary;
+			}
+		}
+	}
+
+	&.ff-dropdown--text {
+
+		.dropdown-target {
+			border: 1px solid $buttonSecondaryBorderColor;
+			border-radius: $buttonBorderRadius;
+			padding: $buttonPadding;
+			padding-top: 4px;
+			padding-bottom: 4px;
+
+			span {
+				color: $colorPrimary;
+			}
+
+			> .ff-button__inner {
+
+				> .ff-icon {
+					margin: 0;
+					height: 24px;
+				}
+			}
+
+		}
+
+	}
+
+	.dropdown-target {
+		text-align: center;
+		outline: 0;
+		background: transparent;
+		display: flex;
+		align-items: center;
+		margin: 0 auto;
+		cursor: pointer;
+		padding: 0;
+		position: relative;
+		border: 0;
+
+		.ff-icon {
+			display: block;
+			width: $dropdownTargetWidth;
+			height: $dropdownTargetHeight;
+			margin: 3px 0;
+			fill: $colorGrayMedium;
+			transition: fill .5s ease;
+		}
+
+		&:hover {
+			.ff-icon {
+				fill: $colorPrimary;
+			}
+		}
+	}
+
+	&.dropdown--form-field-height {
+		padding: 0;
+
+		.dropdown-target {
+			width: $dropdownTargetSizeFormField;
+			height: $dropdownTargetSizeFormField;
+		}
+	}
+
+	.dropdown-content {
+		min-width: 100px;
+		border-radius: $defaultBorderRadius;
+		position: absolute;
+		top: calc(100% + 2px);
+		right: 0;
+		border: 1px solid $colorGray;
+		background: #fff;
+		padding: 5px 0;
+		box-shadow: 0 0 12px rgba(0, 0, 0, .15);
+		z-index: 200;
+
+		button {
+			display: block;
+			padding: 6px 20px;
+			width: 100%;
+			text-align: left;
+			border: 0;
+			padding-left: 8px;
+			color: $textColor;
+
+			.ff-button__inner {
+				justify-content: flex-start;
+
+				.ff-icon {
+					width: 24px;
+					fill: $colorPrimary;
+				}
+			}
+
+			&:hover {
+				background: $colorGrayLight;
+			}
+		}
+	}
+
+	.dropdown-overlay {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 100;
+		cursor: default;
+	}
+}

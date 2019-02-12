@@ -1,0 +1,156 @@
+@include form-fields {
+  padding: 9px 6px;
+  display: inline-block;
+  border: 1px solid $formFieldBorderColor;
+  border-radius: $formFieldBorderRadius;
+  transition: background-color .2s ease;
+  width: 100%;
+
+  &:focus {
+    outline: 0;
+    border-color: $colorPrimary;
+  }
+
+  .form-stacked & {
+    width: 100%;
+  }
+
+  &[disabled] {
+    background: $colorGrayLight;
+  }
+
+  &.clickable-field {
+    background: white;
+
+    &:hover {
+      background: $colorPrimaryUltraLighter;
+      cursor: pointer;
+    }
+  }
+
+	&[ff-decimal] {
+		text-align: right;
+	}
+}
+
+@include form-fields-with-extensions {
+  &.connected-with-next {
+
+    input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: 0;
+    }
+
+    &.ff-focused {
+      + ff-input input:not([type=hidden]) {
+        border-left-color: $colorPrimary;
+      }
+
+      + ff-select .chosen-single {
+        border-left-color: $colorPrimary;
+      }
+    }
+
+    + ff-input input:not([type=hidden]),
+    + input[type=hidden] + input {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    + ff-select .chosen-single {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-right: 0 !important;
+    }
+
+    + ff-select .chosen-single {
+
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+
+      + ff-input input:not([type=hidden]),
+      + input[type=hidden] + input {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-left: 0;
+      }
+    }
+  }
+}
+
+.formfield-wrapper {
+	margin-bottom: 16px;
+	position: relative;
+}
+
+select {
+  width: 100%;
+}
+
+textarea {
+  min-height: 110px;
+  resize: none;
+}
+
+ff-input,
+ff-textarea,
+ff-select {
+	margin-bottom: 16px;
+	display: block;
+}
+
+/**
+ * Form errors
+ */
+.control-message {
+	display: block;
+	color: $colorError;
+	font-size: 12px;
+}
+
+/**
+ * Checkboxes
+ */
+.checkbox {
+	margin-bottom: 14px;
+	display: block;
+
+	label {
+		display: inline-block;
+		cursor: pointer;
+		position: relative;
+		padding-left: $checkboxSize + 15px;
+		margin-bottom: 10px;
+		line-height: $checkboxSize;
+
+		&:before {
+			content: "";
+			display: inline-block;
+			width: $checkboxSize;
+			height: $checkboxSize;
+			line-height: $checkboxSize;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: $colorGrayUltraDark;
+			border-radius: $defaultBorderRadius;
+			font-size: 22px;
+			color: #fff;
+			text-align: center;
+		}
+	}
+
+	input[type=checkbox] {
+		display: none;
+
+		&:checked + label:before {
+			content: "\2713";
+		}
+
+		&:disabled + label:before {
+			background: $colorGrayLight;
+			border-color: $colorGrayLight;
+		}
+	}
+}

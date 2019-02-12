@@ -1,0 +1,150 @@
+.ff-table {
+	display: block;
+
+	table {
+		width: 100%;
+		text-align: left;
+		border-collapse: collapse;
+		border-spacing: 0;
+		table-layout: fixed;
+
+		&.table--clickable-items {
+			tbody tr:hover td {
+				background: $tableClickableHoverBackground;
+			}
+
+			td {
+				cursor: pointer;
+			}
+		}
+
+		&.table--list {
+			.col-actions {
+				width: 5%;
+				padding-right: 5px;
+			}
+		}
+	}
+
+	tr {
+
+		td {
+			padding: 8px 0;
+			padding-right: 15px;
+			border-bottom: 1px solid $tableColorSpacerLines;
+			color: $tableTextColor;
+
+			.text {
+				width: 100%;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: block;
+			}
+
+			&:first-child {
+				padding-left: 10px;
+			}
+		}
+
+		th,
+		td {
+			&:first-child {
+				padding-left: $contentSidePadding;
+			}
+
+			&.ff-table-cell--align-right {
+				text-align: right;
+
+				.ff-table-header-cell__inner {
+					span {
+						margin-left: auto;
+					}
+				}
+			}
+
+			&.ff-table-cell--align-center {
+				text-align: center;
+
+				.ff-table-header-cell__inner {
+					justify-content: center;
+				}
+			}
+
+			&:last-child {
+				padding-right: 0;
+			}
+
+			.ff-icon {
+				fill: $tableIconFillColor;
+			}
+		}
+
+		th {
+			height: 45px;
+
+			&.ff-table-header-cell--sortable {
+				cursor: pointer;
+			}
+
+			&.ff-table-header-cell--sorted {
+				color: $colorPrimary;
+
+				.ff-icon {
+					fill: $colorPrimary;
+				}
+			}
+
+			.ff-table-header-cell__inner {
+				display: flex;
+				align-items: center;
+
+				.ff-icon {
+					width: 20px;
+					height: 20px;
+				}
+			}
+		}
+	}
+
+	th,
+	.table-heading {
+		color: $tableTextColor;
+		font-size: 12px;
+		padding: 10px 0;
+		line-height: $defaultLineHeight;
+		font-weight: $fontWeightBold;
+		border-top: 1px solid $tableColorSpacerLines;
+		border-bottom: 1px solid $tableColorSpacerLines;
+		background: $tableHeadingBackgroundColor;
+
+		&:first-child {
+			padding-left: 10px;
+		}
+
+		&:last-child {
+			padding-right: 10px;
+		}
+	}
+
+	.empty-view {
+		margin: 90px 0 20px;
+		text-align: center;
+		width: 100%;
+
+		.title {
+			font-size: 16px;
+			margin: 0 auto;
+			font-weight: bold;
+			margin-bottom: 24px;
+			max-width: 450px;
+		}
+	}
+}
+
+.table-spinner {
+	margin: 60px auto;
+	display: block;
+}
+
+

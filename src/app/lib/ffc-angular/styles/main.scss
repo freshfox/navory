@@ -1,0 +1,113 @@
+/**
+ * Colors
+ */
+$colorPrimary: #4c89fb !default;
+$colorPrimaryDark: darken($colorPrimary, 20%) !default;
+$colorPrimaryLight: lighten($colorPrimary, 10%) !default;
+$colorPrimaryUltraLight: lighten($colorPrimary, 20%) !default;
+$colorPrimaryUltraLighter: lighten($colorPrimary, 23%) !default;
+$colorLightAccent: #f2f5f6 !default;
+$colorAccentUltraLight: #fafcfb !default;
+$colorMediumAccent: #a0aaad !default;
+$colorDarkAccent: #4f6369 !default;
+$colorUltraDarkAccent: #2a3244 !default;
+$colorGrayUltraLighter: #fafafa !default;
+$colorGrayUltraLight: #f0f0f0 !default;
+$colorGrayLight: #e7e7e7 !default;
+$colorGray: #aaa !default;
+$colorGrayMedium: #888 !default;
+$colorGrayUltraDark: #1d2125 !default;
+$colorDisabled: $colorGray !default;
+
+$colorSuccess: #7ece65 !default;
+$colorWarning: #febb08 !default;
+$colorError: #f87979 !default;
+
+$colorSpacerLines: $colorGrayLight !default;
+
+
+/**
+ * Default Metrics
+ */
+$defaultBorderRadius: 3px !default;
+
+/**
+ * Typography
+ */
+$fontFamily: 'Lato', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$fontSizeSmall: 11px !default;
+$fontSize: 13px !default;
+$fontSizeLarge: 16px !default;
+$defaultLineHeight: 1.5 !default;
+$textColor: #2d3339 !default;
+$fontWeightRegular: 400 !default;
+$fontWeightBold: 600 !default;
+$fontWeightLight: 300 !default;
+
+/**
+ * Tables
+ */
+$tableClickableHoverBackground: $colorLightAccent !default;
+$tableColorSpacerLines: $colorGrayLight !default;
+$tableHeadingBackgroundColor: $colorLightAccent !default;
+$tableTextColor: $textColor !default;
+$tableIconFillColor: $colorGrayMedium !default;
+
+/**
+ * Dropdowns
+ */
+$dropdownTargetWidth: 36px !default;
+$dropdownTargetHeight: 25px !default;
+$dropdownTargetSizeFormField: 39px !default;
+
+/**
+ * Buttons
+ */
+$buttonBorderRadius: 2px !default;
+$buttonPadding: 8px 14px !default;
+$buttonPaddingSmall: 5px 12px !default;
+$buttonPaddingLarge: 15px 18px !default;
+$buttonTextColor: #fff !default;
+$buttonPrimaryBackground: $colorPrimary !default;
+$buttonSecondaryBorderColor: $colorGrayMedium !default;
+
+/**
+ * Forms
+ */
+$formFieldBorderColor: $colorGray !default;
+$formFieldBorderRadius: $defaultBorderRadius !default;
+
+// Dropdowns
+$dropdownHeight: 39px !default;
+
+// Checkboxes
+$checkboxSize: 17px !default;
+
+/**
+ * Modals
+ */
+$modalBackgroundColor: white !default;
+$modalWidthDefault: 600px !default;
+$modalWidthLarge: 750px !default;
+$modalSidePadding: 24px !default;
+$modalCloseButtonColor: $colorPrimary !default;
+$modalHeaderDangerBackgroundColor: $colorError !default;
+$modalHeaderBackgroundColor: $colorPrimary !default;
+$modalFooterBackgroundColor: $colorGrayUltraLighter !default;
+$modalFooterTopBorderColor: $colorSpacerLines !default;
+
+
+@import '~chosen-js/chosen.css';
+
+@import 'mixins';
+@import 'base';
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/icons';
+@import 'components/selects';
+@import 'components/spinners';
+@import 'components/modals';
+@import 'components/tabs';
+@import 'components/dropdowns';
+@import 'components/tables';
+
