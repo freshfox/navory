@@ -9,7 +9,7 @@ fi
 function deploy {
     PROJECT=$1
 
-    npm run deploy -- --project ${PROJECT} --token="$FIREBASE_TOKEN";
+    yarn run deploy -- --project ${PROJECT} --token="$FIREBASE_TOKEN";
 }
 
 case ${ENV} in
