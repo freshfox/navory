@@ -101,7 +101,12 @@ export class TableComponent implements OnChanges {
 	}
 
 	getColumnValue(column: TableColumn, row): any {
-		const val = this.getValue(row, this.getPropertyName(column));
+		let val;
+		if (column.getDynamicValue) {
+			val = column.getDynamicValue(row);
+		} else {
+			val = this.getValue(row, this.getPropertyName(column));
+		}
 		const pipe = column.pipe;
 		return pipe ? pipe.transform(val) : val;
 	}

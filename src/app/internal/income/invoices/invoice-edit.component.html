@@ -7,7 +7,7 @@
 <div [hidden]="loading">
 	<div class="page-row button-row">
 		<h1 class="module-title">
-			<span *ngIf="!createMode && !invoice.draft">{{ 'invoices.edit_title' | translate:{ number: invoice.number } }}</span>
+			<span *ngIf="!createMode && !invoice.draft">{{ 'invoices.edit_title' | translate:{ number: invoiceNumber } }}</span>
 			<span *ngIf="!createMode && invoice.draft">{{ 'invoices.edit_title_draft' | translate }}</span>
 			<span *ngIf="createMode">{{ 'invoices.create_title' | translate }}</span>
 		</h1>
@@ -86,7 +86,7 @@
 								<ff-input [formControl]="form.controls.number"
 											[(ngModel)]="invoice.number"
 											[label]="'invoices.number' | translate"
-											[placeholder]="nextInvoiceNumber"
+											[placeholder]="invoice.group_prefix ? '' : nextInvoiceNumber"
 											[disabled]="!invoice.draft"></ff-input>
 							</div>
 						</div>

@@ -10,6 +10,7 @@ import {ModalService} from "../../../lib/ffc-angular/services/modal.service";
 import {TableOptions} from '../../../lib/ffc-angular/components/table/table-options.model';
 import {SortDirection} from '../../../lib/ffc-angular/components/table/sort-direction.enum';
 import {ColumnAlignment} from '../../../lib/ffc-angular/components/table/column-alignment.enum';
+import {InvoiceUtils} from '../../../utils/invoice-utils';
 
 @Component({
 	selector: 'nvry-invoices',
@@ -50,9 +51,11 @@ export class InvoicesComponent implements OnInit {
 				},
 				{
 					name: this.translate.instant('general.number-abbrev'),
-					prop: 'number',
 					width: 7,
-					sortDirection: SortDirection.Desc
+					sortDirection: SortDirection.Desc,
+					getDynamicValue: (invoice: Invoice) => {
+						return InvoiceUtils.getCompleteNumber(invoice);
+					}
 				},
 				{name: this.translate.instant('general.customer'), prop: 'customer_name', width: 30},
 				{name: this.translate.instant('invoices.date-created'), prop: 'date', pipe: this.datePipe, width: 12},

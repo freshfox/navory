@@ -23,6 +23,7 @@ import {ModalService, ModalSize} from "../../../lib/ffc-angular/services/modal.s
 import {QuoteService} from "../../../services/quote.service";
 import {Quote} from "../../../models/quote.model";
 import {Expense} from '../../../models/expense';
+import {InvoiceUtils} from '../../../utils/invoice-utils';
 const moment = require('moment');
 
 @Component({
@@ -142,6 +143,10 @@ export class InvoiceEditComponent implements OnInit {
 
 	localeChanged(locale: string) {
 		this.invoice.locale = locale;
+	}
+
+	get invoiceNumber() {
+		return InvoiceUtils.getCompleteNumber(this.invoice);
 	}
 
 	get nextInvoiceNumber(): number {
