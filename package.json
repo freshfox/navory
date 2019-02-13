@@ -15,22 +15,22 @@
     "deploy": "firebase deploy"
   },
   "engines": {
-    "node": "8"
+    "node": "10"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^6.1.10",
-    "@angular/cdk": "^6.4.7",
-    "@angular/common": "^6.1.10",
-    "@angular/compiler": "^6.1.10",
-    "@angular/core": "^6.1.10",
-    "@angular/forms": "^6.1.10",
-    "@angular/http": "^6.1.10",
-    "@angular/material": "^6.4.7",
-    "@angular/platform-browser": "^6.1.10",
-    "@angular/platform-browser-dynamic": "^6.1.10",
-    "@angular/platform-server": "^6.1.10",
-    "@angular/router": "^6.1.10",
+    "@angular/animations": "^7.2.4",
+    "@angular/cdk": "^7.3.2",
+    "@angular/common": "^7.2.4",
+    "@angular/compiler": "^7.2.4",
+    "@angular/core": "^7.2.4",
+    "@angular/forms": "^7.2.4",
+    "@angular/http": "^7.2.4",
+    "@angular/material": "^7.3.2",
+    "@angular/platform-browser": "^7.2.4",
+    "@angular/platform-browser-dynamic": "^7.2.4",
+    "@angular/platform-server": "^7.2.4",
+    "@angular/router": "^7.2.4",
     "@ngx-translate/core": "^10.0.2",
     "@ngx-translate/http-loader": "^3.0.1",
     "angular2-notifications": "^2.0.0",
@@ -39,7 +39,7 @@
     "chartist": "^0.9.8",
     "chosen-js": "^1.7.0",
     "core-js": "^2.4.1",
-    "dropzone": "^4.3.0",
+    "dropzone": "^5.5.1",
     "gulp": "^3.9.1",
     "iframe-resizer": "^3.5.5",
     "javascript-autocomplete": "github:navory/javascript-autocomplete#1f458223f017fe56fd03a8fdfa355cf4b71d6fce",
@@ -57,10 +57,10 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
-    "@angular/cli": "^6.2.9",
-    "@angular/compiler-cli": "^6.1.10",
+    "@angular/cli": "^7.3.1",
+    "@angular/compiler-cli": "^7.2.4",
     "@types/chartist": "^0.9.34",
-    "@types/dropzone": "^4.3.34",
+    "@types/dropzone": "^5.0.4",
     "@types/jasmine": "2.5.38",
     "@types/jquery": "^2.0.33",
     "@types/node": "^6.0.64",
@@ -84,6 +84,6 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~5.12.1",
-    "typescript": "~2.9.2"
+    "typescript": "~3.2.4"
   }
 }
