@@ -115,6 +115,7 @@ export class InvoiceEditComponent implements OnInit {
 								this.invoice.lines = invoice.lines;
 								this.invoice.comment = invoice.comment;
 								this.invoice.locale = invoice.locale;
+								this.invoice.group_prefix = invoice.group_prefix;
 								this.invoice.lines.forEach((line) => {
 									line.id = undefined;
 								});
@@ -215,6 +216,7 @@ export class InvoiceEditComponent implements OnInit {
 			this.saving = true;
 
 			let complete = new Observable(observer => {
+				console.log(invoice);
 				this.invoiceService.saveInvoice(invoice)
 					.subscribe((updatedInvoice: Invoice) => {
 							if (!invoice.id && updatedInvoice.id) {

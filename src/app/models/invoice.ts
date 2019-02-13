@@ -10,6 +10,7 @@ export class Invoice extends BaseInvoice {
 	payments: Payment[];
 	canceled: boolean;
 	locale: string;
+	group_prefix: number;
 
 	constructor(data?: any) {
 		super(data);

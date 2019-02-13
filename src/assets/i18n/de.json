@@ -207,7 +207,8 @@
 		"cancel": "Stornieren",
 		"cancel-confirm-title": "Rechnung wirklich stornieren?",
 		"cancel-confirm-message": "Diese Aktion kann nicht rückgängig gemacht werden. Auf der Rechnung können nach dem stornieren keine Zahlungen mehr verbucht werden.",
-		"cancel-success": "Rechnung erfolgreich storniert"
+		"cancel-success": "Rechnung erfolgreich storniert",
+		"group-prefix": "Rechnungskreis Prefix"
 	},
 	"quotes": {
 		"title": "Angebote",

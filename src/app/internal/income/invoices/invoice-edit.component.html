@@ -78,7 +78,10 @@
 
 					<div class="bit-50">
 						<div class="frame frame--bit-spacing">
-							<div class="bit-50">&nbsp;</div>
+							<div class="bit-50">
+								<ff-input [(ngModel)]="invoice.group_prefix" [disabled]="!invoice.draft"
+										  [label]="'invoices.group-prefix' | translate"></ff-input>
+							</div>
 							<div class="bit-50">
 								<ff-input [formControl]="form.controls.number"
 											[(ngModel)]="invoice.number"
@@ -132,5 +135,9 @@
 
 
 </div>
+
+<pre *ngIf="invoice">
+	{{ invoice | json }}
+</pre>
 
 <ff-spinner *ngIf="loading"></ff-spinner>
