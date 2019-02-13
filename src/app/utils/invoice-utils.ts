@@ -6,7 +6,7 @@ export class InvoiceUtils {
 		if (!invoice.number) {
 			return '';
 		}
-		
+
 		let number = '' + invoice.number;
 		if (invoice.group_prefix) {
 			number = invoice.group_prefix + '-' + number;

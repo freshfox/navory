@@ -1,26 +1,25 @@
-import {Routes} from "@angular/router";
-import {CustomersComponent} from "./customers/customers.component";
-import {InternalComponent} from "./internal";
-import {DashboardComponent} from "./dashboard/dashboard.component";
-import {LoggedInGuard} from "../guards/logged-in.guard";
-import {IncomeListComponent} from "./income/other-income/income-list.component";
-import {ExpensesComponent} from "./expenses/expenses.component";
-import {ExpenseEditComponent} from "./expenses/expense-edit.component";
-import {BootstrapResolver} from "../core/resolvers/bootstrap.resolver";
-import {SettingsComponent} from "./settings/settings.component";
-import {AccountSettingsComponent} from "./settings/account-settings.component";
-import {ProfileSettingsComponent} from "./settings/profile-settings.component";
-import {IncomeEditComponent} from "./income/other-income/income-edit.component";
-import {IncomeComponent} from "./income/income.component";
-import {InvoicesComponent} from "./income/invoices/invoices.component";
-import {InvoiceEditComponent} from "./income/invoices/invoice-edit.component";
-import {PaymentsComponent} from "./payments/payments.component";
-import {SubscriptionComponent} from "./settings/subscription.component";
-import {ReportsComponent} from "app/internal/reports/reports.component";
-import {VatReportComponent} from "./reports/vat-report.component";
-import {ProfitLossReportComponent} from "./reports/profit-loss-report.component";
-import {QuotesComponent} from "./quotes/quotes.component";
-import {QuoteEditComponent} from "./quotes/quote-edit.component";
+import {Routes} from '@angular/router';
+import {CustomersComponent} from './customers/customers.component';
+import {InternalComponent} from './internal';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {LoggedInGuard} from '../guards/logged-in.guard';
+import {IncomeListComponent} from './income/other-income/income-list.component';
+import {ExpensesComponent} from './expenses/expenses.component';
+import {ExpenseEditComponent} from './expenses/expense-edit.component';
+import {BootstrapResolver} from '../core/resolvers/bootstrap.resolver';
+import {SettingsComponent} from './settings/settings.component';
+import {AccountSettingsComponent} from './settings/account-settings.component';
+import {ProfileSettingsComponent} from './settings/profile-settings.component';
+import {IncomeEditComponent} from './income/other-income/income-edit.component';
+import {IncomeComponent} from './income/income.component';
+import {InvoicesComponent} from './income/invoices/invoices.component';
+import {InvoiceEditComponent} from './income/invoices/invoice-edit.component';
+import {PaymentsComponent} from './payments/payments.component';
+import {ReportsComponent} from 'app/internal/reports/reports.component';
+import {VatReportComponent} from './reports/vat-report.component';
+import {ProfitLossReportComponent} from './reports/profit-loss-report.component';
+import {QuotesComponent} from './quotes/quotes.component';
+import {QuoteEditComponent} from './quotes/quote-edit.component';
 
 export const InternalRoutes: Routes = [
 	{
@@ -73,7 +72,6 @@ export const InternalRoutes: Routes = [
 				children: [
 					{path: 'account', component: AccountSettingsComponent},
 					{path: 'profile', component: ProfileSettingsComponent},
-					{path: 'subscription', component: SubscriptionComponent}
 				]
 			}
 		]

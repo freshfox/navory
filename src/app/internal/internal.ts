@@ -118,19 +118,4 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 				this.router.navigate(['/login']);
 			});
 	}
-
-	get trialMessage(): string {
-		if (this.state.subscription && this.state.subscription.plan_id === 'trial' && this.state.subscription.active) {
-			let endDate = moment(this.state.subscription.period_end_date);
-			let today = moment();
-			let days = endDate.diff(today, 'days');
-			return `Deine Testzeit läuft noch ${days} Tag${days > 1 ? 'e' : ''}. Jetzt upgraden!`;
-		}
-
-		return null;
-	}
-
-	onTrialMessageClick() {
-		this.analytics.trackEvent(AnalyticsEventType.ClickOnTrialBanner);
-	}
 }

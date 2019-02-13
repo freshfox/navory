@@ -47,19 +47,19 @@ export class SubscriptionService extends NavoryApi {
 	}
 
 	expensesEnabled(): boolean {
-		return this.state.features.expense_access;
+		return true;
 	}
 
 	incomeEnabled(): boolean {
-		return this.state.features.income_access;
+		return true;
 	}
 
 	reportsEnabled(): boolean {
-		return this.state.features.report_uva;
+		return true;
 	}
 
 	paymentsEnabled(): boolean {
-		return this.state.features.report_uva;
+		return true;
 	}
 
 	showUpgradeModal() {
