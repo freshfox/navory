@@ -216,7 +216,6 @@ export class InvoiceEditComponent implements OnInit {
 			this.saving = true;
 
 			let complete = new Observable(observer => {
-				console.log(invoice);
 				this.invoiceService.saveInvoice(invoice)
 					.subscribe((updatedInvoice: Invoice) => {
 							if (!invoice.id && updatedInvoice.id) {
