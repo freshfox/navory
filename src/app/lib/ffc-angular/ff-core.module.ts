@@ -8,7 +8,6 @@ import {ControlMessagesComponent} from './components/control-messages.component'
 import {InputComponent} from './components/input.component';
 import {SelectComponent} from './components/select.component';
 import {DatePickerDirective} from './directives/input-date.directive';
-import {MaterialModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {DecimalDirective} from './directives/input-decimal.directive';
 import {NumberPipe} from './pipes/number.pipe';
@@ -20,6 +19,8 @@ import {DropdownComponent} from './components/dropdown.component';
 import {TableComponent} from './components/table/table.component';
 import {TableHeaderCellComponent} from './components/table/table-header-cell.component';
 import {FakeValidationMessageProvider, ValidationMessageProvider} from './validation-message-provider';
+import {FFMaterialModule} from './components/material.module';
+import {MatProgressSpinnerModule} from '@angular/material';
 
 export * from './components/button.component';
 export * from './components/confirm.component';
@@ -42,7 +43,7 @@ export interface FFCoreModuleConfig {
 
 
 @NgModule({
-	imports: [BrowserModule, MaterialModule, FormsModule],
+	imports: [BrowserModule, MatProgressSpinnerModule, FormsModule],
 	declarations: [
 		IconComponent,
 		ButtonComponent,

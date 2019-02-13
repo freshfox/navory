@@ -6,7 +6,8 @@ import {AuthService} from "./services/auth.service";
 import {NavigationEnd, Router} from "@angular/router";
 import {State} from "./core/state";
 import {AnalyticsService} from "./services/analytics.service";
-import {Subscription} from "rxjs/Subscription";
+import {Subscription} from "rxjs";
+import {filter} from 'rxjs/operators';
 
 @Component({
 	selector: 'nvry-app-root',
@@ -35,7 +36,7 @@ export class AppComponent {
 		});
 
 		this.routerSubscription = this.router.events
-			.filter(event => event instanceof NavigationEnd)
+			.pipe(filter(event => event instanceof NavigationEnd))
 			.subscribe(event => {
 				document.body.scrollTop = 0;
 			});

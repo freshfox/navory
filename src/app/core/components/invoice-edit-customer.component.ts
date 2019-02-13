@@ -23,7 +23,7 @@ const AutoComplete = require('javascript-autocomplete');
 
 					<div class="invoice-edit-customer-link-button-wrapper">
 						<button class="button ff-button--mini-rounded"
-								[mdTooltip]="'invoices.remove-customer-link' | translate"
+								[matTooltip]="'invoices.remove-customer-link' | translate"
 								(click)="removeCustomerLink()">
 							<ff-icon name="cross"></ff-icon>
 						</button>

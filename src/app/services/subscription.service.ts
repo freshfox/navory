@@ -7,6 +7,7 @@ import {Invoice} from "../models/invoice";
 import {State} from "../core/state";
 import {UpgradePlanComponent} from "../core/components/upgrade-plan.component";
 import {ModalService} from "../lib/ffc-angular/services/modal.service";
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class SubscriptionService extends NavoryApi {
@@ -21,9 +22,9 @@ export class SubscriptionService extends NavoryApi {
 
 	getPaymentToken(): Observable<string> {
 		return this.get(this.pathToken)
-			.map(data => {
+			.pipe(map(data => {
 				return data.token
-			});
+			}));
 	}
 
 	getSubscription(): Observable<Subscription> {

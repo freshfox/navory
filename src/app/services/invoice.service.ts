@@ -7,6 +7,7 @@ import {FileService} from "./file.service";
 import {AnalyticsService, AnalyticsEventType} from "./analytics.service";
 import {BaseInvoiceService} from "./base-invoice.service";
 import {TranslateService} from '@ngx-translate/core';
+import {map} from 'rxjs/operators';
 const moment = require('moment');
 
 @Injectable()
@@ -21,19 +22,19 @@ export class InvoiceService extends NavoryApi {
 
 	getInvoices(): Observable<Invoice[]> {
 		return this.get(this.pathInvoices)
-			.map(invoicesData => {
+			.pipe(map(invoicesData => {
 				let invoices: Invoice[] = [];
 				invoicesData.forEach((invoiceData) => {
 					let invoice = new Invoice(invoiceData);
 					invoices.push(invoice);
 				});
 				return invoices;
-			});
+			}));
 	}
 
 	getInvoice(id: string): Observable<Invoice> {
 		return this.get(this.getRestEntityPath(this.pathInvoices, id))
-			.map(invoiceData => {
+			.pipe(map(invoiceData => {
 				let invoice = new Invoice(invoiceData);
 
 				if(!invoice.locale) {
@@ -41,7 +42,7 @@ export class InvoiceService extends NavoryApi {
 				}
 
 				return invoice;
-			});
+			}));
 	}
 
 	saveInvoice(invoice: Invoice) {
@@ -50,16 +51,16 @@ export class InvoiceService extends NavoryApi {
 
 		if (invoice.id) {
 			return this.patch(this.getRestEntityPath(this.pathInvoices, invoice.id), data)
-				.map(invoice => {
+				.pipe(map(invoice => {
 					this.analytics.trackEvent(AnalyticsEventType.InvoiceUpdate);
 					return new Invoice(invoice)
-				});
+				}));
 		}
 		return this.post(this.pathInvoices, data)
-			.map(invoice => {
+			.pipe(map(invoice => {
 				this.analytics.trackEvent(AnalyticsEventType.InvoiceCreate);
 				return new Invoice(invoice);
-			});
+			}));
 	}
 
 	deleteInvoice(invoice: Invoice): Observable<any> {

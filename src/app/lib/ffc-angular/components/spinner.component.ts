@@ -3,10 +3,10 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 @Component({
 	selector: 'ff-spinner',
 	template: `
-		<md-progress-spinner mode="indeterminate"
-							 *ngIf="progress >= 100 || progress === undefined"></md-progress-spinner>
-		<md-progress-spinner mode="determinate" [value]="progress"
-							 *ngIf="progress > 0 && progress < 100"></md-progress-spinner>`,
+		<mat-spinner mode="indeterminate"
+							 *ngIf="progress >= 100 || progress === undefined"></mat-spinner>
+		<mat-spinner mode="determinate" [value]="progress"
+							 *ngIf="progress > 0 && progress < 100"></mat-spinner>`,
 	host: {
 		'class': 'ff-spinner'
 	}

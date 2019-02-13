@@ -6,6 +6,7 @@ import {FileService} from "./file.service";
 import {AnalyticsService, AnalyticsEventType} from "./analytics.service";
 import {Quote} from "../models/quote.model";
 import {BaseInvoiceService} from "./base-invoice.service";
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class QuoteService extends NavoryApi {
@@ -18,22 +19,22 @@ export class QuoteService extends NavoryApi {
 
 	getQuotes(): Observable<Quote[]> {
 		return this.get(this.pathQuotes)
-			.map(quoteData => {
+			.pipe(map(quoteData => {
 				let quotes: Quote[] = [];
 				quoteData.forEach((quoteData) => {
 					let quote = new Quote(quoteData);
 					quotes.push(quote);
 				});
 				return quotes;
-			});
+			}));
 	}
 
 	getQuote(id: string): Observable<Quote> {
 		return this.get(this.getRestEntityPath(this.pathQuotes, id))
-			.map(quoteData => {
+			.pipe(map(quoteData => {
 				let quote = new Quote(quoteData);
 				return quote;
-			});
+			}));
 	}
 
 	saveQuote(quote: Quote) {
@@ -42,16 +43,16 @@ export class QuoteService extends NavoryApi {
 
 		if (quote.id) {
 			return this.patch(this.getRestEntityPath(this.pathQuotes, quote.id), data)
-				.map(quote => {
+				.pipe(map(quote => {
 					this.analytics.trackEvent(AnalyticsEventType.QuoteUpdate);
 					return new Quote(quote)
-				});
+				}));
 		}
 		return this.post(this.pathQuotes, data)
-			.map(quote => {
+			.pipe(map(quote => {
 				this.analytics.trackEvent(AnalyticsEventType.QuoteCreate);
 				return new Quote(quote);
-			});
+			}));
 	}
 
 	deleteQuote(quote: Quote): Observable<any> {

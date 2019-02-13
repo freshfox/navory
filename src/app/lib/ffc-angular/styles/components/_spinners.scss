@@ -4,13 +4,20 @@
   display: block;
   margin: 30px auto;
 
-  .mat-progress-spinner {
-    width: 100% !important;
-    height: 100% !important;
-  }
 
-  svg path {
-    stroke: $colorPrimary !important;
-  }
+	.mat-spinner {
+		width: 100% !important;
+		height: 100% !important;
+
+		svg {
+			width: 100% !important;
+			height: 100% !important;
+			fill: $colorPrimary;
+
+			circle {
+				stroke: $colorPrimary;
+			}
+		}
+	}
 }
 

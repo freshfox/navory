@@ -6,6 +6,7 @@ import {Expense} from "../models/expense";
 import {EuVatType} from "../core/enums/eu-vat-type.enum";
 import {Payment} from "../models/payment";
 import {AnalyticsEventType, AnalyticsService} from "./analytics.service";
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class ExpenseService extends NavoryApi {
@@ -18,22 +19,22 @@ export class ExpenseService extends NavoryApi {
 
 	getExpenses(): Observable<Expense[]> {
 		return this.get(this.pathExpenses)
-			.map(data => {
+			.pipe(map(data => {
 				let expenses: Expense[] = [];
 				data.forEach((expenseData) => {
 					let expense = new Expense(expenseData);
 					expenses.push(expense);
 				});
 				return expenses;
-			});;
+			}));
 	}
 
 	getExpense(id: number): Observable<Expense> {
 		let path = this.pathExpenses + `/${id}`;
 		return this.get(path)
-			.map(data => {
+			.pipe(map(data => {
 				return new Expense(data);
-			});
+			}));
 	}
 
 	saveExpense(expense: Expense): Observable<Expense> {
@@ -43,18 +44,18 @@ export class ExpenseService extends NavoryApi {
 
 		if (!expense.id) {
 			return this.post(this.pathExpenses, expense)
-				.map(data => {
+				.pipe(map(data => {
 					this.analytics.trackEvent(AnalyticsEventType.ExpenseCreate);
 					return new Expense(data);
-				});
+				}));
 		}
 
 		let path = this.pathExpenses + `/${expense.id}`;
 		return this.patch(path, expense)
-			.map(data => {
+			.pipe(map(data => {
 				this.analytics.trackEvent(AnalyticsEventType.ExpenseUpdate);
 				return new Expense(data);
-			});
+			}));
 	}
 
 	deleteExpense(expense: Expense): Observable<any> {

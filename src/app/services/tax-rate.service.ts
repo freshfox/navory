@@ -3,7 +3,8 @@ import {NavoryApi} from "./base.service";
 import {Http} from "@angular/http";
 import {TaxRate} from "../models/tax-rate";
 import {State} from "../core/state";
-import {Observable} from "rxjs";
+import {Observable, of} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class TaxRateService extends NavoryApi {
@@ -23,11 +24,11 @@ export class TaxRateService extends NavoryApi {
 			}
 		});
 
-		return Observable.of(rate);
+		return of(rate);
 	}
 
 	getTaxRates(): Observable<TaxRate[]> {
-		return Observable.of(this.state.taxRates);
+		return of(this.state.taxRates);
 	}
 
 	getDefaultTaxRate(): Observable<TaxRate> {
@@ -38,17 +39,17 @@ export class TaxRateService extends NavoryApi {
 			}
 		});
 
-		return Observable.of(defaultRate);
+		return of(defaultRate);
 	}
 
 	getFormattedTaxRates() {
 		return this.getTaxRates()
-			.map(taxRates => {
+			.pipe(map(taxRates => {
 				return taxRates.map((taxRate) => {
 					taxRate['name'] = taxRate.rate + '%';
 					return taxRate;
 				});
-			});
+			}));
 	}
 
 }

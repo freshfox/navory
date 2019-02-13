@@ -9,8 +9,7 @@ import {
 	ViewContainerRef
 } from "@angular/core";
 import {ConfirmComponent} from "../components/confirm.component";
-import {Observable} from "rxjs/Observable";
-import {ReplaySubject} from "rxjs/ReplaySubject";
+import {Observable, ReplaySubject} from "rxjs";
 import {animate, style, transition, state, trigger, AnimationEvent} from "@angular/animations";
 
 @Injectable()

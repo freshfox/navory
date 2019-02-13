@@ -7,6 +7,7 @@ import {BankAccount} from "../models/bank-account";
 import {Income} from "../models/income";
 import {Expense} from "../models/expense";
 import {Invoice} from "../models/invoice";
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class PaymentService extends NavoryApi {
@@ -34,19 +35,19 @@ export class PaymentService extends NavoryApi {
 	addPaymentToInvoice(invoiceId: string, payment: Payment): Observable<Payment> {
 		let path = `/invoices/${invoiceId}/payments`;
 		return this.post(path, payment)
-			.map(this.parsePayment);
+			.pipe(map(this.parsePayment));
 	}
 
 	addPaymentToIncome(income: Income, payment: Payment) {
 		let path = `/incomes/${income.id}/payments`;
 		return this.post(path, payment)
-			.map(this.parsePayment);
+			.pipe(map(this.parsePayment));
 	}
 
 	addPaymentToExpense(expense: Expense, payment: Payment) {
 		let path = `/expenses/${expense.id}/payments`;
 		return this.post(path, payment)
-			.map(this.parsePayment);
+			.pipe(map(this.parsePayment));
 	}
 
 	removePaymentFromInvoice(invoice: Invoice, payment: Payment) {

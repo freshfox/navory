@@ -3,10 +3,11 @@ import {NavoryApi} from "./base.service";
 import {Account} from "../models/account";
 import {User} from "../models/user";
 import {Http} from "@angular/http";
-import {Observable} from "rxjs";
+import {Observable, of} from 'rxjs';
 import {State} from "../core/state";
 import {UserService} from "./user.service";
 import {AnalyticsService} from "./analytics.service";
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class AuthService extends NavoryApi {
@@ -25,7 +26,7 @@ export class AuthService extends NavoryApi {
 			email: email,
 			password: password,
 			durable: remember
-		}).map(data => {
+		}).pipe(map(data => {
 			let account = data.account as Account;
 			let user = data as User;
 			this.setLoggedInUser(user);
@@ -33,28 +34,28 @@ export class AuthService extends NavoryApi {
 				account: account,
 				user: user
 			};
-		});
+		}));
 	}
 
 	logout() {
 		return this.delete(this.pathLogin)
-			.map(data => {
+			.pipe(map(data => {
 				this.removeLoggedInUser();
 				this.analytics.shutdownIntercom();
 				return data;
-			});
+			}));
 	}
 
 	isLoggedIn(): Observable<boolean> {
 		if (this.state.user) {
-			return Observable.of(true);
+			return of(true);
 		}
 
 		return this.userService.getOwnUser()
-			.map((user) => {
+			.pipe(map((user) => {
 				this.setLoggedInUser(user);
 				return true;
-			});
+			}));
 	}
 
 	setLoggedInUser(user: User) {
@@ -87,11 +88,11 @@ export class AuthService extends NavoryApi {
 			email: data.email,
 			password: data.password
 		})
-			.map(data => {
+			.pipe(map(data => {
 				let user = data as User;
 				this.setLoggedInUser(user);
 				return data;
-			});
+			}));
 	}
 
 }

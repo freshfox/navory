@@ -1,6 +1,6 @@
 import {NavoryApi} from "./base.service";
 import {Http} from "@angular/http";
-import {Observable} from "rxjs";
+import {Observable, of} from 'rxjs';
 import {Injectable} from "@angular/core";
 import {EuVatType} from "../core/enums/eu-vat-type.enum";
 import {TranslateService} from "@ngx-translate/core";
@@ -39,7 +39,7 @@ export class BootstrapService extends NavoryApi {
 	}
 
 	getUnits(): Observable<Unit[]> {
-		return Observable.of(this.state.units);
+		return of(this.state.units);
 	}
 
 	getCountries(): Country[] {

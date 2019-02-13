@@ -1,7 +1,8 @@
-import {Injectable} from "@angular/core";
-import {CanActivate, Router} from "@angular/router";
-import {AuthService} from "../services/auth.service";
-import {Observable} from "rxjs";
+import {Injectable} from '@angular/core';
+import {CanActivate, Router} from '@angular/router';
+import {AuthService} from '../services/auth.service';
+import {of} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 
 @Injectable()
 export class PublicGuard implements CanActivate {
@@ -11,14 +12,14 @@ export class PublicGuard implements CanActivate {
 
 	canActivate() {
 		return this.authService.isLoggedIn()
-			.map((loggedIn) => {
+			.pipe(map((loggedIn) => {
 				if (loggedIn) {
 					this.router.navigate(['/']);
 					return false;
 				}
-			}).catch(err => {
-				return Observable.of(true);
-			});
+			}), catchError(err => {
+				return of(true);
+			}));
 	}
 
 }

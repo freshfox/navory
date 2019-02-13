@@ -2,8 +2,9 @@ import {Injectable} from "@angular/core";
 import {NavoryApi} from "./base.service";
 import {Http} from "@angular/http";
 import {User} from "../models/user";
-import {Observable} from "rxjs";
+import {Observable, of} from 'rxjs';
 import {State} from "../core/state";
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class UserService extends NavoryApi {
@@ -17,28 +18,28 @@ export class UserService extends NavoryApi {
 
 	getOwnUser(): Observable<User> {
 		if (this.state.user) {
-			return Observable.of(this.state.user);
+			return of(this.state.user);
 		}
 
 		return this.get(this.pathUser)
-			.map(data => {
+			.pipe(map(data => {
 				return data as User;
-			});
+			}));
 	}
 
 	isLoggedIn(): Observable<boolean> {
 		return this.getOwnUser()
-			.map(user => {
+			.pipe(map(user => {
 				return !!user;
-			});
+			}));
 	}
 
 	updateUser(user: User): Observable<User> {
 		return this.patch(this.pathUser, user)
-			.map(user => {
+			.pipe(map(user => {
 				this.state.user = user;
 				return user;
-			});
+			}));
 	}
 
 	updatePassword(password: string, newPassword: string): Observable<any> {

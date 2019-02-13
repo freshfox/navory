@@ -6,6 +6,7 @@ import {State} from "../core/state";
 import {Account} from "../models/account";
 import {Observable} from "rxjs";
 import {AccountSettings} from "../models/account-settings";
+import {map} from 'rxjs/operators';
 
 export enum ExportType {
 	Income = 'INCOME' as any,
@@ -50,10 +51,10 @@ export class AccountService extends NavoryApi {
 
 	updateAccount(account: Account): Observable<Account> {
 		return this.patch(this.pathAccount, account)
-			.map((account: Account) => {
+			.pipe(map((account: Account) => {
 				this.state.user.account = account;
 				return account;
-			});
+			}));
 	}
 
 	/**

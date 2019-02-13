@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {NavoryApi} from "./base.service";
 import {Http} from "@angular/http";
-import {Observable} from "rxjs";
+import {Observable, of} from 'rxjs';
 import {State} from "../core/state";
 import {Unit} from "../models/unit";
 
@@ -22,7 +22,7 @@ export class UnitService extends NavoryApi {
 			}
 		});
 
-		return Observable.of(unit);
+		return of(unit);
 	}
 
 }

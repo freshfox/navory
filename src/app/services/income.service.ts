@@ -5,6 +5,7 @@ import {Income} from "../models/income";
 import {Http} from "@angular/http";
 import {EuVatType} from "../core/enums/eu-vat-type.enum";
 import {AnalyticsEventType, AnalyticsService} from "./analytics.service";
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class IncomeService extends NavoryApi {
@@ -21,9 +22,9 @@ export class IncomeService extends NavoryApi {
 
 	getIncome(id: string): Observable<Income> {
 		return this.get(this.getRestEntityPath(this.pathIncome, id))
-			.map(incomeData => {
+			.pipe(map(incomeData => {
 				return new Income(incomeData);
-			});
+			}));
 	}
 
 	saveIncome(income: Income) {
@@ -33,17 +34,17 @@ export class IncomeService extends NavoryApi {
 
 		if (income.id) {
 			return this.patch(this.getRestEntityPath(this.pathIncome, income.id), income)
-				.map(incomeData => {
+				.pipe(map(incomeData => {
 					this.analytics.trackEvent(AnalyticsEventType.IncomeUpdate);
 					return new Income(incomeData);
-				});
+				}));
 		}
 
 		return this.post(this.pathIncome, income)
-			.map(incomeData => {
+			.pipe(map(incomeData => {
 				this.analytics.trackEvent(AnalyticsEventType.IncomeCreate);
 				return new Income(incomeData);
-			});
+			}));
 	}
 
 	deleteIncome(income: Income): Observable<any> {

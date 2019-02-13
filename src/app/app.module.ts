@@ -80,18 +80,19 @@ import {CancelSubscriptionComponent} from './internal/settings/cancel-subscripti
 import {UpgradePlanComponent} from './core/components/upgrade-plan.component';
 import {VatReportComponent} from './internal/reports/vat-report.component';
 import {ProfitLossReportComponent} from './internal/reports/profit-loss-report.component';
-import {FFCoreModule} from './lib/ffc-angular/ff-core.module';
+import {FFCoreModule, FFMaterialModule} from './lib/ffc-angular/ff-core.module';
 import {ValidationMessageProviderImpl} from './core/validation-message-provider';
 import {QuotesComponent} from './internal/quotes/quotes.component';
 import {QuoteService} from './services/quote.service';
 import {BaseInvoiceService} from './services/base-invoice.service';
 import {InvoiceLinesEditComponent} from './core/components/invoice-lines-edit.component';
-import {MaterialModule} from '@angular/material';
 import {InvoiceEditCustomerComponent} from './core/components/invoice-edit-customer.component';
 import {QuoteEditComponent} from './internal/quotes/quote-edit.component';
 import {ValidationMessageProvider} from './lib/ffc-angular/validation-message-provider';
 import {BadgeComponent} from './core/components/badge.component';
 import {AnnualAccountsComponent} from './internal/settings/annual-accounts.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {MatProgressSpinnerModule, MatTooltipModule} from '@angular/material';
 
 declare let window: any;
 
@@ -99,8 +100,8 @@ export function validationMessageProviderFactory() {
 	return new ValidationMessageProviderImpl();
 }
 
-export function translateStaticLoaderFactory(http: Http) {
-	return new TranslateHttpLoader(http, '/assets/i18n/', `${window.I18N_HASH || ''}.json`);
+export function translateStaticLoaderFactory(httpClient: HttpClient) {
+	return new TranslateHttpLoader(httpClient, '/assets/i18n/', `${window.I18N_HASH || ''}.json`);
 }
 
 @NgModule({
@@ -179,17 +180,20 @@ export function translateStaticLoaderFactory(http: Http) {
 		FormsModule,
 		ReactiveFormsModule,
 		HttpModule,
+		HttpClientModule,
 		BrowserAnimationsModule,
 		TranslateModule.forRoot({
 			loader: {
 				provide: TranslateLoader,
 				useFactory: translateStaticLoaderFactory,
-				deps: [Http]
+				deps: [HttpClient]
 			}
 		}),
 		AppRoutingModule,
+		FFMaterialModule,
+		MatProgressSpinnerModule,
+		MatTooltipModule,
 		SimpleNotificationsModule.forRoot(),
-		MaterialModule,
 		FFCoreModule.forRoot({
 			validationMessageProvider: {
 				provide: ValidationMessageProvider,
