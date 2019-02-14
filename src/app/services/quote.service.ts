@@ -5,15 +5,15 @@ import {Http} from "@angular/http";
 import {FileService} from "./file.service";
 import {AnalyticsService, AnalyticsEventType} from "./analytics.service";
 import {Quote} from "../models/quote.model";
-import {BaseInvoiceService} from "./base-invoice.service";
 import {map} from 'rxjs/operators';
+import {LineUtils} from '../utils/line-utils';
 
 @Injectable()
 export class QuoteService extends NavoryApi {
 
 	private pathQuotes = '/quotes';
 
-	constructor(http: Http, private fileService: FileService, private analytics: AnalyticsService, private baseInvoiceService: BaseInvoiceService) {
+	constructor(http: Http, private fileService: FileService, private analytics: AnalyticsService) {
 		super(http);
 	}
 
@@ -62,7 +62,7 @@ export class QuoteService extends NavoryApi {
 	}
 
 	getTaxAmounts(quote: Quote): any[] {
-		return this.baseInvoiceService.getTaxAmounts(quote);
+		return LineUtils.getTaxAmounts(quote.lines);
 	}
 
 	getPreviewURL(quote: Quote): string {

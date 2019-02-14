@@ -3,9 +3,9 @@ import {Http} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Config} from "../core/config";
-import {Formatter123} from "../core/formatter";
 import * as moment from 'moment';
 import {FileService} from "./file.service";
+import {DateFormatter} from '../core/date-formatter';
 
 @Injectable()
 export class ReportService extends NavoryApi {
@@ -13,7 +13,7 @@ export class ReportService extends NavoryApi {
 	private pathVatReport = '/reports/vat';
 	private pathFinance = '/finance';
 
-	constructor(http: Http, private formatter: Formatter123, private fileService: FileService) {
+	constructor(http: Http, private fileService: FileService) {
 		super(http);
 	}
 
@@ -35,15 +35,15 @@ export class ReportService extends NavoryApi {
 	}
 
 	getProfitLossReportUrl(startDate: Date, endDate: Date): string {
-		let start = this.formatter.formatDateForApi(startDate);
-		let end = this.formatter.formatDateForApi(endDate);
+		let start = DateFormatter.formatDateForApi(startDate);
+		let end = DateFormatter.formatDateForApi(endDate);
 
 		return this.constructApiUrl(`/reports/profit-loss?start=${start}&end=${end}`);
 	}
 
 	downloadProfitLossReport(startDate: Date, endDate: Date) {
-		let start = this.formatter.formatDateForApi(startDate);
-		let end = this.formatter.formatDateForApi(endDate);
+		let start = DateFormatter.formatDateForApi(startDate);
+		let end = DateFormatter.formatDateForApi(endDate);
 
 		let url = this.constructApiUrl(`/reports/profit-loss/pdf?start=${start}&end=${end}`);
 		this.fileService.downloadFromURL(url);

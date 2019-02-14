@@ -24,6 +24,7 @@ import {QuoteService} from "../../../services/quote.service";
 import {Quote} from "../../../models/quote.model";
 import {Expense} from '../../../models/expense';
 import {InvoiceUtils} from '../../../utils/invoice-utils';
+import {LineUtils} from '../../../utils/line-utils';
 const moment = require('moment');
 
 @Component({
@@ -69,7 +70,7 @@ export class InvoiceEditComponent implements OnInit {
 		this.invoice = new Invoice();
 		this.invoice.due_date = moment().add(30, 'd').toDate();
 		this.invoice.customer_country_code = this.bootstrapService.getDefaultCountry().code;
-		this.invoice.lines.push(new Line());
+		this.invoice.lines.push(LineUtils.newLine());
 		this.invoice.draft = true;
 		this.invoice.locale = 'de';
 

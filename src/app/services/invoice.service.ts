@@ -2,21 +2,22 @@ import {NavoryApi} from "./base.service";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Http} from "@angular/http";
-import {Invoice, InvoiceStatus} from '../models/invoice';
+import {Invoice, InvoiceStatus, RecurringInvoice} from '../models/invoice';
 import {FileService} from "./file.service";
 import {AnalyticsService, AnalyticsEventType} from "./analytics.service";
-import {BaseInvoiceService} from "./base-invoice.service";
 import {TranslateService} from '@ngx-translate/core';
 import {map} from 'rxjs/operators';
+import {LineUtils} from '../utils/line-utils';
 const moment = require('moment');
 
 @Injectable()
 export class InvoiceService extends NavoryApi {
 
 	private pathInvoices = '/invoices';
+	private pathRecurringInvoices = '/invoice/templates';
 	private pathAccountInvoices = '/account/invoices';
 
-	constructor(http: Http, private fileService: FileService, private analytics: AnalyticsService, private baseInvoiceService: BaseInvoiceService, private translate: TranslateService) {
+	constructor(http: Http, private fileService: FileService, private analytics: AnalyticsService, private translate: TranslateService) {
 		super(http);
 	}
 
@@ -31,6 +32,15 @@ export class InvoiceService extends NavoryApi {
 				return invoices;
 			}));
 	}
+
+	getRecurringInvoices(): Observable<RecurringInvoice[]> {
+		return this.get(this.pathRecurringInvoices);
+	}
+
+	getRecurringInvoice(id: string): Observable<RecurringInvoice> {
+		return this.get(`${this.pathRecurringInvoices}/${id}`);
+	}
+
 
 	getInvoice(id: string): Observable<Invoice> {
 		return this.get(this.getRestEntityPath(this.pathInvoices, id))
@@ -63,14 +73,25 @@ export class InvoiceService extends NavoryApi {
 			}));
 	}
 
+	saveRecurringInvoice(invoice: RecurringInvoice) {
+		if (invoice.id) {
+			return this.patch(this.getRestEntityPath(this.pathRecurringInvoices, invoice.id), invoice);
+		}
+		return this.post(this.pathRecurringInvoices, invoice);
+	}
+
 	deleteInvoice(invoice: Invoice): Observable<any> {
 		this.analytics.trackEvent(AnalyticsEventType.InvoiceDelete);
 
 		return this.delete(this.getRestEntityPath(this.pathInvoices, invoice.id));
 	}
 
+	deleteRecurringInvoice(invoice: RecurringInvoice): Observable<any> {
+		return this.delete(this.getRestEntityPath(this.pathRecurringInvoices, invoice.id));
+	}
+
 	getTaxAmounts(invoice: Invoice): any[] {
-		return this.baseInvoiceService.getTaxAmounts(invoice);
+		return LineUtils.getTaxAmounts(invoice.lines);
 	}
 
 	getPreviewURL(invoice: Invoice): string {

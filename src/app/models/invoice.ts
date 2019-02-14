@@ -1,6 +1,8 @@
 import {Calculator} from '../core/calculator';
 import {Payment} from './payment';
 import {BaseInvoice} from './invoice-base.model';
+import {BaseModel} from '../core/base.model';
+import {Line} from './invoice-line';
 
 export class Invoice extends BaseInvoice {
 
@@ -45,6 +47,29 @@ export class Invoice extends BaseInvoice {
 	set unpaid_amount(amount: number) {
 		this._unpaid_amount = amount;
 	}
+}
+
+export interface RecurringInvoice extends BaseModel {
+	id?: string;
+	name?: string;
+	group_prefix?: string;
+	invoice_template_lines?: Line[];
+	customer_id?: number;
+	comment?: string;
+	locale?: string;
+
+	interval_unit?: IntervalUnit
+
+	count?: number;
+
+	next_date?: string;
+}
+
+export enum IntervalUnit {
+	WEEKLY = 'weekly',
+	MONTHLY = 'monthly',
+	QUARTERLY = 'quarterly',
+	YEARLY = 'yearly'
 }
 
 export enum InvoiceStatus {

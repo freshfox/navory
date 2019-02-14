@@ -212,6 +212,22 @@
 		"all-amounts-net": "Beträge netto exkl. USt.",
 		"status-filter": "Status Filter"
 	},
+	"recurring-invoices": {
+		"title": "Wiederkehrende Rechnungen",
+		"new": "Neue wiederkehrende Rechnung",
+		"empty-state-message": "Du hast noch keine wiederkehrenden Rechnungen angelegt.<br>Erstelle hier Vorlagen für wiederkehrende Rechnungen, die dann automatisch angelegt werden.",
+		"next-date": "Nächste Rechnungsausstellung",
+		"create-title": "Neue wiederkehrende Rechnung",
+		"edit-title": "Wiederkehrende Rechnung bearbeiten",
+		"count": "Anzahl an Rechnungen (optional)",
+		"interval": "Intervall",
+		"intervals": {
+			"weekly": "Wöchentlich",
+			"monthly": "Monatlich",
+			"quarterly": "Vierteljährlich",
+			"yearly": "Jährlich"
+		}
+	},
 	"quotes": {
 		"title": "Angebote",
 		"new": "Neues Angebot",

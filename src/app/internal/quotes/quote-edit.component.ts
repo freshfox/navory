@@ -17,6 +17,7 @@ import {AnalyticsEventType, AnalyticsService} from "../../services/analytics.ser
 import {ModalService, ModalSize} from "../../lib/ffc-angular/services/modal.service";
 import {QuoteService} from "../../services/quote.service";
 import {Quote} from "../../models/quote.model";
+import {LineUtils} from '../../utils/line-utils';
 const moment = require('moment');
 
 @Component({
@@ -50,7 +51,7 @@ export class QuoteEditComponent implements OnInit {
 		this.quote = new Quote();
 		this.quote.valid_to_date = moment().add(30, 'd').toDate();
 		this.quote.customer_country_code = this.bootstrapService.getDefaultCountry().code;
-		this.quote.lines.push(new Line());
+		this.quote.lines.push(LineUtils.newLine());
 		this.quote.draft = true;
 
 

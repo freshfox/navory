@@ -12,7 +12,10 @@ import {Component, OnInit} from "@angular/core";
                     <li>
                         <a [routerLink]="['/income']" routerLinkActive="selected">{{ 'income.other-income' | translate }}</a>
                     </li>
-                </ul>
+					<li>
+						<a [routerLink]="['/recurring-invoices']" routerLinkActive="selected">{{ 'recurring-invoices.title' | translate }}</a>
+					</li>
+				</ul>
             </nav>
         </div>
         <router-outlet></router-outlet>    

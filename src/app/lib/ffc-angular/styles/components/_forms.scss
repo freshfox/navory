@@ -5,6 +5,7 @@
   border-radius: $formFieldBorderRadius;
   transition: background-color .2s ease;
   width: 100%;
+	line-height: 1.5;
 
   &:focus {
     outline: 0;

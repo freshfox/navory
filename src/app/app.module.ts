@@ -42,7 +42,6 @@ import {SettingsComponent} from './internal/settings/settings.component';
 import {AccountSettingsComponent} from './internal/settings/account-settings.component';
 import {ProfileSettingsComponent} from './internal/settings/profile-settings.component';
 import {ExpenseCategorySelectionComponent} from './internal/expenses/expense-category-selection.component';
-import {Formatter123} from './core/formatter';
 import {CustomerEditComponent} from './internal/customers/customer-edit.component';
 import {TaxRateService} from './services/tax-rate.service';
 import {IncomeEditComponent} from './internal/income/other-income/income-edit.component';
@@ -75,7 +74,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PublicGuard} from './guards/public.guard';
 import {SubscriptionFormComponent} from './internal/settings/subscription-form.component';
 import {SubscriptionService} from './services/subscription.service';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {CancelSubscriptionComponent} from './internal/settings/cancel-subscription.component';
 import {UpgradePlanComponent} from './core/components/upgrade-plan.component';
 import {VatReportComponent} from './internal/reports/vat-report.component';
@@ -84,26 +82,29 @@ import {FFCoreModule, FFMaterialModule} from './lib/ffc-angular/ff-core.module';
 import {ValidationMessageProviderImpl} from './core/validation-message-provider';
 import {QuotesComponent} from './internal/quotes/quotes.component';
 import {QuoteService} from './services/quote.service';
-import {BaseInvoiceService} from './services/base-invoice.service';
 import {InvoiceLinesEditComponent} from './core/components/invoice-lines-edit.component';
 import {InvoiceEditCustomerComponent} from './core/components/invoice-edit-customer.component';
 import {QuoteEditComponent} from './internal/quotes/quote-edit.component';
 import {ValidationMessageProvider} from './lib/ffc-angular/validation-message-provider';
 import {BadgeComponent} from './core/components/badge.component';
 import {AnnualAccountsComponent} from './internal/settings/annual-accounts.component';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {
-	MAT_FORM_FIELD_DEFAULT_OPTIONS,
+	MAT_FORM_FIELD_DEFAULT_OPTIONS, MatAutocompleteModule,
 	MatFormFieldModule,
 	MatInputModule,
-	MatProgressSpinnerModule, MatSelectModule,
+	MatProgressSpinnerModule,
+	MatSelectModule,
 	MatSnackBarModule,
 	MatTooltipModule
 } from '@angular/material';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
 import {translatePackagedLoaderFactory} from './core/translate-loader';
 import {LocalStorageService} from './services/local-storage.service';
+import {RecurringInvoicesComponent} from './internal/income/recurring-invoices/recurring-invoices.component';
+import {RecurringInvoiceEditComponent} from './internal/income/recurring-invoices/recurring-invoice-edit.component';
+import {CustomerSelectionComponent} from './core/components/customer-selection.component';
 
 export function validationMessageProviderFactory() {
 	return new ValidationMessageProviderImpl();
@@ -166,7 +167,12 @@ export function validationMessageProviderFactory() {
 		InvoiceEditCustomerComponent,
 		QuoteEditComponent,
 		BadgeComponent,
-		AnnualAccountsComponent
+		AnnualAccountsComponent,
+
+		RecurringInvoicesComponent,
+		RecurringInvoiceEditComponent,
+
+		CustomerSelectionComponent,
 	],
 	entryComponents: [
 		CustomerEditComponent,
@@ -201,6 +207,7 @@ export function validationMessageProviderFactory() {
 		MatInputModule,
 		MatFormFieldModule,
 		MatSelectModule,
+		MatAutocompleteModule,
 		SimpleNotificationsModule.forRoot(),
 		FFCoreModule.forRoot({
 			validationMessageProvider: {
@@ -208,7 +215,7 @@ export function validationMessageProviderFactory() {
 				useFactory: validationMessageProviderFactory
 			}
 		}),
-		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+		ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
 	],
 	providers: [
 		{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
@@ -228,7 +235,6 @@ export function validationMessageProviderFactory() {
 		BootstrapResolver,
 		BootstrapService,
 		FileService,
-		Formatter123,
 		TaxRateService,
 		InvoiceService,
 		AccountService,
@@ -237,7 +243,6 @@ export function validationMessageProviderFactory() {
 		AnalyticsService,
 		SubscriptionService,
 		QuoteService,
-		BaseInvoiceService,
 		LocalStorageService
 	],
 	bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import {TaxRate} from "../../../models/tax-rate";
 import {TaxRateService} from "../../../services/tax-rate.service";
 import {Config} from "../../../core/config";
 import {UnitService} from "../../../services/unit.service";
+import {LineUtils} from '../../../utils/line-utils';
 
 @Component({
 	selector: 'nvry-invoice-line',
@@ -94,7 +95,7 @@ export class InvoiceLineComponent implements OnInit {
 	}
 
 	getAmount(): number {
-		return this.invoiceLine.getNetAmount();
+		return LineUtils.getNetAmount(this.invoiceLine);
 	}
 
 	taxRateChanged(id: number) {

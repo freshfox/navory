@@ -20,6 +20,8 @@ import {VatReportComponent} from './reports/vat-report.component';
 import {ProfitLossReportComponent} from './reports/profit-loss-report.component';
 import {QuotesComponent} from './quotes/quotes.component';
 import {QuoteEditComponent} from './quotes/quote-edit.component';
+import {RecurringInvoicesComponent} from './income/recurring-invoices/recurring-invoices.component';
+import {RecurringInvoiceEditComponent} from './income/recurring-invoices/recurring-invoice-edit.component';
 
 export const InternalRoutes: Routes = [
 	{
@@ -49,6 +51,7 @@ export const InternalRoutes: Routes = [
 				children: [
 					{path: 'invoices', component: InvoicesComponent},
 					{path: 'income', component: IncomeListComponent},
+					{path: 'recurring-invoices', component: RecurringInvoicesComponent},
 				]
 			},
 
@@ -58,6 +61,9 @@ export const InternalRoutes: Routes = [
 
 			{path: 'invoices/new', component: InvoiceEditComponent},
 			{path: 'invoices/:id', component: InvoiceEditComponent},
+
+			{path: 'recurring-invoices/new', component: RecurringInvoiceEditComponent},
+			{path: 'recurring-invoices/:id', component: RecurringInvoiceEditComponent},
 
 			{path: 'income/new', component: IncomeEditComponent},
 			{path: 'income/:id', component: IncomeEditComponent},

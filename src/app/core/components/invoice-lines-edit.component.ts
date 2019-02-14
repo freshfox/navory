@@ -4,6 +4,7 @@ import {BootstrapService} from '../../services/bootstrap.service';
 import {TaxRateService} from '../../services/tax-rate.service';
 import {TaxRate} from '../../models/tax-rate';
 import {Unit} from '../../models/unit';
+import {LineUtils} from '../../utils/line-utils';
 
 @Component({
 	selector: 'nvry-invoice-lines-edit',
@@ -58,7 +59,7 @@ export class InvoiceLinesEditComponent {
 	addLine() {
 		let lastLine = this.lines[this.lines.length - 1];
 		let lastTaxRate = lastLine.tax_rate;
-		this.lines.push(new Line({tax_rate: lastTaxRate}));
+		this.lines.push(LineUtils.newLine({tax_rate: lastTaxRate}));
 	}
 
 	deleteLine(lineToDelete: Line) {
@@ -70,7 +71,7 @@ export class InvoiceLinesEditComponent {
 
 	copyLine(invoiceLine) {
 		let index = this.lines.indexOf(invoiceLine);
-		let lineCopy = new Line(invoiceLine);
+		let lineCopy = LineUtils.newLine(invoiceLine);
 
 		this.lines.splice(index, 0, lineCopy);
 	}

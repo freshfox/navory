@@ -1,5 +1,4 @@
 import {BaseInvoice} from "./invoice-base.model";
-import {Line} from "./invoice-line";
 
 export class Quote extends BaseInvoice {
 
@@ -12,7 +11,7 @@ export class Quote extends BaseInvoice {
 	}
 
 	set quote_lines(lines: any[]) {
-		this.lines = lines.map(currentLine => new Line(currentLine));
+		this.lines = lines;
 	}
 }
 
