@@ -76,7 +76,6 @@ export class CustomerSelectionComponent {
 			return [];
 		}
 
-		console.log(value);
 		const filterValue = value.toLowerCase();
 
 		return this.customers.filter(option => option.name.toLowerCase().includes(filterValue));
