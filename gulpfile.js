@@ -4,9 +4,6 @@ const svgmin = require('gulp-svgmin');
 const path = require('path');
 const favicons = require('gulp-favicons');
 const gutil = require('gulp-util');
-const cheerio = require('cheerio');
-const md5File = require('md5-file');
-const fs = require('fs');
 
 const dirDist = 'dist';
 const dirAssets = 'src/assets';
@@ -58,38 +55,6 @@ gulp.task('favicons', function () {
 		.pipe(gulp.dest('./dist/assets/images/favicons/'));
 });
 
-gulp.task('cachebust', () => {
-	let languages = ['de', 'en'];
-
-	let hash = '';
-	languages.forEach((lang) => {
-		let file = distPathToLangFile(lang);
-		hash += getHash(file);
-	});
-
-	languages.forEach((lang) => {
-		let file = distPathToLangFile(lang);
-		fs.renameSync(file, distPathToLangFile(lang + hash));
-	});
-
-	let index = dirDist + '/index.html';
-	let html = fs.readFileSync(index);
-	let $ = cheerio.load(html);
-	let script = `<script>window.I18N_HASH = "${hash}";</script>`;
-	$('head').append(script);
-
-	fs.writeFileSync(index, $.html());
-});
-
-function distPathToLangFile(lang) {
-	return dirDist + `/assets/i18n/${lang}.json`;
-}
-
-function getHash(file) {
-	return md5File.sync(file)
-}
-
-
 gulp.task('default', ['beforeBuild', 'afterBuild']);
 gulp.task('beforeBuild', ['svgstore']);
-gulp.task('afterBuild', ['favicons', 'cachebust']);
+gulp.task('afterBuild', ['favicons']);

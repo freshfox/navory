@@ -102,15 +102,10 @@ import {
 } from '@angular/material';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-
-declare let window: any;
+import {translatePackagedLoaderFactory} from './core/translate-loader';
 
 export function validationMessageProviderFactory() {
 	return new ValidationMessageProviderImpl();
-}
-
-export function translateStaticLoaderFactory(httpClient: HttpClient) {
-	return new TranslateHttpLoader(httpClient, '/assets/i18n/', `${window.I18N_HASH || ''}.json`);
 }
 
 @NgModule({
@@ -194,8 +189,7 @@ export function translateStaticLoaderFactory(httpClient: HttpClient) {
 		TranslateModule.forRoot({
 			loader: {
 				provide: TranslateLoader,
-				useFactory: translateStaticLoaderFactory,
-				deps: [HttpClient]
+				useFactory: translatePackagedLoaderFactory,
 			}
 		}),
 		AppRoutingModule,
