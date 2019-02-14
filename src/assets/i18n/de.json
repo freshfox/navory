@@ -333,5 +333,9 @@
 		"default-invoice-description": "Zahlung für Rechnung {{number}}",
 		"default-income-description": "Zahlung für Einnahme {{number}}",
 		"default-expense-description": "Zahlung für Ausgabe {{number}}"
+	},
+	"updates": {
+		"title": "Eine neue Version von Navory ist verfügbar.",
+		"reload": "Jetzt laden"
 	}
 }
