@@ -103,6 +103,7 @@ import {
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {translatePackagedLoaderFactory} from './core/translate-loader';
+import {LocalStorageService} from './services/local-storage.service';
 
 export function validationMessageProviderFactory() {
 	return new ValidationMessageProviderImpl();
@@ -236,7 +237,8 @@ export function validationMessageProviderFactory() {
 		AnalyticsService,
 		SubscriptionService,
 		QuoteService,
-		BaseInvoiceService
+		BaseInvoiceService,
+		LocalStorageService
 	],
 	bootstrap: [AppComponent]
 })

@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 
 
 @Injectable()
-export class Storage {
+export class LocalStorageService {
 
 	private localStorage: any;
 

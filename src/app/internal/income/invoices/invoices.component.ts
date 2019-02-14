@@ -11,6 +11,7 @@ import {TableOptions} from '../../../lib/ffc-angular/components/table/table-opti
 import {SortDirection} from '../../../lib/ffc-angular/components/table/sort-direction.enum';
 import {ColumnAlignment} from '../../../lib/ffc-angular/components/table/column-alignment.enum';
 import {InvoiceUtils} from '../../../utils/invoice-utils';
+import {LocalStorageService} from '../../../services/local-storage.service';
 
 @Component({
 	selector: 'nvry-invoices',
@@ -23,20 +24,25 @@ export class InvoicesComponent implements OnInit {
 	filteredInvoices: Invoice[] = [];
 
 	statusOptions: InvoiceStatus[] = Object.keys(InvoiceStatus).map(key => InvoiceStatus[key]);
-	selectedStatusOptions: InvoiceStatus[] = this.statusOptions;
+	selectedStatusOptions: InvoiceStatus[];
 
 	@ViewChild('statusColumn') statusColumnTpl: TemplateRef<any>;
 	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
 	loading: boolean = false;
 	tableOptions: TableOptions;
 
+	static readonly INVOICES_STATUS_FILTER_KEY = 'invoices_status_filter';
+
 	constructor(private translate: TranslateService,
 				private invoiceService: InvoiceService,
 				private datePipe: DatePipe,
 				private numberPipe: NumberPipe,
 				private router: Router,
+				private storage: LocalStorageService,
 				private cdf: ChangeDetectorRef,
 				private modalService: ModalService) {
+		const options = this.storage.getObject(InvoicesComponent.INVOICES_STATUS_FILTER_KEY);
+		this.selectedStatusOptions = options || this.statusOptions;
 	}
 
 	ngOnInit() {
@@ -92,6 +98,7 @@ export class InvoicesComponent implements OnInit {
 
 	selectedStatusOptionsChanged() {
 		this.filteredInvoices = this.getFilteredInvoices();
+		this.storage.setObject(InvoicesComponent.INVOICES_STATUS_FILTER_KEY, this.selectedStatusOptions);
 		this.cdf.detectChanges();
 	}
 

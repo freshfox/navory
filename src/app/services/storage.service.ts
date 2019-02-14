@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
-import {Storage} from "../core/storage";
+import {LocalStorageService} from "./local-storage.service";
 
 
 @Injectable()
 export class StorageService {
 
-	constructor(private storage: Storage) {
+	constructor(private storage: LocalStorageService) {
 	}
 
 }

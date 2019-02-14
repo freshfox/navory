@@ -1,16 +1,18 @@
 <div class="page-header">
 	<div class="invoice-stats" *ngIf="!loading">
-		<div class="invoice-stats__item">
-			<span class="title">{{ 'general.issued' | translate }}</span>
-			<span class="amount color-customers">{{ getIssuedAmount() | ffNumber }}</span>
-		</div>
-		<div class="invoice-stats__item">
-			<span class="title">{{ 'general.draft' | translate }}</span>
-			<span class="amount color-gray">{{ getDraftAmount() | ffNumber }}</span>
-		</div>
-		<div class="invoice-stats__item">
-			<span class="title">{{ 'general.total' | translate }}</span>
-			<span class="amount">{{ getTotalAmount() | ffNumber }}</span>
+		<div class="invoice-stats__row">
+			<div class="invoice-stats__item">
+				<span class="title">{{ 'general.issued' | translate }}</span>
+				<span class="amount color-customers">{{ getIssuedAmount() | ffNumber }}</span>
+			</div>
+			<div class="invoice-stats__item">
+				<span class="title">{{ 'general.draft' | translate }}</span>
+				<span class="amount color-gray">{{ getDraftAmount() | ffNumber }}</span>
+			</div>
+			<div class="invoice-stats__item">
+				<span class="title">{{ 'general.total' | translate }}</span>
+				<span class="amount">{{ getTotalAmount() | ffNumber }}</span>
+			</div>
 		</div>
 	</div>
 
