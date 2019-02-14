@@ -14,11 +14,7 @@ $invoiceBadgeWidth: 80px;
 }
 
 .invoice-stats {
-	display: flex;
-	padding-top: 10px;
-	padding-bottom: 10px;
-
-	.invoice-stats__item {
+	&__item {
 		width: 150px;
 
 		.title {
@@ -28,6 +24,17 @@ $invoiceBadgeWidth: 80px;
 		.amount {
 			font-size: 20px;
 		}
+	}
+
+	&__row {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		display: flex;
+	}
+
+	&__notice {
+		color: $colorGrayMedium;
+		font-size: 11px;
 	}
 }
 

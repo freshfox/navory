@@ -67,6 +67,12 @@
 	align-items: center;
 	flex-wrap: wrap;
 
+	&__row {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
 	&.page-header--no-margin {
 		margin-bottom: 0;
 	}

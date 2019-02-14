@@ -1,27 +1,32 @@
-<div class="page-header">
-	<div class="invoice-stats" *ngIf="!loading">
-		<div class="invoice-stats__item">
-			<span class="title">{{ 'general.overdue' | translate }}</span>
-			<span class="amount color-expenses">{{ getOverdueAmount() | ffNumber }}</span>
+<div class="page-header" style="display: block;">
+	<div class="page-header__row">
+		<div class="invoice-stats" *ngIf="!loading">
+			<div class="invoice-stats__row">
+				<div class="invoice-stats__item">
+					<span class="title">{{ 'general.overdue' | translate }}</span>
+					<span class="amount color-expenses">{{ getOverdueAmount() | ffNumber }}</span>
+				</div>
+				<div class="invoice-stats__item">
+					<span class="title">{{ 'invoices.open' | translate }}</span>
+					<span class="amount color-customers">{{ getIssuedAmount() | ffNumber }}</span>
+				</div>
+				<div class="invoice-stats__item">
+					<span class="title">{{ 'general.draft' | translate }}</span>
+					<span class="amount color-gray">{{ getDraftAmount() | ffNumber }}</span>
+				</div>
+				<div class="invoice-stats__item">
+					<span class="title">{{ 'general.total' | translate }}</span>
+					<span class="amount">{{ getTotalAmount() | ffNumber }}</span>
+				</div>
+			</div>
 		</div>
-		<div class="invoice-stats__item">
-			<span class="title">{{ 'invoices.open' | translate }}</span>
-			<span class="amount color-customers">{{ getIssuedAmount() | ffNumber }}</span>
-		</div>
-		<div class="invoice-stats__item">
-			<span class="title">{{ 'general.draft' | translate }}</span>
-			<span class="amount color-gray">{{ getDraftAmount() | ffNumber }}</span>
-		</div>
-		<div class="invoice-stats__item">
-			<span class="title">{{ 'general.total' | translate }}</span>
-			<span class="amount">{{ getTotalAmount() | ffNumber }}</span>
-		</div>
+
+
+		<button ff-button icon="plus" class="create-button" (click)="createInvoice()">
+			{{ 'invoices.new' | translate }}
+		</button>
 	</div>
-
-
-	<button ff-button icon="plus" class="create-button" (click)="createInvoice()">
-		{{ 'invoices.new' | translate }}
-	</button>
+	<small class="small-notice">{{ 'invoices.all-amounts-net' | translate }}</small>
 </div>
 
 <ff-table [options]="tableOptions" [loading]="loading" [rows]="invoices" (onRowClicked)="editInvoice($event)"
