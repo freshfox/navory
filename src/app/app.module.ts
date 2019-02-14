@@ -2,8 +2,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {HttpModule, Http} from '@angular/http';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app.routing';
 import {AuthService} from './services/auth.service';
@@ -93,6 +93,8 @@ import {BadgeComponent} from './core/components/badge.component';
 import {AnnualAccountsComponent} from './internal/settings/annual-accounts.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {MatProgressSpinnerModule, MatTooltipModule} from '@angular/material';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 declare let window: any;
 
@@ -199,7 +201,8 @@ export function translateStaticLoaderFactory(httpClient: HttpClient) {
 				provide: ValidationMessageProvider,
 				useFactory: validationMessageProviderFactory
 			}
-		})
+		}),
+		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 	],
 	providers: [
 		AuthService,
