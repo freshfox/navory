@@ -48,11 +48,11 @@ export class Invoice extends BaseInvoice {
 }
 
 export enum InvoiceStatus {
-	Draft = 'draft' as any,
-	Canceled = 'canceled' as any,
-	Issued = 'issued' as any,
-	PartlyPaid = 'partly-paid' as any,
-	Paid = 'paid' as any,
-	Overdue = 'overdue' as any
+	Draft = 'draft',
+	Canceled = 'canceled',
+	Issued = 'issued',
+	PartlyPaid = 'partly-paid',
+	Paid = 'paid',
+	Overdue = 'overdue'
 }
 

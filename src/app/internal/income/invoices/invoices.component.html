@@ -22,14 +22,23 @@
 		</div>
 
 
+		<mat-form-field *ngIf="!loading" class="">
+			<mat-label>{{ 'invoices.status-filter' | translate }}</mat-label>
+			<mat-select multiple [(ngModel)]="selectedStatusOptions" (ngModelChange)="selectedStatusOptionsChanged()">
+				<mat-option *ngFor="let status of statusOptions" [value]="status">
+					{{ getBadgeDataForStatus(status).text }}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+
 		<button ff-button icon="plus" class="create-button" (click)="createInvoice()">
 			{{ 'invoices.new' | translate }}
 		</button>
 	</div>
-	<small class="small-notice">{{ 'invoices.all-amounts-net' | translate }}</small>
+	<small class="small-notice" *ngIf="!loading">{{ 'invoices.all-amounts-net' | translate }}</small>
 </div>
 
-<ff-table [options]="tableOptions" [loading]="loading" [rows]="invoices" (onRowClicked)="editInvoice($event)"
+<ff-table [options]="tableOptions" [loading]="loading" [rows]="filteredInvoices" (onRowClicked)="editInvoice($event)"
 			class="invoice-list-table">
 
 	<div empty class="empty-view">

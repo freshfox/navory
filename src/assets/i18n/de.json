@@ -209,7 +209,8 @@
 		"cancel-confirm-message": "Diese Aktion kann nicht rückgängig gemacht werden. Auf der Rechnung können nach dem stornieren keine Zahlungen mehr verbucht werden.",
 		"cancel-success": "Rechnung erfolgreich storniert",
 		"group-prefix": "Rechnungskreis Prefix",
-		"all-amounts-net": "Beträge netto exkl. USt."
+		"all-amounts-net": "Beträge netto exkl. USt.",
+		"status-filter": "Status Filter"
 	},
 	"quotes": {
 		"title": "Angebote",

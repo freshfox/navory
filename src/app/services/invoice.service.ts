@@ -98,9 +98,14 @@ export class InvoiceService extends NavoryApi {
 
 
 	getBadgeData(invoice) {
+		return this.getBadgeDataForStatus(this.getInvoiceStatus(invoice));
+	}
+
+	getBadgeDataForStatus(status: InvoiceStatus) {
 		let text;
 		let badgeClass;
-		switch (this.getInvoiceStatus(invoice)) {
+
+		switch (status) {
 			case InvoiceStatus.Canceled:
 				text = this.translate.instant('general.canceled');
 				badgeClass = 'gray';

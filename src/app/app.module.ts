@@ -92,7 +92,14 @@ import {ValidationMessageProvider} from './lib/ffc-angular/validation-message-pr
 import {BadgeComponent} from './core/components/badge.component';
 import {AnnualAccountsComponent} from './internal/settings/annual-accounts.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {MatProgressSpinnerModule, MatSnackBarModule, MatTooltipModule} from '@angular/material';
+import {
+	MAT_FORM_FIELD_DEFAULT_OPTIONS,
+	MatFormFieldModule,
+	MatInputModule,
+	MatProgressSpinnerModule, MatSelectModule,
+	MatSnackBarModule,
+	MatTooltipModule
+} from '@angular/material';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
@@ -196,6 +203,9 @@ export function translateStaticLoaderFactory(httpClient: HttpClient) {
 		MatProgressSpinnerModule,
 		MatTooltipModule,
 		MatSnackBarModule,
+		MatInputModule,
+		MatFormFieldModule,
+		MatSelectModule,
 		SimpleNotificationsModule.forRoot(),
 		FFCoreModule.forRoot({
 			validationMessageProvider: {
@@ -206,6 +216,8 @@ export function translateStaticLoaderFactory(httpClient: HttpClient) {
 		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 	],
 	providers: [
+		{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
+
 		AuthService,
 		UserService,
 		CustomerService,

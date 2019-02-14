@@ -48,6 +48,7 @@
     "jquery": "^3.2.1",
     "ladda": "^1.0.0",
     "moment": "^2.18.1",
+    "normalize.css": "^8.0.1",
     "numbro": "^1.9.3",
     "pikaday": "^1.6.0",
     "rxjs": "^6.4.0",

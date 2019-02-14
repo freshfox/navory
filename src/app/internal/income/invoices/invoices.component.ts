@@ -1,12 +1,12 @@
-import {Component, OnInit, ViewChild, TemplateRef} from "@angular/core";
-import {TranslateService} from "@ngx-translate/core";
-import {Invoice, InvoiceStatus} from "../../../models/invoice";
-import {InvoiceService} from "../../../services/invoice.service";
-import {DatePipe} from "../../../core/pipes/date.pipe";
-import {Router} from "@angular/router";
-import {Calculator} from "../../../core/calculator";
-import {NumberPipe} from "../../../lib/ffc-angular/pipes/number.pipe";
-import {ModalService} from "../../../lib/ffc-angular/services/modal.service";
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {Invoice, InvoiceStatus} from '../../../models/invoice';
+import {InvoiceService} from '../../../services/invoice.service';
+import {DatePipe} from '../../../core/pipes/date.pipe';
+import {Router} from '@angular/router';
+import {Calculator} from '../../../core/calculator';
+import {NumberPipe} from '../../../lib/ffc-angular/pipes/number.pipe';
+import {ModalService} from '../../../lib/ffc-angular/services/modal.service';
 import {TableOptions} from '../../../lib/ffc-angular/components/table/table-options.model';
 import {SortDirection} from '../../../lib/ffc-angular/components/table/sort-direction.enum';
 import {ColumnAlignment} from '../../../lib/ffc-angular/components/table/column-alignment.enum';
@@ -14,11 +14,16 @@ import {InvoiceUtils} from '../../../utils/invoice-utils';
 
 @Component({
 	selector: 'nvry-invoices',
-	templateUrl: './invoices.component.html'
+	templateUrl: './invoices.component.html',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvoicesComponent implements OnInit {
 
 	invoices: Invoice[] = [];
+	filteredInvoices: Invoice[] = [];
+
+	statusOptions: InvoiceStatus[] = Object.keys(InvoiceStatus).map(key => InvoiceStatus[key]);
+	selectedStatusOptions: InvoiceStatus[] = this.statusOptions;
 
 	@ViewChild('statusColumn') statusColumnTpl: TemplateRef<any>;
 	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
@@ -30,6 +35,7 @@ export class InvoicesComponent implements OnInit {
 				private datePipe: DatePipe,
 				private numberPipe: NumberPipe,
 				private router: Router,
+				private cdf: ChangeDetectorRef,
 				private modalService: ModalService) {
 	}
 
@@ -39,6 +45,8 @@ export class InvoicesComponent implements OnInit {
 			.subscribe(invoices => {
 				this.loading = false;
 				this.invoices = invoices;
+				this.filteredInvoices = invoices;
+				this.cdf.detectChanges();
 			});
 
 		this.tableOptions = new TableOptions({
@@ -72,6 +80,21 @@ export class InvoicesComponent implements OnInit {
 		});
 	}
 
+	private getFilteredInvoices() {
+		if (this.selectedStatusOptions.length === this.statusOptions.length) {
+			return this.invoices;
+		}
+
+		return this.invoices.filter(invoice => {
+			return this.selectedStatusOptions.indexOf(this.invoiceService.getInvoiceStatus(invoice)) >= 0;
+		});
+	}
+
+	selectedStatusOptionsChanged() {
+		this.filteredInvoices = this.getFilteredInvoices();
+		this.cdf.detectChanges();
+	}
+
 	createInvoice() {
 		this.router.navigate(['/invoices/new']);
 	}
@@ -98,11 +121,16 @@ export class InvoicesComponent implements OnInit {
 				this.invoices.splice(index, 1);
 				this.invoiceService.deleteInvoice(invoice).subscribe();
 				this.modalService.hideCurrentModal();
+				this.cdf.detectChanges();
 			});
 	}
 
 	getBadgeData(invoice: Invoice) {
 		return this.invoiceService.getBadgeData(invoice);
+	}
+
+	getBadgeDataForStatus(status: InvoiceStatus) {
+		return this.invoiceService.getBadgeDataForStatus(status);
 	}
 
 	getInvoiceStatus(invoice: Invoice): InvoiceStatus {
