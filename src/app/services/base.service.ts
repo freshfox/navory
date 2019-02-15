@@ -18,8 +18,8 @@ export class NavoryApi {
 		this.baseUrl = environment.apiUrl;
 	}
 
-	protected get(url: string): Observable<any> {
-		return this.http.get(this.constructApiUrl(url), this.defaultHttpOptions)
+	protected get(url: string, params?: any): Observable<any> {
+		return this.http.get(this.constructApiUrl(url), Object.assign({ search: params }, this.defaultHttpOptions))
 			.pipe(map(this.extract), catchError(this.handleError));
 	}
 

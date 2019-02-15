@@ -15,6 +15,15 @@
 		}
 	}
 
+	&-fields {
+		display: flex;
+
+		.mat-form-field {
+			margin-right: 16px;
+			width: 150px;
+		}
+	}
+
 	.vat-report-amount-to-pay-container {
 		display: flex;
 		align-items: center;

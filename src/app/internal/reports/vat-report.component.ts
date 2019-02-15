@@ -11,8 +11,6 @@ export class VatReportComponent implements OnInit {
 	report;
 
 	loading: boolean = false;
-	selectedQuarter: number;
-	selectedYear: number;
 	quarters = [
 		{
 			value: 0,
@@ -32,19 +30,29 @@ export class VatReportComponent implements OnInit {
 		}
 	];
 
-	reportsEnabled: boolean;
+	months: string[] = [];
+	timeFrameTypes = [
+		TimeframeType.Quarterly,
+		TimeframeType.Monthly,
+	];
+	timeframeTypeQuarterly = TimeframeType.Quarterly;
+	timeframeTypeMonthly = TimeframeType.Monthly;
 
-	constructor(private reportService: ReportService, private subscriptionService: SubscriptionService) {
+	selectedQuarter: number;
+	selectedMonth: number;
+	selectedYear: number;
+	selectedTimeFrameType = TimeframeType.Quarterly;
+
+	constructor(private reportService: ReportService) {
 		this.selectedYear = new Date().getFullYear();
 		this.selectedQuarter = moment().quarter() - 1;
+		this.selectedMonth = moment().month() - 1;
+
+		this.months = moment.months();
 	}
 
 	ngOnInit() {
-		this.reportsEnabled = this.subscriptionService.reportsEnabled();
-
-		if(this.reportsEnabled) {
-			this.refreshReport();
-		}
+		this.refreshReport();
 	}
 
 	getAbsoluteAmount(amount: number) {
@@ -53,10 +61,26 @@ export class VatReportComponent implements OnInit {
 
 	refreshReport() {
 		this.loading = true;
-		this.reportService.getVatReport(this.selectedQuarter, this.selectedYear)
+
+		const options = {
+			year: this.selectedYear
+		} as any;
+
+		if (this.selectedTimeFrameType === TimeframeType.Monthly) {
+			options.month = this.selectedMonth;
+		} else {
+			options.quarter = this.selectedQuarter;
+		}
+
+		this.reportService.getVatReport(options)
 			.subscribe(report => {
 				this.report = report;
 				this.loading = false;
 			});
 	}
+}
+
+enum TimeframeType {
+	Quarterly = 'quarterly',
+	Monthly = 'monthly'
 }

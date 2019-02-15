@@ -17,10 +17,8 @@ export class ReportService extends NavoryApi {
 		super(http);
 	}
 
-	getVatReport(quarter: number, year: number = new Date().getFullYear()): Observable<any> {
-		let path = `${this.pathVatReport}/?quarter=${quarter}&year=${year}`;
-
-		return this.get(path);
+	getVatReport(options: {month?: number, quarter?: number, year: number}): Observable<any> {
+		return this.get(this.pathVatReport, options);
 	}
 
 	getFinanceOverview(year: number): Observable<any> {

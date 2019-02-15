@@ -79,7 +79,8 @@
 		"canceled": "Storniert",
 		"bookings": "Buchungen",
 		"year": "Jahr",
-		"language": "Sprache"
+		"language": "Sprache",
+		"timeframe": "Zeitraum"
 	},
 	"app": {
 		"name": "Navory",
@@ -258,7 +259,11 @@
 	"reports": {
 		"title": "Berichte",
 		"vat": "UVA",
-		"profit-loss": "Gewinn/Verlust"
+		"profit-loss": "Gewinn/Verlust",
+		"timeframe-types": {
+			"monthly": "Monatlich",
+			"quarterly": "Vierteljährlich"
+		}
 	},
 	"settings": {
 		"account": "Account",

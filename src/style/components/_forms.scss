@@ -21,3 +21,37 @@ label {
 ::placeholder {
 	font-weight: normal;
 }
+
+
+.mat-form-field {
+	.mat-form-field-infix {
+		border-top: 0;
+		padding: .8em 0 .8em 0;
+	}
+
+	.mat-form-field-wrapper {
+		margin: 0 !important;
+		padding: 0;
+	}
+
+	.mat-form-field-outline {
+		top: 0 !important;
+
+		> * {
+			background: white;
+		}
+	}
+
+	.mat-select-arrow-wrapper {
+		transform: none !important;
+	}
+
+	.mat-form-field-suffix {
+		top: 0 !important;
+		color: $colorGray;
+	}
+
+	.mat-form-field-flex {
+		align-items: center;
+	}
+}
