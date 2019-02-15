@@ -55,6 +55,7 @@ export class CustomerSelectionComponent {
 
 	removeCustomer() {
 		this.selectCustomer(null);
+		this.control.setValue(null);
 	}
 
 	customerSelected(event: MatAutocompleteSelectedEvent) {

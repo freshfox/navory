@@ -13,7 +13,7 @@ export class InvoiceUtils {
 
 	static newRecurringInvoice(): RecurringInvoice {
 		return {
-			invoice_template_lines: [],
+			lines: [],
 			locale: 'de',
 			count: 12,
 			interval_unit: IntervalUnit.MONTHLY

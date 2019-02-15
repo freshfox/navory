@@ -3,6 +3,7 @@ import {Payment} from './payment';
 import {BaseInvoice} from './invoice-base.model';
 import {BaseModel} from '../core/base.model';
 import {Line} from './invoice-line';
+import {Customer} from './customer';
 
 export class Invoice extends BaseInvoice {
 
@@ -53,8 +54,9 @@ export interface RecurringInvoice extends BaseModel {
 	id?: string;
 	name?: string;
 	group_prefix?: string;
-	invoice_template_lines?: Line[];
+	lines?: Line[];
 	customer_id?: number;
+	customer?: Customer;
 	comment?: string;
 	locale?: string;
 

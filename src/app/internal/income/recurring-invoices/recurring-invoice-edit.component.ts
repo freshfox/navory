@@ -11,6 +11,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NotificationsService} from 'angular2-notifications';
 import {Helpers} from '../../../core/helpers';
 import {DateFormatter} from '../../../core/date-formatter';
+import {FormValidator} from '../../../core/form-validator';
+import {Customer} from '../../../models/customer';
 
 @Component({
 	selector: 'recurring-invoice-edit-component',
@@ -47,7 +49,8 @@ import {DateFormatter} from '../../../core/date-formatter';
 										  [formControl]="form.controls.name"
 										  label="Name der wiederkehrenden Rechnung"></ff-input>
 
-								<nvry-customer-selection [(customer)]="invoice.customer"></nvry-customer-selection>
+								<nvry-customer-selection [(customer)]="invoice.customer" (customerChange)="customerChanged($event)"></nvry-customer-selection>
+								<ff-control-messages [control]="form.controls.customer"></ff-control-messages>
 							</div>
 
 							<div class="bit-50">
@@ -66,6 +69,7 @@ import {DateFormatter} from '../../../core/date-formatter';
 
 										<ff-input type="date"
 												  [(ngModel)]="invoice.next_date"
+												  [formControl]="form.controls.next_date"
 												  [label]="'recurring-invoices.next-date' | translate"></ff-input>
 									</div>
 									<div class="bit-50">
@@ -86,7 +90,7 @@ import {DateFormatter} from '../../../core/date-formatter';
 						</div>
 					</div>
 
-					<nvry-invoice-lines-edit [(lines)]="invoice.invoice_template_lines"></nvry-invoice-lines-edit>
+					<nvry-invoice-lines-edit [(lines)]="invoice.lines"></nvry-invoice-lines-edit>
 
 					<div class="invoice-edit-paper-section invoice-total">
 						<nvry-total-indicator [totalNet]="getTotalNet()" [totalGross]="getTotalGross()"
@@ -138,7 +142,7 @@ export class RecurringInvoiceEditComponent implements OnInit {
 				private translate: TranslateService,
 				private snackbar: NotificationsService) {
 		this.invoice = InvoiceUtils.newRecurringInvoice();
-		this.invoice.invoice_template_lines.push(LineUtils.newLine());
+		this.invoice.lines.push(LineUtils.newLine());
 
 		this.intervals = [
 			{ id: IntervalUnit.WEEKLY, name: this.translate.instant('recurring-invoices.intervals.weekly')  },
@@ -150,7 +154,9 @@ export class RecurringInvoiceEditComponent implements OnInit {
 
 	ngOnInit() {
 		this.form = this.fb.group({
-			name: ['', Validators.required]
+			name: ['', Validators.required],
+			next_date: ["", Validators.compose([Validators.required, FormValidator.date])],
+			customer: ["", Validators.required]
 		});
 
 
@@ -170,6 +176,10 @@ export class RecurringInvoiceEditComponent implements OnInit {
 		});
 	}
 
+	customerChanged(customer: Customer) {
+		this.form.controls.customer.setValue(customer);
+	}
+
 	localeChanged(locale: string) {
 		this.invoice.locale = locale;
 	}
@@ -179,27 +189,27 @@ export class RecurringInvoiceEditComponent implements OnInit {
 	}
 
 	getTotalNet() {
-		return LineUtils.getTotalGross(this.invoice.invoice_template_lines);
+		return LineUtils.getTotalGross(this.invoice.lines);
 	}
 
 	getTotalGross() {
-		return LineUtils.getTotalGross(this.invoice.invoice_template_lines);
+		return LineUtils.getTotalGross(this.invoice.lines);
 	}
 
 	getOccuringTaxRates() {
-		return LineUtils.getTaxAmounts(this.invoice.invoice_template_lines);
+		return LineUtils.getTaxAmounts(this.invoice.lines);
 	}
 
 	save() {
 		Helpers.validateAllFields(this.form);
-		if (this.form.valid) {
+		if (this.form.valid && this.invoice.customer) {
 			this.saving = true;
 
 			this.invoice.next_date = DateFormatter.formatDateForApi(this.invoice.next_date);
 			this.invoiceService.saveRecurringInvoice(this.invoice)
 				.subscribe((updatedInvoice: Invoice) => {
 						if (!this.invoice.id && updatedInvoice.id) {
-							this.location.replaceState(`/invoices/${updatedInvoice.id}`);
+							this.location.replaceState(`/recurring-invoices/${updatedInvoice.id}`);
 						}
 
 						this.saving = false;

@@ -27,8 +27,8 @@
 			<h3>Vorberechnung</h3>
 			<div class="vat-report-amount-to-pay-container">
             <span class="vat-report-amount-to-pay" [class.amount-positive]="report.amountToPay > 0">
-                <span *ngIf="report.amountToPay >= 0">Vorauszahlung:</span>
-                <span *ngIf="report.amountToPay < 0">Rückerstattung:</span>
+                <span *ngIf="report.amountToPay >= 0">Vorauszahlung:&nbsp;</span>
+                <span *ngIf="report.amountToPay < 0">Rückerstattung:&nbsp;</span>
 
                 <span class="amount">{{ getAbsoluteAmount(report.amountToPay) | ffNumber }}</span>
             </span>
