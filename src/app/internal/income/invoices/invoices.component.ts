@@ -52,6 +52,7 @@ export class InvoicesComponent implements OnInit {
 				this.loading = false;
 				this.invoices = invoices;
 				this.filteredInvoices = invoices;
+				this.selectedStatusOptionsChanged();
 				this.cdf.detectChanges();
 			});
 
