@@ -25,6 +25,10 @@ export class BaseInvoice extends BaseModel {
 	}
 
 	protected initLines(apiLinesPropertyName: string) {
+		if (this.lines) {
+			return;
+		}
+		
 		if (this[apiLinesPropertyName]) {
 			this.lines = this[apiLinesPropertyName];
 		}
