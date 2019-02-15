@@ -8,6 +8,8 @@ import {TableOptions} from '../../../lib/ffc-angular/components/table/table-opti
 import {ColumnAlignment} from '../../../lib/ffc-angular/components/table/column-alignment.enum';
 import {ModalService} from '../../../lib/ffc-angular/services/modal.service';
 import {NumberPipe} from '../../../lib/ffc-angular/pipes/number.pipe';
+import {InvoiceUtils} from '../../../utils/invoice-utils';
+import {LineUtils} from '../../../utils/line-utils';
 
 @Component({
 	selector: 'nvry-recurring-invoices',
@@ -82,9 +84,11 @@ export class RecurringInvoicesComponent implements OnInit {
 				},
 				{
 					name: this.translate.instant('general.amount_net'),
-					prop: 'amount',
 					pipe: this.numberPipe,
 					width: 15,
+					getDynamicValue: (invoice: RecurringInvoice) => {
+						return LineUtils.getTotalNet(invoice.lines);
+					},
 					alignment: ColumnAlignment.Right
 				},
 				{width: 4, cellTemplate: this.actionsColumn},
