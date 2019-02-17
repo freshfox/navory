@@ -98,9 +98,13 @@ export class InvoicesComponent implements OnInit {
 	}
 
 	selectedStatusOptionsChanged() {
-		this.filteredInvoices = this.getFilteredInvoices();
+		this.refreshFilteredInvoices();
 		this.storage.setObject(InvoicesComponent.INVOICES_STATUS_FILTER_KEY, this.selectedStatusOptions);
 		this.cdf.detectChanges();
+	}
+
+	refreshFilteredInvoices() {
+		this.filteredInvoices = this.getFilteredInvoices();
 	}
 
 	createInvoice() {
@@ -129,6 +133,7 @@ export class InvoicesComponent implements OnInit {
 				this.invoices.splice(index, 1);
 				this.invoiceService.deleteInvoice(invoice).subscribe();
 				this.modalService.hideCurrentModal();
+				this.refreshFilteredInvoices();
 				this.cdf.detectChanges();
 			});
 	}
