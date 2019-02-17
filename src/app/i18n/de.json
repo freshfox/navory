@@ -222,6 +222,8 @@
 		"edit-title": "Wiederkehrende Rechnung bearbeiten",
 		"count": "Anzahl an Rechnungen (optional)",
 		"interval": "Intervall",
+		"save-error": "Die wiederkehrende Rechnung konnte nicht gespeichert werden. Bitte überprüfe alle Felder auf Fehler.",
+		"save-success": "Wiederkehrende Rechnung gespeichert",
 		"intervals": {
 			"weekly": "Wöchentlich",
 			"monthly": "Monatlich",

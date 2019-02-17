@@ -169,6 +169,10 @@ export class RecurringInvoiceEditComponent implements OnInit {
 					.subscribe((invoice: RecurringInvoice) => {
 						this.loading = false;
 						this.invoice = invoice;
+
+						if (this.invoice.customer) {
+							this.customerChanged(this.invoice.customer);
+						}
 					});
 			} else {
 				this.loading = false;
@@ -214,10 +218,11 @@ export class RecurringInvoiceEditComponent implements OnInit {
 
 						this.saving = false;
 						this.createMode = false;
+						this.snackbar.success(null, this.translate.instant('recurring-invoices.save-success'));
 					},
 					(error: ServiceError) => {
 						this.saving = false;
-						this.snackbar.error(this.translate.instant('invoices.save-error' + ' CODE: ' + error.code));
+						this.snackbar.error(this.translate.instant('recurring-invoices.save-error') + ' CODE: ' + error.code);
 					});
 		}
 	}
