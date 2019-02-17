@@ -74,7 +74,8 @@ import {Customer} from '../../../models/customer';
 									</div>
 									<div class="bit-50">
 										<ff-input type="number"
-												  [(ngModel)]="invoice.count"
+												  [ngModel]="invoice.count"
+												  (ngModelChange)="countChanged($event)"
 												  [label]="'recurring-invoices.count' | translate"></ff-input>
 										
 										
@@ -178,6 +179,14 @@ export class RecurringInvoiceEditComponent implements OnInit {
 				this.loading = false;
 			}
 		});
+	}
+
+	countChanged(count: any) {
+		if (count === '') {
+			this.invoice.count = null;
+		} else {
+			this.invoice.count = parseInt(count, 10);
+		}
 	}
 
 	customerChanged(customer: Customer) {
