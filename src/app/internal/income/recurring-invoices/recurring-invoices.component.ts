@@ -78,7 +78,7 @@ export class RecurringInvoicesComponent implements OnInit {
 				},
 				{
 					name: this.translate.instant('recurring-invoices.next-date'),
-					prop: 'next-date',
+					prop: 'next_date',
 					pipe: this.datePipe,
 					width: 25
 				},
