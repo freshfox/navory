@@ -1,14 +1,14 @@
-import {Component, OnInit, ViewChild, TemplateRef} from "@angular/core";
-import {TranslateService} from "@ngx-translate/core";
-import {DatePipe} from "../../core/pipes/date.pipe";
-import {Expense} from "../../models/expense";
-import {ExpenseService} from "../../services/expense.service";
-import * as moment from "moment";
-import {State} from "../../core/state";
-import {Router} from "@angular/router";
-import {SubscriptionService} from "../../services/subscription.service";
-import {NumberPipe} from "../../lib/ffc-angular/pipes/number.pipe";
-import {ModalService} from "../../lib/ffc-angular/services/modal.service";
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {DatePipe} from '../../core/pipes/date.pipe';
+import {Expense} from '../../models/expense';
+import {ExpenseService} from '../../services/expense.service';
+import * as moment from 'moment';
+import {State} from '../../core/state';
+import {Router} from '@angular/router';
+import {SubscriptionService} from '../../services/subscription.service';
+import {NumberPipe} from '../../lib/ffc-angular/pipes/number.pipe';
+import {ModalService} from '../../lib/ffc-angular/services/modal.service';
 import {TableOptions} from '../../lib/ffc-angular/components/table/table-options.model';
 import {SortDirection} from '../../lib/ffc-angular/components/table/sort-direction.enum';
 import {ColumnAlignment} from '../../lib/ffc-angular/components/table/column-alignment.enum';
@@ -47,12 +47,22 @@ export class ExpensesComponent implements OnInit {
 					name: this.translate.instant('general.number-abbrev'),
 					prop: 'number',
 					width: 7,
-					sortDirection: SortDirection.Asc
 				},
 				{name: this.translate.instant('general.description'), prop: 'description'},
-				{name: this.translate.instant('general.date'), prop: 'date', width: 12, pipe: this.datePipe},
+				{
+					name: this.translate.instant('general.date'),
+					prop: 'date',
+					width: 12,
+					pipe: this.datePipe,
+					sortDirection: SortDirection.Asc
+				},
 				{name: this.translate.instant('general.category'), prop: 'category.name', width: 20},
-				{name: this.translate.instant('general.paid'), width: 8, cellTemplate: this.paidColumn, alignment: ColumnAlignment.Center},
+				{
+					name: this.translate.instant('general.paid'),
+					width: 8,
+					cellTemplate: this.paidColumn,
+					alignment: ColumnAlignment.Center
+				},
 				{
 					name: this.translate.instant('general.amount_net'),
 					prop: 'price',
