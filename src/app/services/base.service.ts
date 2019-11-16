@@ -96,7 +96,7 @@ export class NavoryApi {
 		return this.baseUrl + url;
 	}
 
-	getRestEntityPath(path: string, id: string) {
+	getRestEntityPath(path: string, id: string | number) {
 		return `${path}/${id}`;
 	}
 

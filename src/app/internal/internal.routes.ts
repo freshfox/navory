@@ -22,6 +22,7 @@ import {QuotesComponent} from './quotes/quotes.component';
 import {QuoteEditComponent} from './quotes/quote-edit.component';
 import {RecurringInvoicesComponent} from './income/recurring-invoices/recurring-invoices.component';
 import {RecurringInvoiceEditComponent} from './income/recurring-invoices/recurring-invoice-edit.component';
+import {EmailSettingsComponent} from './settings/email-settings.component';
 
 export const InternalRoutes: Routes = [
 	{
@@ -78,6 +79,7 @@ export const InternalRoutes: Routes = [
 				children: [
 					{path: 'account', component: AccountSettingsComponent},
 					{path: 'profile', component: ProfileSettingsComponent},
+					{path: 'emails', component: EmailSettingsComponent }
 				]
 			}
 		]

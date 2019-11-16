@@ -333,4 +333,10 @@ export class InvoiceEditComponent implements OnInit {
 		)
 	}
 
+	sendEmail() {
+		this.invoiceService.sendInvoiceEmail(this.invoice.id, 1)
+			.subscribe(() => {
+				this.notificationService.success(null, 'Email sent');
+			});
+	}
 }

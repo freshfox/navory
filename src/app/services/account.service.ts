@@ -7,6 +7,7 @@ import {Account} from "../models/account";
 import {Observable} from "rxjs";
 import {AccountSettings} from "../models/account-settings";
 import {map} from 'rxjs/operators';
+import {EmailSettings} from '../models/email-settings';
 
 export enum ExportType {
 	Income = 'INCOME' as any,
@@ -23,6 +24,7 @@ export class AccountService extends NavoryApi {
 	private pathAccountSettings = '/account/settings';
 	private pathPaymentToken = '/payment/token';
 	private pathAnnualAccountsExport = '/account/export-year';
+	private pathEmailSettings = '/emailsettings';
 
 	constructor(http: Http, private fileService: FileService, private state: State) {
 		super(http);
@@ -34,6 +36,21 @@ export class AccountService extends NavoryApi {
 
 	getSettings(): Observable<AccountSettings> {
 		return this.get(this.pathAccountSettings);
+	}
+
+	getEmailSettings(): Observable<EmailSettings[]> {
+		return this.get(this.pathEmailSettings);
+	}
+
+	saveEmailSettings(settings: EmailSettings) {
+		if (settings.id) {
+			return this.patch(this.getRestEntityPath(this.pathEmailSettings, settings.id), settings);
+		}
+		return this.post(this.pathEmailSettings, settings);
+	}
+
+	deleteEmailSettings(settings: EmailSettings) {
+		return this.delete(this.getRestEntityPath(this.pathEmailSettings, settings.id));
 	}
 
 	deleteLogo(): Observable<AccountSettings> {

@@ -32,6 +32,12 @@
 						(click)="cancelInvoice()"
 						*ngIf="!invoice.draft && !invoice.canceled">{{ 'invoices.cancel' | translate }}
 				</button>
+
+				<button ff-button
+						class="ff-button--secondary"
+						(click)="sendEmail()"
+						*ngIf="!invoice.draft && !invoice.canceled && invoice.customer">{{ 'invoices.send-email' | translate }}
+				</button>
 			</ff-dropdown>
 
 

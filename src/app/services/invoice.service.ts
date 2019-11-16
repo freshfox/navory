@@ -80,6 +80,10 @@ export class InvoiceService extends NavoryApi {
 		return this.post(this.pathRecurringInvoices, invoice);
 	}
 
+	sendInvoiceEmail(invoiceId: string, configId: number) {
+		return this.post(`/invoices/${invoiceId}/mail?settingsId=${configId}`, null);
+	}
+
 	deleteInvoice(invoice: Invoice): Observable<any> {
 		this.analytics.trackEvent(AnalyticsEventType.InvoiceDelete);
 

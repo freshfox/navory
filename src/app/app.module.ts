@@ -105,6 +105,8 @@ import {LocalStorageService} from './services/local-storage.service';
 import {RecurringInvoicesComponent} from './internal/income/recurring-invoices/recurring-invoices.component';
 import {RecurringInvoiceEditComponent} from './internal/income/recurring-invoices/recurring-invoice-edit.component';
 import {CustomerSelectionComponent} from './core/components/customer-selection.component';
+import {EmailSettingsComponent} from './internal/settings/email-settings.component';
+import {EmailSettingsEditComponent} from './internal/settings/email-settings-edit.component';
 
 export function validationMessageProviderFactory() {
 	return new ValidationMessageProviderImpl();
@@ -173,6 +175,8 @@ export function validationMessageProviderFactory() {
 		RecurringInvoiceEditComponent,
 
 		CustomerSelectionComponent,
+		EmailSettingsComponent,
+		EmailSettingsEditComponent,
 	],
 	entryComponents: [
 		CustomerEditComponent,
@@ -183,7 +187,8 @@ export function validationMessageProviderFactory() {
 		ExpenseCategorySelectionComponent,
 		DocumentPreviewComponent,
 		CancelSubscriptionComponent,
-		UpgradePlanComponent
+		UpgradePlanComponent,
+		EmailSettingsEditComponent,
 	],
 	imports: [
 		BrowserModule,

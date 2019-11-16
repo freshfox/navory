@@ -212,7 +212,8 @@
 		"cancel-success": "Rechnung erfolgreich storniert",
 		"group-prefix": "Rechnungskreis Prefix",
 		"all-amounts-net": "Beträge netto exkl. USt.",
-		"status-filter": "Status Filter"
+		"status-filter": "Status Filter",
+		"send-email": "Via Email senden"
 	},
 	"recurring-invoices": {
 		"title": "Wiederkehrende Rechnungen",
@@ -328,6 +329,13 @@
 			"description": "Exportiere alle deine Rechnungen, Einnahmen, Ausgaben, Zahlungen und Belege eines ganzen Jahres auf einmal. Du erhältst einen Download-Link zu einer ZIP-Datei.",
 			"success-message": "Export läuft. Du erhältst eine E-Mail mit einem Download Link, sobald deine Daten fertig exportiert wurden.",
 			"submit": "Export starten"
+		},
+		"emails": {
+			"title": "Email Konfiguration",
+			"create": "Neue Email Konfiguration",
+			"empty-state-message": "Du hast noch keine Email Konfiguration angelegt.",
+			"delete-confirm-title": "Email Konfiguration löschen",
+			"delete-confirm-message": "Wollen Sie diese Email Konfiguration wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden."
 		}
 	},
 	"upload-area": {
