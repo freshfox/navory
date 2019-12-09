@@ -4,7 +4,8 @@ on: push
 
 jobs:
   build:
-
+    env:
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
     runs-on: ubuntu-latest
 
     steps:
