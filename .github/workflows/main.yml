@@ -18,10 +18,12 @@ jobs:
         yarn install
         yarn test
     - name: Build and deploy staging
-      if: github.ref === 'develop'
+      run: |
         yarn build:staging
         yarn deploy:staging
+      if: github.ref == 'develop'
     - name: Build and deploy master
-      if: github.ref === 'master'
+      run: |
         yarn build:production
         yarn deploy:production
+      if: github.ref == 'master'
