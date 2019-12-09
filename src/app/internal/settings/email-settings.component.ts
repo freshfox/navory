@@ -13,14 +13,14 @@ import {Customer} from '../../models/customer';
 	template: `
         <div class="page-row page-header">
             <button ff-button class="ff-button--no-margin create-button" (click)="createConfig()"
-                    icon="plus">{{ 'settings.emails.create' |
-                    translate }}
+                    icon="plus">
+                {{ 'settings.emails.create' | translate }}
             </button>
         </div>
 
         <ff-table [rows]="settings"
                   [options]="tableOptions"
-				  [loading]="loading"
+                  [loading]="loading"
                   (onRowClicked)="editConfig($event)">
 
             <div empty class="empty-view">
