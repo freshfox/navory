@@ -21,9 +21,9 @@ jobs:
       run: |
         yarn build:staging
         yarn deploy:staging
-      if: github.ref == 'develop'
+      if: github.ref == 'refs/heads/develop'
     - name: Build and deploy master
       run: |
         yarn build:production
         yarn deploy:production
-      if: github.ref == 'master'
+      if: github.ref == 'refs/heads/master'
