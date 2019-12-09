@@ -30,7 +30,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
 		this.initAnalytics();
 		this.initUnauthenticatedListener();
-		this.initCheckForUpdates();
 	}
 
 	ngOnInit() {
@@ -45,6 +44,14 @@ export class AppComponent implements OnInit, OnDestroy {
 			.subscribe(event => {
 				document.body.scrollTop = 0;
 			});
+
+		if (environment.production && 'serviceWorker' in navigator) {
+			navigator.serviceWorker.getRegistration()
+				.then(active => !active && navigator.serviceWorker.register('/ngsw-worker.js'))
+				.catch(console.error);
+		}
+
+		this.initCheckForUpdates();
 	}
 
 	ngOnDestroy() {
