@@ -1,9 +1,6 @@
 name: CI
 
-on:
-  push:
-    branches:
-    - master
+on: push
 
 jobs:
   build:
@@ -16,7 +13,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - name: Install and build
+    - name: Install and test
       run: |
         yarn install
+        yarn test
+    - name: Build and deploy staging
+      if: github.ref === 'develop'
+        yarn build:staging
+        yarn deploy:staging
+    - name: Build and deploy master
+      if: github.ref === 'master'
         yarn build:production
+        yarn deploy:production
