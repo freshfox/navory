@@ -46,28 +46,28 @@ export const InternalRoutes: Routes = [
 					{path: 'profit-loss', component: ProfitLossReportComponent}
 				]
 			},
+
 			{
-				path: '',
+				path: 'income',
 				component: IncomeComponent,
 				children: [
+					{path: '', pathMatch: 'full', redirectTo: 'invoices'},
 					{path: 'invoices', component: InvoicesComponent},
-					{path: 'income', component: IncomeListComponent},
+					{path: 'other', component: IncomeListComponent},
 					{path: 'recurring-invoices', component: RecurringInvoicesComponent},
 				]
 			},
+			{path: 'income/invoices/new', component: InvoiceEditComponent},
+			{path: 'income/invoices/:id', component: InvoiceEditComponent},
+			{path: 'income/recurring-invoices/new', component: RecurringInvoiceEditComponent},
+			{path: 'income/recurring-invoices/:id', component: RecurringInvoiceEditComponent},
+			{path: 'income/other/new', component: IncomeEditComponent},
+			{path: 'income/other/:id', component: IncomeEditComponent},
+
 
 			{path: 'quotes', component: QuotesComponent},
 			{path: 'quotes/new', component: QuoteEditComponent},
 			{path: 'quotes/:id', component: QuoteEditComponent},
-
-			{path: 'invoices/new', component: InvoiceEditComponent},
-			{path: 'invoices/:id', component: InvoiceEditComponent},
-
-			{path: 'recurring-invoices/new', component: RecurringInvoiceEditComponent},
-			{path: 'recurring-invoices/:id', component: RecurringInvoiceEditComponent},
-
-			{path: 'income/new', component: IncomeEditComponent},
-			{path: 'income/:id', component: IncomeEditComponent},
 
 			{path: 'expenses', component: ExpensesComponent},
 			{path: 'expenses/new', component: ExpenseEditComponent},
@@ -77,6 +77,7 @@ export const InternalRoutes: Routes = [
 				path: 'settings',
 				component: SettingsComponent,
 				children: [
+					{path: '', pathMatch: 'full', redirectTo: 'account'},
 					{path: 'account', component: AccountSettingsComponent},
 					{path: 'profile', component: ProfileSettingsComponent},
 					{path: 'emails', component: EmailSettingsComponent }

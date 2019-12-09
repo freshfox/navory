@@ -25,6 +25,8 @@ import {Quote} from "../../../models/quote.model";
 import {Expense} from '../../../models/expense';
 import {InvoiceUtils} from '../../../utils/invoice-utils';
 import {LineUtils} from '../../../utils/line-utils';
+import {AccountService} from '../../../services/account.service';
+import {switchMap} from 'rxjs/operators';
 const moment = require('moment');
 
 @Component({
@@ -65,6 +67,7 @@ export class InvoiceEditComponent implements OnInit {
 				private paymentService: PaymentService,
 				private subscriptionService: SubscriptionService,
 				private analytics: AnalyticsService,
+				private accountService: AccountService,
 				private quoteService: QuoteService) {
 
 		this.invoice = new Invoice();
@@ -334,9 +337,19 @@ export class InvoiceEditComponent implements OnInit {
 	}
 
 	sendEmail() {
-		this.invoiceService.sendInvoiceEmail(this.invoice.id, 1)
+		this.accountService.getEmailSettings()
+			.pipe(switchMap(settings => {
+				if (settings && settings.length) {
+					return this.invoiceService.sendInvoiceEmail(this.invoice.id, settings[0].id)
+				}
+
+				throw Error();
+			}))
 			.subscribe(() => {
-				this.notificationService.success(null, 'Email sent');
+				this.notificationService.success(null, 'Email versendet.');
+			}, () => {
+				this.notificationService.error(null, 'Email konnte nicht gesendet werden. Bitte überprüfe die Konfiguration in den Einstellungen.');
 			});
+
 	}
 }

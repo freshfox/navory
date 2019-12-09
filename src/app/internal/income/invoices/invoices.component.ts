@@ -108,15 +108,15 @@ export class InvoicesComponent implements OnInit {
 	}
 
 	createInvoice() {
-		this.router.navigate(['/invoices/new']);
+		this.router.navigate(['/income/invoices/new']);
 	}
 
 	editInvoice(invoice: Invoice) {
-		this.router.navigate([`/invoices/${invoice.id}`]);
+		this.router.navigate([`/income/invoices/${invoice.id}`]);
 	}
 
 	copyInvoice(invoice: Invoice) {
-		this.router.navigate([`/invoices/new`], {
+		this.router.navigate([`/income/invoices/new`], {
 			queryParams: {copy: invoice.id}
 		});
 	}

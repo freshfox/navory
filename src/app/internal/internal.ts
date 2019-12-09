@@ -22,7 +22,7 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 		{
 			'key': 'income',
 			'icon': 'document-text',
-			'routerLink': '/invoices',
+			'routerLink': '/income',
 			'title': 'income.title',
 		},
 		{
@@ -58,7 +58,7 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 		{
 			'key': 'settings',
 			'icon': 'cog-outline',
-			'routerLink': '/settings/account',
+			'routerLink': '/settings',
 			'title': 'settings.title',
 		},
 	];

@@ -71,7 +71,6 @@ export class RecurringInvoicesComponent implements OnInit {
 				{
 					name: this.translate.instant('recurring-invoices.interval'),
 					getDynamicValue: (row: RecurringInvoice) => {
-						console.log(row);
 						return this.translate.instant('recurring-invoices.intervals.' + row.interval_unit);
 					},
 					width: 20
@@ -97,11 +96,11 @@ export class RecurringInvoicesComponent implements OnInit {
 	}
 
 	createInvoice() {
-		this.router.navigate(['/recurring-invoices/new']);
+		this.router.navigate(['/income/recurring-invoices/new']);
 	}
 
 	editInvoice(invoice: RecurringInvoice) {
-		this.router.navigate([`/recurring-invoices/${invoice.id}`]);
+		this.router.navigate([`/income/recurring-invoices/${invoice.id}`]);
 	}
 
 	deleteInvoice(invoice: RecurringInvoice) {

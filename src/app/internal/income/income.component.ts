@@ -7,13 +7,13 @@ import {Component, OnInit} from "@angular/core";
             <nav class="tabs tabs--full-width">
                 <ul>
                     <li>
-                        <a [routerLink]="['/invoices']" routerLinkActive="selected">{{ 'invoices.title' | translate }}</a>
+                        <a [routerLink]="['/income/invoices']" routerLinkActive="selected">{{ 'invoices.title' | translate }}</a>
                     </li>
                     <li>
-                        <a [routerLink]="['/income']" routerLinkActive="selected">{{ 'income.other-income' | translate }}</a>
+                        <a [routerLink]="['/income/other']" routerLinkActive="selected">{{ 'income.other-income' | translate }}</a>
                     </li>
 					<li>
-						<a [routerLink]="['/recurring-invoices']" routerLinkActive="selected">{{ 'recurring-invoices.title' | translate }}</a>
+						<a [routerLink]="['/income/recurring-invoices']" routerLinkActive="selected">{{ 'recurring-invoices.title' | translate }}</a>
 					</li>
 				</ul>
             </nav>

@@ -23,7 +23,7 @@
 			<nav>
 				<ul>
 					<li *ngFor="let item of navItems">
-						<a [routerLink]="[item.routerLink]" class="{{ item.key }}" routerLinkActive="active">
+						<a [routerLink]="item.routerLink" class="{{ item.key }}" routerLinkActive="active">
 							<ff-icon [name]="item.icon"></ff-icon>
 							<span class="title">{{ item.title | translate }}</span>
 						</a>
