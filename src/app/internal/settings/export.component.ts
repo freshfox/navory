@@ -21,16 +21,16 @@ export class ExportComponent implements OnInit {
 	constructor(private translate: TranslateService, private fb: FormBuilder, private accountService: AccountService) {
 		this.exportTypes = [
 			{
-				value: ExportType.Income,
-				name: this.translate.instant('general.income')
-			},
-			{
 				value: ExportType.Invoices,
 				name: this.translate.instant('general.invoices')
 			},
 			{
 				value: ExportType.Expenses,
 				name: this.translate.instant('general.expenses')
+			},
+			{
+				value: ExportType.Income,
+				name: this.translate.instant('income.other-income')
 			},
 			{
 				value: ExportType.Payments,
