@@ -1,7 +1,7 @@
 import {OnInit, ElementRef, Directive, forwardRef} from "@angular/core";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
-import * as Pikaday from 'pikaday';
-import * as moment from 'moment';
+import Pikaday from 'pikaday';
+import moment from 'moment';
 
 export const DATEPICKER_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,

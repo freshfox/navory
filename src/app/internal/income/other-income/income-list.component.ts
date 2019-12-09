@@ -3,7 +3,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {IncomeService} from "../../../services/income.service";
 import {Income} from "../../../models/income";
 import {DatePipe} from "../../../core/pipes/date.pipe";
-import * as moment from "moment";
+import moment from "moment";
 import {State} from "../../../core/state";
 import {Router} from "@angular/router";
 import {SubscriptionService} from "../../../services/subscription.service";

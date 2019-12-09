@@ -1,6 +1,6 @@
 import {FormControl, FormGroup, AbstractControl, Validators, ValidatorFn} from "@angular/forms";
 import {Config} from "./config";
-import * as moment from "moment";
+import moment from "moment";
 var validator = require('validator');
 
 export class FormValidator {

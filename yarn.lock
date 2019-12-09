@@ -615,24 +615,10 @@
   resolved "https://registry.yarnpkg.com/@types/chartist/-/chartist-0.9.44.tgz#ab298a61ca44fe2c3a978eb909dd494725cfce1f"
   integrity sha512-HOmxOPqfMk5ShDjESmmmzIph1k6bRdLfEWudTVgcC5LqErruNUksv2Vw86Qqm/0Oiccehyz/Ns/titsXMS/5DA==
 
-"@types/dropzone@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@types/dropzone/-/dropzone-5.0.4.tgz#91d3ff382a2348dc7058f77e6d646e4e79779a5c"
-  integrity sha512-P/uEoby2Q+C2cXluKHdaWT3CTs8hfPZCkFjR76UGqJwPEW9yZkCE+TPlFJKmfTuKX0jpMA1jdGps+n7kETbE+A==
-  dependencies:
-    "@types/jquery" "*"
-
 "@types/jasmine@2.5.38":
   version "2.5.38"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.38.tgz#a4379124c4921d4e21de54ec74669c9e9b356717"
   integrity sha1-pDeRJMSSHU4h3lTsdGacnps1Zxc=
-
-"@types/jquery@*":
-  version "3.3.29"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.29.tgz#680a2219ce3c9250483722fccf5570d1e2d08abd"
-  integrity sha512-FhJvBninYD36v3k6c+bVk1DSZwh7B5Dpb/Pyk3HKVsiohn0nhbefZZ+3JXbWQhFyt0MxSl2jRDdGQPHeOHFXrQ==
-  dependencies:
-    "@types/sizzle" "*"
 
 "@types/jquery@^2.0.33":
   version "2.0.53"
@@ -665,11 +651,6 @@
   version "2.53.43"
   resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-2.53.43.tgz#2de3d718819bc20165754c4a59afb7e9833f6707"
   integrity sha512-UBYHWph6P3tutkbXpW6XYg9ZPbTKjw/YC2hGG1/GEvWwTbvezBUv3h+mmUFw79T3RFPnmedpiXdOBbXX+4l0jg==
-
-"@types/sizzle@*":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@types/sizzle/-/sizzle-2.3.2.tgz#a811b8c18e2babab7d542b3365887ae2e4d9de47"
-  integrity sha512-7EJYyKTL7tFR8+gDbB6Wwz/arpGa0Mywk1TJbNzKzHtzbwVmY4HR9WqS5VV7dsBUKQmPNr192jHr/VpBluj/hg==
 
 "@types/source-list-map@*":
   version "0.1.2"
@@ -7113,7 +7094,7 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   dependencies:
     minimist "0.0.8"
 
-moment@>=2.14.0, moment@^2.18.1:
+moment@>=2.14.0, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==

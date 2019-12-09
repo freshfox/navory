@@ -1,5 +1,5 @@
 import {Component, OnInit, EventEmitter, Input, Output} from "@angular/core";
-import * as moment from "moment";
+import moment from "moment";
 
 @Component({
 	selector: 'nvry-month-selection',

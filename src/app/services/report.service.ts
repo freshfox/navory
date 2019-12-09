@@ -3,7 +3,7 @@ import {Http} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Config} from "../core/config";
-import * as moment from 'moment';
+import moment from 'moment';
 import {FileService} from "./file.service";
 import {DateFormatter} from '../core/date-formatter';
 
