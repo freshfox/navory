@@ -48,7 +48,7 @@ export class EmailSettingsComponent implements OnInit {
 	loading = true;
 	tableOptions: TableOptions;
 
-	@ViewChild('actionsColumn') private actionsColumn: TemplateRef<any>;
+	@ViewChild('actionsColumn', { static: true }) private actionsColumn: TemplateRef<any>;
 
 	constructor(private accountService: AccountService, private translate: TranslateService, private modalService: ModalService) {
 	}

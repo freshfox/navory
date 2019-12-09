@@ -66,12 +66,6 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 	];
 
 	loggingOut: boolean = false;
-	notificationOptions = {
-		position: ['top', 'right'],
-		timeOut: 5000,
-		showProgressBar: false,
-		maxStack: 4
-	}
 
 	constructor(public state: State, private authService: AuthService, private router: Router, private route: ActivatedRoute, private analytics: AnalyticsService) {
 		let bootstrap = this.route.snapshot.data['bootstrap'];

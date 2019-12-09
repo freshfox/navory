@@ -15,7 +15,7 @@ import {FieldValidationError, ServiceError} from "../../services/base.service";
 import {Payment} from "../../models/payment";
 import {TranslateService} from "@ngx-translate/core";
 import {ExpenseBookPaymentComponent} from "../payments/expense-book-payment.component";
-import {NotificationsService} from "angular2-notifications";
+import {SnackBarService} from '@freshfox/ng-core';
 import {Location} from "@angular/common";
 import {ExpenseCategorySelectionComponent} from "./expense-category-selection.component";
 import {PaymentService} from "../../services/payment.service";
@@ -41,7 +41,7 @@ export class ExpenseEditComponent implements OnInit {
 	constructor(private expenseService: ExpenseService,
 				private fb: FormBuilder,
 				private route: ActivatedRoute,
-				private notificationService: NotificationsService,
+				private snackbar: SnackBarService,
 				private taxRateService: TaxRateService,
 				private state: State,
 				private errorHandler: ErrorHandler,
@@ -183,7 +183,7 @@ export class ExpenseEditComponent implements OnInit {
 						this.expense.file = file;
 
 						this.saving = false;
-						this.notificationService.success(null, this.translate.instant('expenses.save-success'));
+						this.snackbar.success(this.translate.instant('expenses.save-success'));
 					},
 					(error: ServiceError) => {
 						this.saving = false;

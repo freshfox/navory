@@ -12,7 +12,7 @@ import {TaxRate} from "../../../models/tax-rate";
 import {BootstrapService} from "../../../services/bootstrap.service";
 import {EuVatType} from "../../../core/enums/eu-vat-type.enum";
 import {FieldValidationError, ServiceError} from "../../../services/base.service";
-import {NotificationsService} from "angular2-notifications";
+import {SnackBarService} from '@freshfox/ng-core';
 import {TranslateService} from "@ngx-translate/core";
 import {IncomeBookPaymentComponent} from "../../payments/income-book-payment.component";
 import {Payment} from "../../../models/payment";
@@ -45,7 +45,7 @@ export class IncomeEditComponent implements OnInit {
 				private state: State,
 				private errorHandler: ErrorHandler,
 				private bootstrapService: BootstrapService,
-				private notificationService: NotificationsService,
+				private snackbar: SnackBarService,
 				private translate: TranslateService,
 				private modalService: ModalService,
 				private location: Location,
@@ -142,7 +142,7 @@ export class IncomeEditComponent implements OnInit {
 						this.income.file = file;
 
 						this.saving = false;
-						this.notificationService.success(null, this.translate.instant('income.save-success'));
+						this.snackbar.success(this.translate.instant('income.save-success'));
 					},
 					(error: ServiceError) => {
 						this.saving = false;

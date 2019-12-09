@@ -13,7 +13,7 @@ import {Helpers} from "../../../core/helpers";
 import {InvoiceBookPaymentComponent} from "../../payments/invoice-book-payment.component";
 import {Payment} from "../../../models/payment";
 import {Observable} from "rxjs";
-import {NotificationsService} from "angular2-notifications";
+import {SnackBarService} from '@freshfox/ng-core';
 import {DocumentPreviewComponent} from "../../../core/components/document-preview.component";
 import {PaymentService} from "../../../services/payment.service";
 import {ServiceError, ServiceErrorCode} from "../../../services/base.service";
@@ -59,7 +59,7 @@ export class InvoiceEditComponent implements OnInit {
 				private invoiceService: InvoiceService,
 				private bootstrapService: BootstrapService,
 				private state: State,
-				private notificationService: NotificationsService,
+				private snackbar: SnackBarService,
 				private translate: TranslateService,
 				private modalService: ModalService,
 				private fb: FormBuilder,
@@ -189,7 +189,7 @@ export class InvoiceEditComponent implements OnInit {
 			invoice.draft = true;
 			this.save(invoice).subscribe((invoice) => {
 					this.invoice = invoice;
-					this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
+					this.snackbar.success(this.translate.instant('invoices.edit-success'));
 				},
 				() => {
 					this.savingDraft = false;
@@ -204,7 +204,7 @@ export class InvoiceEditComponent implements OnInit {
 			this.save(invoice).subscribe((invoice) => {
 				this.invoice = invoice;
 				this.state.nextInvoiceNumber++;
-				this.notificationService.success(null, this.translate.instant('invoices.issue-success'));
+				this.snackbar.success(this.translate.instant('invoices.issue-success'));
 			});
 		}
 	}
@@ -214,7 +214,7 @@ export class InvoiceEditComponent implements OnInit {
 			let invoice = new Invoice(this.invoice);
 			this.save(invoice).subscribe((invoice) => {
 				this.invoice = invoice;
-				this.notificationService.success(null, this.translate.instant('invoices.edit-success'));
+				this.snackbar.success(this.translate.instant('invoices.edit-success'));
 			});
 		}
 	}
@@ -246,10 +246,10 @@ export class InvoiceEditComponent implements OnInit {
 							} else if (error.code === ServiceErrorCode.ValidationError) {
 								if (error.data['number'].indexOf('NOT_UNIQUE') > -1) {
 									this.form.controls.number.setErrors({ invoiceNumberNotUnique: true } )
-									this.notificationService.error(null, this.translate.instant('invoices.save-error'));
+									this.snackbar.error( this.translate.instant('invoices.save-error'));
 								}
 							} else {
-								this.notificationService.error(null, this.translate.instant('invoices.save-error' + ' CODE: ' + error.code));
+								this.snackbar.error( this.translate.instant('invoices.save-error' + ' CODE: ' + error.code));
 							}
 
 							observer.error();
@@ -327,7 +327,7 @@ export class InvoiceEditComponent implements OnInit {
 				this.save(this.invoice)
 					.subscribe((invoice: Invoice) => {
 						this.invoice = invoice;
-						this.notificationService.success(null, this.translate.instant('invoices.cancel-success'));
+						this.snackbar.success(this.translate.instant('invoices.cancel-success'));
 					});
 
 				this.modalService.hideCurrentModal();
@@ -346,9 +346,9 @@ export class InvoiceEditComponent implements OnInit {
 				throw Error();
 			}))
 			.subscribe(() => {
-				this.notificationService.success(null, 'Email versendet.');
+				this.snackbar.success('Email versendet.');
 			}, () => {
-				this.notificationService.error(null, 'Email konnte nicht gesendet werden. Bitte überprüfe die Konfiguration in den Einstellungen.');
+				this.snackbar.error( 'Email konnte nicht gesendet werden. Bitte überprüfe die Konfiguration in den Einstellungen.');
 			});
 
 	}

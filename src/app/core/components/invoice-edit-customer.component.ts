@@ -56,7 +56,7 @@ export class InvoiceEditCustomerComponent implements AfterViewInit {
 	countries: Country[];
 
 	@Input() invoice: BaseInvoice;
-	@ViewChild('customerName') private customerName: ElementRef;
+	@ViewChild('customerName', { static: true }) private customerName: ElementRef;
 
 	constructor(private modalService: ModalService, private customerService: CustomerService, private bootstrapService: BootstrapService) {
 	}

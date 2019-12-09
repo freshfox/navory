@@ -8,11 +8,11 @@ import {ServiceError} from '../../../services/base.service';
 import {Location} from '@angular/common';
 import {TranslateService} from '@ngx-translate/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {NotificationsService} from 'angular2-notifications';
 import {Helpers} from '../../../core/helpers';
 import {DateFormatter} from '../../../core/date-formatter';
 import {FormValidator} from '../../../core/form-validator';
 import {Customer} from '../../../models/customer';
+import {SnackBarService} from '@freshfox/ng-core';
 
 @Component({
 	selector: 'recurring-invoice-edit-component',
@@ -141,7 +141,7 @@ export class RecurringInvoiceEditComponent implements OnInit {
 				private fb: FormBuilder,
 				private route: ActivatedRoute,
 				private translate: TranslateService,
-				private snackbar: NotificationsService) {
+				private snackbar: SnackBarService) {
 		this.invoice = InvoiceUtils.newRecurringInvoice();
 		this.invoice.lines.push(LineUtils.newLine());
 
@@ -227,7 +227,7 @@ export class RecurringInvoiceEditComponent implements OnInit {
 
 						this.saving = false;
 						this.createMode = false;
-						this.snackbar.success(null, this.translate.instant('recurring-invoices.save-success'));
+						this.snackbar.success(this.translate.instant('recurring-invoices.save-success'));
 					},
 					(error: ServiceError) => {
 						this.saving = false;

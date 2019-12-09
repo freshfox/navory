@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormValidator} from "../../core/form-validator";
 import {User} from "../../models/user";
 import {UserService} from "../../services/user.service";
-import {NotificationsService} from "angular2-notifications";
+import {SnackBarService} from '@freshfox/ng-core';
 import {TranslateService} from "@ngx-translate/core";
 import {Helpers} from "../../core/helpers";
 import {State} from "../../core/state";
@@ -23,7 +23,7 @@ export class ProfileSettingsComponent implements OnInit {
 
 	constructor(private fb: FormBuilder,
 				private userService: UserService,
-				private notificationService: NotificationsService,
+				private snackbar: SnackBarService,
 				private translate: TranslateService,
 				private state: State) {
 
@@ -64,7 +64,7 @@ export class ProfileSettingsComponent implements OnInit {
 						this.user = user;
 						this.state.user = user;
 						this.saving = false;
-						this.notificationService.success(null, this.translate.instant('settings.profile.success-message'));
+						this.snackbar.success(this.translate.instant('settings.profile.success-message'));
 					},
 					error => {
 						this.saving = true;
@@ -81,12 +81,12 @@ export class ProfileSettingsComponent implements OnInit {
 				.subscribe(
 					() => {
 						this.savingPassword = false;
-						this.notificationService.success(null, this.translate.instant('settings.change-password.success-message'));
+						this.snackbar.success(this.translate.instant('settings.change-password.success-message'));
 						this.passwordForm.reset();
 					},
 					error => {
 						if (error.data.password[0] == 'INVALID') {
-							this.notificationService.error(null, this.translate.instant('settings.change-password.errors.incorrect-password'));
+							this.snackbar.error( this.translate.instant('settings.change-password.errors.incorrect-password'));
 							this.passwordForm.controls['password'].reset();
 						}
 						this.savingPassword = false;

@@ -26,8 +26,8 @@ export class IncomeListComponent implements OnInit {
 	selectedYear: number;
 	tableOptions: TableOptions;
 
-	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
-	@ViewChild('attachmentColumn') attachmentColumn: TemplateRef<any>;
+	@ViewChild('actionsColumn', { static: true }) actionsColumn: TemplateRef<any>;
+	@ViewChild('attachmentColumn', { static: true }) attachmentColumn: TemplateRef<any>;
 
 	constructor(private incomeService: IncomeService,
 				private translate: TranslateService,

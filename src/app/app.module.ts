@@ -53,7 +53,6 @@ import {InvoiceLineComponent} from './internal/income/invoices/invoice-line.comp
 import {PaymentsComponent} from './internal/payments/payments.component';
 import {ExportComponent} from './internal/settings/export.component';
 import {AccountService} from './services/account.service';
-import {SimpleNotificationsModule} from 'angular2-notifications';
 import {DocumentPreviewComponent} from './core/components/document-preview.component';
 import {FiveZeroThreeComponent} from './core/components/503.component';
 import {StepsComponent} from './core/components/steps.component';
@@ -87,15 +86,13 @@ import {ValidationMessageProvider} from './lib/ffc-angular/validation-message-pr
 import {BadgeComponent} from './core/components/badge.component';
 import {AnnualAccountsComponent} from './internal/settings/annual-accounts.component';
 import {HttpClientModule} from '@angular/common/http';
-import {
-	MAT_FORM_FIELD_DEFAULT_OPTIONS, MatAutocompleteModule,
-	MatFormFieldModule,
-	MatInputModule,
-	MatProgressSpinnerModule,
-	MatSelectModule,
-	MatSnackBarModule,
-	MatTooltipModule
-} from '@angular/material';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {translatePackagedLoaderFactory} from './core/translate-loader';
@@ -105,6 +102,7 @@ import {RecurringInvoiceEditComponent} from './internal/income/recurring-invoice
 import {CustomerSelectionComponent} from './core/components/customer-selection.component';
 import {EmailSettingsComponent} from './internal/settings/email-settings.component';
 import {EmailSettingsEditComponent} from './internal/settings/email-settings-edit.component';
+import {FFSnackbarModule} from '@freshfox/ng-core';
 
 export function validationMessageProviderFactory() {
 	return new ValidationMessageProviderImpl();
@@ -208,14 +206,14 @@ export function validationMessageProviderFactory() {
 		MatFormFieldModule,
 		MatSelectModule,
 		MatAutocompleteModule,
-		SimpleNotificationsModule.forRoot(),
 		FFCoreModule.forRoot({
 			validationMessageProvider: {
 				provide: ValidationMessageProvider,
 				useFactory: validationMessageProviderFactory
 			}
 		}),
-		ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
+		ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+		FFSnackbarModule,
 	],
 	providers: [
 		{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},

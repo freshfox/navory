@@ -9,7 +9,7 @@ import {AnalyticsService} from "./services/analytics.service";
 import {Subscription} from "rxjs";
 import {filter} from 'rxjs/operators';
 import {SwUpdate} from '@angular/service-worker';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'nvry-app-root',

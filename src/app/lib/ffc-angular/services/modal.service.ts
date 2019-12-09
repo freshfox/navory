@@ -153,7 +153,7 @@ export class ModalPlaceholderComponent implements OnInit, AfterViewInit {
 	clean: boolean = false;
 	showCloseButton: boolean = true;
 
-	@ViewChild("modalplaceholder", {read: ViewContainerRef}) viewContainerRef;
+	@ViewChild("modalplaceholder", { read: ViewContainerRef, static: true }) viewContainerRef;
 
 	constructor(private modalService: ModalService, private injector: Injector) {
 	}

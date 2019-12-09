@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {AccountService} from "../../services/account.service";
 import {Account} from "../../models/account";
 import {ErrorHandler} from "../../core/error-handler";
-import {NotificationsService} from "angular2-notifications";
+import {SnackBarService} from '@freshfox/ng-core';
 import {TranslateService} from "@ngx-translate/core";
 import {AccountSettings} from "../../models/account-settings";
 import {BootstrapService} from "../../services/bootstrap.service";
@@ -21,7 +21,7 @@ export class AccountSettingsComponent implements OnInit {
 	constructor(private accountService: AccountService,
 				private bootstrapService: BootstrapService,
 				private errorHandler: ErrorHandler,
-				private notificationService: NotificationsService,
+				private snackbar: SnackBarService,
 				private translate: TranslateService) {
 		this.account = Object.assign({}, this.accountService.getAccount());
 	}
@@ -40,7 +40,7 @@ export class AccountSettingsComponent implements OnInit {
 			.subscribe(
 				account => {
 					this.saving = false;
-					this.notificationService.success('', this.translate.instant('settings.company.success-message'));
+					this.snackbar.success(this.translate.instant('settings.company.success-message'));
 				},
 				error => {
 					this.alertMessage = this.errorHandler.getDefaultErrorMessage(error.code);

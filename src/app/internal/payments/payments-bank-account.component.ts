@@ -20,8 +20,8 @@ export class PaymentsBankAccountComponent implements OnInit {
 	tableOptions: TableOptions;
 	loading: boolean = false;
 
-	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
-	@ViewChild('amountColumn') amountColumn: TemplateRef<any>;
+	@ViewChild('actionsColumn', { static: true }) actionsColumn: TemplateRef<any>;
+	@ViewChild('amountColumn', { static: true }) amountColumn: TemplateRef<any>;
 
 	constructor(private paymentService: PaymentService,
 				private translate: TranslateService,

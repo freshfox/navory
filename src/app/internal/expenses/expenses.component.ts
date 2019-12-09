@@ -25,9 +25,9 @@ export class ExpensesComponent implements OnInit {
 	selectedYear: number;
 	tableOptions: TableOptions;
 
-	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
-	@ViewChild('attachmentColumn') attachmentColumn: TemplateRef<any>;
-	@ViewChild('paidColumn') paidColumn: TemplateRef<any>;
+	@ViewChild('actionsColumn', { static: true }) actionsColumn: TemplateRef<any>;
+	@ViewChild('attachmentColumn', { static: true }) attachmentColumn: TemplateRef<any>;
+	@ViewChild('paidColumn', { static: true }) paidColumn: TemplateRef<any>;
 
 	constructor(private expenseService: ExpenseService,
 				private translate: TranslateService,

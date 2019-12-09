@@ -14,7 +14,7 @@ export class DocumentUploadComponent implements OnInit {
 	@Input() file: File;
 	@Output() fileChange: EventEmitter<File> = new EventEmitter<File>();
 
-	@ViewChild('uploadArea') private uploadArea;
+	@ViewChild('uploadArea', { static: true }) private uploadArea;
 
 	currentPageIndex: number = 0;
 	alertMessage: string;

@@ -9,7 +9,7 @@ import {FormValidator} from "../../core/form-validator";
 import {Location} from "@angular/common";
 import {Helpers} from "../../core/helpers";
 import {Observable} from "rxjs";
-import {NotificationsService} from "angular2-notifications";
+import {SnackBarService} from '@freshfox/ng-core';
 import {DocumentPreviewComponent} from "../../core/components/document-preview.component";
 import {ServiceError, ServiceErrorCode} from "../../services/base.service";
 import {SubscriptionService} from "../../services/subscription.service";
@@ -39,7 +39,7 @@ export class QuoteEditComponent implements OnInit {
 				private quoteService: QuoteService,
 				private bootstrapService: BootstrapService,
 				private state: State,
-				private notificationService: NotificationsService,
+				private snackbar: SnackBarService,
 				private translate: TranslateService,
 				private modalService: ModalService,
 				private fb: FormBuilder,
@@ -107,7 +107,7 @@ export class QuoteEditComponent implements OnInit {
 			quote.draft = true;
 			this.save(quote).subscribe((quote) => {
 					this.quote = quote;
-					this.notificationService.success(null, this.translate.instant('quotes.edit-success'));
+					this.snackbar.success(this.translate.instant('quotes.edit-success'));
 				},
 				() => {
 					this.savingDraft = false;
@@ -122,7 +122,7 @@ export class QuoteEditComponent implements OnInit {
 			this.save(quote).subscribe((quote) => {
 				this.quote = quote;
 				this.state.nextQuoteNumber++;
-				this.notificationService.success(null, this.translate.instant('quotes.issue-success'));
+				this.snackbar.success(this.translate.instant('quotes.issue-success'));
 			});
 		}
 	}
@@ -132,7 +132,7 @@ export class QuoteEditComponent implements OnInit {
 			let quote = new Quote(this.quote);
 			this.save(quote).subscribe((quote) => {
 				this.quote = quote;
-				this.notificationService.success(null, this.translate.instant('quotes.edit-success'));
+				this.snackbar.success(this.translate.instant('quotes.edit-success'));
 			});
 		}
 	}
@@ -162,7 +162,7 @@ export class QuoteEditComponent implements OnInit {
 							if (error.code === ServiceErrorCode.Forbidden) {
 								this.subscriptionService.showUpgradeModal();
 							} else {
-								this.notificationService.error(null, this.translate.instant('quotes.save-error'));
+								this.snackbar.error( this.translate.instant('quotes.save-error'));
 							}
 
 							observer.error();

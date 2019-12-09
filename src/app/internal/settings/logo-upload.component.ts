@@ -40,7 +40,7 @@ export class LogoUploadComponent implements OnInit, AfterViewInit {
 	uploading: boolean = false;
 	deleting: boolean = false;
 	alertMessage: string;
-	@ViewChild('uploadArea') private uploadArea;
+	@ViewChild('uploadArea', { static: true }) private uploadArea;
 
 	constructor(private accountService: AccountService, private translate: TranslateService) {
 	}

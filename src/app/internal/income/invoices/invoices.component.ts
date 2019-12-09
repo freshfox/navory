@@ -26,8 +26,8 @@ export class InvoicesComponent implements OnInit {
 	statusOptions: InvoiceStatus[] = Object.keys(InvoiceStatus).map(key => InvoiceStatus[key]);
 	selectedStatusOptions: InvoiceStatus[];
 
-	@ViewChild('statusColumn') statusColumnTpl: TemplateRef<any>;
-	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
+	@ViewChild('statusColumn', { static: true }) statusColumnTpl: TemplateRef<any>;
+	@ViewChild('actionsColumn', { static: true }) actionsColumn: TemplateRef<any>;
 	loading: boolean = false;
 	tableOptions: TableOptions;
 

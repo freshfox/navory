@@ -16,7 +16,7 @@ export class CustomersComponent implements OnInit {
 	customers: Customer[];
 	loading = false;
 
-	@ViewChild('actionsColumn') private actionsColumn: TemplateRef<any>;
+	@ViewChild('actionsColumn', { static: true }) private actionsColumn: TemplateRef<any>;
 
 	tableOptions: TableOptions;
 

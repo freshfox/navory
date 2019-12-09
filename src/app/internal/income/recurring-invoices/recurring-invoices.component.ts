@@ -47,7 +47,7 @@ export class RecurringInvoicesComponent implements OnInit {
 	invoices: RecurringInvoice[];
 	tableOptions: TableOptions;
 
-	@ViewChild('actionsColumn') actionsColumn: TemplateRef<any>;
+	@ViewChild('actionsColumn', { static: true }) actionsColumn: TemplateRef<any>;
 
 	constructor(private invoiceService: InvoiceService,
 				private translate: TranslateService,

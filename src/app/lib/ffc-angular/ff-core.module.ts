@@ -20,7 +20,7 @@ import {TableComponent} from './components/table/table.component';
 import {TableHeaderCellComponent} from './components/table/table-header-cell.component';
 import {FakeValidationMessageProvider, ValidationMessageProvider} from './validation-message-provider';
 import {FFMaterialModule} from './components/material.module';
-import {MatProgressSpinnerModule} from '@angular/material';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 export * from './components/button.component';
 export * from './components/confirm.component';
