@@ -6,13 +6,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "test": "ng test --watch=false",
+    "test": "ng test --no-watch",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build": "npm run build-production",
-    "build-production": "gulp beforeBuild && ng build --prod --configuration=production && gulp afterBuild",
-    "build-staging": "gulp beforeBuild && ng build --prod --configuration=staging && gulp afterBuild",
-    "deploy": "firebase deploy"
+    "build:production": "gulp beforeBuild && ng build --prod --configuration=production && gulp afterBuild",
+    "build:staging": "gulp beforeBuild && ng build --prod --configuration=staging && gulp afterBuild",
+    "deploy": "firebase deploy",
+    "deploy:production": "yarn deploy --project production",
+    "deploy:staging": "yarn deploy --project staging"
   },
   "engines": {
     "node": "10"

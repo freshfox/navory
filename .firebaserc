@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "navory-dev",
+    "staging": "navory-dev",
+    "production": "project-5028999388129729441"
+  }
+}
