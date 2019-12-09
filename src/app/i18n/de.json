@@ -340,7 +340,7 @@
 			"subject": "Betreff",
 			"logo_url": "Logo URL",
 			"content": "Text",
-			"reply-to": "Antwortadresse",
+			"reply_to": "Antwortadresse",
 			"smtp_host": "SMTP Host",
 			"smtp_port": "SMTP Port",
 			"smtp_user": "SMTP Benutzer",
