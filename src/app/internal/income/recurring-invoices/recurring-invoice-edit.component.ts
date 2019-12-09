@@ -18,7 +18,7 @@ import {SnackBarService} from '@freshfox/ng-core';
 	selector: 'recurring-invoice-edit-component',
 	template: `
 		<div class="page-header page-header--no-bottom-padding">
-			<button ff-button class="ff-button--clear" [routerLink]="['/recurring-invoices']" icon="arrow-left">
+			<button ff-button class="ff-button--clear" [routerLink]="['/income/recurring-invoices']" icon="arrow-left">
 				{{ 'recurring-invoices.title' | translate }}
 			</button>
 			<hr>

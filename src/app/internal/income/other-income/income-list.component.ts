@@ -91,18 +91,18 @@ export class IncomeListComponent implements OnInit {
 
 	createIncome() {
 		if (this.subscriptionService.incomeEnabled()) {
-			this.router.navigate(['/income/new']);
+			this.router.navigate(['/income/other/new']);
 		} else {
 			this.subscriptionService.showUpgradeModal();
 		}
 	}
 
 	editIncome(income: Income) {
-		this.router.navigate([`/income/${income.id}`]);
+		this.router.navigate([`/income/other/${income.id}`]);
 	}
 
 	copyIncome(income: Income) {
-		this.router.navigate([`/income/new`], {
+		this.router.navigate([`/income/other/new`], {
 			queryParams: {copy: income.id}
 		});
 	}
