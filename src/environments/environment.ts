@@ -7,5 +7,4 @@ export const environment = {
 	production: false,
 	apiUrl: 'https://stage.api.navory.com',
 	intercomAppId: '',
-	braintreeMerchantId: '8c5bwf97hnwvgpgj',
 };
