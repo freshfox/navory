@@ -56,7 +56,6 @@ import {AccountService} from './services/account.service';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import {DocumentPreviewComponent} from './core/components/document-preview.component';
 import {FiveZeroThreeComponent} from './core/components/503.component';
-import {SubscriptionComponent} from './internal/settings/subscription.component';
 import {StepsComponent} from './core/components/steps.component';
 import {PaymentService} from './services/payment.service';
 import {UnitService} from './services/unit.service';
@@ -72,7 +71,6 @@ import {AnalyticsService} from './services/analytics.service';
 import {LogoComponent} from './core/components/logo.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PublicGuard} from './guards/public.guard';
-import {SubscriptionFormComponent} from './internal/settings/subscription-form.component';
 import {SubscriptionService} from './services/subscription.service';
 import {CancelSubscriptionComponent} from './internal/settings/cancel-subscription.component';
 import {UpgradePlanComponent} from './core/components/upgrade-plan.component';
@@ -148,7 +146,6 @@ export function validationMessageProviderFactory() {
 		DocumentPreviewComponent,
 		DatePipe,
 		FiveZeroThreeComponent,
-		SubscriptionComponent,
 		StepsComponent,
 		BookPaymentComponent,
 		InvoiceBookPaymentComponent,
@@ -159,7 +156,6 @@ export function validationMessageProviderFactory() {
 		ExpenseBookPaymentComponent,
 		LogoUploadComponent,
 		LogoComponent,
-		SubscriptionFormComponent,
 		CancelSubscriptionComponent,
 		UpgradePlanComponent,
 		ReportsComponent,
@@ -183,7 +179,6 @@ export function validationMessageProviderFactory() {
 		InvoiceBookPaymentComponent,
 		IncomeBookPaymentComponent,
 		ExpenseBookPaymentComponent,
-		SubscriptionFormComponent,
 		ExpenseCategorySelectionComponent,
 		DocumentPreviewComponent,
 		CancelSubscriptionComponent,
