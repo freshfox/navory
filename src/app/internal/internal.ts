@@ -1,9 +1,9 @@
-import {AfterViewInit, Component, OnDestroy} from "@angular/core";
-import {State} from "../core/state";
-import {ActivatedRoute, Router} from "@angular/router";
-import {AuthService} from "../services/auth.service";
-import * as moment from "moment";
-import {AnalyticsEventType, AnalyticsService} from "../services/analytics.service";
+import {AfterViewInit, Component, OnDestroy} from '@angular/core';
+import {State} from '../core/state';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../services/auth.service';
+import {AnalyticsService} from '../services/analytics.service';
+import {environment} from '../../environments/environment';
 
 declare let Headway: any;
 
@@ -11,6 +11,8 @@ declare let Headway: any;
 	templateUrl: './internal.component.html'
 })
 export class InternalComponent implements AfterViewInit, OnDestroy {
+
+	version = environment.version;
 
 	navItems = [
 		{
@@ -65,7 +67,7 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 
 	loggingOut: boolean = false;
 	notificationOptions = {
-		position: ["top", "right"],
+		position: ['top', 'right'],
 		timeOut: 5000,
 		showProgressBar: false,
 		maxStack: 4
@@ -88,15 +90,15 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 	initHeadway() {
 		if (Headway) {
 			let config = {
-				selector: ".whats-new-badge",
-				account: "JP3nD7",
+				selector: '.whats-new-badge',
+				account: 'JP3nD7',
 				translations: {
-					title: "Updates",
-					readMore: "Mehr",
+					title: 'Updates',
+					readMore: 'Mehr',
 					labels: {
-						"new": "Neu",
-						"improvement": "Updates",
-						"fix": "Bugfix"
+						'new': 'Neu',
+						'improvement': 'Updates',
+						'fix': 'Bugfix'
 					}
 				}
 			};

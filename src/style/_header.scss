@@ -47,10 +47,19 @@
 	}
 
 	.logo {
-		display: inline-block;
-		vertical-align: middle;
-		height: 20px;
-		fill: $textColor;
+		display: flex;
+		align-items: baseline;
+
+		img {
+			display: block;
+			width: 120px;
+			margin-right: 16px;
+		}
+
+		.version {
+			font-size: 11px;
+			color: #aaa;
+		}
 	}
 
 	.user {
