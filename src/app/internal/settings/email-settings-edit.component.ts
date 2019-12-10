@@ -45,6 +45,11 @@ import {AccountService} from '../../services/account.service';
                     <ff-input [label]="'settings.emails.smtp_sender_email' | translate"
                               [formControl]="form.controls.smtp_sender_email"
                               [(ngModel)]="config.smtp_sender_email"></ff-input>
+
+                    <ff-input [label]="'settings.emails.bcc_email' | translate"
+							  type="email"
+                              [formControl]="form.controls.bcc_email"
+                              [(ngModel)]="config.bcc_email"></ff-input>
                 </div>
             </div>
         </form>
@@ -86,6 +91,7 @@ export class EmailSettingsEditComponent implements OnInit {
 			smtp_password: ['', Validators.required],
 			smtp_sender_name: ['', Validators.required],
 			smtp_sender_email: ['', Validators.compose([Validators.required, Validators.email])],
+			bcc_email: ['', Validators.email],
 		});
 
 		this.config = this.config ? Object.assign({}, this.config) : {};

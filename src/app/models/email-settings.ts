@@ -12,6 +12,7 @@ export interface EmailSettings {
 	smtp_sender_name?: string;
 	smtp_sender_email?: string;
 	smtp_verified?: boolean;
+	bcc_email?: string;
 }
 
 export type MarkdownContent = string;

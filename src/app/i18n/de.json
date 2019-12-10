@@ -348,7 +348,8 @@
 			"smtp_sender_name": "Absender Name",
 			"smtp_sender_email": "Absender Adresse",
 			"create-title": "Neue Email Konfiguration",
-			"edit-title": "Email Konfiguration bearbeiten"
+			"edit-title": "Email Konfiguration bearbeiten",
+			"bcc_email": "Emails in BCC an"
 		}
 	},
 	"upload-area": {
