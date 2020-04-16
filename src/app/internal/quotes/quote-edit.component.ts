@@ -195,7 +195,7 @@ export class QuoteEditComponent implements OnInit {
 
 	convertToInvoice() {
 		this.save(this.quote).subscribe(() => {
-			this.router.navigate([`/invoices/new`], {
+			this.router.navigate([`/income/invoices/new`], {
 				queryParams: {fromQuote: this.quote.id}
 			});
 		})
