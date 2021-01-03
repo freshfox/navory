@@ -1,13 +1,14 @@
-import {NavoryApi} from "./base.service";
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {Http} from "@angular/http";
+import {NavoryApi} from './base.service';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Http} from '@angular/http';
 import {Invoice, InvoiceStatus, RecurringInvoice} from '../models/invoice';
-import {FileService} from "./file.service";
-import {AnalyticsService, AnalyticsEventType} from "./analytics.service";
+import {FileService} from './file.service';
+import {AnalyticsEventType} from './analytics.service';
 import {TranslateService} from '@ngx-translate/core';
 import {map} from 'rxjs/operators';
 import {LineUtils} from '../utils/line-utils';
+
 const moment = require('moment');
 
 @Injectable()
@@ -17,7 +18,7 @@ export class InvoiceService extends NavoryApi {
 	private pathRecurringInvoices = '/invoice/templates';
 	private pathAccountInvoices = '/account/invoices';
 
-	constructor(http: Http, private fileService: FileService, private analytics: AnalyticsService, private translate: TranslateService) {
+	constructor(http: Http, private fileService: FileService, private translate: TranslateService) {
 		super(http);
 	}
 
@@ -47,7 +48,7 @@ export class InvoiceService extends NavoryApi {
 			.pipe(map(invoiceData => {
 				let invoice = new Invoice(invoiceData);
 
-				if(!invoice.locale) {
+				if (!invoice.locale) {
 					invoice.locale = 'de';
 				}
 
@@ -62,13 +63,11 @@ export class InvoiceService extends NavoryApi {
 		if (invoice.id) {
 			return this.patch(this.getRestEntityPath(this.pathInvoices, invoice.id), data)
 				.pipe(map(invoice => {
-					this.analytics.trackEvent(AnalyticsEventType.InvoiceUpdate);
 					return new Invoice(invoice)
 				}));
 		}
 		return this.post(this.pathInvoices, data)
 			.pipe(map(invoice => {
-				this.analytics.trackEvent(AnalyticsEventType.InvoiceCreate);
 				return new Invoice(invoice);
 			}));
 	}
@@ -85,8 +84,6 @@ export class InvoiceService extends NavoryApi {
 	}
 
 	deleteInvoice(invoice: Invoice): Observable<any> {
-		this.analytics.trackEvent(AnalyticsEventType.InvoiceDelete);
-
 		return this.delete(this.getRestEntityPath(this.pathInvoices, invoice.id));
 	}
 
@@ -112,7 +109,6 @@ export class InvoiceService extends NavoryApi {
 
 	downloadInvoicePDF(invoice: Invoice) {
 		let url = this.getDownloadURL(invoice);
-		this.analytics.trackEvent(AnalyticsEventType.InvoiceDownload);
 		this.fileService.downloadFromURL(url);
 	}
 

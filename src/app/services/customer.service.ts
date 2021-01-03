@@ -11,7 +11,7 @@ export class CustomerService extends NavoryApi {
 
 	private pathCustomers = '/customers';
 
-	constructor(http: Http, private analytics: AnalyticsService) {
+	constructor(http: Http) {
 		super(http);
 	}
 
@@ -41,14 +41,12 @@ export class CustomerService extends NavoryApi {
 	}
 
 	deleteCustomer(customer: Customer): Observable<any> {
-		this.analytics.trackEvent(AnalyticsEventType.CustomerDelete);
 		return this.delete(this.getRestEntityPath(this.pathCustomers, customer.id));
 	}
 
 	private createCustomer(customer: Customer) {
 		return this.post(this.pathCustomers, customer)
 			.pipe(map(data => {
-				this.analytics.trackEvent(AnalyticsEventType.CustomerCreate);
 				return new Customer(data);
 			}));
 	}
@@ -57,7 +55,6 @@ export class CustomerService extends NavoryApi {
 		let path = this.pathCustomers + `/${customer.id}`;
 		return this.patch(path, customer)
 			.pipe(map(data => {
-				this.analytics.trackEvent(AnalyticsEventType.CustomerUpdate);
 				return new Customer(data);
 			}));
 	}

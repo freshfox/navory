@@ -2,7 +2,6 @@ import {AfterViewInit, Component, OnDestroy} from '@angular/core';
 import {State} from '../core/state';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
-import {AnalyticsService} from '../services/analytics.service';
 import {environment} from '../../environments/environment';
 
 declare let Headway: any;
@@ -67,7 +66,7 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 
 	loggingOut: boolean = false;
 
-	constructor(public state: State, private authService: AuthService, private router: Router, private route: ActivatedRoute, private analytics: AnalyticsService) {
+	constructor(public state: State, private authService: AuthService, private router: Router, private route: ActivatedRoute) {
 		let bootstrap = this.route.snapshot.data['bootstrap'];
 		Object.assign(this.state, bootstrap);
 		this.state.expenseCategories = bootstrap.categories;

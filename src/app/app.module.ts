@@ -66,7 +66,6 @@ import {BookPaymentComponent} from './internal/payments/book-payment.component';
 import {TotalIndicatorComponent} from './core/components/total-indicator.component';
 import {ExpenseBookPaymentComponent} from './internal/payments/expense-book-payment.component';
 import {LogoUploadComponent} from './internal/settings/logo-upload.component';
-import {AnalyticsService} from './services/analytics.service';
 import {LogoComponent} from './core/components/logo.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PublicGuard} from './guards/public.guard';
@@ -238,7 +237,6 @@ export function validationMessageProviderFactory() {
 		AccountService,
 		PaymentService,
 		UnitService,
-		AnalyticsService,
 		SubscriptionService,
 		QuoteService,
 		LocalStorageService

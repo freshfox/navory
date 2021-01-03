@@ -1,32 +1,30 @@
-import {Component, ComponentRef, OnInit} from "@angular/core";
+import {Component, ComponentRef, OnInit} from '@angular/core';
 import {Invoice, InvoiceStatus} from '../../../models/invoice';
-import {Line} from "../../../models/invoice-line";
-import {ActivatedRoute} from "@angular/router";
-import {InvoiceService} from "../../../services/invoice.service";
-import {BootstrapService} from "../../../services/bootstrap.service";
-import {State} from "../../../core/state";
-import {TranslateService} from "@ngx-translate/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {FormValidator} from "../../../core/form-validator";
-import {Location} from "@angular/common";
-import {Helpers} from "../../../core/helpers";
-import {InvoiceBookPaymentComponent} from "../../payments/invoice-book-payment.component";
-import {Payment} from "../../../models/payment";
-import {Observable} from "rxjs";
+import {ActivatedRoute} from '@angular/router';
+import {InvoiceService} from '../../../services/invoice.service';
+import {BootstrapService} from '../../../services/bootstrap.service';
+import {State} from '../../../core/state';
+import {TranslateService} from '@ngx-translate/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormValidator} from '../../../core/form-validator';
+import {Location} from '@angular/common';
+import {Helpers} from '../../../core/helpers';
+import {InvoiceBookPaymentComponent} from '../../payments/invoice-book-payment.component';
+import {Payment} from '../../../models/payment';
+import {Observable} from 'rxjs';
 import {SnackBarService} from '@freshfox/ng-core';
-import {DocumentPreviewComponent} from "../../../core/components/document-preview.component";
-import {PaymentService} from "../../../services/payment.service";
-import {ServiceError, ServiceErrorCode} from "../../../services/base.service";
-import {SubscriptionService} from "../../../services/subscription.service";
-import {AnalyticsEventType, AnalyticsService} from "../../../services/analytics.service";
-import {ModalService, ModalSize} from "../../../lib/ffc-angular/services/modal.service";
-import {QuoteService} from "../../../services/quote.service";
-import {Quote} from "../../../models/quote.model";
-import {Expense} from '../../../models/expense';
+import {DocumentPreviewComponent} from '../../../core/components/document-preview.component';
+import {PaymentService} from '../../../services/payment.service';
+import {ServiceError, ServiceErrorCode} from '../../../services/base.service';
+import {SubscriptionService} from '../../../services/subscription.service';
+import {ModalService, ModalSize} from '../../../lib/ffc-angular/services/modal.service';
+import {QuoteService} from '../../../services/quote.service';
+import {Quote} from '../../../models/quote.model';
 import {InvoiceUtils} from '../../../utils/invoice-utils';
 import {LineUtils} from '../../../utils/line-utils';
 import {AccountService} from '../../../services/account.service';
 import {switchMap} from 'rxjs/operators';
+
 const moment = require('moment');
 
 @Component({
@@ -66,7 +64,6 @@ export class InvoiceEditComponent implements OnInit {
 				private location: Location,
 				private paymentService: PaymentService,
 				private subscriptionService: SubscriptionService,
-				private analytics: AnalyticsService,
 				private accountService: AccountService,
 				private quoteService: QuoteService) {
 
@@ -137,11 +134,11 @@ export class InvoiceEditComponent implements OnInit {
 
 	ngOnInit() {
 		this.form = this.fb.group({
-			number: ["", FormValidator.number],
-			date: ["", Validators.compose([Validators.required, FormValidator.date])],
-			service_date_start: ["", Validators.compose([Validators.required, FormValidator.date])],
-			service_date_end: ["", Validators.compose([Validators.required, FormValidator.date])],
-			due_date: ["", Validators.compose([Validators.required, FormValidator.date])],
+			number: ['', FormValidator.number],
+			date: ['', Validators.compose([Validators.required, FormValidator.date])],
+			service_date_start: ['', Validators.compose([Validators.required, FormValidator.date])],
+			service_date_end: ['', Validators.compose([Validators.required, FormValidator.date])],
+			due_date: ['', Validators.compose([Validators.required, FormValidator.date])],
 		});
 	}
 
@@ -245,11 +242,11 @@ export class InvoiceEditComponent implements OnInit {
 								this.subscriptionService.showUpgradeModal();
 							} else if (error.code === ServiceErrorCode.ValidationError) {
 								if (error.data['number'].indexOf('NOT_UNIQUE') > -1) {
-									this.form.controls.number.setErrors({ invoiceNumberNotUnique: true } )
-									this.snackbar.error( this.translate.instant('invoices.save-error'));
+									this.form.controls.number.setErrors({invoiceNumberNotUnique: true})
+									this.snackbar.error(this.translate.instant('invoices.save-error'));
 								}
 							} else {
-								this.snackbar.error( this.translate.instant('invoices.save-error' + ' CODE: ' + error.code));
+								this.snackbar.error(this.translate.instant('invoices.save-error' + ' CODE: ' + error.code));
 							}
 
 							observer.error();
@@ -263,7 +260,6 @@ export class InvoiceEditComponent implements OnInit {
 	}
 
 	showPreview() {
-		this.analytics.trackEvent(AnalyticsEventType.InvoicePreview);
 		this.modalService.create(DocumentPreviewComponent, {
 			parameters: {
 				url: this.invoicePreviewURL
@@ -348,7 +344,7 @@ export class InvoiceEditComponent implements OnInit {
 			.subscribe(() => {
 				this.snackbar.success('Email versendet.');
 			}, () => {
-				this.snackbar.error( 'Email konnte nicht gesendet werden. Bitte überprüfe die Konfiguration in den Einstellungen.');
+				this.snackbar.error('Email konnte nicht gesendet werden. Bitte überprüfe die Konfiguration in den Einstellungen.');
 			});
 
 	}

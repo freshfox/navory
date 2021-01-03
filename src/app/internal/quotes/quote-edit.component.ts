@@ -1,23 +1,22 @@
-import {Component, ComponentRef, OnInit} from "@angular/core";
-import {Line} from "../../models/invoice-line";
-import {ActivatedRoute, Router} from "@angular/router";
-import {BootstrapService} from "../../services/bootstrap.service";
-import {State} from "../../core/state";
-import {TranslateService} from "@ngx-translate/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {FormValidator} from "../../core/form-validator";
-import {Location} from "@angular/common";
-import {Helpers} from "../../core/helpers";
-import {Observable} from "rxjs";
+import {Component, ComponentRef, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {BootstrapService} from '../../services/bootstrap.service';
+import {State} from '../../core/state';
+import {TranslateService} from '@ngx-translate/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormValidator} from '../../core/form-validator';
+import {Location} from '@angular/common';
+import {Helpers} from '../../core/helpers';
+import {Observable} from 'rxjs';
 import {SnackBarService} from '@freshfox/ng-core';
-import {DocumentPreviewComponent} from "../../core/components/document-preview.component";
-import {ServiceError, ServiceErrorCode} from "../../services/base.service";
-import {SubscriptionService} from "../../services/subscription.service";
-import {AnalyticsEventType, AnalyticsService} from "../../services/analytics.service";
-import {ModalService, ModalSize} from "../../lib/ffc-angular/services/modal.service";
-import {QuoteService} from "../../services/quote.service";
-import {Quote} from "../../models/quote.model";
+import {DocumentPreviewComponent} from '../../core/components/document-preview.component';
+import {ServiceError, ServiceErrorCode} from '../../services/base.service';
+import {SubscriptionService} from '../../services/subscription.service';
+import {ModalService, ModalSize} from '../../lib/ffc-angular/services/modal.service';
+import {QuoteService} from '../../services/quote.service';
+import {Quote} from '../../models/quote.model';
 import {LineUtils} from '../../utils/line-utils';
+
 const moment = require('moment');
 
 @Component({
@@ -45,7 +44,6 @@ export class QuoteEditComponent implements OnInit {
 				private fb: FormBuilder,
 				private location: Location,
 				private subscriptionService: SubscriptionService,
-				private analytics: AnalyticsService,
 				private router: Router) {
 
 		this.quote = new Quote();
@@ -73,9 +71,9 @@ export class QuoteEditComponent implements OnInit {
 
 	ngOnInit() {
 		this.form = this.fb.group({
-			number: ["", FormValidator.number],
-			date: ["", Validators.compose([Validators.required, FormValidator.date])],
-			valid_to_date: ["", Validators.compose([Validators.required, FormValidator.date])],
+			number: ['', FormValidator.number],
+			date: ['', Validators.compose([Validators.required, FormValidator.date])],
+			valid_to_date: ['', Validators.compose([Validators.required, FormValidator.date])],
 		});
 	}
 
@@ -162,7 +160,7 @@ export class QuoteEditComponent implements OnInit {
 							if (error.code === ServiceErrorCode.Forbidden) {
 								this.subscriptionService.showUpgradeModal();
 							} else {
-								this.snackbar.error( this.translate.instant('quotes.save-error'));
+								this.snackbar.error(this.translate.instant('quotes.save-error'));
 							}
 
 							observer.error();
@@ -176,7 +174,6 @@ export class QuoteEditComponent implements OnInit {
 	}
 
 	showPreview() {
-		this.analytics.trackEvent(AnalyticsEventType.QuotePreview);
 		this.modalService.create(DocumentPreviewComponent, {
 			parameters: {
 				url: this.quotePreviewURL

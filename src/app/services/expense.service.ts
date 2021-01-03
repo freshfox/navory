@@ -1,11 +1,10 @@
-import {NavoryApi} from "./base.service";
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {Http} from "@angular/http";
-import {Expense} from "../models/expense";
-import {EuVatType} from "../core/enums/eu-vat-type.enum";
-import {Payment} from "../models/payment";
-import {AnalyticsEventType, AnalyticsService} from "./analytics.service";
+import {NavoryApi} from './base.service';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Http} from '@angular/http';
+import {Expense} from '../models/expense';
+import {EuVatType} from '../core/enums/eu-vat-type.enum';
+import {AnalyticsEventType} from './analytics.service';
 import {map} from 'rxjs/operators';
 
 @Injectable()
@@ -13,7 +12,7 @@ export class ExpenseService extends NavoryApi {
 
 	private pathExpenses = '/expenses';
 
-	constructor(http: Http, private analytics: AnalyticsService) {
+	constructor(http: Http) {
 		super(http);
 	}
 
@@ -45,7 +44,6 @@ export class ExpenseService extends NavoryApi {
 		if (!expense.id) {
 			return this.post(this.pathExpenses, expense)
 				.pipe(map(data => {
-					this.analytics.trackEvent(AnalyticsEventType.ExpenseCreate);
 					return new Expense(data);
 				}));
 		}
@@ -53,13 +51,11 @@ export class ExpenseService extends NavoryApi {
 		let path = this.pathExpenses + `/${expense.id}`;
 		return this.patch(path, expense)
 			.pipe(map(data => {
-				this.analytics.trackEvent(AnalyticsEventType.ExpenseUpdate);
 				return new Expense(data);
 			}));
 	}
 
 	deleteExpense(expense: Expense): Observable<any> {
-		this.analytics.trackEvent(AnalyticsEventType.ExpenseDelete);
 		return this.delete(this.getRestEntityPath(this.pathExpenses, expense.id));
 	}
 

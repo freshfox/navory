@@ -1,15 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
-import {environment} from "../environments/environment";
-import {NavoryApi} from "./services/base.service";
-import {AuthService} from "./services/auth.service";
-import {NavigationEnd, Router} from "@angular/router";
-import {State} from "./core/state";
-import {AnalyticsService} from "./services/analytics.service";
-import {Subscription} from "rxjs";
+import {TranslateService} from '@ngx-translate/core';
+import {environment} from '../environments/environment';
+import {NavoryApi} from './services/base.service';
+import {AuthService} from './services/auth.service';
+import {NavigationEnd, Router} from '@angular/router';
+import {State} from './core/state';
+import {Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
 import {SwUpdate} from '@angular/service-worker';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'nvry-app-root',
@@ -24,21 +23,13 @@ export class AppComponent implements OnInit, OnDestroy {
 				private state: State,
 				private router: Router,
 				private swUpdate: SwUpdate,
-				private snackbar: MatSnackBar,
-				private analyticsService: AnalyticsService) {
+				private snackbar: MatSnackBar) {
 		translate.use('de');
 
-		this.initAnalytics();
 		this.initUnauthenticatedListener();
 	}
 
 	ngOnInit() {
-		this.router.events.subscribe(event => {
-			if (event instanceof NavigationEnd) {
-				this.analyticsService.trackPageView();
-			}
-		});
-
 		this.routerSubscription = this.router.events
 			.pipe(filter(event => event instanceof NavigationEnd))
 			.subscribe(event => {
@@ -56,12 +47,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy() {
 		this.routerSubscription.unsubscribe();
-	}
-
-	private initAnalytics() {
-		if(environment.production) {
-			this.analyticsService.initIntercom(environment.intercomAppId);
-		}
 	}
 
 	private initUnauthenticatedListener() {

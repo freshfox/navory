@@ -1,10 +1,9 @@
-import {NavoryApi} from "./base.service";
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {Http} from "@angular/http";
-import {FileService} from "./file.service";
-import {AnalyticsService, AnalyticsEventType} from "./analytics.service";
-import {Quote} from "../models/quote.model";
+import {NavoryApi} from './base.service';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Http} from '@angular/http';
+import {FileService} from './file.service';
+import {Quote} from '../models/quote.model';
 import {map} from 'rxjs/operators';
 import {LineUtils} from '../utils/line-utils';
 
@@ -13,7 +12,7 @@ export class QuoteService extends NavoryApi {
 
 	private pathQuotes = '/quotes';
 
-	constructor(http: Http, private fileService: FileService, private analytics: AnalyticsService) {
+	constructor(http: Http, private fileService: FileService) {
 		super(http);
 	}
 
@@ -44,20 +43,16 @@ export class QuoteService extends NavoryApi {
 		if (quote.id) {
 			return this.patch(this.getRestEntityPath(this.pathQuotes, quote.id), data)
 				.pipe(map(quote => {
-					this.analytics.trackEvent(AnalyticsEventType.QuoteUpdate);
 					return new Quote(quote)
 				}));
 		}
 		return this.post(this.pathQuotes, data)
 			.pipe(map(quote => {
-				this.analytics.trackEvent(AnalyticsEventType.QuoteCreate);
 				return new Quote(quote);
 			}));
 	}
 
 	deleteQuote(quote: Quote): Observable<any> {
-		this.analytics.trackEvent(AnalyticsEventType.QuoteDelete);
-
 		return this.delete(this.getRestEntityPath(this.pathQuotes, quote.id));
 	}
 
@@ -75,7 +70,6 @@ export class QuoteService extends NavoryApi {
 
 	downloadQuotePDF(quote: Quote) {
 		let url = this.getDownloadURL(quote);
-		this.analytics.trackEvent(AnalyticsEventType.QuoteDownload);
 		this.fileService.downloadFromURL(url);
 	}
 }

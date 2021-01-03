@@ -1,12 +1,11 @@
-import {Injectable} from "@angular/core";
-import {NavoryApi} from "./base.service";
-import {Account} from "../models/account";
-import {User} from "../models/user";
-import {Http} from "@angular/http";
+import {Injectable} from '@angular/core';
+import {NavoryApi} from './base.service';
+import {Account} from '../models/account';
+import {User} from '../models/user';
+import {Http} from '@angular/http';
 import {Observable, of} from 'rxjs';
-import {State} from "../core/state";
-import {UserService} from "./user.service";
-import {AnalyticsService} from "./analytics.service";
+import {State} from '../core/state';
+import {UserService} from './user.service';
 import {map} from 'rxjs/operators';
 
 @Injectable()
@@ -17,7 +16,7 @@ export class AuthService extends NavoryApi {
 	private pathRequestPasswordReset = '/password/reset';
 	private pathResetPassword = '/password/reset';
 
-	constructor(http: Http, private state: State, private userService: UserService, private analytics: AnalyticsService) {
+	constructor(http: Http, private state: State, private userService: UserService) {
 		super(http);
 	}
 
@@ -41,7 +40,6 @@ export class AuthService extends NavoryApi {
 		return this.delete(this.pathLogin)
 			.pipe(map(data => {
 				this.removeLoggedInUser();
-				this.analytics.shutdownIntercom();
 				return data;
 			}));
 	}
@@ -60,7 +58,6 @@ export class AuthService extends NavoryApi {
 
 	setLoggedInUser(user: User) {
 		this.state.user = user;
-		this.analytics.setIntercomUser(user);
 	}
 
 	removeLoggedInUser() {
