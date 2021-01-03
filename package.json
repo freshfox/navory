@@ -39,7 +39,6 @@
     "@ngx-translate/core": "^10.0.2",
     "@ngx-translate/http-loader": "^3.0.1",
     "bourbon": "4.3.3",
-    "braintree-web": "^3.42.0",
     "chartist": "^0.9.8",
     "chosen-js": "^1.7.0",
     "core-js": "^2.4.1",
