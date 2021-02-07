@@ -11,7 +11,10 @@
 		],
 		"curly": true,
 		"eofline": true,
-		"forin": true,
+    "forin": true,
+    "deprecation": {
+      "severity": "warning"
+    },
 		"import-blacklist": [true],
 		"import-spacing": true,
 		"indent": [
