@@ -6,9 +6,9 @@ import {InternalRoutes} from "./internal/internal.routes";
 @NgModule({
 	imports: [
 		RouterModule.forRoot([
-			...InternalRoutes,
-			...PublicRoutes
-		])
+    ...InternalRoutes,
+    ...PublicRoutes
+], { relativeLinkResolution: 'legacy' })
 	],
 	exports: [
 		RouterModule
