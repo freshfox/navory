@@ -1,10 +1,8 @@
-import {NavoryApi} from './base.service';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Http} from '@angular/http';
+import {ApiService} from '@freshfox/ng-core';
 import {Invoice, InvoiceStatus, RecurringInvoice} from '../models/invoice';
 import {FileService} from './file.service';
-import {AnalyticsEventType} from './analytics.service';
 import {TranslateService} from '@ngx-translate/core';
 import {map} from 'rxjs/operators';
 import {LineUtils} from '../utils/line-utils';
@@ -12,19 +10,19 @@ import {LineUtils} from '../utils/line-utils';
 const moment = require('moment');
 
 @Injectable()
-export class InvoiceService extends NavoryApi {
+export class InvoiceService {
 
 	private pathInvoices = '/invoices';
 	private pathRecurringInvoices = '/invoice/templates';
 	private pathAccountInvoices = '/account/invoices';
 
-	constructor(http: Http, private fileService: FileService, private translate: TranslateService) {
-		super(http);
+	constructor(private apiService: ApiService, private fileService: FileService, private translate: TranslateService) {
+
 	}
 
 	getInvoices(): Observable<Invoice[]> {
-		return this.get(this.pathInvoices)
-			.pipe(map(invoicesData => {
+		return this.apiService.get(this.pathInvoices)
+			.pipe(map((invoicesData: any[]) => {
 				let invoices: Invoice[] = [];
 				invoicesData.forEach((invoiceData) => {
 					let invoice = new Invoice(invoiceData);
@@ -35,16 +33,16 @@ export class InvoiceService extends NavoryApi {
 	}
 
 	getRecurringInvoices(): Observable<RecurringInvoice[]> {
-		return this.get(this.pathRecurringInvoices);
+		return this.apiService.get(this.pathRecurringInvoices);
 	}
 
 	getRecurringInvoice(id: string): Observable<RecurringInvoice> {
-		return this.get(`${this.pathRecurringInvoices}/${id}`);
+		return this.apiService.get(`${this.pathRecurringInvoices}/${id}`);
 	}
 
 
 	getInvoice(id: string): Observable<Invoice> {
-		return this.get(this.getRestEntityPath(this.pathInvoices, id))
+		return this.apiService.get(this.apiService.getRestEntityPath(this.pathInvoices, id))
 			.pipe(map(invoiceData => {
 				let invoice = new Invoice(invoiceData);
 
@@ -61,12 +59,12 @@ export class InvoiceService extends NavoryApi {
 		data.invoice_lines = data.lines;
 
 		if (invoice.id) {
-			return this.patch(this.getRestEntityPath(this.pathInvoices, invoice.id), data)
+			return this.apiService.patch(this.apiService.getRestEntityPath(this.pathInvoices, invoice.id), data)
 				.pipe(map(invoice => {
 					return new Invoice(invoice)
 				}));
 		}
-		return this.post(this.pathInvoices, data)
+		return this.apiService.post(this.pathInvoices, data)
 			.pipe(map(invoice => {
 				return new Invoice(invoice);
 			}));
@@ -74,21 +72,21 @@ export class InvoiceService extends NavoryApi {
 
 	saveRecurringInvoice(invoice: RecurringInvoice) {
 		if (invoice.id) {
-			return this.patch(this.getRestEntityPath(this.pathRecurringInvoices, invoice.id), invoice);
+			return this.apiService.patch(this.apiService.getRestEntityPath(this.pathRecurringInvoices, invoice.id), invoice);
 		}
-		return this.post(this.pathRecurringInvoices, invoice);
+		return this.apiService.post(this.pathRecurringInvoices, invoice);
 	}
 
 	sendInvoiceEmail(invoiceId: string, configId: number) {
-		return this.post(`/invoices/${invoiceId}/mail?settingsId=${configId}`, null);
+		return this.apiService.post(`/invoices/${invoiceId}/mail?settingsId=${configId}`, null);
 	}
 
 	deleteInvoice(invoice: Invoice): Observable<any> {
-		return this.delete(this.getRestEntityPath(this.pathInvoices, invoice.id));
+		return this.apiService.delete(this.apiService.getRestEntityPath(this.pathInvoices, invoice.id));
 	}
 
 	deleteRecurringInvoice(invoice: RecurringInvoice): Observable<any> {
-		return this.delete(this.getRestEntityPath(this.pathRecurringInvoices, invoice.id));
+		return this.apiService.delete(this.apiService.getRestEntityPath(this.pathRecurringInvoices, invoice.id));
 	}
 
 	getTaxAmounts(invoice: Invoice): any[] {
@@ -96,15 +94,15 @@ export class InvoiceService extends NavoryApi {
 	}
 
 	getPreviewURL(invoice: Invoice): string {
-		return this.constructApiUrl(`${this.pathInvoices}/${invoice.id}/html`);
+		return this.apiService.constructApiUrl(`${this.pathInvoices}/${invoice.id}/html`);
 	}
 
 	getDownloadURL(invoice: Invoice): string {
-		return this.constructApiUrl(`${this.pathInvoices}/${invoice.id}/pdf`);
+		return this.apiService.constructApiUrl(`${this.pathInvoices}/${invoice.id}/pdf`);
 	}
 
 	getSubscriptionDownloadUrl(invoice: Invoice): string {
-		return this.constructApiUrl(`${this.pathAccountInvoices}/${invoice.id}/pdf`);
+		return this.apiService.constructApiUrl(`${this.pathAccountInvoices}/${invoice.id}/pdf`);
 	}
 
 	downloadInvoicePDF(invoice: Invoice) {

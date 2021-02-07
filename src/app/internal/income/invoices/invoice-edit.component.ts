@@ -12,11 +12,9 @@ import {Helpers} from '../../../core/helpers';
 import {InvoiceBookPaymentComponent} from '../../payments/invoice-book-payment.component';
 import {Payment} from '../../../models/payment';
 import {Observable} from 'rxjs';
-import {SnackBarService} from '@freshfox/ng-core';
+import {ServiceError, ServiceErrorCode, SnackBarService} from '@freshfox/ng-core';
 import {DocumentPreviewComponent} from '../../../core/components/document-preview.component';
 import {PaymentService} from '../../../services/payment.service';
-import {ServiceError, ServiceErrorCode} from '../../../services/base.service';
-import {SubscriptionService} from '../../../services/subscription.service';
 import {ModalService, ModalSize} from '../../../lib/ffc-angular/services/modal.service';
 import {QuoteService} from '../../../services/quote.service';
 import {Quote} from '../../../models/quote.model';
@@ -63,7 +61,6 @@ export class InvoiceEditComponent implements OnInit {
 				private fb: FormBuilder,
 				private location: Location,
 				private paymentService: PaymentService,
-				private subscriptionService: SubscriptionService,
 				private accountService: AccountService,
 				private quoteService: QuoteService) {
 
@@ -238,9 +235,7 @@ export class InvoiceEditComponent implements OnInit {
 						(error: ServiceError) => {
 							this.saving = false;
 
-							if (error.code === ServiceErrorCode.Forbidden) {
-								this.subscriptionService.showUpgradeModal();
-							} else if (error.code === ServiceErrorCode.ValidationError) {
+							if (error.code === ServiceErrorCode.ValidationError) {
 								if (error.data['number'].indexOf('NOT_UNIQUE') > -1) {
 									this.form.controls.number.setErrors({invoiceNumberNotUnique: true})
 									this.snackbar.error(this.translate.instant('invoices.save-error'));

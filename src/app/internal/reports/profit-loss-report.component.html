@@ -1,16 +1,12 @@
-<nvry-upgrade-plan *ngIf="!reportsEnabled; else reportTemplate"></nvry-upgrade-plan>
+<section class="section profit-loss default-section">
+	<h2>Gewinn/Verlust Bericht</h2>
 
-<ng-template #reportTemplate>
-	<section class="section profit-loss default-section">
-		<h2>Gewinn/Verlust Bericht</h2>
+	<div class="profit-loss__date-selection">
+		<ff-input type="date" [label]="'general.date-start' | translate" [(ngModel)]="startDate"></ff-input>
+		<ff-input type="date" [label]="'general.date-end' | translate" [(ngModel)]="endDate"></ff-input>
 
-		<div class="profit-loss__date-selection">
-			<ff-input type="date" [label]="'general.date-start' | translate" [(ngModel)]="startDate" (ngModel)="rangeChanged()"></ff-input>
-			<ff-input type="date" [label]="'general.date-end' | translate" [(ngModel)]="endDate" (ngModel)="rangeChanged()"></ff-input>
+		<button ff-button (click)="downloadReport()" icon="download">Herunterladen</button>
+	</div>
 
-			<button ff-button (click)="downloadReport()" icon="download">Herunterladen</button>
-		</div>
-
-		<nvry-document-preview [url]="reportUrl"></nvry-document-preview>
-	</section>
-</ng-template>
+	<nvry-document-preview [url]="reportUrl"></nvry-document-preview>
+</section>

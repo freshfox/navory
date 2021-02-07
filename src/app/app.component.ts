@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {environment} from '../environments/environment';
-import {NavoryApi} from './services/base.service';
 import {AuthService} from './services/auth.service';
 import {NavigationEnd, Router} from '@angular/router';
 import {State} from './core/state';
@@ -25,8 +24,6 @@ export class AppComponent implements OnInit, OnDestroy {
 				private swUpdate: SwUpdate,
 				private snackbar: MatSnackBar) {
 		translate.use('de');
-
-		this.initUnauthenticatedListener();
 	}
 
 	ngOnInit() {
@@ -47,17 +44,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy() {
 		this.routerSubscription.unsubscribe();
-	}
-
-	private initUnauthenticatedListener() {
-		NavoryApi.onUnauthorized.subscribe(() => {
-			if (this.state.user) {
-				this.authService.removeLoggedInUser();
-				this.router.navigate(['/login'], {
-					queryParams: {message: 'unauthorized'}
-				});
-			}
-		});
 	}
 
 	private initCheckForUpdates() {

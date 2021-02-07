@@ -4,7 +4,6 @@ import {InvoiceService} from '../../../services/invoice.service';
 import {ActivatedRoute} from '@angular/router';
 import {LineUtils} from '../../../utils/line-utils';
 import {InvoiceUtils} from '../../../utils/invoice-utils';
-import {ServiceError} from '../../../services/base.service';
 import {Location} from '@angular/common';
 import {TranslateService} from '@ngx-translate/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -12,7 +11,7 @@ import {Helpers} from '../../../core/helpers';
 import {DateFormatter} from '../../../core/date-formatter';
 import {FormValidator} from '../../../core/form-validator';
 import {Customer} from '../../../models/customer';
-import {SnackBarService} from '@freshfox/ng-core';
+import {ServiceError, SnackBarService} from '@freshfox/ng-core';
 
 @Component({
 	selector: 'recurring-invoice-edit-component',
@@ -77,8 +76,8 @@ import {SnackBarService} from '@freshfox/ng-core';
 												  [ngModel]="invoice.count"
 												  (ngModelChange)="countChanged($event)"
 												  [label]="'recurring-invoices.count' | translate"></ff-input>
-										
-										
+
+
 
 										<ff-select
 											[label]="'general.language' | translate"

@@ -6,7 +6,6 @@ import {DatePipe} from "../../../core/pipes/date.pipe";
 import moment from "moment";
 import {State} from "../../../core/state";
 import {Router} from "@angular/router";
-import {SubscriptionService} from "../../../services/subscription.service";
 import {NumberPipe} from "../../../lib/ffc-angular/pipes/number.pipe";
 import {ModalService} from "../../../lib/ffc-angular/services/modal.service";
 import {TableOptions} from '../../../lib/ffc-angular/components/table/table-options.model';
@@ -35,8 +34,7 @@ export class IncomeListComponent implements OnInit {
 				private datePipe: DatePipe,
 				private state: State,
 				private router: Router,
-				private modalService: ModalService,
-				private subscriptionService: SubscriptionService) {
+				private modalService: ModalService) {
 	}
 
 	ngOnInit() {
@@ -90,11 +88,7 @@ export class IncomeListComponent implements OnInit {
 	}
 
 	createIncome() {
-		if (this.subscriptionService.incomeEnabled()) {
-			this.router.navigate(['/income/other/new']);
-		} else {
-			this.subscriptionService.showUpgradeModal();
-		}
+		this.router.navigate(['/income/other/new']);
 	}
 
 	editIncome(income: Income) {

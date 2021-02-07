@@ -1,26 +1,25 @@
-import {NavoryApi} from './base.service';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Income} from '../models/income';
-import {Http} from '@angular/http';
+import {ApiService} from '@freshfox/ng-core';
 import {EuVatType} from '../core/enums/eu-vat-type.enum';
 import {map} from 'rxjs/operators';
 
 @Injectable()
-export class IncomeService extends NavoryApi {
+export class IncomeService {
 
 	private pathIncome = '/incomes';
 
-	constructor(http: Http) {
-		super(http);
+	constructor(private apiService: ApiService) {
+
 	}
 
 	getIncomes(): Observable<Income[]> {
-		return this.get(this.pathIncome);
+		return this.apiService.get(this.pathIncome);
 	}
 
 	getIncome(id: string): Observable<Income> {
-		return this.get(this.getRestEntityPath(this.pathIncome, id))
+		return this.apiService.get(this.apiService.getRestEntityPath(this.pathIncome, id))
 			.pipe(map(incomeData => {
 				return new Income(incomeData);
 			}));
@@ -32,20 +31,20 @@ export class IncomeService extends NavoryApi {
 		}
 
 		if (income.id) {
-			return this.patch(this.getRestEntityPath(this.pathIncome, income.id), income)
+			return this.apiService.patch(this.apiService.getRestEntityPath(this.pathIncome, income.id), income)
 				.pipe(map(incomeData => {
 					return new Income(incomeData);
 				}));
 		}
 
-		return this.post(this.pathIncome, income)
+		return this.apiService.post(this.pathIncome, income)
 			.pipe(map(incomeData => {
 				return new Income(incomeData);
 			}));
 	}
 
 	deleteIncome(income: Income): Observable<any> {
-		return this.delete(this.getRestEntityPath(this.pathIncome, income.id));
+		return this.apiService.delete(this.apiService.getRestEntityPath(this.pathIncome, income.id));
 	}
 
 }

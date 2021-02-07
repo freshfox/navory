@@ -1138,10 +1138,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@freshfox/ng-core@^7.5.4":
-  version "7.5.4"
-  resolved "https://registry.yarnpkg.com/@freshfox/ng-core/-/ng-core-7.5.4.tgz#9b7f2c134b7a45badb3047badd290c4f0f7aa87e"
-  integrity sha512-HonnILQmaWTbJBK4ilynWdUkPiejnGxO79USvmHS6BOc/I0wY2OXuAG3NO216cwxhDfaDA7pyawkPNYoS2YJ0w==
+"@freshfox/ng-core@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@freshfox/ng-core/-/ng-core-7.6.0.tgz#ab81c4c0a50c1ea3db1970802f2927677a6a7089"
+  integrity sha512-JOZOyzzyuEVnYTGzeQtweAnkFOnAysBGs1Vlu8XeVqRrB71h7o8qc1Euojsdw3DuDbjzmNxyumL2Mix3U3OfiA==
   dependencies:
     tslib "^2.0.0"
 

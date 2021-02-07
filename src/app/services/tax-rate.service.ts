@@ -1,18 +1,17 @@
-import {Injectable} from "@angular/core";
-import {NavoryApi} from "./base.service";
-import {Http} from "@angular/http";
-import {TaxRate} from "../models/tax-rate";
-import {State} from "../core/state";
+import {Injectable} from '@angular/core';
+import {ApiService} from '@freshfox/ng-core';
+import {TaxRate} from '../models/tax-rate';
+import {State} from '../core/state';
 import {Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 @Injectable()
-export class TaxRateService extends NavoryApi {
+export class TaxRateService {
 
 	private defaultTaxRate = 20;
 
-	constructor(http: Http, private state: State) {
-		super(http);
+	constructor(private apiService: ApiService, private state: State) {
+
 	}
 
 	getTaxRate(id: number): Observable<TaxRate> {

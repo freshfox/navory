@@ -1,6 +1,6 @@
 import {TranslateService} from "@ngx-translate/core";
 import {Injectable} from "@angular/core";
-import {ServiceErrorCode} from "../services/base.service";
+import {ServiceErrorCode} from '@freshfox/ng-core';
 
 @Injectable()
 export class ErrorHandler {

@@ -1,24 +1,23 @@
-import {NavoryApi} from './base.service';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Http} from '@angular/http';
+import {ApiService} from '@freshfox/ng-core';
 import {FileService} from './file.service';
 import {Quote} from '../models/quote.model';
 import {map} from 'rxjs/operators';
 import {LineUtils} from '../utils/line-utils';
 
 @Injectable()
-export class QuoteService extends NavoryApi {
+export class QuoteService {
 
 	private pathQuotes = '/quotes';
 
-	constructor(http: Http, private fileService: FileService) {
-		super(http);
+	constructor(private apiService: ApiService, private fileService: FileService) {
+
 	}
 
 	getQuotes(): Observable<Quote[]> {
-		return this.get(this.pathQuotes)
-			.pipe(map(quoteData => {
+		return this.apiService.get(this.pathQuotes)
+			.pipe(map((quoteData: any[]) => {
 				let quotes: Quote[] = [];
 				quoteData.forEach((quoteData) => {
 					let quote = new Quote(quoteData);
@@ -29,7 +28,7 @@ export class QuoteService extends NavoryApi {
 	}
 
 	getQuote(id: string): Observable<Quote> {
-		return this.get(this.getRestEntityPath(this.pathQuotes, id))
+		return this.apiService.get(this.apiService.getRestEntityPath(this.pathQuotes, id))
 			.pipe(map(quoteData => {
 				let quote = new Quote(quoteData);
 				return quote;
@@ -41,19 +40,19 @@ export class QuoteService extends NavoryApi {
 		data.quote_lines = data.lines;
 
 		if (quote.id) {
-			return this.patch(this.getRestEntityPath(this.pathQuotes, quote.id), data)
+			return this.apiService.patch(this.apiService.getRestEntityPath(this.pathQuotes, quote.id), data)
 				.pipe(map(quote => {
 					return new Quote(quote)
 				}));
 		}
-		return this.post(this.pathQuotes, data)
+		return this.apiService.post(this.pathQuotes, data)
 			.pipe(map(quote => {
 				return new Quote(quote);
 			}));
 	}
 
 	deleteQuote(quote: Quote): Observable<any> {
-		return this.delete(this.getRestEntityPath(this.pathQuotes, quote.id));
+		return this.apiService.delete(this.apiService.getRestEntityPath(this.pathQuotes, quote.id));
 	}
 
 	getTaxAmounts(quote: Quote): any[] {
@@ -61,11 +60,11 @@ export class QuoteService extends NavoryApi {
 	}
 
 	getPreviewURL(quote: Quote): string {
-		return this.constructApiUrl(`${this.pathQuotes}/${quote.id}/html`);
+		return this.apiService.constructApiUrl(`${this.pathQuotes}/${quote.id}/html`);
 	}
 
 	getDownloadURL(quote: Quote): string {
-		return this.constructApiUrl(`${this.pathQuotes}/${quote.id}/pdf`);
+		return this.apiService.constructApiUrl(`${this.pathQuotes}/${quote.id}/pdf`);
 	}
 
 	downloadQuotePDF(quote: Quote) {

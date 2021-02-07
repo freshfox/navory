@@ -11,16 +11,15 @@ import {ErrorHandler} from "../../core/error-handler";
 import {Helpers} from "../../core/helpers";
 import {BootstrapService} from "../../services/bootstrap.service";
 import {EuVatType} from "../../core/enums/eu-vat-type.enum";
-import {FieldValidationError, ServiceError} from "../../services/base.service";
 import {Payment} from "../../models/payment";
 import {TranslateService} from "@ngx-translate/core";
 import {ExpenseBookPaymentComponent} from "../payments/expense-book-payment.component";
-import {SnackBarService} from '@freshfox/ng-core';
+import {ServiceError, SnackBarService} from '@freshfox/ng-core';
 import {Location} from "@angular/common";
 import {ExpenseCategorySelectionComponent} from "./expense-category-selection.component";
 import {PaymentService} from "../../services/payment.service";
-import {SubscriptionService} from "../../services/subscription.service";
 import {ModalService, ModalSize} from "../../lib/ffc-angular/services/modal.service";
+import {FieldValidationError} from '../../core/field-validation-error';
 
 @Component({
 	templateUrl: './expense-edit.component.html'
@@ -36,7 +35,7 @@ export class ExpenseEditComponent implements OnInit {
 	taxRates;
 	expenseCategories: Category[];
 	euVatTypes: any[];
-	private nextExpenseNumber: number;
+	nextExpenseNumber: number;
 
 	constructor(private expenseService: ExpenseService,
 				private fb: FormBuilder,
@@ -49,8 +48,7 @@ export class ExpenseEditComponent implements OnInit {
 				private modalService: ModalService,
 				private translate: TranslateService,
 				private location: Location,
-				private paymentService: PaymentService,
-				private subscriptionService: SubscriptionService) {
+				private paymentService: PaymentService) {
 
 		this.expense = new Expense();
 		this.expenseCategories = this.state.expenseCategories;
@@ -214,11 +212,6 @@ export class ExpenseEditComponent implements OnInit {
 	}
 
 	addPayment() {
-		if (!this.subscriptionService.paymentsEnabled()) {
-			this.subscriptionService.showUpgradeModal();
-			return;
-		}
-
 		this.modalService.create(ExpenseBookPaymentComponent, {
 			parameters: {
 				expense: this.expense,

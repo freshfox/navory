@@ -1,26 +1,25 @@
-import {NavoryApi} from "./base.service";
-import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
-import {File} from "../models/file";
-import {Observable} from "rxjs";
+import {Injectable} from '@angular/core';
+import {ApiService} from '@freshfox/ng-core';
+import {File} from '../models/file';
+import {Observable} from 'rxjs';
 
 @Injectable()
-export class FileService extends NavoryApi {
+export class FileService {
 
 	private pathFile = '/files';
 
-	constructor(http: Http) {
-		super(http);
+	constructor(private apiService: ApiService) {
+
 	}
 
 	getFile(id: number): Observable<File> {
 		let path = this.pathFile + `/${id}`;
-		return this.get(path);
+		return this.apiService.get(path);
 	}
 
 	downloadFile(file: File) {
 		let path = `${this.pathFile}/${file.id}/download`;
-		let fullPath = this.constructApiUrl(path);
+		let fullPath = this.apiService.constructApiUrl(path);
 
 		this.downloadFromURL(fullPath);
 	}
@@ -64,6 +63,6 @@ export class FileService extends NavoryApi {
 
 	deleteFile(id: number) {
 		let path = this.pathFile + '/' + id;
-		return this.delete(path);
+		return this.apiService.delete(path);
 	}
 }

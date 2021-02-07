@@ -1,13 +1,12 @@
-import {NavoryApi} from "./base.service";
-import {Http} from "@angular/http";
-import {Injectable} from "@angular/core";
-import {FileService} from "./file.service";
-import {State} from "../core/state";
-import {Account} from "../models/account";
-import {Observable} from "rxjs";
-import {AccountSettings} from "../models/account-settings";
+import {Injectable} from '@angular/core';
+import {FileService} from './file.service';
+import {State} from '../core/state';
+import {Account} from '../models/account';
+import {Observable} from 'rxjs';
+import {AccountSettings} from '../models/account-settings';
 import {map} from 'rxjs/operators';
 import {EmailSettings} from '../models/email-settings';
+import {ApiService} from '@freshfox/ng-core';
 
 export enum ExportType {
 	Income = 'INCOME' as any,
@@ -17,7 +16,7 @@ export enum ExportType {
 }
 
 @Injectable()
-export class AccountService extends NavoryApi {
+export class AccountService {
 
 	private pathExport = '/account/export';
 	private pathAccount = '/account';
@@ -26,8 +25,7 @@ export class AccountService extends NavoryApi {
 	private pathAnnualAccountsExport = '/account/export-year';
 	private pathEmailSettings = '/emailsettings';
 
-	constructor(http: Http, private fileService: FileService, private state: State) {
-		super(http);
+	constructor(private apiService: ApiService, private fileService: FileService, private state: State) {
 	}
 
 	getAccount(): Account {
@@ -35,39 +33,39 @@ export class AccountService extends NavoryApi {
 	}
 
 	getSettings(): Observable<AccountSettings> {
-		return this.get(this.pathAccountSettings);
+		return this.apiService.get(this.pathAccountSettings);
 	}
 
 	getEmailSettings(): Observable<EmailSettings[]> {
-		return this.get(this.pathEmailSettings);
+		return this.apiService.get(this.pathEmailSettings);
 	}
 
 	saveEmailSettings(settings: EmailSettings) {
 		if (settings.id) {
-			return this.patch(this.getRestEntityPath(this.pathEmailSettings, settings.id), settings);
+			return this.apiService.patch(this.apiService.getRestEntityPath(this.pathEmailSettings, settings.id + ''), settings);
 		}
-		return this.post(this.pathEmailSettings, settings);
+		return this.apiService.post(this.pathEmailSettings, settings);
 	}
 
 	deleteEmailSettings(settings: EmailSettings) {
-		return this.delete(this.getRestEntityPath(this.pathEmailSettings, settings.id));
+		return this.apiService.delete(this.apiService.getRestEntityPath(this.pathEmailSettings, settings.id + ''));
 	}
 
 	deleteLogo(): Observable<AccountSettings> {
-		return this.patch(this.pathAccountSettings, { logo: null });
+		return this.apiService.patch(this.pathAccountSettings, {logo: null});
 	}
 
 	downloadExport(type: ExportType, startDate: string, endDate: string) {
-		let path = this.constructApiUrl(this.pathExport + `?type=${type}&from=${startDate}&to=${endDate}`);
+		let path = this.apiService.constructApiUrl(this.pathExport + `?type=${type}&from=${startDate}&to=${endDate}`);
 		this.fileService.downloadFromURL(path);
 	}
 
 	downloadAnnualAccountsExport(year: number) {
-		return this.post(this.pathAnnualAccountsExport, { year: year });
+		return this.apiService.post(this.pathAnnualAccountsExport, {year: year});
 	}
 
 	updateAccount(account: Account): Observable<Account> {
-		return this.patch(this.pathAccount, account)
+		return this.apiService.patch(this.pathAccount, account)
 			.pipe(map((account: Account) => {
 				this.state.user.account = account;
 				return account;
@@ -79,7 +77,7 @@ export class AccountService extends NavoryApi {
 	 * @returns {Observable<any>}
 	 */
 	getPaymentToken(): Observable<string> {
-		return this.get(this.pathPaymentToken);
+		return this.apiService.get(this.pathPaymentToken);
 	}
 
 }

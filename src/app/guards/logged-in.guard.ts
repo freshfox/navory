@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
 import {of} from 'rxjs';
 import {AuthService} from '../services/auth.service';
-import {ServiceError, ServiceErrorCode} from '../services/base.service';
 import {catchError, map} from 'rxjs/operators';
+import {ServiceError, ServiceErrorCode} from '@freshfox/ng-core';
 
 
 @Injectable()

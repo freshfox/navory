@@ -68,8 +68,6 @@ import {LogoUploadComponent} from './internal/settings/logo-upload.component';
 import {LogoComponent} from './core/components/logo.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PublicGuard} from './guards/public.guard';
-import {SubscriptionService} from './services/subscription.service';
-import {CancelSubscriptionComponent} from './internal/settings/cancel-subscription.component';
 import {UpgradePlanComponent} from './core/components/upgrade-plan.component';
 import {VatReportComponent} from './internal/reports/vat-report.component';
 import {ProfitLossReportComponent} from './internal/reports/profit-loss-report.component';
@@ -83,7 +81,7 @@ import {QuoteEditComponent} from './internal/quotes/quote-edit.component';
 import {ValidationMessageProvider} from './lib/ffc-angular/validation-message-provider';
 import {BadgeComponent} from './core/components/badge.component';
 import {AnnualAccountsComponent} from './internal/settings/annual-accounts.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -100,7 +98,8 @@ import {RecurringInvoiceEditComponent} from './internal/income/recurring-invoice
 import {CustomerSelectionComponent} from './core/components/customer-selection.component';
 import {EmailSettingsComponent} from './internal/settings/email-settings.component';
 import {EmailSettingsEditComponent} from './internal/settings/email-settings-edit.component';
-import {FFSnackbarModule} from '@freshfox/ng-core';
+import {FF_API_CONFIG, FFApiModule, FFSnackbarModule} from '@freshfox/ng-core';
+import {UnauthorizedInterceptor} from './core/unauthorized-interceptor';
 
 export function validationMessageProviderFactory() {
 	return new ValidationMessageProviderImpl();
@@ -152,7 +151,6 @@ export function validationMessageProviderFactory() {
 		ExpenseBookPaymentComponent,
 		LogoUploadComponent,
 		LogoComponent,
-		CancelSubscriptionComponent,
 		UpgradePlanComponent,
 		ReportsComponent,
 		ProfitLossReportComponent,
@@ -170,17 +168,6 @@ export function validationMessageProviderFactory() {
 		EmailSettingsComponent,
 		EmailSettingsEditComponent,
 	],
-	entryComponents: [
-		CustomerEditComponent,
-		InvoiceBookPaymentComponent,
-		IncomeBookPaymentComponent,
-		ExpenseBookPaymentComponent,
-		ExpenseCategorySelectionComponent,
-		DocumentPreviewComponent,
-		CancelSubscriptionComponent,
-		UpgradePlanComponent,
-		EmailSettingsEditComponent,
-	],
 	imports: [
 		BrowserModule,
 		CommonModule,
@@ -196,6 +183,7 @@ export function validationMessageProviderFactory() {
 		}),
 		AppRoutingModule,
 		FFMaterialModule,
+		FFApiModule,
 		MatProgressSpinnerModule,
 		MatTooltipModule,
 		MatSnackBarModule,
@@ -214,6 +202,14 @@ export function validationMessageProviderFactory() {
 	],
 	providers: [
 		{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
+		{
+			provide: FF_API_CONFIG,
+			useValue: {
+				baseUrl: environment.apiUrl,
+			}
+		},
+		{provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true},
+
 
 		AuthService,
 		UserService,
@@ -235,7 +231,6 @@ export function validationMessageProviderFactory() {
 		AccountService,
 		PaymentService,
 		UnitService,
-		SubscriptionService,
 		QuoteService,
 		LocalStorageService
 	],

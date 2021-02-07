@@ -1,12 +1,8 @@
-<nvry-upgrade-plan *ngIf="!paymentsEnabled; else paymentsTemplate"></nvry-upgrade-plan>
+<div class="page-header">
 
+</div>
 
-<ng-template #paymentsTemplate>
-	<div class="page-header">
+<ff-spinner *ngIf="loading"></ff-spinner>
 
-	</div>
-
-	<ff-spinner *ngIf="loading"></ff-spinner>
-
-	<nvry-payments-bank-account [bankAccount]="selectedBankAccount" *ngIf="selectedBankAccount"></nvry-payments-bank-account>
-</ng-template>
+<nvry-payments-bank-account [bankAccount]="selectedBankAccount"
+							*ngIf="selectedBankAccount"></nvry-payments-bank-account>

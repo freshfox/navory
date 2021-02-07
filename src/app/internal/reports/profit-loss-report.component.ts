@@ -1,5 +1,4 @@
 import {Component, OnInit} from "@angular/core";
-import {SubscriptionService} from "../../services/subscription.service";
 import moment from "moment";
 import {ReportService} from "../../services/report.service";
 
@@ -12,9 +11,8 @@ export class ProfitLossReportComponent implements OnInit {
 
 	startDate: any;
 	endDate: any;
-	reportsEnabled: boolean;
 
-	constructor(private subscriptionService: SubscriptionService, private reportService: ReportService) {
+	constructor(private reportService: ReportService) {
 	}
 
 	ngOnInit() {
@@ -22,8 +20,6 @@ export class ProfitLossReportComponent implements OnInit {
 			this.startDate = moment().startOf('year').toDate();
 			this.endDate = moment().endOf('year').toDate();
 		}, 1);
-
-		this.reportsEnabled = this.subscriptionService.reportsEnabled();
 	}
 
 	get reportUrl(): string {

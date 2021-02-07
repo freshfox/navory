@@ -1,19 +1,18 @@
-import {Injectable} from "@angular/core";
-import {NavoryApi} from "./base.service";
-import {Http} from "@angular/http";
-import {User} from "../models/user";
+import {Injectable} from '@angular/core';
+import {ApiService} from '@freshfox/ng-core';
+import {User} from '../models/user';
 import {Observable, of} from 'rxjs';
-import {State} from "../core/state";
+import {State} from '../core/state';
 import {map} from 'rxjs/operators';
 
 @Injectable()
-export class UserService extends NavoryApi {
+export class UserService {
 
 	private pathUser = '/user';
 	private pathUserPassword = '/user/password';
 
-	constructor(http: Http, private state: State) {
-		super(http);
+	constructor(private apiService: ApiService, private state: State) {
+
 	}
 
 	getOwnUser(): Observable<User> {
@@ -21,7 +20,7 @@ export class UserService extends NavoryApi {
 			return of(this.state.user);
 		}
 
-		return this.get(this.pathUser)
+		return this.apiService.get(this.pathUser)
 			.pipe(map(data => {
 				return data as User;
 			}));
@@ -35,7 +34,7 @@ export class UserService extends NavoryApi {
 	}
 
 	updateUser(user: User): Observable<User> {
-		return this.patch(this.pathUser, user)
+		return this.apiService.patch(this.pathUser, user)
 			.pipe(map(user => {
 				this.state.user = user;
 				return user;
@@ -43,7 +42,7 @@ export class UserService extends NavoryApi {
 	}
 
 	updatePassword(password: string, newPassword: string): Observable<any> {
-		return this.put(this.pathUserPassword, {
+		return this.apiService.put(this.pathUserPassword, {
 			password: password,
 			new_password: newPassword
 		});

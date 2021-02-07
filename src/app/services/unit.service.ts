@@ -1,16 +1,15 @@
-import {Injectable} from "@angular/core";
-import {NavoryApi} from "./base.service";
-import {Http} from "@angular/http";
+import {Injectable} from '@angular/core';
+import {ApiService} from '@freshfox/ng-core';
 import {Observable, of} from 'rxjs';
-import {State} from "../core/state";
-import {Unit} from "../models/unit";
+import {State} from '../core/state';
+import {Unit} from '../models/unit';
 
 @Injectable()
-export class UnitService extends NavoryApi {
+export class UnitService {
 
 
-	constructor(http: Http, private state: State) {
-		super(http);
+	constructor(private apiService: ApiService, private state: State) {
+
 	}
 
 	getUnit(id: number): Observable<Unit> {

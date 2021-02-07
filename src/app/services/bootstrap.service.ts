@@ -1,24 +1,23 @@
-import {NavoryApi} from "./base.service";
-import {Http} from "@angular/http";
+import {ApiService} from '@freshfox/ng-core';
 import {Observable, of} from 'rxjs';
-import {Injectable} from "@angular/core";
-import {EuVatType} from "../core/enums/eu-vat-type.enum";
-import {TranslateService} from "@ngx-translate/core";
-import {Unit} from "../models/unit";
-import {State} from "../core/state";
-import {Country} from "../models/country";
+import {Injectable} from '@angular/core';
+import {EuVatType} from '../core/enums/eu-vat-type.enum';
+import {TranslateService} from '@ngx-translate/core';
+import {Unit} from '../models/unit';
+import {State} from '../core/state';
+import {Country} from '../models/country';
 
 @Injectable()
-export class BootstrapService extends NavoryApi {
+export class BootstrapService {
 
 	private pathBootstrap = '/bootstrap';
 
-	constructor(http: Http, private translate: TranslateService, private state: State) {
-		super(http);
+	constructor(private apiService: ApiService, private translate: TranslateService, private state: State) {
+
 	}
 
 	getBootstrapData(): Observable<any> {
-		return this.get(this.pathBootstrap);
+		return this.apiService.get(this.pathBootstrap);
 	}
 
 	getFormattedEuVatTypes() {

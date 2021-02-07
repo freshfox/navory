@@ -11,15 +11,14 @@ import {ErrorHandler} from "../../../core/error-handler";
 import {TaxRate} from "../../../models/tax-rate";
 import {BootstrapService} from "../../../services/bootstrap.service";
 import {EuVatType} from "../../../core/enums/eu-vat-type.enum";
-import {FieldValidationError, ServiceError} from "../../../services/base.service";
-import {SnackBarService} from '@freshfox/ng-core';
+import {ServiceError, SnackBarService} from '@freshfox/ng-core';
 import {TranslateService} from "@ngx-translate/core";
 import {IncomeBookPaymentComponent} from "../../payments/income-book-payment.component";
 import {Payment} from "../../../models/payment";
 import {Location} from "@angular/common";
 import {PaymentService} from "../../../services/payment.service";
-import {SubscriptionService} from "../../../services/subscription.service";
 import {ModalService} from "../../../lib/ffc-angular/services/modal.service";
+import {FieldValidationError} from '../../../core/field-validation-error';
 
 @Component({
 	selector: 'nvry-income-edit',
@@ -49,8 +48,7 @@ export class IncomeEditComponent implements OnInit {
 				private translate: TranslateService,
 				private modalService: ModalService,
 				private location: Location,
-				private paymentService: PaymentService,
-				private subscriptionService: SubscriptionService) {
+				private paymentService: PaymentService) {
 
 		this.income = new Income();
 		this.nextIncomeNumber = this.state.nextIncomeNumber;
@@ -172,11 +170,6 @@ export class IncomeEditComponent implements OnInit {
 	}
 
 	addPayment() {
-		if (!this.subscriptionService.paymentsEnabled()) {
-			this.subscriptionService.showUpgradeModal();
-			return;
-		}
-
 		this.modalService.create(IncomeBookPaymentComponent, {
 			parameters: {
 				income: this.income,

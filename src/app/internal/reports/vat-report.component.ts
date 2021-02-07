@@ -1,6 +1,5 @@
-import {Component, OnInit} from "@angular/core";
-import {ReportService} from "../../services/report.service";
-import {SubscriptionService} from "../../services/subscription.service";
+import {Component, OnInit} from '@angular/core';
+import {ReportService} from '../../services/report.service';
 var moment = require('moment');
 
 @Component({

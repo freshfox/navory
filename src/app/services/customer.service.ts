@@ -1,18 +1,16 @@
-import {Injectable} from "@angular/core";
-import {Customer} from "../models/customer";
-import {Http} from "@angular/http";
-import {NavoryApi} from "./base.service";
-import {Observable} from "rxjs";
-import {AnalyticsEventType, AnalyticsService} from "./analytics.service";
+import {Injectable} from '@angular/core';
+import {Customer} from '../models/customer';
+import {ApiService} from '@freshfox/ng-core';
+import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 @Injectable()
-export class CustomerService extends NavoryApi {
+export class CustomerService {
 
 	private pathCustomers = '/customers';
 
-	constructor(http: Http) {
-		super(http);
+	constructor(private apiService: ApiService) {
+
 	}
 
 	searchCustomers(query: string): Observable<Customer[]> {
@@ -25,11 +23,11 @@ export class CustomerService extends NavoryApi {
 	}
 
 	getCustomer(id: string): Observable<Customer> {
-		return this.get(this.getRestEntityPath(this.pathCustomers, id));
+		return this.apiService.get(this.apiService.getRestEntityPath(this.pathCustomers, id));
 	}
 
 	getCustomers(): Observable<Customer[]> {
-		return this.get(this.pathCustomers)
+		return this.apiService.get(this.pathCustomers)
 			.pipe(map(data => data as Customer[]));
 	}
 
@@ -41,11 +39,11 @@ export class CustomerService extends NavoryApi {
 	}
 
 	deleteCustomer(customer: Customer): Observable<any> {
-		return this.delete(this.getRestEntityPath(this.pathCustomers, customer.id));
+		return this.apiService.delete(this.apiService.getRestEntityPath(this.pathCustomers, customer.id));
 	}
 
 	private createCustomer(customer: Customer) {
-		return this.post(this.pathCustomers, customer)
+		return this.apiService.post(this.pathCustomers, customer)
 			.pipe(map(data => {
 				return new Customer(data);
 			}));
@@ -53,7 +51,7 @@ export class CustomerService extends NavoryApi {
 
 	private updateCustomer(customer: Customer) {
 		let path = this.pathCustomers + `/${customer.id}`;
-		return this.patch(path, customer)
+		return this.apiService.patch(path, customer)
 			.pipe(map(data => {
 				return new Customer(data);
 			}));

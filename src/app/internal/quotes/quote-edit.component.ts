@@ -8,10 +8,8 @@ import {FormValidator} from '../../core/form-validator';
 import {Location} from '@angular/common';
 import {Helpers} from '../../core/helpers';
 import {Observable} from 'rxjs';
-import {SnackBarService} from '@freshfox/ng-core';
+import {ServiceError, SnackBarService} from '@freshfox/ng-core';
 import {DocumentPreviewComponent} from '../../core/components/document-preview.component';
-import {ServiceError, ServiceErrorCode} from '../../services/base.service';
-import {SubscriptionService} from '../../services/subscription.service';
 import {ModalService, ModalSize} from '../../lib/ffc-angular/services/modal.service';
 import {QuoteService} from '../../services/quote.service';
 import {Quote} from '../../models/quote.model';
@@ -43,7 +41,6 @@ export class QuoteEditComponent implements OnInit {
 				private modalService: ModalService,
 				private fb: FormBuilder,
 				private location: Location,
-				private subscriptionService: SubscriptionService,
 				private router: Router) {
 
 		this.quote = new Quote();
@@ -156,12 +153,7 @@ export class QuoteEditComponent implements OnInit {
 						},
 						(error: ServiceError) => {
 							this.saving = false;
-
-							if (error.code === ServiceErrorCode.Forbidden) {
-								this.subscriptionService.showUpgradeModal();
-							} else {
-								this.snackbar.error(this.translate.instant('quotes.save-error'));
-							}
+							this.snackbar.error(this.translate.instant('quotes.save-error'));
 
 							observer.error();
 							observer.complete();
