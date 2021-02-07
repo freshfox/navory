@@ -1123,12 +1123,12 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@freshfox/ng-core@^3.7.3":
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/@freshfox/ng-core/-/ng-core-3.7.3.tgz#b35794e31f0f967661d2b913bde186dde047bc52"
-  integrity sha512-xDJfxbs6eAgIvMfyxGxMOZKhpicVArmXMW5y4dE/X8gpizPU1Zh636BMkykbpNEInxCflFe5lCWtdXq9PZSHzw==
+"@freshfox/ng-core@^7.5.4":
+  version "7.5.4"
+  resolved "https://registry.yarnpkg.com/@freshfox/ng-core/-/ng-core-7.5.4.tgz#9b7f2c134b7a45badb3047badd290c4f0f7aa87e"
+  integrity sha512-HonnILQmaWTbJBK4ilynWdUkPiejnGxO79USvmHS6BOc/I0wY2OXuAG3NO216cwxhDfaDA7pyawkPNYoS2YJ0w==
   dependencies:
-    tslib "^1.9.0"
+    tslib "^2.0.0"
 
 "@istanbuljs/schema@^0.1.2":
   version "0.1.2"
