@@ -21,18 +21,18 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^9.1.13",
+    "@angular/animations": "^10.2.4",
     "@angular/cdk": "^9.2.4",
-    "@angular/common": "^9.1.13",
-    "@angular/compiler": "^9.1.13",
-    "@angular/core": "^9.1.13",
-    "@angular/forms": "^9.1.13",
+    "@angular/common": "^10.2.4",
+    "@angular/compiler": "^10.2.4",
+    "@angular/core": "^10.2.4",
+    "@angular/forms": "^10.2.4",
     "@angular/material": "^9.2.4",
-    "@angular/platform-browser": "^9.1.13",
-    "@angular/platform-browser-dynamic": "^9.1.13",
-    "@angular/platform-server": "^9.1.13",
-    "@angular/router": "^9.1.13",
-    "@angular/service-worker": "^9.1.13",
+    "@angular/platform-browser": "^10.2.4",
+    "@angular/platform-browser-dynamic": "^10.2.4",
+    "@angular/platform-server": "^10.2.4",
+    "@angular/router": "^10.2.4",
+    "@angular/service-worker": "^10.2.4",
     "@freshfox/ng-core": "^3.7.3",
     "@ngx-translate/core": "^10.0.2",
     "@ngx-translate/http-loader": "^3.0.1",
@@ -57,9 +57,9 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.901.14",
-    "@angular/cli": "^9.1.14",
-    "@angular/compiler-cli": "^9.1.13",
+    "@angular-devkit/build-angular": "~0.1002.2",
+    "@angular/cli": "^10.2.2",
+    "@angular/compiler-cli": "^10.2.4",
     "@types/chartist": "^0.9.34",
     "@types/jasmine": "2.5.38",
     "@types/jquery": "^2.0.33",
@@ -82,6 +82,6 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~5.12.1",
-    "typescript": "~3.8.3"
+    "typescript": "~4.0.5"
   }
 }
