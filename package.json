@@ -65,7 +65,7 @@
     "@types/jquery": "^2.0.33",
     "@types/node": "^12.11.1",
     "@types/pikaday": "0.0.32",
-    "codelyzer": "^5.1.2",
+    "codelyzer": "^6.0.1",
     "firebase-tools": "^7.2.4",
     "gulp-favicons": "^2.2.7",
     "gulp-svgmin": "^1.2.3",
