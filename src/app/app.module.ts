@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app.routing';
 import {AuthService} from './services/auth.service';
@@ -187,7 +186,6 @@ export function validationMessageProviderFactory() {
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
-		HttpModule,
 		HttpClientModule,
 		BrowserAnimationsModule,
 		TranslateModule.forRoot({

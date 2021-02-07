@@ -89,7 +89,7 @@ export interface FFCoreModuleConfig {
 })
 export class FFCoreModule {
 
-	static forRoot(config: FFCoreModuleConfig = {}): ModuleWithProviders {
+	static forRoot(config: FFCoreModuleConfig = {}): ModuleWithProviders<FFCoreModule> {
 		return {
 			ngModule: FFCoreModule,
 			providers: [
