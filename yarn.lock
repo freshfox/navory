@@ -216,13 +216,6 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/http@^7.2.4":
-  version "7.2.4"
-  resolved "https://registry.yarnpkg.com/@angular/http/-/http-7.2.4.tgz#fc151ac15c8c7542cb7242a430ad2319655c2ff5"
-  integrity sha512-kazJREm7MtSCYbE+9zU/CcUXI5Csu53PooeQlAp80/TOHqry6fVKIMHCI892Db9ScY2ds0SzbyTmrxEQo7PP1A==
-  dependencies:
-    tslib "^1.9.0"
-
 "@angular/material@^8.2.3":
   version "8.2.3"
   resolved "https://registry.yarnpkg.com/@angular/material/-/material-8.2.3.tgz#16543e4e06a3fde2651a25cfe126e88e714ae105"
