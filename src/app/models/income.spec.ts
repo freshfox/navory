@@ -1,10 +1,10 @@
-import {async} from "@angular/core/testing";
+import { waitForAsync } from "@angular/core/testing";
 import {Income} from "./income";
 import {Payment} from "./payment";
 
 describe('Income', () => {
 
-	it('should calculate the unpaid amount properly', async(() => {
+	it('should calculate the unpaid amount properly', waitForAsync(() => {
 		let income = new Income({
 			price: 100,
 			unpaid_amount: 100
@@ -27,7 +27,7 @@ describe('Income', () => {
 		expect(unpaidAmount2).toEqual(50);
 	}));
 
-	it('should calculate the gross amount', async(() => {
+	it('should calculate the gross amount', waitForAsync(() => {
 		let income = new Income({
 			price: 100,
 			tax_rate: {
