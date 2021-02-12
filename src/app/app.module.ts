@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {LOCALE_ID, NgModule} from '@angular/core';
+import {CommonModule, registerLocaleData} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {AppComponent} from './app.component';
@@ -58,7 +58,7 @@ import {StepsComponent} from './core/components/steps.component';
 import {PaymentService} from './services/payment.service';
 import {UnitService} from './services/unit.service';
 import {InvoiceBookPaymentComponent} from './internal/payments/invoice-book-payment.component';
-import {PaymentsBankAccountComponent} from './internal/payments/payments-bank-account.component';
+import {PaymentsTableComponent} from './internal/payments/payments-table.component';
 import {BookedPaymentComponent} from './core/components/booked-payment.component';
 import {IncomeBookPaymentComponent} from './internal/payments/income-book-payment.component';
 import {BookPaymentComponent} from './internal/payments/book-payment.component';
@@ -98,8 +98,22 @@ import {RecurringInvoiceEditComponent} from './internal/income/recurring-invoice
 import {CustomerSelectionComponent} from './core/components/customer-selection.component';
 import {EmailSettingsComponent} from './internal/settings/email-settings.component';
 import {EmailSettingsEditComponent} from './internal/settings/email-settings-edit.component';
-import {FF_API_CONFIG, FFApiModule, FFSnackbarModule} from '@freshfox/ng-core';
+import {
+	FF_API_CONFIG,
+	FFApiModule,
+	FFBadgeModule,
+	FFButtonModule,
+	FFDialogModule,
+	FFSnackbarModule
+} from '@freshfox/ng-core';
 import {UnauthorizedInterceptor} from './core/unauthorized-interceptor';
+import {BankAccountCreateComponent} from './internal/payments/bank-account-create.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import de from '@angular/common/locales/de';
+
+registerLocaleData(de, 'de');
 
 export function validationMessageProviderFactory() {
 	return new ValidationMessageProviderImpl();
@@ -145,7 +159,7 @@ export function validationMessageProviderFactory() {
 		BookPaymentComponent,
 		InvoiceBookPaymentComponent,
 		IncomeBookPaymentComponent,
-		PaymentsBankAccountComponent,
+		PaymentsTableComponent,
 		BookedPaymentComponent,
 		TotalIndicatorComponent,
 		ExpenseBookPaymentComponent,
@@ -167,6 +181,9 @@ export function validationMessageProviderFactory() {
 		CustomerSelectionComponent,
 		EmailSettingsComponent,
 		EmailSettingsEditComponent,
+
+		// Payments
+		BankAccountCreateComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -184,12 +201,18 @@ export function validationMessageProviderFactory() {
 		AppRoutingModule,
 		FFMaterialModule,
 		FFApiModule,
+		FFDialogModule,
+		FFButtonModule,
+		FFBadgeModule,
 		MatProgressSpinnerModule,
+		MatTableModule,
+		MatPaginatorModule,
 		MatTooltipModule,
 		MatSnackBarModule,
 		MatInputModule,
 		MatFormFieldModule,
 		MatSelectModule,
+		MatCheckboxModule,
 		MatAutocompleteModule,
 		FFCoreModule.forRoot({
 			validationMessageProvider: {
@@ -201,6 +224,7 @@ export function validationMessageProviderFactory() {
 		FFSnackbarModule,
 	],
 	providers: [
+		{provide: LOCALE_ID, useValue: 'de-AT'},
 		{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
 		{
 			provide: FF_API_CONFIG,

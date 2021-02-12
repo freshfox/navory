@@ -18,8 +18,7 @@ export class PaymentService {
 
 	}
 
-	getPayments(bankAccountId: string): Observable<Payment[]> {
-		//let path = `/bankaccounts/${bankAccountId}/payments`;
+	getPayments(): Observable<Payment[]> {
 		return this.apiService.get(this.pathPayments);
 	}
 
@@ -29,6 +28,10 @@ export class PaymentService {
 
 	getBankAccounts(): Observable<BankAccount[]> {
 		return this.apiService.get(this.pathBankAccounts);
+	}
+
+	createBankAccount(account: BankAccount) {
+		return this.apiService.post<BankAccount>(this.pathBankAccounts, account);
 	}
 
 	addPaymentToInvoice(invoiceId: string, payment: Payment): Observable<Payment> {

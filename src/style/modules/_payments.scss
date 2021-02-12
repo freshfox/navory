@@ -1,13 +1,7 @@
 .payments-table {
-
-	.payment-amount {
-		color: $colorIncome;
+	.mat-column-status {
+		width: 150px;
 	}
-
-	.payment-amount--negative {
-		color: $colorExpenses;
-	}
-
 }
 
 nvry-book-payment {

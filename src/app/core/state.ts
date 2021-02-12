@@ -1,14 +1,15 @@
-import {Injectable} from "@angular/core";
-import {User} from "../models/user";
-import {Category} from "../models/category";
-import {Unit} from "../models/unit";
-import {Country} from "../models/country";
-import {TaxRate} from "../models/tax-rate";
-import {AccountFeatures} from "../models/account-features";
-import {Subscription} from "../models/subscription";
+import {Injectable} from '@angular/core';
+import {User} from '../models/user';
+import {Category} from '../models/category';
+import {Unit} from '../models/unit';
+import {Country} from '../models/country';
+import {TaxRate} from '../models/tax-rate';
+import {AccountFeatures} from '../models/account-features';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable()
 export class State {
+
 
 	user: User;
 	selectedExpenseMonthIndex: number;
@@ -24,6 +25,9 @@ export class State {
 	nextInvoiceNumber: number;
 	nextQuoteNumber: number;
 	features: AccountFeatures;
-	subscription: Subscription;
+
+
+	// Payments
+	showBookedPayments$ = new BehaviorSubject(false);
 
 }
