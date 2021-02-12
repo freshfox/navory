@@ -17,7 +17,7 @@
     "deploy:staging": "yarn deploy --project staging"
   },
   "engines": {
-    "node": "10"
+    "node": "12"
   },
   "private": true,
   "dependencies": {
