@@ -95,15 +95,15 @@ export class QuotesComponent implements OnInit {
 
 	getBadgeData(invoice) {
 		let text;
-		let badgeClass;
+		let type;
 		switch (this.getQuoteStatus(invoice)) {
 			case QuoteStatus.Draft:
 				text = this.translate.instant('general.draft');
-				badgeClass = 'gray';
+				type = 'gray';
 				break;
 			case QuoteStatus.Issued:
 				text = this.translate.instant('general.issued');
-				badgeClass = 'customer';
+				type = 'info_alt';
 				break;
 			default:
 				break;
@@ -111,7 +111,7 @@ export class QuotesComponent implements OnInit {
 
 		return {
 			text: text,
-			cssClass: badgeClass
+			type: type
 		};
 	}
 

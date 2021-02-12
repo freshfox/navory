@@ -122,32 +122,32 @@ export class InvoiceService {
 
 	getBadgeDataForStatus(status: InvoiceStatus) {
 		let text;
-		let badgeClass;
+		let type;
 
 		switch (status) {
 			case InvoiceStatus.Canceled:
 				text = this.translate.instant('general.canceled');
-				badgeClass = 'gray';
+				type = 'gray';
 				break;
 			case InvoiceStatus.Draft:
 				text = this.translate.instant('general.draft');
-				badgeClass = 'clear';
+				type = 'clear';
 				break;
 			case InvoiceStatus.Paid:
 				text = this.translate.instant('general.paid');
-				badgeClass = 'income';
+				type = 'success';
 				break;
 			case InvoiceStatus.PartlyPaid:
 				text = this.translate.instant('general.partly-paid');
-				badgeClass = 'income-part';
+				type = 'warning';
 				break;
 			case InvoiceStatus.Overdue:
 				text = this.translate.instant('general.overdue');
-				badgeClass = 'expense';
+				type = 'error';
 				break;
 			case InvoiceStatus.Issued:
 				text = this.translate.instant('invoices.issued');
-				badgeClass = 'customer';
+				type = 'info_alt';
 				break;
 			default:
 				break;
@@ -155,7 +155,7 @@ export class InvoiceService {
 
 		return {
 			text: text,
-			cssClass: badgeClass
+			type: type
 		};
 	}
 

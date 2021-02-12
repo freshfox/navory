@@ -71,9 +71,9 @@ $contentSidePadding: 20px;
 /**
  * Typography
  */
-$fontFamily: 'Lato', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$fontFamily: 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 $fontSizeSmall: 11px;
-$fontSize: 13px;
+$fontSize: 14px;
 $fontSizeLarge: 16px;
 $defaultLineHeight: 1.5;
 $textColor: #2d3339;
@@ -116,3 +116,6 @@ $modalWidthLarge: 750px;
 $modalSidePadding: 24px;
 
 
+:root {
+	--ff-color-primary: #{$colorPrimary};
+}

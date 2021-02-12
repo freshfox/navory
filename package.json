@@ -45,7 +45,6 @@
     "iframe-resizer": "^3.5.5",
     "javascript-autocomplete": "github:navory/javascript-autocomplete#1f458223f017fe56fd03a8fdfa355cf4b71d6fce",
     "jquery": "^3.2.1",
-    "ladda": "^1.0.0",
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "numbro": "^1.9.3",

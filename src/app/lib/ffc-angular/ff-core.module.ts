@@ -1,7 +1,6 @@
-import {Injectable, ModuleWithProviders, NgModule, Provider} from '@angular/core';
+import {ModuleWithProviders, NgModule, Provider} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {IconComponent} from './components/icon.component';
-import {ButtonComponent} from './components/button.component';
 import {SpinnerComponent} from './components/spinner.component';
 import {ConfirmComponent} from './components/confirm.component';
 import {ControlMessagesComponent} from './components/control-messages.component';
@@ -19,10 +18,8 @@ import {DropdownComponent} from './components/dropdown.component';
 import {TableComponent} from './components/table/table.component';
 import {TableHeaderCellComponent} from './components/table/table-header-cell.component';
 import {FakeValidationMessageProvider, ValidationMessageProvider} from './validation-message-provider';
-import {FFMaterialModule} from './components/material.module';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
-export * from './components/button.component';
 export * from './components/confirm.component';
 export * from './components/control-messages.component';
 export * from './components/icon.component';
@@ -46,7 +43,6 @@ export interface FFCoreModuleConfig {
 	imports: [BrowserModule, MatProgressSpinnerModule, FormsModule],
 	declarations: [
 		IconComponent,
-		ButtonComponent,
 		SpinnerComponent,
 		ConfirmComponent,
 		ControlMessagesComponent,
@@ -64,7 +60,6 @@ export interface FFCoreModuleConfig {
 	],
 	exports: [
 		IconComponent,
-		ButtonComponent,
 		SpinnerComponent,
 		ConfirmComponent,
 		ControlMessagesComponent,

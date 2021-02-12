@@ -12,7 +12,7 @@
 			<span *ngIf="createMode">{{ 'invoices.create_title' | translate }}</span>
 		</h1>
 
-		<nvry-badge class="invoice-edit-badge" [type]="getBadgeData().cssClass" [text]="getBadgeData().text"></nvry-badge>
+		<ff-badge class="invoice-edit-badge" [type]="badgeData.type" *ngIf="getBadgeData() as badgeData">{{ badgeData.text }}</ff-badge>
 
 		<div class="buttons">
 

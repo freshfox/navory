@@ -1,5 +1,8 @@
 //@import "../bower_components/lemonade/scss/config";
-
+@import url('https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@freshfox/ng-core/styles/main';
 
 /**
  * Variables for configuration and overriding of third party styles
@@ -11,7 +14,6 @@
  * Third party styles
  */
 @import "~normalize.css/normalize.css";
-@import "~ladda/css/ladda";
 @import "~bourbon/app/assets/stylesheets/bourbon";
 @import "~pikaday/scss/pikaday";
 @import "~chartist/dist/scss/chartist";
@@ -52,7 +54,6 @@
 @import "components/notifications";
 @import "components/badges";
 @import "components/steps";
-@import "components/year-selection";
 @import "components/forms/dropdowns";
 @import "components/forms/toggles";
 @import "components/forms/datepicker";
