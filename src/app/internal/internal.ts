@@ -3,6 +3,7 @@ import {State} from '../core/state';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {environment} from '../../environments/environment';
+import {BehaviorSubject} from 'rxjs';
 
 declare let Headway: any;
 
@@ -12,6 +13,8 @@ declare let Headway: any;
 export class InternalComponent implements AfterViewInit, OnDestroy {
 
 	version = environment.version;
+
+	darkMode$ = new BehaviorSubject(false);
 
 	navItems = [
 		{
@@ -70,6 +73,11 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 		let bootstrap = this.route.snapshot.data['bootstrap'];
 		Object.assign(this.state, bootstrap);
 		this.state.expenseCategories = bootstrap.categories;
+
+		this.darkMode$
+			.subscribe((darkMode) => {
+				document.documentElement.classList.toggle('dark', darkMode);
+			});
 	}
 
 	ngAfterViewInit() {

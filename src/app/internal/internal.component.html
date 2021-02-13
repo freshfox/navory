@@ -1,5 +1,4 @@
-<div class="base-layout">
-	<header class="main-header">
+	<!-- <header class="main-header">
 		<div class="container main-header__inner">
 			<div class="logo">
 				<img src="/assets/images/icons/logo-graydark.svg" alt="">
@@ -19,23 +18,78 @@
 				</ff-dropdown>
 			</div>
 		</div>
-	</header>
+	</header> -->
 
-	<main class="container main-container">
-		<div id="sidebar">
-			<nav>
-				<ul>
-					<li *ngFor="let item of navItems">
-						<a [routerLink]="item.routerLink" class="{{ item.key }}" routerLinkActive="active">
-							<ff-icon [name]="item.icon"></ff-icon>
-							<span class="title">{{ item.title | translate }}</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
+<main class="flex flex-col w-full h-full relative">
+	<div class="flex flex-grow mx-auto w-full" style="max-width: 1300px;">
+		<div class="w-56 flex-shrink-0 flex-grow-0 h-screen sticky top-0" id="sidebar">
+			<div class="h-full flex flex-col flex-grow border-r border-gray-200 dark:border-gray-500 pt-5 pb-4 overflow-y-auto">
+				<div class="flex items-baseline flex-shrink-0 px-4">
+					<svg class="h-5 w-auto text-gray-900 dark:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59.97 9.16">
+						<g fill="currentColor">
+							<polygon points="5.4 5 1.48 0.17 0 0.17 0 8.96 1.98 8.96 1.98 3.68 6.2 8.96 7.38 8.96 7.38 0.16 5.4 0.16 5.4 5"/>
+							<path d="M13.21.17,9.26,9h2.15l.72-1.58h4.13L17,9h2.17L15.2.17Zm2.25,5.34H12.95L14.2,2.63Z"/>
+							<polygon points="23.71 6.35 21.31 0.17 19.1 0.17 22.76 9 24.67 9 28.32 0.17 26.11 0.17 23.71 6.35"/>
+							<path d="M34.75,0a4.39,4.39,0,0,0-4.52,4.63,4.29,4.29,0,0,0,4.52,4.53,4.32,4.32,0,0,0,4.51-4.54A4.72,4.72,0,0,0,38,1.25,4.4,4.4,0,0,0,34.75,0Zm-1.8,2.54a2.68,2.68,0,0,1,3.59,0,2.93,2.93,0,0,1,.76,2.11,2.55,2.55,0,1,1-5.1,0A2.91,2.91,0,0,1,32.94,2.54Z"/>
+							<path d="M49.25,3.15A3,3,0,0,0,46,.17H41.83V9h2V6.15L45,6.09,47.59,9H49.9L47.29,5.9A2.68,2.68,0,0,0,49.25,3.15ZM43.82,2H46a1.11,1.11,0,0,1,1.24,1.14A1.11,1.11,0,0,1,46,4.33H43.82Z"/>
+							<polygon points="59.97 0.17 59.59 0.17 57.52 0.26 55.46 3.46 53.32 0.17 51.07 0.17 54.47 5.3 54.47 8.96 56.45 8.96 56.41 5.41 59.97 0.17"/>
+						</g>
+					</svg>
+
+					<span class="text-gray-600 text-xs ml-2 dark:text-gray-300">v{{ version }}</span>
+				</div>
+				<nav class="mt-5 mb-8 px-2 space-y-1" aria-label="Sidebar">
+					<a *ngFor="let item of navItems"
+					   [routerLink]="item.routerLink"
+					   [routerLinkActive]="'active'"
+					   class="{{ item.key }}">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" *ngIf="item.key === 'dashboard'">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+						</svg>
+
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" *ngIf="item.key === 'income' || item.key === 'quotes' || item.key === 'expenses'">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+						</svg>
+
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" *ngIf="item.key === 'customers'">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+						</svg>
+
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" *ngIf="item.key === 'settings'">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+						</svg>
+
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" *ngIf="item.key === 'payments'">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+						</svg>
+
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" *ngIf="item.key === 'reports'">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+						</svg>
+
+						{{ item.title | translate }}
+					</a>
+				</nav>
+
+				<div class="px-4">
+					<div class="flex items-center">
+						<button type="button" class="flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" aria-pressed="false" (click)="darkMode$.next(!darkMode$.value)">
+							<span aria-hidden="true" class="pointer-events-none absolute w-full h-full rounded-md"></span>
+							<span aria-hidden="true" class="bg-gray-200 pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200" [class.bg-primary]="darkMode$ | async"></span>
+							<span aria-hidden="true" class="translate-x-0 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200" [class.translate-x-5]="darkMode$ | async"></span>
+						</button>
+
+						<span class="ml-2 dark:text-white font-medium">
+							Dark Mode <span class="text-gray-400 uppercase font-normal text-xs">BETA</span>
+						</span>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div id="content">
+		<div class="flex-grow">
 			<router-outlet></router-outlet>
 		</div>
-	</main>
-</div>
+	</div>
+
+</main>

@@ -50,7 +50,7 @@
 </ff-table>
 
 <ng-template #statusColumn let-row="row" let-value="value">
-	<ff-badge [type]="badgeData.type" *ngIf="getBadgeData(row) as badgeData" class="w-full justify-center">{{ badgeData.text }}</ff-badge>
+	<ff-badge [size]="'small'" [type]="badgeData.type" *ngIf="getBadgeData(row) as badgeData" class="w-full justify-center">{{ badgeData.text }}</ff-badge>
 </ng-template>
 
 <ng-template #actionsColumn let-row="row" let-value="value">

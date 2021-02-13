@@ -1,98 +1,89 @@
 #sidebar {
-	background: $sidebarBackground;
-	border-right: 1px solid $colorSpacerLines;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: $sidebarWidth;
-	padding-top: 30px;
-	bottom: 0;
 
-	nav {
+	a {
+		@apply text-gray-600;
+		@apply hover:text-gray-900;
+		@apply hover:bg-gray-50;
+		@apply group;
+		@apply flex;
+		@apply items-center;
+		@apply px-2;
+		@apply py-2;
+		@apply text-sm;
+		@apply font-medium;
+		@apply rounded-md;
+		@apply dark:text-gray-100;
+		@apply dark:hover:bg-gray-900;
+		@apply dark:hover:text-gray-100;
+		@apply transition-colors;
 
-		ul {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-
-			li {
-				margin-bottom: 23px;
-
-				.ff-icon {
-					width: 22px;
-					height: 22px;
-					margin-right: 15px;
-				}
-
-				.active {
-					.title {
-						@include fontBold;
-					}
-					&.dashboard .title {
-						color: darken($colorPrimary, 20%);
-					}
-					&.income .title {
-						color: darken($colorIncome, 20%);
-					}
-					&.quotes .title {
-						color: darken($colorQuotes, 20%);
-					}
-					&.expenses .title {
-						color: darken($colorExpenses, 20%);
-					}
-					&.payments .title {
-						color: darken($colorPayments, 20%);
-					}
-					&.reports .title {
-						color: darken($colorReports, 20%);
-					}
-					&.customers .title {
-						color: darken($colorClients, 20%);
-					}
-					&.settings .title {
-						color: darken($colorSettings, 20%);
-					}
-				}
-
-				.dashboard svg {
-					fill: $colorPrimary;
-				}
-				.income svg {
-					fill: $colorIncome;
-				}
-				.quotes svg {
-					fill: $colorQuotes;
-				}
-				.expenses svg {
-					fill: $colorExpenses;
-				}
-				.payments svg {
-					fill: $colorPayments;
-				}
-				.reports svg {
-					fill: $colorReports;
-				}
-				.customers svg {
-					fill: $colorClients;
-				}
-				.settings svg {
-					fill: $colorSettings;
-				}
-
-				&:last-child {
-					margin-bottom: 0;
-				}
-			}
+		svg {
+			@apply text-gray-500 mr-3 h-6 w-6;
 		}
+	}
 
-		a {
-			font-size: 14px;
-			padding: 4px 0;
-			color: #7c7c7c;
-			text-decoration: none;
+	.active {
+		@apply bg-gray-100;
+		@apply text-gray-900;
+		@apply hover:text-gray-900;
+		@apply hover:bg-gray-100;
+		@apply dark:bg-gray-900;
+		@apply dark:hover:bg-gray-900;
 
-			display: flex;
-			align-items: center;
+		&.dashboard {
+			@apply text-blue-500;
 		}
+		&.income {
+			@apply text-green-500;
+		}
+		&.quotes {
+			@apply text-yellow-500;
+		}
+		&.expenses {
+			@apply text-red-500;
+		}
+		&.payments {
+			@apply text-cyan-500;
+		}
+		&.reports {
+			@apply text-orange-500;
+		}
+		&.customers {
+			@apply text-purple-500;
+		}
+		&.settings {
+			@apply text-indigo-500;
+		}
+	}
+
+	.dashboard svg {
+		@apply text-blue-500;
+	}
+	.income svg {
+		@apply text-green-500;
+
+	}
+	.quotes svg {
+		@apply text-yellow-500;
+	}
+
+	.expenses svg {
+		@apply text-red-500;
+	}
+
+	.payments svg {
+		@apply text-cyan-500;
+	}
+
+	.reports svg {
+		@apply text-orange-500;
+	}
+
+	.customers svg {
+		@apply text-purple-500;
+	}
+
+	.settings svg {
+		@apply text-indigo-500;
 	}
 }

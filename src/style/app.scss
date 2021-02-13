@@ -1,5 +1,4 @@
 //@import "../bower_components/lemonade/scss/config";
-@import url('https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~@freshfox/ng-core/styles/main';
@@ -13,7 +12,6 @@
 /**
  * Third party styles
  */
-@import "~normalize.css/normalize.css";
 @import "~bourbon/app/assets/stylesheets/bourbon";
 @import "~pikaday/scss/pikaday";
 @import "~chartist/dist/scss/chartist";
@@ -88,3 +86,6 @@
 @import "modules/customers";
 @import "modules/payments";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

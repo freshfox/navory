@@ -112,6 +112,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import de from '@angular/common/locales/de';
+import {BookPaymentListComponent} from './internal/payments/book-payment-list.component';
+import {MatButtonModule} from '@angular/material/button';
+import {PaymentsExpensesTableComponent} from './internal/payments/payments-expenses-table.component';
 
 registerLocaleData(de, 'de');
 
@@ -184,6 +187,8 @@ export function validationMessageProviderFactory() {
 
 		// Payments
 		BankAccountCreateComponent,
+		BookPaymentListComponent,
+		PaymentsExpensesTableComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -210,6 +215,7 @@ export function validationMessageProviderFactory() {
 		MatTooltipModule,
 		MatSnackBarModule,
 		MatInputModule,
+		MatButtonModule,
 		MatFormFieldModule,
 		MatSelectModule,
 		MatCheckboxModule,

@@ -3,6 +3,11 @@
  */
 html {
 	box-sizing: border-box;
+	margin-left: calc(100vw - 100%);
+
+	&.cdk-global-scrollblock {
+		left: 0 !important;
+	}
 }
 
 *, *:before, *:after {
@@ -24,10 +29,12 @@ nvry-app-root {
 html, body {
 	font-size: $fontSize;
 	line-height: $defaultLineHeight;
-	color: $textColor;
 	font-family: $fontFamily;
 	font-weight: 400;
 	height: 100%;
+
+	@apply text-gray-900;
+	@apply dark:text-white;
 }
 
 /**

@@ -17,7 +17,7 @@
     "deploy:staging": "yarn deploy --project staging"
   },
   "engines": {
-    "node": "12"
+    "node": "14"
   },
   "private": true,
   "dependencies": {
@@ -49,6 +49,7 @@
     "normalize.css": "^8.0.1",
     "numbro": "^1.9.3",
     "pikaday": "^1.6.0",
+    "postcss": "^8.2.6",
     "rxjs": "^6.6.3",
     "ts-helpers": "^1.1.1",
     "tslib": "^2.0.0",
@@ -79,6 +80,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "protractor": "~7.0.0",
+    "tailwindcss": "^2.0.3",
     "ts-node": "~2.0.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.5"
