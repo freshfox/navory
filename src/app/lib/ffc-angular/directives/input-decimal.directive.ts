@@ -1,4 +1,4 @@
-import {OnInit, ElementRef, Directive, forwardRef, Input} from "@angular/core";
+import {OnInit, ElementRef, Directive, forwardRef, Input, HostListener} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {Formatter} from "../formatter";
 
@@ -49,6 +49,12 @@ export class DecimalDirective implements OnInit, ControlValueAccessor {
 	onChange() {
 		this.updateTheValue();
 		this.onChangeCallback(this.rawValue);
+	}
+
+	@HostListener('focus')
+	onFocus() {
+		const input: HTMLInputElement = this.el.nativeElement;
+		input.setSelectionRange(0, input.value.length);
 	}
 
 	onBlur() {
