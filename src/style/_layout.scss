@@ -6,16 +6,6 @@
 	padding-bottom: 0;
 }
 
-.base-layout {
-	height: 100%;
-}
-
-.container {
-	position: relative;
-	width: $containerWidth !important;
-	margin: 0 auto;
-}
-
 .page-row,
 .page-header {
 	padding-left: $contentSidePadding;

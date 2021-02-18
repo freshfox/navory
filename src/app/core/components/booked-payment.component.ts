@@ -3,18 +3,10 @@ import {Payment} from "../../models/payment";
 
 @Component({
 	selector: 'nvry-booked-payment',
-	host: {'class': 'booked-payment'},
 	template: `
-		<span class="description">
-			{{ payment.description }}
-		</span>
-		<span class="date">
-			{{ payment.date | nvryDate }}	
-		</span>
-		<span class="amount" [class.amount--expense]="isAmountNegative()">
-			{{ amount() | ffNumber }}
-		</span>
-		<button ff-button class="ff-button--xsmall ff-button--secondary remove-button" (click)="onClickRemove()">{{ 'general.remove' | translate }}</button>
+		<nvry-payment [payment]="payment">
+			<button ff-button class="ff-button--xsmall ff-button--secondary ml-8" (click)="onClickRemove()">{{ 'general.remove' | translate }}</button>
+		</nvry-payment>
 	`,
 })
 export class BookedPaymentComponent implements OnInit {
@@ -26,14 +18,6 @@ export class BookedPaymentComponent implements OnInit {
 	}
 
 	ngOnInit() {
-	}
-
-	amount() {
-		return Math.abs(this.payment.pivot_amount);
-	}
-
-	isAmountNegative() {
-		return this.payment.pivot_amount < 0;
 	}
 
 	onClickRemove() {

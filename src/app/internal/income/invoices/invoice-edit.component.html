@@ -1,48 +1,41 @@
 <div class="page-header page-header--no-bottom-padding">
-	<button ff-button class="ff-button--clear" [routerLink]="['/income/invoices']" icon="arrow-left">
-		{{ 'invoices.title' | translate }}
+	<button ff-button class="ff-button--clear" [routerLink]="['/income/invoices']">
+		<mat-icon>keyboard_arrow_left</mat-icon> {{ 'invoices.title' | translate }}
 	</button>
 	<hr>
 </div>
 <div [hidden]="loading">
-	<div class="page-row button-row">
+	<div class="flex items-center py-6 default-section">
 		<h1 class="module-title">
 			<span *ngIf="!createMode && !invoice.draft">{{ 'invoices.edit_title' | translate:{ number: invoiceNumber } }}</span>
 			<span *ngIf="!createMode && invoice.draft">{{ 'invoices.edit_title_draft' | translate }}</span>
 			<span *ngIf="createMode">{{ 'invoices.create_title' | translate }}</span>
 		</h1>
 
-		<ff-badge class="invoice-edit-badge" [type]="badgeData.type" *ngIf="getBadgeData() as badgeData">{{ badgeData.text }}</ff-badge>
+		<ff-badge class="ml-4" [type]="badgeData.type" *ngIf="getBadgeData() as badgeData">{{ badgeData.text }}</ff-badge>
 
-		<div class="buttons">
+		<div class="flex space-x-3 ml-auto">
+			<button ff-button class="ff-button--secondary" [matMenuTriggerFor]="menu" *ngIf="invoice.id || (!invoice.draft && !invoice.canceled)">
+				<mat-icon>more_vert</mat-icon>
+			</button>
 
-			<ff-dropdown [text]="'general.more' | translate" *ngIf="invoice.id || (!invoice.draft && !invoice.canceled)">
-				<button ff-button (click)="showPreview()"
-						class="ff-button--secondary ff-button--icon-medium"
-						icon="eye-outline"
-						*ngIf="invoice.id">{{ 'invoices.preview' | translate }}
-				</button>
-				<button ff-button icon="download"
-						class="ff-button--secondary"
-						(click)="downloadPDF()"
-						*ngIf="invoice.id">{{ 'actions.download' | translate }}
-				</button>
-				<button ff-button icon="cross"
-						class="ff-button--secondary"
-						(click)="cancelInvoice()"
-						*ngIf="!invoice.draft && !invoice.canceled">{{ 'invoices.cancel' | translate }}
+			<mat-menu #menu="matMenu">
+				<button mat-menu-item (click)="showPreview()" *ngIf="invoice.id">
+					{{ 'invoices.preview' | translate }}
 				</button>
 
-				<button ff-button
-						class="ff-button--secondary"
-						(click)="sendEmail()"
-						*ngIf="!invoice.draft && !invoice.canceled && invoice.customer">{{ 'invoices.send-email' | translate }}
+				<button mat-menu-item (click)="downloadPDF()" *ngIf="invoice.id">
+					{{ 'actions.download' | translate }}
 				</button>
-			</ff-dropdown>
 
+				<button mat-menu-item (click)="cancelInvoice()" *ngIf="!invoice.draft && !invoice.canceled">
+					{{ 'invoices.cancel' | translate }}
+				</button>
 
-
-
+				<button mat-menu-item (click)="sendEmail()" *ngIf="!invoice.draft && !invoice.canceled && invoice.customer">
+					{{ 'invoices.send-email' | translate }}
+				</button>
+			</mat-menu>
 
 			<button ff-button class="ff-button--secondary"
 						 (click)="saveDraft()"

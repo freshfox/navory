@@ -12,124 +12,40 @@
 	}
 }
 
-.dashboard-page {
 
-	padding: 30px $contentSidePadding;
+.nvry-dashboard {
+	.revenue-chart {
+		.ct-label {
+			font-size: 10px;
+			font-weight: normal;
+			color: $colorGrayMedium;
+			text-transform: uppercase;
 
-	.dashboard-wrapper {
-		display: flex;
-		flex-wrap: wrap;
-	}
-
-	.dashboard-box {
-		padding: 20px 30px;
-		padding-top: 0;
-		width: 50%;
-		margin-bottom: 30px;
-
-		&.dashboard-box--full {
-			width: 100%;
-		}
-
-		.title {
-			margin-bottom: 0;
-		}
-
-		.small {
-			color: $colorGray;
-		}
-
-		.number {
-			font-size: 32px;
-		}
-
-		.revenue-chart {
-			.ct-label {
-				font-size: 10px;
-				font-weight: normal;
-				color: $colorGrayMedium;
-				text-transform: uppercase;
-
-				&.ct-horizontal {
-					top: 10px;
-					position: relative;
-				}
-			}
-
-			.ct-point {
-				display: none;
-			}
-
-			.ct-grid {
-				stroke-dasharray: none;
-				stroke: rgba(0, 0, 0, 0.1);
-			}
-
-			.ct-line {
-				stroke-width: 2px;
-			}
-
-			.ct-series-a {
-				@include chartSeriesColor($colorPrimary);
-			}
-		}
-	}
-
-	.dashboard-overview-box-wrapper {
-		margin-bottom: 40px;
-
-		small {
-			color: $colorGray;
-			font-size: 12px;
-		}
-	}
-
-	.dashboard-overview-box {
-		border: 1px solid $colorGrayLight;
-		border-radius: $defaultBorderRadius;
-		padding: 15px;
-		// margin-bottom: 40px;
-		@extend .cf;
-
-		.dashboard-overview-box__column {
-			width: 50%;
-			float: left;
-			border-left: 8px solid $colorIncome;
-			padding-left: 10px;
-
-			&:last-child {
-				border-color: $colorExpenses;
+			&.ct-horizontal {
+				top: 10px;
+				position: relative;
 			}
 		}
 
-		.title {
-			display: block;
+		.ct-point {
+			display: none;
 		}
 
-		.amount {
-			font-size: 24px;
-		}
-	}
-
-	.invoice-stats-items {
-		margin-top: 10px;
-	}
-
-	.invoice-stats-item {
-		margin-bottom: 15px;
-
-		.title {
-			display: block;
+		.ct-grid {
+			stroke-dasharray: none;
+			stroke: rgba(0, 0, 0, 0.1);
 		}
 
-		.amount {
-			font-size: 22px;
+		.ct-line {
+			stroke-width: 2px;
+		}
+
+		.ct-series-a {
+			@include chartSeriesColor($colorPrimary);
 		}
 	}
 
 	.income-expense-chart {
-		margin-top: 15px;
-
 		svg {
 			overflow: visible;
 		}

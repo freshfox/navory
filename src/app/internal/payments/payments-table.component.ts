@@ -11,12 +11,13 @@ import {PaymentService} from '../../services/payment.service';
 import {Payment} from '../../models/payment';
 import {TranslateService} from '@ngx-translate/core';
 import {DatePipe} from '../../core/pipes/date.pipe';
-import {ModalService} from '../../lib/ffc-angular/services/modal.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {State} from '../../core/state';
 import {BehaviorSubject, combineLatest} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {DialogService, DialogType} from '@freshfox/ng-core';
+import {BookPaymentListComponent} from './book-payment-list.component';
 
 @Component({
 	selector: 'nvry-payments-table',
@@ -31,7 +32,7 @@ import {map} from 'rxjs/operators';
 			<ng-container matColumnDef="status">
 				<th mat-header-cell *matHeaderCellDef>Status</th>
 				<td mat-cell *matCellDef="let element">
-					<ff-badge [type]="getBadgeTypeForPayment(element)">{{ getBadgeTitleForPayment(element) }}</ff-badge>
+					<ff-badge [size]="'small'" [type]="getBadgeTypeForPayment(element)">{{ getBadgeTitleForPayment(element) }}</ff-badge>
 				</td>
 			</ng-container>
 
@@ -53,6 +54,16 @@ import {map} from 'rxjs/operators';
 				</td>
 			</ng-container>
 
+			<ng-container matColumnDef="actions">
+				<th mat-header-cell *matHeaderCellDef></th>
+				<td mat-cell *matCellDef="let element">
+					<div class="flex items-center space-x-2">
+						<button mat-button color="primary">Rechnung</button>
+						<button mat-button color="primary">Ausgabe</button>
+					</div>
+				</td>
+			</ng-container>
+
 			<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
 			<tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClicked(row)"></tr>
 		</table>
@@ -66,7 +77,7 @@ export class PaymentsTableComponent implements OnInit, OnChanges {
 	@Input() private payments: Payment[];
 	loading: boolean = false;
 
-	displayedColumns = ['status', 'description', 'date', 'amount'];
+	displayedColumns = ['status', 'description', 'date', 'amount', 'actions'];
 
 	dataSource = new MatTableDataSource<Payment>();
 
@@ -82,8 +93,8 @@ export class PaymentsTableComponent implements OnInit, OnChanges {
 				private translate: TranslateService,
 				private datePipe: DatePipe,
 				public state: State,
-				private cdr: ChangeDetectorRef,
-				private modalService: ModalService) {
+				private dialog: DialogService,
+				private cdr: ChangeDetectorRef) {
 		combineLatest([this.payments$, this.state.showBookedPayments$])
 			.pipe(map(([payments, showBooked]) => {
 				if (showBooked) {
@@ -106,22 +117,28 @@ export class PaymentsTableComponent implements OnInit, OnChanges {
 	}
 
 	deletePayment(payment) {
-		this.modalService.createConfirmRequest(
+		const ref = this.dialog.createConfirmRequest(
 			this.translate.instant('payments.delete-confirm-title'),
 			this.translate.instant('payments.delete-confirm-message'),
-			() => {
-				this.modalService.hideCurrentModal();
-			},
-			() => {
-				// let index = this.payments.indexOf(payment);
-				// this.payments.splice(index, 1);
-				this.paymentService.deletePayment(payment).subscribe();
-				this.modalService.hideCurrentModal();
-			});
+			null,
+			null,
+			DialogType.Danger)
+			.subscribe((confirmed) => {
+				if (confirmed) {
+					let index = this.payments.indexOf(payment);
+					this.payments.splice(index, 1);
+					this.paymentService.deletePayment(payment).subscribe();
+				}
+			})
+
+
 	}
 
 	rowClicked(payment: Payment) {
-		// TODO
+		const ref = this.dialog.create(BookPaymentListComponent, {
+			width: '800px',
+		});
+		ref.componentInstance.payment = payment;
 	}
 
 	getBadgeTitleForPayment(payment: Payment) {

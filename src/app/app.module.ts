@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule} from '@angular/core';
 import {CommonModule, registerLocaleData} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -100,7 +100,7 @@ import {EmailSettingsComponent} from './internal/settings/email-settings.compone
 import {EmailSettingsEditComponent} from './internal/settings/email-settings-edit.component';
 import {
 	FF_API_CONFIG,
-	FFApiModule,
+	FFApiModule, FFAvatarModule,
 	FFBadgeModule,
 	FFButtonModule,
 	FFDialogModule,
@@ -115,6 +115,9 @@ import de from '@angular/common/locales/de';
 import {BookPaymentListComponent} from './internal/payments/book-payment-list.component';
 import {MatButtonModule} from '@angular/material/button';
 import {PaymentsExpensesTableComponent} from './internal/payments/payments-expenses-table.component';
+import {PaymentComponent} from './internal/payments/payment.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 
 registerLocaleData(de, 'de');
 
@@ -189,6 +192,7 @@ export function validationMessageProviderFactory() {
 		BankAccountCreateComponent,
 		BookPaymentListComponent,
 		PaymentsExpensesTableComponent,
+		PaymentComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -209,17 +213,20 @@ export function validationMessageProviderFactory() {
 		FFDialogModule,
 		FFButtonModule,
 		FFBadgeModule,
+		FFAvatarModule,
 		MatProgressSpinnerModule,
 		MatTableModule,
 		MatPaginatorModule,
 		MatTooltipModule,
 		MatSnackBarModule,
 		MatInputModule,
+		MatIconModule,
 		MatButtonModule,
 		MatFormFieldModule,
 		MatSelectModule,
 		MatCheckboxModule,
 		MatAutocompleteModule,
+		MatMenuModule,
 		FFCoreModule.forRoot({
 			validationMessageProvider: {
 				provide: ValidationMessageProvider,
@@ -231,6 +238,7 @@ export function validationMessageProviderFactory() {
 	],
 	providers: [
 		{provide: LOCALE_ID, useValue: 'de-AT'},
+		{provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'},
 		{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
 		{
 			provide: FF_API_CONFIG,

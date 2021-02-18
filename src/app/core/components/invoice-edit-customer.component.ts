@@ -12,10 +12,9 @@ const AutoComplete = require('javascript-autocomplete');
 	selector: 'nvry-invoice-edit-customer',
 	template: `
 		<div #customerName class="invoice-edit-customer-name-wrapper">
-
 			<div class="invoice-edit-customer-link-wrapper">
 				<ng-template [ngIf]="invoice.customer">
-					<a class="invoice-edit-customer-link"
+					<a class="invoice-edit-customer-link text-primary"
 					   href="javascript:void(0)"
 					   (click)="editCustomer()">
 						{{ 'invoices.edit-customer' | translate }}
@@ -25,7 +24,7 @@ const AutoComplete = require('javascript-autocomplete');
 						<button class="button ff-button--mini-rounded"
 								[matTooltip]="'invoices.remove-customer-link' | translate"
 								(click)="removeCustomerLink()">
-							<ff-icon name="cross"></ff-icon>
+							<mat-icon>close</mat-icon>
 						</button>
 					</div>
 				</ng-template>

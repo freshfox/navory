@@ -1,7 +1,10 @@
 .tabs {
 
 	display: block;
-	border-bottom: 1px solid $colorGrayLight;
+	@apply border-b;
+	@apply border-gray-200;
+	@apply dark:border-gray-600;
+
 	width: 100%;
 
 	ul {
@@ -20,7 +23,6 @@
 				padding: 10px 15px;
 				display: block;
 				margin: 0;
-				color: $colorGrayUltraDark;
 				border-bottom: 3px solid transparent;
 
 				&.selected {

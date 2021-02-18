@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {environment} from '../../environments/environment';
 import {BehaviorSubject} from 'rxjs';
+import md5 from 'md5';
 
 declare let Headway: any;
 
@@ -67,6 +68,7 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 		},
 	];
 
+	gravatarUrl: string;
 	loggingOut: boolean = false;
 
 	constructor(public state: State, private authService: AuthService, private router: Router, private route: ActivatedRoute) {
@@ -78,6 +80,12 @@ export class InternalComponent implements AfterViewInit, OnDestroy {
 			.subscribe((darkMode) => {
 				document.documentElement.classList.toggle('dark', darkMode);
 			});
+
+		if (this.state.user?.email) {
+			this.gravatarUrl = 'https://www.gravatar.com/avatar/' + md5(this.state.user.email) + '.jpg?s=300&d=blank';
+		}
+
+		return null;
 	}
 
 	ngAfterViewInit() {
