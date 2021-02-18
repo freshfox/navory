@@ -11,7 +11,6 @@ import {FormsModule} from '@angular/forms';
 import {DecimalDirective} from './directives/input-decimal.directive';
 import {NumberPipe} from './pipes/number.pipe';
 import {SafePipe} from './pipes/safe.pipe';
-import {ModalPlaceholderComponent, ModalService} from './services/modal.service';
 import {Formatter} from './formatter';
 import {AlertBarComponent} from './components/alert-bar.component';
 import {DropdownComponent} from './components/dropdown.component';
@@ -29,7 +28,6 @@ export * from './components/material.module';
 export * from './components/select.component';
 export * from './components/spinner.component';
 
-export * from './services/modal.service';
 export * from './directives/input-date.directive';
 
 export {NumberPipe} from './pipes/number.pipe';
@@ -48,7 +46,6 @@ export interface FFCoreModuleConfig {
 		ControlMessagesComponent,
 		InputComponent,
 		SelectComponent,
-		ModalPlaceholderComponent,
 		DatePickerDirective,
 		DecimalDirective,
 		NumberPipe,
@@ -65,7 +62,6 @@ export interface FFCoreModuleConfig {
 		ControlMessagesComponent,
 		InputComponent,
 		SelectComponent,
-		ModalPlaceholderComponent,
 		NumberPipe,
 		SafePipe,
 		AlertBarComponent,
@@ -76,7 +72,6 @@ export interface FFCoreModuleConfig {
 		ConfirmComponent
 	],
 	providers: [
-		ModalService,
 		NumberPipe,
 		SafePipe,
 		Formatter

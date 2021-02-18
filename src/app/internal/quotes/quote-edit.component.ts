@@ -8,9 +8,8 @@ import {FormValidator} from '../../core/form-validator';
 import {Location} from '@angular/common';
 import {Helpers} from '../../core/helpers';
 import {Observable} from 'rxjs';
-import {ServiceError, SnackBarService} from '@freshfox/ng-core';
+import {DialogService, ServiceError, SnackBarService} from '@freshfox/ng-core';
 import {DocumentPreviewComponent} from '../../core/components/document-preview.component';
-import {ModalService, ModalSize} from '../../lib/ffc-angular/services/modal.service';
 import {QuoteService} from '../../services/quote.service';
 import {Quote} from '../../models/quote.model';
 import {LineUtils} from '../../utils/line-utils';
@@ -38,7 +37,7 @@ export class QuoteEditComponent implements OnInit {
 				private state: State,
 				private snackbar: SnackBarService,
 				private translate: TranslateService,
-				private modalService: ModalService,
+				private dialogService: DialogService,
 				private fb: FormBuilder,
 				private location: Location,
 				private router: Router) {
@@ -166,15 +165,10 @@ export class QuoteEditComponent implements OnInit {
 	}
 
 	showPreview() {
-		this.modalService.create(DocumentPreviewComponent, {
+		this.dialogService.create(DocumentPreviewComponent, {
 			parameters: {
 				url: this.quotePreviewURL
 			},
-			clean: true,
-			size: ModalSize.FullWidth,
-			showCloseButton: true
-		}).subscribe((ref: ComponentRef<DocumentPreviewComponent>) => {
-
 		});
 	}
 

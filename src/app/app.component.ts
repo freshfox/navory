@@ -11,7 +11,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'nvry-app-root',
-	templateUrl: './app.component.html'
+	template: `
+		<router-outlet></router-outlet>
+	`
 })
 export class AppComponent implements OnInit, OnDestroy {
 

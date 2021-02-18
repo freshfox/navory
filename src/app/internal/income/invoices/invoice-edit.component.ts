@@ -12,10 +12,9 @@ import {Helpers} from '../../../core/helpers';
 import {InvoiceBookPaymentComponent} from '../../payments/invoice-book-payment.component';
 import {Payment} from '../../../models/payment';
 import {Observable} from 'rxjs';
-import {ServiceError, ServiceErrorCode, SnackBarService} from '@freshfox/ng-core';
+import {DialogService, ServiceError, ServiceErrorCode, SnackBarService} from '@freshfox/ng-core';
 import {DocumentPreviewComponent} from '../../../core/components/document-preview.component';
 import {PaymentService} from '../../../services/payment.service';
-import {ModalService, ModalSize} from '../../../lib/ffc-angular/services/modal.service';
 import {QuoteService} from '../../../services/quote.service';
 import {Quote} from '../../../models/quote.model';
 import {InvoiceUtils} from '../../../utils/invoice-utils';
@@ -57,7 +56,7 @@ export class InvoiceEditComponent implements OnInit {
 				private state: State,
 				private snackbar: SnackBarService,
 				private translate: TranslateService,
-				private modalService: ModalService,
+				private dialogService: DialogService,
 				private fb: FormBuilder,
 				private location: Location,
 				private paymentService: PaymentService,
@@ -255,15 +254,10 @@ export class InvoiceEditComponent implements OnInit {
 	}
 
 	showPreview() {
-		this.modalService.create(DocumentPreviewComponent, {
+		const ref = this.dialogService.create(DocumentPreviewComponent, {
 			parameters: {
 				url: this.invoicePreviewURL
 			},
-			clean: true,
-			size: ModalSize.FullWidth,
-			showCloseButton: true
-		}).subscribe((ref: ComponentRef<DocumentPreviewComponent>) => {
-
 		});
 	}
 
@@ -272,21 +266,21 @@ export class InvoiceEditComponent implements OnInit {
 	}
 
 	addPayment() {
-		this.modalService.create(InvoiceBookPaymentComponent, {
+		const ref = this.dialogService.create(InvoiceBookPaymentComponent, {
 			parameters: {
 				invoiceId: this.invoice.id,
 				amount: this.invoice.unpaid_amount,
 				description: this.translate.instant('payments.default-invoice-description', {number: this.invoice.number})
 			}
-		}).subscribe((ref: ComponentRef<InvoiceBookPaymentComponent>) => {
-			ref.instance.onSaved.subscribe((payment: Payment) => {
-				this.invoice.payments.push(payment);
-				this.modalService.hideCurrentModal();
-			});
+		})
 
-			ref.instance.onCancel.subscribe(() => {
-				this.modalService.hideCurrentModal();
-			});
+		ref.componentInstance.onSaved.subscribe((payment: Payment) => {
+			this.invoice.payments.push(payment);
+			ref.close();
+		});
+
+		ref.componentInstance.onCancel.subscribe(() => {
+			ref.close();
 		});
 	}
 
@@ -305,14 +299,12 @@ export class InvoiceEditComponent implements OnInit {
 	}
 
 	cancelInvoice() {
-		this.modalService.createConfirmRequest(
+		this.dialogService.createConfirmRequest(
 			this.translate.instant('invoices.cancel-confirm-title'),
 			this.translate.instant('invoices.cancel-confirm-message'),
-			() => {
-				// cancel, do nothing
-				this.modalService.hideCurrentModal();
-			},
-			() => {
+			this.translate.instant('invoices.cancel')
+		).subscribe(confirmed => {
+			if (confirmed) {
 				this.invoice.canceled = true;
 
 				this.save(this.invoice)
@@ -320,11 +312,8 @@ export class InvoiceEditComponent implements OnInit {
 						this.invoice = invoice;
 						this.snackbar.success(this.translate.instant('invoices.cancel-success'));
 					});
-
-				this.modalService.hideCurrentModal();
-			},
-			this.translate.instant('invoices.cancel')
-		)
+			}
+		})
 	}
 
 	sendEmail() {

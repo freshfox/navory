@@ -7,10 +7,10 @@ import moment from 'moment';
 import {State} from '../../core/state';
 import {Router} from '@angular/router';
 import {NumberPipe} from '../../lib/ffc-angular/pipes/number.pipe';
-import {ModalService} from '../../lib/ffc-angular/services/modal.service';
 import {TableOptions} from '../../lib/ffc-angular/components/table/table-options.model';
 import {SortDirection} from '../../lib/ffc-angular/components/table/sort-direction.enum';
 import {ColumnAlignment} from '../../lib/ffc-angular/components/table/column-alignment.enum';
+import {DialogService, DialogType} from '@freshfox/ng-core';
 
 @Component({
 	templateUrl: './expenses.component.html'
@@ -34,7 +34,7 @@ export class ExpensesComponent implements OnInit {
 				private datePipe: DatePipe,
 				private state: State,
 				private router: Router,
-				private modalService: ModalService) {
+				private dialogService: DialogService) {
 	}
 
 	ngOnInit() {
@@ -128,19 +128,20 @@ export class ExpensesComponent implements OnInit {
 
 
 	deleteExpense(expense) {
-		this.modalService.createConfirmRequest(
+		this.dialogService.createConfirmRequest(
 			this.translate.instant('expenses.delete-confirm-title'),
 			this.translate.instant('expenses.delete-confirm-message'),
-			() => {
-				this.modalService.hideCurrentModal();
-			},
-			() => {
+			null,
+			null,
+			DialogType.Danger
+		).subscribe(confirmed => {
+			if (confirmed) {
 				let index = this.expenses.indexOf(expense);
 				this.expenses.splice(index, 1);
 				this.filter();
 				this.expenseService.deleteExpense(expense).subscribe();
-				this.modalService.hideCurrentModal();
-			});
+			}
+		});
 	}
 
 }

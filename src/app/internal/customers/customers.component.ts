@@ -3,9 +3,9 @@ import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../models/customer";
 import {TranslateService} from "@ngx-translate/core";
 import {CustomerEditComponent} from "./customer-edit.component";
-import {ModalService} from "../../lib/ffc-angular/services/modal.service";
 import {TableOptions} from '../../lib/ffc-angular/components/table/table-options.model';
 import {SortDirection} from '../../lib/ffc-angular/components/table/sort-direction.enum';
+import {DialogService, DialogType} from '@freshfox/ng-core';
 
 @Component({
 	selector: 'nvry-customers',
@@ -22,7 +22,7 @@ export class CustomersComponent implements OnInit {
 
 	constructor(private customerService: CustomerService,
 				private translate: TranslateService,
-				private modalService: ModalService) {
+				private dialogService: DialogService) {
 	}
 
 	ngOnInit() {
@@ -53,49 +53,49 @@ export class CustomersComponent implements OnInit {
 	}
 
 	editCustomer(customer: Customer) {
-		this.modalService.create(CustomerEditComponent, {
+		const ref = this.dialogService.create(CustomerEditComponent, {
 			parameters: {
 				customer: customer
 			}
-		}).subscribe((ref: ComponentRef<CustomerEditComponent>) => {
-			ref.instance.onSaved.subscribe((savedCustomer: Customer) => {
-				let foundCustomer = false;
-				this.customers.forEach((customer) => {
-					if (savedCustomer.id === customer.id) {
-						Object.assign(customer, savedCustomer);
-						foundCustomer = true;
-					}
-				});
+		});
 
-				if (!foundCustomer) {
-					this.customers.push(savedCustomer);
+		ref.componentInstance.onSaved.subscribe((savedCustomer: Customer) => {
+			let foundCustomer = false;
+			this.customers.forEach((customer) => {
+				if (savedCustomer.id === customer.id) {
+					Object.assign(customer, savedCustomer);
+					foundCustomer = true;
 				}
-
-				this.customers = this.customers.slice();
-				this.modalService.hideCurrentModal();
 			});
 
-			ref.instance.onCancel.subscribe(() => {
-				this.modalService.hideCurrentModal();
-			});
+			if (!foundCustomer) {
+				this.customers.push(savedCustomer);
+			}
+
+			this.customers = this.customers.slice();
+			ref.close();
+		});
+
+		ref.componentInstance.onCancel.subscribe(() => {
+			ref.close();
 		});
 	}
 
 	deleteCustomer(customer: Customer) {
-		this.modalService.createConfirmRequest(
+		this.dialogService.createConfirmRequest(
 			this.translate.instant('customers.delete-confirm-title'),
 			this.translate.instant('customers.delete-confirm-message'),
-			() => {
-				this.modalService.hideCurrentModal();
-			},
-			() => {
+			null,
+			null,
+			DialogType.Danger,
+		).subscribe((confirmed) => {
+			if (confirmed) {
 				this.customerService.deleteCustomer(customer).subscribe();
 				let index = this.customers.indexOf(customer);
 				if (index > -1) {
 					this.customers.splice(index, 1);
 				}
-				this.modalService.hideCurrentModal();
 			}
-		);
+		});
 	}
 }

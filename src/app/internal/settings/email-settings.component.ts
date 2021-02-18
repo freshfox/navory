@@ -4,9 +4,9 @@ import {EmailSettings} from '../../models/email-settings';
 import {TableOptions} from '../../lib/ffc-angular/components/table/table-options.model';
 import {SortDirection} from '../../lib/ffc-angular/components/table/sort-direction.enum';
 import {TranslateService} from '@ngx-translate/core';
-import {ModalService} from '../../lib/ffc-angular/services/modal.service';
 import {EmailSettingsEditComponent} from './email-settings-edit.component';
 import {Customer} from '../../models/customer';
+import {DialogService, DialogType} from '@freshfox/ng-core';
 
 @Component({
 	selector: 'nvry-email-settings',
@@ -50,7 +50,7 @@ export class EmailSettingsComponent implements OnInit {
 
 	@ViewChild('actionsColumn', { static: true }) private actionsColumn: TemplateRef<any>;
 
-	constructor(private accountService: AccountService, private translate: TranslateService, private modalService: ModalService) {
+	constructor(private accountService: AccountService, private translate: TranslateService, private dialogService: DialogService) {
 	}
 
 	ngOnInit() {
@@ -79,34 +79,36 @@ export class EmailSettingsComponent implements OnInit {
 	}
 
 	editConfig(config?: EmailSettings) {
-		this.modalService.create(EmailSettingsEditComponent, {
+		const ref = this.dialogService.create(EmailSettingsEditComponent, {
 			parameters: {
 				config,
 			}
-		}).subscribe((ref: ComponentRef<EmailSettingsEditComponent>) => {
-			ref.instance.onSaved.subscribe((savedCustomer: Customer) => {
-				this.fetchSettings();
-				this.modalService.hideCurrentModal();
-			});
+		})
 
-			ref.instance.onCancel.subscribe(() => {
-				this.modalService.hideCurrentModal();
-			});
+		ref.componentInstance.onSaved.subscribe((savedCustomer: Customer) => {
+			ref.close();
+			this.fetchSettings();
+		});
+
+		ref.componentInstance.onCancel.subscribe(() => {
+			ref.close();
 		});
 	}
 
 	deleteConfig(config: EmailSettings) {
-		this.modalService.createConfirmRequest(
+		this.dialogService.createConfirmRequest(
 			this.translate.instant('settings.emails.delete-confirm-title'),
 			this.translate.instant('settings.emails.delete-confirm-message'),
-			() => {
-				this.modalService.hideCurrentModal();
-			},
-			() => {
-				this.accountService.deleteEmailSettings(config).subscribe();
-				this.fetchSettings();
-				this.modalService.hideCurrentModal();
+			null,
+			null,
+			DialogType.Danger
+		).subscribe((confirmed) => {
+			if (!confirmed) {
+				return;
 			}
-		);
+
+			this.accountService.deleteEmailSettings(config).subscribe();
+			this.fetchSettings();
+		});
 	}
 }

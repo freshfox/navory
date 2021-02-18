@@ -4,12 +4,12 @@ import {DatePipe} from "../../core/pipes/date.pipe";
 import {Router} from "@angular/router";
 import {Calculator} from "../../core/calculator";
 import {NumberPipe} from "../../lib/ffc-angular/pipes/number.pipe";
-import {ModalService} from "../../lib/ffc-angular/services/modal.service";
 import {Quote, QuoteStatus} from "../../models/quote.model";
 import {QuoteService} from "../../services/quote.service";
 import {TableOptions} from '../../lib/ffc-angular/components/table/table-options.model';
 import {SortDirection} from '../../lib/ffc-angular/components/table/sort-direction.enum';
 import {ColumnAlignment} from '../../lib/ffc-angular/components/table/column-alignment.enum';
+import {DialogService} from '@freshfox/ng-core';
 var moment = require('moment');
 
 @Component({
@@ -30,7 +30,7 @@ export class QuotesComponent implements OnInit {
 				private datePipe: DatePipe,
 				private numberPipe: NumberPipe,
 				private router: Router,
-				private modalService: ModalService) {
+				private dialogService: DialogService) {
 	}
 
 	ngOnInit() {
@@ -79,18 +79,18 @@ export class QuotesComponent implements OnInit {
 	}
 
 	deleteQuote(quote: Quote) {
-		this.modalService.createConfirmRequest(
+		this.dialogService.createConfirmRequest(
 			this.translate.instant('quotes.delete-confirm-title'),
 			this.translate.instant('quotes.delete-confirm-message'),
-			() => {
-				this.modalService.hideCurrentModal();
-			},
-			() => {
+			null,
+			null
+		).subscribe((confirmed) => {
+			if (confirmed) {
 				let index = this.quotes.indexOf(quote);
 				this.quotes.splice(index, 1);
 				this.quoteService.deleteQuote(quote).subscribe();
-				this.modalService.hideCurrentModal();
-			});
+			}
+		});
 	}
 
 	getBadgeData(invoice) {

@@ -6,10 +6,9 @@ import {DatePipe} from '../../../core/pipes/date.pipe';
 import {Router} from '@angular/router';
 import {TableOptions} from '../../../lib/ffc-angular/components/table/table-options.model';
 import {ColumnAlignment} from '../../../lib/ffc-angular/components/table/column-alignment.enum';
-import {ModalService} from '../../../lib/ffc-angular/services/modal.service';
 import {NumberPipe} from '../../../lib/ffc-angular/pipes/number.pipe';
-import {InvoiceUtils} from '../../../utils/invoice-utils';
 import {LineUtils} from '../../../utils/line-utils';
+import {DialogService, DialogType} from '@freshfox/ng-core';
 
 @Component({
 	selector: 'nvry-recurring-invoices',
@@ -52,7 +51,7 @@ export class RecurringInvoicesComponent implements OnInit {
 	constructor(private invoiceService: InvoiceService,
 				private translate: TranslateService,
 				private router: Router,
-				private modalService: ModalService,
+				private dialogService: DialogService,
 				private numberPipe: NumberPipe,
 				private datePipe: DatePipe) {
 	}
@@ -104,17 +103,22 @@ export class RecurringInvoicesComponent implements OnInit {
 	}
 
 	deleteInvoice(invoice: RecurringInvoice) {
-		this.modalService.createConfirmRequest(
+		this.dialogService.createConfirmRequest(
 			this.translate.instant('invoices.delete-confirm-title'),
 			this.translate.instant('invoices.delete-confirm-message'),
-			() => {
-				this.modalService.hideCurrentModal();
-			},
-			() => {
+			null,
+			null,
+			DialogType.Danger,
+		).subscribe((confirmed) => {
+			if (confirmed) {
 				let index = this.invoices.indexOf(invoice);
 				this.invoices.splice(index, 1);
 				this.invoiceService.deleteRecurringInvoice(invoice).subscribe();
-				this.modalService.hideCurrentModal();
-			});
+			}
+		})
+
+
+
+
 	}
 }

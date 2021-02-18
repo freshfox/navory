@@ -6,12 +6,12 @@ import {DatePipe} from '../../../core/pipes/date.pipe';
 import {Router} from '@angular/router';
 import {Calculator} from '../../../core/calculator';
 import {NumberPipe} from '../../../lib/ffc-angular/pipes/number.pipe';
-import {ModalService} from '../../../lib/ffc-angular/services/modal.service';
 import {TableOptions} from '../../../lib/ffc-angular/components/table/table-options.model';
 import {SortDirection} from '../../../lib/ffc-angular/components/table/sort-direction.enum';
 import {ColumnAlignment} from '../../../lib/ffc-angular/components/table/column-alignment.enum';
 import {InvoiceUtils} from '../../../utils/invoice-utils';
 import {LocalStorageService} from '../../../services/local-storage.service';
+import {DialogService, DialogType} from '@freshfox/ng-core';
 
 @Component({
 	selector: 'nvry-invoices',
@@ -40,7 +40,7 @@ export class InvoicesComponent implements OnInit {
 				private router: Router,
 				private storage: LocalStorageService,
 				private cdf: ChangeDetectorRef,
-				private modalService: ModalService) {
+				private dialogService: DialogService) {
 		const options = this.storage.getObject(InvoicesComponent.INVOICES_STATUS_FILTER_KEY);
 		this.selectedStatusOptions = options || this.statusOptions;
 	}
@@ -122,20 +122,21 @@ export class InvoicesComponent implements OnInit {
 	}
 
 	deleteInvoice(invoice: Invoice) {
-		this.modalService.createConfirmRequest(
+		this.dialogService.createConfirmRequest(
 			this.translate.instant('invoices.delete-confirm-title'),
 			this.translate.instant('invoices.delete-confirm-message'),
-			() => {
-				this.modalService.hideCurrentModal();
-			},
-			() => {
+			null,
+			null,
+			DialogType.Danger
+		).subscribe(confirmed => {
+			if (confirmed) {
 				let index = this.invoices.indexOf(invoice);
 				this.invoices.splice(index, 1);
 				this.invoiceService.deleteInvoice(invoice).subscribe();
-				this.modalService.hideCurrentModal();
 				this.refreshFilteredInvoices();
 				this.cdf.detectChanges();
-			});
+			}
+		});
 	}
 
 	getBadgeData(invoice: Invoice) {

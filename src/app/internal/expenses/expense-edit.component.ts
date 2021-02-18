@@ -14,11 +14,10 @@ import {EuVatType} from "../../core/enums/eu-vat-type.enum";
 import {Payment} from "../../models/payment";
 import {TranslateService} from "@ngx-translate/core";
 import {ExpenseBookPaymentComponent} from "../payments/expense-book-payment.component";
-import {ServiceError, SnackBarService} from '@freshfox/ng-core';
+import {DialogService, ServiceError, SnackBarService} from '@freshfox/ng-core';
 import {Location} from "@angular/common";
 import {ExpenseCategorySelectionComponent} from "./expense-category-selection.component";
 import {PaymentService} from "../../services/payment.service";
-import {ModalService, ModalSize} from "../../lib/ffc-angular/services/modal.service";
 import {FieldValidationError} from '../../core/field-validation-error';
 
 @Component({
@@ -45,7 +44,7 @@ export class ExpenseEditComponent implements OnInit {
 				private state: State,
 				private errorHandler: ErrorHandler,
 				private bootstrapService: BootstrapService,
-				private modalService: ModalService,
+				private dialogService: DialogService,
 				private translate: TranslateService,
 				private location: Location,
 				private paymentService: PaymentService) {
@@ -147,16 +146,15 @@ export class ExpenseEditComponent implements OnInit {
 	}
 
 	showCategories() {
-		this.modalService.create(ExpenseCategorySelectionComponent, {
+		const ref = this.dialogService.create(ExpenseCategorySelectionComponent, {
 			parameters: {
 				categories: this.expenseCategories
 			},
-			size: ModalSize.Large
-		}).subscribe((ref: ComponentRef<ExpenseCategorySelectionComponent>) => {
-			ref.instance.categorySelected.subscribe((category: Category) => {
-				this.modalService.hideCurrentModal();
-				this.categorySelected(category);
-			});
+		})
+
+		ref.componentInstance.categorySelected.subscribe((category: Category) => {
+			ref.close();
+			this.categorySelected(category);
 		});
 	}
 
@@ -212,21 +210,21 @@ export class ExpenseEditComponent implements OnInit {
 	}
 
 	addPayment() {
-		this.modalService.create(ExpenseBookPaymentComponent, {
+		const ref = this.dialogService.create(ExpenseBookPaymentComponent, {
 			parameters: {
 				expense: this.expense,
 				amount: this.expense.unpaid_amount,
 				description: this.translate.instant('payments.default-expense-description', {number: this.expense.number})
 			}
-		}).subscribe((ref: ComponentRef<ExpenseBookPaymentComponent>) => {
-			ref.instance.onSaved.subscribe((payment: Payment) => {
-				this.expense.payments.push(payment);
-				this.modalService.hideCurrentModal();
-			});
+		});
 
-			ref.instance.onCancel.subscribe(() => {
-				this.modalService.hideCurrentModal();
-			});
+		ref.componentInstance.onSaved.subscribe((payment: Payment) => {
+			this.expense.payments.push(payment);
+			ref.close();
+		});
+
+		ref.componentInstance.onCancel.subscribe(() => {
+			ref.close();
 		});
 	}
 

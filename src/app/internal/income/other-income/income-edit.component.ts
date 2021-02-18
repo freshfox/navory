@@ -11,13 +11,12 @@ import {ErrorHandler} from "../../../core/error-handler";
 import {TaxRate} from "../../../models/tax-rate";
 import {BootstrapService} from "../../../services/bootstrap.service";
 import {EuVatType} from "../../../core/enums/eu-vat-type.enum";
-import {ServiceError, SnackBarService} from '@freshfox/ng-core';
+import {DialogService, ServiceError, SnackBarService} from '@freshfox/ng-core';
 import {TranslateService} from "@ngx-translate/core";
 import {IncomeBookPaymentComponent} from "../../payments/income-book-payment.component";
 import {Payment} from "../../../models/payment";
 import {Location} from "@angular/common";
 import {PaymentService} from "../../../services/payment.service";
-import {ModalService} from "../../../lib/ffc-angular/services/modal.service";
 import {FieldValidationError} from '../../../core/field-validation-error';
 
 @Component({
@@ -46,7 +45,7 @@ export class IncomeEditComponent implements OnInit {
 				private bootstrapService: BootstrapService,
 				private snackbar: SnackBarService,
 				private translate: TranslateService,
-				private modalService: ModalService,
+				private dialogService: DialogService,
 				private location: Location,
 				private paymentService: PaymentService) {
 
@@ -170,21 +169,21 @@ export class IncomeEditComponent implements OnInit {
 	}
 
 	addPayment() {
-		this.modalService.create(IncomeBookPaymentComponent, {
+		const ref = this.dialogService.create(IncomeBookPaymentComponent, {
 			parameters: {
 				income: this.income,
 				amount: this.income.unpaid_amount,
 				description: this.translate.instant('payments.default-income-description', {number: this.income.number})
 			}
-		}).subscribe((ref: ComponentRef<IncomeBookPaymentComponent>) => {
-			ref.instance.onSaved.subscribe((payment: Payment) => {
-				this.income.payments.push(payment);
-				this.modalService.hideCurrentModal();
-			});
+		});
 
-			ref.instance.onCancel.subscribe(() => {
-				this.modalService.hideCurrentModal();
-			});
+		ref.componentInstance.onSaved.subscribe((payment: Payment) => {
+			this.income.payments.push(payment);
+			ref.close();
+		});
+
+		ref.componentInstance.onCancel.subscribe(() => {
+			ref.close();
 		});
 	}
 

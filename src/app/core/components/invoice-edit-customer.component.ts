@@ -1,11 +1,11 @@
 import {AfterViewInit, Component, ComponentRef, ElementRef, Input, ViewChild} from "@angular/core";
 import {BaseInvoice} from "../../models/invoice-base.model";
-import {ModalService} from "../../lib/ffc-angular/services/modal.service";
 import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../models/customer";
 import {CustomerEditComponent} from "../../internal/customers/customer-edit.component";
 import {BootstrapService} from "../../services/bootstrap.service";
 import {Country} from "../../models/country";
+import {DialogService} from '@freshfox/ng-core';
 const AutoComplete = require('javascript-autocomplete');
 
 @Component({
@@ -57,7 +57,7 @@ export class InvoiceEditCustomerComponent implements AfterViewInit {
 	@Input() invoice: BaseInvoice;
 	@ViewChild('customerName', { static: true }) private customerName: ElementRef;
 
-	constructor(private modalService: ModalService, private customerService: CustomerService, private bootstrapService: BootstrapService) {
+	constructor(private dialogService: DialogService, private customerService: CustomerService, private bootstrapService: BootstrapService) {
 	}
 
 	ngOnInit() {
@@ -105,19 +105,19 @@ export class InvoiceEditCustomerComponent implements AfterViewInit {
 	}
 
 	private editCustomer() {
-		this.modalService.create(CustomerEditComponent, {
+		const ref = this.dialogService.create(CustomerEditComponent, {
 			parameters: {
 				customer: this.invoice.customer
 			}
-		}).subscribe((ref: ComponentRef<CustomerEditComponent>) => {
-			ref.instance.onSaved.subscribe((savedCustomer: Customer) => {
-				this.updateCustomer(savedCustomer);
-				this.modalService.hideCurrentModal();
-			});
+		})
 
-			ref.instance.onCancel.subscribe(() => {
-				this.modalService.hideCurrentModal();
-			});
+		ref.componentInstance.onSaved.subscribe((savedCustomer: Customer) => {
+			this.updateCustomer(savedCustomer);
+			ref.close();
+		});
+
+		ref.componentInstance.onCancel.subscribe(() => {
+			ref.close();
 		});
 	}
 
@@ -127,19 +127,19 @@ export class InvoiceEditCustomerComponent implements AfterViewInit {
 		customer.address = this.invoice.customer_address;
 		customer.country_code = this.invoice.customer_country_code;
 
-		this.modalService.create(CustomerEditComponent, {
+		const ref = this.dialogService.create(CustomerEditComponent, {
 			parameters: {
 				customer: customer
 			}
-		}).subscribe((ref: ComponentRef<CustomerEditComponent>) => {
-			ref.instance.onSaved.subscribe((savedCustomer: Customer) => {
-				this.updateCustomer(savedCustomer);
-				this.modalService.hideCurrentModal();
-			});
+		});
 
-			ref.instance.onCancel.subscribe(() => {
-				this.modalService.hideCurrentModal();
-			});
+		ref.componentInstance.onSaved.subscribe((savedCustomer: Customer) => {
+			this.updateCustomer(savedCustomer);
+			ref.close();
+		});
+
+		ref.componentInstance.onCancel.subscribe(() => {
+			ref.close();
 		});
 	}
 }
