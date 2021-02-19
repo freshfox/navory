@@ -33,7 +33,7 @@
 </ff-table>
 
 <ng-template #statusColumn let-row="row" let-value="value">
-	<ff-badge *ngIf="getBadgeData(row) as badgeData" [type]="badgeData.type">
+	<ff-badge [size]="'small'" *ngIf="getBadgeData(row) as badgeData" [type]="badgeData.type">
 		{{ badgeData.text }}
 	</ff-badge>
 </ng-template>

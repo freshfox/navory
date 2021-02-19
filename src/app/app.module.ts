@@ -104,7 +104,7 @@ import {
 	FFBadgeModule,
 	FFButtonModule,
 	FFDialogModule,
-	FFSnackbarModule
+	FFSnackbarModule, FFTableModule
 } from '@freshfox/ng-core';
 import {UnauthorizedInterceptor} from './core/unauthorized-interceptor';
 import {BankAccountCreateComponent} from './internal/payments/bank-account-create.component';
@@ -118,6 +118,10 @@ import {PaymentsExpensesTableComponent} from './internal/payments/payments-expen
 import {PaymentComponent} from './internal/payments/payment.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSortModule} from '@angular/material/sort';
+import {MatDialogModule} from '@angular/material/dialog';
+import {DocumentPreviewOverlayComponent} from './core/components/document-preview-overlay.component';
+import {PaymentsIncomeTableComponent} from './internal/payments/payments-income-table.component';
 
 registerLocaleData(de, 'de');
 
@@ -159,6 +163,7 @@ export function validationMessageProviderFactory() {
 		PaymentsComponent,
 		ExportComponent,
 		DocumentPreviewComponent,
+		DocumentPreviewOverlayComponent,
 		DatePipe,
 		FiveZeroThreeComponent,
 		StepsComponent,
@@ -192,6 +197,7 @@ export function validationMessageProviderFactory() {
 		BankAccountCreateComponent,
 		BookPaymentListComponent,
 		PaymentsExpensesTableComponent,
+		PaymentsIncomeTableComponent,
 		PaymentComponent,
 	],
 	imports: [
@@ -214,6 +220,7 @@ export function validationMessageProviderFactory() {
 		FFButtonModule,
 		FFBadgeModule,
 		FFAvatarModule,
+		FFTableModule,
 		MatProgressSpinnerModule,
 		MatTableModule,
 		MatPaginatorModule,
@@ -224,6 +231,7 @@ export function validationMessageProviderFactory() {
 		MatButtonModule,
 		MatFormFieldModule,
 		MatSelectModule,
+		MatSortModule,
 		MatCheckboxModule,
 		MatAutocompleteModule,
 		MatMenuModule,
@@ -235,6 +243,7 @@ export function validationMessageProviderFactory() {
 		}),
 		ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
 		FFSnackbarModule,
+		MatDialogModule,
 	],
 	providers: [
 		{provide: LOCALE_ID, useValue: 'de-AT'},

@@ -8,5 +8,9 @@
 		<button ff-button (click)="downloadReport()" icon="download">Herunterladen</button>
 	</div>
 
-	<nvry-document-preview [url]="reportUrl"></nvry-document-preview>
+	<div>
+		<div class="transform origin-top scale-125">
+			<nvry-document-preview [url]="reportUrl" class="pb-12"></nvry-document-preview>
+		</div>
+	</div>
 </section>

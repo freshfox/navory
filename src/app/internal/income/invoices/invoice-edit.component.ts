@@ -1,4 +1,4 @@
-import {Component, ComponentRef, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Invoice, InvoiceStatus} from '../../../models/invoice';
 import {ActivatedRoute} from '@angular/router';
 import {InvoiceService} from '../../../services/invoice.service';
@@ -13,7 +13,6 @@ import {InvoiceBookPaymentComponent} from '../../payments/invoice-book-payment.c
 import {Payment} from '../../../models/payment';
 import {Observable} from 'rxjs';
 import {DialogService, ServiceError, ServiceErrorCode, SnackBarService} from '@freshfox/ng-core';
-import {DocumentPreviewComponent} from '../../../core/components/document-preview.component';
 import {PaymentService} from '../../../services/payment.service';
 import {QuoteService} from '../../../services/quote.service';
 import {Quote} from '../../../models/quote.model';
@@ -21,6 +20,7 @@ import {InvoiceUtils} from '../../../utils/invoice-utils';
 import {LineUtils} from '../../../utils/line-utils';
 import {AccountService} from '../../../services/account.service';
 import {switchMap} from 'rxjs/operators';
+import {DocumentPreviewOverlayComponent} from '../../../core/components/document-preview-overlay.component';
 
 const moment = require('moment');
 
@@ -254,7 +254,8 @@ export class InvoiceEditComponent implements OnInit {
 	}
 
 	showPreview() {
-		const ref = this.dialogService.create(DocumentPreviewComponent, {
+		const ref = this.dialogService.create(DocumentPreviewOverlayComponent, {
+			clean: true,
 			parameters: {
 				url: this.invoicePreviewURL
 			},

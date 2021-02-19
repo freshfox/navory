@@ -1167,10 +1167,10 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
-"@freshfox/ng-core@^7.6.0":
-  version "7.6.0"
-  resolved "https://registry.yarnpkg.com/@freshfox/ng-core/-/ng-core-7.6.0.tgz#ab81c4c0a50c1ea3db1970802f2927677a6a7089"
-  integrity sha512-JOZOyzzyuEVnYTGzeQtweAnkFOnAysBGs1Vlu8XeVqRrB71h7o8qc1Euojsdw3DuDbjzmNxyumL2Mix3U3OfiA==
+"@freshfox/ng-core@^8.1.0":
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/@freshfox/ng-core/-/ng-core-8.1.0.tgz#1353552e5bf64b8b3468c81e1458da1fd163d7e1"
+  integrity sha512-pOoJL5c1REs7KWjMldIErspNaLK1gdaS/MJRRdAWcN+/K2VJleJB/GXjPj5ypkNi52C/iloPAOIWjX8rQqth9w==
   dependencies:
     tslib "^2.0.0"
 

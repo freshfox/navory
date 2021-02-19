@@ -7,10 +7,7 @@ import moment from "moment";
 import {State} from "../../../core/state";
 import {Router} from "@angular/router";
 import {NumberPipe} from "../../../lib/ffc-angular/pipes/number.pipe";
-import {TableOptions} from '../../../lib/ffc-angular/components/table/table-options.model';
-import {SortDirection} from '../../../lib/ffc-angular/components/table/sort-direction.enum';
-import {ColumnAlignment} from '../../../lib/ffc-angular/components/table/column-alignment.enum';
-import {DialogService, DialogType} from '@freshfox/ng-core';
+import {ColumnAlignment, DialogService, DialogType, SortDirection, TableOptions} from '@freshfox/ng-core';
 
 @Component({
 	templateUrl: './income-list.component.html'

@@ -4,11 +4,9 @@ import {InvoiceService} from '../../../services/invoice.service';
 import {TranslateService} from '@ngx-translate/core';
 import {DatePipe} from '../../../core/pipes/date.pipe';
 import {Router} from '@angular/router';
-import {TableOptions} from '../../../lib/ffc-angular/components/table/table-options.model';
-import {ColumnAlignment} from '../../../lib/ffc-angular/components/table/column-alignment.enum';
 import {NumberPipe} from '../../../lib/ffc-angular/pipes/number.pipe';
 import {LineUtils} from '../../../utils/line-utils';
-import {DialogService, DialogType} from '@freshfox/ng-core';
+import {ColumnAlignment, DialogService, DialogType, TableOptions} from '@freshfox/ng-core';
 
 @Component({
 	selector: 'nvry-recurring-invoices',

@@ -1,34 +1,36 @@
-<div class="modal-header">
+<div class="ff-dialog-header">
 	<span>{{ headerText }}</span>
 </div>
 
-<form [formGroup]="form">
-	<div class="frame frame--padding">
-		<nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
-	</div>
-	<div class="frame frame--padding frame--bit-spacing">
-		<div class="bit-50">
-			<ff-input [label]="'general.name' | translate" [formControl]="form.controls.name"
-						[(ngModel)]="customer.name"></ff-input>
-			<ff-textarea [label]="'general.address' | translate" [formControl]="form.controls.address"
-						   [(ngModel)]="customer.address"></ff-textarea>
-			<ff-select [label]="'general.country' | translate" [options]="countries" valueKey="code"
-						 [(selectedValue)]="selectedCountryCode"></ff-select>
+<div class="ff-dialog-content">
+	<form [formGroup]="form">
+		<div class="frame">
+			<nvry-alert-bar [message]="alertMessage"></nvry-alert-bar>
 		</div>
-		<div class="bit-50">
-			<ff-input [label]="'general.number' | translate" [formControl]="form.controls.number"
-						[(ngModel)]="customer.number"></ff-input>
-			<ff-input [label]="'general.email' | translate" [formControl]="form.controls.email" type="email"
-						[(ngModel)]="customer.email"></ff-input>
-			<ff-input [label]="'general.phone' | translate" [formControl]="form.controls.phone"
-						[(ngModel)]="customer.phone"></ff-input>
-			<ff-input [label]="'general.vat-id' | translate" [formControl]="form.controls.vat_number"
-						[(ngModel)]="customer.vat_number"></ff-input>
+		<div class="frame frame--bit-spacing">
+			<div class="bit-50">
+				<ff-input [label]="'general.name' | translate" [formControl]="form.controls.name"
+						  [(ngModel)]="customer.name"></ff-input>
+				<ff-textarea [label]="'general.address' | translate" [formControl]="form.controls.address"
+							 [(ngModel)]="customer.address"></ff-textarea>
+				<ff-select [label]="'general.country' | translate" [options]="countries" valueKey="code"
+						   [(selectedValue)]="selectedCountryCode"></ff-select>
+			</div>
+			<div class="bit-50">
+				<ff-input [label]="'general.number' | translate" [formControl]="form.controls.number"
+						  [(ngModel)]="customer.number"></ff-input>
+				<ff-input [label]="'general.email' | translate" [formControl]="form.controls.email" type="email"
+						  [(ngModel)]="customer.email"></ff-input>
+				<ff-input [label]="'general.phone' | translate" [formControl]="form.controls.phone"
+						  [(ngModel)]="customer.phone"></ff-input>
+				<ff-input [label]="'general.vat-id' | translate" [formControl]="form.controls.vat_number"
+						  [(ngModel)]="customer.vat_number"></ff-input>
+			</div>
 		</div>
-	</div>
-</form>
+	</form>
+</div>
 
-<div class="modal-footer">
+<div class="ff-dialog-footer">
 	<button ff-button class="ff-button--secondary" (click)="cancel()">{{ 'general.cancel' | translate }}</button>
 	<button ff-button [loading]="loading" (click)="save()">{{ 'general.save' | translate }}</button>
 </div>

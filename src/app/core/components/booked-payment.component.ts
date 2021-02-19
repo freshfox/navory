@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, EventEmitter, Output} from "@angular/core";
+import {Component, OnInit, Input, EventEmitter, Output, HostBinding} from '@angular/core';
 import {Payment} from "../../models/payment";
 
 @Component({
@@ -13,6 +13,8 @@ export class BookedPaymentComponent implements OnInit {
 
 	@Input() payment: Payment;
 	@Output() onRemove: EventEmitter<Payment> = new EventEmitter<Payment>();
+
+	@HostBinding('class') clazz = 'block';
 
 	constructor() {
 	}

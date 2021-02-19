@@ -63,13 +63,6 @@ hr {
 }
 
 /**
- * Links
- */
-a {
-	color: $colorPrimary;
-}
-
-/**
  * Typography
  */
 p {
@@ -165,6 +158,43 @@ img {
 
 
 /// New actually needed CSS
+:root {
+	--nvry-legacy-label-color: theme('colors.gray.600');
+}
+
+html.dark {
+	--ff-table-text-color: white;
+	--ff-table-clickable-hover-background: theme('colors.gray.800');
+	--ff-table-color-spacer-lines: theme('colors.gray.600');
+	--ff-table-heading-background-color: theme('colors.gray.800');
+
+	--ff-legacy-form-field-background: theme('colors.gray.800');
+	--ff-legacy-form-field-disabled-background: theme('colors.gray.900');
+
+	--nvry-legacy-label-color: white;
+
+	.mat-table {
+		background: transparent;
+		color: white;
+
+		.mat-cell {
+			color: white;
+		}
+	}
+
+	.chosen-container {
+		background: var(--ff-legacy-form-field-background);
+
+		.chosen-single {
+			color: white !important;
+		}
+	}
+}
+
+.mat-dialog-container {
+	overflow-x: hidden;
+}
+
 .chosen-container {
 	font-size: 14px;
 }
@@ -172,4 +202,19 @@ img {
 .nvry-container {
 	padding-left: $contentSidePadding;
 	padding-right: $contentSidePadding;
+}
+
+.nvry-dialog-full {
+	width: 1000px !important;
+	height: 90% !important;
+	max-width: none !important;
+
+	@media (max-width: 1000px) {
+		height: 100% !important;
+		width: 100% !important;
+
+		.mat-dialog-container {
+			border-radius: 0 !important;
+		}
+	}
 }

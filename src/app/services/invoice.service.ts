@@ -139,7 +139,7 @@ export class InvoiceService {
 				break;
 			case InvoiceStatus.PartlyPaid:
 				text = this.translate.instant('general.partly-paid');
-				type = 'warning';
+				type = 'warn';
 				break;
 			case InvoiceStatus.Overdue:
 				text = this.translate.instant('general.overdue');

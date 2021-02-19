@@ -1,4 +1,4 @@
-import {Component, ComponentRef, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BootstrapService} from '../../services/bootstrap.service';
 import {State} from '../../core/state';
@@ -9,10 +9,10 @@ import {Location} from '@angular/common';
 import {Helpers} from '../../core/helpers';
 import {Observable} from 'rxjs';
 import {DialogService, ServiceError, SnackBarService} from '@freshfox/ng-core';
-import {DocumentPreviewComponent} from '../../core/components/document-preview.component';
 import {QuoteService} from '../../services/quote.service';
 import {Quote} from '../../models/quote.model';
 import {LineUtils} from '../../utils/line-utils';
+import {DocumentPreviewOverlayComponent} from '../../core/components/document-preview-overlay.component';
 
 const moment = require('moment');
 
@@ -165,7 +165,7 @@ export class QuoteEditComponent implements OnInit {
 	}
 
 	showPreview() {
-		this.dialogService.create(DocumentPreviewComponent, {
+		this.dialogService.create(DocumentPreviewOverlayComponent, {
 			parameters: {
 				url: this.quotePreviewURL
 			},

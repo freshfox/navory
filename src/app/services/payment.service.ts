@@ -14,6 +14,10 @@ export class PaymentService {
 	private pathPayments = '/payments';
 	private pathBankAccounts = '/bankaccounts';
 
+	private associatePaymentExpensePath = (expenseId: number, paymentId: number) => `/expenses/${expenseId}/payments/${paymentId}/link`;
+	private associatePaymentInvoicePath = (expenseId: number, paymentId: number) => `/invoices/${expenseId}/payments/${paymentId}/link`;
+	private associatePaymentIncomePath = (expenseId: number, paymentId: number) => `/incomes/${expenseId}/payments/${paymentId}/link`;
+
 	constructor(private apiService: ApiService) {
 
 	}
@@ -50,6 +54,18 @@ export class PaymentService {
 		let path = `/expenses/${expense.id}/payments`;
 		return this.apiService.post(path, payment)
 			.pipe(map(this.parsePayment));
+	}
+
+	associatePaymentWithExpense(expenseId: number, paymentId: number) {
+		return this.apiService.post(this.associatePaymentExpensePath(expenseId, paymentId));
+	}
+
+	associatePaymentWithInvoice(invoiceId: number, paymentId: number) {
+		return this.apiService.post(this.associatePaymentInvoicePath(invoiceId, paymentId));
+	}
+
+	associatePaymentWithIncome(incomeId: number, paymentId: number) {
+		return this.apiService.post(this.associatePaymentIncomePath(incomeId, paymentId));
 	}
 
 	removePaymentFromInvoice(invoice: Invoice, payment: Payment) {

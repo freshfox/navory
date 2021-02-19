@@ -8,7 +8,7 @@ import {BaseModel} from "../core/base.model";
 
 export class Expense extends BaseModel {
 
-	id: string;
+	id: number;
 	number: number;
 	date: string;
 	description: string;

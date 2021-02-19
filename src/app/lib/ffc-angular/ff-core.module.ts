@@ -2,7 +2,6 @@ import {ModuleWithProviders, NgModule, Provider} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {IconComponent} from './components/icon.component';
 import {SpinnerComponent} from './components/spinner.component';
-import {ConfirmComponent} from './components/confirm.component';
 import {ControlMessagesComponent} from './components/control-messages.component';
 import {InputComponent} from './components/input.component';
 import {SelectComponent} from './components/select.component';
@@ -14,12 +13,9 @@ import {SafePipe} from './pipes/safe.pipe';
 import {Formatter} from './formatter';
 import {AlertBarComponent} from './components/alert-bar.component';
 import {DropdownComponent} from './components/dropdown.component';
-import {TableComponent} from './components/table/table.component';
-import {TableHeaderCellComponent} from './components/table/table-header-cell.component';
 import {FakeValidationMessageProvider, ValidationMessageProvider} from './validation-message-provider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
-export * from './components/confirm.component';
 export * from './components/control-messages.component';
 export * from './components/icon.component';
 export * from './components/icon.component';
@@ -42,7 +38,6 @@ export interface FFCoreModuleConfig {
 	declarations: [
 		IconComponent,
 		SpinnerComponent,
-		ConfirmComponent,
 		ControlMessagesComponent,
 		InputComponent,
 		SelectComponent,
@@ -52,13 +47,10 @@ export interface FFCoreModuleConfig {
 		SafePipe,
 		AlertBarComponent,
 		DropdownComponent,
-		TableComponent,
-		TableHeaderCellComponent
 	],
 	exports: [
 		IconComponent,
 		SpinnerComponent,
-		ConfirmComponent,
 		ControlMessagesComponent,
 		InputComponent,
 		SelectComponent,
@@ -66,10 +58,6 @@ export interface FFCoreModuleConfig {
 		SafePipe,
 		AlertBarComponent,
 		DropdownComponent,
-		TableComponent
-	],
-	entryComponents: [
-		ConfirmComponent
 	],
 	providers: [
 		NumberPipe,

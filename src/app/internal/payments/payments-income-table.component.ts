@@ -1,26 +1,30 @@
 import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
-import {Expense} from '../../models/expense';
+import {Invoice} from '../../models/invoice';
 
 @Component({
-	selector: 'nvry-payments-expenses-table',
+	selector: 'nvry-payments-income-table',
 	template: `
-		<mat-table [dataSource]="expenses" class="ff-table-clickable">
+		<mat-table [dataSource]="invoices" class="ff-table-clickable">
 			<ng-container matColumnDef="number">
 				<mat-header-cell *matHeaderCellDef>{{ 'general.number-abbrev' | translate }}</mat-header-cell>
 				<mat-cell *matCellDef="let element"> {{element.number}} </mat-cell>
 			</ng-container>
 
-			<ng-container matColumnDef="description">
-				<mat-header-cell *matHeaderCellDef>Beschreibung</mat-header-cell>
-				<mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+			<ng-container matColumnDef="customer">
+				<mat-header-cell *matHeaderCellDef>Kunde</mat-header-cell>
+				<mat-cell *matCellDef="let element">
+					{{ element.customer_name }}
+				</mat-cell>
 			</ng-container>
 
 			<ng-container matColumnDef="amount">
 				<mat-header-cell *matHeaderCellDef>{{ 'general.amount' | translate }}</mat-header-cell>
 				<mat-cell *matCellDef="let element" class="justify-end">
 					<div class="flex space-x-2">
-						<span class="text-gray-400" *ngIf="element.unpaid_amount !== element.getAmountGross()">(-{{ element.unpaid_amount | currency }} übrig)</span>
-						<span class="text-red-600">-{{element.getAmountGross() | currency }}</span>
+						<span class="text-gray-400"
+							  *ngIf="element.unpaid_amount !== element.getTotalGross()">({{ element.unpaid_amount | currency }}
+							übrig)</span>
+						<span class="text-green-500">{{element.getTotalGross() | currency }}</span>
 					</div>
 				</mat-cell>
 			</ng-container>
@@ -30,15 +34,14 @@ import {Expense} from '../../models/expense';
 		</mat-table>
 	`
 })
-
-export class PaymentsExpensesTableComponent implements OnInit {
+export class PaymentsIncomeTableComponent implements OnInit {
 
 	@HostBinding('class') clazz = 'nvry-payments-expenses-table';
 
-	@Input() expenses: Expense[];
-	@Output() rowClick = new EventEmitter<Expense>();
+	@Input() invoices: Invoice[];
+	@Output() rowClick = new EventEmitter<Invoice>();
 
-	displayedColumns = ['number', 'description', 'amount'];
+	displayedColumns = ['number', 'customer', 'amount'];
 
 	constructor() {
 	}
@@ -46,7 +49,7 @@ export class PaymentsExpensesTableComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	rowClicked(expense: Expense) {
-		this.rowClick.emit(expense);
+	rowClicked(invoice: Invoice) {
+		this.rowClick.emit(invoice);
 	}
 }

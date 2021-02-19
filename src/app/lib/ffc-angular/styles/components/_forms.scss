@@ -6,6 +6,7 @@
   transition: background-color .2s ease;
   width: 100%;
 	line-height: 1.5;
+	background-color: var(--ff-legacy-form-field-background);
 
   &:focus {
     outline: 0;
@@ -17,7 +18,7 @@
   }
 
   &[disabled] {
-    background: $colorGrayLight;
+    background: var(--ff-legacy-form-field-disabled-background);
   }
 
   &.clickable-field {

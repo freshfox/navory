@@ -4,15 +4,15 @@
 			<div class="invoice-stats__row">
 				<div class="invoice-stats__item">
 					<span class="title">{{ 'general.overdue' | translate }}</span>
-					<span class="amount color-expenses">{{ getOverdueAmount() | ffNumber }}</span>
+					<span class="amount text-red-500 dark:text-red-400">{{ getOverdueAmount() | ffNumber }}</span>
 				</div>
 				<div class="invoice-stats__item">
 					<span class="title">{{ 'invoices.open' | translate }}</span>
-					<span class="amount color-customers">{{ getIssuedAmount() | ffNumber }}</span>
+					<span class="amount text-purple-500 dark:text-purple-400">{{ getIssuedAmount() | ffNumber }}</span>
 				</div>
 				<div class="invoice-stats__item">
 					<span class="title">{{ 'general.draft' | translate }}</span>
-					<span class="amount color-gray">{{ getDraftAmount() | ffNumber }}</span>
+					<span class="amount text-gray-400 dark:text-gray-300">{{ getDraftAmount() | ffNumber }}</span>
 				</div>
 				<div class="invoice-stats__item">
 					<span class="title">{{ 'general.total' | translate }}</span>
@@ -38,8 +38,7 @@
 	<small class="small-notice" *ngIf="!loading">{{ 'invoices.all-amounts-net' | translate }}</small>
 </div>
 
-<ff-table [options]="tableOptions" [loading]="loading" [rows]="filteredInvoices" (onRowClicked)="editInvoice($event)"
-			class="invoice-list-table">
+<ff-table [options]="tableOptions" [loading]="loading" [rows]="filteredInvoices" (onRowClicked)="editInvoice($event)">
 
 	<div empty class="empty-view">
 		<p class="title" [innerHTML]="'invoices.empty-state-message' | translate"></p>

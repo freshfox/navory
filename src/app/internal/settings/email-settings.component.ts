@@ -1,12 +1,10 @@
 import {Component, ComponentRef, HostBinding, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {EmailSettings} from '../../models/email-settings';
-import {TableOptions} from '../../lib/ffc-angular/components/table/table-options.model';
-import {SortDirection} from '../../lib/ffc-angular/components/table/sort-direction.enum';
 import {TranslateService} from '@ngx-translate/core';
 import {EmailSettingsEditComponent} from './email-settings-edit.component';
 import {Customer} from '../../models/customer';
-import {DialogService, DialogType} from '@freshfox/ng-core';
+import {DialogService, DialogType, SortDirection, TableOptions} from '@freshfox/ng-core';
 
 @Component({
 	selector: 'nvry-email-settings',

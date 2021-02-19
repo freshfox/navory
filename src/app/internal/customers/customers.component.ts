@@ -3,9 +3,7 @@ import {CustomerService} from "../../services/customer.service";
 import {Customer} from "../../models/customer";
 import {TranslateService} from "@ngx-translate/core";
 import {CustomerEditComponent} from "./customer-edit.component";
-import {TableOptions} from '../../lib/ffc-angular/components/table/table-options.model';
-import {SortDirection} from '../../lib/ffc-angular/components/table/sort-direction.enum';
-import {DialogService, DialogType} from '@freshfox/ng-core';
+import {DialogService, DialogType, SortDirection, TableOptions} from '@freshfox/ng-core';
 
 @Component({
 	selector: 'nvry-customers',

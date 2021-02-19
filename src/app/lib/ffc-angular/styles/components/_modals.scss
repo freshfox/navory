@@ -3,7 +3,6 @@
 	background: $modalFooterBackgroundColor;
 	border-top: 1px solid $modalFooterTopBorderColor;
 	padding: 20px $modalSidePadding;
-	margin-top: 20px;
 
 	.ff-button {
 		margin-right: 5px;
@@ -19,7 +18,6 @@
 	color: #fff;
 	font-size: 20px;
 	padding: 20px $modalSidePadding;
-	margin-bottom: 20px;
 
 	&.modal-header--danger {
 		background: $modalHeaderDangerBackgroundColor;

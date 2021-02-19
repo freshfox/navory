@@ -91,7 +91,8 @@
 		"edit": "Bearbeiten",
 		"copy": "Kopieren",
 		"delete": "Löschen",
-		"download": "Herunterladen"
+		"download": "Herunterladen",
+    "cancel": "Abbrechen"
 	},
 	"timeout": {
 		"text": "Sieht so aus als wäre da bei uns etwas schiefgelaufen. Keine Sorge, wir sind bald wieder online.",

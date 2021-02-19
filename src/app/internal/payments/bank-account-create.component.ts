@@ -1,6 +1,7 @@
-import {ChangeDetectionStrategy, Component, HostBinding, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, HostBinding, OnInit, Output, EventEmitter} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {PaymentService} from '../../services/payment.service';
+import {SnackBarService} from '@freshfox/ng-core';
 
 @Component({
 	selector: 'nvry-bank-account-create',
@@ -38,19 +39,22 @@ export class BankAccountCreateComponent implements OnInit {
 
 	@HostBinding('class') clazz = 'nvry-bank-account-create';
 
+	@Output() cancelClick = new EventEmitter();
+	@Output() success = new EventEmitter();
+
 	loading$ = new BehaviorSubject(false);
 
 	name: string;
 	manual = false;
 
-	constructor(private paymentService: PaymentService) {
+	constructor(private paymentService: PaymentService, private snackbar: SnackBarService) {
 	}
 
 	ngOnInit() {
 	}
 
 	close() {
-
+		this.cancelClick.emit();
 	}
 
 	save() {
@@ -59,9 +63,11 @@ export class BankAccountCreateComponent implements OnInit {
 			name: this.name,
 			manual: this.manual,
 		}).subscribe(() => {
-
+			this.loading$.next(false);
+			this.success.emit();
 		}, () => {
-
+			this.loading$.next(false);
+			this.snackbar.error('Konto konnte nicht erstellt werden.');
 		});
 	}
 }

@@ -108,5 +108,8 @@ $modalFooterTopBorderColor: $colorSpacerLines !default;
 @import 'components/modals';
 @import 'components/tabs';
 @import 'components/dropdowns';
-@import 'components/tables';
 
+:root {
+	--ff-legacy-form-field-background: white;
+	--ff-legacy-form-field-disabled-background: #{$colorGrayLight};
+}

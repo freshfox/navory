@@ -9,7 +9,7 @@ input[type="checkbox"]:focus {
 label {
 	position: relative;
 	display: block;
-	color: $colorDarkAccent;
+	color: var(--nvry-legacy-label-color);
 
 	.form-stacked & {
 		display: block;

@@ -6,12 +6,9 @@ import {DatePipe} from '../../../core/pipes/date.pipe';
 import {Router} from '@angular/router';
 import {Calculator} from '../../../core/calculator';
 import {NumberPipe} from '../../../lib/ffc-angular/pipes/number.pipe';
-import {TableOptions} from '../../../lib/ffc-angular/components/table/table-options.model';
-import {SortDirection} from '../../../lib/ffc-angular/components/table/sort-direction.enum';
-import {ColumnAlignment} from '../../../lib/ffc-angular/components/table/column-alignment.enum';
 import {InvoiceUtils} from '../../../utils/invoice-utils';
 import {LocalStorageService} from '../../../services/local-storage.service';
-import {DialogService, DialogType} from '@freshfox/ng-core';
+import {ColumnAlignment, DialogService, DialogType, SortDirection, TableOptions} from '@freshfox/ng-core';
 
 @Component({
 	selector: 'nvry-invoices',
@@ -57,6 +54,7 @@ export class InvoicesComponent implements OnInit {
 			});
 
 		this.tableOptions = new TableOptions({
+			itemsClickable: true,
 			columns: [
 				{
 					name: this.translate.instant('invoices.status'),

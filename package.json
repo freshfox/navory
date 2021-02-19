@@ -33,7 +33,7 @@
     "@angular/platform-server": "^11.2.0",
     "@angular/router": "^11.2.0",
     "@angular/service-worker": "^11.2.0",
-    "@freshfox/ng-core": "^7.6.0",
+    "@freshfox/ng-core": "^8.1.0",
     "@ngx-translate/core": "^10.0.2",
     "@ngx-translate/http-loader": "^3.0.1",
     "bourbon": "4.3.3",

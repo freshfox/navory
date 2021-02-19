@@ -9,6 +9,10 @@
  */
 @import "variables";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 /**
  * Third party styles
@@ -43,13 +47,11 @@
 // Components
 @import "components/base";
 @import "components/headings";
-@import "components/tables";
 @import "components/tabs";
 @import "components/links";
 @import "components/alerts";
 @import "components/pageload";
 @import "components/upload-area";
-@import "components/document-preview";
 @import "components/notifications";
 @import "components/badges";
 @import "components/steps";
@@ -85,7 +87,3 @@
 @import "modules/expenses";
 @import "modules/customers";
 @import "modules/payments";
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

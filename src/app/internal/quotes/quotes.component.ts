@@ -6,10 +6,7 @@ import {Calculator} from "../../core/calculator";
 import {NumberPipe} from "../../lib/ffc-angular/pipes/number.pipe";
 import {Quote, QuoteStatus} from "../../models/quote.model";
 import {QuoteService} from "../../services/quote.service";
-import {TableOptions} from '../../lib/ffc-angular/components/table/table-options.model';
-import {SortDirection} from '../../lib/ffc-angular/components/table/sort-direction.enum';
-import {ColumnAlignment} from '../../lib/ffc-angular/components/table/column-alignment.enum';
-import {DialogService} from '@freshfox/ng-core';
+import {ColumnAlignment, DialogService, SortDirection, TableOptions} from '@freshfox/ng-core';
 var moment = require('moment');
 
 @Component({

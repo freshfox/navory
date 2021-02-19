@@ -54,7 +54,7 @@ export class ExpenseService {
 	}
 
 	deleteExpense(expense: Expense): Observable<any> {
-		return this.apiService.delete(this.apiService.getRestEntityPath(this.pathExpenses, expense.id));
+		return this.apiService.delete(this.apiService.getRestEntityPath(this.pathExpenses, expense.id + ''));
 	}
 
 }
