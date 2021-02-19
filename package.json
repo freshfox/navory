@@ -12,7 +12,7 @@
     "build": "npm run build-production",
     "build:production": "gulp beforeBuild && ng build --prod --configuration=production && gulp afterBuild",
     "build:staging": "gulp beforeBuild && ng build --prod --configuration=staging && gulp afterBuild",
-    "deploy": "firebase deploy",
+    "deploy": "firebase deploy --token \"$FIREBASE_TOKEN\"",
     "deploy:production": "yarn deploy --project production",
     "deploy:staging": "yarn deploy --project staging"
   },
