@@ -125,6 +125,17 @@ export class PaymentsComponent implements OnInit {
 	}
 
 	startImport() {
-		const ref = this.dialog.create(PaymentImportComponent);
+		const ref = this.dialog.create(PaymentImportComponent, {
+			parameters: {
+				bankAccountId: this.selectedBankAccountId$.value,
+			}
+		});
+
+		ref.componentInstance.success
+			.pipe(first())
+			.subscribe(() => {
+				ref.close();
+				this.refresh$.next();
+			});
 	}
 }

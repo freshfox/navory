@@ -1,18 +1,21 @@
-import {ChangeDetectionStrategy, Component, HostBinding, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
 import {PaymentService} from '../../services/payment.service';
 import {FormControl} from '@angular/forms';
 import {Payment} from '../../models/payment';
 import {switchMap} from 'rxjs/operators';
 import {BehaviorSubject, forkJoin} from 'rxjs';
+import {SnackBarService} from '@freshfox/ng-core';
 
 @Component({
 	selector: 'nvry-payment-import',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="px-4 py-6">
-			<h2 class="text-xl font-semibold mb-2">Bank Transaktionen importieren <span class="text-gray-500">(BETA)</span></h2>
+			<h2 class="text-xl font-semibold mb-2">Bank Transaktionen importieren <span
+				class="text-gray-500">(BETA)</span></h2>
 			<p class="mb-4">
-				Der Import von Banktranskationen befindet sich derzeit noch in Entwicklung. Momentan müssen folgende Bedingungen gelten.
+				Der Import von Banktranskationen befindet sich derzeit noch in Entwicklung. Momentan müssen folgende
+				Bedingungen gelten.
 			</p>
 
 			<h3 class="text-lg font-semibold">Spalten:</h3>
@@ -43,7 +46,10 @@ export class PaymentImportComponent implements OnInit {
 
 	importing$ = new BehaviorSubject(false);
 
-	constructor(private paymentService: PaymentService) {
+	@Input() bankAccountId: number;
+	@Output() success = new EventEmitter();
+
+	constructor(private paymentService: PaymentService, private snackbar: SnackBarService) {
 	}
 
 	ngOnInit() {
@@ -56,20 +62,22 @@ export class PaymentImportComponent implements OnInit {
 	upload() {
 		this.paymentService.importCsv(this.file)
 			.pipe(switchMap(result => {
-
 				const tasks = [];
 				for (const row of result.rows) {
 					const payment = new Payment();
 					payment.date = row[0];
 					payment.description = row[1];
 					payment.amount = row[2];
-					tasks.push(this.paymentService.createPayment(payment, 128));
+					tasks.push(this.paymentService.createPayment(payment, this.bankAccountId));
 				}
 
 				return forkJoin(tasks);
 			}))
 			.subscribe(() => {
-				console.log('done');
+				this.snackbar.success('Zahlungen erfolgreich importiert');
+				this.success.emit();
+			}, () => {
+				this.snackbar.error('Fehler beim Importieren der Zahlungen');
 			});
 	}
 }
