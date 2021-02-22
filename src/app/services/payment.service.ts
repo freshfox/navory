@@ -7,6 +7,7 @@ import {Income} from '../models/income';
 import {Expense} from '../models/expense';
 import {Invoice} from '../models/invoice';
 import {map} from 'rxjs/operators';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class PaymentService {
@@ -18,7 +19,7 @@ export class PaymentService {
 	private associatePaymentInvoicePath = (expenseId: number, paymentId: number) => `/invoices/${expenseId}/payments/${paymentId}/link`;
 	private associatePaymentIncomePath = (expenseId: number, paymentId: number) => `/incomes/${expenseId}/payments/${paymentId}/link`;
 
-	constructor(private apiService: ApiService) {
+	constructor(private apiService: ApiService, private http: HttpClient) {
 
 	}
 
@@ -36,6 +37,15 @@ export class PaymentService {
 
 	createBankAccount(account: BankAccount) {
 		return this.apiService.post<BankAccount>(this.pathBankAccounts, account);
+	}
+
+	createPayment(payment: Payment, bankAccountId: number) {
+		return this.apiService.post(this.pathPayments, {
+			...payment,
+			bank_account: {
+				id: bankAccountId,
+			}
+		});
 	}
 
 	addPaymentToInvoice(invoiceId: string, payment: Payment): Observable<Payment> {
@@ -81,6 +91,13 @@ export class PaymentService {
 	removePaymentFromExpense(expense: Expense, payment: Payment) {
 		let path = `/expenses/${expense.id}/payments/${payment.id}/link`;
 		return this.apiService.delete(path);
+	}
+
+	importCsv(file: File) {
+		const formData = new FormData();
+		formData.append('file', file);
+
+		return this.apiService.post('/payments/import', formData);
 	}
 
 	private parsePayment(data): Payment {

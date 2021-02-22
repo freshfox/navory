@@ -13,7 +13,7 @@ import {Invoice} from '../../models/invoice';
 			<ng-container matColumnDef="customer">
 				<mat-header-cell *matHeaderCellDef>Kunde</mat-header-cell>
 				<mat-cell *matCellDef="let element">
-					{{ element.customer_name }}
+					<span class="font-medium">{{ element.customer_name }}</span>
 				</mat-cell>
 			</ng-container>
 

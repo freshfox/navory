@@ -25,7 +25,7 @@ export class PaymentComponent implements OnInit {
 	@Input() payment: Payment;
 	@Input() showAmount: 'pivot' | 'remaining' = 'pivot';
 
-	@HostBinding('class') clazz = 'block rounded px-6 py-4 bg-gray-100 dark:bg-gray-800 dark:border dark:border-gray-300'
+	@HostBinding('class') clazz = 'block rounded px-6 py-4 bg-gray-100 dark:bg-gray-700 dark:border dark:border-gray-300'
 
 	constructor() {
 	}

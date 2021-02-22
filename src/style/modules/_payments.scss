@@ -16,12 +16,20 @@
 	}
 }
 
+.nvry-book-payment-list {
+	.mat-column-number {
+		flex: 0 0 100px;
+	}
+
+	.mat-column-amount {
+		flex: 0 0 250px;
+	}
+}
+
 nvry-book-payment {
 
 	.add-payment-form {
 		display: flex;
-		background-color: $colorGrayUltraLight;
-		padding: 20px 15px;
 
 		ff-input {
 			margin: 0;

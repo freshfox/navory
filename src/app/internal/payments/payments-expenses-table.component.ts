@@ -12,7 +12,9 @@ import {Expense} from '../../models/expense';
 
 			<ng-container matColumnDef="description">
 				<mat-header-cell *matHeaderCellDef>Beschreibung</mat-header-cell>
-				<mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+				<mat-cell *matCellDef="let element">
+					<span class="font-medium">{{element.description}}</span>
+				</mat-cell>
 			</ng-container>
 
 			<ng-container matColumnDef="amount">

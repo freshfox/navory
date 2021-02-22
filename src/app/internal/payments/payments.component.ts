@@ -6,6 +6,7 @@ import {BankAccountCreateComponent} from './bank-account-create.component';
 import {BehaviorSubject, combineLatest, Observable, Subject} from 'rxjs';
 import {Payment} from '../../models/payment';
 import {first, map, startWith, switchMap, tap} from 'rxjs/operators';
+import {PaymentImportComponent} from './payment-import.component';
 
 @Component({
 	selector: 'nvry-payments',
@@ -45,7 +46,12 @@ import {first, map, startWith, switchMap, tap} from 'rxjs/operators';
 		</div>
 
 		<nvry-payments-table [payments]="payments" *ngIf="payments$ | async as payments"
-							 (refresh)="refresh$.next()"></nvry-payments-table>
+							 (refresh)="refresh$.next()">
+
+			<button ff-button *ngIf="!!(selectedBankAccount$ | async)?.manual === false" (click)="startImport()">
+				CSV Import
+			</button>
+		</nvry-payments-table>
 		<ff-spinner *ngIf="loading$ | async"></ff-spinner>
 	`,
 })
@@ -54,6 +60,8 @@ export class PaymentsComponent implements OnInit {
 	bankAccounts$ = new BehaviorSubject<BankAccount[]>([]);
 	selectedBankAccountId$ = new BehaviorSubject<number>(null);
 	loading$ = new BehaviorSubject(false);
+
+	selectedBankAccount$: Observable<BankAccount>;
 
 	payments$: Observable<Payment[]>;
 
@@ -91,6 +99,12 @@ export class PaymentsComponent implements OnInit {
 					this.selectedBankAccountId$.next(bankAccounts[0].id);
 				}
 			});
+
+		this.selectedBankAccount$ = combineLatest([this.selectedBankAccountId$, this.bankAccounts$])
+			.pipe(map(([id, accounts]) => {
+				console.log(id, accounts);
+				return accounts?.find(a => a.id === id) || null;
+			}));
 	}
 
 	addBankAccount() {
@@ -107,5 +121,9 @@ export class PaymentsComponent implements OnInit {
 			.subscribe(() => {
 				this.refreshBankAccounts$.next();
 			});
+	}
+
+	startImport() {
+		const ref = this.dialog.create(PaymentImportComponent);
 	}
 }

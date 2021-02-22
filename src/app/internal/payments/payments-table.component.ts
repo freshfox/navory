@@ -25,10 +25,12 @@ import {MatSort} from '@angular/material/sort';
 	selector: 'nvry-payments-table',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<div class="pb-4 px-6">
+		<div class="pb-4 pl-6 flex align-center justify-between">
 			<mat-checkbox [ngModel]="state.showBookedPayments$ | async"
 						  (ngModelChange)="state.showBookedPayments$.next($event)">Abgeglichene anzeigen
 			</mat-checkbox>
+
+			<ng-content></ng-content>
 		</div>
 		<table mat-table [dataSource]="dataSource" matSort style="width: 100%;" matSortActive="date" matSortDirection="desc" class="payments-table ff-table-clickable">
 			<ng-container matColumnDef="status">

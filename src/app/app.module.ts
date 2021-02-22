@@ -122,6 +122,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatDialogModule} from '@angular/material/dialog';
 import {DocumentPreviewOverlayComponent} from './core/components/document-preview-overlay.component';
 import {PaymentsIncomeTableComponent} from './internal/payments/payments-income-table.component';
+import {PaymentImportComponent} from './internal/payments/payment-import.component';
 
 registerLocaleData(de, 'de');
 
@@ -199,6 +200,7 @@ export function validationMessageProviderFactory() {
 		PaymentsExpensesTableComponent,
 		PaymentsIncomeTableComponent,
 		PaymentComponent,
+		PaymentImportComponent,
 	],
 	imports: [
 		BrowserModule,
