@@ -20,8 +20,8 @@
 	</div>
 
 	<div class="default-section" *ngIf="expense.payments?.length">
-		<h3>{{ 'general.payments' | translate }}</h3>
-		<div>
+		<h3 class="font-medium mb-1">{{ 'general.payments' | translate }}</h3>
+		<div class="mb-4 space-y-2">
 			<nvry-booked-payment *ngFor="let payment of expense.payments" [payment]="payment" (onRemove)="removePaymentLink(payment)"></nvry-booked-payment>
 		</div>
 	</div>
