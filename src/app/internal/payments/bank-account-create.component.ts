@@ -8,7 +8,7 @@ import {SnackBarService} from '@freshfox/ng-core';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="px-6 py-5">
-			<h3 class="text-xl leading-6 font-medium text-gray-900 mb-4">
+			<h3 class="text-xl leading-6 font-medium text-gray-900 mb-4 dark:text-white">
 				Konto erstellen
 			</h3>
 
