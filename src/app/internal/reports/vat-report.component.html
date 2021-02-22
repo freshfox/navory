@@ -55,7 +55,7 @@
 
 		<div class="vat-report-paper">
 			<div class="vat-report-category" *ngFor="let category of report.categories">
-				<h2 class="category-headline">{{ category.title }}</h2>
+				<h2 class="category-headline font-bold mb-2">{{ category.title }}</h2>
 				<ul class="vat-report-field-list">
 					<li *ngFor="let field of category.fields">
 						<span class="value">{{ field.value | ffNumber }}</span>

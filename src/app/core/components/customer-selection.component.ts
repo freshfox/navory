@@ -13,15 +13,15 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 			<label>{{ 'general.customer' | translate }}</label>
 			<input type="text" class="ff-input" [matAutocomplete]="auto" [formControl]="control">
 		</div>
-		
+
 		<div *ngIf="customer">
 			<label>{{ 'general.customer' | translate }}</label>
-			<div style="display: flex; align-items: center;">
+			<div class="flex items-center">
 				<span style="font-size: 16px; font-weight: bold;">{{ customer.name }}</span>
-				<button class="button ff-button--mini-rounded" style="margin-left: 8px;"
+				<button class="button ff-button--mini-rounded" class="w-8 h-8"
 						[matTooltip]="'invoices.remove-customer-link' | translate"
 						(click)="removeCustomer()">
-					<ff-icon name="cross"></ff-icon>
+					<mat-icon>close</mat-icon>
 				</button>
 			</div>
 		</div>

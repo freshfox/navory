@@ -1,7 +1,7 @@
 @include form-fields {
   padding: 9px 6px;
   display: inline-block;
-  border: 1px solid $formFieldBorderColor;
+  border: 1px solid var(--ff-legacy-form-field-border);
   border-radius: $formFieldBorderRadius;
   transition: background-color .2s ease;
   width: 100%;
@@ -22,7 +22,8 @@
   }
 
   &.clickable-field {
-    background: white;
+	  @apply bg-white;
+	  @apply dark:bg-gray-800;
 
     &:hover {
       background: $colorPrimaryUltraLighter;
@@ -100,6 +101,10 @@ ff-textarea,
 ff-select {
 	margin-bottom: 16px;
 	display: block;
+
+	label {
+		@apply font-medium;
+	}
 }
 
 /**

@@ -59,12 +59,16 @@ nvry-invoices {
 }
 
 .invoice-edit-paper {
-	border: 1px solid $colorGrayLight;
+	@apply border;
+	@apply border-gray-300;
+	@apply dark:border-gray-500;
 }
 
 .invoice-edit-paper-section {
 	padding: 30px 36px;
-	border-bottom: 1px solid $colorGrayLight;
+	@apply border-b;
+	@apply border-gray-300;
+	@apply dark:border-gray-500;
 
 	&:last-child {
 		border-bottom: 0;

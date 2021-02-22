@@ -87,7 +87,6 @@
 			}
 
 			.description {
-				color: $colorGrayUltraDark;
 				line-height: 25px;
 			}
 
@@ -102,6 +101,9 @@
 				background: $colorGrayUltraLight;
 				padding: 3px 5px;
 				width: 130px;
+				border-width: 1px;
+				@apply dark:bg-gray-800;
+				@apply dark:border-gray-200;
 			}
 		}
 	}

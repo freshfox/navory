@@ -147,6 +147,7 @@ export class ExpenseEditComponent implements OnInit {
 
 	showCategories() {
 		const ref = this.dialogService.create(ExpenseCategorySelectionComponent, {
+			width: '1000px',
 			parameters: {
 				categories: this.expenseCategories
 			},

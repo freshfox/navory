@@ -74,7 +74,6 @@ $buttonSecondaryBorderColor: $colorGrayMedium !default;
 /**
  * Forms
  */
-$formFieldBorderColor: $colorGray !default;
 $formFieldBorderRadius: $defaultBorderRadius !default;
 
 // Dropdowns
@@ -112,4 +111,5 @@ $modalFooterTopBorderColor: $colorSpacerLines !default;
 :root {
 	--ff-legacy-form-field-background: white;
 	--ff-legacy-form-field-disabled-background: #{$colorGrayLight};
+	--ff-legacy-form-field-border: theme('colors.gray.300');
 }

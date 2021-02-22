@@ -55,7 +55,8 @@ html, body {
  */
 hr {
 	height: 1px;
-	background: $colorSpacerLines;
+	@apply bg-gray-200;
+	@apply dark:bg-gray-500;
 	border: 0;
 	margin: 15px 0;
 	width: 100%;
@@ -163,6 +164,7 @@ img {
 }
 
 html.dark {
+	--ff-color-text: white;
 	--ff-table-text-color: white;
 	--ff-table-clickable-hover-background: theme('colors.gray.800');
 	--ff-table-color-spacer-lines: theme('colors.gray.600');
@@ -170,6 +172,7 @@ html.dark {
 
 	--ff-legacy-form-field-background: theme('colors.gray.800');
 	--ff-legacy-form-field-disabled-background: theme('colors.gray.900');
+	--ff-legacy-form-field-border: theme('colors.gray.500');
 
 	--nvry-legacy-label-color: white;
 
@@ -180,6 +183,11 @@ html.dark {
 		.mat-cell {
 			color: white;
 		}
+
+		.mat-header-cell {
+			color: white;
+			background-color: var(--ff-table-heading-background-color);
+		}
 	}
 
 	.chosen-container {
@@ -189,6 +197,20 @@ html.dark {
 			color: white !important;
 		}
 	}
+
+	.cdk-overlay-dark-backdrop {
+		background-color: rgba(#fff, .3);
+	}
+
+
+	.mat-dialog-container {
+		background: theme('colors.gray.900') !important;
+		color: white;
+	}
+}
+
+mat-row, mat-header-row, mat-footer-row, th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+	border-bottom-color: var(--ff-table-color-spacer-lines);
 }
 
 .mat-dialog-container {

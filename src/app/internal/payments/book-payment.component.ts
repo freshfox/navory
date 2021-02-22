@@ -9,37 +9,41 @@ import {PaymentService} from "../../services/payment.service";
 @Component({
 	selector: 'nvry-book-payment',
 	template: `
-		<div class="modal-header">
+		<div class="ff-dialog-header">
 				{{ headline }}
 		</div>
-		<div class="modal-inner">
+		<div class="ff-dialog-content">
 			<div class="add-payment-form" *ngIf="!loading">
 				<ff-input class="description" [(ngModel)]="description" [label]="'general.description' | translate"></ff-input>
-				
+
 				<ff-input type="date"
 						[formControl]="form.controls.date"
 						[(ngModel)]="date"
 						[label]="'general.date' | translate"></ff-input>
-		
-				<ff-input 
-				class="amount" 
+
+				<ff-input
+				class="amount"
 				[class.amount--expense]="isExpenseBooking"
-				type="money" 
-				[label]="'general.amount' | translate" 
+				type="money"
+				[label]="'general.amount' | translate"
 				[(ngModel)]="amount"
 				(ngModelChange)="onPaymentAmountChange($event)"
 				></ff-input>
 			</div>
-			
+
+			<p class="text-gray-500 dark:text-gray-400 mt-4 text-xs">
+				Zahlungen über dieses Formular werden immer auf das manuelle "Bar" Konto erstellt. Wenn du Banktransaktionen buchen möchtest, kannst du das über den Punkt <span class="font-bold">Zahlungen</span> machen.
+			</p>
+
 			<ff-spinner *ngIf="loading"></ff-spinner>
 		</div>
-		
-		
-		<div class="modal-footer">
+
+
+		<div class="ff-dialog-footer">
 			<button ff-button class="ff-button--secondary" (click)="cancel()">{{ 'general.cancel' | translate }}</button>
 			<button ff-button (click)="save()" [loading]="saving" [disabled]="loading">{{ 'general.save' | translate }}</button>
 		</div>
-		
+
 	`
 })
 export class BookPaymentComponent implements OnInit {
