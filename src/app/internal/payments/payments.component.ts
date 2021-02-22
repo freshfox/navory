@@ -120,6 +120,7 @@ export class PaymentsComponent implements OnInit {
 			.pipe(first())
 			.subscribe(() => {
 				this.refreshBankAccounts$.next();
+				ref.close();
 			});
 	}
 
