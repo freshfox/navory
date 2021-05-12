@@ -50,7 +50,7 @@
     "normalize.css": "^8.0.1",
     "numbro": "^1.9.3",
     "pikaday": "^1.6.0",
-    "postcss": "^8.2.6",
+    "postcss": "^8.2.10",
     "rxjs": "^6.6.3",
     "ts-helpers": "^1.1.1",
     "tslib": "^2.0.0",
