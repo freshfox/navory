@@ -17,6 +17,13 @@ import {Invoice} from '../../models/invoice';
 				</mat-cell>
 			</ng-container>
 
+			<ng-container matColumnDef="date">
+				<mat-header-cell *matHeaderCellDef>Rechnungsdatum</mat-header-cell>
+				<mat-cell *matCellDef="let element">
+					<span class="font-medium">{{ element.date | date }}</span>
+				</mat-cell>
+			</ng-container>
+
 			<ng-container matColumnDef="amount">
 				<mat-header-cell *matHeaderCellDef>{{ 'general.amount' | translate }}</mat-header-cell>
 				<mat-cell *matCellDef="let element" class="justify-end">

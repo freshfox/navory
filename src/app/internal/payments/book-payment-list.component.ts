@@ -44,12 +44,24 @@ export class BookPaymentListComponent implements OnInit {
 	ngOnInit() {
 		this.expenses$ = this.expenseService.getExpenses()
 			.pipe(map((expenses) => {
-				return expenses.filter(e => !e.isFullyPaid);
+				return expenses.filter(e => !e.isFullyPaid)
+					.sort((a, b) => {
+						const paymentAmount = Math.abs(this.payment.remaining_amount);
+						const aDifference = Math.abs(paymentAmount - a.unpaid_amount);
+						const bDifference = Math.abs(paymentAmount - b.unpaid_amount);
+						return aDifference - bDifference;
+					});
 			}))
 
 		this.invoices$ = this.invoiceService.getInvoices()
 			.pipe(map((invoices) => {
-				return invoices.filter(i => !i.isFullyPaid && !i.draft && !i.canceled);
+				return invoices.filter(i => !i.isFullyPaid && !i.draft && !i.canceled)
+					.sort((a, b) => {
+						const paymentAmount = Math.abs(this.payment.remaining_amount);
+						const aDifference = Math.abs(paymentAmount - a.unpaid_amount);
+						const bDifference = Math.abs(paymentAmount - b.unpaid_amount);
+						return aDifference - bDifference;
+					})
 			}));
 	}
 
