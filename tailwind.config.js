@@ -2,6 +2,14 @@ const colors = require('tailwindcss/colors');
 
 module.exports = {
 	darkMode: 'class',
+	mode: 'jit',
+	purge: {
+		content: [
+			"./src/**/*.html",
+			"./src/**/*.ts",
+			"./node_modules/\\@freshfox/ng-core/**/*.js"
+		],
+	},
 	theme: {
 		extend: {
 			colors: {
