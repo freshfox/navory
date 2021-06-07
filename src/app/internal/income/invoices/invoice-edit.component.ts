@@ -110,6 +110,8 @@ export class InvoiceEditComponent implements OnInit {
 								this.invoice.customer_address = invoice.customer_address;
 								this.invoice.customer_country_code = invoice.customer_country_code;
 								this.invoice.customer_vat_number = invoice.customer_vat_number;
+								this.invoice.service_date_start = invoice.service_date_start;
+								this.invoice.service_date_end = invoice.service_date_end;
 								this.invoice.lines = invoice.lines;
 								this.invoice.comment = invoice.comment;
 								this.invoice.locale = invoice.locale;
